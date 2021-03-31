@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="..\..\libs\bootstrap\css\bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="..\css\index.css">
+  <link rel="stylesheet" type="text/css" href="..\css\AddJobPage.css">
+
+  <title>Add Job</title>
+</head>
+<body>
+  <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
+    Dr Tey Kok Soon
+    <img src="..\..\Assets\imgs\DrTey.jpg" alt="" class="header__img m-1"> 
+    <img src="..\..\Assets\icons\bell.svg" alt="" class="header__img m-1"> 
+  </header>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
+        <img src="..\..\Assets\imgs\umfsktm.png" alt="" class='nav__img'>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alumni</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Jobs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">All Job Advertisement</a></li>
+              <li><a class="dropdown-item" href="#">Your Job Advertisement</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid my-2">
+    <form id="job_ad_form">
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name</label>
+        <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="jobTitle" class="form-label">Job Title</label>
+        <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" aria-describedby="image">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" id="location">
+      </div>
+      <div class="mb-3">
+        <label for="salary" class="form-label">Job Salary</label>
+        <input type="text" class="form-control" id="salary">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="comment" form="job_ad_form" id="description" class="form-control" placeholder="Enter description here..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <footer class="container-fluid">
+    <div class='row d-flex justify-content-evenly custom-dark-purple fw-bold text-break text-dark'>
+
+    <div class='d-flex flex-column col-3'>
+      <span class='text-warning'>Contact Us</span>
+      <ul>
+        <li>
+          <span class=''>+603 7967 6300</span>
+        </li>
+        <li>
+          <span class=''>dekan_fsktm@um.edu.my</span>
+        </li>
+        <li>
+          <span class=''>FCSIT Technical Team
+            Level 2 Block A
+            Faculty of Computer Science and 
+            Information Technology
+            University of Malaya
+            50603 Kuala Lumpur</span>
+        </li>
+      </ul>
+    </div>
+    <div class='d-flex flex-column col-3'>
+      <span class='text-warning'>Quick Links</span>
+      <a class="" href="#">Home</a>
+      <a class="" href="#">Alumni</a>
+      <a class="" href="#">Jobs</a>
+      <a class="" href="#">Events</a>
+    </div>
+    <div class='d-flex flex-column col-3'>
+      <span class='text-warning'>Resources</span>
+      <a class="" href="#">UM Library</a>
+      <a class="" href="#">UM Expert</a>
+      <a class="" href="#">UM Research</a>
+    </div>
+    <div class='d-flex flex-column col-3'>
+      <span class='text-warning'>Follow Us</span>
+      <a class="" href="#">Instagram</a>
+      <a class="" href="#">Facebook</a>
+      <a class="" href="#">Youtube</a>
+      <a class="" href="#">Twitter</a>
+    </div>
+  </div>
+
+  </footer>
+  <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+</body>
+</html>
