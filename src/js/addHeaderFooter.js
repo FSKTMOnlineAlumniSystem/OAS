@@ -16,7 +16,7 @@ header.appendChild(image);
 header.appendChild(image2);
 
 const nav = document.createElement('nav');
-nav.setAttribute('class', 'navbar navbar-light bg-light');
+nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light');
 nav.innerHTML = `<div class="container-fluid">
 <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
   <img src="..\\..\\Assets\\imgs\\umfsktm.png" alt="" class='nav__img'>
