@@ -3,7 +3,7 @@ This is the main repo for the alumni system. So treat the repo carefully :kissin
 Make sure you know how to revert changes made to reverse any destructive changes to the repo.   
 
 ## TO-DO :hugs:
-- [ ] Basic setup of repository(Web project folder structure)
+- [x] Basic setup of repository(Web project folder structure)
 - [ ] Every members successfully make pull request and approved to be added into the repo
 
 ## Requirements :snowflake:
