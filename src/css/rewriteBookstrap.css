@@ -1,0 +1,127 @@
+body{
+    background-color: #F5F5F5;
+    overflow-x: hidden;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #F7C600;
+  border-radius: 0%;
+  top:0%;
+  
+}
+
+.nav-pills .nav-link {
+  color: black;
+  background-color: #EFE6EE;
+  border-radius: 0%;
+}
+
+
+
+.col-2 {
+    /* -ms-flex: 0 0 16.666667%; 
+    flex: 0 0 16.666667%; */
+    -ms-flex: 0 0 13%; 
+    flex: 0 0 13%;
+    max-width: 13%;      /*16.666667% */
+    padding: 50px 0 0;
+    background-color: #C9B3CD;
+    height: calc(100vh - 48px);
+    padding-top: 0rem;
+    top: 0;
+   
+    /* overflow-x: hidden;
+    overflow-y: auto;  */
+  }
+
+  /* @supports ((position: -webkit-sticky) or (position: sticky)) {
+    .col-2 {
+      position: -webkit-sticky;
+      position: sticky;
+    }
+  } */
+
+
+  /* .navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+  }
+  
+  .navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+  }
+  
+  .navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+  }
+  
+  .form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+  }
+  
+  .form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+  } */
+
+
+#container {
+  height: 180px;
+  width: 300px;
+  background-color:#F5B62D ;
+  color : white;
+  text-decoration: none;
+  font-weight: bolder;
+  padding: 32px;
+  font-size:35px;
+
+}
+#alumniText{
+  text-decoration: none;
+}
+
+.alert {
+  background-color: #E9E5E5;
+}
+
+.header__img{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+
+/* eventPage.css */
+#wrapper{
+  width: 85%;
+  margin-right: auto;
+ margin-left: auto;
+  min-width: 900px;
+ max-width: 1280px;
+}
+
+.backgroundImage{
+  opacity: 0.7;
+}
+
+.input-group{
+  position: absolute;
+  top:27%;
+  width: 1200px;
+  left:12%;
+}
+
+
+/* .d-flex flex-row-reverse{
+  display:inline;
+} */
