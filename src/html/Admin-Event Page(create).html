@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--(Create,Update)-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="Admin-Event Page(create).css">
+  <title>Create Event</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>
+        New Event
+      </h1><br>
+
+    </header>
+    <main>
+
+      <form>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Event Title :</label>
+          <input type="text" class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput"
+            placeholder="Enter event title">
+        </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Schedule :</label>
+          <input type="text" class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
+            placeholder="Enter schedule">
+        </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Description :</label>
+          <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
+            placeholder="Enter event description" rows="5" style="height:100%;"></textarea>
+        </div>
+        <!--
+          <form class="form-group">
+            <div class="mb-3">
+              <label for="validationTextarea">Description :</label>
+              <textarea class="form-control" id="validationTextarea" placeholder="Enter new description of the event.">xxx</textarea>
+                 <div class="invalid-feedback">
+                Please enter description of the event.
+              </div
+            </div>
+          </div> -->
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2 ">Location :</label>
+          <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
+            placeholder="Enter location">
+        </div>
+
+
+        <div>
+          <label for="phfile">Image:</label>
+          <img id="prevImage" src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" alt="update Image" width="150" length="150">
+          <input type="file" id="phfile" onchange="readURL(this)">
+        </div>
+
+
+        <a button type="button" class="btn btn-danger float-right rounded-0 ml-2" href="alumniPage.html">Save</a>
+        <a button type="button" class="btn btn-info float-right rounded-0" href="alumniPage.html">Invite alumni</a>
+
+        
+        <!--    
+          <div class="container">
+            <div class="row">
+                <div class="col-md-12 bg-light text-right">
+                    <button type="button" class="btn btn-info" href="alumniPage.html">Invite alumni</button>
+                    <button type="button" class="btn btn-danger" href="alumniPage.html" >Save</button>
+                </div>
+            </div>
+        </div>
+
+ -->
+        <!--
+               
+        -->
+
+
+      </form>
+
+      <script src="Admin-Event Page(update).js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+  </div>
+  </main>
+
+  <footer>
+
+  </footer>
+</body>
+
+</html>
