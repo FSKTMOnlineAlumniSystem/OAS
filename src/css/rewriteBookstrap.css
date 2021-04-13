@@ -3,19 +3,19 @@ body{
     overflow-x: hidden;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-link.active {
   color: #fff;
   background-color: #F7C600;
   border-radius: 0%;
-  top:0%;
-  
+  /* padding-bottom: 0%; */
 }
 
-.nav-pills .nav-link {
+.nav-link {
   color: black;
   background-color: #EFE6EE;
   border-radius: 0%;
+  padding-top: 0%;
+  padding:5%;
 }
 
 
@@ -74,6 +74,60 @@ body{
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   } */
 
+  .home-row{
+    padding-left: 10%;  
+  }
+
+  .card-footer {
+    padding-top:0%;
+    background-color: #fff;
+    border-top: none;
+  }
+
+  .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding-bottom: 5px;
+  }
+  .bi-trash-fill{
+    opacity: 0.3;
+  }
+
+.bi-trash-fill:hover{
+  opacity: 1.0;
+  color: red;
+}
+
+a:hover{
+  text-decoration: none;
+  color: black;
+}
+
+a{
+  color: black;
+}
+
+.col-1{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3%;
+}
+
+.col-7{
+  display: flex;
+  justify-content: left;
+}
+
+
+.col-3{
+  display: flex;
+  justify-content: center;
+}
+
+.cards{
+  padding-left: 10%;
+}
 
 #container {
   height: 180px;
