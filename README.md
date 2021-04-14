@@ -4,7 +4,7 @@ Make sure you know how to revert changes made to reverse any destructive changes
 
 ## TO-DO :hugs:
 - [x] Basic setup of repository(Web project folder structure)
-- [ ] Every members successfully make pull request and approved to be added into the repo
+- [x] Every members successfully make pull request and approved to be added into the repo
 
 ## Requirements :snowflake:
 The system should provide the following functions: 
