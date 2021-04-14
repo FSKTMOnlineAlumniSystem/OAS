@@ -111,4 +111,4 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
 </div>`;
 
 body.insertBefore(nav, mainBody);
-// body.appendChild(footer);
+body.appendChild(footer);
