@@ -14,4 +14,5 @@ function readURL(input) {
   }
 }
 
-input.addEventListener( 'change', (event)=>readURL(input) );
+input.addEventListener( 'change', (event)=>readURL(input));
+
