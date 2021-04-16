@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* use color in bootstrap for other common color */
+:root {
+  --dark-purple: #8f0b89;
+  --light-purple: #c9b3cd;
+  --light-gray: rgb(223, 223, 223);
+}
+
+.custom-dark-purple {
+  background-color: var(--dark-purple);
+}
+
+.custom-light-purple {
+  background-color: var(--light-purple);
+}
+
+.custom-light-gray {
+  background-color: var(--light-gray);
+}
+.header--gradient{
+  background: -webkit-linear-gradient(
+    to right,
+    #d04ed6,
+    #834d9b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #d04ed6,
+    #834d9b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.header__img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+.nav {
+  height: 35px;
+  background: #834d9b; /* fallback for old browsers */
+}
+.nav__img {
+  max-width: 164px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+}
+a.nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+  /* cursor: auto; */
+}
+
+a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+  /* cursor: auto; */
+}
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:10px;
+}
