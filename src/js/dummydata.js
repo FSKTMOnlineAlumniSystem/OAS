@@ -67,7 +67,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-6",
-            "approvedBy": "AD-6",
+            "approvedBy": "",
             "email": "ang@gmail.com",
             "password": "1234",
             "icNumber": "800110-10-1256",
@@ -80,7 +80,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-7",
-            "approvedBy": "AD-7",
+            "approvedBy": "",
             "email": "tan@gmail.com",
             "password": "1234",
             "icNumber": "810110-10-1258",
@@ -93,7 +93,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-8",
-            "approvedBy": "AD-8",
+            "approvedBy": "",
             "email": "limxt@gmail.com",
             "password": "1234",
             "icNumber": "820110-10-1714",
@@ -106,7 +106,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-9",
-            "approvedBy": "AD-9",
+            "approvedBy": "",
             "email": "alisa21@gmail.com",
             "password": "1234",
             "icNumber": "880110-10-1100",
@@ -119,7 +119,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-10",
-            "approvedBy": "AD-10",
+            "approvedBy": "",
             "email": "rohana@um.edu.my",
             "password": "1234",
             "icNumber": "920126-10-1210",
@@ -132,7 +132,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-11",
-            "approvedBy": "AD-11",
+            "approvedBy": "",
             "email": "juliana@gmail.com",
             "password": "1234",
             "icNumber": "930109-10-1260",
@@ -145,7 +145,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-12",
-            "approvedBy": "AD-12",
+            "approvedBy": "",
             "email": "behyunlian@gmail.com",
             "password": "1234",
             "icNumber": "930210-10-1262",
@@ -363,7 +363,7 @@ const dummyResponse = {
             "name": "Siva"
         },
         {
-            "adminId": "AD-4",
+            "adminId": "AD-5",
             "email": "e@gmail.com",
             "password": "1234",
             "name": "Khai"
