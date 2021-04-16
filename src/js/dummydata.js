@@ -67,10 +67,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-6",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "ang@gmail.com",
             "password": "1234",
             "icNumber": "800110-10-1256",
@@ -83,10 +80,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-7",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "tan@gmail.com",
             "password": "1234",
             "icNumber": "810110-10-1258",
@@ -99,10 +93,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-8",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "limxt@gmail.com",
             "password": "1234",
             "icNumber": "820110-10-1714",
@@ -115,10 +106,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-9",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "alisa21@gmail.com",
             "password": "1234",
             "icNumber": "880110-10-1100",
@@ -131,10 +119,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-10",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "rohana@um.edu.my",
             "password": "1234",
             "icNumber": "920126-10-1210",
@@ -147,10 +132,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-11",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "juliana@gmail.com",
             "password": "1234",
             "icNumber": "930109-10-1260",
@@ -163,10 +145,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-12",
-<<<<<<< Updated upstream
             "approvedBy": "",
-=======
->>>>>>> Stashed changes
             "email": "behyunlian@gmail.com",
             "password": "1234",
             "icNumber": "930210-10-1262",
