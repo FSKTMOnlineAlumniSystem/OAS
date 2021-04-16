@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="..\..\..\libs\bootstrap\css\bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="..\..\css\Alumni\index.css">
-  <link rel="stylesheet" type="text/css" href="..\..\css\Alumni\AddJobPage.css">
+  <link rel="stylesheet" type="text/css" href="/libs\bootstrap\css\bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
+  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\AddJobPage.css">
 <!-- icon -->
 <link
 rel="stylesheet"
@@ -17,7 +16,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
 </head>
 
 <body>
-  <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
+  <!-- <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
     Dr Tey Kok Soon
     <img src="..\..\..\Assets\imgs\DrTey.jpg" alt="" class="header__img m-1">
     <img src="..\..\..\Assets\icons\bell.svg" alt="" class="header__img m-1" id='notification-icon'> 
@@ -47,8 +46,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         </li>
       </ul>
     </div>
-    </header>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    </header> -->
+  <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
           <img src="..\..\..\Assets\imgs\\umfsktm.png" alt="" class='nav__img'>
@@ -59,32 +58,32 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/src/html/Alumni/HomePage.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Alumni</a>
+              <a class="nav-link" href="/src/html/Alumni/AlumniPage.html">Alumni</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Jobs
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All Job Advertisement</a></li>
-                <li><a class="dropdown-item" href="#">Your Job Advertisement</a></li>
+                <li><a class="dropdown-item" href="/src/html/Alumni/JobPage.html">All Job Advertisement</a></li>
+                <li><a class="dropdown-item" href="/src/html/Alumni/MyJobPage.html">Your Job Advertisement</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Event</a>
+              <a class="nav-link" href="/src/html/Alumni/EventPage.html">Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <span class="nav-link" id="contact-us-nav-item">Contact Us</span>
             </li>
           </ul>
         </div>
       </div>
-      </nav>
+      </nav> -->
 
-  <div class="container-fluid my-2" id='main-body'>
+  <div class="container my-5" id='main-body'>
     <form id="job_ad_form">
       <div class="mb-3">
         <label for="companyName" class="form-label">Company Name</label>
@@ -129,7 +128,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-  
+<!--   
   <footer class="container-fluid">
     <div class='row d-flex justify-content-evenly justify-content-md-center bg-dark text-break text-dark py-2'>
       <div class='d-flex flex-column col-12 col-md-3 text-white'>
@@ -201,12 +200,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
 
   <script type='text/javascript' src='../../js/addHeader.js'></script>
-  <!-- <script type='text/javascript' src='../../js/addNavFooter.js'></script> -->
-  <script type='text/javascript' src='../../js/addJobPage.js'></script>
-  <script src="..\..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+  <script type='text/javascript' src='../../js/addNavFooter.js'></script>
+  <script type='text/javascript' src='../../js/Alumni/AddJobPage.js'></script>
+  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

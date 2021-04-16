@@ -31,16 +31,10 @@ body,
   background-color: var(--light-gray);
 }
 .header--gradient{
-  background: -webkit-linear-gradient(
-    to right,
-    #d04ed6,
-    #834d9b
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #d04ed6,
-    #834d9b
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to left, #6E48AA, #cd8ee6);
+}
+.footer--gradient{
+  background: linear-gradient(to left, #6E48AA, #a53ecd);
 }
 .header__img {
   height: 20px;
@@ -94,4 +88,8 @@ a.nostyle:visited {
   background-color: rgb(53, 115, 238);
   border-radius: 50%;
   display: inline-block;
+}
+
+#contact-us-nav-item,#notification-icon{
+  cursor: pointer;
 }
