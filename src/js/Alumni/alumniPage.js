@@ -2,10 +2,11 @@ console.log('testing')
 const dummyData = {
     alumniList: [
         {
-            imgPath: "/Assets/imgs/tey.jpg",
+            imgPath: "../../../Assets/imgs/DrTey.jpg",
             alumniName: "Dr XXX",
             description1: "Bachelor of Computer Science (Hons), graduated 2010",
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
+        
         },
         {
             imgPath: "/Assets/imgs/tey.jpg",
