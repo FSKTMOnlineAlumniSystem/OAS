@@ -1,28 +1,21 @@
 import dummyResponse from '../dummydata.js';
 
-const currentAlumniId = "AL-1";
-const alumni = dummyResponse.Alumni.filter(function (alumni) {
-    return alumni.alumniId === currentAlumniId;
+const currentAdminId = "AL-1";
+const admin = dummyResponse.admin.filter(function (admin) {
+    return admin.adminId === currentAdminId;
 })[0];
 
 const name = document.querySelector('#name');
-const gender = document.querySelector('#gender');
-const graduated = document.querySelector('#graduated');
-const department = document.querySelector('#department');
 const email = document.querySelector('#email');
-const contactNumber = document.querySelector('#contactNumber');
-const biography = document.querySelector('#biography');
 
 const oldPassword = document.getElementById('oldPassword');
 const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
 
-const deleteAccountInput = document.querySelector('#deleteAccountInput');
-const deleteAccountButton = document.querySelector('#deleteAccountButton');
 
 function verifyPasswordAndConfirmPassword(e) {
     let errorExist = false;
-    if (oldPassword.value!==alumni.password) {
+    if (oldPassword.value!==admin.password) {
         setInValid(oldPassword);
         errorExist = true;
     } else {
@@ -77,7 +70,7 @@ function verifyPasswordCriteria(password) {
 function deleteAccount(e) {
     if (deleteAccountInput.value === 'DELETE') {
         /* SUCCESS DELETE ACCOUNT */
-        window.location.href = '/src/html/Alumni/homePage.html';
+        window.location.href = '/src/html/admin/homePage.html';
     } else {
         e.preventDefault();
         if (!deleteAccountInput.classList.contains('is-invalid')) {
@@ -87,16 +80,16 @@ function deleteAccount(e) {
 }
 
 function loadData() {
-    const alumni = dummyResponse.Alumni.filter(function (alumni) {
-        return alumni.alumniId === currentAlumniId;
+    const admin = dummyResponse.admin.filter(function (admin) {
+        return admin.adminId === currentadminId;
     })[0];
-    name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
-    graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
-    email.textContent = alumni.email;
-    contactNumber.textContent = alumni.contactNumber;
-    biography.textContent = alumni.biography;
+    name.textContent = admin.name;
+    gender.textContent = admin.gender;
+    graduated.textContent = admin.graduated;
+    department.textContent = admin.department;
+    email.textContent = admin.email;
+    contactNumber.textContent = admin.contactNumber;
+    biography.textContent = admin.biography;
 }
 
 loadData();

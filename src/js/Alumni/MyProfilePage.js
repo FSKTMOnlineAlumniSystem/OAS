@@ -16,6 +16,7 @@ const biography = document.querySelector('#biography');
 const oldPassword = document.getElementById('oldPassword');
 const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
+const changePasswordButton = document.querySelector('#changePasswordButton');
 
 const deleteAccountInput = document.querySelector('#deleteAccountInput');
 const deleteAccountButton = document.querySelector('#deleteAccountButton');
