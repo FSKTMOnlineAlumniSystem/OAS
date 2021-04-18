@@ -88,9 +88,6 @@ function deleteAccount(e) {
 }
 
 function loadData() {
-    const alumni = dummyResponse.Alumni.filter(function (alumni) {
-        return alumni.alumniId === currentAlumniId;
-    })[0];
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;

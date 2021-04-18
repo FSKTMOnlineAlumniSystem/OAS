@@ -45,8 +45,8 @@ function readURL(e) {
 function isEmpty(obj) {
     return obj.value.length == 0;
 }
-const emailFormat = "[a-zA-Z0-9]+@[a-z0-9]+(.[a-z]){1,}";
-const phoneNumberFormat = "[0-9]+-[0-9]{7,}";
+const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
+const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography

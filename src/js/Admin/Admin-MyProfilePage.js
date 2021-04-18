@@ -1,7 +1,7 @@
 import dummyResponse from '../dummydata.js';
 
-const currentAdminId = "AL-1";
-const admin = dummyResponse.admin.filter(function (admin) {
+const currentAdminId = "AD-1";
+const admin = dummyResponse.Admin.filter(function (admin) {
     return admin.adminId === currentAdminId;
 })[0];
 
@@ -11,7 +11,7 @@ const email = document.querySelector('#email');
 const oldPassword = document.getElementById('oldPassword');
 const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
-
+const changePasswordButton = document.querySelector('#changePasswordButton');
 
 function verifyPasswordAndConfirmPassword(e) {
     let errorExist = false;
@@ -67,31 +67,11 @@ function verifyPasswordCriteria(password) {
     return true;
 }
 
-function deleteAccount(e) {
-    if (deleteAccountInput.value === 'DELETE') {
-        /* SUCCESS DELETE ACCOUNT */
-        window.location.href = '/src/html/admin/homePage.html';
-    } else {
-        e.preventDefault();
-        if (!deleteAccountInput.classList.contains('is-invalid')) {
-            deleteAccountInput.classList.add('is-invalid');
-        }
-    }
-}
-
 function loadData() {
-    const admin = dummyResponse.admin.filter(function (admin) {
-        return admin.adminId === currentadminId;
-    })[0];
     name.textContent = admin.name;
-    gender.textContent = admin.gender;
-    graduated.textContent = admin.graduated;
-    department.textContent = admin.department;
     email.textContent = admin.email;
-    contactNumber.textContent = admin.contactNumber;
-    biography.textContent = admin.biography;
 }
 
 loadData();
 changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
-deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));
+
