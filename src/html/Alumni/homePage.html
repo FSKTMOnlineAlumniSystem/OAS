@@ -1334,14 +1334,20 @@
     <script type="module">
         import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
         var slidesPerView = 3;
+        var spaceBetween = 80;
 
-        if (screen.width < 600) {
+        if (window.innerWidth<1000 || screen.width < 1000) {
             slidesPerView = 2;
+            spaceBetween = 30;
+        }
+        if (window.innerWidth<600 || screen.width < 600) {
+            slidesPerView = 1;
+            spaceBetween = 10;
         }
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: slidesPerView,
-            spaceBetween: 100,
+            spaceBetween: spaceBetween,
             slidesPerGroup: slidesPerView,
             loop: true,
             loopFillGroupWithBlank: true,
