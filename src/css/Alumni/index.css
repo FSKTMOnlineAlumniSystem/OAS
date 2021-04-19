@@ -31,16 +31,10 @@ body,
   background-color: var(--light-gray);
 }
 .header--gradient{
-  background: -webkit-linear-gradient(
-    to right,
-    #d04ed6,
-    #834d9b
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #d04ed6,
-    #834d9b
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to left, #6E48AA, #cd8ee6);
+}
+.footer--gradient{
+  background: linear-gradient(to left, #6E48AA, #a53ecd);
 }
 .header__img {
   height: 20px;
@@ -72,4 +66,30 @@ a.nostyle:visited {
 .navbar-nav > li{
   padding-left:30px;
   padding-right:10px;
+}
+
+#notification-panel{
+  background-color: white;
+  color: black;
+  z-index: 1;
+  top: 50px;
+  position: absolute;
+  min-width: 200px;
+  max-width: 350px;
+  font-weight: 400;
+  border: 1px solid rgb(103, 103, 103);
+  font-size: 12px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  max-width: 5px;
+  background-color: rgb(53, 115, 238);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#contact-us-nav-item,#notification-icon{
+  cursor: pointer;
 }
