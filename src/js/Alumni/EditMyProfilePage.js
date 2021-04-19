@@ -9,35 +9,45 @@ const email = document.querySelector('#email');
 const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
+const cancelButton = document.querySelector('#cancelButton');
+const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
+const stayButton = document.querySelector('#stayButton');
+const choosePictureDescription = document.querySelector('#choosePictureDescription');
+
 
 const currentAlumniId = "AL-1";
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
-function setInValid(el){
-    if(el.classList.contains("is-valid")){
-        el.classList.replace("is-valid","is-invalid");
-    }else {
+function setInValid(el) {
+    if (el.classList.contains("is-valid")) {
+        el.classList.replace("is-valid", "is-invalid");
+    } else {
         el.classList.add("is-invalid");
     }
 }
-function setValid(el){
-    if(el.classList.contains("is-invalid")) {
+function setValid(el) {
+    if (el.classList.contains("is-invalid")) {
         el.classList.replace("is-invalid", "is-valid");
-    }else{
-        el.classList.add("is-valid");       
+    } else {
+        el.classList.add("is-valid");
     }
 }
 
-img.addEventListener('change',(e)=>readURL(e));
+img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
-    if (e.target.files && e.target.files[0]) {
+    let allowedExtensions =
+        /(\.png|\.jpg|\.jpeg)$/i;
+    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
             document.getElementById("wizardPicturePreview").src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
+        choosePictureDescription.textContent = "Choose picture";
+    }else{
+        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
 
@@ -54,21 +64,21 @@ form.addEventListener('submit', (e) => {
     if (isEmpty(email) || !email.value.match(emailFormat)) {
         setInValid(email);
         errorExist = true;
-    }else{
+    } else {
         setValid(email);
     }
 
     if (isEmpty(contactNumber) || !contactNumber.value.match(phoneNumberFormat)) {
         setInValid(contactNumber);
         errorExist = true;
-    }else{
+    } else {
         setValid(contactNumber);
     }
 
     if (isEmpty(biography)) {
         setInValid(biography);
         errorExist = true;
-    }else{
+    } else {
         setValid(biography);
     }
 
@@ -78,16 +88,35 @@ form.addEventListener('submit', (e) => {
         alumni.contactNumber = contactNumber.value;
         alumni.biography = biography.value;
     }
-})
+});
+
+/*Check whether there is any changes that might be lost*/
+cancelButton.addEventListener('click', () => {
+    if (alumni.email == email.value &&
+        alumni.contactNumber == contactNumber.value &&
+        alumni.biography == biography.value) {
+        location.href = "MyProfilePage.html";
+    } else {
+        /*POP UP MODAL ask if cancel will lose changes */
+        $('#cancelChangesModal').modal('show');
+    }
+});
+
+/*Close Modal */
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+    $(modalId).modal('hide');
+}
 
 function loadData() {
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
     department.textContent = alumni.department;
-    email.textContent = alumni.email;
-    contactNumber.textContent = alumni.contactNumber;
-    biography.textContent = alumni.biography;
+    email.value = alumni.email;
+    contactNumber.value = alumni.contactNumber;
+    biography.value = alumni.biography;
 }
 
 loadData();

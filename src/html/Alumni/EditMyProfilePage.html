@@ -19,8 +19,8 @@
 </head>
 
 <body>
-    <div id="main-body" class="container my-5">
-        <div class="row">
+    <div id="main-body" class="container my-5 p-5 border">
+        <div class="row mx-0">
             <h2>Edit My Profile</h2>
         </div>
         <form id="editMyProfileForm" action='/src/html/Alumni/MyProfilePage.html'>
@@ -33,7 +33,7 @@
                                     id="wizardPicturePreview" title="">
                                 <input type="file" id="wizard-picture">
                             </div>
-                            <h6 class="">Choose Picture</h6>
+                            <h6 id="choosePictureDescription">Choose Picture</h6>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">Graduated:</div>
-                        <div id="graduated"  class="col-sm-8">2014</div>
+                        <div id="graduated" class="col-sm-8">2014</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">Department:</div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-5 mx-0">
                 <h4>Biography</h4>
                 <div class="col-12 rounded bg-grey p-5 mb-2">
                     <textarea class="form-control" form="editMyProfileForm" id="biography" rows="10">Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior Lecturer. His research interests include renewable energy control system, energy management, power efficiency of PV system and inverter control of PV system.
@@ -88,15 +88,35 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end mt-3">
+            <div class="row justify-content-end mt-3 mx-0">
                 <!-- Need to pop up to ask whether users want to cancel and lose changes -->
-                <a href="MyProfilePage.html"><button type="button" class="btn btn-secondary">Cancel</button></a>
+                <button id="cancelButton" type="button" class="btn btn-secondary" >Cancel</button>
                 <button type="submit" class="btn btn-success ml-3">Save</button>
             </div>
         </form>
+        <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
+                        <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        You have made changes. They will be lost if you continue.
+                        Are you sure you want to leave this page?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="MyProfilePage.html"><button type="button" class="btn btn-secondary">Leave this Page</button></a>
+                        <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this Page</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script type='text/javascript' src='/src/js/addHeader.js'></script>
+    <!-- <script type='text/javascript' src='/src/js/addHeader.js'></script>
     <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -104,7 +124,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
 
     <script type="module" src="../../js/Alumni/EditMyProfilePage.js"></script>
 
