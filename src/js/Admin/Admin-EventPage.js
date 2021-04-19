@@ -12,7 +12,8 @@ const loadEventList = (pageIndex) => {
     console.log('StartIndex' + eventStartIndex)
     console.log('EndIndex' + eventEndIndex)
 
-
+    var dataLength = dummyResponse.Event.length;
+    var remainingLength=dataLength-eventStartIndex
     /*   js for button*/
     if(eventEndIndex>=dummyResponse.Event.length){
         document.getElementById('nextPage').innerHTML=`
@@ -40,7 +41,62 @@ const loadEventList = (pageIndex) => {
             <button   onclick="previousPage()" class="page-link">Previous</button>
           </li>`
     }
+    // js for 1,2,3
+    
+    // if(remainingLength<=10){
+    //     console.log("<=10")
+    //     document.getElementById('first').innerHTML=`
+    //     <li class="page-item disabled id="first"">
+    //     <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+    //     </li>`
+    // }
+    // else if(remainingLength<=20){
+    //     console.log("<=20")
+    //     document.getElementById('first').innerHTML=`
+    //     <li class="page-item disabled" id="first">
+    //     <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+    //     </li>`
+    //     document.getElementById('second').innerHTML=`
+    //     <li class="page-item" id="second"><button onclick="nextPage()">${pageIndex+2}</button></li>`
+    // }
+    // else{
+    //     console.log("<=30")
+    //     document.getElementById('first').innerHTML=`
+    //     <li class="page-item disabled" id="first">
+    //     <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+    //     </li>`
+    //     document.getElementById('second').innerHTML=`
+    //     <li class="page-item" id="second"><button onclick="nextPage()">${pageIndex+2}</button></li>`
+    //     document.getElementById('third').innerHTML=`
+    //     <li class="page-item" id="third"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>`
+    // }
+    if(remainingLength<=10){
+        console.log("<=10")
+        document.getElementsByClassName('pages')[0].innerHTML=`
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+        </li>`
+    }
+    else if(remainingLength<=20){
+        console.log("<=20")
+        document.getElementsByClassName('pages')[0].innerHTML=`
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+        </li>
+        <li class="page-item" ><button onclick="nextPage()">${pageIndex+2}</button></li>`
+    }
+    else{
+        console.log("<=30")
+        document.getElementsByClassName('pages')[0].innerHTML=`
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+        </li>
+        <li class="page-item" ><button onclick="nextPage()">${pageIndex+2}</button></li>
+        <li class="page-item" ><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>`
+    }
 
+
+    // }
 var table = document.getElementsByClassName("table table-striped table-sm something")[0];
 //or use :  var table = document.all.tableid;
 
@@ -51,13 +107,13 @@ for(var i = table.rows.length - 1; i > 0; i--)
 
     for (let i = eventStartIndex; i < eventEndIndex && i < dummyResponse.Event.length; i++) {
 
-        console.log("previous time" + dummyResponse.Event[i].dateTime)
+        // console.log("previous time" + dummyResponse.Event[i].dateTime)
         var d = new Date(dummyResponse.Event[i].dateTime);
-        console.log(dummyResponse.Event[i].dateTime)
+        // console.log(dummyResponse.Event[i].dateTime)
         let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
         let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
         let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-        console.log(`${da}, ${mo} ${ye}`);
+        // console.log(`${da}, ${mo} ${ye}`);
         // d.toLocaleDateString('en-GB')
         var newRowContent =
             `<tr class="rowss">
@@ -85,7 +141,7 @@ for(var i = table.rows.length - 1; i > 0; i--)
         var tableRef = document.getElementsByClassName('table table-striped table-sm something')[0].getElementsByTagName('tbody')[0];
         var newRow = tableRef.insertRow(tableRef.rows.length);
         // table.insertRow(newRow)
-        console.log(newRow)
+        // console.log(newRow)
         newRow.innerHTML = newRowContent;
     }
 }
@@ -99,63 +155,3 @@ window.previousPage = function(){
     loadEventList(pageIndex);
 }
 loadEventList(pageIndex);
-
-
-/* <span class="d-block">
-${dummyData.alumniList[i].alumniName}
-</span></div> */
-// function nextPage() {
-//     pageIndex++;
-//     loadEventList(pageIndex);
-// }
-// function previousPage() {
-//     pageIndex--;
-//     loadEventList(pageIndex);
-// }
-
-
-// const nextPage = () => {
-//     pageIndex++;
-//     loadEventList(pageIndex);
-// }
-
-// const previousPage = () => {
-//     pageIndex--;
-//     loadEventList(pageIndex);
-// }
-// Admin-EventPage.exports = nextPage();
-
-
-
-
-
-/*   js for button
-if(alumniEndIndex>=dummyData.alumniList.length){
-       document.getElementById('btn nextPage-btn btn-sm').disabled = true;
-       console.log('last page')
-   }
-   else{
-       document.getElementById('btn nextPage-btn btn-sm').disabled = false;
-   }
-   if(pageIndex==0){
-       document.getElementById('btn previousPage-btn btn-light btn-sm').disabled = true;
-       console.log('last page')
-   }
-   else{
-       document.getElementById('btn previousPage-btn btn-light btn-sm').disabled = false;
-   }
-   */
-         // `<div class="media justify-content-center mb-2 w-75" style="background-color:#E9E5E5;">
-            // <div class="image ml-5 mt-2">
-            // <img src=${dummyData.alumniList[i].imgPath} class="mr-3" alt=${dummyData.alumniList[i].alumniName} height=auto width="80">
-            // </div>
-            // <div class="media-body mr-3">
-            // <h6 class="mt-0">${dummyData.alumniList[i].alumniName}</h6>
-            // <p>${dummyData.alumniList[i].description1}</p>
-            // <p style="display: -webkit-box;
-            // -webkit-line-clamp: 3;
-            // -webkit-box-orient: vertical;
-            // overflow: hidden;
-            // text-overflow: ellipsis;">${dummyData.alumniList[i].description2}</p>
-            // </div></div>
-            // </div>`;
