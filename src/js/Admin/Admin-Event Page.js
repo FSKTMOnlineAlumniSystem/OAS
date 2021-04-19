@@ -1,3 +1,4 @@
+console.log("testing");
 const dummyResponse = {
   event: [
     {
@@ -61,14 +62,14 @@ let pageIndex = 0;
 
 const loadEventList = (pageIndex) => {
   document.getElementById("pageIndex").innerHTML =
-    pageIndex + 1 + "/" + Math.ceil(dummyData.event.length / 10);
+    pageIndex + 1 + "/" + Math.ceil(dummyResponse.event.length / 10);
   document.getElementById("event").innerHTML = "";
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
   console.log(pageIndex);
   // console.log('eventEndIndex'+eventEndIndex)
-  // console.log('length'+dummyData.event.length)
-  if (eventEndIndex >= dummyData.event.length) {
+  // console.log('length'+dummyResponse.event.length)
+  if (eventEndIndex >= dummyResponse.event.length) {
     document.getElementById("btn nextPage-btn btn-sm").disabled = true;
     console.log("last page");
   } else {
@@ -109,7 +110,7 @@ const loadEventList = (pageIndex) => {
 
   for (
     let i = eventStartIndex;
-    i < eventEndIndex && i < dummyData.event.length;
+    i < eventEndIndex && i < dummyResponse.event.length;
     i++
   ) {
     document.getElementById("event").innerHTML += `<tr>
@@ -135,7 +136,7 @@ const loadEventList = (pageIndex) => {
 };
 
 /* <span class="d-block">
-${dummyData.event[i].alumniName}
+${dummyResponse.event[i].alumniName}
 </span></div> */
 const nextPage = () => {
   pageIndex++;
