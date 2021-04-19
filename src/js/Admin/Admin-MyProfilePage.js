@@ -1,29 +1,21 @@
 import dummyResponse from '../dummydata.js';
 
-const currentAlumniId = "AL-1";
-const alumni = dummyResponse.Alumni.filter(function (alumni) {
-    return alumni.alumniId === currentAlumniId;
+const currentAdminId = "AD-1";
+const admin = dummyResponse.Admin.filter(function (admin) {
+    return admin.adminId === currentAdminId;
 })[0];
 
 const name = document.querySelector('#name');
-const gender = document.querySelector('#gender');
-const graduated = document.querySelector('#graduated');
-const department = document.querySelector('#department');
 const email = document.querySelector('#email');
-const contactNumber = document.querySelector('#contactNumber');
-const biography = document.querySelector('#biography');
 
 const oldPassword = document.getElementById('oldPassword');
 const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
 const changePasswordButton = document.querySelector('#changePasswordButton');
 
-const deleteAccountInput = document.querySelector('#deleteAccountInput');
-const deleteAccountButton = document.querySelector('#deleteAccountButton');
-
 function verifyPasswordAndConfirmPassword(e) {
     let errorExist = false;
-    if (oldPassword.value!==alumni.password) {
+    if (oldPassword.value!==admin.password) {
         setInValid(oldPassword);
         errorExist = true;
     } else {
@@ -75,28 +67,11 @@ function verifyPasswordCriteria(password) {
     return true;
 }
 
-function deleteAccount(e) {
-    if (deleteAccountInput.value === 'DELETE') {
-        /* SUCCESS DELETE ACCOUNT */
-        window.location.href = '/src/html/Alumni/homePage.html';
-    } else {
-        e.preventDefault();
-        if (!deleteAccountInput.classList.contains('is-invalid')) {
-            deleteAccountInput.classList.add('is-invalid');
-        }
-    }
-}
-
 function loadData() {
-    name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
-    graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
-    email.textContent = alumni.email;
-    contactNumber.textContent = alumni.contactNumber;
-    biography.textContent = alumni.biography;
+    name.textContent = admin.name;
+    email.textContent = admin.email;
 }
 
 loadData();
 changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
-deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));
+

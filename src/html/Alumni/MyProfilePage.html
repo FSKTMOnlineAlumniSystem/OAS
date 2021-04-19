@@ -13,11 +13,12 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/Alumni/MyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
 
 </head>
 
 <body>
-    <div class="container my-5">
+    <div id="main-body" class="container my-5">
         <div class="row justify-content-between">
             <h2>My Profile</h2>
             <div class="btn-group">
@@ -46,37 +47,36 @@
         <div class="row mt-3 mb-3 align-items-center">
             <div class="col-sm-5 d-flex align-items-center justify-content-center">
                 <div class="w-50 position-relative">
-                    <img src="../../../Assets/imgs/Square_DrTey.jpg" alt="Profile Picture"
-                        class="rounded-circle img-fluid border border-dark">
-                    <button class="shadow position-absolute bottom-0 right-20 rounded-circle border-0 d-flex justify-content-center align-items-center" style="height:35px; width:35px;">
-                        <i class="fa fa-camera" style="font-size:18px;"></i>
-                    </button>
+                    <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
+                    <img src="../../../Assets/imgs/DrTey.jpg" alt="Profile Picture"
+                        class="img-fluid">
+                    </div>
                 </div>
             </div>
             <div class="col-sm-7 justify-content-center align-items-center">
                 <div class="row mb-3">
                     <div class="col-sm-4">Name:</div>
-                    <div class="col-sm-8">Teh Kok Soon</div>
+                    <div id="name" class="col-sm-8">Teh Kok Soon</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Gender:</div>
-                    <div class="col-sm-8">Male</div>
+                    <div id="gender" class="col-sm-8">Male</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Graduated:</div>
-                    <div class="col-sm-8">2014</div>
+                    <div id="graduated" class="col-sm-8">2014</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Department:</div>
-                    <div class="col-sm-8">Software Engineering</div>
+                    <div id="department" class="col-sm-8">Software Engineering</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">E-mail:</div>
-                    <div class="col-sm-8">koksoon@um.edu.my</div>
+                    <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Contact Number:</div>
-                    <div class="col-sm-8">03-79676347</div>
+                    <div id="contactNumber" class="col-sm-8">03-79676347</div>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
         <div class="row mt-5">
             <h4>Biography</h4>
             <div class="rounded bg-grey p-5 mb-2">
-                <div class="profile__biography_valueContainer_value">
+                <div id="biography" class="profile__biography_valueContainer_value">
                     Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University
                     of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant
                     with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of
@@ -100,7 +100,7 @@
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal"
         aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content was-validated">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="changePasswordModalLabel">Change password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -110,19 +110,20 @@
                 <div class="modal-body">
                     <form id="changePasswordForm">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Old password</label>
-                            <input type="text" class="form-control" id="recipient-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">New password</label>
-                            <input type="password" class="form-control" id="NewPassword" required>
+                            <label for="oldPassword" class="col-form-label">Old password</label>
+                            <input type="text" class="form-control" id="oldPassword" required>
                             <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="invalid-feedback">Old password is wrong</div>
                         </div>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Confirm new password</label>
-                            <input type="password" class="form-control" id="ConfirmNewPassword"
-                                onfocus="verifyPasswordAndConfirmPassword()" required>
+                            <label for="newPassword" class="col-form-label">New password</label>
+                            <input type="password" class="form-control" id="newPassword" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Be at least 5 characters and at most 20 characters</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword" class="col-form-label">Confirm new password</label>
+                            <input type="password" class="form-control" id="confirmNewPassword" required>
                             <div class="valid-feedback">New password is correct</div>
                             <div class="invalid-feedback">Please enter the same new password</div>
                         </div>
@@ -131,7 +132,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
+                    <button id="changePasswordButton" type="button" class="btn btn-primary">Confirm</button>
                 </div>
             </div>
         </div>
@@ -156,21 +157,31 @@
                     </div>
                     <form>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">If yes, please type “DELETE” to delete
+                            <label for="deleteAccountInput" class="col-form-label">If yes, please type “DELETE” to delete
                                 your account.</label>
-                            <input type="text" class="form-control" id="recipient-name" required>
+                            <input type="text" class="form-control" id="deleteAccountInput" required>
+                            <div class="invalid-feedback">Please enter 'DELETE'</div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Delete Account</button>
+                    <button id="deleteAccountButton" type="button" class="btn btn-danger">Delete Account</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
+    <script type='text/javascript' src='/src/js/addHeader.js'></script>
+    <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"></script>
 
-    <script type='text/javascript' src="../../js/Alumni/MyProfilePage.js"></script>
+    <script type='module' src="../../js/Alumni/MyProfilePage.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
