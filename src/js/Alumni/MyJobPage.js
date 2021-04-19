@@ -1,22 +1,47 @@
 import dummyResponse from '../dummydata.js';
 
 let pageIndex = 0;
+var deleted = false;
+let count=0;
 
-// document.getElementById("pageIndex").innerHTML = "";
-for(let i=1; i<=(Math.ceil(dummyResponse.Job.length/9)); i++){
-    document.getElementById("pageIndex").innerHTML += 
-    `<li class="page-item"><button class="page-link">`+i+`</button></li>`;
-    console.log('page2 ' + i)
+for(let i=0; i<dummyResponse.Job.length; i++){
+    if(dummyResponse.Job[i].alumniId == "AL-1"){
+        count++;
+    }
 }
-document.getElementById("pageIndex").innerHTML +=  `<li class="page-item">
-<button class="page-link" id="nextPage">Next</button></li>` ;
+console.log('count'+count);
+
+
+document.getElementById("pageIndex").innerHTML = `<li class="page-item">
+    <button class="page-link" id="previousPage">Previous</button></li>` ;
+
+// for (let i = 1; i <= (Math.ceil(dummyResponse.Job.length / 9)); i++)
+for (let i = 1; i <= (Math.ceil(count / 9)); i++) {
+    document.getElementById("pageIndex").innerHTML +=
+        `<li class="page-item"><button class="page-link inner">` + i + `</button></li>`;
+}
+
+document.getElementById("pageIndex").innerHTML += `<li class="page-item">
+    <button class="page-link" id="nextPage">Next</button></li>` ;
 
 
 const loadJobList = (pageIndex) => {
-    // document.getElementById('pageIndex').innerHTML = pageIndex+1+"/"+Math.ceil(dummyResponse.Job.length/9);
-   
-    // console.log(Math.ceil(dummyResponse.Job.length/9));
-   
+    console.log('dumyData length' + dummyResponse.Job.length);
+
+    if (deleted) {
+        document.getElementById("pageIndex").innerHTML = `<li class="page-item">
+        <button class="page-link" id="previousPage">Previous</button></li>` ;
+    
+    for (let i = 0; i <= pageIndex; i++) {
+        document.getElementById("pageIndex").innerHTML +=
+            `<li class="page-item"><button class="page-link inner">` + (i+1) + `</button></li>`;
+        console.log('page2 ' + i)
+    }
+    
+    document.getElementById("pageIndex").innerHTML += `<li class="page-item">
+        <button class="page-link" id="nextPage">Next</button></li>` ;
+    }
+
     document.getElementById('jobList').innerHTML = "";
     let jobStartIndex = pageIndex * 9;
     let jobEndIndex = jobStartIndex + 9;
@@ -24,27 +49,30 @@ const loadJobList = (pageIndex) => {
     console.log(jobStartIndex)
     console.log(jobEndIndex)
 
-    if(jobEndIndex>=dummyResponse.Job.length){
+    // if (jobEndIndex >= dummyResponse.Job.length)
+    if (jobEndIndex >= count) {
         document.getElementById("nextPage").disabled = true;
         // console.log('here')
     }
-    else{
+    else {
         document.getElementById("nextPage").disabled = false;
     }
-    if(pageIndex==0){
+    if (pageIndex == 0) {
         document.getElementById("previousPage").disabled = true;
         // console.log('last page')
     }
-    else{
+    else {
         document.getElementById("previousPage").disabled = false;
     }
     // document.getElementById('jobList').innerHTML += '<div class="card-desk">' +'<div class="row row-cols-4">'
-    
-    for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++) {
-        document.getElementById('jobList').innerHTML += 
-        `<div class="col mb-4">
+
+    // for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++)
+    for (let i = jobStartIndex; i < jobEndIndex && i <dummyResponse.Job.length; i++) {
+        if(dummyResponse.Job[i].alumniId == "AL-1"){
+        document.getElementById('jobList').innerHTML +=
+            `<div class="col mb-4">
         <div class="card h-100">
-        
+        <a href="../../html/Alumni/MyJobDetailsPage.html" >
         <img src="../../../Assets/imgs/${dummyResponse.Job[i].imageId}" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
         <h5 class="card-title">${dummyResponse.Job[i].title}</h5>
@@ -58,53 +86,34 @@ const loadJobList = (pageIndex) => {
         <div class="col-7">${dummyResponse.Job[i].salary}</div>
         </div>
         </p>
-        </div>
+        </div></a>
         <div class="card-footer mt-auto">
         <button type="button" class="close" role="button" aria-pressed="true" data-name=${dummyResponse.Job[i].jobId}><i class="bi bi-trash-fill"></i></button>  
         </div></div><div>`;
     }
 }
+}
 
-$("#jobList").on("click", ".close", function(event){
+$("#jobList").on("click", ".close", function (event) {
     var name = $(this).attr("data-name");
-    for(let i=0; i<dummyResponse.Job.length; i++){
-        if(dummyResponse.Job[i].jobId == name){
-            dummyResponse.Job.splice(i,1);  //at position i remove 1 item
-            console.log('delete');
+    for (let i = 0; i < dummyResponse.Job.length; i++) {
+        if (dummyResponse.Job[i].jobId == name) {
+            dummyResponse.Job.splice(i, 1);  //at position i remove 1 item
             break;
         }
     }
+    deleted = true;
     loadJobList(pageIndex);
-    console.log(name);
+    console.log(dummyResponse.Job.length);
 });
 
-function removeJob(name){
-    for(let i=0; i<dummyResponse.Job.length; i++){
-        if(dummyResponse.Job[i].jobId == name){
-            dummyResponse.Job.splice(i,1);  //at position i remove 1 item
-            console.log('delete');
-            break;
-        }
-    }
-    
-};
-
-// for (var i in cart) {
-//     if (cart[i].name === name) {
-//         cart.splice(i, 1);
-//         break;
-//     }
-// }
-// saveCart();
-
-
-document.getElementById('nextPage').addEventListener("click", function(){
+document.getElementById('nextPage').addEventListener("click", function () {
     pageIndex++;
     loadJobList(pageIndex);
     console.log('here' + pageIndex)
 });
 
-document.getElementById('previousPage').addEventListener("click", function(){
+document.getElementById('previousPage').addEventListener("click", function () {
     pageIndex--;
     loadJobList(pageIndex);
     console.log('next' + pageIndex)
