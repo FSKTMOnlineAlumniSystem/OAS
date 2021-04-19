@@ -41,7 +41,7 @@ const loadEventList = (pageIndex) => {
           </li>`
     }
 
-var table = document.getElementById("table table-striped table-sm something");
+var table = document.getElementsByClassName("table table-striped table-sm something")[0];
 //or use :  var table = document.all.tableid;
 
 for(var i = table.rows.length - 1; i > 0; i--)
@@ -82,7 +82,7 @@ for(var i = table.rows.length - 1; i > 0; i--)
                   </div>
                 </td>
             </tr>`;
-        var tableRef = document.getElementById('table table-striped table-sm something').getElementsByTagName('tbody')[0];
+        var tableRef = document.getElementsByClassName('table table-striped table-sm something')[0].getElementsByTagName('tbody')[0];
         var newRow = tableRef.insertRow(tableRef.rows.length);
         // table.insertRow(newRow)
         console.log(newRow)
