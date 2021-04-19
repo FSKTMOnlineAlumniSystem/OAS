@@ -26,7 +26,7 @@ const loadJobList = (pageIndex) => {
 
     if(jobEndIndex>=dummyResponse.Job.length){
         document.getElementById("nextPage").disabled = true;
-        // console.log('here')
+        console.log('here')
     }
     else{
         document.getElementById("nextPage").disabled = false;
@@ -44,7 +44,6 @@ const loadJobList = (pageIndex) => {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
         <div class="card h-100">
-        
         <img src="../../../Assets/imgs/${dummyResponse.Job[i].imageId}" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
         <h5 class="card-title">${dummyResponse.Job[i].title}</h5>
@@ -58,51 +57,27 @@ const loadJobList = (pageIndex) => {
         <div class="col-7">${dummyResponse.Job[i].salary}</div>
         </div>
         </p>
-        </div>
-        <div class="card-footer mt-auto">
-        <button type="button" class="close" role="button" aria-pressed="true" data-name=${dummyResponse.Job[i].jobId}><i class="bi bi-trash-fill"></i></button>  
-        </div></div><div>`;
+        </div></div></div>`;
     }
 }
 
-$("#jobList").on("click", ".close", function(event){
-    var name = $(this).attr("data-name");
-    for(let i=0; i<dummyResponse.Job.length; i++){
-        if(dummyResponse.Job[i].jobId == name){
-            dummyResponse.Job.splice(i,1);  //at position i remove 1 item
-            console.log('delete');
-            break;
-        }
-    }
-    loadJobList(pageIndex);
-    console.log(name);
-});
 
-function removeJob(name){
-    for(let i=0; i<dummyResponse.Job.length; i++){
-        if(dummyResponse.Job[i].jobId == name){
-            dummyResponse.Job.splice(i,1);  //at position i remove 1 item
-            console.log('delete');
-            break;
-        }
-    }
-    
-};
-
-// for (var i in cart) {
-//     if (cart[i].name === name) {
-//         cart.splice(i, 1);
-//         break;
-//     }
+// const nextPage = () => {
+//     pageIndex++;
+//     loadJobList(pageIndex);
 // }
-// saveCart();
-
 
 document.getElementById('nextPage').addEventListener("click", function(){
     pageIndex++;
     loadJobList(pageIndex);
     console.log('here' + pageIndex)
 });
+
+
+// const previousPage = () => {
+//     pageIndex--;
+//     loadJobList(pageIndex);
+// }
 
 document.getElementById('previousPage').addEventListener("click", function(){
     pageIndex--;
@@ -111,3 +86,4 @@ document.getElementById('previousPage').addEventListener("click", function(){
 });
 
 loadJobList(pageIndex);
+
