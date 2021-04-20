@@ -1,6 +1,13 @@
 
 import dummyResponse from "../dummydata.js";
 console.log('link js')
+// model
+// $('#myModal').on('shown.bs.modal', function () {
+//   $('#myInput').trigger('focus')
+// })
+
+
+//eventList
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {
     // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
