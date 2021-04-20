@@ -12,6 +12,7 @@
     overflow: hidden;
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
+    aspect-ratio: 1/1;
 }
 .picture:hover{
     border-color: #2ca8ff;
