@@ -11,6 +11,7 @@ const dummyResponse = {
             "department": "Artificial Intelligence",
             "graduated": "1985",
             "imageId": "AL-1.png",
+            "contactNumber": "03-79676347",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
@@ -24,6 +25,7 @@ const dummyResponse = {
             "department": "Artificial Intelligence",
             "graduated": "1989",
             "imageId": "AL-2.png",
+            "contactNumber": "03-79676348",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
@@ -37,6 +39,7 @@ const dummyResponse = {
             "department": "Artificial Intelligence",
             "graduated": "2000",
             "imageId": "AL-3.png",
+            "contactNumber": "03-79676349",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
@@ -50,6 +53,7 @@ const dummyResponse = {
             "department": "Artificial Intelligence",
             "graduated": "2000",
             "imageId": "AL-4.png",
+            "contactNumber": "03-79676350",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
@@ -63,11 +67,11 @@ const dummyResponse = {
             "department": "Software Engineering",
             "graduated": "2000",
             "imageId": "AL-5.png",
+            "contactNumber": "03-79676351",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-6",
-            "approvedBy": "",
             "email": "ang@gmail.com",
             "password": "1234",
             "icNumber": "800110-10-1256",
@@ -76,11 +80,11 @@ const dummyResponse = {
             "department": "Software Engineering",
             "graduated": "2000",
             "imageId": "AL-6.png",
+            "contactNumber": "012-6763472",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-7",
-            "approvedBy": "",
             "email": "tan@gmail.com",
             "password": "1234",
             "icNumber": "810110-10-1258",
@@ -89,11 +93,11 @@ const dummyResponse = {
             "department": "Software Engineering",
             "graduated": "2000",
             "imageId": "AL-7.png",
+            "contactNumber": "011-6763473",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-8",
-            "approvedBy": "",
             "email": "limxt@gmail.com",
             "password": "1234",
             "icNumber": "820110-10-1714",
@@ -102,11 +106,11 @@ const dummyResponse = {
             "department": "Software Engineering",
             "graduated": "2000",
             "imageId": "AL-8.png",
+            "contactNumber": "012-6755474",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-9",
-            "approvedBy": "",
             "email": "alisa21@gmail.com",
             "password": "1234",
             "icNumber": "880110-10-1100",
@@ -115,11 +119,11 @@ const dummyResponse = {
             "department": "Data Science",
             "graduated": "2010",
             "imageId": "AL-9.png",
+            "contactNumber": "012-1111475",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-10",
-            "approvedBy": "",
             "email": "rohana@um.edu.my",
             "password": "1234",
             "icNumber": "920126-10-1210",
@@ -128,11 +132,11 @@ const dummyResponse = {
             "department": "Data Science",
             "graduated": "2014",
             "imageId": "AL-10.png",
+            "contactNumber": "012-6773226",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-11",
-            "approvedBy": "",
             "email": "juliana@gmail.com",
             "password": "1234",
             "icNumber": "930109-10-1260",
@@ -141,11 +145,11 @@ const dummyResponse = {
             "department": "Information System",
             "graduated": "2015",
             "imageId": "AL-11.png",
+            "contactNumber": "011-6763997",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-12",
-            "approvedBy": "",
             "email": "behyunlian@gmail.com",
             "password": "1234",
             "icNumber": "930210-10-1262",
@@ -154,6 +158,7 @@ const dummyResponse = {
             "department": "Information System",
             "graduated": "2015",
             "imageId": "AL-12.png",
+            "contactNumber": "012-6333478",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         }
     ],
@@ -193,249 +198,6 @@ const dummyResponse = {
             "description": "Learn more about Bootstrap",
             "imageId": "E-4.png",
             "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
-        },
-        {
-            "eventId": "E-2",
-            "adminId": "AD-1",
-            "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
-            "imageId": "E-2.png",
-            "location": "FSKTM, MM3"
-        },
-        {
-            "eventId": "E-3",
-            "adminId": "AD-2",
-            "title": "Ashrae Run",
-            "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
-            "imageId": "E-3.png",
-            "location": "FSKTM, MM4"
-        },
-        {
-            "eventId": "E-4",
-            "adminId": "AD-3",
-            "title": "Boom Boom Bootstrap",
-            "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
-            "imageId": "E-4.png",
-            "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
-        },
-        {
-            "eventId": "E-2",
-            "adminId": "AD-1",
-            "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
-            "imageId": "E-2.png",
-            "location": "FSKTM, MM3"
-        },
-        {
-            "eventId": "E-3",
-            "adminId": "AD-2",
-            "title": "Ashrae Run",
-            "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
-            "imageId": "E-3.png",
-            "location": "FSKTM, MM4"
-        },
-        {
-            "eventId": "E-4",
-            "adminId": "AD-3",
-            "title": "Boom Boom Bootstrap",
-            "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
-            "imageId": "E-4.png",
-            "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
-        },
-        {
-            "eventId": "E-2",
-            "adminId": "AD-1",
-            "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
-            "imageId": "E-2.png",
-            "location": "FSKTM, MM3"
-        },
-        {
-            "eventId": "E-3",
-            "adminId": "AD-2",
-            "title": "Ashrae Run",
-            "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
-            "imageId": "E-3.png",
-            "location": "FSKTM, MM4"
-        },
-        {
-            "eventId": "E-4",
-            "adminId": "AD-3",
-            "title": "Boom Boom Bootstrap",
-            "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
-            "imageId": "E-4.png",
-            "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
-        },
-        {
-            "eventId": "E-2",
-            "adminId": "AD-1",
-            "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
-            "imageId": "E-2.png",
-            "location": "FSKTM, MM3"
-        },
-        {
-            "eventId": "E-3",
-            "adminId": "AD-2",
-            "title": "Ashrae Run",
-            "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
-            "imageId": "E-3.png",
-            "location": "FSKTM, MM4"
-        },
-        {
-            "eventId": "E-4",
-            "adminId": "AD-3",
-            "title": "Boom Boom Bootstrap",
-            "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
-            "imageId": "E-4.png",
-            "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
-        },
-        {
-            "eventId": "E-2",
-            "adminId": "AD-1",
-            "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
-            "imageId": "E-2.png",
-            "location": "FSKTM, MM3"
-        },
-        {
-            "eventId": "E-3",
-            "adminId": "AD-2",
-            "title": "Ashrae Run",
-            "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
-            "imageId": "E-3.png",
-            "location": "FSKTM, MM4"
-        },
-        {
-            "eventId": "E-4",
-            "adminId": "AD-3",
-            "title": "Boom Boom Bootstrap",
-            "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
-            "imageId": "E-4.png",
-            "location": "FSKTM, MM5"
-        },
-        {
-            "eventId": "E-5",
-            "adminId": "AD-4",
-            "title": "React to React",
-            "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
-            "imageId": "E-5.png",
-            "location": "FSKTM, MM6"
-        },
-        {
-            "eventId": "E-6",
-            "adminId": "AD-4",
-            "title": "Macrohard workshop",
-            "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
-            "imageId": "E-6.png",
-            "location": "FSKTM, MM7"
         },
         {
             "eventId": "E-5",
