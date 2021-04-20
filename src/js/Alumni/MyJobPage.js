@@ -4,8 +4,14 @@ let pageIndex = 0;
 var deleted = false;
 let count=0;
 
-for(let i=0; i<dummyResponse.Job.length; i++){
-    if(dummyResponse.Job[i].alumniId == "AL-1"){
+
+let myJob = JSON.parse(localStorage.getItem("job"));
+const myJobLength = Object.values(myJob).flat().length;
+console.log(myJobLength);
+
+
+for(let i=0; i<myJobLength; i++){
+    if(myJob[i].jobId == "AL-1"){
         count++;
     }
 }
@@ -26,7 +32,7 @@ document.getElementById("pageIndex").innerHTML += `<li class="page-item">
 
 
 const loadJobList = (pageIndex) => {
-    console.log('dumyData length' + dummyResponse.Job.length);
+    console.log('dumyData length' + count);
 
     if (deleted) {
         document.getElementById("pageIndex").innerHTML = `<li class="page-item">
@@ -67,23 +73,23 @@ const loadJobList = (pageIndex) => {
     // document.getElementById('jobList').innerHTML += '<div class="card-desk">' +'<div class="row row-cols-4">'
 
     // for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++)
-    for (let i = jobStartIndex; i < jobEndIndex && i <dummyResponse.Job.length; i++) {
-        if(dummyResponse.Job[i].alumniId == "AL-1"){
+    for (let i = jobStartIndex; i < jobEndIndex && i <myJobLength; i++) {
+        if(myJob[i].alumniId == "AL-1"){
         document.getElementById('jobList').innerHTML +=
             `<div class="col mb-4">
         <div class="card h-100">
         <a href="../../html/Alumni/MyJobDetailsPage.html" >
-        <img src="../../../Assets/imgs/${dummyResponse.Job[i].imageId}" class="card-img-top" alt="jobPhoto">
+        <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
-        <h5 class="card-title">${dummyResponse.Job[i].title}</h5>
+        <h5 class="card-title">${myJob[i].title}</h5>
         <p class="card-text">
         <div class="row cards">
         <div class="col-1"> <img src="../../../Assets/imgs/locationIcon.png" alt="location" width="30" height="30"></div>
-        <div class="col-7">${dummyResponse.Job[i].location}</div>
+        <div class="col-7">${myJob[i].location}</div>
         </div>
         <div class="row cards">
         <div class="col-1">  <img src="../../../Assets/imgs/salaryIcon.png" alt="time" height="24" width="24"></div>
-        <div class="col-7">${dummyResponse.Job[i].salary}</div>
+        <div class="col-7">${myJob[i].salary}</div>
         </div>
         </p>
         </div></a>
