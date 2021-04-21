@@ -25,7 +25,7 @@ dummyResponse.Alumni.forEach(alumni => {
   // avatar column
   td = document.createElement('td');
   const img = document.createElement('img');
-  img.setAttribute('src', '/Assets/imgs/DrTey.jpg');
+  img.setAttribute('src', '/Assets/imgs/'+alumni.imageId);
   img.classList.add('table__td--height');
   td.appendChild(img);
   tr.appendChild(td);
