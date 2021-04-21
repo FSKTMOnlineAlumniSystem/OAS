@@ -14,6 +14,7 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
+
 const currentAlumniId = "AL-1";
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
@@ -34,7 +35,6 @@ function setValid(el) {
     }
 }
 
-/*Check the file extension of the image & Update preview*/
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
     let allowedExtensions =
