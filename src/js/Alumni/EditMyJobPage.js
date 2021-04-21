@@ -35,7 +35,7 @@ for(let i=0; i<myJobLength; i++){
 
 
 document.getElementsByClassName("container my-5")[0].innerHTML += 
-`<input type="text" id="jobTitle" class="form-control h-100" value="${myJob[index].title}">
+`<input type="text" id="jobTitle" class="form-control h-100" value="${myJob[index].company} - ${myJob[index].title}">
 <hr>
 <div class="container-fluid align-content-center my-5">
 <div class="row align-items-center">
