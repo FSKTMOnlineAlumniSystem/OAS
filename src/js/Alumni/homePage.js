@@ -1,4 +1,6 @@
-
+import dummyResponse from "../dummydata.js";
+var eventStartIndex = 0;
+let eventEndIndex = eventStartIndex + 10;
 
 function openSignUp(){
     document.getElementById('signUP').style.display='block';

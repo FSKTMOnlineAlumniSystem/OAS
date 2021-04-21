@@ -14,9 +14,10 @@ body,
 
 /* use color in bootstrap for other common color */
 :root {
-  --dark-purple: #8f0b89;
+  --dark-purple: rgb(134, 75, 189);
   --light-purple: #c9b3cd;
   --light-gray: rgb(223, 223, 223);
+  --dark-gray: rgb(141, 141, 141);
 }
 
 .custom-dark-purple {
@@ -30,9 +31,13 @@ body,
 .custom-light-gray {
   background-color: var(--light-gray);
 }
+.custom-dark-gray {
+  background-color: var(--light-gray);
+}
 .header--gradient{
   background: linear-gradient(to left, #6E48AA, #cd8ee6);
 }
+
 .footer--gradient{
   background: linear-gradient(to left, #6E48AA, #a53ecd);
 }
