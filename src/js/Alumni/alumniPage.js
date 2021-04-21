@@ -8,70 +8,52 @@ const dummyData = {
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
         },
         {
+            imgPath: "/Assets/imgs/drAng.png",
+            alumniName: "Dr Teh",
+            description1: "Bachelor of Computer Science (Hons), graduated 2010",
+            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
+        },
+        {
+            imgPath: "/Assets/imgs/tey.jpg",
+            alumniName: "Dr XXX",
+            description1: "Bachelor of Computer Science (Hons), graduated 2010",
+            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
+        },
+        {
+            imgPath: "/Assets/imgs/drOw.png",
+            alumniName: "Dr Teh",
+            description1: "Bachelor of Computer Science (Hons), graduated 2010",
+            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
+        },
+        {
+            imgPath: "/Assets/imgs/tey.jpg",
+            alumniName: "Dr XXX",
+            description1: "Bachelor of Computer Science (Hons), graduated 2010",
+            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
+        },
+        {
             imgPath: "/Assets/imgs/tey.jpg",
             alumniName: "Dr Teh",
             description1: "Bachelor of Computer Science (Hons), graduated 2010",
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
         },
         {
-            imgPath: "tey.jpg",
-            alumniName: "Dr XXX",
-            description1: "Bachelor of Computer Science (Hons), graduated 2010",
-            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
+            imgPath: "/Assets/imgs/tey.jpg",
             alumniName: "Dr Teh",
             description1: "Bachelor of Computer Science (Hons), graduated 2010",
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
         },
         {
-            imgPath: "tey.jpg",
-            alumniName: "Dr XXX",
-            description1: "Bachelor of Computer Science (Hons), graduated 2010",
-            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
+            imgPath: "/Assets/imgs/tey.jpg",
             alumniName: "Dr Teh",
             description1: "Bachelor of Computer Science (Hons), graduated 2010",
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
         },
         {
-            imgPath: "tey.jpg",
-            alumniName: "Dr XXX",
-            description1: "Bachelor of Computer Science (Hons), graduated 2010",
-            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
+            imgPath: "/Assets/imgs/tey.jpg",
             alumniName: "Dr Teh",
             description1: "Bachelor of Computer Science (Hons), graduated 2010",
             description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
-            alumniName: "Dr XXX",
-            description1: "Bachelor of Computer Science (Hons), graduated 2010",
-            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
-            alumniName: "Dr Teh",
-            description1: "Bachelor of Computer Science (Hons), graduated 2010",
-            description2: "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer."
-        },
-        {
-            imgPath: "tey.jpg",
-            alumniName: "Dr Ang1",
-            description1: "Bachelor of Computer Science (Hons), graduated 2000",
-            description2: "ANG1 is currently working at UM"
-        },
-        {
-            imgPath: "tey.jpg",
-            alumniName: "Dr Ang2",
-            description1: "Bachelor of Computer Science (Hons), graduated 2000",
-            description2: "ANG2 is currently working at UKM"
         },
     ]
 }
@@ -102,18 +84,20 @@ const loadAlumniList = (pageIndex) => {
     }
     for (let i = alumniStartIndex; i < alumniEndIndex && i < dummyData.alumniList.length; i++) {
         document.getElementById('alumniList').innerHTML += 
-        `<div class="media justify-content-center mb-2 w-75" style="background-color:#E9E5E5;">
-        <div class="image ml-5 mt-2">
-        <img src=${dummyData.alumniList[i].imgPath} class="mr-3" alt=${dummyData.alumniList[i].alumniName} height=auto width="80">
+        `<div class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;">
+        <div class="image m-auto col-2 p-3">
+        <div style="aspect-ratio:1/1;overflow:hidden;">
+        <img src=${dummyData.alumniList[i].imgPath} class="w-100" alt=${dummyData.alumniList[i].alumniName}>
         </div>
-        <div class="media-body mr-3">
-        <h6 class="mt-0">${dummyData.alumniList[i].alumniName}</h6>
-        <p>${dummyData.alumniList[i].description1}</p>
-        <p style="display: -webkit-box;
+        </div>
+        <div class="media-body mr-3 my-auto col-10">
+        <h6 class="mt-0 mb-1">${dummyData.alumniList[i].alumniName}</h6>
+        <em class="mb-0">${dummyData.alumniList[i].description1}</em>
+        <small style="display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        text-overflow: ellipsis;">${dummyData.alumniList[i].description2}</p>
+        text-overflow: ellipsis;">${dummyData.alumniList[i].description2}</small>
         </div></div>
         </div>`;
     }
