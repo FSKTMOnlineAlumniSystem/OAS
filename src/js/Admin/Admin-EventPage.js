@@ -115,14 +115,40 @@ const loadEventList = (pageIndex) => {
                  <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
                  <div style="font-weight: 200; font-size: 14px">${d.toLocaleTimeString()}</div>
                
-                <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                <a href="Admin-EventPageUpdate.html">
+                 <td style="font-weight: 400; font-size: 18px" class="eventTitle">
+                 <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
                 ${
                   dummyResponse.Event[i].title
                 }
-                </a>
+              </a>
+        
+              <!-- Modal -->
+              <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" >
+                      <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <br>
+                      <p>Schedule :${`${da}, ${mo} ${ye}`}; ${d.toLocaleTimeString()}</p>
+                      <p> Title : ${dummyResponse.Event[i].title}</p>
+                      <p>Description : ${dummyResponse.Event[i].description}</p>
+                      <p>Location : ${dummyResponse.Event[i].location} </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success"
+                        onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </td>
-              <td
+
                 <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${
                   dummyResponse.Event[i].description
                 }</td>
@@ -131,7 +157,7 @@ const loadEventList = (pageIndex) => {
                 }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="#" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
+                    <a href="Admin-EventPageUpdate.html" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
                     </i></a>
                       <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
                       </i></a>
