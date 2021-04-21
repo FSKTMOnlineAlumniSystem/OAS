@@ -51,9 +51,9 @@
           <div class="col-12 align-items-center p-2 mb-2">
             <div class="btn-group" role="group" aria-label="Third group">
               <!--add button-->
-              <button type="button"
-                class="btn btn-primary d-flex justify-content-center align-items-center rounded mx-2"><i
-                  class="fa fa-plus fa-2x" aria-hidden="true" style="font-size: 20px; "></i></button>
+              <a button type="button"
+                class="btn btn-primary d-flex justify-content-center align-items-center rounded mx-2" href="Admin-EventPageCreate.html"><i
+                  class="fa fa-plus fa-2x" aria-hidden="true" style="font-size: 20px; "></i></a>
               <!--trash button-->
               <button type="button"
                 class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded mx-2"><i
@@ -95,16 +95,19 @@
               </td>
               <td style="font-weight: 400; font-size: 18px">4, April 2021
                 <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
-              </td>
-              <td style="font-weight: 400; font-size: 18px">Sample Event</td>
+                <td style="font-weight: 400; font-size: 18px" class="eventTitle">
+                  <a href="Admin-EventPageUpdate.html">
+                      Sample Event
+                  </a>
+                </td>
               <td
                 style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                 Sample Description</td>
               <td style="font-weight: 200; font-size: 18px">xxx, Penang</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Third group">
-                  <a href="#" role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true"
-                      style="color: rgb(0, 0, 0); font-size: 35px">
+                  <a href="Admin-EventPageUpdate.html" role="button"><i class="fa fa-pencil fa-3x pr-2"
+                      aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
                     </i></a>
                   <a href="#" role="button"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true"
                       style="color: rgb(255, 49, 49); font-size: 35px">
@@ -124,7 +127,11 @@
                 <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
               </td>
               </td>
-              <td style="font-weight: 400; font-size: 18px">Sample Event</td>
+              <td style="font-weight: 400; font-size: 18px" class="eventTitle">
+                <a href="Admin-EventPageUpdate.html">
+                    Sample Event
+                </a>
+              </td>
               <td
                 style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                 Sample Description</td>
@@ -134,9 +141,36 @@
                   <a href="#" role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true"
                       style="color: rgb(0, 0, 0); font-size: 35px">
                     </i></a>
-                  <a href="#" role="button"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true"
+                  <!-- Button trigger modal -->
+                  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+                  <a href="#" role="button" data-toggle="modal" data-target="#exampleModal"><i
+                      class="fa fa-trash fa-3x pl-2" aria-hidden="true"
                       style="color: rgb(255, 49, 49); font-size: 35px">
                     </i></a>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to delete event?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                          <button type="button" class="btn btn-primary" onclick="DeleteRowFunction(this)">Yes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -201,7 +235,8 @@
               <p>Location : xxx, Penang</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+              <button type="button" class="btn btn-success"
+                onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
             </div>
           </div>
         </div>
@@ -209,6 +244,7 @@
 
   </main>
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
+
 </body>
 
 </html>
