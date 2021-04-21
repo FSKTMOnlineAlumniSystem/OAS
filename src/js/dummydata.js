@@ -20,7 +20,7 @@ const dummyResponse = {
             "password": "1234",
             "icNumber": "730110-10-1253",
             "gender": "male",
-            "name": "Ang Tan Foo",
+            "name": "Wong Li Liang",
             "department": "Artificial Intelligence",
             "graduated": "1989",
             "imageId": "img-002",
