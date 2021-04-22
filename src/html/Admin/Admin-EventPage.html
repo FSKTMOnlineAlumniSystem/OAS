@@ -96,10 +96,44 @@
               <td style="font-weight: 400; font-size: 18px">4, April 2021
                 <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
                 <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                  <a href="Admin-EventPageUpdate.html">
-                      Sample Event
-                  </a>
+                  <!-- <a href="Admin-EventPageUpdate.html">
+                      
+                  </a> -->
+      <!-- modal -->
+      <!-- Button trigger modal -->
+      <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
+       this oneeeeee
+      </a>
+
+      <!-- Modal -->
+      <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" >
+              <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+              <br>
+              <p>Schedule : 4, April 2021; 8:00pm - 10:00pm</p>
+              <p> Title : Sample Event</p>
+              <p>Description : Sample Description</p>
+              <p>Location : xxx, Penang</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success"
+                onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+                 
                 </td>
+ <!-- title  -->
+
               <td
                 style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                 Sample Description</td>
@@ -210,37 +244,7 @@
         <!-- </div> -->
       </nav>
 
-      <!-- modal -->
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Event</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <img src="../../../Assets/imgs/event.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
-              <br>
-              <p>Schedule : 4, April 2021; 8:00pm - 10:00pm</p>
-              <p> Title : Sample Event</p>
-              <p>Description : Sample Description</p>
-              <p>Location : xxx, Penang</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success"
-                onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
   </main>
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
