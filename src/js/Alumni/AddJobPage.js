@@ -1,20 +1,10 @@
 /*  ==========================================
     SHOW UPLOADED IMAGE
 * ========================================== */
-// var input = document.getElementById('upload');
-// function readURL(input) {
-//   if (input.files && input.files[0]) {
-//       var reader = new FileReader();
-   
-//       reader.onload = function (e) {
-//         console.log(e);
-//         document.getElementById('imageResult').setAttribute('src', e.target.result)
-//         // localStorage.setItem("recent-image", reader.result);
-//       };
-//       reader.readAsDataURL(input.files[0]);
-//   }
-// }
-// input.addEventListener( 'change', (event)=>readURL(input));
+var input = document.getElementById( 'upload' );
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
 
 document.getElementById("form").innerHTML += 
@@ -77,7 +67,7 @@ document.getElementById("form").innerHTML +=
     var newData_description = document.getElementById("description").value;
 
     newJob = {
-      "jodId" :  "J-"+(myJobLength +1), 
+      "jobId" :  "J-"+(myJobLength +1), 
       "alumniId" : "AL-1",
       "description" : newData_description,
       "salary" : newData_salary,
@@ -117,13 +107,10 @@ document.getElementById("form").innerHTML +=
       reader.onload = function (e) {
         console.log(e);
         document.getElementById('imageResult').setAttribute('src', e.target.result)
-        // localStorage.setItem("recent-image", reader.result);
-        imageUrl = reader.result
       };
       reader.readAsDataURL(input.files[0]);
   }
 }
+
 input.addEventListener( 'change', (event)=>readURL(input));
-
-
 

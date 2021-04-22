@@ -6,10 +6,6 @@ const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const email = document.querySelector('#email');
 const form = document.querySelector('form');
-const cancelButton = document.querySelector('#cancelButton');
-const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
-const stayButton = document.querySelector('#stayButton');
-const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
 const currentAdminId = "AD-1";
 const admin = dummyResponse.Admin.filter(function (admin) {
@@ -31,20 +27,14 @@ function setValid(el){
     }
 }
 
-/*Check the file extension of the image & Update preview*/
-img.addEventListener('change', (e) => readURL(e));
+img.addEventListener('change',(e)=>readURL(e));
 function readURL(e) {
-    let allowedExtensions =
-        /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    if (e.target.files && e.target.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
-        choosePictureDescription.textContent = "Choose picture";
-    }else{
-        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
 
