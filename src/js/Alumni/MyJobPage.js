@@ -74,13 +74,15 @@ const loadJobList = (pageIndex) => {
     // document.getElementById('jobList').innerHTML += '<div class="card-desk">' +'<div class="row row-cols-4">'
 
     // for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++)
+
+    
     for (let i = jobStartIndex; i < jobEndIndex || i <myJobLength && count <10; i++) {
-      console.log(myJob[i].jobId)
+       
         if(myJob[i].alumniId == "AL-1"){
             if(myJob[i].imageId == null){
         document.getElementById('jobList').innerHTML +=
         `<div class="col mb-4">
-        <div class="card h-100">
+        <div class="card h-100" data-name=${myJob[i].jobId}>
         <a href="../../html/Alumni/MyJobDetailsPage.html" >
         <img src="" id="image" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
@@ -109,8 +111,8 @@ const loadJobList = (pageIndex) => {
                 console.log('image')
                 document.getElementById('jobList').innerHTML +=
                 `<div class="col mb-4">
-                 <div class="card h-100">
-                 <a href="../../html/Alumni/MyJobDetailsPage.html" >
+                 <div class="card h-100"  data-name=${myJob[i].jobId}>
+                 <a href="../../html/Alumni/MyJobDetailsPage.html">
                  <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
                 <div class="card-body">
                 <h5 class="card-title">${myJob[i].company} - ${myJob[i].title}</h5>
@@ -134,6 +136,27 @@ const loadJobList = (pageIndex) => {
         }
     }
 }
+// ./../html/Alumni/MyJobDetailsPage.html
+
+//CLICK
+// document.querySelector("#card").addEventListener("click", function(){
+    $("#jobList").on("click", ".card ", function () {
+        console.log('click')
+    var jobName = $(this).attr("data-name");
+    var myJobList = [];
+    for(let i=0; i <myJobLength; i++){
+        if(myJob[i].jobId == jobName){
+            myJobList.push(myJob[i]);
+            localStorage.setItem('MyJobList',JSON.stringify(myJobList)); 
+            break;
+        }
+    }
+  
+});
+// var myJobList = [];
+// myJobList.push(myJob[i]); 
+// localStorage.setItem('MyJobList',JSON.stringify(myJobList));
+// console.log(myJobList);
 
 
 $("#jobList").on("click", ".close", function () {

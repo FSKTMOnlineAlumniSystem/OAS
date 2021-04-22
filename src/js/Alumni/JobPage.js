@@ -55,11 +55,12 @@ const loadJobList = (pageIndex) => {
 
         console.log(myJob[i].imageId)
         console.log(myJob[i].imgaeUrl)
-
+        
         if(myJob[i].imageId == null){
             document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
-        <div class="card h-100">
+        <a href="../../html/Alumni/JobDetailsPage.html">
+        <div class="card h-100" data-name=${myJob[i].jobId}>
         <img src="" id="image" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>
@@ -73,8 +74,8 @@ const loadJobList = (pageIndex) => {
         <div class="col-7">${myJob[i].salary}</div>
         </div>
         </p>
-        </div></div></div>`;
-
+        </div></div></a></div>`;
+        console.log('jobbbbb')
         const readImageUrl = myJob[i].imgaeUrl;
         console.log(readImageUrl)
         if(readImageUrl){
@@ -85,7 +86,8 @@ const loadJobList = (pageIndex) => {
         }else {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
-        <div class="card h-100 style="width:100%; height: 200px; background-size: cover;"">
+        <a href="../../html/Alumni/JobDetailsPage.html">
+        <div class="card h-100" data-name=${myJob[i].jobId}>
         <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>
@@ -99,7 +101,7 @@ const loadJobList = (pageIndex) => {
         <div class="col-7">${myJob[i].salary}</div>
         </div>
         </p>
-        </div></div></div>`;}
+        </div></div></a></div>`;}
 
     }
 }
@@ -112,6 +114,27 @@ const loadJobList = (pageIndex) => {
 //     pageIndex++;
 //     loadJobList(pageIndex);
 // }
+
+//CLICK
+$("#jobList").on("click", ".card ", function () {
+    
+var jobName = $(this).attr("data-name");
+var myJobList = [];
+console.log(jobName)
+for(let i=0; i <myJobLength; i++){
+    if(myJob[i].jobId == jobName){
+        console.log('click')
+        myJobList.push(myJob[i]);
+        localStorage.setItem('JobList',JSON.stringify(myJobList)); 
+        break;
+    }
+}
+
+});
+
+
+
+
 
 document.getElementById('nextPage').addEventListener("click", function(){
     pageIndex++;
