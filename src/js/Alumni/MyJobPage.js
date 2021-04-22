@@ -1,14 +1,8 @@
+import dummyResponse from '../dummydata.js';
 
-// $('.close').click(function(){
-//     var $target = $(this).parents('li');
-//     $target.hide('slow', function(){ $target.remove(); });
-//   });
-// $(document).ready(function(){
-//     $('.close').click(function(){
-//             var $target = $(this).parents('card-text');
-//             $target.hide('slow', function(){ $target.remove(); });
-//           });
-// });
+let pageIndex = 0;
+var deleted = false;
+let count=0;
 
 
 let myJob = JSON.parse(localStorage.getItem("job"));
@@ -131,8 +125,4 @@ document.getElementById('previousPage').addEventListener("click", function () {
     console.log('next' + pageIndex)
 });
 
-// $("button").click(function () {
-//     $(this).closest('div[class="col-md-4 col-xs-4"]').slideUp("slow", function(){
-//       $(this).remove();
-//     });
-//   });
+loadJobList(pageIndex);
