@@ -4,7 +4,7 @@ const mainBody = document.getElementById('main-body');
 const header = document.createElement('header');
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient p-2 fw-bold text-white');
 header.innerHTML = `Dr Tey Kok Soon
-<img src="/Assets/imgs/DrTey.jpg" alt="" class="header__img m-1">
+<img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
 <img src="/Assets/icons/bell.svg" alt="" class="header__img m-1" id='notification-icon'> 
 <div id='notification-panel'>
   <div class="p-2 fw-bold h6 m-0">Notifications</div>
