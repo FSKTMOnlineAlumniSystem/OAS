@@ -85,7 +85,7 @@ const loadJobList = (pageIndex) => {
         }else {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
-        <div class="card h-100">
+        <div class="card h-100 style="width:100%; height: 200px; background-size: cover;"">
         <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>

@@ -77,7 +77,7 @@ document.getElementById("form").innerHTML +=
     var newData_description = document.getElementById("description").value;
 
     newJob = {
-      "jodId" :  "J-"+(myJobLength +1), 
+      "jobId" :  "J-"+(myJobLength +1), 
       "alumniId" : "AL-1",
       "description" : newData_description,
       "salary" : newData_salary,
