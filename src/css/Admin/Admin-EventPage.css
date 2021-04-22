@@ -2,8 +2,6 @@
   position: absolute;
   top: 35px;
   right: 50px;
-<<<<<<< HEAD
-=======
 }
 
 .pages {
@@ -29,5 +27,4 @@ td a {
 }
 .eventTitle:hover {
   background-color: #b19cd9;
->>>>>>> parent of ce60126 (update)
 }
