@@ -13,7 +13,7 @@ for (let i=0; i<myJobLength;i++){
 
 document.getElementById("MyJobTitle").innerHTML += 
 `<div class="col-sm-10">
-<h1>${myJob[index].title}</h1>
+<h1>${myJob[index].company} - ${myJob[index].title}</h1>
 </div>
 <div class="col-sm">
 <a href="../../html/Alumni/EditMyJobPage.html"class="btn btn-secondary float-right" role="button"><i class="bi bi-pencil-square"></i>   Edit</a>
@@ -49,9 +49,9 @@ document.getElementById("MyJobDescription").innerHTML +=
 <div id=job class="rounded-lg p-3 text-justify">
 <div id=bio class="rounded-lg p-3 text-justify">${myJob[index].description}</div>
 </div></div></div>
- </div></div>
-</div>`;
-
+ </div>
+</div>
+</div>`
 
 
 
