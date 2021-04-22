@@ -122,7 +122,7 @@ const loadEventList = (pageIndex) => {
     let i = eventStartIndex;
     i < eventEndIndex && i < dummyResponse.Event.length;
     i++
-  ) {
+  ) { 
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
     var d = new Date(dummyResponse.Event[i].dateTime);
     // console.log(dummyResponse.Event[i].dateTime)
