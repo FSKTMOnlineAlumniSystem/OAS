@@ -17,13 +17,3 @@ body {
     text-decoration: none;
     color: #7A7A7A;
 }
-
-.col-1{
-    display: flex;
-    justify-content: center;
-}
-
-.col-8{
-    display: flex;
-    justify-content: left;
-}

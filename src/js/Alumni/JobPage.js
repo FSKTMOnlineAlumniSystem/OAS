@@ -4,7 +4,7 @@ let pageIndex = 0;
 
 
 let myJob = JSON.parse(localStorage.getItem("job"));
-console.log(myJob);
+
 const myJobLength = Object.values(myJob).flat().length;
 console.log(myJob);
 
@@ -105,9 +105,6 @@ const loadJobList = (pageIndex) => {
 
     }
 }
-
-
-
 
 
 // const nextPage = () => {
