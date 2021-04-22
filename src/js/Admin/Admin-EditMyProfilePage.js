@@ -1,5 +1,7 @@
 import dummyResponse from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const email = document.querySelector('#email');
@@ -37,7 +39,7 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
@@ -77,7 +79,8 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (admin.name == name.value &&
+    if (wizardPicturePreview.src.includes(imgPath+admin.imageId) &&
+    admin.name == name.value &&
         admin.email == email.value) {
         location.href = "Admin-MyProfilePage.html";
     } else {
@@ -94,6 +97,7 @@ function closeModal(modalId) {
 }
 
 function loadData() {
+    wizardPicturePreview.src = imgPath+admin.imageId;
     name.value = admin.name;
     email.value = admin.email;
 }

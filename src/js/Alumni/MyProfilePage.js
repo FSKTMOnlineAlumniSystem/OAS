@@ -4,7 +4,8 @@ const currentAlumniId = "AL-1";
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
-
+const imgPath = "/Assets/imgs/";
+const profilePicture = document.querySelector('#profilePicture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
@@ -88,6 +89,7 @@ function deleteAccount(e) {
 }
 
 function loadData() {
+    profilePicture.src=imgPath+alumni.imageId;
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
