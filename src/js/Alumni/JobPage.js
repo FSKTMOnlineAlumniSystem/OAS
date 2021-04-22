@@ -4,7 +4,7 @@ let pageIndex = 0;
 
 
 let myJob = JSON.parse(localStorage.getItem("job"));
-console.log(myJob);
+
 const myJobLength = Object.values(myJob).flat().length;
 console.log(myJob);
 
@@ -52,37 +52,6 @@ const loadJobList = (pageIndex) => {
     // document.getElementById('jobList').innerHTML += '<div class="card-desk">' +'<div class="row row-cols-4">'
     
     for (let i = jobStartIndex; i < jobEndIndex && i < myJobLength; i++) {
-
-        console.log(myJob[i].imageId)
-        console.log(myJob[i].imgaeUrl)
-
-        if(myJob[i].imageId == null){
-            document.getElementById('jobList').innerHTML += 
-        `<div class="col mb-4">
-        <div class="card h-100">
-        <img src="" id="image" class="card-img-top" alt="jobPhoto">
-        <div class="card-body">
-        <h5 class="card-title">${myJob[i].title}</h5>
-        <p class="card-text">
-        <div class="row cards">
-        <div class="col-1"> <img src="../../../Assets/imgs/locationIcon.png" alt="location" width="30" height="30"></div>
-        <div class="col-7">${myJob[i].location}</div>
-        </div>
-        <div class="row cards">
-        <div class="col-1">  <img src="../../../Assets/imgs/salaryIcon.png" alt="time" height="24" width="24"></div>
-        <div class="col-7">${myJob[i].salary}</div>
-        </div>
-        </p>
-        </div></div></div>`;
-
-        const readImageUrl = myJob[i].imgaeUrl;
-        console.log(readImageUrl)
-        if(readImageUrl){
-            document.querySelector("#image").setAttribute("src", readImageUrl);
-            console.log('i '+i)
-        }
-
-        }else {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
         <div class="card h-100">
@@ -99,13 +68,9 @@ const loadJobList = (pageIndex) => {
         <div class="col-7">${myJob[i].salary}</div>
         </div>
         </p>
-        </div></div></div>`;}
-
+        </div></div></div>`;
     }
 }
-
-
-
 
 
 // const nextPage = () => {
