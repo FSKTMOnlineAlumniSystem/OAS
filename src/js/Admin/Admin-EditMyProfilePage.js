@@ -1,5 +1,7 @@
 import dummyResponse from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const email = document.querySelector('#email');
@@ -30,7 +32,7 @@ function readURL(e) {
     if (e.target.files && e.target.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
     }
@@ -65,9 +67,29 @@ form.addEventListener('submit', (e) => {
     }
 })
 
+/*Check whether there is any changes that might be lost*/
+cancelButton.addEventListener('click', () => {
+    if (wizardPicturePreview.src.includes(imgPath+admin.imageId) &&
+    admin.name == name.value &&
+        admin.email == email.value) {
+        location.href = "Admin-MyProfilePage.html";
+    } else {
+        /*POP UP MODAL ask if cancel will lose changes */
+        $('#cancelChangesModal').modal('show');
+    }
+});
+
+/*Close Modal */
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+    $(modalId).modal('hide');
+}
+
 function loadData() {
-    name.textContent = admin.name;
-    email.textContent = admin.email;
+    wizardPicturePreview.src = imgPath+admin.imageId;
+    name.value = admin.name;
+    email.value = admin.email;
 }
 
 loadData();
