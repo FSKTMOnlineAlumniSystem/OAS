@@ -112,15 +112,15 @@ const loadEventList = (pageIndex) => {
                 
                <td>
                     <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="Boxes1">
-                      <label class="custom-control-label" for="Boxes1"></label>
+                      <input type="checkbox" class="custom-control-input" id="Boxes${i}">
+                      <label class="custom-control-label" for="Boxes${i}"></label>
                     </div>
                   </td>
                  <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
                  <div style="font-weight: 200; font-size: 14px">${d.toLocaleTimeString()}</div>
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                 <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
+                 <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
                 ${
                   dummyResponse.Event[i].title
                 }
@@ -229,6 +229,10 @@ loadEventList(pageIndex);
     "table table-striped table-sm something"
   )[0];
  }
+
+ document.querySelectorAll('.eventTitle').forEach((title)=>{
+   title.addEventListener('click',(e)=>console.log(e.target.id))
+ })
 
 //  $('button.fa fa-trash fa-3x pl-2').on('click', function (e) {
 //   e.preventDefault();
