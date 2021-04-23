@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
   <title>Alumni List</title>
 </head>
@@ -50,7 +52,7 @@
             <div class='row bg-light p-4 m-1'>
               <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="status" oninput="filterTable()">
                   <option>All</option>
                   <option>Verified</option>
                   <option>Not Verified</option>
@@ -58,14 +60,19 @@
               </div>
               <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="department" oninput="filterTable()">
                   <option>All</option>
                   <option>Software Engineering</option>
+                  <option>Artificial Intelligence</option>
+                  <option>Information System</option>
+                  <option>Data Science</option>
+                  <option>Multimedia</option>
+                  <option>Computer System and Network</option>
                 </select>
               </div>
               <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Graduated</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="graduated" oninput="filterTable()">
                   <option>All</option>
                   <option>2019</option>
                 </select>
@@ -116,6 +123,32 @@
                 </tr>
               </thead>
               <tbody>
+                <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                 <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
@@ -160,12 +193,16 @@
                       </i></a>
                   </td>
                 </tr> -->
+                
               </tbody>
             </table>
           </div>
         </div>
       </div>
 
+      
+
+      
   </main>
 
   <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
@@ -216,10 +253,10 @@ window.DeleteRowFunction = function(o) {
       p.parentNode.removeChild(p);
  }
 
- function filterTable() {
+function filterTable() {
   // Variables
   let dropdown, table, rows, cells, country, filter;
-  dropdown = document.getElementById("exampleFormControlSelect1");
+  dropdown = document.getElementById("status");
   table = document.getElementById("myTable");
   rows = table.getElementsByTagName("tr");
   filter = dropdown.value;
@@ -227,7 +264,7 @@ window.DeleteRowFunction = function(o) {
   // Loops through rows and hides those with countries that don't match the filter
   for (let row of rows) { // `for...of` loops through the NodeList
     cells = row.getElementsByTagName("td");
-    country = cells[1] || null; // gets the 2nd `td` or nothing
+    country = cells[4] || null; // gets the 2nd `td` or nothing
     // if the filter is set to 'All', or this is the header row, or 2nd `td` text matches filter
     if (filter === "All" || !country || (filter === country.textContent)) {
       row.style.display = ""; // shows this row

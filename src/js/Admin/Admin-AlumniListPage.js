@@ -54,10 +54,10 @@ dummyResponse.Alumni.forEach(alumni => {
   })[0];
   if(foundAlumniEvent){
     div.classList.add('bg-success')
-    div.innerText = 'Invited';
+    div.innerText = 'Verified';
   }else{
     div.classList.add('bg-danger')
-    div.innerText = 'Not Invited';
+    div.innerText = 'Not Verified';
   }
   td.appendChild(div);
   tr.appendChild(td);
@@ -77,10 +77,5 @@ dummyResponse.Alumni.forEach(alumni => {
 
   tbody.appendChild(tr);
 });
-
-
-document.innerHTML = `<a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)">
-<i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
-</i></a>`
 
 
