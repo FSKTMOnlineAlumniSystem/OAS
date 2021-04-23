@@ -123,7 +123,60 @@
                 </tr>
               </thead>
               <tbody>
-               
+              <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class = "row">
+        <img src="/Assets/imgs/v8_30.png" alt="" class='table__td--height'>
+      </div>
+        <div class="col-sm-7 justify-content-center align-items-center">
+          <div class="row mb-3">
+              <div class="col-sm-8">Name:</div>
+              <div id="name" class="col-sm-8">Teh Kok Soon</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">Gender:</div>
+              <div id="gender" class="col-sm-8">Male</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">Graduated:</div>
+              <div id="graduated" class="col-sm-8">2014</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">Department:</div>
+              <div id="department" class="col-sm-8">Software Engineering</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">E-mail:</div>
+              <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">Contact Number:</div>
+              <div id="contactNumber" class="col-sm-8">03-79676347</div>
+          </div>
+      </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
                 <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
@@ -173,11 +226,7 @@
             </table>
           </div>
         </div>
-      </div>
-
-      
-
-      
+      </div>  
   </main>
 
   <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
@@ -191,22 +240,7 @@
 
 </script>
 <script>
-  function deleteMultipleRow() {
-  document.querySelectorAll('#myTable input:checked').forEach(e => {
-    if (row.querySelector('input:checked')) {
-      table.deleteRow();
-    // e.parentNode.parentNode.remove()
-  });
-}
-
-// function deleteMultipleRow() {
-//   const table = document.getElementById("myTable");
-//   for (const [index, row] of [...table.rows].entries()) {
-//     if (row.querySelector('input:checked')) {
-//       table.deleteRow(index);
-//     }
-//   }
-// }
+  
 </script>
   <!-- <script type='text/javascript' src='/src/js/addNavFooter.js'></script> -->
 </body>
