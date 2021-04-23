@@ -69,6 +69,7 @@ document.getElementById("form").innerHTML +=
   var newJob = {};
 
   document.getElementById("submit").addEventListener("click", function(){
+    console.log('submit')
     var newData_company = document.getElementById("companyName").value;
     var newData_title = document.getElementById("jobTitle").value;
     var newData_location = document.getElementById("location").value;
@@ -89,6 +90,7 @@ document.getElementById("form").innerHTML +=
       "imgaeUrl" : imageUrl
     };
 
+    console.log(newJob);
     myJob.push(newJob);
     console.log(myJob);
 
