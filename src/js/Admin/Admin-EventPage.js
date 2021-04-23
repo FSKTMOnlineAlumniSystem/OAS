@@ -4,7 +4,6 @@ console.log("link js");
 // $('#myModal').on('shown.bs.modal', function () {
 //   $('#myInput').trigger('focus')
 // })
-
 //eventList
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {
@@ -104,14 +103,19 @@ const loadEventList = (pageIndex) => {
     // console.log(`${da}, ${mo} ${ye}`);
     // d.toLocaleDateString('en-GB')
     
-    
+   
+    // var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    //     if (checkboxes[i] != source)
+    //         checkboxes[i].checked = source.checked;
+
     var newRowContent = `<tr class="rowss">
-                <td>
-                    <div class="custom-control custom-checkbox mr-sm-2 ml-2">
-                        <input type="checkbox" class="custom-control-input" id="Boxes1">
-                        <label class="custom-control-label" for="Boxes1"></label>
+                
+               <td>
+                    <div class="custom-control custom-checkbox text-center">
+                      <input type="checkbox" class="custom-control-input" id="Boxes1">
+                      <label class="custom-control-label" for="Boxes1"></label>
                     </div>
-                </td>
+                  </td>
                  <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
                  <div style="font-weight: 200; font-size: 14px">${d.toLocaleTimeString()}</div>
                
@@ -176,6 +180,21 @@ const loadEventList = (pageIndex) => {
   }
 };
 
+window.toggle = function(source) {
+  console.log("checkbox")
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i] != source)
+          checkboxes[i].checked = source.checked;
+  }
+}
+window.check = function(source,i) {
+  console.log("check row")
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          checkboxes[i].checked = source.checked;
+          console.log(i)
+}
+
 window.nextPage = function () {
   pageIndex++;
   loadEventList(pageIndex);
@@ -186,7 +205,17 @@ window.previousPage = function () {
 };
 loadEventList(pageIndex);
  
-window.onload= function(i){
+
+
+ window.DeleteRowFunction = function(o) {
+  var p=o.parentNode.parentNode.parentNode;
+      p.parentNode.removeChild(p);
+ }
+
+
+
+
+ window.onload= function(i){
   console.log("function is running")
   // localStorage.setItem("eventID",dummyResponse.Event[i].eventId)
   // console.log("event id"+ dummyResponse.Event[i].eventId)
@@ -194,11 +223,13 @@ window.onload= function(i){
   // console.log(dummyResponse.Event[i].eventId)
  }
 
-
- window.DeleteRowFunction = function(o) {
-  var p=o.parentNode.parentNode.parentNode;
-      p.parentNode.removeChild(p);
+ window.addRow= function(){
+   console.log('add row')
+   var table = document.getElementsByClassName(
+    "table table-striped table-sm something"
+  )[0];
  }
+
 //  $('button.fa fa-trash fa-3x pl-2').on('click', function (e) {
 //   e.preventDefault();
 //   var id = $(this).closest('tr').data('id');

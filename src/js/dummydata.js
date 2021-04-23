@@ -408,6 +408,30 @@ const dummyResponse = {
             "name": "Khai",
             "imageId": "AD-5.png"
         }
-    ]
+    ],
+
+    "EventTry": [
+        {
+            "eventId": "E-1",
+            "adminId": "AD-1",
+            "title": "CP Workshop",
+            "date":"2021-03-12",
+            "startTime": "20:00",
+            "endTime":"22:00",
+            "description": "Learn more about CP",
+            "imageId": "E-1.jpg",
+            "location": "FSKTM, MM2"
+        },
+        {
+            "eventId": "E-2",
+            "adminId": "AD-1",
+            "title": "Database Admin Career",
+            "date":"2021-03-24",
+            "startTime": "20:00",
+            "endTime":"22:00",
+            "description": "Learn more about DB",
+            "imageId": "E-1.jpg",
+            "location": "FSKTM, MM3"
+        }]
 };
 export default dummyResponse;
