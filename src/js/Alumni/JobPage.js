@@ -1,5 +1,6 @@
 import dummyResponse from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
 let pageIndex = 0;
 
 
@@ -88,7 +89,9 @@ const loadJobList = (pageIndex) => {
         `<div class="col mb-4">
         <a href="../../html/Alumni/JobDetailsPage.html">
         <div class="card h-100" data-name=${myJob[i].jobId}>
-        <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
+        <div class="w-100" style="aspect-ratio:2/1; overflow:hidden;">
+            <img class="w-100" src="../../../Assets/imgs/${'DrTey.jpg'}" class="card-img-top" alt="jobPhoto">
+        </div>
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>
         <p class="card-text">
