@@ -1,62 +1,72 @@
 import dummyResponse from "../dummydata.js";
-console.log("link js");
-const loadAlumniProfile = (pageIndex) => {
-  var content = `
-    <div class="col">
-        <div class="container-fluid">
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Name:</p>
-            <div class="col">
-            <p id="info">Tey Kok Soon</p>
+import onClickAlumniID from "./alumniPage.js";
+
+const alumniProfile = document.getElementById("main-body");
+const loadAlumniProfile = (index) => {
+  var i = index;
+  alumniProfile.innerHTML = "";
+  alumniProfile.innerHTML = `
+    <div id="main-body" class="container my-5">
+    <div class="row justify-content-between">
+        <h2>Alumni Profile</h2>
+    </div>
+    <div class="row mt-3 mb-3 align-items-center">
+        <div class="col-sm-5 d-flex align-items-center justify-content-center">
+        <div class="w-50 position-relative">
+            <div
+            class="rounded-circle overflow-hidden border"
+            style="aspect-ratio: 1/1"
+            >
+            <img
+                id="profilePicture"
+                src="../../../Assets/imgs/${dummyResponse.Alumni[i].imageId}"
+                alt="Profile Picture"
+                class="img-fluid"
+            />
             </div>
         </div>
-
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Gender:</p>
-            <div class="col">
-            <p id="info">Male</p>
-            </div>
         </div>
-
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Batch:</p>
-            <div class="col">
-            <p id="info">2014</p>
-            </div>
+        <div class="col-sm-7 justify-content-center align-items-center">
+        <div class="row mb-3">
+            <div class="col-sm-4">Name:</div>
+            <div id="name" class="col-sm-8">${dummyResponse.Alumni[i].name}</div>
         </div>
-
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Email:</p>
-            <div class="col">
-            <a href="mailto:koksoon@um.edu.my">koksoon@um.edu.my</a>
-            </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">Gender:</div>
+            <div id="gender" class="col-sm-8">${dummyResponse.Alumni[i].gender}</div>
         </div>
-
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Contact Number:</p>
-            <div class="col">
-            <p id="info">03-79676347</p>
-            </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">Graduated:</div>
+            <div id="graduated" class="col-sm-8">${dummyResponse.Alumni[i].graduated}</div>
         </div>
-
-        <div class="row mb-3 mx-auto">
-            <p class="col-sm-4 font-weight-bold">Department:</p>
-            <div class="col">
-            <p id="info">Software Engineering</p>
-            </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">Department:</div>
+            <div id="department" class="col-sm-8">${dummyResponse.Alumni[i].department}</div>
         </div>
-
+        <div class="row mb-3">
+            <div class="col-sm-4">E-mail:</div>
+            <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">Contact Number:</div>
+            <div id="contactNumber" class="col-sm-8">${dummyResponse.Alumni[i].contactNumber}</div>
+        </div>
         </div>
     </div>
-    <div style="height: 100px">
-    <div class="col-12">
-      <div class="font-weight-bold">
-        <div id="bio-title">Biography:</div>
-        <div id="bio" class="rounded-lg p-3 text-justify">
-            ${dummyResponse.Alumni[i].biography}
+
+    <div class="row mt-5">
+        <h4>Biography</h4>
+        <div class="rounded bg-grey p-5 mb-2">
+        <div id="biography" class="profile__biography_valueContainer_value">
+        ${dummyResponse.Alumni[i].biography}
         </div>
-      </div>
+        </div>
     </div>
-    <br /><br />
-  </div>`;
+    </div>`;
 };
+console.log(onClickAlumniID);
+var index = getindex(onClickAlumniID);
+function getindex(onClickAlumniID) {
+  return onClickAlumniID.split("-")[1];
+}
+loadAlumniProfile(index - 1);

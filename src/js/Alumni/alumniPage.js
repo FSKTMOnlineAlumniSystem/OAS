@@ -1,5 +1,4 @@
 import dummyResponse from "../dummydata.js";
-
 const alumniList = document.getElementById("alumniList");
 
 let pageIndex = 0;
@@ -40,29 +39,35 @@ const loadAlumniList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
             <li class="page-item disabled">
-            <button class="btn btn-link page-item" style="text-decoration: none" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
+            <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
+              pageIndex + 1
+            }</button>
             </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
             <li class="page-item disabled">
-            <button class="btn btn-link page-item" style="text-decoration: none" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
+            <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
+              pageIndex + 1
+            }</button>
             </li>
-            <li class="page-item" ><button class="btn btn-link" style="text-decoration: none" onclick="nextPage()">${pageIndex + 2
-      }</button></li>`;
+            <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage()">${
+              pageIndex + 2
+            }</button></li>`;
   } else {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
             <li class="page-item disabled">
-            <button class="btn btn-link page-item" style="text-decoration: none" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
+            <button class="btn btn-link page-link page-link"  tabindex="-1" aria-disabled="true ">${
+              pageIndex + 1
+            }</button>
             </li>
-            <li class="page-item" ><button class="btn btn-link" style="text-decoration: none" onclick="nextPage()">${pageIndex + 2
-      }</button ></li>
-            <li class="page-item" ><button class="btn btn-link" style="text-decoration: none" onclick="nextPage();nextPage()">${pageIndex + 3
-      }</button></li>`;
+            <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage()">${
+              pageIndex + 2
+            }</button ></li>
+            <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage();nextPage()">${
+              pageIndex + 3
+            }</button></li>`;
   }
 
   for (
@@ -100,3 +105,5 @@ window.previousPage = function () {
 };
 
 loadAlumniList(pageIndex);
+var profileClicked = "AL-11";
+export default profileClicked;

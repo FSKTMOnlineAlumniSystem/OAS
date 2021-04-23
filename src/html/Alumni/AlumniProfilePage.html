@@ -7,91 +7,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FSKTM Online Alumni System</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel=”stylesheet” href=”css/bootstrap.css”>
-    <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
-    <link rel="stylesheet" href="/core/src/css/Alumni/MyProfilePage.css">
-    <link rel="stylesheet" type="text/css" href="/core/src/css/Alumni/index.css">
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel=”stylesheet” href=”css/bootstrap.css”> <link rel=”stylesheet”
+    href=”css/bootstrap-responsive.css”>
+    <link rel="stylesheet" href="/core/src/css/Alumni/MyProfilePage.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/core/src/css/Alumni/index.css"
+    />
 
     <type type="text.javascript"></type>
   </head>
   <body>
     <div id="main-body" class="container my-5">
-      <div class="row justify-content-between">
-          <h2>Alumni Profile</h2>
+      <!-- <div class="row justify-content-between">
+        <h2>Alumni Profile</h2>
       </div>
       <div class="row mt-3 mb-3 align-items-center">
-          <div class="col-sm-5 d-flex align-items-center justify-content-center">
-              <div class="w-50 position-relative">
-                  <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
-                  <img id="profilePicture" src="../../../Assets/imgs/Square_DrTey.jpg" alt="Profile Picture"
-                      class="img-fluid">
-                  </div>
-              </div>
+        <div class="col-sm-5 d-flex align-items-center justify-content-center">
+          <div class="w-50 position-relative">
+            <div
+              class="rounded-circle overflow-hidden border"
+              style="aspect-ratio: 1/1"
+            >
+              <img
+                id="profilePicture"
+                src="../../../Assets/imgs/Square_DrTey.jpg"
+                alt="Profile Picture"
+                class="img-fluid"
+              />
+            </div>
           </div>
-          <div class="col-sm-7 justify-content-center align-items-center">
-              <div class="row mb-3">
-                  <div class="col-sm-4">Name:</div>
-                  <div id="name" class="col-sm-8">Teh Kok Soon</div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-sm-4">Gender:</div>
-                  <div id="gender" class="col-sm-8">Male</div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-sm-4">Graduated:</div>
-                  <div id="graduated" class="col-sm-8">2014</div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-sm-4">Department:</div>
-                  <div id="department" class="col-sm-8">Software Engineering</div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-sm-4">E-mail:</div>
-                  <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
-              </div>
-              <div class="row mb-3">
-                  <div class="col-sm-4">Contact Number:</div>
-                  <div id="contactNumber" class="col-sm-8">03-79676347</div>
-              </div>
+        </div>
+        <div class="col-sm-7 justify-content-center align-items-center">
+          <div class="row mb-3">
+            <div class="col-sm-4">Name:</div>
+            <div id="name" class="col-sm-8">Teh Kok Soon</div>
           </div>
+          <div class="row mb-3">
+            <div class="col-sm-4">Gender:</div>
+            <div id="gender" class="col-sm-8">Male</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4">Graduated:</div>
+            <div id="graduated" class="col-sm-8">2014</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4">Department:</div>
+            <div id="department" class="col-sm-8">Software Engineering</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4">E-mail:</div>
+            <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4">Contact Number:</div>
+            <div id="contactNumber" class="col-sm-8">03-79676347</div>
+          </div>
+        </div>
       </div>
 
       <div class="row mt-5">
-          <h4>Biography</h4>
-          <div class="rounded bg-grey p-5 mb-2">
-              <div id="biography" class="profile__biography_valueContainer_value">
-                  Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University
-                  of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant
-                  with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of
-                  Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and
-                  Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior
-                  Lecturer. His research interests include renewable energy control system, energy management, power
-                  efficiency of PV system and inverter control of PV system.
-              </div>
+        <h4>Biography</h4>
+        <div class="rounded bg-grey p-5 mb-2">
+          <div id="biography" class="profile__biography_valueContainer_value">
+            Tey Kok Soon received his BEng degree in Electrical Engineering and
+            PhD degree from the University of Malaya, Malaysia, in 2011 and 2014
+            respectively. Since 2011, he has been a Research Assistant with the
+            Power Electronics and Renewable Energy Research Laboratory (PEARL),
+            Department of Electrical Engineering, University of Malaya. In 2015,
+            he joined Department of Computer System and Information Technology,
+            Faculty of Computer Science and Information Technology (FCSIT) as a
+            Senior Lecturer. His research interests include renewable energy
+            control system, energy management, power efficiency of PV system and
+            inverter control of PV system.
           </div>
-      </div>
-  </div>
+        </div>
+      </div> -->
+    </div>
 
-  <script type='text/javascript' src='/src/js/addHeader.js'></script>
-  <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
-  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/src/js/addHeader.js"></script>
+    <script type="text/javascript" src="/src/js/addNavFooter.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
 
-  <script type='module' src="../../js/Alumni/MyProfilePage.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    <script type="module" src="../../js/Alumni/AlumniProfilePage.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
