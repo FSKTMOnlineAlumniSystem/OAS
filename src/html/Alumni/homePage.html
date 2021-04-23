@@ -37,21 +37,28 @@
                             <span aria-hidden="true">&times;</span>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword" required>
-                                <div class="invalid-feedback">Please fill out this field.</div>
 
+                        <form>
+
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                                <div class="FORM col-sm-8 mr-1">
+                                    <input type="text" class="form-control" id="staticEmail" required>
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                </div>
                             </div>
-                        </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
+                                <div class="col-sm-8 mr-1">
+                                    <input type="password" class="form-control" id="inputPassword" required>
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+    
+                                </div>
+                            </div>
+
+                        </form>
+
+                        
                         <span onclick="document.getElementById('forgot').style.display='block'" data-toggle="modal"
                             data-target="#forgot">
                             <span data-dismiss="modal" aria-label="Close" class="forgotPsw">Forgot
@@ -70,39 +77,7 @@
 
 
 
-        <!-- <div id="signin" class="popUp">
-            <form class="signInform" action="/action_page.php" id="signinform">
-                <div class="closeDiv">
-                    <span onclick="document.getElementById('signin').style.display='none'"
-                        class="close">&times;</span>
-                </div>
-                <h1 class="signinText">Sign In</h1>
-                <div class="container">
-
-                    <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticEmail">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-                    <span onclick="" class="forgotPsw">Forgot Password?</span>
-                    <div class="clearfix">
-                        <button type="submit" class="signinbtn">Sign In</button>
-                    </div>
-                    <span class="smallWarning">
-                        Your account has not been verified / your account is not exist</span>
-                </div>
-            </form>
-        </div> -->
-
-
-
+    
 
 
         <!-- Modal -->
@@ -122,7 +97,7 @@
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
+                                <input type="text" class="form-control" id="sendEmail" required>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                         </div>
@@ -147,117 +122,139 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <form id="form">
 
+                            <div class="mb-3 row">
+                        
+                                <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="text" class="form-control" id="FirstNameID" required>
+                                        <small class="invalid-feedback">Please fill out this field.</small>
+                                            <small class="valid-feedback">Nice</small>
+                                     
 
-                        <div class="mb-3 row">
-
-                            <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="FirstName" required>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                   
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="LastName" required>
+                            <div class="mb-3 row">
+                                <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <input type="text" class="form-control" id="LastNameID" required>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <small class="valid-feedback">Nice</small>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword"
-                                    onfocus="verifyPasswordCriteria()" required>
+                        
+                            <div class="mb-3 row">
+                                <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <select class="form-select p-1" aria-label="Default select example" required>
+                                        <option value="0">Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <small class="valid-feedback">Nice</small>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <select class="form-select p-1" aria-label="Default select example" required>
+                                        <option value="0">Batch</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2000">2000</option>
+                                    </select>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <small class="valid-feedback">Nice</small>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="text" class="form-control" id="Email" required>
+                                        <small class="invalid-feedback">Please fill out this field.</small>
+                                        <small class="valid-feedback">Nice</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <input type="tel" class="form-control" id="IC" required>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <small class="valid-feedback">Nice</small>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <select class="form-select p-1" id="Department" aria-label="Default select example" required>
+                                        <option value="0">Department</option>
+                                        <option value="software">Software Engineering</option>
+                                        <option value="ai">Artificial Intellegent</option>
+                                        <option value="csn">Computer System and Technology</option>
+                                        <option value="is">Information System</option>
+                                        <option value="multimedia">Multimedia</option>
+                                    </select>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <small class="valid-feedback">Nice</small>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                    <input type="password" class="form-control" id="Password" required>
+    
+                                    <small class="invalid-feedback">Please fill out this field.</small>
+                                    <!-- <small class="valid-feedback">Nice</small> -->
+                                </div>
+                                </div>
+                            </div>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                </select>
+                        
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Batch</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2000">2000</option>
-                                </select>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="tel" class="form-control" id="IC" required>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputDepartment" class="col-sm-3 col-form-label ml-1">Department:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Department</option>
-                                    <option value="software">Software Engineering</option>
-                                    <option value="ai">Artificial Intellegent</option>
-                                    <option value="csn">Computer System and Technology</option>
-                                    <option value="is">Information System</option>
-                                    <option value="multimedia">Multimedia</option>
-                                </select>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword" required>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                        </div>
+                        
 
                         <span class="ml-1">Already have an account?
                             <span onclick="document.getElementById('signIN').style.display='block'" data-toggle="modal"
@@ -267,9 +264,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn signinbtn">Sign Up</button>
-
+                        <button type="submit" class="btn signinbtn">Sign Up</button>
                     </div>
+
+                </form>
                 </div>
             </div>
         </div>
@@ -357,7 +355,7 @@
 
             <span class="Title">Jobs</span>
             <div class="w-85">
-                <div class="row mb-4 mt-1">
+                <div class="row mb-4 mt-1" id="job_row1">
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_1.png" alt="..."
                                 width="100%"></a>
@@ -368,7 +366,7 @@
                     </div>
 
                 </div>
-                <div class="row mt-1">
+                <div class="row mt-1" id="job_row2">
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_3.png" alt="..." width="100%"></a>
                     </div>
@@ -571,7 +569,7 @@
         </div>
     </main>
 
-    <script src="../../js/Alumni/HomePage.js"></script>
+    <!-- <script src="../../js/Alumni/HomePage.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -586,8 +584,7 @@
         
     </script>
 
-<script type="module" src="../../js/Alumni/HomePage.js">
-</script>
+<script type="module" src="../../js/Alumni/HomePage.js"></script>
 </body>
 
 </html>

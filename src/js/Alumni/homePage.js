@@ -44,7 +44,7 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
                       </svg>
                   </div>
                   <div class="col-10 d-flex flex-column">
-                      <span class="t">11.00AM - 12.00AM</span>
+                      <span class="t">${d.toLocaleTimeString()}</span>
                   </div>
               </div>
               <div class="row">
@@ -70,14 +70,17 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
 </div>`;
 }
 
+
+
+
 document.getElementById('alumni').innerHTML = "";
 
 for (let i = 0;i < dummyResponse.Alumni.length; i++) {
 
-  document.getElementById('alumni').innerHTML += `
-<div class="swiper-slide pl-1 pr-1">
+    document.getElementById('alumni').innerHTML += `
+                        <div class="swiper-slide pl-1 pr-1">
                             <div class="card h-100">
-                                <img class="card-img-top" src="../../../Assets/imgs/Alumni_1.jpg" alt="Card image cap"
+                                <img class="card-img-top" src="${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
 
                                 <div class="card-body">
@@ -100,6 +103,80 @@ for (let i = 0;i < dummyResponse.Alumni.length; i++) {
 `
 
 }
+
+
+var latest = [];
+var dayy =[];
+var yearr = [];
+
+for (let i = 0;i < dummyResponse.Job.length; i++) {
+
+    // console.log("previous time" + dummyResponse.Event[i].dateTime)
+    var d = new Date(dummyResponse.Job[i].postedDate);
+    // console.log(dummyResponse.Event[i].dateTime)
+    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+
+    dayy[i] = da + "," + i;
+    yearr[i] = ye;
+
+}
+
+dayy.sort();
+console.log(dayy);
+console.log(yearr);
+
+
+for (var i = 0;i < dayy.length ;i ++) {
+
+    
+    var a = dayy[i].split(",");
+    var currentYr = new Date();
+    var Yr = currentYr.getFullYear();
+
+    console.log(a[1]);
+    console.log(yearr[a[i]]);
+
+
+    if(yearr[a[1]] == Yr){
+
+        latest[i] = a[1];
+    }
+
+}
+
+console.log(latest);
+
+document.getElementById('job_row1').innerHTML = "";
+
+for (let i = 0;i <2; i++) {
+
+    document.getElementById('job_row1').innerHTML += `
+
+    <div class="col">
+    <a class="d-contents" href="#"><img src="${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            width="100%" height="100%"></a>
+    </div>
+    
+    `
+}
+
+document.getElementById('job_row2').innerHTML = "";
+
+for (let i = 2;i < 4; i++) {
+
+    document.getElementById('job_row2').innerHTML += `
+
+    <div class="col">
+    <a class="d-contents" href="#"><img src="${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            width="100%" height="100%"></a>
+    </div>
+    
+    `
+}
+
+
 
 import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
         var slidesPerView = 3;
@@ -156,14 +233,191 @@ function search(){
     document.getElementById('search');
 }
 
-function searchBar(){
+const form1 = document.getElementById('signIN');
+const staticEmail = document.getElementById('staticEmail');
+const inputPassword = document.getElementById('inputPassword');
+
+
+console.log(form1);
+console.log(staticEmail);
+console.log(inputPassword);
+
+// form.addEventListener('submit', (e) => {
+//     console.log("Even");
+//     e.preventDefault();
+//     checkInputs();
+// });
+
+checkInputs1();
+console.log("EventListener11");
+
+function checkInputs1() { 
+
+    const staticEmailValue = staticEmail.value.trim();
+    const inputPasswordValue = inputPassword.value.trim();
+
+    console.log(staticEmailValue);
+    console.log(inputPasswordValue);
+
+    if(staticEmailValue === ''){
+        console.log("em");
+        setErrorFor(staticEmail, 'Email cannot be blank');
+    }else if(!isEmail(staticEmail)){
+        console.log("falseisemail");
+        setErrorFor(staticEmail, 'Email is not valid');
+    }
+    else{
+        setSuccessFor(staticEmail);
+    }
+
+    if(inputPasswordValue === ''){
+        console.log("passcheck");
+        setErrorFor(inputPassword, 'Password cannot be blank');
+    }else{
+        setSuccessFor(inputPassword);
+    }
+
+}
+
+
+
+
+const form = document.getElementById('signUP');
+const FirstName = document.getElementById('FirstNameID');
+const LastName = document.getElementById('LastNameID');
+const email = document.getElementById('Email');
+const IC = document.getElementById('IC');
+const password = document.getElementById('Password');
+const Department = document.getElementById('Department');
+
+
+
+console.log(FirstName);
+console.log(form);
+console.log(LastName);
+console.log(email);
+console.log(IC);
+console.log(password);
+console.log(Department);
+
+// form.addEventListener('submit', (e) => {
+//     console.log("Even");
+//     e.preventDefault();
+//     checkInputs();
+// });
+
+checkInputs();
+console.log("EventListener11");
+
+function checkInputs() { 
+
+    console.log("check");
+
+    const FirstNameValue = FirstNameID.value.trim();
+    const emailValue = Email.value.trim();
+    const LastNameValue = LastNameID.value.trim();
+    const ICValue = IC.value.trim();
+    const passwordValue = Password.value.trim();
+    const DepartmentValue = Department.value.trim();
+
+    console.log(FirstNameValue);
+    console.log(emailValue);
+    console.log(LastNameValue);
+    console.log(ICValue);
+    console.log(DepartmentValue);
+    console.log(passwordValue);
+
+    if(DepartmentValue == 0){
+        console.log("errordep");
+        setErrorFor(Department, 'Select a department');
+        }else{
+            console.log("succdep");
+            setSuccessFor(Department);
+        }
+
+    if(FirstNameValue === ''){
+    setErrorFor(FirstName, 'First Name cannot be blank');
+    }else{
+        setSuccessFor(FirstName);
+    }
+
+    if(LastNameValue === ''){
+        setErrorFor(LastName, 'Last Name cannot be blank');
+    }else{
+        setSuccessFor(LastName);
+    }
+
+
+    if(emailValue === ''){
+        console.log("em");
+        setErrorFor(Email, 'Email cannot be blank');
+    }else if(!isEmail(Email)){
+        console.log("falseisemail");
+        setErrorFor(Email, 'Email is not valid');
+    }
+    else{
+        setSuccessFor(Email);
+    }
+
+    if(ICValue === ''){
+        console.log("ic check");
+        setErrorFor(IC, 'IC cannot be blank');
+    }else{
+        setSuccessFor(IC);
+    }
+
+    if(passwordValue === '' && checkLength(passwordValue)){
+        console.log("passcheck");
+        setErrorFor(Password, 'Password cannot be blank');
+    }else if(checkLength(passwordValue)){
+        console.log("truecheckpass");
+        setErrorFor(email, 'Password is too short/long');
+    }else{
+        setSuccessFor(Password);
+    }
+
+    
+
+ }
+
+
+ 
+ function checkLength(passwordValue) {
+     console.log('checkmethod');
+    if(Password.value.length < 6 ){
+
+        return true;
+    }else if(Password.value.length > 20 ){
+        return true;
+    }else{
+        return false;
+    }
      
-}
+ }
 
-function viewMore(){
+ function setErrorFor(input,message) {
+     const FORM = input.parentElement;
+     FORM.className = 'FORM error';
+     const small = FORM.querySelector('small');
+     small.innerText = message;
+     
+ }
 
-}
 
-const password = document.getElementById('inputPassword');
-const signUP = document.getElementById('signUP')
+ function setSuccessFor(input) {
+     console.log("succ");
+     const formControl = input.parentElement;
+     formControl.className = 'FORM success';
+     
+ }
+
+ function isEmail(email) {
+     console.log("isemail");
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+ }
+
+
+ 
+
+
 
