@@ -902,13 +902,6 @@ button:hover {
     font-weight: 700;
 }
 
-.card{
-  aspect-ratio: 1/2.3;
-  object-fit: contain;
-}
-
-
-
 .t{
     font-family: 'Garamond', Times, serif;
     font-size: 15px;

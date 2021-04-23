@@ -16,7 +16,9 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
   document.getElementById('event').innerHTML += `
   <div class="swiper-slide pl-1 pr-1" >
   <div class="card h-100">
-      <img class="card-img-top h-50" src="${dummyResponse.Event[i].imageId}" alt="Card image cap">
+    <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
+      <img class="card-img-top w-100 m-auto" src=${dummyResponse.Event[i].imageId} alt="Card image cap">
+      </div>
       <div class="card-body">
           <h5 class="card-title text-left">${dummyResponse.Event[i].title}</h5>
           <div class="card-text">
@@ -80,9 +82,10 @@ for (let i = 0;i < dummyResponse.Alumni.length; i++) {
     document.getElementById('alumni').innerHTML += `
                         <div class="swiper-slide pl-1 pr-1">
                             <div class="card h-100">
-                                <img class="card-img-top" src="${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
+                                <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
+                                    <img class="card-img-top w-100" src="${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
-
+                                </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
