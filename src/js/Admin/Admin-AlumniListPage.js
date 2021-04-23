@@ -79,3 +79,83 @@ dummyResponse.Alumni.forEach(alumni => {
 });
 
 
+  window.filterSearchBar = function() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchBar");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var tds = tr[i].getElementsByTagName("td");
+    var flag = false;
+    for(var j = 0; j < tds.length; j++){
+      var td = tds[j];
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        flag = true;
+      } 
+    }
+    if(flag){
+        tr[i].style.display = "";
+    }
+    else {
+        tr[i].style.display = "none";
+    }
+  }
+}
+
+window.toggle=function(source) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+
+window.DeleteRowFunction = function(o) {
+  var p=o.parentNode.parentNode.parentNode;
+      p.parentNode.removeChild(p);
+ }
+
+
+
+$(document).ready(function () {
+    $("#status,#department").on("change", function () {
+        var status = $('#status').find("option:selected").val();
+        var department = $('#department').find("option:selected").val();
+        SearchData(status, department)
+    });
+});
+window.SearchData = function(status, department) {
+    if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
+        $('#myTable tbody tr').show();
+    } else {
+        $('#myTable tbody tr:has(td)').each(function () {
+            var rowStatus = $.trim($(this).find('td:eq(4)').text());
+            var rowDepartment = $.trim($(this).find('td:eq(3)').text());
+            if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
+                if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
+                if (status != 'All' || department == 'All') {
+                    if (rowStatus.toUpperCase() == status.toUpperCase()) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                }
+                if (department != 'All' || status =='All') {
+                    if (rowDepartment == department) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                }
+            }
+
+        });
+    }
+}

@@ -52,7 +52,7 @@
             <div class='row bg-light p-4 m-1'>
               <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="status" oninput="filterTable()">
+                <select class="form-control" id="status" oninput="filterStatus()">
                   <option>All</option>
                   <option>Verified</option>
                   <option>Not Verified</option>
@@ -60,7 +60,7 @@
               </div>
               <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="department" oninput="filterTable()">
+                <select class="form-control" id="department" oninput="filterDepartment()">
                   <option>All</option>
                   <option>Software Engineering</option>
                   <option>Artificial Intelligence</option>
@@ -88,7 +88,7 @@
           <form class="col-12 my-2">
             <div class="row">
               <div class="col-7">
-                <button type="button" class="btn btn-outline-danger" onclick="deleteRows()">
+                <button type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
                   <a href="#" role="button"><i class="fa fa-trash text-danger" aria-hidden="true"
                       style="font-size: 20px;"></i>
                   </a>
@@ -123,32 +123,7 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+               
                 <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
@@ -216,66 +191,23 @@
 
 </script>
 <script>
-  function filterSearchBar() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchBar");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (var i = 1; i < tr.length; i++) {
-    var tds = tr[i].getElementsByTagName("td");
-    var flag = false;
-    for(var j = 0; j < tds.length; j++){
-      var td = tds[j];
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-      } 
-    }
-    if(flag){
-        tr[i].style.display = "";
-    }
-    else {
-        tr[i].style.display = "none";
-    }
-  }
+  function deleteMultipleRow() {
+  document.querySelectorAll('#myTable input:checked').forEach(e => {
+    if (row.querySelector('input:checked')) {
+      table.deleteRow();
+    // e.parentNode.parentNode.remove()
+  });
 }
 
-function toggle(source) {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i] != source)
-            checkboxes[i].checked = source.checked;
-    }
-}
-
-window.DeleteRowFunction = function(o) {
-  var p=o.parentNode.parentNode.parentNode;
-      p.parentNode.removeChild(p);
- }
-
-function filterTable() {
-  // Variables
-  let dropdown, table, rows, cells, country, filter;
-  dropdown = document.getElementById("status");
-  table = document.getElementById("myTable");
-  rows = table.getElementsByTagName("tr");
-  filter = dropdown.value;
-
-  // Loops through rows and hides those with countries that don't match the filter
-  for (let row of rows) { // `for...of` loops through the NodeList
-    cells = row.getElementsByTagName("td");
-    country = cells[4] || null; // gets the 2nd `td` or nothing
-    // if the filter is set to 'All', or this is the header row, or 2nd `td` text matches filter
-    if (filter === "All" || !country || (filter === country.textContent)) {
-      row.style.display = ""; // shows this row
-    }
-    else {
-      row.style.display = "none"; // hides this row
-    }
-  }
-}
+// function deleteMultipleRow() {
+//   const table = document.getElementById("myTable");
+//   for (const [index, row] of [...table.rows].entries()) {
+//     if (row.querySelector('input:checked')) {
+//       table.deleteRow(index);
+//     }
+//   }
+// }
 </script>
-
   <!-- <script type='text/javascript' src='/src/js/addNavFooter.js'></script> -->
 </body>
 
