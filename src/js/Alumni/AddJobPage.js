@@ -18,7 +18,7 @@
 
 
 document.getElementById("form").innerHTML += 
-`<form id="job_ad_form">
+`<form id="job_ad_form" action="/src/html/Alumni/MyJobPage.html">
 <div class="mb-3">
   <label for="companyName" class="form-label">Company Name</label>
   <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
