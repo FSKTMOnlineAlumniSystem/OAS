@@ -1,14 +1,7 @@
 
-// $('.close').click(function(){
-//     var $target = $(this).parents('li');
-//     $target.hide('slow', function(){ $target.remove(); });
-//   });
-// $(document).ready(function(){
-//     $('.close').click(function(){
-//             var $target = $(this).parents('card-text');
-//             $target.hide('slow', function(){ $target.remove(); });
-//           });
-// });
+let pageIndex = 0;
+var deleted = false;
+let count=0;
 
 
 let myJob = JSON.parse(localStorage.getItem("job"));
@@ -16,8 +9,9 @@ const myJobLength = Object.values(myJob).flat().length;
 console.log(myJobLength);
 
 
+
 for(let i=0; i<myJobLength; i++){
-    if(myJob[i].jobId == "AL-1"){
+    if(myJob[i].alumniId == "AL-1"){
         count++;
     }
 }
@@ -80,19 +74,18 @@ const loadJobList = (pageIndex) => {
 
     // for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++)
 
-    for (let i = jobStartIndex; i < jobEndIndex && i <myJobLength; i++) {
-
+    
+    for (let i = jobStartIndex; i < jobEndIndex || i <myJobLength && count <10; i++) {
+       
         if(myJob[i].alumniId == "AL-1"){
+            if(myJob[i].imageId == null){
         document.getElementById('jobList').innerHTML +=
-
         `<div class="col mb-4">
         <div class="card h-100" data-name=${myJob[i].jobId}>
-
- 
         <a href="../../html/Alumni/MyJobDetailsPage.html" >
-        <img src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
+        <img src="" id="image" class="card-img-top" alt="jobPhoto">
         <div class="card-body">
-        <h5 class="card-title">${myJob[i].title}</h5>
+        <h5 class="card-title">${myJob[i].company} - ${myJob[i].title}</h5>
         <p class="card-text">
         <div class="row cards">
         <div class="col-1"> <img src="../../../Assets/imgs/locationIcon.png" alt="location" width="30" height="30"></div>
@@ -105,9 +98,8 @@ const loadJobList = (pageIndex) => {
         </p>
         </div></a>
         <div class="card-footer mt-auto">
-        <button type="button" class="close" role="button" aria-pressed="true" data-name=${dummyResponse.Job[i].jobId}><i class="bi bi-trash-fill"></i></button>  
+        <button type="button" class="close" role="button" aria-pressed="true" data-name=${myJob[i].jobId}><i class="bi bi-trash-fill"></i></button>  
         </div></div><div>`;
-
 
         const readImageUrl = myJob[i].imgaeUrl;
         console.log(readImageUrl)
@@ -142,7 +134,7 @@ const loadJobList = (pageIndex) => {
             }
         }
     }
-
+}
 // ./../html/Alumni/MyJobDetailsPage.html
 
 //CLICK
@@ -166,15 +158,18 @@ const loadJobList = (pageIndex) => {
 // console.log(myJobList);
 
 
-$("#jobList").on("click", ".close", function (event) {
+$("#jobList").on("click", ".close", function () {
     var name = $(this).attr("data-name");
-    for (let i = 0; i < dummyResponse.Job.length; i++) {
-        if (dummyResponse.Job[i].jobId == name) {
-            dummyResponse.Job.splice(i, 1);  //at position i remove 1 item
+    console.log(myJob)
+    for (let i = 0; i < myJobLength; i++) {
+        if (myJob[i].jobId == name) {
+            myJob.splice(i, 1);  //at position i remove 1 item
+         
+            localStorage.setItem('job', JSON.stringify(myJob)); //assign array back to localStorage
             break;
         }
     }
-    deleted = true;
+   
     loadJobList(pageIndex);
     console.log(dummyResponse.Job.length);
 });
@@ -191,8 +186,4 @@ document.getElementById('previousPage').addEventListener("click", function () {
     console.log('next' + pageIndex)
 });
 
-// $("button").click(function () {
-//     $(this).closest('div[class="col-md-4 col-xs-4"]').slideUp("slow", function(){
-//       $(this).remove();
-//     });
-//   });
+loadJobList(pageIndex);
