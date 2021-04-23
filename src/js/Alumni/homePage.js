@@ -233,25 +233,52 @@ function search(){
     document.getElementById('search');
 }
 
-const form1 = document.getElementById('signIN');
+
+const form_2 = document.getElementById('forgot');
+const sendEmail = document.getElementById('sendEmail');
+
+
+const form_1 = document.getElementById('signIN');
 const staticEmail = document.getElementById('staticEmail');
 const inputPassword = document.getElementById('inputPassword');
 
 
-console.log(form1);
-console.log(staticEmail);
-console.log(inputPassword);
+const form = document.getElementById('signUP');
+const FirstName = document.getElementById('FirstNameID');
+const LastName = document.getElementById('LastNameID');
+const Email = document.getElementById('Email');
+const IC = document.getElementById('IC');
+const password = document.getElementById('Password');
+const Department = document.getElementById('Department');
+const Batch = document.getElementById('Batch');
+const Gender = document.getElementById('Gender');
 
-// form.addEventListener('submit', (e) => {
-//     console.log("Even");
-//     e.preventDefault();
-//     checkInputs();
-// });
 
-checkInputs1();
-console.log("EventListener11");
 
-function checkInputs1() { 
+const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
+
+form_2.addEventListener('submit', (evt) => {
+
+    let errorExist = false;
+
+    const sendEmailValue = sendEmail.value.trim();
+
+    if (isEmpty(sendEmailValue) || !sendEmail.value.match(emailFormat)) {
+        setErrorFor(sendEmail);
+        errorExist = true;
+    } else {
+        setSuccessFor(sendEmail);
+    }
+
+    if (errorExist) {
+        evt.preventDefault();}
+
+});
+
+
+form_1.addEventListener('submit', (ev) => {
+
+    let errorExist = false;
 
     const staticEmailValue = staticEmail.value.trim();
     const inputPasswordValue = inputPassword.value.trim();
@@ -259,59 +286,33 @@ function checkInputs1() {
     console.log(staticEmailValue);
     console.log(inputPasswordValue);
 
-    if(staticEmailValue === ''){
-        console.log("em");
-        setErrorFor(staticEmail, 'Email cannot be blank');
-    }else if(!isEmail(staticEmail)){
-        console.log("falseisemail");
-        setErrorFor(staticEmail, 'Email is not valid');
-    }
-    else{
+
+    if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
+        setErrorFor(staticEmail);
+        errorExist = true;
+    } else {
         setSuccessFor(staticEmail);
     }
 
-    if(inputPasswordValue === ''){
-        console.log("passcheck");
-        setErrorFor(inputPassword, 'Password cannot be blank');
+
+    if(isEmpty(inputPasswordValue)) {
+        setErrorFor(inputPassword);
+        errorExist = true;
     }else{
         setSuccessFor(inputPassword);
     }
 
-}
+
+    if (errorExist) {
+        ev.preventDefault();}
+
+});
 
 
 
+form.addEventListener('submit', (e) => {
 
-const form = document.getElementById('signUP');
-const FirstName = document.getElementById('FirstNameID');
-const LastName = document.getElementById('LastNameID');
-const email = document.getElementById('Email');
-const IC = document.getElementById('IC');
-const password = document.getElementById('Password');
-const Department = document.getElementById('Department');
-
-
-
-console.log(FirstName);
-console.log(form);
-console.log(LastName);
-console.log(email);
-console.log(IC);
-console.log(password);
-console.log(Department);
-
-// form.addEventListener('submit', (e) => {
-//     console.log("Even");
-//     e.preventDefault();
-//     checkInputs();
-// });
-
-checkInputs();
-console.log("EventListener11");
-
-function checkInputs() { 
-
-    console.log("check");
+    let errorExist = false;
 
     const FirstNameValue = FirstNameID.value.trim();
     const emailValue = Email.value.trim();
@@ -319,73 +320,90 @@ function checkInputs() {
     const ICValue = IC.value.trim();
     const passwordValue = Password.value.trim();
     const DepartmentValue = Department.value.trim();
+    const BatchValue = Batch.value.trim();
+    const GenderValue = Gender.value.trim();
 
-    console.log(FirstNameValue);
-    console.log(emailValue);
-    console.log(LastNameValue);
-    console.log(ICValue);
-    console.log(DepartmentValue);
-    console.log(passwordValue);
+    
+
 
     if(DepartmentValue == 0){
         console.log("errordep");
-        setErrorFor(Department, 'Select a department');
+        setErrorFor(Department);
+        errorExist = true;
         }else{
             console.log("succdep");
             setSuccessFor(Department);
         }
 
-    if(FirstNameValue === ''){
-    setErrorFor(FirstName, 'First Name cannot be blank');
+    if(BatchValue == 0){
+        console.log("errordep");
+        setErrorFor(Batch);
+        errorExist = true;
+        }else{
+            console.log("succdep");
+            setSuccessFor(Batch);
+        }
+
+    if(GenderValue == 0){
+        console.log("errordep");
+        setErrorFor(Gender);
+        errorExist = true;
+        }else{
+            console.log("succdep");
+            setSuccessFor(Gender);
+        }
+
+    if(isEmpty(FirstNameValue)){
+        setErrorFor(FirstName);
+        errorExist = true;
     }else{
         setSuccessFor(FirstName);
     }
 
-    if(LastNameValue === ''){
-        setErrorFor(LastName, 'Last Name cannot be blank');
+    if(isEmpty(LastNameValue)){
+        setErrorFor(LastName);
+        errorExist = true;
     }else{
         setSuccessFor(LastName);
     }
 
 
-    if(emailValue === ''){
-        console.log("em");
-        setErrorFor(Email, 'Email cannot be blank');
-    }else if(!isEmail(Email)){
-        console.log("falseisemail");
-        setErrorFor(Email, 'Email is not valid');
-    }
-    else{
+    if (isEmpty(emailValue) || !Email.value.match(emailFormat)) {
+        setErrorFor(Email);
+        errorExist = true;
+    } else {
         setSuccessFor(Email);
     }
 
-    if(ICValue === ''){
-        console.log("ic check");
-        setErrorFor(IC, 'IC cannot be blank');
+
+    if(isEmpty(ICValue) || (ICValue.length == 11)){
+        setErrorFor(IC);
+        errorExist = true;
     }else{
         setSuccessFor(IC);
     }
 
-    if(passwordValue === '' && checkLength(passwordValue)){
-        console.log("passcheck");
-        setErrorFor(Password, 'Password cannot be blank');
-    }else if(checkLength(passwordValue)){
-        console.log("truecheckpass");
-        setErrorFor(email, 'Password is too short/long');
+
+    if(isEmpty(passwordValue) || checkLength(passwordValue)) {
+        setErrorFor(Password);
+        errorExist = true;
     }else{
         setSuccessFor(Password);
     }
 
+
+
+    if (errorExist) {
+        e.preventDefault();}
+
     
+});
 
- }
 
 
- 
  function checkLength(passwordValue) {
      console.log('checkmethod');
     if(Password.value.length < 6 ){
-
         return true;
     }else if(Password.value.length > 20 ){
         return true;
@@ -395,28 +413,30 @@ function checkInputs() {
      
  }
 
- function setErrorFor(input,message) {
-     const FORM = input.parentElement;
-     FORM.className = 'FORM error';
-     const small = FORM.querySelector('small');
-     small.innerText = message;
-     
- }
+function setErrorFor(input) {
+    if (input.classList.contains("is-valid")) {
+        input.classList.replace("is-valid", "is-invalid");
+    } else {
+        input.classList.add("is-invalid");
+    }
+}
 
+function setSuccessFor(input) {
+    if (input.classList.contains("is-invalid")) {
+        input.classList.replace("is-invalid", "is-valid");
+    } else {
+        input.classList.add("is-valid");
+    }
+}
 
- function setSuccessFor(input) {
-     console.log("succ");
-     const formControl = input.parentElement;
-     formControl.className = 'FORM success';
-     
- }
+//  function isEmail(email) {
+//      console.log("isemail");
+//     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+//  }
 
- function isEmail(email) {
-     console.log("isemail");
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
- }
-
-
+ function isEmpty(obj) {
+    return obj.length == 0;
+}
  
 
 
