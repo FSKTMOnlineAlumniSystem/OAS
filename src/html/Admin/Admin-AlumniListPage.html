@@ -14,8 +14,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
 
   <title>Alumni List</title>
 </head>
@@ -95,7 +99,9 @@
                 </button>
               </div>
               <div class="col-5 input-group mb-3">
-                <input id= "searchBar" type="text" onkeyup="filterSearchBar()" class="form-control" style="font-weight: 200; font-style: italic" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                <input id="searchBar" type="text" onkeyup="filterSearchBar()" class="form-control"
+                  style="font-weight: 200; font-style: italic" placeholder="Search" aria-label="Search"
+                  aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -111,7 +117,8 @@
                 <tr>
                   <th class="text-center">
                     <div class="custom-control custom-checkbox">
-                      <input onclick="toggle(this);" type="checkbox" class="custom-control-input" id="CheckAllBoxes"></input>
+                      <input onclick="toggle(this);" type="checkbox" class="custom-control-input"
+                        id="CheckAllBoxes"></input>
                       <label class="custom-control-label" for="CheckAllBoxes"></label>
                     </div>
                   </th>
@@ -123,73 +130,76 @@
                 </tr>
               </thead>
               <tbody>
-                
-                
-             
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+
+
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
-</button>
+</button> -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
-      
-        <div class="col">
-          <div class="row mb-2">
-              <div class="col-4">Name:</div>
-              <div id="name" class="col-8">Teh Kok Soon</div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Gender:</div>
-              <div id="gender" class="col-8">Male</div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Graduated:</div>
-              <div id="graduated" class="col-8">2014</div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Department:</div>
-              <div id="department" class="col-8">Software Engineering</div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">E-mail:</div>
-              <div id="email" class="col-8">koksoon@um.edu.my</div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Contact Number:</div>
-              <div id="contactNumber" class="col-8">03-79676347</div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px"
+                          height="auto">
+
+                        <div class="col">
+                          <div class="row mb-2">
+                            <div class="col-4">Name:</div>
+                            <div id="name" class="col-8">Teh Kok Soon</div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-4">Gender:</div>
+                            <div id="gender" class="col-8">Male</div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-4">Graduated:</div>
+                            <div id="graduated" class="col-8">2014</div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-4">Department:</div>
+                            <div id="department" class="col-8">Software Engineering</div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-4">E-mail:</div>
+                            <div id="email" class="col-8">koksoon@um.edu.my</div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-4">Contact Number:</div>
+                            <div id="contactNumber" class="col-8">03-79676347</div>
+                          </div>
+
+                          <div class="row mb-2">
+                            <div class="col-4">Ic No:</div>
+                            <div id="icNumber" class="col-8">881225-10-5479</div>
+                          </div>
+
+                          <div class="row mb-2">
+                            <div class="col-4">Account Status:</div>
+                            <div id="accStatus" class="col-8">Verified</div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                          onclick="location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
+                        <button type="button" class="btn btn-info">Approve</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           </div>
 
-          <div class="row mb-2">
-            <div class="col-4">Ic No:</div>
-            <div id="icNumber" class="col-8">881225-10-5479</div>
-        </div>
-
-        <div class="row mb-2">
-          <div class="col-4">Account Status:</div>
-          <div id="accStatus" class="col-8">Verified</div>
-      </div>
-      </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
-        <button type="button" class="btn btn-info">Approve</button>
-            </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-                <!-- <tr>
+          <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
                       <input type="checkbox" class="custom-control-input" id="Boxes1">
@@ -211,7 +221,7 @@
                       </i></a>
                   </td>
                 </tr> -->
-                <!-- <tr>
+          <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
                       <input type="checkbox" class="custom-control-input" id="Boxes1">
@@ -233,28 +243,23 @@
                       </i></a>
                   </td>
                 </tr> -->
-                
-              </tbody>
-            </table>
-          </div>
+
+          </tbody>
+          </table>
         </div>
       </div>
+    </div>
   </main>
-  
+
 
   <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
   <script type='text/javascript' src='/src/js/addHeader.js'></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="module" src="../../js/Admin/Admin-AlumniListPage.js"></script>
+  <script type="module" src="../../js/Admin/Admin-AlumniListPage.js"></script>
 
-   
-    </script>
-<script>
-</script>
+
+  </script>
+  <script>
+  </script>
 </body>
 
 </html>

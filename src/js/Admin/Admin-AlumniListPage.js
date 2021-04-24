@@ -1,8 +1,7 @@
 import dummyResponse from "../dummydata.js";
 
-console.log(dummyResponse);
 const tbody = document.getElementsByTagName('tbody')[0];
-dummyResponse.Alumni.forEach(alumni => {
+dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -24,22 +23,22 @@ dummyResponse.Alumni.forEach(alumni => {
   
   // avatar column
   td = document.createElement('td');
-  const img = document.createElement('img');
-  img.setAttribute('src', '/Assets/imgs/'+alumni.imageId);
-  img.classList.add('table__td--height');
-  td.appendChild(img);
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; overflow:hidden;">
+    <img class='table__td--height' src=${'/Assets/imgs/'+alumni.imageId}>
+  </div>`
   tr.appendChild(td);
   
   // name column
   td = document.createElement('td');
-  let span = document.createElement('span');
-  span.innerHTML = alumni.name;
-  td.appendChild(span);
+  td.innerHTML = `<span class="alumniName" id=${index}>${alumni.name}</span>`
+  // let span = document.createElement('span');
+  // span.innerHTML = alumni.name;
+  // td.appendChild(span);
   tr.appendChild(td);
 
   // department column
   td = document.createElement('td');
-  span = document.createElement('span');
+  let span = document.createElement('span');
   span.innerHTML = alumni.department;
   td.appendChild(span);
   tr.appendChild(td);
@@ -103,72 +102,72 @@ var table = document.getElementById(
     i++
   ) {
 
-  var newRowContent = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  ${dummyResponse.Alumni[i].name}
-</button>
+//   var newRowContent = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+//   ${dummyResponse.Alumni[i].name}
+// </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
+// <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+//   <div class="modal-dialog modal-dialog-centered">
+//     <div class="modal-content">
+//       <div class="modal-header">
+//         <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+//         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//           <span aria-hidden="true">&times;</span>
+//         </button>
+//       </div>
+//       <div class="modal-body">
+//         <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
       
-        <div class="col">
-          <div class="row mb-2">
-              <div class="col-4">Name:</div>
-              <div id="name" class="col-8">  ${dummyResponse.Alumni[i].name}
-              </div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Gender:</div>
-              <div id="gender" class="col-8">  ${dummyResponse.Alumni[i].gender}
-              </div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Graduated:</div>
-              <div id="graduated" class="col-8">  ${dummyResponse.Alumni[i].graduated}
-              </div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Department:</div>
-              <div id="department" class="col-8">  ${dummyResponse.Alumni[i].department}
-              </div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">E-mail:</div>
-              <div id="email" class="col-8">  ${dummyResponse.Alumni[i].email}
-              </div>
-          </div>
-          <div class="row mb-2">
-              <div class="col-4">Contact Number:</div>
-              <div id="contactNumber" class="col-8">  ${dummyResponse.Alumni[i].contactNumber}
-              </div>
-          </div>
+//         <div class="col">
+//           <div class="row mb-2">
+//               <div class="col-4">Name:</div>
+//               <div id="name" class="col-8">  ${dummyResponse.Alumni[i].name}
+//               </div>
+//           </div>
+//           <div class="row mb-2">
+//               <div class="col-4">Gender:</div>
+//               <div id="gender" class="col-8">  ${dummyResponse.Alumni[i].gender}
+//               </div>
+//           </div>
+//           <div class="row mb-2">
+//               <div class="col-4">Graduated:</div>
+//               <div id="graduated" class="col-8">  ${dummyResponse.Alumni[i].graduated}
+//               </div>
+//           </div>
+//           <div class="row mb-2">
+//               <div class="col-4">Department:</div>
+//               <div id="department" class="col-8">  ${dummyResponse.Alumni[i].department}
+//               </div>
+//           </div>
+//           <div class="row mb-2">
+//               <div class="col-4">E-mail:</div>
+//               <div id="email" class="col-8">  ${dummyResponse.Alumni[i].email}
+//               </div>
+//           </div>
+//           <div class="row mb-2">
+//               <div class="col-4">Contact Number:</div>
+//               <div id="contactNumber" class="col-8">  ${dummyResponse.Alumni[i].contactNumber}
+//               </div>
+//           </div>
 
-          <div class="row mb-2">
-            <div class="col-4">Ic No:</div>
-            <div id="icNumber" class="col-8">${dummyResponse.Alumni[i].icNumber}</div>
-        </div>
+//           <div class="row mb-2">
+//             <div class="col-4">Ic No:</div>
+//             <div id="icNumber" class="col-8">${dummyResponse.Alumni[i].icNumber}</div>
+//         </div>
 
-        <div class="row mb-2">
-          <div class="col-4">Account Status:</div>
-          <div id="accStatus" class="col-8">Verified</div>
-      </div>
-      </div>
+//         <div class="row mb-2">
+//           <div class="col-4">Account Status:</div>
+//           <div id="accStatus" class="col-8">Verified</div>
+//       </div>
+//       </div>
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
-        <button type="button" class="btn btn-info">Approve</button>
-            </div>
-      </div>
-    </div>`;
+//       </div>
+//       <div class="modal-footer">
+//         <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
+//         <button type="button" class="btn btn-info">Approve</button>
+//             </div>
+//       </div>
+//     </div>`;
     var tableRef = document
     .getElementById("myTable")[0]
     .getElementsByTagName("tbody")[0];
@@ -314,4 +313,10 @@ function phonenumber(inputtxt)
      }
 }
 
-
+document.querySelectorAll('.alumniName').forEach((alumni)=>{
+  alumni.addEventListener('click',(e)=>{
+    console.log($('#exampleModal'))
+    $('#exampleModal').modal("show");
+    console.log(e.target.id);
+  })
+})

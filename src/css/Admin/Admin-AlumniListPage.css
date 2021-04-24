@@ -1,12 +1,10 @@
 .table__td--height{
-  height: 100px;
-  width: 100px;
+  width: 100%;
 }
 
 .alumni.name{
   width: 300px;
   height: 50px;
-  
 }
 .alumni.name a
 {
