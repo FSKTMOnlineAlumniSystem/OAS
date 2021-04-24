@@ -256,7 +256,7 @@ const dummyResponse = {
             "dateTime": "2021-04-24T06:53:53+00:00",
         },
         {
-            "alumniId": "AL-1",
+            "alumniId": "AL-2",
             "eventId": "E-6",
             "viewedByAlumni": "FALSE",
             "notificationClosedByAlumni": false,

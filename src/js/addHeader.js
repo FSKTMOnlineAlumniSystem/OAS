@@ -103,7 +103,7 @@ function toggleNotificationPanel() {
         if(!list.hasChildNodes()){
           showNoNotification();
         }else{
-          console.log(list.childNodes);
+          // console.log(list.childNodes);
         }
       });
 
