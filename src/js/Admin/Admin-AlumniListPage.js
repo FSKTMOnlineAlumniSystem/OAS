@@ -159,3 +159,33 @@ window.SearchData = function(status, department) {
         });
     }
 }
+
+window.deleteMultipleRow = function(tableID)  {
+    var table = document.getElementById("myTable").tBodies[0];
+    var rowCount = table.rows.length;
+
+    // var i=1 to start after header
+    for(var i=0; i<rowCount; i++) {
+        var row = table.rows[i];
+        // index of td contain checkbox is 8
+        var chkbox = row.cells[0].getElementsByTagName('input')[0];
+        if('checkbox' == chkbox.type && true == chkbox.checked) {
+            table.deleteRow(i);
+         }
+    }
+}
+
+$("#clearAll").on("click", function () {
+$('#department option').prop('selected', function() {
+    $('#myTable tbody tr').show();
+
+    return this.defaultSelected;
+});
+$('#status option').prop('selected', function() {
+    $('#myTable tbody tr').show();
+    return this.defaultSelected;
+    
+});
+
+});
+

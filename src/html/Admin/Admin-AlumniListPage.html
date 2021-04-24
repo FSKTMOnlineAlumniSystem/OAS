@@ -79,7 +79,7 @@
               </div>
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
                 <button type="submit" class="btn text-white mx-2 custom-dark-purple">Filter</button>
-                <button type="submit" class="btn text-white custom-dark-purple">Clear All</button>
+                <button id="clearAll" type="submit" class="btn text-white custom-dark-purple">Clear All</button>
               </div>
             </div>
           </form>
@@ -88,7 +88,7 @@
           <form class="col-12 my-2">
             <div class="row">
               <div class="col-7">
-                <button type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
+                <button id="delete" type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
                   <a href="#" role="button"><i class="fa fa-trash text-danger" aria-hidden="true"
                       style="font-size: 20px;"></i>
                   </a>
@@ -123,14 +123,15 @@
                 </tr>
               </thead>
               <tbody>
-              <!-- Button trigger modal -->
+                
+             
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button>
 
-<!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
@@ -139,44 +140,54 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class = "row">
-        <img src="/Assets/imgs/v8_30.png" alt="" class='table__td--height'>
+        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
+      
+        <div class="col">
+          <div class="row mb-2">
+              <div class="col-4">Name:</div>
+              <div id="name" class="col-8">Teh Kok Soon</div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Gender:</div>
+              <div id="gender" class="col-8">Male</div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Graduated:</div>
+              <div id="graduated" class="col-8">2014</div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Department:</div>
+              <div id="department" class="col-8">Software Engineering</div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">E-mail:</div>
+              <div id="email" class="col-8">koksoon@um.edu.my</div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Contact Number:</div>
+              <div id="contactNumber" class="col-8">03-79676347</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">Ic No:</div>
+            <div id="icNumber" class="col-8">881225-10-5479</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-4">Account Status:</div>
+          <div id="accStatus" class="col-8">Verified</div>
       </div>
-        <div class="col-sm-7 justify-content-center align-items-center">
-          <div class="row mb-3">
-              <div class="col-sm-8">Name:</div>
-              <div id="name" class="col-sm-8">Teh Kok Soon</div>
-          </div>
-          <div class="row mb-3">
-              <div class="col-sm-4">Gender:</div>
-              <div id="gender" class="col-sm-8">Male</div>
-          </div>
-          <div class="row mb-3">
-              <div class="col-sm-4">Graduated:</div>
-              <div id="graduated" class="col-sm-8">2014</div>
-          </div>
-          <div class="row mb-3">
-              <div class="col-sm-4">Department:</div>
-              <div id="department" class="col-sm-8">Software Engineering</div>
-          </div>
-          <div class="row mb-3">
-              <div class="col-sm-4">E-mail:</div>
-              <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
-          </div>
-          <div class="row mb-3">
-              <div class="col-sm-4">Contact Number:</div>
-              <div id="contactNumber" class="col-sm-8">03-79676347</div>
-          </div>
       </div>
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
                 <!-- <tr>
                   <td>
                     <div class="custom-control custom-checkbox text-center">
@@ -226,8 +237,9 @@
             </table>
           </div>
         </div>
-      </div>  
+      </div>
   </main>
+  
 
   <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
   <script type='text/javascript' src='/src/js/addHeader.js'></script>
@@ -238,11 +250,10 @@
 <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="module" src="../../js/Admin/Admin-AlumniListPage.js"></script>
 
-</script>
+   
+    </script>
 <script>
-  
 </script>
-  <!-- <script type='text/javascript' src='/src/js/addNavFooter.js'></script> -->
 </body>
 
 </html>
