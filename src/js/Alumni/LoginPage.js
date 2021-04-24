@@ -95,26 +95,23 @@ form_1.addEventListener('submit', (ev) => {
                     setErrorFor(inputPassword);
                     errorExist = true;
                 } else {
-
                     console.log("dummy");
                     if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+                        //To save who is logged in
+                        localStorage.setItem('SignedInAlumniId',dummyResponse.Alumni[i].alumniId);
                         console.log("foundpass");
                         setSuccessFor(inputPassword);
                         errorExist = false;
 
-                    }else{
+                    } else {
                         console.log("elsepass");
-                         errorExist = true;
+                        errorExist = true;
                     }
-
-                   
-
                 }
                 break;
             }
 
         }
-        
 
     }
 
