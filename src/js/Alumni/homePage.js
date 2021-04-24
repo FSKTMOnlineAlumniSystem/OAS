@@ -46,7 +46,7 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
                       </svg>
                   </div>
                   <div class="col-10 d-flex flex-column">
-                      <span class="t">${d.toLocaleTimeString()}</span>
+                      <span class="t">${d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
                   </div>
               </div>
               <div class="row">
