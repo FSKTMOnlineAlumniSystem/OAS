@@ -1,7 +1,7 @@
 import dummyResponse from "../dummydata.js";
 const alumniList = document.getElementById("alumniList");
-
 let pageIndex = 0;
+
 const loadAlumniList = (pageIndex) => {
   alumniList.innerHTML = "";
   let alumniStartIndex = pageIndex * 10;

@@ -68,3 +68,7 @@ const loadAlumniProfile = (index) => {
 console.log(onClickAlumniID);
 loadAlumniProfile(onClickAlumniID);
 // localStorage.removeItem("alumniprofile");
+// var index = getindex(onClickAlumniID);
+// function getindex(onClickAlumniID) {
+//   return onClickAlumniID.split("-")[1];
+// }
