@@ -1,3 +1,5 @@
+import dummyResponse from "./dummydata.js";
+
 const body = document.body;
 const mainBody = document.getElementById('main-body');
 
@@ -15,19 +17,35 @@ header.innerHTML = `<div id="profile-header">
 
 body.insertBefore(header, mainBody);
 
+let result = []; let lastTrueElementIdx = 0;
+    console.log(dummyResponse.Alumni_Event);
+    dummyResponse.Alumni_Event.forEach(event => {
+      if(event.viewedByAlumni === 'FALSE'){ result.push(event); }
+      else{ result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
+    });
+    console.log(result);
+
 const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');
-console.log(profilePanel);
 function toggleNotificationPanel() {
   if(profilePanel.style.display === 'block'){
     toggleProfilePanel();
   }
   // first-time click will add childnode under panel 
   if (!notificationPanel.hasChildNodes()) {
+    // build the content from dummy data
+    // sort to let not reviewed event at front of array
+    const result = []; const lastTrueElementIdx = 0;
+    console.log(dummyResponse);
+    dummyResponse.Alumni_Event.forEach(event => {
+      if(event.viewedByAlumni){ result.push(event); }
+      else{ result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
+    });
+    console.log(result);
     notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
     <ul class='m-0 list-unstyled'>
       <li class="p-2 border-top notification-border">
-        <div class="d-flex container-fluid">
+        <div class="p-2 d-flex container-fluid border-bottom item--hover-dark-bg">
           <div class="row">
             <div class='col-2 d-flex justify-content-center align-items-center'>
               <i class="fa fa-calendar fa-2x text-primary"></i>
@@ -63,8 +81,8 @@ function toggleProfilePanel() {
   }
   // first-time click will add childnode under panel
   if (!profilePanel.hasChildNodes()) {
-    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg">My Profile</div>
-    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg">Log Out</div>`;
+    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/Alumni/AlumniProfilePage.html" class="nostyle">My Profile</a></div>
+    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/Alumni/HomePage.html" class="nostyle">Log Out</a></div>`;
     profilePanel.style.display = "block";
   } else {
     if (profilePanel.style.display === "none") {

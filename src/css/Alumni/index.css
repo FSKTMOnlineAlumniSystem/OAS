@@ -108,6 +108,10 @@ a.nostyle:visited {
   background-color: var(--light-gray);
   cursor: pointer;
 }
+.item--hover-dark-bg:hover{
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
 
 .dot {
   height: 10px;

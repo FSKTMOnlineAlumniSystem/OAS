@@ -222,32 +222,38 @@ const dummyResponse = {
         {
             "alumniId": "AL-1",
             "eventId": "E-1",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "dateTime": "2021-04-14T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "FALSE",
+            "dateTime": "2021-04-15T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "dateTime": "2021-04-16T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-4",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "dateTime": "2021-04-24T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-5",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "dateTime": "2021-04-24T16:49:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-6",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "dateTime": "2021-04-24T16:53:53+00:00",
         }
     ],
     "Job": [

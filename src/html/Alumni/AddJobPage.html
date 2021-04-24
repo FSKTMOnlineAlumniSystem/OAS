@@ -23,9 +23,9 @@
       <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
     </div>
     <img src="/Assets/icons/bell.svg" alt="bell icon" class="header__img mx-2" id='notification-icon'>
-    <div id='profile-panel'>
-      <div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg">My Profile</div>
-      <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg">Log Out</div>
+    <div id='profile-panel' class="profile-panel--display-none">
+      <div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/Alumni/AlumniProfilePage.html" class="nostyle">My Profile</a></div>
+    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/Alumni/HomePage.html" class="nostyle">Log Out</a></div>
     </div>
 
     <div id='notification-panel' class="profile-panel--display-none"></div>
@@ -188,7 +188,7 @@
   </footer> -->
 
     <script type='text/javascript' src='/src/js/Alumni/AddJobPage.js'></script>
-    <script type='text/javascript' src='/src/js/addHeader.js'></script>
+    <script type="module" src='/src/js/addHeader.js'></script>
     <!-- <script type='text/javascript' src='/src/js/addNavFooter.js'></script> -->
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
