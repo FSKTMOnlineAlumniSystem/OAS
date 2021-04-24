@@ -1,15 +1,20 @@
-import dummyResponse from "./dummydata.js";
+// import dummyResponse from "./dummydata";
 
+// import dummyResponse from "./dummydata.js";
+console.log(dummyResponse);
+// hardcode it as alumni
 localStorage.setItem('SignedInAlumniId', "AL-1");
+const curUser = dummyResponse.Alumni.filter(alumni=> alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
 
 const body = document.body;
+console.log(body);
 const mainBody = document.getElementById('main-body');
 
 const header = document.createElement('header');
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
 <img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
-<span class="px-1 py-auto">Dr Tey Kok Soon</span>
+<span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>
 <img src="/Assets/icons/bell.svg" alt="bell icon" class="header__img mx-2" id='notification-icon'>
@@ -17,8 +22,7 @@ header.innerHTML = `<div id="profile-header">
 
 <div id='notification-panel' class="profile-panel--display-none"></div>`
 
-body.insertBefore(header, mainBody);
-
+body.insertBefore(header, nav);
 
 const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');

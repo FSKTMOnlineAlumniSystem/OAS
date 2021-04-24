@@ -1,13 +1,14 @@
+console.log('dummy data called');
 const dummyResponse = {
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "teh@gmail.com",
+            "email": "tey@gmail.com",
             "password": "1234",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Teh Kok Soon",
+            "name": "Tey Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "1985",
             "imageId": "AL-1.jpg",
@@ -416,4 +417,4 @@ const dummyResponse = {
         }
     ]
 };
-export default dummyResponse;
+// export default dummyResponse;

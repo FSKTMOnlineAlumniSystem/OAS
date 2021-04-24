@@ -1,20 +1,3 @@
-/*  ==========================================
-    SHOW UPLOADED IMAGE
-* ========================================== */
-// var input = document.getElementById('upload');
-// function readURL(input) {
-//   if (input.files && input.files[0]) {
-//       var reader = new FileReader();
-   
-//       reader.onload = function (e) {
-//         console.log(e);
-//         document.getElementById('imageResult').setAttribute('src', e.target.result)
-//         // localStorage.setItem("recent-image", reader.result);
-//       };
-//       reader.readAsDataURL(input.files[0]);
-//   }
-// }
-// input.addEventListener( 'change', (event)=>readURL(input));
 
 
 document.getElementById("form").innerHTML += 
@@ -29,13 +12,12 @@ document.getElementById("form").innerHTML +=
 </div>
 <div class="container-fluid mb-3">
         <div class='row'>
-          <div class='image-area col-md-4 col-12 d-flex flex-column justify-content-center align-items-center'>
-            <span class='image-area-content'>Uploaded image result</span>
-            <img id="imageResult" src="#" alt="" class="p-1">
+          <div class='col-md-4 col-12 d-flex flex-column justify-content-center align-items-center image-area px-0'>
+            <img id="imageResult" src="#" alt="" class="company-image">
           </div>
-          <div class='p-2 col-md-8 col-12'>
+          <div class='col-md-8 col-12 p-0 px-md-2'>
             <label for="upload" class="form-label">Company Image</label>
-            <input type="file" class="form-control" id="upload" aria-describedby="image">
+            <input type="file" class="form-control-file" id="upload" aria-describedby="image">
           </div>
         </div>
         </div>
@@ -59,6 +41,24 @@ document.getElementById("form").innerHTML +=
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>`;
+
+/*  ==========================================
+    SHOW UPLOADED IMAGE
+* ========================================== */
+var input = document.getElementById('upload');
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+   
+      reader.onload = function (e) {
+        console.log(e);
+        document.getElementById('imageResult').setAttribute('src', e.target.result)
+        // localStorage.setItem("recent-image", reader.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+input.addEventListener( 'change', (event)=>readURL(input));
 
   //INPUT
   let myJob = JSON.parse(localStorage.getItem("job"));

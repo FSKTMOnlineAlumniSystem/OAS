@@ -1,5 +1,3 @@
-// const body = document.body;
-// const mainBody = document.getElementById('main-body');
 
 const nav = document.createElement('nav');
 nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light container-fluid');
@@ -106,5 +104,5 @@ contactUsNavItem.addEventListener('click', function(event){
 });
 
 console.log(nav);
-body.insertBefore(nav, mainBody);
-body.appendChild(footer);
+document.body.insertBefore(nav, document.getElementById('main-body'));
+document.body.appendChild(footer);
