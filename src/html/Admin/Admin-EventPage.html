@@ -56,7 +56,7 @@
                 href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
                   style="font-size: 20px; "></i></a>
 
-                 
+
 
               <!--trash button-->
               <button type="button"
@@ -87,10 +87,10 @@
             </tr>
           </thead>
 
-          
+
           <tbody>
             <tr class="rowss">
-<!--            
+              <!--            
               <td style="font-weight: 400; font-size: 18px">4, April 2021
                 <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
               <td style="font-weight: 400; font-size: 18px" class="eventTitle">
@@ -204,41 +204,43 @@
               </td>
             </tr>
           </tbody>
-      
-      </table>
-   
-    </div>
-    <!-- </div> -->
-    <span id="pageIndex"></span>
 
-    <!-- yanwen button -->
-    <nav aria-label="Page navigation example">
-      <!-- <div class="col text-center">
+        </table>
+
+      </div>
+      <!-- model -->
+      <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
+      <span id="pageIndex"></span>
+
+      <!-- yanwen button -->
+      <nav aria-label="Page navigation example">
+        <!-- <div class="col text-center">
           <button id="btn previousPage-btn btn-light btn-sm" onclick="previousPage()">Previous</button>
           <span id="pageIndex"></span>
           <button id="btn nextPage-btn btn-sm" onclick="nextPage()">Next</button>
       </div> -->
-      <!-- <div class="col text-center"> -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item" id="previousPage">
-          <button onclick="previousPage()" class="page-link">Previous</button>
-        </li>
-        <div class="pages list-group list-group-horizontal">
-          <li class="page-item disabled">
-            <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+        <!-- <div class="col text-center"> -->
+        <ul class="pagination justify-content-center">
+          <li class="page-item" id="previousPage">
+            <button onclick="previousPage()" class="page-link">Previous</button>
           </li>
-          <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
-          <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
+          <div class="pages list-group list-group-horizontal">
+            <li class="page-item disabled">
+              <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+            </li>
+            <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
+            <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
 
-        </div>
+          </div>
 
-        <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
-        <li class="page-item" id="nextPage">
-          <button onclick="nextPage()" class="page-link">Next</button>
-        </li>
-      </ul>
-      <!-- </div> -->
-    </nav>
+          <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
+          <li class="page-item" id="nextPage">
+            <button onclick="nextPage()" class="page-link">Next</button>
+          </li>
+        </ul>
+        <!-- </div> -->
+      </nav>
   </main>
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
 

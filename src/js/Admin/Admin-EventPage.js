@@ -48,35 +48,29 @@ const loadEventList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${
-          pageIndex + 1
-        }</button>
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
         </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${
-          pageIndex + 1
-        }</button>
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${
-          pageIndex + 2
-        }</button></li>`;
+        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+      }</button></li>`;
   } else {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${
-          pageIndex + 1
-        }</button>
+        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${
-          pageIndex + 2
-        }</button></li>
-        <li class="page-item" ><button onclick="nextPage();nextPage()">${
-          pageIndex + 3
-        }</button></li>`;
+        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+      }</button></li>
+        <li class="page-item" ><button onclick="nextPage();nextPage()">${pageIndex + 3
+      }</button></li>`;
   }
 
   // }
@@ -93,7 +87,7 @@ const loadEventList = (pageIndex) => {
     let i = eventStartIndex;
     i < eventEndIndex && i < dummyResponse.Event.length;
     i++
-  ) { 
+  ) {
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
     var d = new Date(dummyResponse.Event[i].dateTime);
     // console.log(dummyResponse.Event[i].dateTime)
@@ -102,8 +96,8 @@ const loadEventList = (pageIndex) => {
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
     // console.log(`${da}, ${mo} ${ye}`);
     // d.toLocaleDateString('en-GB')
-    
-   
+
+
     // var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     //     if (checkboxes[i] != source)
     //         checkboxes[i].checked = source.checked;
@@ -121,44 +115,18 @@ const loadEventList = (pageIndex) => {
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                  <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
-                ${
-                  dummyResponse.Event[i].title
-                }
+                ${dummyResponse.Event[i].title
+      }
               </a>
         
               <!-- Modal -->
-              <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Event</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body" >
-                      <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
-                      <br>
-                      <p>Schedule :${`${da}, ${mo} ${ye}`}; ${d.toLocaleTimeString()}</p>
-                      <p> Title : ${dummyResponse.Event[i].title}</p>
-                      <p>Description : ${dummyResponse.Event[i].description}</p>
-                      <p>Location : ${dummyResponse.Event[i].location} </p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-success"
-                        onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               </td>
 
-                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${
-                  dummyResponse.Event[i].description
-                }</td>
-                <td style="font-weight: 200; font-size: 18px">${
-                  dummyResponse.Event[i].location
-                }</td>
+                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${dummyResponse.Event[i].description
+      }</td>
+                <td style="font-weight: 200; font-size: 18px">${dummyResponse.Event[i].location
+      }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                     <a href="Admin-EventPageUpdate.html" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
@@ -168,9 +136,9 @@ const loadEventList = (pageIndex) => {
                   </div>
                 </td>
             </tr>`;
-    
-    
-            var tableRef = document
+
+
+    var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
     var newRow = tableRef.insertRow(tableRef.rows.length);
@@ -180,19 +148,19 @@ const loadEventList = (pageIndex) => {
   }
 };
 
-window.toggle = function(source) {
+window.toggle = function (source) {
   console.log("checkbox")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i] != source)
-          checkboxes[i].checked = source.checked;
+    if (checkboxes[i] != source)
+      checkboxes[i].checked = source.checked;
   }
 }
-window.check = function(source,i) {
+window.check = function (source, i) {
   console.log("check row")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-          checkboxes[i].checked = source.checked;
-          console.log(i)
+  checkboxes[i].checked = source.checked;
+  console.log(i)
 }
 
 window.nextPage = function () {
@@ -204,35 +172,112 @@ window.previousPage = function () {
   loadEventList(pageIndex);
 };
 loadEventList(pageIndex);
- 
-
-
- window.DeleteRowFunction = function(o) {
-  var p=o.parentNode.parentNode.parentNode;
-      p.parentNode.removeChild(p);
- }
 
 
 
+window.DeleteRowFunction = function (o) {
+  var p = o.parentNode.parentNode.parentNode;
+  p.parentNode.removeChild(p);
+}
 
- window.onload= function(i){
+
+
+
+window.onload = function (i) {
   console.log("function is running")
   // localStorage.setItem("eventID",dummyResponse.Event[i].eventId)
   // console.log("event id"+ dummyResponse.Event[i].eventId)
   console.log(i)
   // console.log(dummyResponse.Event[i].eventId)
- }
+}
 
- window.addRow= function(){
-   console.log('add row')
-   var table = document.getElementsByClassName(
+window.addRow = function () {
+  console.log('add row')
+  var table = document.getElementsByClassName(
     "table table-striped table-sm something"
   )[0];
- }
+}
 
- document.querySelectorAll('.eventTitle').forEach((title)=>{
-   title.addEventListener('click',(e)=>console.log(e.target.id))
- })
+document.querySelectorAll('.eventTitle').forEach((title) => {
+  title.addEventListener('click', (e) =>
+    //  console.log(e.target.id)
+    //  var d = new Date(dummyResponse.Event[i].dateTime);
+    // console.log(dummyResponse.Event[i].dateTime)
+    // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
+    // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
+    // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
+    // <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
+    //  var i=e.target.id
+     document.getElementById("exampleModal").innerHTML=
+   `<div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" >
+                      <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <br>
+                      <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
+                      ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
+                      ${new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}`}; 
+                      ${new Date(dummyResponse.Event[e.target.id].dateTime).toLocaleTimeString()}</p> -->
+                      <p> Title : ${dummyResponse.Event[e.target.id].title}</p>
+                      <p>Description : ${dummyResponse.Event[e.target.id].description}</p>
+                      <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success"
+                        onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+  
+  )
+})
+
+ //model
+//  document.getElementById("schedule").innerHTML =
+
+// `Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
+// ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
+// ${new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}`}; 
+// ${new Date(dummyResponse.Event[e.target.id].dateTime).toLocaleTimeString()}`;
+// document.getElementById("title").innerHTML =
+// `Title : ${dummyResponse.Event[e.target.id].title}`;
+// document.getElementById("description").innerHTML =
+// `Description : ${dummyResponse.Event[e.target.id].description}`;
+// document.getElementById("location").innerHTML =
+// `Location : ${dummyResponse.Event[e.target.id].location}`;
+ //model
+//  <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+//  <div class="modal-dialog">
+//    <div class="modal-content">
+//      <div class="modal-header">
+//        <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+//        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//          <span aria-hidden="true">&times;</span>
+//        </button>
+//      </div>
+//      <div class="modal-body" >
+//        <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+//        <br>
+//        <p>Schedule :${`${da}, ${mo} ${ye}`}; ${d.toLocaleTimeString()}</p>
+//        <p> Title : ${dummyResponse.Event[i].title}</p>
+//        <p>Description : ${dummyResponse.Event[i].description}</p>
+//        <p>Location : ${dummyResponse.Event[i].location} </p>
+//      </div>
+//      <div class="modal-footer">
+//        <button type="button" class="btn btn-success"
+//          onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+//      </div>
+//    </div>
+//  </div>
+// </div>
 
 //  $('button.fa fa-trash fa-3x pl-2').on('click', function (e) {
 //   e.preventDefault();
