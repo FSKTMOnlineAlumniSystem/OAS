@@ -1,5 +1,7 @@
 import dummyResponse from "./dummydata.js";
 
+localStorage.setItem('SignedInAlumniId', "AL-1");
+
 const body = document.body;
 const mainBody = document.getElementById('main-body');
 
@@ -17,55 +19,113 @@ header.innerHTML = `<div id="profile-header">
 
 body.insertBefore(header, mainBody);
 
-let result = []; let lastTrueElementIdx = 0;
-    console.log(dummyResponse.Alumni_Event);
-    dummyResponse.Alumni_Event.forEach(event => {
-      if(event.viewedByAlumni === 'FALSE'){ result.push(event); }
-      else{ result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
-    });
-    console.log(result);
 
 const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');
 function toggleNotificationPanel() {
-  if(profilePanel.style.display === 'block'){
+  if (profilePanel.style.display === 'block') {
     toggleProfilePanel();
   }
   // first-time click will add childnode under panel 
   if (!notificationPanel.hasChildNodes()) {
     // build the content from dummy data
+    notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
+      <ul class='m-0 list-unstyled'>
+        <li class="p-2 border-top notification-border">
+        </li>
+      </ul>`
     // sort to let not reviewed event at front of array
-    const result = []; const lastTrueElementIdx = 0;
-    console.log(dummyResponse);
+    let result = []; let lastTrueElementIdx = 0;
+    console.log(dummyResponse.Alumni_Event);
     dummyResponse.Alumni_Event.forEach(event => {
-      if(event.viewedByAlumni){ result.push(event); }
-      else{ result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
+      if(event.alumniId == localStorage.getItem('SignedInAlumniId')){
+        if (event.viewedByAlumni === 'TRUE') { result.push(event); }
+        else { result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
+      }else{
+        console.log('not this alumni');
+      }
     });
     console.log(result);
-    notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
-    <ul class='m-0 list-unstyled'>
-      <li class="p-2 border-top notification-border">
-        <div class="p-2 d-flex container-fluid border-bottom item--hover-dark-bg">
-          <div class="row">
-            <div class='col-2 d-flex justify-content-center align-items-center'>
-              <i class="fa fa-calendar fa-2x text-primary"></i>
-            </div>
-            <div class='col-8 flex-grow-1'>
-              You have been invited to join our event!!
-              <strong>
-                Keselamatan Siber Di Kalangan Kanak-Kanak
-              </strong>
-              <div class="text-primary">Just now</div>
-            </div>
-            <div class="col-1">
-              <div class='row flex-column'>
-                <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-              </div>
-            </div>
+    result.forEach((event,index) => {
+      const div1 = document.createElement('div');
+      div1.setAttribute('class', 'py-2 d-flex container-fluid border-bottom item--hover-dark-bg');
+      
+      const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
+      let timeStr = ``;
+      const dotClass = event.viewedByAlumni === 'TRUE' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
+      const secondSinceInvitation = (new Date() - new Date(event.dateTime)) / 1000;
+      const minute = Math.floor(secondSinceInvitation / 60);
+      const hour = Math.floor(minute / 60);
+      const day = Math.floor(hour / 24);
+      // console.log(`${day} ${hour % 24} ${minute % 60}`);
+      if (day === 0) {
+        if (hour % 60 === 0) {
+          if (minute % 60 === 0) {
+            timeStr = `Just Now`;
+          } else {
+            timeStr = `${minute % 60} minute(s) ago`;
+          }
+        } else {
+          timeStr = `${hour % 24} hour(s) ${minute % 60} minute(s) ago`;
+        }
+      }else{
+        timeStr = `${day} day(s) ${hour % 24} hour(s) ${minute % 60} minute(s) ago`
+      }
+      div1.innerHTML = `
+      <div class="row">
+        <div class='col-2 d-flex justify-content-center align-items-center'>
+          <i class="fa fa-calendar fa-2x text-primary"></i>
+        </div>
+        <div class='col-8 flex-grow-1 px-0'>
+          You have been invited to join our event!!
+          <strong>
+            ${eventTitle}
+          </strong>
+          <div class="text-primary">${timeStr}</div>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+          <div class='row flex-column'>
+            <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
+            <i class="${dotClass}" aria-hidden="true"></i>
           </div>
         </div>
-      </li>
-    </ul>`;
+      </div>`;
+      div1.querySelector('i.fa-times').addEventListener('click', (event)=>{
+        result.splice(index,1);
+      });
+      notificationPanel.querySelector('li').appendChild(div1);
+    });
+    if(result.length === 0){
+      const div1 = document.createElement('div');
+      div1.setAttribute('class', 'py-2 container-fluid d-flex align-items-center');
+      div1.innerHTML = `You have no notification`
+        notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
+      notificationPanel.appendChild(div1);
+    }
+    // notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
+    // <ul class='m-0 list-unstyled'>
+    //   <li class="p-2 border-top notification-border">
+    //     <div class="p-2 d-flex container-fluid border-bottom item--hover-dark-bg">
+    //       <div class="row">
+    //         <div class='col-2 d-flex justify-content-center align-items-center'>
+    //           <i class="fa fa-calendar fa-2x text-primary"></i>
+    //         </div>
+    //         <div class='col-8 flex-grow-1'>
+    //           You have been invited to join our event!!
+    //           <strong>
+    //             Keselamatan Siber Di Kalangan Kanak-Kanak
+    //           </strong>
+    //           <div class="text-primary">Just now</div>
+    //         </div>
+    //         <div class="col-1">
+    //           <div class='row flex-column'>
+    //             <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </li>
+    // </ul>`;
     notificationPanel.style.display = "block";
   } else {
     if (notificationPanel.style.display === "none") {
@@ -76,7 +136,7 @@ function toggleNotificationPanel() {
   }
 }
 function toggleProfilePanel() {
-  if(notificationPanel.style.display === 'block'){
+  if (notificationPanel.style.display === 'block') {
     toggleNotificationPanel();
   }
   // first-time click will add childnode under panel

@@ -241,19 +241,19 @@ const dummyResponse = {
             "alumniId": "AL-1",
             "eventId": "E-4",
             "viewedByAlumni": "FALSE",
-            "dateTime": "2021-04-24T15:53:53+00:00",
+            "dateTime": "2021-04-23T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-5",
             "viewedByAlumni": "FALSE",
-            "dateTime": "2021-04-24T16:49:53+00:00",
+            "dateTime": "2021-04-24T06:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-6",
             "viewedByAlumni": "FALSE",
-            "dateTime": "2021-04-24T16:53:53+00:00",
+            "dateTime": "2021-04-24T08:53:53+00:00",
         }
     ],
     "Job": [
