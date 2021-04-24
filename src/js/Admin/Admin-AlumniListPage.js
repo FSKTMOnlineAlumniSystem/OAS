@@ -78,6 +78,107 @@ dummyResponse.Alumni.forEach(alumni => {
   tbody.appendChild(tr);
 });
 
+let pageIndex = 0;
+const loadAlumniList = (pageIndex) => {
+  // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
+  console.log("the length" + dummyResponse.Alumni.length);
+  let alumniStartIndex = pageIndex * 10;
+  let alumniEndIndex = alumniStartIndex + 10;
+
+  var dataLength = dummyResponse.Alumni.length;
+  var remainingLength = dataLength - alumniStartIndex;
+
+var table = document.getElementById(
+    "myTable"
+  )[0];
+  //or use :  var table = document.all.tableid;
+
+  for (var i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
+  }
+
+  for (
+    let i = eventStartIndex;
+    i < eventEndIndex && i < dummyResponse.Event.length;
+    i++
+  ) {
+
+  var newRowContent = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  ${dummyResponse.Alumni[i].name}
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
+      
+        <div class="col">
+          <div class="row mb-2">
+              <div class="col-4">Name:</div>
+              <div id="name" class="col-8">  ${dummyResponse.Alumni[i].name}
+              </div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Gender:</div>
+              <div id="gender" class="col-8">  ${dummyResponse.Alumni[i].gender}
+              </div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Graduated:</div>
+              <div id="graduated" class="col-8">  ${dummyResponse.Alumni[i].graduated}
+              </div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Department:</div>
+              <div id="department" class="col-8">  ${dummyResponse.Alumni[i].department}
+              </div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">E-mail:</div>
+              <div id="email" class="col-8">  ${dummyResponse.Alumni[i].email}
+              </div>
+          </div>
+          <div class="row mb-2">
+              <div class="col-4">Contact Number:</div>
+              <div id="contactNumber" class="col-8">  ${dummyResponse.Alumni[i].contactNumber}
+              </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">Ic No:</div>
+            <div id="icNumber" class="col-8">${dummyResponse.Alumni[i].icNumber}</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-4">Account Status:</div>
+          <div id="accStatus" class="col-8">Verified</div>
+      </div>
+      </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
+        <button type="button" class="btn btn-info">Approve</button>
+            </div>
+      </div>
+    </div>`;
+    var tableRef = document
+    .getElementById("myTable")[0]
+    .getElementsByTagName("tbody")[0];
+  var newRow = tableRef.insertRow(tableRef.rows.length);
+  // table.insertRow(newRow)
+  // console.log(newRow)
+  newRow.innerHTML = newRowContent;
+}
+};
+
 
   window.filterSearchBar = function() {
   var input, filter, table, tr, td, i;
