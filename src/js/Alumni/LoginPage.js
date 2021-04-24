@@ -2,6 +2,8 @@
 //     document.getElementById('signUP').style.display='block';
 // }
 
+
+
 // function closeSignUp(){
 //     window.onclick = function(event) {
 //         if (event.target == popUp) {
@@ -18,6 +20,8 @@
 //         }
 //       }
 // }
+
+import dummyResponse from "../dummydata.js";
 
 const form_2 = document.getElementById('forgot');
 const sendEmail = document.getElementById('sendEmail');
@@ -56,7 +60,8 @@ form_2.addEventListener('submit', (evt) => {
     }
 
     if (errorExist) {
-        evt.preventDefault();}
+        evt.preventDefault();
+    }
 
 });
 
@@ -76,20 +81,54 @@ form_1.addEventListener('submit', (ev) => {
         setErrorFor(staticEmail);
         errorExist = true;
     } else {
-        setSuccessFor(staticEmail);
+        console.log("elseemail");
+
+        for (let i = 0; i < dummyResponse.Alumni.length; i++) {
+            console.log("dumm");
+            if (staticEmailValue == dummyResponse.Alumni[i].email) {
+                console.log("foundemail");
+                setSuccessFor(staticEmail);
+                errorExist = false;
+
+                if (isEmpty(inputPasswordValue)) {
+                    console.log("empty");
+                    setErrorFor(inputPassword);
+                    errorExist = true;
+                } else {
+
+                    console.log("dummy");
+                    if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+                        console.log("foundpass");
+                        setSuccessFor(inputPassword);
+                        errorExist = false;
+
+                    }else{
+                        console.log("elsepass");
+                         errorExist = true;
+                    }
+
+                   
+
+                }
+                break;
+            }
+
+        }
+        
+
     }
 
 
-    if(isEmpty(inputPasswordValue)) {
-        setErrorFor(inputPassword);
-        errorExist = true;
-    }else{
-        setSuccessFor(inputPassword);
-    }
-
-
+    console.log(errorExist);
     if (errorExist) {
-        ev.preventDefault();}
+        ev.preventDefault();
+    }
+    else {
+        location.replace("../../html/Alumni/homePage.html");
+        ev.preventDefault();
+    }
+
+
 
 });
 
@@ -108,47 +147,47 @@ form.addEventListener('submit', (e) => {
     const BatchValue = Batch.value.trim();
     const GenderValue = Gender.value.trim();
 
-    
 
 
-    if(DepartmentValue == 0){
+
+    if (DepartmentValue == 0) {
         console.log("errordep");
         setErrorFor(Department);
         errorExist = true;
-        }else{
-            console.log("succdep");
-            setSuccessFor(Department);
-        }
+    } else {
+        console.log("succdep");
+        setSuccessFor(Department);
+    }
 
-    if(BatchValue == 0){
+    if (BatchValue == 0) {
         console.log("errordep");
         setErrorFor(Batch);
         errorExist = true;
-        }else{
-            console.log("succdep");
-            setSuccessFor(Batch);
-        }
+    } else {
+        console.log("succdep");
+        setSuccessFor(Batch);
+    }
 
-    if(GenderValue == 0){
+    if (GenderValue == 0) {
         console.log("errordep");
         setErrorFor(Gender);
         errorExist = true;
-        }else{
-            console.log("succdep");
-            setSuccessFor(Gender);
-        }
+    } else {
+        console.log("succdep");
+        setSuccessFor(Gender);
+    }
 
-    if(isEmpty(FirstNameValue)){
+    if (isEmpty(FirstNameValue)) {
         setErrorFor(FirstName);
         errorExist = true;
-    }else{
+    } else {
         setSuccessFor(FirstName);
     }
 
-    if(isEmpty(LastNameValue)){
+    if (isEmpty(LastNameValue)) {
         setErrorFor(LastName);
         errorExist = true;
-    }else{
+    } else {
         setSuccessFor(LastName);
     }
 
@@ -161,41 +200,42 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if(isEmpty(ICValue) || (ICValue.length == 11)){
+    if (isEmpty(ICValue) || (ICValue.length == 11)) {
         setErrorFor(IC);
         errorExist = true;
-    }else{
+    } else {
         setSuccessFor(IC);
     }
 
 
-    if(isEmpty(passwordValue) || checkLength(passwordValue)) {
+    if (isEmpty(passwordValue) || checkLength(passwordValue)) {
         setErrorFor(Password);
         errorExist = true;
-    }else{
+    } else {
         setSuccessFor(Password);
     }
 
 
     if (errorExist) {
-        e.preventDefault();}
+        e.preventDefault();
+    }
 
-    
+
 });
 
 
 
- function checkLength(passwordValue) {
-     console.log('checkmethod');
-    if(Password.value.length < 6 ){
+function checkLength(passwordValue) {
+    console.log('checkmethod');
+    if (Password.value.length < 6) {
         return true;
-    }else if(Password.value.length > 20 ){
+    } else if (Password.value.length > 20) {
         return true;
-    }else{
+    } else {
         return false;
     }
-     
- }
+
+}
 
 function setErrorFor(input) {
     if (input.classList.contains("is-valid")) {
@@ -218,7 +258,6 @@ function setSuccessFor(input) {
 //     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 //  }
 
- function isEmpty(obj) {
+function isEmpty(obj) {
     return obj.length == 0;
 }
- 

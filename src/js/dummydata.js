@@ -18,7 +18,7 @@ const dummyResponse = {
             "alumniId": "AL-2",
             "approvedBy": "AD-2",
             "email": "ang@gmail.com",
-            "password": "1234",
+            "password": "12345",
             "icNumber": "730110-10-1253",
             "gender": "male",
             "name": "Wong Li Liang",
@@ -72,7 +72,7 @@ const dummyResponse = {
         },
         {
             "alumniId": "AL-6",
-            "email": "ang@gmail.com",
+            "email": "rachel@gmail.com",
             "password": "1234",
             "icNumber": "800110-10-1256",
             "gender": "female",
