@@ -189,3 +189,28 @@ $('#status option').prop('selected', function() {
 
 });
 
+function ValidateEmail(mail) 
+{
+ if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+
+function phonenumber(inputtxt)
+{
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if(inputtxt.value.match(phoneno))
+     {
+	   return true;      
+	 }
+   else
+     {
+	   alert("Not a valid Phone Number");
+	   return false;
+     }
+}
+
+
