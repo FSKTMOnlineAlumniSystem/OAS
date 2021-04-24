@@ -1,5 +1,6 @@
 import dummyResponse from "../dummydata.js";
-import onClickAlumniID from "./alumniPage.js";
+
+let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
 const alumniProfile = document.getElementById("main-body");
 const loadAlumniProfile = (index) => {
@@ -65,8 +66,9 @@ const loadAlumniProfile = (index) => {
     </div>`;
 };
 console.log(onClickAlumniID);
-var index = getindex(onClickAlumniID);
-function getindex(onClickAlumniID) {
-  return onClickAlumniID.split("-")[1];
-}
-loadAlumniProfile(index - 1);
+// var index = getindex(onClickAlumniID);
+// function getindex(onClickAlumniID) {
+//   return onClickAlumniID.split("-")[1];
+// }
+loadAlumniProfile(onClickAlumniID);
+// localStorage.removeItem("alumniprofile");

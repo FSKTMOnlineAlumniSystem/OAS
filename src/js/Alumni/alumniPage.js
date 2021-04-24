@@ -58,7 +58,7 @@ const loadAlumniList = (pageIndex) => {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
             <li class="page-item disabled">
-            <button class="btn btn-link page-link page-link"  tabindex="-1" aria-disabled="true ">${
+            <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
               pageIndex + 1
             }</button>
             </li>
@@ -75,7 +75,7 @@ const loadAlumniList = (pageIndex) => {
     i < alumniEndIndex && i < dummyResponse.Alumni.length;
     i++
   ) {
-    alumniList.innerHTML += `<div class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;">
+    alumniList.innerHTML += `<div onclick="clickProfile(${i})" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;">
     <div class="image m-auto col-2 p-3">
     <div style="aspect-ratio:1/1;overflow:hidden;">
     <img src=${dummyResponse.Alumni[i].imageId} class="w-100" alt=${dummyResponse.Alumni[i].name}>
@@ -90,9 +90,16 @@ const loadAlumniList = (pageIndex) => {
     overflow: hidden;
     text-overflow: ellipsis;">${dummyResponse.Alumni[i].biography}</small>
     </div></div>
-    </div>`;
+    </div></div>`;
   }
 };
+
+// $("#alumniList").on("click", ".media ", function () {
+// ${dummyResponse.Alumni[i].alumniId}
+//   var profileClicked = $(this).attr("data-name");
+//   console.log(jprofileClicked);
+//   localStorage.setItem("alumniprofile", JSON.stringify("profileClicked"));
+// });
 
 window.nextPage = function () {
   pageIndex++;
@@ -105,5 +112,3 @@ window.previousPage = function () {
 };
 
 loadAlumniList(pageIndex);
-var profileClicked = "AL-11";
-export default profileClicked;
