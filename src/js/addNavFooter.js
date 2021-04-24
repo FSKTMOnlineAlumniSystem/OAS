@@ -103,6 +103,5 @@ contactUsNavItem.addEventListener('click', function(event){
   footer.scrollIntoView();
 });
 
-console.log(nav);
 document.body.insertBefore(nav, document.getElementById('main-body'));
 document.body.appendChild(footer);

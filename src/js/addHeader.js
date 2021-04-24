@@ -1,13 +1,8 @@
-// import dummyResponse from "./dummydata";
-
-// import dummyResponse from "./dummydata.js";
-console.log(dummyResponse);
 // hardcode it as alumni
 localStorage.setItem('SignedInAlumniId', "AL-1");
-const curUser = dummyResponse.Alumni.filter(alumni=> alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
+const curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
 
 const body = document.body;
-console.log(body);
 const mainBody = document.getElementById('main-body');
 
 const header = document.createElement('header');
@@ -35,25 +30,31 @@ function toggleNotificationPanel() {
     // build the content from dummy data
     notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
       <ul class='m-0 list-unstyled'>
-        <li class="p-2 border-top notification-border">
-        </li>
+        <li class="p-2 border-top notification-border"></li>
       </ul>`
     // sort to let not reviewed event at front of array
     let result = []; let lastTrueElementIdx = 0;
-    console.log(dummyResponse.Alumni_Event);
     dummyResponse.Alumni_Event.forEach(event => {
-      if(event.alumniId == localStorage.getItem('SignedInAlumniId')){
+      if (event.alumniId == localStorage.getItem('SignedInAlumniId')) {
         if (event.viewedByAlumni === 'TRUE') { result.push(event); }
         else { result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
-      }else{
+      } else {
         console.log('not this alumni');
       }
     });
-    console.log(result);
-    result.forEach((event,index) => {
+    // a function to show 'No notification'
+    const showNoNotification = () => {
       const div1 = document.createElement('div');
-      div1.setAttribute('class', 'py-2 d-flex container-fluid border-bottom item--hover-dark-bg');
-      
+      div1.setAttribute('class', 'py-2 container-fluid d-flex align-items-center');
+      div1.innerHTML = `You have no notification`
+      notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
+      notificationPanel.appendChild(div1);
+    }
+    result.forEach((event, index) => {
+      if(event.notificationClosedByAlumni) return;
+      const div1 = document.createElement('div');
+      div1.setAttribute('class', 'py-2 d-flex container-fluid border-bottom item--hover-light-bg');
+
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
       const dotClass = event.viewedByAlumni === 'TRUE' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
@@ -72,7 +73,7 @@ function toggleNotificationPanel() {
         } else {
           timeStr = `${hour % 24} hour(s) ${minute % 60} minute(s) ago`;
         }
-      }else{
+      } else {
         timeStr = `${day} day(s) ${hour % 24} hour(s) ${minute % 60} minute(s) ago`
       }
       div1.innerHTML = `
@@ -94,42 +95,24 @@ function toggleNotificationPanel() {
           </div>
         </div>
       </div>`;
-      div1.querySelector('i.fa-times').addEventListener('click', (event)=>{
-        result.splice(index,1);
+      const icon = div1.querySelector('i.fa-times');
+      const list = notificationPanel.querySelector('li');
+      icon.classList.add('panel__icon--hover-dark-bg');
+      icon.addEventListener('click', (event) => {
+        list.removeChild(div1);
+        if(!list.hasChildNodes()){
+          showNoNotification();
+        }else{
+          console.log(list.childNodes);
+        }
       });
-      notificationPanel.querySelector('li').appendChild(div1);
+
+      list.appendChild(div1);
     });
-    if(result.length === 0){
-      const div1 = document.createElement('div');
-      div1.setAttribute('class', 'py-2 container-fluid d-flex align-items-center');
-      div1.innerHTML = `You have no notification`
-        notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
-      notificationPanel.appendChild(div1);
+    // if have no notification
+    if (result.length === 0) {
+      showNoNotification();
     }
-    // notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
-    // <ul class='m-0 list-unstyled'>
-    //   <li class="p-2 border-top notification-border">
-    //     <div class="p-2 d-flex container-fluid border-bottom item--hover-dark-bg">
-    //       <div class="row">
-    //         <div class='col-2 d-flex justify-content-center align-items-center'>
-    //           <i class="fa fa-calendar fa-2x text-primary"></i>
-    //         </div>
-    //         <div class='col-8 flex-grow-1'>
-    //           You have been invited to join our event!!
-    //           <strong>
-    //             Keselamatan Siber Di Kalangan Kanak-Kanak
-    //           </strong>
-    //           <div class="text-primary">Just now</div>
-    //         </div>
-    //         <div class="col-1">
-    //           <div class='row flex-column'>
-    //             <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </li>
-    // </ul>`;
     notificationPanel.style.display = "block";
   } else {
     if (notificationPanel.style.display === "none") {

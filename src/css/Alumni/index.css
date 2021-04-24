@@ -108,8 +108,12 @@ a.nostyle:visited {
   background-color: var(--light-gray);
   cursor: pointer;
 }
-.item--hover-dark-bg:hover{
+.item--hover-light-bg:hover{
   background-color: var(--light-gray);
+  cursor: pointer;
+}
+.panel__icon--hover-dark-bg:hover{
+  color: var(--dark-gray);
   cursor: pointer;
 }
 
