@@ -1,25 +1,3 @@
-// function openSignUp(){
-//     document.getElementById('signUP').style.display='block';
-// }
-
-
-
-// function closeSignUp(){
-//     window.onclick = function(event) {
-//         if (event.target == popUp) {
-//           popUp.style.display = "none";
-//         }
-//       }
-// }
-
-// function openSignIn(){
-//     document.getElementById('signIN').style.display='block';
-//     window.onclick = function(event) {
-//         if (event.target == popUp) {
-//           popUp.style.display = "none";
-//         }
-//       }
-// }
 
 import dummyResponse from "../dummydata.js";
 
@@ -69,6 +47,7 @@ form_2.addEventListener('submit', (evt) => {
 form_1.addEventListener('submit', (ev) => {
 
     let errorExist = false;
+    let getEmail = false;
 
     const staticEmailValue = staticEmail.value.trim();
     const inputPasswordValue = inputPassword.value.trim();
@@ -86,7 +65,9 @@ form_1.addEventListener('submit', (ev) => {
         for (let i = 0; i < dummyResponse.Alumni.length; i++) {
             console.log("dumm");
             if (staticEmailValue == dummyResponse.Alumni[i].email) {
+                getEmail = true;
                 console.log("foundemail");
+                console.log(dummyResponse.Alumni[i].email);
                 setSuccessFor(staticEmail);
                 errorExist = false;
 
@@ -111,6 +92,12 @@ form_1.addEventListener('submit', (ev) => {
                 break;
             }
 
+        }
+
+        if (!getEmail) {
+            errorExist = true; 
+            setErrorFor(staticEmail);
+            setErrorFor(inputPassword);
         }
 
     }

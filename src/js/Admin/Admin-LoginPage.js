@@ -5,12 +5,37 @@ const form_1 = document.getElementById('signIN');
 const staticEmail = document.getElementById('staticEmail');
 const inputPassword = document.getElementById('inputPassword');
 
+
+const form_2 = document.getElementById('forgot');
+const sendEmail = document.getElementById('sendEmail');
+
+
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
+
+form_2.addEventListener('submit', (evt) => {
+
+    let errorExist = false;
+
+    const sendEmailValue = sendEmail.value.trim();
+
+    if (isEmpty(sendEmailValue) || !sendEmail.value.match(emailFormat)) {
+        setErrorFor(sendEmail);
+        errorExist = true;
+    } else {
+        setSuccessFor(sendEmail);
+    }
+
+    if (errorExist) {
+        evt.preventDefault();
+    }
+
+});
 
 form_1.addEventListener('submit', (ev) => {
 
     let errorExist = false;
+    let getEmail = false;
 
     const staticEmailValue = staticEmail.value.trim();
     const inputPasswordValue = inputPassword.value.trim();
@@ -25,10 +50,12 @@ form_1.addEventListener('submit', (ev) => {
     } else {
         console.log("elseemail");
 
-        for (let i = 0; i < dummyResponse.Alumni.length; i++) {
+        for (let i = 0; i < dummyResponse.Admin.length; i++) {
             console.log("dumm");
-            if (staticEmailValue == dummyResponse.Alumni[i].email) {
+            if (staticEmailValue == dummyResponse.Admin[i].email) {
+                getEmail = true;
                 console.log("foundemail");
+                console.log(dummyResponse.Admin[i].email);
                 setSuccessFor(staticEmail);
                 errorExist = false;
 
@@ -39,25 +66,29 @@ form_1.addEventListener('submit', (ev) => {
                 } else {
 
                     console.log("dummy");
-                    if (inputPasswordValue == dummyResponse.Alumni[i].password) {
-                        localStorage.setItem('SignedInAdminiId',dummyResponse.Alumni[i].alumniId);
+                    if (inputPasswordValue == dummyResponse.Admin[i].password) {
+                        localStorage.setItem('SignedInAdminId', dummyResponse.Admin[i].adminId);
                         console.log("foundpass");
                         setSuccessFor(inputPassword);
                         errorExist = false;
 
-                    }else{
+                    } else {
                         console.log("elsepass");
-                         errorExist = true;
+                        errorExist = true;
                     }
-
-                   
 
                 }
                 break;
             }
 
-        }
+        } 
         
+        if (!getEmail) {
+            errorExist = true;
+            setErrorFor(staticEmail);
+            setErrorFor(inputPassword);
+        }
+
 
     }
 
