@@ -60,5 +60,9 @@ body{
     object-fit: cover;
 }
 
+.w-100{
+  aspect-ratio:2/1; 
+  overflow:hidden;
+}
 
 

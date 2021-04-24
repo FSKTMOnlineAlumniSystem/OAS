@@ -62,7 +62,9 @@ const loadJobList = (pageIndex) => {
         `<div class="col mb-4">
         <a href="../../html/Alumni/JobDetailsPage.html">
         <div class="card h-100" data-name=${myJob[i].jobId}>
-        <img src="" id="image" class="card-img-top" alt="jobPhoto">
+        <div class="w-100">
+            <img src="${myJob[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
+        </div>
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>
         <p class="card-text">
@@ -77,20 +79,20 @@ const loadJobList = (pageIndex) => {
         </p>
         </div></div></a></div>`;
         console.log('jobbbbb')
-        const readImageUrl = myJob[i].imgaeUrl;
-        console.log(readImageUrl)
-        if(readImageUrl){
-            document.querySelector("#image").setAttribute("src", readImageUrl);
-            console.log('i '+i)
-        }
+        // const readImageUrl = myJob[i].imgaeUrl;
+        // console.log(readImageUrl)
+        // if(readImageUrl){
+        //     document.querySelector("#image").setAttribute("src", readImageUrl);
+        //     console.log('i '+i)
+        // }
 
         }else {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
         <a href="../../html/Alumni/JobDetailsPage.html">
         <div class="card h-100" data-name=${myJob[i].jobId}>
-        <div class="w-100" style="aspect-ratio:2/1; overflow:hidden;">
-            <img class="w-100" src="../../../Assets/imgs/${'DrTey.jpg'}" class="card-img-top" alt="jobPhoto">
+        <div class="w-100">
+            <img class="w-100" src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
         </div>
         <div class="card-body">
         <h5 class="card-title">${myJob[i].title}</h5>

@@ -30,12 +30,17 @@ console.log(myJob[0].jobId);
 
 
 document.getElementById("MyJobTitle").innerHTML += 
-`<div class="col-sm-10">
+`
+
+<a href="../../html/Alumni/MyJobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a>
+
+<div class="col-sm-8">
 <h1>${myJob[0].company} - ${myJob[0].title}</h1>
 </div>
 <div class="col-sm">
 <a href="../../html/Alumni/EditMyJobPage.html"class="btn btn-secondary float-right" role="button"><i class="bi bi-pencil-square"></i>   Edit</a>
-</div>`;
+</div>
+`;
 
 document.getElementById("MyJobDescription").innerHTML += 
 `<div class="row align-items-center">
@@ -115,6 +120,15 @@ if(myJob[0].imageId == null){
 </div>`;
 }
 
+// CLICK 
+// document.querySelector(".back").addEventListener("click", function(){
+$(".back").on("click", function(){
+    console.log("click");
+    localStorage.removeItem('MyJobList');
+});
+
+
+
 // document.getElementById("MyJobDescription").innerHTML +=`
 // <div class="col">
 // <div class="container-fluid ">
@@ -143,7 +157,7 @@ if(myJob[0].imageId == null){
 // </div>
 // </div>`;
 
-localStorage.removeItem('MyJobList');
+// localStorage.removeItem('MyJobList');
 
 
 

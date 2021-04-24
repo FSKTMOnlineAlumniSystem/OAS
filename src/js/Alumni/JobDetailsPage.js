@@ -17,7 +17,12 @@ console.log(myJob[0].jobId);
 
 if(myJob[0].imageId == null){
 document.getElementById("jobDetails").innerHTML += 
-`  <h1>${myJob[0].company} - ${myJob[0].title}</h1>
+`<div class="row">
+<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a>  
+<div class="col-sm-8">  
+<h1>${myJob[0].company} - ${myJob[0].title}</h1>
+</div>
+</div>
 <hr>
 <div class="container" style="width:90%">
         <div class="row align-items-center">
@@ -66,7 +71,12 @@ document.getElementById("jobDetails").innerHTML +=
         }
     }else{
         document.getElementById("jobDetails").innerHTML += 
-`  <h1>${myJob[0].company} - ${myJob[0].title}</h1>
+`<div class="row">
+<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a> 
+<div class="col-sm-8">  
+<h1>${myJob[0].company} - ${myJob[0].title}</h1>
+</div>
+</div>
 <hr>
 <div class="container" style="width:90%">
         <div class="row align-items-center">
@@ -110,4 +120,12 @@ document.getElementById("jobDetails").innerHTML +=
         </div></div></div>`;
     }
 
-    localStorage.removeItem('JobList');
+// CLICK 
+// document.querySelector(".back").addEventListener("click", function(){
+    $(".back").on("click", function(){
+        console.log("click");
+        localStorage.removeItem('JobList');
+    });
+
+
+    // localStorage.removeItem('JobList');
