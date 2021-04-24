@@ -94,13 +94,6 @@ const loadAlumniList = (pageIndex) => {
   }
 };
 
-// $("#alumniList").on("click", ".media ", function () {
-// ${dummyResponse.Alumni[i].alumniId}
-//   var profileClicked = $(this).attr("data-name");
-//   console.log(jprofileClicked);
-//   localStorage.setItem("alumniprofile", JSON.stringify("profileClicked"));
-// });
-
 window.nextPage = function () {
   pageIndex++;
   loadAlumniList(pageIndex);

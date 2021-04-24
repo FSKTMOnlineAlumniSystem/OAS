@@ -66,9 +66,5 @@ const loadAlumniProfile = (index) => {
     </div>`;
 };
 console.log(onClickAlumniID);
-// var index = getindex(onClickAlumniID);
-// function getindex(onClickAlumniID) {
-//   return onClickAlumniID.split("-")[1];
-// }
 loadAlumniProfile(onClickAlumniID);
 // localStorage.removeItem("alumniprofile");
