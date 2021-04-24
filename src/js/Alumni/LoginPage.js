@@ -1,5 +1,4 @@
-
-import dummyResponse from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 const form_2 = document.getElementById('forgot');
 const sendEmail = document.getElementById('sendEmail');
@@ -80,6 +79,9 @@ form_1.addEventListener('submit', (ev) => {
                     if (inputPasswordValue == dummyResponse.Alumni[i].password) {
                         //To save who is logged in
                         localStorage.setItem('SignedInAlumniId',dummyResponse.Alumni[i].alumniId);
+                        if (!localStorage.getItem('dummyResponse')) {
+                            updateDummyData(dummyResponse);
+                        }
                         console.log("foundpass");
                         setSuccessFor(inputPassword);
                         errorExist = false;

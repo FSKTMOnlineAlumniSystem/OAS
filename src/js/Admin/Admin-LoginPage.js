@@ -68,6 +68,9 @@ form_1.addEventListener('submit', (ev) => {
                     console.log("dummy");
                     if (inputPasswordValue == dummyResponse.Admin[i].password) {
                         localStorage.setItem('SignedInAdminId', dummyResponse.Admin[i].adminId);
+                        if (!localStorage.getItem('dummyData')) {
+                            localStorage.setItem('dummyData', dummyResponse);
+                        }
                         console.log("foundpass");
                         setSuccessFor(inputPassword);
                         errorExist = false;
@@ -81,8 +84,8 @@ form_1.addEventListener('submit', (ev) => {
                 break;
             }
 
-        } 
-        
+        }
+
         if (!getEmail) {
             errorExist = true;
             setErrorFor(staticEmail);

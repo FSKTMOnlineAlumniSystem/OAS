@@ -1,4 +1,4 @@
-import dummyResponse from "../dummydata.js";
+import {dummyResponse} from "../dummydata.js";
 console.log("link js");
 
 document.getElementById('event').innerHTML = "";
