@@ -250,11 +250,6 @@ function setSuccessFor(input) {
     }
 }
 
-//  function isEmail(email) {
-//      console.log("isemail");
-//     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-//  }
-
 function isEmpty(obj) {
     return obj.length == 0;
 }
