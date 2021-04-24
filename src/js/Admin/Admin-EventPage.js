@@ -199,7 +199,7 @@ window.addRow = function () {
 }
 
 document.querySelectorAll('.eventTitle').forEach((title) => {
-  title.addEventListener('click', (e) =>
+  title.addEventListener('click', (e) =>{
     //  console.log(e.target.id)
     //  var d = new Date(dummyResponse.Event[i].dateTime);
     // console.log(dummyResponse.Event[i].dateTime)
@@ -208,9 +208,9 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
     // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
     // <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
     //  var i=e.target.id
+    console.log(document.getElementById("exampleModal"));
      document.getElementById("exampleModal").innerHTML=
-   `<div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+   `<div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Event</h5>
@@ -234,9 +234,8 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                         onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
                     </div>
                   </div>
-                </div>
-              </div>`
-  
+                </div>`
+  }
   )
 })
 
