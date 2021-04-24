@@ -76,7 +76,7 @@ a.nostyle:visited {
 #notification-panel{
   background-color: white;
   color: black;
-  z-index: 1;
+  z-index: 3;
   top: 50px;
   position: absolute;
   min-width: 200px;
@@ -84,6 +84,29 @@ a.nostyle:visited {
   font-weight: 400;
   border: 1px solid rgb(103, 103, 103);
   font-size: 12px;
+}
+#profile-panel{
+  background-color: white;
+  color: black;
+  z-index: 4;
+  top: 50px;
+  position: absolute;
+  min-width: 150px;
+  max-width: 350px;
+  font-weight: 400;
+  border: 1px solid rgb(103, 103, 103);
+  font-size: 12px;
+}
+#profile-header:hover{
+  color: var(--light-gray);
+  cursor: pointer;
+}
+.profile-panel--display-none{
+  display: none;
+}
+.profile-panel__item--dark-bg:hover{
+  background-color: var(--light-gray);
+  cursor: pointer;
 }
 
 .dot {
