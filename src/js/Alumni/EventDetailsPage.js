@@ -27,42 +27,41 @@ const eventInfo = document.createElement('div');
 eventInfo.innerHTML = `
 <div class="container">
 <div class="row">
-  <div class="col-12 align-items-center p-2 mb-2">
-    <i
-      class="fa fa-calendar fa-3x mr-3"
-      style="color: rgb(218, 58, 47); font-size: 50px"
-    ></i>
-    <span class="icon_Text">${getReadableDate(dateTime)}</span>
+  <div class="col-12 p-2 mb-2">
+    <div class='row'>
+      <div class='col-1'></div>
+      <div class='col-2 d-flex justify-content-center'>
+        <i class="fa fa-calendar fa-3x mr-3"
+          style="color: rgb(218, 58, 47); font-size: 50px"></i>
+      </div>
+      <div class='col-8 d-flex align-items-center'>
+        <span class="icon_Text pt-3 pt-sm-0">${getReadableDate(dateTime)}</span>
+      </div>
+    </div>
   </div>
-  <div class="col-12 align-items-center p-2 mb-2">
-    <i
-      class="fa fa-clock-o fa-3x mr-3"
-      aria-hidden="true "
-      style="color: rgb(118, 172, 250); font-size: 50px"
-    ></i>
-    <span class="icon_Text">${getReadableTime(dateTime)}</span>
+  <div class="col-12 p-2 mb-2">
+    <div class='row'>
+      <div class='col-1'></div>
+      <div class='col-2 d-flex justify-content-center'>
+        <i class="fa fa-clock-o fa-3x mr-3"
+          style="color: rgb(118, 172, 250); font-size: 50px"></i>
+      </div>
+      <div class='col-8 d-flex align-items-center'>
+        <span class="icon_Text pt-3 pt-sm-0">${getReadableTime(dateTime)}</span>
+      </div>
+    </div>
   </div>
-  <div class="col-12 align-items-center p-2 mb-2">
-    <i
-      class="fa fa-map-marker fa-3x mr-4"
-      aria-hidden="true "
-      style="color: rgb(167, 0, 0); font-size: 50px"
-    ></i>
-    <span class="icon_Text">${theEvent.location}</span>
-  </div>
-  <div class="col-12 align-items-center p-2 mb-2">
-    <i
-      class="fa fa-file-text fa-3x mr-3"
-      aria-hidden="true "
-      style="color: rgb(175, 80, 175); font-size: 50px"
-    ></i>
-    <span class="icon_Text"
-      ><a
-        href="https://www.google.com/forms/about/ "
-        target="_blank "
-        rel="noopener noreferrer "
-        >Register Link</a
-      ></span>
+  <div class="col-12 p-2 mb-2">
+    <div class='row'>
+      <div class='col-1'></div>
+      <div class='col-2 d-flex justify-content-center'>
+        <i class="fa fa-map-marker fa-3x mr-3"
+          style="color: rgb(167, 0, 0); font-size: 50px"></i>
+      </div>
+      <div class='col-8 d-flex align-items-center'>
+        <span class="icon_Text pt-3 pt-sm-0">${theEvent.location}</span>
+      </div>
+    </div>
   </div>
 </div>
 </div>`
@@ -73,15 +72,6 @@ descriptionBlock.innerHTML = `
 <p class="lead">
   ${description}
 </p>
-<hr class="my-4" color="grey " />
-<a
-  class="btn btn-primary btn-lg"
-  href="https://www.google.com/forms/about/ "
-  target="_blank "
-  rel="noopener noreferrer "
-  role="button "
-  >Join Us</a
->
 </div>`
 // console.log(eventInfo);
 document.getElementById('main-body').appendChild(titleAndImage);

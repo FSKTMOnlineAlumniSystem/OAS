@@ -55,6 +55,12 @@ function toggleNotificationPanel() {
       const div1 = document.createElement('div');
       div1.setAttribute('class', 'py-2 d-flex container-fluid border-bottom item--hover-light-bg');
 
+      // direct to respective EventDetailsPage
+      div1.addEventListener('click', (evt) => {
+        localStorage.setItem('eventId', event.eventId);
+        window.open('EventDetailsPage.html');
+      });
+
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
       const dotClass = event.viewedByAlumni === 'TRUE' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
@@ -100,6 +106,7 @@ function toggleNotificationPanel() {
       icon.classList.add('panel__icon--hover-dark-bg');
       icon.addEventListener('click', (event) => {
         list.removeChild(div1);
+        event.stopPropagation();
         if(!list.hasChildNodes()){
           showNoNotification();
         }else{
