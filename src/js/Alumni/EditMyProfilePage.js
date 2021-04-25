@@ -1,7 +1,5 @@
 import dummyResponse from '../dummydata.js';
 
-const imgPath = "/Assets/imgs/";
-const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
@@ -44,7 +42,7 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            wizardPicturePreview.src = e.target.result;
+            document.getElementById("wizardPicturePreview").src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
@@ -94,8 +92,7 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
-        alumni.email == email.value &&
+    if (alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {
         location.href = "MyProfilePage.html";
@@ -113,7 +110,6 @@ function closeModal(modalId) {
 }
 
 function loadData() {
-    wizardPicturePreview.src = imgPath+alumni.imageId;
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;

@@ -1,8 +1,9 @@
 import dummyResponse from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
-const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
 const email = document.querySelector('#email');
@@ -42,7 +43,7 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
@@ -57,6 +58,7 @@ function isEmpty(obj) {
 }
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
+const graduatedFormat = /[0-9]{4}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography
@@ -82,6 +84,20 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
+    if (isEmpty(name)) {
+        setInValid(name);
+        errorExist = true;
+    } else {
+        setValid(name);
+    }
+
+    if (isEmpty(graduated) || !graduated.value.match(graduatedFormat)) {
+        setInValid(graduated);
+        errorExist = true;
+    } else {
+        setValid(graduated);
+    }
+
     if (errorExist) e.preventDefault();
     else {
         alumni.email = email.value;
@@ -92,10 +108,11 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (alumni.email == email.value &&
+    if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
+        alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {
-        location.href = "MyProfilePage.html";
+        location.href = "Admin-AlumniListPage.html";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
@@ -110,10 +127,9 @@ function closeModal(modalId) {
 }
 
 function loadData() {
+    wizardPicturePreview.src = imgPath+alumni.imageId;
     name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;
