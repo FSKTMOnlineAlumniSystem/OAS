@@ -1,6 +1,6 @@
 body {
   background-color: #f5f5f5;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 #wrapper {
@@ -45,4 +45,10 @@ a {
 
 .cards {
   padding-left: 10%;
+}
+
+.image__fixed-height {
+  height: auto;
+  width: auto;
+  max-height: 200px;
 }

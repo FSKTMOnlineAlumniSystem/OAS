@@ -20,13 +20,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
+    <script src="../../js/Admin/Admin-EventLocalStorage.js"></script>
   <meta charset="utf-8" />
 </head>
 
 <body style="font-family: Poppins; background-color:rgb(245,245,245);">
   <main>
     <div class="container my-5 position-relative">
-
       <div>
         <h2 style="font-weight: 600">List of Events</h2>
       </div>
@@ -52,11 +52,15 @@
             <div class="btn-group" role="group" aria-label="Third group">
               <!--add button-->
               <a button type="button"
-                class="btn btn-primary d-flex justify-content-center align-items-center rounded mx-2" href="Admin-EventPageCreate.html"><i
-                  class="fa fa-plus fa-2x" aria-hidden="true" style="font-size: 20px; "></i></a>
+                class="btn btn-primary d-flex justify-content-center align-items-center rounded mx-2"
+                href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
+                  style="font-size: 20px; "></i></a>
+
+
+
               <!--trash button-->
               <button type="button"
-                class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded mx-2"><i
+                class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded mx-2" onclick="DeleteCheckedRow()"><i
                   class="fa fa-trash fa-2x" aria-hidden="true" style="font-size: 20px; "></i></button>
             </div>
           </div>
@@ -70,8 +74,8 @@
           <thead style="background-color:rgb(134, 75, 189);font-weight: 200; color:#ffffff">
             <tr>
               <th>
-                <div class="custom-control custom-checkbox mr-sm-2 ml-2">
-                  <input type="checkbox" class="custom-control-input" id="CheckAllBoxes">
+                <div class="custom-control custom-checkbox text-center">
+                  <input type="checkbox" class="custom-control-input" id="CheckAllBoxes" onclick="toggle(this);">
                   <label class="custom-control-label" for="CheckAllBoxes"></label>
                 </div>
               </th>
@@ -83,56 +87,47 @@
             </tr>
           </thead>
 
-          <!--table body-->
-          <!-- <div id="eventList"> -->
+
           <tbody>
             <tr class="rowss">
-              <td>
-                <div class="custom-control custom-checkbox mr-sm-2 ml-2">
-                  <input type="checkbox" class="custom-control-input" id="Boxes1">
-                  <label class="custom-control-label" for="Boxes1"></label>
-                </div>
-              </td>
+              <!--            
               <td style="font-weight: 400; font-size: 18px">4, April 2021
                 <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
-                <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                  <!-- <a href="Admin-EventPageUpdate.html">
-                      
-                  </a> -->
-      <!-- modal -->
-      <!-- Button trigger modal -->
-      <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
-       this oneeeeee
-      </a>
+              <td style="font-weight: 400; font-size: 18px" class="eventTitle">
+               
+                <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
+                  this oneeeeee
+                </a>
 
-      <!-- Modal -->
-      <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Event</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" >
-              <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
-              <br>
-              <p>Schedule : 4, April 2021; 8:00pm - 10:00pm</p>
-              <p> Title : Sample Event</p>
-              <p>Description : Sample Description</p>
-              <p>Location : xxx, Penang</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success"
-                onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
-            </div>
-          </div>
-        </div>
-      </div>
-                 
-                </td>
- <!-- title  -->
+              
+                <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                        <br>
+                        <p>Schedule : 4, April 2021; 8:00pm - 10:00pm</p>
+                        <p> Title : Sample Event</p>
+                        <p>Description : Sample Description</p>
+                        <p>Location : xxx, Penang</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success"
+                          onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </td>
+             
 
               <td
                 style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
@@ -147,7 +142,7 @@
                       style="color: rgb(255, 49, 49); font-size: 35px">
                     </i></a>
                 </div>
-              </td>
+              </td> -->
             </tr>
 
             <tr class="rowss">
@@ -163,7 +158,7 @@
               </td>
               <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                 <a href="Admin-EventPageUpdate.html">
-                    Sample Event
+                  Sample Event
                 </a>
               </td>
               <td
@@ -177,8 +172,8 @@
                     </i></a>
                   <!-- Button trigger modal -->
                   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button> -->
+                      Launch demo modal
+                          </button> -->
                   <a href="#" role="button" data-toggle="modal" data-target="#exampleModal"><i
                       class="fa fa-trash fa-3x pl-2" aria-hidden="true"
                       style="color: rgb(255, 49, 49); font-size: 35px">
@@ -209,10 +204,13 @@
               </td>
             </tr>
           </tbody>
-          <!-- </div> -->
+
         </table>
+
       </div>
-      <!-- </div> -->
+      <!-- model -->
+      <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
       <span id="pageIndex"></span>
 
       <!-- yanwen button -->
@@ -241,13 +239,12 @@
             <button onclick="nextPage()" class="page-link">Next</button>
           </li>
         </ul>
-        <!-- </div> -->
       </nav>
-
-
-
+    </div>
   </main>
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
+
+
 
 </body>
 

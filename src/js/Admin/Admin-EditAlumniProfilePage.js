@@ -1,5 +1,7 @@
-import { dummyResponse, updateDummyData } from '../dummydata.js';
+import dummyResponse from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
@@ -13,6 +15,7 @@ const cancelButton = document.querySelector('#cancelButton');
 const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
+
 
 const currentAlumniId = "AL-1";
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
@@ -34,7 +37,6 @@ function setValid(el) {
     }
 }
 
-/*Check the file extension of the image & Update preview*/
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
     let allowedExtensions =
@@ -42,11 +44,11 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-    } else {
+    }else{
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
@@ -57,6 +59,7 @@ function isEmpty(obj) {
 }
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
+const graduatedFormat = /[0-9]{4}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography
@@ -82,31 +85,51 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
+    if (isEmpty(name)) {
+        setInValid(name);
+        errorExist = true;
+    } else {
+        setValid(name);
+    }
+
+    if (isEmpty(graduated) || !graduated.value.match(graduatedFormat)) {
+        setInValid(graduated);
+        errorExist = true;
+    } else {
+        setValid(graduated);
+    }
+
     if (errorExist) e.preventDefault();
     else {
-        dummyResponse.Alumni.forEach((al) => {
-            if (al.alumniId === currentAlumniId) {
-                al.email = email.value;
-                al.contactNumber = contactNumber.value;
-                al.biography = biography.value;
-                updateDummyData(dummyResponse);
-            }
-        });
+        alumni.email = email.value;
+        alumni.contactNumber = contactNumber.value;
+        alumni.biography = biography.value;
+        alumni.name = name.value;
+        alumni.graduated = graduatedFormat.value;
+        alumni.department = department.value;
+        alumni.gender = gender.value;
     }
 });
 
+
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+    if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
-        alumni.biography == biography.value) {
-        location.href = "MyProfilePage.html";
+        alumni.biography == biography.value &&
+        alumni.name == name.value &&
+        alumni.graduated == graduated.value &&
+        alumni.gender == gender.value &&
+        alumni.department == department.value) {
+        location.href = "Admin-AlumniListPage.html";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
 });
+
+
 
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
@@ -116,11 +139,9 @@ function closeModal(modalId) {
 }
 
 function loadData() {
-    wizardPicturePreview.src = imgPath + alumni.imageId;
+    wizardPicturePreview.src = imgPath+alumni.imageId;
     name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;

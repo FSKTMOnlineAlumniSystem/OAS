@@ -17,10 +17,10 @@
     </head>
 
     <body>
-      <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
-        Dr Tey Kok Soon
-        <img src="../../../Assets/imgs/DrTey.jpg" alt="" class="header__img m-1"> 
-      </header>
+      <!-- <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
+                Dr Tey Kok Soon
+                <img src="../../../Assets/imgs/DrTey.jpg" alt="" class="header__img m-1"> 
+        </header> -->
       <div class="searchBarBG">
         <form class="search-form">
           <div class="containerSB">
@@ -102,11 +102,12 @@
        
         <!-- <div class="container my-5"> -->
           <h2>Your Job Advertisement
-            <span class="d-flex flex-row-reverse"> <a href="#" class="btn btn-outline-info"> + Add Jobs </a></button></span>
-          </h2>
+            <span class="d-flex flex-row-reverse"> <a href="../Alumni/AddJobPage.html" class="btn btn-outline-info"> + Add Jobs </a></button></span>
+        </h2>
           <div class="card-desk">
-            <div class="row row-cols-4">
-              <div class="col mb-4 ">
+            <div class="row row-cols-3" id="jobList"></div>
+            </div>
+              <!-- <div class="col mb-4 ">
               
                 <div class="card h-100 ">
                   <a href="#" target="_blank">
@@ -248,7 +249,7 @@
                
                 </div>
   
-                </div>
+                </div> -->
                
   
 
@@ -257,7 +258,7 @@
 
               
 
-          <nav aria-label="Page navigation example">
+          <!-- <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -269,14 +270,34 @@
                 <a class="page-link" href="#">Next</a>
               </li>
             </ul>
+          </nav> -->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pageIndex">
+              <!-- <li class="page-item">
+                <button class="page-link" id="previousPage" >Previous</button>
+              </li> -->
+              <!-- <li class="page-item">
+                <button class="page-link" id="nextPage">Next</button></li> 
+              </li> -->
+            </ul>
           </nav>
+
+
           <br>
     </div>
     <!-- </div> -->
-  
+    <script type="module" src="../../js/Alumni/MyJobPage.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="../../js/Alumni/MyJobPage.js"></script>
+    <script type='text/javascript' src='/src/js/addHeader.js'></script>
+    <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
     </body>
 
 
