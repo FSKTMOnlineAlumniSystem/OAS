@@ -1,6 +1,13 @@
-// hardcode it as alumni
-localStorage.setItem('SignedInAlumniId', "AL-1");
-const curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
+// check if this is alumni or admin
+// localStorage.setItem('SignedInAlumniId', "AL-1");
+const curUser;
+let isAlumni = false;
+if(localStorage.getItem('SignedInAlumniId')){
+  curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
+  isAlumni = true;
+}else{
+  curUser = dummyResponse.Admin.filter(admin => admin.alumniId === localStorage.getItem('SignedInAdminId'))[0];
+}
 
 const body = document.body;
 const mainBody = document.getElementById('main-body');
@@ -22,6 +29,7 @@ body.insertBefore(header, nav);
 const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');
 function toggleNotificationPanel() {
+  if(!isAlumni) return;
   if (profilePanel.style.display === 'block') {
     toggleProfilePanel();
   }
@@ -117,7 +125,7 @@ function toggleNotificationPanel() {
       list.appendChild(div1);
     });
     // if have no notification
-    if (result.length === 0) {
+    if (result.length === 0 && isAlumni) {
       showNoNotification();
     }
     notificationPanel.style.display = "block";
