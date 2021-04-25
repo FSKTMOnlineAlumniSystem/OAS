@@ -1,4 +1,4 @@
-import {dummyResponse} from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 
 const form_1 = document.getElementById('signIN');
@@ -65,10 +65,10 @@ form_1.addEventListener('submit', (ev) => {
                     console.log("dummy");
                     if (inputPasswordValue == dummyResponse.Admin[i].password) {
                         localStorage.setItem('SignedInAdminId', dummyResponse.Admin[i].adminId);
-                        if (!localStorage.getItem('dummyData')) {
-                            localStorage.setItem('dummyData', dummyResponse);
+                        if (!localStorage.getItem('dummyResponse')) {
+                            updateDummyData(dummyResponse);
                         }
-
+    
                         setSuccessFor(inputPassword);
                         errorExist = false;
 

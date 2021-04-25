@@ -83,7 +83,7 @@ form_1.addEventListener('submit', (ev) => {
                         errorExist = false;
 
                     } else {
-                        
+
                         setErrorFor(inputPassword);
                         errorExist = true;
                     }
@@ -226,16 +226,16 @@ function setErrorFor(input) {
     } else {
         input.classList.add("is-invalid");
     }
+}
 
-
-    function setSuccessFor(input) {
-        if (input.classList.contains("is-invalid")) {
-            input.classList.replace("is-invalid", "is-valid");
-        } else {
-            input.classList.add("is-valid");
-        }
+function setSuccessFor(input) {
+    if (input.classList.contains("is-invalid")) {
+        input.classList.replace("is-invalid", "is-valid");
+    } else {
+        input.classList.add("is-valid");
     }
+}
 
-    function isEmpty(obj) {
-        return obj.length == 0;
-    }
+function isEmpty(obj) {
+    return obj.length == 0;
+}
