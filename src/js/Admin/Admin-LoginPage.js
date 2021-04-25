@@ -1,4 +1,4 @@
-import dummyResponse from "../dummydata.js";
+import {dummyResponse} from "../dummydata.js";
 
 
 const form_1 = document.getElementById('signIN');
