@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <!-- ICON FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />    <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -23,7 +22,7 @@
             <h2>My Profile</h2>
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="bi bi-gear-fill mr-2"></i>
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog mr-2"></i>
                     Settings
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -48,7 +47,7 @@
             <div class="col-sm-5 d-flex align-items-center justify-content-center">
                 <div class="w-50 position-relative">
                     <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
-                    <img src="../../../Assets/imgs/DrTey.jpg" alt="Profile Picture"
+                    <img id="profilePicture" src="../../../Assets/imgs/DrTey.jpg" alt="Profile Picture"
                         class="img-fluid">
                     </div>
                 </div>
@@ -171,7 +170,7 @@
             </div>
         </div>
     </div>
-    <script type='text/javascript' src='/src/js/addHeader.js'></script>
+    <script type='module' src='/src/js/addHeader.js'></script>
     <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,5 +1,8 @@
 import { dummyResponse, updateDummyData } from '../dummydata.js';
 
+const imgPath = "/Assets/imgs/";
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
+
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');

@@ -1,17 +1,16 @@
-console.log('dummy data called');
-const dummyResponse = {
+let dummyResponse = {
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "tey@gmail.com",
-            "password": "1234",
+            "email": "teh@gmail.com",
+            "password": "evpgZk!8rm0H",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Tey Kok Soon",
+            "name": "Teh Kok Soon",
             "department": "Artificial Intelligence",
-            "graduated": "1985",
-            "imageId": "/Assets/imgs/AL-1.png",
+            "graduated": "2003",
+            "imageId": "AL-1.jpg",
             "contactNumber": "03-79676347",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -19,13 +18,13 @@ const dummyResponse = {
             "alumniId": "AL-2",
             "approvedBy": "AD-2",
             "email": "ang@gmail.com",
-            "password": "12345",
+            "password": "CR4Z!f$@jJaK",
             "icNumber": "730110-10-1253",
             "gender": "male",
-            "name": "Wong Li Liang",
+            "name": "Ang Tan Foo",
             "department": "Artificial Intelligence",
-            "graduated": "1989",
-            "imageId": "/Assets/imgs/AL-2.png",
+            "graduated": "2006",
+            "imageId": "AL-2.png",
             "contactNumber": "03-79676348",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -33,143 +32,143 @@ const dummyResponse = {
             "alumniId": "AL-3",
             "approvedBy": "AD-3",
             "email": "lan@gmail.com",
-            "password": "1234",
+            "password": "sVwRUK5`'vnM~[sU",
             "icNumber": "800110-10-1133",
             "gender": "male",
             "name": "Lan Li Hong",
             "department": "Artificial Intelligence",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-3.png",
+            "graduated": "2015",
+            "imageId": "AL-3.jpeg",
             "contactNumber": "03-79676349",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Lan Li Hong is currently working at HCL Technologies Malaysia Sdn. Bhd. as a Data Scientist"
         },
         {
             "alumniId": "AL-4",
             "approvedBy": "AD-4",
             "email": "behjiaong@gmail.com",
-            "password": "1234",
+            "password": "VsVP34vyaCF",
             "icNumber": "800110-10-1355",
             "gender": "male",
             "name": "Beh Jia Ong",
             "department": "Artificial Intelligence",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-4.png",
+            "graduated": "2018",
+            "imageId": "AL-4.jpg",
             "contactNumber": "03-79676350",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Beh Jia Ong is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a  Machine Learning Engineer."
         },
         {
             "alumniId": "AL-5",
             "approvedBy": "AD-5",
             "email": "keat@gmail.com",
-            "password": "1234",
+            "password": "b6NQLgt",
             "icNumber": "800110-10-1255",
             "gender": "male",
             "name": "Ong Huat Keat",
             "department": "Software Engineering",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-5.png",
+            "graduated": "2003",
+            "imageId": "AL-5.jpg",
             "contactNumber": "03-79676351",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Ong Huat Keat is currently working atNimble AppGenie as a Applications developer."
         },
         {
             "alumniId": "AL-6",
-            "email": "rachel@gmail.com",
-            "password": "1234",
+            "email": "ang@gmail.com",
+            "password": "3Vq8PcwNks5Ng",
             "icNumber": "800110-10-1256",
             "gender": "female",
             "name": "Rachel Lee Yin",
             "department": "Software Engineering",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-6.png",
+            "graduated": "2008",
+            "imageId": "AL-6.png",
             "contactNumber": "012-6763472",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Rachel Lee Yin is currently working at EDUSPEC Holdings BERHAD as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-7",
             "email": "tan@gmail.com",
-            "password": "1234",
+            "password": "/[x62r6akK!TL",
             "icNumber": "810110-10-1258",
             "gender": "female",
             "name": "Tan Yan Win",
             "department": "Software Engineering",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-7.png",
+            "graduated": "2017",
+            "imageId": "AL-7.jpg",
             "contactNumber": "011-6763473",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Tan Yan Win is currently working at Apple Incorporated (AAPL) as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-8",
             "email": "limxt@gmail.com",
-            "password": "1234",
+            "password": "SaH$?6K^;zD",
             "icNumber": "820110-10-1714",
             "gender": "female",
             "name": "Lim Xin Tong",
             "department": "Software Engineering",
-            "graduated": "2000",
-            "imageId": "/Assets/imgs/AL-8.png",
+            "graduated": "2019",
+            "imageId": "AL-8.jpg",
             "contactNumber": "012-6755474",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Lim Xin Tong is currently working at GoodCore Software as a Cyber security analyst."
         },
         {
             "alumniId": "AL-9",
             "email": "alisa21@gmail.com",
-            "password": "1234",
+            "password": "p_A3/eh!eG@",
             "icNumber": "880110-10-1100",
             "gender": "female",
             "name": "Alisa Mok Lian",
-            "department": "Data Science",
-            "graduated": "2010",
-            "imageId": "/Assets/imgs/AL-9.png",
+            "department": "Multimedia",
+            "graduated": "2016",
+            "imageId": "AL-9.jpg",
             "contactNumber": "012-1111475",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Alisa Mok Lian is currently working at Datasonic Group Berhad as a multimedia designer."
         },
         {
             "alumniId": "AL-10",
             "email": "rohana@um.edu.my",
-            "password": "1234",
+            "password": ").2VKRk[v^?fwsQEFb",
             "icNumber": "920126-10-1210",
             "gender": "female",
             "name": "Rohana binti Jani",
-            "department": "Data Science",
-            "graduated": "2014",
-            "imageId": "/Assets/imgs/AL-10.png",
+            "department": "Multemedia",
+            "graduated": "2019",
+            "imageId": "AL-10.jpg",
             "contactNumber": "012-6773226",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Rohana binti Jani is currently working at ELSOFT Research Berhad as graphic designer."
         },
         {
             "alumniId": "AL-11",
             "email": "juliana@gmail.com",
-            "password": "1234",
+            "password": "VULhL,]D8L",
             "icNumber": "930109-10-1260",
             "gender": "female",
             "name": "Juliana binti Othman",
             "department": "Information System",
-            "graduated": "2015",
-            "imageId": "/Assets/imgs/AL-11.png",
+            "graduated": "2008",
+            "imageId": "AL-11.jpg",
             "contactNumber": "011-6763997",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Juliana binti Othman is currently working at Samsung electronics as a Information Systems Manager."
         },
         {
             "alumniId": "AL-12",
             "email": "behyunlian@gmail.com",
-            "password": "1234",
+            "password": "#<3{\\mJ$65",
             "icNumber": "930210-10-1262",
             "gender": "female",
             "name": "Beh Yun Lian",
             "department": "Information System",
             "graduated": "2015",
-            "imageId": "/Assets/imgs/AL-12.png",
+            "imageId": "AL-12.jpg",
             "contactNumber": "012-6333478",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Beh Yun Lian is currently working at Nielson as a Computer Systems Analyst"
         }
     ],
     "Event": [
         {
             "eventId": "E-1",
             "adminId": "AD-1",
-            "title": "CP Workshop",
+            "title": "Constraint programming Workshop",
             "dateTime": "2021-04-04T15:53:53+00:00",
-            "description": "Learn more about CP",
+            "description": "Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.\n\nThrough this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.",
             "imageId": "E-1.png",
             "location": "FSKTM, MM2"
         },
@@ -178,16 +177,16 @@ const dummyResponse = {
             "adminId": "AD-1",
             "title": "Database Admin Career",
             "dateTime": "2021-04-03T15:53:53+00:00",
-            "description": "Learn more about DB",
+            "description": "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.\n\nDatabase Admin Career will tell you the job scope as a Database Administrator in details!",
             "imageId": "E-2.png",
             "location": "FSKTM, MM3"
         },
         {
             "eventId": "E-3",
             "adminId": "AD-2",
-            "title": "Ashrae Run",
+            "title": "Into the world of Cognitive Science",
             "dateTime": "2021-04-02T15:53:53+00:00",
-            "description": "Learn more about Running from bug",
+            "description": "Cognitive science is the interdisciplinary, scientific study of the mind and its processes. It examines the nature, the tasks, and the functions of cognition (in a broad sense).\n\nIt will be very fun to studdy intelligence ond behavior with a focus on how nervous systems represent, process, and transform information.\n",
             "imageId": "E-3.png",
             "location": "FSKTM, MM4"
         },
@@ -196,7 +195,7 @@ const dummyResponse = {
             "adminId": "AD-3",
             "title": "Boom Boom Bootstrap",
             "dateTime": "2021-04-01T15:53:53+00:00",
-            "description": "Learn more about Bootstrap",
+            "description": "Quizzes & Projects and Exclusive Content for you! Practice and discover more Bootstrap function in our workshop! Enroll Today! It's Never Too Late to Learn a New Skill! ",
             "imageId": "E-4.png",
             "location": "FSKTM, MM5"
         },
@@ -205,16 +204,16 @@ const dummyResponse = {
             "adminId": "AD-4",
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
-            "description": "Learn more about React",
+            "description": "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.\n\nWait no more and join React to React now!!!",
             "imageId": "E-5.jpg",
             "location": "FSKTM, MM6"
         },
         {
             "eventId": "E-6",
             "adminId": "AD-4",
-            "title": "Macrohard workshop",
+            "title": "Machine Learning Workshop",
             "dateTime": "2021-03-08T15:53:53+00:00",
-            "description": "Learn more about Macrohard",
+            "description": "Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.\n\nWe are sure that you will gain a lot by joining our workshop!",
             "imageId": "E-6.jpg",
             "location": "FSKTM, MM7"
         }
@@ -223,164 +222,164 @@ const dummyResponse = {
         {
             "alumniId": "AL-1",
             "eventId": "E-1",
-            "viewedByAlumni": "TRUE",
-            "notificationClosedByAlumni": true,
+            "viewedByAlumni": "true",
             "dateTime": "2021-04-14T15:53:53+00:00",
+            "notificationClosedByAlumni": "true"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "FALSE",
-            "notificationClosedByAlumni": false,
+            "viewedByAlumni": "true",
             "dateTime": "2021-04-15T15:53:53+00:00",
+            "notificationClosedByAlumni": "true"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "TRUE",
-            "notificationClosedByAlumni": false,
+            "viewedByAlumni": "true",
             "dateTime": "2021-04-16T15:53:53+00:00",
+            "notificationClosedByAlumni": "true"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-4",
-            "viewedByAlumni": "FALSE",
-            "notificationClosedByAlumni": false,
-            "dateTime": "2021-04-23T15:53:53+00:00",
+            "viewedByAlumni": "false",
+            "dateTime": "2021-04-24T15:53:53+00:00",
+            "notificationClosedByAlumni": "true"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-5",
-            "viewedByAlumni": "FALSE",
-            "notificationClosedByAlumni": false,
-            "dateTime": "2021-04-24T06:53:53+00:00",
+            "viewedByAlumni": "false",
+            "dateTime": "2021-04-24T16:49:53+00:00",
+            "notificationClosedByAlumni": "true"
         },
         {
-            "alumniId": "AL-2",
+            "alumniId": "AL-1",
             "eventId": "E-6",
-            "viewedByAlumni": "FALSE",
-            "notificationClosedByAlumni": false,
-            "dateTime": "2021-04-24T08:53:53+00:00",
+            "viewedByAlumni": "false",
+            "dateTime": "2021-04-24T16:53:53+00:00",
+            "notificationClosedByAlumni": "true"
         }
     ],
     "Job": [
         {
             "jobId": "J-1",
             "alumniId": "AL-1",
-            "title": "DB admin",
-            "description": "must know DB",
+            "title": "Software Engineer",
+            "description": "Have at least a bachelor's degree in software engineering or information technology.\nHave extensive experience working with various programming languages such as Python, Java, and C++",
             "salary": "3000",
             "email": "teh@gmail.com",
-            "postedDate": "2021-06-06T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-1.png",
+            "postedDate": "2021-04-04T15:53:53+00:00",
+            "imageId": "J-1.jpg",
             "company": "HSBC",
             "location": "Kuala Lumpur"
         },
         {
             "jobId": "J-2",
             "alumniId": "AL-2",
-            "title": "Frond-end dev",
-            "description": "must know FE",
+            "title": "Frond-end developer",
+            "description": "Have a degree in Computer Science or similar field.\nBe proficient in coding languages such as HTML, CSS, JavaScript, and jQuery.\nUnderstand server-side CSS.",
             "salary": "2000",
             "email": "ang@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-2.png",
+            "imageId": "J-2.jpg",
             "company": "Samsung",
             "location": "Petaling Jaya"
         },
         {
             "jobId": "J-3",
             "alumniId": "AL-3",
-            "title": "Back-end dev",
-            "description": "must know BE",
+            "title": "Back-end developer",
+            "description": "Have a degree in Computer Science.\nFamiliar with the database, Server and API",
             "salary": "3000",
             "email": "lan@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-3.png",
+            "imageId": "J-3.png",
             "company": "Apple",
             "location": "Johor Bharu"
         },
         {
             "jobId": "J-4",
             "alumniId": "AL-4",
-            "title": "Flutter dev",
-            "description": "must know Flutter",
+            "title": "Flutter develepor",
+            "description": "Good understanding in data structures, algorithms, control flows, and general knowledge in the programming language.\nHave to master Flutter framework",
             "salary": "2500",
             "email": "behjiaong@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-4.png",
+            "imageId": "J-4.jpg",
             "company": "Google",
             "location": "Kuala Lumpur"
         },
         {
             "jobId": "J-5",
             "alumniId": "AL-5",
-            "title": "DB admin",
-            "description": "must know DB",
+            "title": "Forensic computer analyst",
+            "description": "Qualification in IT or related field.\nGood analytics skills",
             "salary": "4000",
             "email": "keat@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-1.png",
+            "imageId": "J-5.png",
             "company": "Top Glove",
             "location": "Shah Alam"
         },
         {
             "jobId": "J-6",
             "alumniId": "AL-6",
-            "title": "Frond-end dev",
-            "description": "must know FE",
+            "title": "Database Analyst",
+            "description": "Qualification in IT or related field.\nMaster Structured Query Langusge and Python.",
             "salary": "3000",
             "email": "ang@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-3.png",
+            "imageId": "J-6.jpg",
             "company": "HSBC",
             "location": "Kuala Lumpur"
         },
         {
             "jobId": "J-7",
             "alumniId": "AL-7",
-            "title": "Back-end dev",
-            "description": "must know BE",
+            "title": "Project Manager",
+            "description": "Perject ManagementProfessional (PMP) certified\nExperience in negotiation skills\nExcellent communication skills, oral and written",
             "salary": "2000",
             "email": "tan@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-3.png",
+            "imageId": "J-7.jpg",
             "company": "Samsung",
             "location": "Petaling Jaya"
         },
         {
             "jobId": "J-8",
             "alumniId": "AL-8",
-            "title": "Flutter dev",
-            "description": "must know Flutter",
+            "title": "Flutter developer",
+            "description": "Min. 4 years experience in software development on mobile applications.\nProficient in Flutter, JavaScript, UI/UX, Github and Agile.\nHave good problem-solving skills in a fast-paced environment. ",
             "salary": "3000",
             "email": "limxt@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-1.png",
+            "imageId": "J-8.png",
             "company": "Apple",
             "location": "Johor Bharu"
         },
         {
             "jobId": "J-9",
             "alumniId": "AL-9",
-            "title": "Vue dev",
-            "description": "must know Vue",
+            "title": "Vue Developer",
+            "description": "Bachelors degree in IT or higher\n3+ years of experience in software development\nStrong JavaScript skills, including ES6/ES7 and Typescript\nGood HTML5/CSS3 skills\nAt least intermediate level of written and spoken English",
             "salary": "4000",
             "email": "alisa21@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-1.png",
+            "imageId": "J-9.jpg",
             "company": "Google",
             "location": "Kuala Lumpur"
         },
         {
             "jobId": "J-10",
             "alumniId": "AL-10",
-            "title": "Go Dev",
-            "description": "must know Go",
+            "title": "Go Developer",
+            "description": "Bachelors degree in IT or other similar field.\nExperience with Go.\nKnowledge of PCF (Pivotal Cloud Foundry)\nExperience with Java will be a plus",
             "salary": "3400",
             "email": "rohana@um.edu.my",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "/Assets/imgs/J-1.png",
+            "imageId": "J-10.png",
             "company": "Top Glove",
             "location": "Shah Alam"
         }
@@ -388,53 +387,48 @@ const dummyResponse = {
     "Admin": [
         {
             "adminId": "AD-1",
-            "email": "a@gmail.com",
-            "password": "1234",
-            "name": "Siti",
-            "imageId": "/Assets/imgs/AD-1.png"
+            "email": "xingyee@gmail.com",
+            "password": "@1bo86*1u-2?zw",
+            "name": "Ong Xing Yee",
+            "imageId": "AD-1.jpg"
         },
         {
             "adminId": "AD-2",
-            "email": "b@gmail.com",
-            "password": "1234",
+            "email": "zhaleha5@gmail.com",
+            "password": "G3U.XF@kPZb3-^_:",
             "name": "Zhaleha",
-            "imageId": "/Assets/imgs/AD-2.png"
+            "imageId": "AD-2.jpg"
         },
         {
             "adminId": "AD-3",
-            "email": "c@gmail.com",
-            "password": "1234",
+            "email": "lbooang@gmail.com",
+            "password": "xhspyz@mg6lp",
             "name": "Ang Loon Boo",
-            "imageId": "/Assets/imgs/AD-3.png"
+            "imageId": "AD-3.jpg"
         },
         {
             "adminId": "AD-4",
             "email": "d@gmail.com",
-            "password": "1234",
-            "name": "Siva",
-            "imageId": "/Assets/imgs/AD-4.png"
+            "password": "45o51mva9xi",
+            "name": "Sivakami a/p Devansh",
+            "imageId": "AD-4.jpg"
         },
         {
             "adminId": "AD-5",
-            "email": "e@gmail.com",
-            "password": "1234",
-            "name": "Khai",
-            "imageId": "/Assets/imgs/AD-5.png"
+            "email": "@gmail.com",
+            "password": "nkd231u22!3%b_",
+            "name": "Siti Nur Harizah binti Ahman",
+            "imageId": "AD-5.jpg"
         }
-    ],
+    ]
 };
 
+if (localStorage.getItem('dummyResponse')) {
+    dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
+}
 
-
-    if(localStorage.getItem('dummyResponse')){
-        dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
-    }
-    
-
-
-
-function updateDummyData(dummyResponse){
+function updateDummyData(dummyResponse) {
     localStorage.setItem('dummyResponse', JSON.stringify(dummyResponse));
 }
 
-export {dummyResponse,updateDummyData};
+export { dummyResponse, updateDummyData };
