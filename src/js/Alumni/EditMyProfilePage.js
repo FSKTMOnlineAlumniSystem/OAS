@@ -1,6 +1,5 @@
 import { dummyResponse, updateDummyData } from '../dummydata.js';
 
-const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 const img = document.querySelector('#wizard-picture');
