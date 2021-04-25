@@ -1,4 +1,4 @@
-import dummyResponse from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 console.log("link js");
 // model
 // $('#myModal').on('shown.bs.modal', function () {
@@ -239,7 +239,7 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       </button>
                     </div>
                     <div class="modal-body" >
-                      <img src="${dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <img src="/Assets/imgs/${dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
                       <br>
                       <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
                       ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
