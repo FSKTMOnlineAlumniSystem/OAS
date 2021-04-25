@@ -2,16 +2,17 @@
   width: 100%;
 }
 
-.alumni.name{
-  width: 300px;
-  height: 50px;
-}
-.alumni.name a
-{
+.alumniNameBlock:hover{
+  background-color: #B19CD9;
+  cursor: pointer;
   width: 100%;
   height: 100%;
   display: block;
-  color: inherit;
-  text-decoration: inherit;
 }
-.alumni.name:hover { background-color: #B19CD9; }
+.alumniName:hover { 
+  background-color: #B19CD9;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: block;
+ }

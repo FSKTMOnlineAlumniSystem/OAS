@@ -192,7 +192,7 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal"
                           onclick="location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
-                        <button type="button" class="btn btn-info">Approve</button>
+                        <button  type="button" class="btn btn-info">Approve</button>
                       </div>
                     </div>
                   </div>
@@ -246,6 +246,34 @@
 
           </tbody>
           </table>
+           <!-- yanwen button -->
+      <nav aria-label="Page navigation example">
+        <!-- <div class="col text-center">
+          <button id="btn previousPage-btn btn-light btn-sm" onclick="previousPage()">Previous</button>
+          <span id="pageIndex"></span>
+          <button id="btn nextPage-btn btn-sm" onclick="nextPage()">Next</button>
+      </div> -->
+        <!-- <div class="col text-center"> -->
+        <ul class="pagination justify-content-center">
+          <li class="page-item" id="previousPage">
+            <button onclick="previousPage()" class="page-link">Previous</button>
+          </li>
+          <div class="pages list-group list-group-horizontal">
+            <li class="page-item disabled">
+              <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+            </li>
+            <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
+            <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
+
+          </div>
+
+          <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
+          <li class="page-item" id="nextPage">
+            <button onclick="nextPage()" class="page-link">Next</button>
+          </li>
+        </ul>
+        <!-- </div> -->
+      </nav>
         </div>
       </div>
     </div>

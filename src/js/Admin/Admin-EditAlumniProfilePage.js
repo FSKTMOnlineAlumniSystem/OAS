@@ -57,7 +57,6 @@ function isEmpty(obj) {
 }
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
-const graduatedFormat = /d{4}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography
@@ -83,26 +82,11 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
-    if (isEmpty(name)) {
-        setInValid(name);
-        errorExist = true;
-    } else {
-        setValid(name);
-    }
-
-    if (isEmpty(graduated) || !graduated.value.match(graduatedFormat)) {
-        setInValid(graduated);
-        errorExist = true;
-    } else {
-        setValid(graduated);
-    }
-
     if (errorExist) e.preventDefault();
     else {
         alumni.email = email.value;
         alumni.contactNumber = contactNumber.value;
         alumni.biography = biography.value;
-        alumni.graduated = graduated.value;
     }
 });
 
@@ -111,7 +95,7 @@ cancelButton.addEventListener('click', () => {
     if (alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {
-        location.href = "Admin-AlumniListPage.html";
+        location.href = "MyProfilePage.html";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');

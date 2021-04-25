@@ -1,5 +1,94 @@
 import dummyResponse from "../dummydata.js";
 
+let pageIndex = 0;
+const loadAlumniList = (pageIndex) => {
+  // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
+  console.log("the length" + dummyResponse.Alumni.length);
+  // document.getElementById('eventList').innerHTML = "";
+  let alumniStartIndex = pageIndex * 10;
+  let alumniEndIndex = alumniStartIndex + 10;
+  console.log("page index" + pageIndex);
+  console.log("StartIndex" + alumniStartIndex);
+  console.log("EndIndex" + alumniEndIndex);
+
+  var dataLength = dummyResponse.Alumni.length;
+  var remainingLength = dataLength - alumniStartIndex;
+
+  /*   js for button*/
+  if (alumniEndIndex >= dummyResponse.Alumni.length) {
+    document.getElementById("nextPage").innerHTML = `
+        <li class="page-item disabled">
+        <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+      </li>`;
+    console.log("last page");
+  } else {
+    document.getElementById("nextPage").innerHTML = `
+        <li class="page-item" id="nextPage">
+            <button  onclick="nextPage()" class="page-link" >Next</button>
+          </li>`;
+  }
+  if (pageIndex == 0) {
+    document.getElementById("previousPage").innerHTML = `
+        <li class="page-item disabled">
+        <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+      </li>`;
+    console.log("first page");
+  } else {
+    document.getElementById("previousPage").innerHTML = `
+        <li class="page-item" id="previousPage">
+            <button   onclick="previousPage()" class="page-link">Previous</button>
+          </li>`;
+  }
+  // js for 1,2,3
+  if (remainingLength <= 10) {
+    console.log("<=10");
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${
+          pageIndex + 1
+        }</button>
+        </li>`;
+  } else if (remainingLength <= 20) {
+    console.log("<=20");
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${
+          pageIndex + 1
+        }</button>
+        </li>
+        <li class="page-item" ><button onclick="nextPage()">${
+          pageIndex + 2
+        }</button></li>`;
+  } else {
+    console.log("<=30");
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-item" tabindex="-1" aria-disabled="true">${
+          pageIndex + 1
+        }</button>
+        </li>
+        <li class="page-item" ><button onclick="nextPage()">${
+          pageIndex + 2
+        }</button></li>
+        <li class="page-item" ><button onclick="nextPage();nextPage()">${
+          pageIndex + 3
+        }</button></li>`;
+        
+}
+}
+
+
+window.nextPage = function () {
+  pageIndex++;
+  loadAlumniList(pageIndex);
+};
+window.previousPage = function () {
+  pageIndex--;
+  loadAlumniList(pageIndex);
+};
+loadAlumniList(pageIndex);
+
+
 const tbody = document.getElementsByTagName('tbody')[0];
 dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
@@ -30,7 +119,8 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   
   // name column
   td = document.createElement('td');
-  td.innerHTML = `<span class="alumniName" id=${index}>${alumni.name}</span>`
+  td.innerHTML = `
+  <span class="alumniName" id=${index}>${alumni.name}</span>`
   // let span = document.createElement('span');
   // span.innerHTML = alumni.name;
   // td.appendChild(span);
@@ -47,6 +137,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   td = document.createElement('td');
   div = document.createElement('div');
   div.setAttribute('class', 'text-white rounded p-1');
+
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
     return alumni_event.eventId === 'E-1' && alumni.alumniId === alumni_event.alumniId;
@@ -77,30 +168,11 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   tbody.appendChild(tr);
 });
 
-let pageIndex = 0;
-const loadAlumniList = (pageIndex) => {
-  // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
-  console.log("the length" + dummyResponse.Alumni.length);
-  let alumniStartIndex = pageIndex * 10;
-  let alumniEndIndex = alumniStartIndex + 10;
 
-  var dataLength = dummyResponse.Alumni.length;
-  var remainingLength = dataLength - alumniStartIndex;
 
-var table = document.getElementById(
-    "myTable"
-  )[0];
-  //or use :  var table = document.all.tableid;
 
-  for (var i = table.rows.length - 1; i > 0; i--) {
-    table.deleteRow(i);
-  }
 
-  for (
-    let i = eventStartIndex;
-    i < eventEndIndex && i < dummyResponse.Event.length;
-    i++
-  ) {
+
 
 //   var newRowContent = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 //   ${dummyResponse.Alumni[i].name}
@@ -168,15 +240,7 @@ var table = document.getElementById(
 //             </div>
 //       </div>
 //     </div>`;
-    var tableRef = document
-    .getElementById("myTable")[0]
-    .getElementsByTagName("tbody")[0];
-  var newRow = tableRef.insertRow(tableRef.rows.length);
-  // table.insertRow(newRow)
-  // console.log(newRow)
-  newRow.innerHTML = newRowContent;
-}
-};
+    
 
 
   window.filterSearchBar = function() {
@@ -288,30 +352,6 @@ $('#status option').prop('selected', function() {
 });
 
 });
-
-function ValidateEmail(mail) 
-{
- if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
-  {
-    return (true)
-  }
-    alert("You have entered an invalid email address!")
-    return (false)
-}
-
-function phonenumber(inputtxt)
-{
-  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  if(inputtxt.value.match(phoneno))
-     {
-	   return true;      
-	 }
-   else
-     {
-	   alert("Not a valid Phone Number");
-	   return false;
-     }
-}
 
 document.querySelectorAll('.alumniName').forEach((alumni)=>{
   alumni.addEventListener('click',(e)=>{
