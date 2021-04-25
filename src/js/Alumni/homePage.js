@@ -158,7 +158,7 @@ for (let i = 0;i <2; i++) {
     document.getElementById('job_row1').innerHTML += `
 
     <div class="col">
-    <a class="d-contents" href="#"><img src="${dummyResponse.Job[latest[i]].imageId}" alt="..."
+    <a class="d-contents" href="#"><img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" height="100%"></a>
     </div>
     
