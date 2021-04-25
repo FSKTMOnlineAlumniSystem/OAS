@@ -138,7 +138,7 @@ const loadEventList = (pageIndex) => {
                 </td>
             </tr>`;
 
-            
+
     var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
@@ -157,6 +157,8 @@ window.toggle = function (source) {
       checkboxes[i].checked = source.checked;
   }
 }
+
+
 window.check = function (source, i) {
   console.log("check row")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -190,24 +192,33 @@ window.onload = function (i) {
 }
 
 
-window.updateEvent= function(o){
-var eventId=o.id.split(" ")[1]
-localStorage.setItem("updateId",eventId)
-console.log("update event")
+window.updateEvent = function (o) {
+  var eventId = o.id.split(" ")[1]
+  localStorage.setItem("updateId", eventId)
+  console.log("update event")
 }
+
 window.DeleteRowFunction = function (o) {
   console.log(o)
   console.log(o.id)
-  var findId=o.id.split(" ")[1]
-console.log("the id is:" + findId)
-  dummyResponse.Event.splice(findId,1)
+  var findId = o.id.split(" ")[1]
+  console.log("the id is:" + findId)
+  dummyResponse.Event.splice(findId, 1)
   console.log(dummyResponse.Event)
   // var p = o.parentNode.parentNode.parentNode;
   // console.log(p)
   // p.parentNode.removeChild(p);
-  loadEventList(pageIndex)  
+  loadEventList(pageIndex)
 }
-
+window.DeleteCheckedRow = function () {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = checkboxes.length-1; i >= 0; i--) {
+    if(checkboxes[i].checked){
+      dummyResponse.Event.splice(i, 1)
+    }
+  }
+  loadEventList(pageIndex)
+}
 // window.addRow = function () {
 //   console.log('add row')
 //   var table = document.getElementsByClassName(
@@ -216,10 +227,10 @@ console.log("the id is:" + findId)
 // }
 
 document.querySelectorAll('.eventTitle').forEach((title) => {
-  title.addEventListener('click', (e) =>{
+  title.addEventListener('click', (e) => {
     console.log(document.getElementById("exampleModal"));
-     document.getElementById("exampleModal").innerHTML=
-   `<div class="modal-dialog">
+    document.getElementById("exampleModal").innerHTML =
+      `<div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Event</h5>
