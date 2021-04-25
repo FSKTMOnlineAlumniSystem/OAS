@@ -1,13 +1,14 @@
+console.log('dummy data called');
 const dummyResponse = {
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "teh@gmail.com",
+            "email": "tey@gmail.com",
             "password": "1234",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Teh Kok Soon",
+            "name": "Tey Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "1985",
             "imageId": "AL-1.jpg",
@@ -178,7 +179,7 @@ const dummyResponse = {
             "title": "Database Admin Career",
             "dateTime": "2021-04-03T15:53:53+00:00",
             "description": "Learn more about DB",
-            "imageId": "E-1.jpg",
+            "imageId": "E-2.png",
             "location": "FSKTM, MM3"
         },
         {
@@ -187,7 +188,7 @@ const dummyResponse = {
             "title": "Ashrae Run",
             "dateTime": "2021-04-02T15:53:53+00:00",
             "description": "Learn more about Running from bug",
-            "imageId": "E-1.jpg",
+            "imageId": "E-3.jpg",
             "location": "FSKTM, MM4"
         },
         {
@@ -196,7 +197,7 @@ const dummyResponse = {
             "title": "Boom Boom Bootstrap",
             "dateTime": "2021-04-01T15:53:53+00:00",
             "description": "Learn more about Bootstrap",
-            "imageId": "E-1.jpg",
+            "imageId": "E-4.jpg",
             "location": "FSKTM, MM5"
         },
         {
@@ -205,7 +206,7 @@ const dummyResponse = {
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
             "description": "Learn more about React",
-            "imageId": "E-1.jpg",
+            "imageId": "E-5.jpg",
             "location": "FSKTM, MM6"
         },
         {
@@ -222,32 +223,44 @@ const dummyResponse = {
         {
             "alumniId": "AL-1",
             "eventId": "E-1",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "notificationClosedByAlumni": true,
+            "dateTime": "2021-04-14T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-15T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-16T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-4",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-23T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-5",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-24T06:53:53+00:00",
         },
         {
-            "alumniId": "AL-1",
+            "alumniId": "AL-2",
             "eventId": "E-6",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-24T08:53:53+00:00",
         }
     ],
     "Job": [
@@ -410,4 +423,4 @@ const dummyResponse = {
         }
     ]
 };
-export default dummyResponse;
+// export default dummyResponse;
