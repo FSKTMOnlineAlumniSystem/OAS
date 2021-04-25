@@ -1,28 +1,30 @@
 import {dummyResponse} from "../dummydata.js";
 console.log("link js");
-
+ 
 document.getElementById('event').innerHTML = "";
-
+ 
 for (let i = 0;i < dummyResponse.Event.length; i++) {
-
+ 
   // console.log("previous time" + dummyResponse.Event[i].dateTime)
   var d = new Date(dummyResponse.Event[i].dateTime);
   // console.log(dummyResponse.Event[i].dateTime)
   let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
   let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
   let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-
-
+ 
+  console.log(dummyResponse.Event[i].imageId);
+ 
+ 
   document.getElementById('event').innerHTML += `
   <div class="swiper-slide pl-1 pr-1" >
   <div class="card h-100">
     <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
-      <img class="card-img-top w-100 m-auto" src=${dummyResponse.Event[i].imageId} alt="Card image cap">
+      <img class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[i].imageId}" alt="Card image cap">
       </div>
       <div class="card-body">
           <h5 class="card-title text-left">${dummyResponse.Event[i].title}</h5>
           <div class="card-text">
-
+ 
               <div class="row">
                   <div class="col-2 d-flex flex-column">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -63,7 +65,7 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
                       <span class="t">${dummyResponse.Event[i].location}</span>
                   </div>
               </div>
-
+ 
           </div>
           <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
                   ago</small></p>
@@ -71,19 +73,19 @@ for (let i = 0;i < dummyResponse.Event.length; i++) {
   </div>
 </div>`;
 }
-
-
-
-
+ 
+ 
+ 
+ 
 document.getElementById('alumni').innerHTML = "";
-
-for (let i = 0;i < dummyResponse.Alumni.length; i++) {
-
+ 
+for (let i = 0;i < 6; i++) {
+ 
     document.getElementById('alumni').innerHTML += `
                         <div class="swiper-slide pl-1 pr-1">
                             <div class="card h-100">
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
-                                    <img class="card-img-top w-100" src="${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
+                                    <img class="card-img-top w-100" src="/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
                                 <div class="card-body">
@@ -91,7 +93,7 @@ for (let i = 0;i < dummyResponse.Alumni.length; i++) {
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ${dummyResponse.Alumni[i].name}</h5>
                                     </div>
-
+ 
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                         -webkit-line-clamp: 3;
@@ -104,59 +106,59 @@ for (let i = 0;i < dummyResponse.Alumni.length; i++) {
                             </div>
                         </div>
 `
-
+ 
 }
-
-
+ 
+ 
 var latest = [];
 var dayy =[];
 var yearr = [];
-
+ 
 for (let i = 0;i < dummyResponse.Job.length; i++) {
-
+ 
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
     var d = new Date(dummyResponse.Job[i].postedDate);
     // console.log(dummyResponse.Event[i].dateTime)
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-
+ 
     dayy[i] = da + "," + i;
     yearr[i] = ye;
-
+ 
 }
-
+ 
 dayy.sort();
 console.log(dayy);
 console.log(yearr);
-
-
+ 
+ 
 for (var i = 0;i < dayy.length ;i ++) {
-
+ 
     
     var a = dayy[i].split(",");
     var currentYr = new Date();
     var Yr = currentYr.getFullYear();
-
+ 
     console.log(a[1]);
     console.log(yearr[a[i]]);
-
-
+ 
+ 
     if(yearr[a[1]] == Yr){
-
+ 
         latest[i] = a[1];
     }
-
+ 
 }
-
+ 
 console.log(latest);
-
+ 
 document.getElementById('job_row1').innerHTML = "";
-
+ 
 for (let i = 0;i <2; i++) {
-
+ 
     document.getElementById('job_row1').innerHTML += `
-
+ 
     <div class="col">
     <a class="d-contents" href="#"><img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" height="100%"></a>
@@ -164,27 +166,27 @@ for (let i = 0;i <2; i++) {
     
     `
 }
-
+ 
 document.getElementById('job_row2').innerHTML = "";
-
+ 
 for (let i = 2;i < 4; i++) {
-
+ 
     document.getElementById('job_row2').innerHTML += `
-
+ 
     <div class="col">
-    <a class="d-contents" href="#"><img src="${dummyResponse.Job[latest[i]].imageId}" alt="..."
+    <a class="d-contents" href="#"><img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" height="100%"></a>
     </div>
     
     `
 }
-
-
-
+ 
+ 
+ 
 import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
         var slidesPerView = 3;
         var spaceBetween = 80;
-
+ 
         if (window.innerWidth<1000 || screen.width < 1000) {
             slidesPerView = 2;
             spaceBetween = 30;
@@ -193,7 +195,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
             slidesPerView = 1;
             spaceBetween = 10;
         }
-
+ 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: slidesPerView,
             spaceBetween: spaceBetween,
@@ -209,12 +211,12 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
                 prevEl: '.swiper-button-prev',
             },
         });
-
-
+ 
+ 
 // function openSignUp(){
 //     document.getElementById('signUP').style.display='block';
 // }
-
+ 
 // function closeSignUp(){
 //     window.onclick = function(event) {
 //         if (event.target == popUp) {
@@ -222,7 +224,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //         }
 //       }
 // }
-
+ 
 // function openSignIn(){
 //     document.getElementById('signIN').style.display='block';
 //     window.onclick = function(event) {
@@ -231,21 +233,21 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //         }
 //       }
 // }
-
+ 
 // function search(){
 //     document.getElementById('search');
 // }
-
-
+ 
+ 
 // const form_2 = document.getElementById('forgot');
 // const sendEmail = document.getElementById('sendEmail');
-
-
+ 
+ 
 // const form_1 = document.getElementById('signIN');
 // const staticEmail = document.getElementById('staticEmail');
 // const inputPassword = document.getElementById('inputPassword');
-
-
+ 
+ 
 // const form = document.getElementById('signUP');
 // const FirstName = document.getElementById('FirstNameID');
 // const LastName = document.getElementById('LastNameID');
@@ -255,68 +257,68 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 // const Department = document.getElementById('Department');
 // const Batch = document.getElementById('Batch');
 // const Gender = document.getElementById('Gender');
-
-
-
+ 
+ 
+ 
 // const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-
+ 
 // form_2.addEventListener('submit', (evt) => {
-
+ 
 //     let errorExist = false;
-
+ 
 //     const sendEmailValue = sendEmail.value.trim();
-
+ 
 //     if (isEmpty(sendEmailValue) || !sendEmail.value.match(emailFormat)) {
 //         setErrorFor(sendEmail);
 //         errorExist = true;
 //     } else {
 //         setSuccessFor(sendEmail);
 //     }
-
+ 
 //     if (errorExist) {
 //         evt.preventDefault();}
-
+ 
 // });
-
-
+ 
+ 
 // form_1.addEventListener('submit', (ev) => {
-
+ 
 //     let errorExist = false;
-
+ 
 //     const staticEmailValue = staticEmail.value.trim();
 //     const inputPasswordValue = inputPassword.value.trim();
-
+ 
 //     console.log(staticEmailValue);
 //     console.log(inputPasswordValue);
-
-
+ 
+ 
 //     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
 //         setErrorFor(staticEmail);
 //         errorExist = true;
 //     } else {
 //         setSuccessFor(staticEmail);
 //     }
-
-
+ 
+ 
 //     if(isEmpty(inputPasswordValue)) {
 //         setErrorFor(inputPassword);
 //         errorExist = true;
 //     }else{
 //         setSuccessFor(inputPassword);
 //     }
-
-
+ 
+ 
 //     if (errorExist) {
 //         ev.preventDefault();}
-
+ 
 // });
-
-
-
+ 
+ 
+ 
 // form.addEventListener('submit', (e) => {
-
+ 
 //     let errorExist = false;
-
+ 
 //     const FirstNameValue = FirstNameID.value.trim();
 //     const emailValue = Email.value.trim();
 //     const LastNameValue = LastNameID.value.trim();
@@ -325,10 +327,10 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //     const DepartmentValue = Department.value.trim();
 //     const BatchValue = Batch.value.trim();
 //     const GenderValue = Gender.value.trim();
-
+ 
     
-
-
+ 
+ 
 //     if(DepartmentValue == 0){
 //         console.log("errordep");
 //         setErrorFor(Department);
@@ -337,7 +339,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //             console.log("succdep");
 //             setSuccessFor(Department);
 //         }
-
+ 
 //     if(BatchValue == 0){
 //         console.log("errordep");
 //         setErrorFor(Batch);
@@ -346,7 +348,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //             console.log("succdep");
 //             setSuccessFor(Batch);
 //         }
-
+ 
 //     if(GenderValue == 0){
 //         console.log("errordep");
 //         setErrorFor(Gender);
@@ -355,55 +357,55 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //             console.log("succdep");
 //             setSuccessFor(Gender);
 //         }
-
+ 
 //     if(isEmpty(FirstNameValue)){
 //         setErrorFor(FirstName);
 //         errorExist = true;
 //     }else{
 //         setSuccessFor(FirstName);
 //     }
-
+ 
 //     if(isEmpty(LastNameValue)){
 //         setErrorFor(LastName);
 //         errorExist = true;
 //     }else{
 //         setSuccessFor(LastName);
 //     }
-
-
+ 
+ 
 //     if (isEmpty(emailValue) || !Email.value.match(emailFormat)) {
 //         setErrorFor(Email);
 //         errorExist = true;
 //     } else {
 //         setSuccessFor(Email);
 //     }
-
-
+ 
+ 
 //     if(isEmpty(ICValue) || (ICValue.length == 11)){
 //         setErrorFor(IC);
 //         errorExist = true;
 //     }else{
 //         setSuccessFor(IC);
 //     }
-
-
+ 
+ 
 //     if(isEmpty(passwordValue) || checkLength(passwordValue)) {
 //         setErrorFor(Password);
 //         errorExist = true;
 //     }else{
 //         setSuccessFor(Password);
 //     }
-
-
-
+ 
+ 
+ 
 //     if (errorExist) {
 //         e.preventDefault();}
-
+ 
     
 // });
-
-
-
+ 
+ 
+ 
 //  function checkLength(passwordValue) {
 //      console.log('checkmethod');
 //     if(Password.value.length < 6 ){
@@ -415,7 +417,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //     }
      
 //  }
-
+ 
 // function setErrorFor(input) {
 //     if (input.classList.contains("is-valid")) {
 //         input.classList.replace("is-valid", "is-invalid");
@@ -423,7 +425,7 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //         input.classList.add("is-invalid");
 //     }
 // }
-
+ 
 // function setSuccessFor(input) {
 //     if (input.classList.contains("is-invalid")) {
 //         input.classList.replace("is-invalid", "is-valid");
@@ -431,16 +433,18 @@ import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 //         input.classList.add("is-valid");
 //     }
 // }
-
+ 
 // //  function isEmail(email) {
 // //      console.log("isemail");
 // //     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 // //  }
-
+ 
 //  function isEmpty(obj) {
 //     return obj.length == 0;
 // }
  
-
-
+ 
+ 
+ 
+ 
 
