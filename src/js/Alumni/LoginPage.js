@@ -226,6 +226,7 @@ function setErrorFor(input) {
     } else {
         input.classList.add("is-invalid");
     }
+}
 
 
     function setSuccessFor(input) {
