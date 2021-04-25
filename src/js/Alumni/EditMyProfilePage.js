@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -48,7 +48,7 @@ function readURL(e) {
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-    }else{
+    } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
@@ -86,15 +86,20 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) e.preventDefault();
     else {
-        alumni.email = email.value;
-        alumni.contactNumber = contactNumber.value;
-        alumni.biography = biography.value;
+        dummyResponse.Alumni.forEach((al) => {
+            if (al.alumniId === currentAlumniId) {
+                al.email = email.value;
+                al.contactNumber = contactNumber.value;
+                al.biography = biography.value;
+                updateDummyData(dummyResponse);
+            }
+        });
     }
 });
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
+    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {
@@ -113,7 +118,7 @@ function closeModal(modalId) {
 }
 
 function loadData() {
-    wizardPicturePreview.src = imgPath+alumni.imageId;
+    wizardPicturePreview.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;

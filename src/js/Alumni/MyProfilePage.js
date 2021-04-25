@@ -1,6 +1,6 @@
-import dummyResponse from '../dummydata.js';
+import  { dummyResponse, updateDummyData } from '../dummydata.js';
 
-const currentAlumniId = "AL-1";
+const currentAlumniId = localStorage.getItem('SignedInAlumniId');
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
@@ -49,7 +49,17 @@ function verifyPasswordAndConfirmPassword(e) {
         e.preventDefault();
     }else{
         /*CHANGE PASSWORD*/
-
+        dummyResponse.Alumni.forEach((al)=>{
+            if(al.alumniId===currentAlumniId){
+                al.password = newPassword.value;
+                updateDummyData(dummyResponse);
+                changePasswordButton.textContent='Updating...';
+                setInterval(function(){
+                    location.reload();
+                },1000);
+                return;
+            }
+        });
     }
 }
 
@@ -79,7 +89,16 @@ function verifyPasswordCriteria(password) {
 function deleteAccount(e) {
     if (deleteAccountInput.value === 'DELETE') {
         /* SUCCESS DELETE ACCOUNT */
-        window.location.href = '/src/html/Alumni/homePage.html';
+        dummyResponse.Alumni.forEach((al,index)=>{
+            if(al.alumniId===currentAlumniId){
+                dummyResponse.Alumni.splice(index,1);
+                deleteAccountButton.textContent='Deleting...';
+                updateDummyData(dummyResponse);
+                setInterval(function(){
+                    window.location.href = '/src/html/Alumni/homePage.html';
+                },1000);
+            }
+        });
     } else {
         e.preventDefault();
         if (!deleteAccountInput.classList.contains('is-invalid')) {
@@ -102,3 +121,4 @@ function loadData() {
 loadData();
 changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
 deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));
+changePasswordModalTrigger.addEventListener('click',(e)=>$('#changePasswordModal').modal('show'))

@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -11,7 +11,7 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-const currentAdminId = "AD-1";
+const currentAdminId = localStorage.getItem('SignedInAdminId');
 const admin = dummyResponse.Admin.filter(function (admin) {
     return admin.adminId === currentAdminId;
 })[0];
@@ -72,8 +72,13 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) e.preventDefault();
     else {
-        admin.name = name.value;
-        admin.email = email.value;
+        dummyResponse.Admin.forEach((ad) => {
+            if (ad.adminId === currentAdminId) {
+                ad.name = name.value;
+                ad.email = email.value;
+                updateDummyData(dummyResponse);
+            }
+        });
     }
 })
 
