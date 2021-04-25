@@ -1,5 +1,6 @@
 
 
+
 document.getElementById("form").innerHTML += 
 `<form id="job_ad_form">
 <div class="mb-3">
@@ -77,7 +78,7 @@ input.addEventListener( 'change', (event)=>readURL(input));
     var newData_description = document.getElementById("description").value;
 
     newJob = {
-      "jodId" :  "J-"+(myJobLength +1), 
+      "jobId" :  "J-"+(myJobLength +1), 
       "alumniId" : "AL-1",
       "description" : newData_description,
       "salary" : newData_salary,
@@ -117,13 +118,10 @@ input.addEventListener( 'change', (event)=>readURL(input));
       reader.onload = function (e) {
         console.log(e);
         document.getElementById('imageResult').setAttribute('src', e.target.result)
-        // localStorage.setItem("recent-image", reader.result);
-        imageUrl = reader.result
       };
       reader.readAsDataURL(input.files[0]);
   }
 }
+
 input.addEventListener( 'change', (event)=>readURL(input));
-
-
 

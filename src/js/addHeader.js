@@ -1,6 +1,6 @@
 // check if this is alumni or admin
 // localStorage.setItem('SignedInAlumniId', "AL-1");
-const curUser;
+let curUser;
 let isAlumni = false;
 if(localStorage.getItem('SignedInAlumniId')){
   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
