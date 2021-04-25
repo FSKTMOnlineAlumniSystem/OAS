@@ -5,35 +5,74 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-           document.getElementById("prevImage").src=e.target.result;
-           document.getElementById("wizardPicturePreview").src=e.target.result;
+            document.getElementById("prevImage").src = e.target.result;
+            document.getElementById("wizardPicturePreview").src = e.target.result;
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 import dummyResponse from "../dummydata.js";
-window.update_array = function() {
-    console.log("update element")
-  var title = document.getElementById("title").value;
-  var date = document.getElementById("date").value;
-  var stime = document.getElementById("startTime").value;
-  var etime = document.getElementById("endTime").value;
-  var description = document.getElementById("description").value;
-  var location = document.getElementById("location").value;
-  var image = document.getElementById("prevImage").value;
-  var endIndex = dummyResponse.Event.length;
-  var newId=endIndex+1
-  var eventId="E-"+ newId
-  var adminId="ad-2"; //need connect to localstorege ltr
-  // var d = new Date(dummyResponse.Event[i].dateTime);
-var newEvent={eventId:eventId,
-  adminId: adminId,
-  title: title,
-  dateTime: new Date(), //change
-  description: description,
-  imageId: image,
-  location: location
-}
-dummyResponse.Event.splice(endIndex,0,newEvent)
+var i = localStorage.getItem("updateId")
+var d = new Date(dummyResponse.Event[i].dateTime);
+var todayDate = new Date().toISOString().slice(0, 10);
+console.log(todayDate);
+document.getElementById("updateForm").innerHTML=`
+<div class="form-group">
+            <label for="formGroupExampleInput">Event Title :</label>
+            <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
+              value="${dummyResponse.Event[i].title}">
+          </div>
 
-  console.log(dummyResponse)
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Schedule :</label> <br>
+            <input type=date value="${todayDate}" id="date"> &nbsp;
+            <input type=time value="${d.toLocaleTimeString()}"> to <input type=time value="22:00">
+          </div>
+
+          <div class="form-group">
+            <label for="formGroupExampleInput2" id="description">Description :</label>
+            <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
+              placeholder="Enter new schedule" value="${dummyResponse.Event[i].description}" rows="5" ;>${dummyResponse.Event[i].description}</textarea>
+          </div>
+      
+          <div class="form-group">
+            <label for="formGroupExampleInput2" id="location">Location :</label>
+            <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
+              placeholder="Enter new location" value="${dummyResponse.Event[i].location}">
+          </div>
+
+          <div>
+            <label for="phfile">Image:</label>
+            <img id="prevImage" src="${dummyResponse.Event[i].imageId}" alt="update Image" width="150" length="150">
+            <input type="file" id="phfile" onchange="readURL(this)">
+          </div>
+
+
+`
+window.update_array = function () {
+    var i = localStorage.getItem("updateId")
+    console.log("i=" + i)
+    console.log("update element")
+    var title = document.getElementById("title").value;
+    // var date = document.getElementById("date").value;
+    // var stime = document.getElementById("startTime").value;
+    // var etime = document.getElementById("endTime").value;
+    var description = document.getElementById("description").value;
+    var location = document.getElementById("location").value;
+    var image = document.getElementById("prevImage").value;
+    var eventId = dummyResponse.Event[i].eventId
+    var adminId = dummyResponse.Event[i].adminId 
+    //need connect to localstorege ltr
+    // var d = new Date(dummyResponse.Event[i].dateTime);
+    var newEvent = {
+        eventId: eventId,
+        adminId: adminId,
+        title: title,
+        dateTime: new Date(), //change
+        description: description,
+        imageId: image,
+        location: location
+    }
+    dummyResponse.Event.splice(i, 1, newEvent)
+    console.log(dummyResponse)
+}

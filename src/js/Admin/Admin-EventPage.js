@@ -129,9 +129,8 @@ const loadEventList = (pageIndex) => {
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="Admin-EventPageUpdate.html" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
+                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
 
-                  
                     </i></a>
                       <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
                        </i></a>
@@ -139,7 +138,7 @@ const loadEventList = (pageIndex) => {
                 </td>
             </tr>`;
 
-
+            
     var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
@@ -190,13 +189,12 @@ window.onload = function (i) {
   // console.log(dummyResponse.Event[i].eventId)
 }
 
-window.addRow = function () {
-  console.log('add row')
-  var table = document.getElementsByClassName(
-    "table table-striped table-sm something"
-  )[0];
-}
 
+window.updateEvent= function(o){
+var eventId=o.id.split(" ")[1]
+localStorage.setItem("updateId",eventId)
+console.log("update event")
+}
 window.DeleteRowFunction = function (o) {
   console.log(o)
   console.log(o.id)
@@ -209,6 +207,14 @@ console.log("the id is:" + findId)
   // p.parentNode.removeChild(p);
   loadEventList(pageIndex)  
 }
+
+// window.addRow = function () {
+//   console.log('add row')
+//   var table = document.getElementsByClassName(
+//     "table table-striped table-sm something"
+//   )[0];
+// }
+
 document.querySelectorAll('.eventTitle').forEach((title) => {
   title.addEventListener('click', (e) =>{
     console.log(document.getElementById("exampleModal"));
@@ -222,7 +228,7 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       </button>
                     </div>
                     <div class="modal-body" >
-                      <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <img src="${dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
                       <br>
                       <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
                       ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
@@ -234,7 +240,7 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-success"
-                        onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
+                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">Edit</button>
                     </div>
                   </div>
                 </div>`

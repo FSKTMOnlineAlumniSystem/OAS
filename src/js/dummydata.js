@@ -169,7 +169,7 @@ const dummyResponse = {
             "title": "CP Workshop",
             "dateTime": "2021-04-04T15:53:53+00:00",
             "description": "Learn more about CP",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-1.png",
             "location": "FSKTM, MM2"
         },
         {
@@ -178,7 +178,7 @@ const dummyResponse = {
             "title": "Database Admin Career",
             "dateTime": "2021-04-03T15:53:53+00:00",
             "description": "Learn more about DB",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-2.png",
             "location": "FSKTM, MM3"
         },
         {
@@ -187,7 +187,7 @@ const dummyResponse = {
             "title": "Ashrae Run",
             "dateTime": "2021-04-02T15:53:53+00:00",
             "description": "Learn more about Running from bug",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-3.png",
             "location": "FSKTM, MM4"
         },
         {
@@ -196,7 +196,7 @@ const dummyResponse = {
             "title": "Boom Boom Bootstrap",
             "dateTime": "2021-04-01T15:53:53+00:00",
             "description": "Learn more about Bootstrap",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-4.png",
             "location": "FSKTM, MM5"
         },
         {
@@ -205,7 +205,7 @@ const dummyResponse = {
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
             "description": "Learn more about React",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-5.jpg",
             "location": "FSKTM, MM6"
         },
         {
@@ -214,7 +214,7 @@ const dummyResponse = {
             "title": "Macrohard workshop",
             "dateTime": "2021-03-08T15:53:53+00:00",
             "description": "Learn more about Macrohard",
-            "imageId": "E-1.jpg",
+            "imageId": "/Assets/imgs/E-6.jpg",
             "location": "FSKTM, MM7"
         }
     ],
