@@ -130,9 +130,11 @@ const loadEventList = (pageIndex) => {
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                     <a href="Admin-EventPageUpdate.html" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
+
+                  
                     </i></a>
-                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
-                      </i></a>
+                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
+                       </i></a>
                   </div>
                 </td>
             </tr>`;
@@ -175,10 +177,7 @@ loadEventList(pageIndex);
 
 
 
-window.DeleteRowFunction = function (o) {
-  var p = o.parentNode.parentNode.parentNode;
-  p.parentNode.removeChild(p);
-}
+
 
 
 
@@ -198,16 +197,20 @@ window.addRow = function () {
   )[0];
 }
 
+window.DeleteRowFunction = function (o) {
+  console.log(o)
+  console.log(o.id)
+  var findId=o.id.split(" ")[1]
+console.log("the id is:" + findId)
+  dummyResponse.Event.splice(findId,1)
+  console.log(dummyResponse.Event)
+  // var p = o.parentNode.parentNode.parentNode;
+  // console.log(p)
+  // p.parentNode.removeChild(p);
+  loadEventList(pageIndex)  
+}
 document.querySelectorAll('.eventTitle').forEach((title) => {
   title.addEventListener('click', (e) =>{
-    //  console.log(e.target.id)
-    //  var d = new Date(dummyResponse.Event[i].dateTime);
-    // console.log(dummyResponse.Event[i].dateTime)
-    // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
-    // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
-    // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime);
-    // <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
-    //  var i=e.target.id
     console.log(document.getElementById("exampleModal"));
      document.getElementById("exampleModal").innerHTML=
    `<div class="modal-dialog">
