@@ -18,12 +18,28 @@ body {
     color: #7A7A7A;
 }
 
-.col-1{
-    display: flex;
+.bi-box-arrow-left{
+    font-size: large;
     justify-content: center;
 }
 
-.col-8{
-    display: flex;
-    justify-content: left;
+#head{
+    padding-left: 10px;;
+}
+
+
+.back:hover{
+    text-decoration: none;
+}
+
+.bi-box-arrow-left{
+   vertical-align: -0.7rem;
+   font-size:23px;
+   font-style: normal;
+   color: black;
+}
+
+.back {
+    text-decoration: none;
+    color:black;
 }
