@@ -1,16 +1,17 @@
+console.log('dummy data called');
 const dummyResponse = {
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "teh@gmail.com",
+            "email": "tey@gmail.com",
             "password": "1234",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Teh Kok Soon",
+            "name": "Tey Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "1985",
-            "imageId": "AL-1.jpg",
+            "imageId": "/Assets/imgs/AL-1.png",
             "contactNumber": "03-79676347",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -18,13 +19,13 @@ const dummyResponse = {
             "alumniId": "AL-2",
             "approvedBy": "AD-2",
             "email": "ang@gmail.com",
-            "password": "1234",
+            "password": "12345",
             "icNumber": "730110-10-1253",
             "gender": "male",
             "name": "Wong Li Liang",
             "department": "Artificial Intelligence",
             "graduated": "1989",
-            "imageId": "AL-2.png",
+            "imageId": "/Assets/imgs/AL-2.png",
             "contactNumber": "03-79676348",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -38,7 +39,7 @@ const dummyResponse = {
             "name": "Lan Li Hong",
             "department": "Artificial Intelligence",
             "graduated": "2000",
-            "imageId": "AL-3.png",
+            "imageId": "/Assets/imgs/AL-3.png",
             "contactNumber": "03-79676349",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -52,7 +53,7 @@ const dummyResponse = {
             "name": "Beh Jia Ong",
             "department": "Artificial Intelligence",
             "graduated": "2000",
-            "imageId": "AL-4.png",
+            "imageId": "/Assets/imgs/AL-4.png",
             "contactNumber": "03-79676350",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -66,20 +67,20 @@ const dummyResponse = {
             "name": "Ong Huat Keat",
             "department": "Software Engineering",
             "graduated": "2000",
-            "imageId": "AL-5.png",
+            "imageId": "/Assets/imgs/AL-5.png",
             "contactNumber": "03-79676351",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-6",
-            "email": "ang@gmail.com",
+            "email": "rachel@gmail.com",
             "password": "1234",
             "icNumber": "800110-10-1256",
             "gender": "female",
             "name": "Rachel Lee Yin",
             "department": "Software Engineering",
             "graduated": "2000",
-            "imageId": "AL-6.png",
+            "imageId": "/Assets/imgs/AL-6.png",
             "contactNumber": "012-6763472",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -92,7 +93,7 @@ const dummyResponse = {
             "name": "Tan Yan Win",
             "department": "Software Engineering",
             "graduated": "2000",
-            "imageId": "AL-7.png",
+            "imageId": "/Assets/imgs/AL-7.png",
             "contactNumber": "011-6763473",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -105,7 +106,7 @@ const dummyResponse = {
             "name": "Lim Xin Tong",
             "department": "Software Engineering",
             "graduated": "2000",
-            "imageId": "AL-8.png",
+            "imageId": "/Assets/imgs/AL-8.png",
             "contactNumber": "012-6755474",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -118,7 +119,7 @@ const dummyResponse = {
             "name": "Alisa Mok Lian",
             "department": "Data Science",
             "graduated": "2010",
-            "imageId": "AL-9.png",
+            "imageId": "/Assets/imgs/AL-9.png",
             "contactNumber": "012-1111475",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -131,7 +132,7 @@ const dummyResponse = {
             "name": "Rohana binti Jani",
             "department": "Data Science",
             "graduated": "2014",
-            "imageId": "AL-10.png",
+            "imageId": "/Assets/imgs/AL-10.png",
             "contactNumber": "012-6773226",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -144,7 +145,7 @@ const dummyResponse = {
             "name": "Juliana binti Othman",
             "department": "Information System",
             "graduated": "2015",
-            "imageId": "AL-11.png",
+            "imageId": "/Assets/imgs/AL-11.png",
             "contactNumber": "011-6763997",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
@@ -157,7 +158,7 @@ const dummyResponse = {
             "name": "Beh Yun Lian",
             "department": "Information System",
             "graduated": "2015",
-            "imageId": "AL-12.png",
+            "imageId": "/Assets/imgs/AL-12.png",
             "contactNumber": "012-6333478",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         }
@@ -169,7 +170,7 @@ const dummyResponse = {
             "title": "CP Workshop",
             "dateTime": "2021-04-04T15:53:53+00:00",
             "description": "Learn more about CP",
-            "imageId": "/Assets/imgs/E-1.png",
+            "imageId": "E-1.png",
             "location": "FSKTM, MM2"
         },
         {
@@ -178,7 +179,7 @@ const dummyResponse = {
             "title": "Database Admin Career",
             "dateTime": "2021-04-03T15:53:53+00:00",
             "description": "Learn more about DB",
-            "imageId": "/Assets/imgs/E-2.png",
+            "imageId": "E-2.png",
             "location": "FSKTM, MM3"
         },
         {
@@ -187,7 +188,7 @@ const dummyResponse = {
             "title": "Ashrae Run",
             "dateTime": "2021-04-02T15:53:53+00:00",
             "description": "Learn more about Running from bug",
-            "imageId": "/Assets/imgs/E-3.png",
+            "imageId": "E-3.png",
             "location": "FSKTM, MM4"
         },
         {
@@ -196,7 +197,7 @@ const dummyResponse = {
             "title": "Boom Boom Bootstrap",
             "dateTime": "2021-04-01T15:53:53+00:00",
             "description": "Learn more about Bootstrap",
-            "imageId": "/Assets/imgs/E-4.png",
+            "imageId": "E-4.png",
             "location": "FSKTM, MM5"
         },
         {
@@ -205,7 +206,7 @@ const dummyResponse = {
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
             "description": "Learn more about React",
-            "imageId": "/Assets/imgs/E-5.jpg",
+            "imageId": "E-5.jpg",
             "location": "FSKTM, MM6"
         },
         {
@@ -214,7 +215,7 @@ const dummyResponse = {
             "title": "Macrohard workshop",
             "dateTime": "2021-03-08T15:53:53+00:00",
             "description": "Learn more about Macrohard",
-            "imageId": "/Assets/imgs/E-6.jpg",
+            "imageId": "E-6.jpg",
             "location": "FSKTM, MM7"
         }
     ],
@@ -222,32 +223,44 @@ const dummyResponse = {
         {
             "alumniId": "AL-1",
             "eventId": "E-1",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "notificationClosedByAlumni": true,
+            "dateTime": "2021-04-14T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-15T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "TRUE"
+            "viewedByAlumni": "TRUE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-16T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-4",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-23T15:53:53+00:00",
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-5",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-24T06:53:53+00:00",
         },
         {
-            "alumniId": "AL-1",
+            "alumniId": "AL-2",
             "eventId": "E-6",
-            "viewedByAlumni": "FALSE"
+            "viewedByAlumni": "FALSE",
+            "notificationClosedByAlumni": false,
+            "dateTime": "2021-04-24T08:53:53+00:00",
         }
     ],
     "Job": [
@@ -258,8 +271,8 @@ const dummyResponse = {
             "description": "must know DB",
             "salary": "3000",
             "email": "teh@gmail.com",
-            "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "J-1.png",
+            "postedDate": "2021-06-06T15:53:53+00:00",
+            "imageId": "/Assets/imgs/J-1.png",
             "company": "HSBC",
             "location": "Kuala Lumpur"
         },
@@ -271,7 +284,7 @@ const dummyResponse = {
             "salary": "2000",
             "email": "ang@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "J-2.png",
+            "imageId": "/Assets/imgs/J-2.png",
             "company": "Samsung",
             "location": "Petaling Jaya"
         },
@@ -283,7 +296,7 @@ const dummyResponse = {
             "salary": "3000",
             "email": "lan@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "J-3.png",
+            "imageId": "/Assets/imgs/J-3.png",
             "company": "Apple",
             "location": "Johor Bharu"
         },
@@ -295,7 +308,7 @@ const dummyResponse = {
             "salary": "2500",
             "email": "behjiaong@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "J-4.png",
+            "imageId": "/Assets/imgs/J-4.png",
             "company": "Google",
             "location": "Kuala Lumpur"
         },
@@ -307,7 +320,7 @@ const dummyResponse = {
             "salary": "4000",
             "email": "keat@gmail.com",
             "postedDate": "2021-04-04T15:53:53+00:00",
-            "imageId": "J-5.png",
+            "imageId": "/Assets/imgs/J-1.png",
             "company": "Top Glove",
             "location": "Shah Alam"
         },
@@ -319,7 +332,7 @@ const dummyResponse = {
             "salary": "3000",
             "email": "ang@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "J-6.png",
+            "imageId": "/Assets/imgs/J-3.png",
             "company": "HSBC",
             "location": "Kuala Lumpur"
         },
@@ -331,7 +344,7 @@ const dummyResponse = {
             "salary": "2000",
             "email": "tan@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "J-7.png",
+            "imageId": "/Assets/imgs/J-3.png",
             "company": "Samsung",
             "location": "Petaling Jaya"
         },
@@ -343,7 +356,7 @@ const dummyResponse = {
             "salary": "3000",
             "email": "limxt@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "J-8.png",
+            "imageId": "/Assets/imgs/J-1.png",
             "company": "Apple",
             "location": "Johor Bharu"
         },
@@ -355,7 +368,7 @@ const dummyResponse = {
             "salary": "4000",
             "email": "alisa21@gmail.com",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "J-9.png",
+            "imageId": "/Assets/imgs/J-1.png",
             "company": "Google",
             "location": "Kuala Lumpur"
         },
@@ -367,7 +380,7 @@ const dummyResponse = {
             "salary": "3400",
             "email": "rohana@um.edu.my",
             "postedDate": "2021-04-05T15:53:53+00:00",
-            "imageId": "J-10.png",
+            "imageId": "/Assets/imgs/J-1.png",
             "company": "Top Glove",
             "location": "Shah Alam"
         }
@@ -378,36 +391,50 @@ const dummyResponse = {
             "email": "a@gmail.com",
             "password": "1234",
             "name": "Siti",
-            "imageId": "AD-1.png"
+            "imageId": "/Assets/imgs/AD-1.png"
         },
         {
             "adminId": "AD-2",
             "email": "b@gmail.com",
             "password": "1234",
             "name": "Zhaleha",
-            "imageId": "AD-2.png"
+            "imageId": "/Assets/imgs/AD-2.png"
         },
         {
             "adminId": "AD-3",
             "email": "c@gmail.com",
             "password": "1234",
             "name": "Ang Loon Boo",
-            "imageId": "AD-3.png"
+            "imageId": "/Assets/imgs/AD-3.png"
         },
         {
             "adminId": "AD-4",
             "email": "d@gmail.com",
             "password": "1234",
             "name": "Siva",
-            "imageId": "AD-4.png"
+            "imageId": "/Assets/imgs/AD-4.png"
         },
         {
             "adminId": "AD-5",
             "email": "e@gmail.com",
             "password": "1234",
             "name": "Khai",
-            "imageId": "AD-5.png"
+            "imageId": "/Assets/imgs/AD-5.png"
         }
     ],
 };
-export default dummyResponse;
+
+
+
+    if(localStorage.getItem('dummyResponse')){
+        dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
+    }
+    
+
+
+
+function updateDummyData(dummyResponse){
+    localStorage.setItem('dummyResponse', JSON.stringify(dummyResponse));
+}
+
+export {dummyResponse,updateDummyData};

@@ -1,5 +1,3 @@
-// const body = document.body;
-// const mainBody = document.getElementById('main-body');
 
 const nav = document.createElement('nav');
 nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light container-fluid');
@@ -42,7 +40,7 @@ const footer = document.createElement('footer');
 footer.setAttribute('class', 'container-fluid');
 footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-content-md-center footer--gradient text-break text-dark py-2'>
 <div class='d-flex flex-column col-12 col-md-3 text-white'>
-  <div class='fw-bold p-3'>
+  <div class='font-weight-bold p-3'>
     Contact Us
   </div>
   <div id="contactUs">
@@ -59,7 +57,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
   </div>
 </div>
 <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white' id='links'>
-  <div class='fw-bold p-3'>
+  <div class='font-weight-bold p-3'>
         Quick Links
   </div>
   <div id="quickLinks">
@@ -72,7 +70,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
   </div>
 </div>
 <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white'>
-  <div class='fw-bold p-3'>
+  <div class='font-weight-bold p-3'>
         Resources
   </div>
   <div id="resources">
@@ -84,7 +82,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
   </div>
 </div>
 <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white'>
-  <div class='fw-bold p-3'>
+  <div class='font-weight-bold p-3'>
         Follow Us
   </div>
   <div id="followUs">
@@ -105,6 +103,5 @@ contactUsNavItem.addEventListener('click', function(event){
   footer.scrollIntoView();
 });
 
-console.log(nav);
-body.insertBefore(nav, mainBody);
-body.appendChild(footer);
+document.body.insertBefore(nav, document.getElementById('main-body'));
+document.body.appendChild(footer);

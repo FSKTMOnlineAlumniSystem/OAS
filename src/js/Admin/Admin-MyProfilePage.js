@@ -1,6 +1,6 @@
-import dummyResponse from '../dummydata.js';
+import {dummyResponse,updateDummyData} from '../dummydata.js';
 
-const currentAdminId = "AD-1";
+const currentAdminId = localStorage.getItem('SignedInAdminId');
 const admin = dummyResponse.Admin.filter(function (admin) {
     return admin.adminId === currentAdminId;
 })[0];
@@ -40,7 +40,17 @@ function verifyPasswordAndConfirmPassword(e) {
         e.preventDefault();
     }else{
         /*CHANGE PASSWORD*/
-
+        dummyResponse.Admin.forEach((ad)=>{
+            if(ad.adminId===currentAdminId){
+                ad.password = newPassword.value;
+                updateDummyData(dummyResponse);
+                changePasswordButton.textContent='Updating...';
+                setInterval(function(){
+                    location.reload();
+                },1000);
+                return;
+            }
+        });
     }
 }
 
