@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/Alumni/LoginPage.css">
+    <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
+
 </head>
 <style>
     .gradient-purplin {
@@ -239,6 +241,22 @@
 
                                 <small class="invalid-feedback">Please provide a valid IC.</small>
                                 <small class="valid-feedback">Thanks!</small>
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
+                                <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
+                                    <div class="w-50 position-relative">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
+                                                    id="wizardPicturePreview" title="">
+                                                <input type="file" id="wizard-picture">
+                                            </div>
+                                            <h6 id="choosePictureDescription">Choose Picture</h6>
+                                        </div>
+                                </div>
 
                             </div>
                         </div>

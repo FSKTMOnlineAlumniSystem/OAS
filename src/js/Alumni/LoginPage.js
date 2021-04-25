@@ -18,8 +18,26 @@ const password = document.getElementById('Password');
 const Department = document.getElementById('Department');
 const Batch = document.getElementById('Batch');
 const Gender = document.getElementById('Gender');
+const img = document.querySelector('#wizard-picture');
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 
+/*Check the file extension of the image & Update preview*/
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+    let allowedExtensions =
+        /(\.png|\.jpg|\.jpeg)$/i;
+    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            wizardPicturePreview.src = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+        choosePictureDescription.textContent = "Choose picture";
+    }else{
+        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    }
+}
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
