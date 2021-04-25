@@ -23,21 +23,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 
 /*Check the file extension of the image & Update preview*/
-img.addEventListener('change', (e) => readURL(e));
-function readURL(e) {
-    let allowedExtensions =
-        /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            wizardPicturePreview.src = e.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);
-        choosePictureDescription.textContent = "Choose picture";
-    }else{
-        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    }
-}
+
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
@@ -130,7 +116,21 @@ form_1.addEventListener('submit', (ev) => {
 
 });
 
-
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+    let allowedExtensions =
+        /(\.png|\.jpg|\.jpeg)$/i;
+    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            wizardPicturePreview.src = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+        choosePictureDescription.textContent = "Choose picture";
+    }else{
+        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    }
+}
 
 form.addEventListener('submit', (e) => {
 
@@ -145,7 +145,14 @@ form.addEventListener('submit', (e) => {
     const BatchValue = Batch.value.trim();
     const GenderValue = Gender.value.trim();
 
-
+    console.log(FirstNameValue);
+    console.log(emailValue);
+    console.log(LastNameValue);
+    console.log(ICValue);
+    console.log(passwordValue);
+    console.log(DepartmentValue);
+    console.log(BatchValue);
+    console.log(GenderValue);
 
 
     if (DepartmentValue == 0) {
@@ -219,6 +226,24 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) {
         e.preventDefault();
+    }else{
+
+        const obj={
+            "alumniId": "AL-" + dummyResponse.Alumni.length,
+            "approvedBy": "",
+            "email": emailValue,
+            "password": passwordValue,
+            "icNumber": ICValue,
+            "gender": GenderValue,
+            "name": FirstNameValue + LastNameValue,
+            "department": DepartmentValue,
+            "graduated": BatchValue,
+            "imageId": img.value,
+            "contactNumber": "03-79676347",
+        }
+
+        dummyResponse.Alumni.push(obj);
+        updateDummyData(dummyResponse);
     }
 
 

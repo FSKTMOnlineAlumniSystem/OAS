@@ -26,6 +26,23 @@
     cursor: pointer;
   }
 
+  .picture-container{
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}
+.picture{
+    background-color: #999999;
+    border: 4px solid #CCCCCC;
+    color: #FFFFFF;
+    border-radius: 50%;
+    margin: 0px auto;
+    overflow: hidden;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    aspect-ratio: 1/1;
+}
+
 button{
     background-color: transparent;
 }
