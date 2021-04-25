@@ -411,11 +411,17 @@ let dummyResponse = {
     ]
 };
 
-if(localStorage.getItem('dummyResponse')){
-    dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
-}
+
+
+    if(localStorage.getItem('dummyResponse')){
+        dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
+    }
+    
+
+
 
 function updateDummyData(dummyResponse){
     localStorage.setItem('dummyResponse', JSON.stringify(dummyResponse));
 }
+
 export {dummyResponse,updateDummyData};

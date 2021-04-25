@@ -1,4 +1,4 @@
-import {dummyResponse, updateDummyData} from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 const form_2 = document.getElementById('forgot');
 const sendEmail = document.getElementById('sendEmail');
@@ -51,10 +51,6 @@ form_1.addEventListener('submit', (ev) => {
     const staticEmailValue = staticEmail.value.trim();
     const inputPasswordValue = inputPassword.value.trim();
 
-    console.log(staticEmailValue);
-    console.log(inputPasswordValue);
-
-
     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
         setErrorFor(staticEmail);
         errorExist = true;
@@ -62,32 +58,33 @@ form_1.addEventListener('submit', (ev) => {
         console.log("elseemail");
 
         for (let i = 0; i < dummyResponse.Alumni.length; i++) {
-            console.log("dumm");
+
             if (staticEmailValue == dummyResponse.Alumni[i].email) {
                 getEmail = true;
-                console.log("foundemail");
-                console.log(dummyResponse.Alumni[i].email);
+
                 setSuccessFor(staticEmail);
                 errorExist = false;
 
                 if (isEmpty(inputPasswordValue)) {
-                    console.log("empty");
+
                     setErrorFor(inputPassword);
                     errorExist = true;
                 } else {
                     console.log("dummy");
                     if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+
                         //To save who is logged in
-                        localStorage.setItem('SignedInAlumniId',dummyResponse.Alumni[i].alumniId);
+                        localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
                         if (!localStorage.getItem('dummyResponse')) {
                             updateDummyData(dummyResponse);
                         }
-                        console.log("foundpass");
+
                         setSuccessFor(inputPassword);
                         errorExist = false;
 
                     } else {
-                        console.log("elsepass");
+                        
+                        setErrorFor(inputPassword);
                         errorExist = true;
                     }
                 }
@@ -97,15 +94,13 @@ form_1.addEventListener('submit', (ev) => {
         }
 
         if (!getEmail) {
-            errorExist = true; 
+            errorExist = true;
             setErrorFor(staticEmail);
             setErrorFor(inputPassword);
         }
 
     }
 
-
-    console.log(errorExist);
     if (errorExist) {
         ev.preventDefault();
     }
@@ -113,7 +108,6 @@ form_1.addEventListener('submit', (ev) => {
         location.replace("../../html/Alumni/homePage.html");
         ev.preventDefault();
     }
-
 
 
 });
@@ -137,29 +131,32 @@ form.addEventListener('submit', (e) => {
 
 
     if (DepartmentValue == 0) {
-        console.log("errordep");
+
         setErrorFor(Department);
         errorExist = true;
+
     } else {
-        console.log("succdep");
+
         setSuccessFor(Department);
     }
 
     if (BatchValue == 0) {
-        console.log("errordep");
+
         setErrorFor(Batch);
         errorExist = true;
+
     } else {
-        console.log("succdep");
+
         setSuccessFor(Batch);
+
     }
 
     if (GenderValue == 0) {
-        console.log("errordep");
+
         setErrorFor(Gender);
         errorExist = true;
     } else {
-        console.log("succdep");
+
         setSuccessFor(Gender);
     }
 
@@ -212,7 +209,7 @@ form.addEventListener('submit', (e) => {
 
 
 function checkLength(passwordValue) {
-    console.log('checkmethod');
+
     if (Password.value.length < 6) {
         return true;
     } else if (Password.value.length > 20) {
@@ -229,16 +226,16 @@ function setErrorFor(input) {
     } else {
         input.classList.add("is-invalid");
     }
-}
 
-function setSuccessFor(input) {
-    if (input.classList.contains("is-invalid")) {
-        input.classList.replace("is-invalid", "is-valid");
-    } else {
-        input.classList.add("is-valid");
+
+    function setSuccessFor(input) {
+        if (input.classList.contains("is-invalid")) {
+            input.classList.replace("is-invalid", "is-valid");
+        } else {
+            input.classList.add("is-valid");
+        }
     }
-}
 
-function isEmpty(obj) {
-    return obj.length == 0;
-}
+    function isEmpty(obj) {
+        return obj.length == 0;
+    }

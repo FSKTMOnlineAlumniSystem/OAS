@@ -40,27 +40,24 @@ form_1.addEventListener('submit', (ev) => {
     const staticEmailValue = staticEmail.value.trim();
     const inputPasswordValue = inputPassword.value.trim();
 
-    console.log(staticEmailValue);
-    console.log(inputPasswordValue);
-
 
     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
         setErrorFor(staticEmail);
         errorExist = true;
     } else {
-        console.log("elseemail");
+
 
         for (let i = 0; i < dummyResponse.Admin.length; i++) {
-            console.log("dumm");
+
             if (staticEmailValue == dummyResponse.Admin[i].email) {
                 getEmail = true;
-                console.log("foundemail");
-                console.log(dummyResponse.Admin[i].email);
+
+              
                 setSuccessFor(staticEmail);
                 errorExist = false;
 
                 if (isEmpty(inputPasswordValue)) {
-                    console.log("empty");
+
                     setErrorFor(inputPassword);
                     errorExist = true;
                 } else {
@@ -71,13 +68,15 @@ form_1.addEventListener('submit', (ev) => {
                         if (!localStorage.getItem('dummyData')) {
                             localStorage.setItem('dummyData', dummyResponse);
                         }
-                        console.log("foundpass");
+
                         setSuccessFor(inputPassword);
                         errorExist = false;
 
                     } else {
-                        console.log("elsepass");
+                        console.log("dummy1");
                         errorExist = true;
+                        setErrorFor(inputPassword);
+                        console.log(errorExist);
                     }
 
                 }
@@ -96,8 +95,8 @@ form_1.addEventListener('submit', (ev) => {
     }
 
 
-    console.log(errorExist);
     if (errorExist) {
+        console.log(errorExist);
         ev.preventDefault();
     }
     else {
