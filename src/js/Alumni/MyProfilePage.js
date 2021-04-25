@@ -109,7 +109,7 @@ function deleteAccount(e) {
 }
 
 function loadData() {
-    profilePicture.src = imgPath+alumni.imageId;
+    profilePicture.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
@@ -122,4 +122,3 @@ function loadData() {
 loadData();
 changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
 deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));
-changePasswordModalTrigger.addEventListener('click',(e)=>$('#changePasswordModal').modal('show'))

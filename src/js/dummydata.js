@@ -10,7 +10,7 @@ let dummyResponse = {
             "name": "Teh Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "2003",
-            "imageId": "AL-1.jpg",
+            "imageId": "AL-1.png",
             "contactNumber": "03-79676347",
             "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
