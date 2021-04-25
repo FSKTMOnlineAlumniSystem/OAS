@@ -14,19 +14,7 @@ myEvent.forEach(event => {
   eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
   const { title, dateTime, imageId } = eventDetails;
   // console.log(`${title} ${dateTime} ${imageId}`);
-  const eventDateTime = new Date(dateTime);
-  const mm = eventDateTime.getMonth();
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const month = monthNames[mm];
-  const dd = eventDateTime.getDate();
-  const yyyy = eventDateTime.getFullYear();
-  const minute = eventDateTime.getMinutes();
-  let hour = eventDateTime.getHours();
-  const period = hour > 11 ? 'p.m.' : 'a.m.';
-  hour = hour === 0 ? 12 : hour;
-  hour = hour > 12 ? hour - 12 : hour;
+  
   // /src/html/Alumni/EventDetailsPage.html
   const cardDiv = document.createElement('div');
   cardDiv.setAttribute('class', 'col mb-4');
@@ -40,11 +28,11 @@ myEvent.forEach(event => {
         <div class="row cards">
           <div class="col-1"><img src="/Assets/imgs/calendar.png" alt="time" height="24" width="24">
           </div>
-          <div class="col-7">${month} ${dd}, ${yyyy}</div>
+          <div class="col-7">${getReadableDate(dateTime)}</div>
         </div>
         <div class="row cards">
           <div class="col-1"> <img src="/Assets/imgs/time.png" alt="time" height="24" width="24"></div>
-          <div class="col-9">${hour}:${minute} ${period}</div>
+          <div class="col-9">${getReadableTime(dateTime)}</div>
         </div>
         </p>
       </div>
