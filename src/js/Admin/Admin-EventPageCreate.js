@@ -16,29 +16,48 @@ window.readURL = function (input) {
 import dummyResponse from "../dummydata.js";
 window.add_element_to_array = function() {
     console.log("add element")
-    var table = document.getElementsByClassName(
-      "table table-striped table-sm something"
-    )[0];
-  // var title = document.getElementById("title").value;
-  // var date = document.getElementById("date").value;
-  // var stime = document.getElementById("startTime").value;
-  // var etime = document.getElementById("endTime").value;
-  // var description = document.getElementById("description").value;
-  // var location = document.getElementById("location").value;
-  // var image = document.getElementById("prevImage").value;
-  // var endIndex = dummyResponse.EventTry.length;
+    // var table = document.getElementsByClassName(
+    //   "table table-striped table-sm something"
+    // )[0];
+
+  var title = document.getElementById("title").value;
+  var date = document.getElementById("date").value;
+  var stime = document.getElementById("startTime").value;
+  var etime = document.getElementById("endTime").value;
+  var description = document.getElementById("description").value;
+  var location = document.getElementById("location").value;
+  var image = document.getElementById("prevImage").value;
+  var endIndex = dummyResponse.Event.length;
+  var newId=endIndex+1
+  var eventId="E-"+ newId
+  var adminId="ad-2"; //need connect to localstorege ltr
   // var d = new Date(dummyResponse.Event[i].dateTime);
+var newEvent={eventId:eventId,
+  adminId: adminId,
+  title: title,
+  dateTime: new Date(), //change
+  description: description,
+  imageId: image,
+  location: location
+}
+dummyResponse.Event.splice(endIndex,0,newEvent)
+
+  console.log(dummyResponse)
   // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
   // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
   // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-  sessionStorage.setItem('title', document.getElementById("title").value)
-  sessionStorage.setItem('date', document.getElementById("date").value)
-  sessionStorage.setItem('stime', document.getElementById("startTime").value)
-  sessionStorage.setItem('etime', document.getElementById("endTime").value)
-  sessionStorage.setItem('description', document.getElementById("description").value)
-  sessionStorage.setItem('location', document.getElementById("location").value)
-  sessionStorage.setItem('prevImage', document.getElementById("prevImage").value)
-addRow();
+
+//   sessionstorage
+//   sessionStorage.setItem('title', document.getElementById("title").value)
+//   sessionStorage.setItem('date', document.getElementById("date").value)
+//   sessionStorage.setItem('stime', document.getElementById("startTime").value)
+//   sessionStorage.setItem('etime', document.getElementById("endTime").value)
+//   sessionStorage.setItem('description', document.getElementById("description").value)
+//   sessionStorage.setItem('location', document.getElementById("location").value)
+//   sessionStorage.setItem('prevImage', document.getElementById("prevImage").value)
+// addRow();
+
+// let myJob = JSON.parse(localStorage.getItem("JobList"));
   // var newRowContent = `<tr class="rowss">
               
   //            <td>
