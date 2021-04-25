@@ -210,7 +210,7 @@ form.addEventListener('submit', (e) => {
 
 function checkLength(passwordValue) {
 
-    if (Password.value.length < 6) {
+    if (Password.value.length < 5) {
         return true;
     } else if (Password.value.length > 20) {
         return true;
