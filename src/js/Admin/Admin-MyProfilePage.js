@@ -5,6 +5,7 @@ const admin = dummyResponse.Admin.filter(function (admin) {
     return admin.adminId === currentAdminId;
 })[0];
 
+const profilePicture = document.querySelector('#profilePicture');
 const name = document.querySelector('#name');
 const email = document.querySelector('#email');
 
@@ -78,6 +79,7 @@ function verifyPasswordCriteria(password) {
 }
 
 function loadData() {
+    profilePicture.src = imgPath + admin.imageId;
     name.textContent = admin.name;
     email.textContent = admin.email;
 }

@@ -17,7 +17,7 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-const currentAlumniId = "AL-1";
+const currentAlumniId = localStorage.getItem('SignedInAlumniId');
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
@@ -89,6 +89,10 @@ form.addEventListener('submit', (e) => {
     else {
         dummyResponse.Alumni.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
+                if(img.value){
+                    const imgLocalPathArr = img.value.split('\\');
+                    al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
+                }
                 al.email = email.value;
                 al.contactNumber = contactNumber.value;
                 al.biography = biography.value;
@@ -100,7 +104,7 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+    if (!img.value &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {

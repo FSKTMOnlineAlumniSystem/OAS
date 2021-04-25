@@ -82,6 +82,10 @@ form.addEventListener("submit", (e) => {
   else {
     dummyResponse.Admin.forEach((ad) => {
       if (ad.adminId === currentAdminId) {
+        if (img.value) {
+          const imgLocalPathArr = img.value.split('\\');
+          ad.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
+        }
         ad.name = name.value;
         ad.email = email.value;
         updateDummyData(dummyResponse);
@@ -93,7 +97,7 @@ form.addEventListener("submit", (e) => {
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener("click", () => {
   if (
-    wizardPicturePreview.src.includes(imgPath + admin.imageId) &&
+    !img.value &&
     admin.name == name.value &&
     admin.email == email.value
   ) {
