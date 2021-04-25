@@ -9,6 +9,7 @@ document
 function searching(e) {
   e.preventDefault();
   var searchQuery = document.getElementById("search");
+  localStorage.setItem("searchQuery", JSON.stringify(searchQuery.value));
   var choose;
   console.log("searching : " + searchQuery.value);
   searchQuery = searchQuery.value.toLowerCase();
@@ -17,6 +18,7 @@ function searching(e) {
   console.log(choose);
 
   if (choose == "Alumni") {
+    location.href = "alumniPage.html";
     console.log("searching is in");
     const result = dummyResponse.Alumni.filter(function (Alumni) {
       var match = false;
@@ -93,3 +95,5 @@ function searching(e) {
     console.log(result);
   }
 }
+
+export default result;
