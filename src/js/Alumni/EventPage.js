@@ -1,5 +1,5 @@
 const upcomingEventSection = document.getElementById('upcoming-event-section');
-const YourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
+const yourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
 
 const myEvent = dummyResponse.Alumni_Event.filter(event => {
   return event.alumniId === localStorage.getItem('SignedInAlumniId');
@@ -13,7 +13,7 @@ console.log(notMyEvent);
 myEvent.forEach(event => {
   eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
   const { title, dateTime, imageId } = eventDetails;
-  console.log(`${title} ${dateTime} ${imageId}`);
+  // console.log(`${title} ${dateTime} ${imageId}`);
   const eventDateTime = new Date(dateTime);
   const mm = eventDateTime.getMonth();
   const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -27,9 +27,11 @@ myEvent.forEach(event => {
   const period = hour > 11 ? 'p.m.' : 'a.m.';
   hour = hour === 0 ? 12 : hour;
   hour = hour > 12 ? hour - 12 : hour;
-
-  YourUpcomingEventSection.innerHTML += `<div class="col mb-4">
-  <a href="#" target="_blank">
+  // /src/html/Alumni/EventDetailsPage.html
+  const cardDiv = document.createElement('div');
+  cardDiv.setAttribute('class', 'col mb-4');
+  cardDiv.innerHTML = `
+  <a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${event.eventId}-card">
     <div class="card">
       <img src="/Assets/imgs/${imageId}" class="card-img-top" alt="eventPhoto">
       <div class="card-body">
@@ -47,6 +49,16 @@ myEvent.forEach(event => {
         </p>
       </div>
     </div>
-  </a>
-</div>`;
+  </a>`;
+  yourUpcomingEventSection.appendChild(cardDiv);
+
+  // function to be called when this card clicked
+  // console.log(yourUpcomingEventSection.lastChild.querySelector('a'));
+  // console.log(document.getElementById(event.eventId + '-card'));
+  console.log(cardDiv.querySelector('#' + event.eventId + '-card'));
+  const evtHandler = evt => {
+    console.log(`set eventId to ${event.eventId}`);
+    localStorage.setItem('eventId', event.eventId);
+  };
+  cardDiv.querySelector('#' + event.eventId + '-card').addEventListener('click', evtHandler);
 });
