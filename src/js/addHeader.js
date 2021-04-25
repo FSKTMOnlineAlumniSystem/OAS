@@ -1,12 +1,14 @@
 // check if this is alumni or admin
-// localStorage.setItem('SignedInAlumniId', "AL-1");
+localStorage.setItem('SignedInAlumniId', "AL-1");
+import dummyResponse from "./dummydata.js"
 let curUser;
 let isAlumni = false;
+
 if(localStorage.getItem('SignedInAlumniId')){
   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
   isAlumni = true;
 }else{
-  curUser = dummyResponse.Admin.filter(admin => admin.alumniId === localStorage.getItem('SignedInAdminId'))[0];
+  curUser = dummyResponse.Admin.filter(admin => admin.adminId === localStorage.getItem('SignedInAdminId'))[0];
 }
 
 const body = document.body;
