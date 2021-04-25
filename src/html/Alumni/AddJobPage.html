@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/libs\bootstrap\css\bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
-  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\AddJobPage.css">
-<!-- icon -->
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+  <!-- <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/AddJobPage.css">
+  <!-- icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>Add Job</title>
 </head>
 
 <body>
-  <!-- <header class='d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white'>
-    Dr Tey Kok Soon
-    <img src="" alt="" class="header__img m-1">
-    <img src="..\..\..\Assets\icons\bell.svg" alt="" class="header__img m-1" id='notification-icon'> 
-    <div id='notification-panel'>
+  <!-- <header class='d-flex flex-row-reverse align-items-center header--gradient p-2 font-weight-bold text-white'>
+    <div id="profile-header">
+      <img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
+      <span class="px-1 py-auto">Dr Tey Kok Soon</span>
+      <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
+    </div>
+    <img src="/Assets/icons/bell.svg" alt="bell icon" class="header__img mx-2" id='notification-icon'>
+    <div id='profile-panel' class="profile-panel--display-none">
+      <div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/Alumni/AlumniProfilePage.html" class="nostyle">My Profile</a></div>
+    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/Alumni/HomePage.html" class="nostyle">Log Out</a></div>
+    </div>
+
+    <div id='notification-panel'
+     class="profile-panel--display-none"
+    >
       <div class="p-2 fw-bold h6 m-0">Notifications</div>
       <ul class='m-0 list-unstyled'>
         <li class="p-2 border-top notification-border">
-          <div class="d-flex container-fluid">
-            <div class="row">
-              <div class='col-2 d-flex justify-content-center align-items-center'>
-                <i class="fa fa-calendar fa-2x text-primary"></i>
-              </div>
-              <div class='col-8 flex-grow-1'>
-                You have been invited to join our event!! 
-                <strong>
-                  Keselamatan Siber Di Kalangan Kanak-Kanak
-                </strong>
-                <div class="text-primary">Just now</div>
-              </div>
-              <div class="col-1">
-                <div class='row flex-column'>
-                  <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
-    </header> -->
+
+  </header> -->
   <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
@@ -83,8 +75,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       </div>
       </nav> -->
 
-  <div class="container my-5" id='main-body'>
-    <form id="job_ad_form">
+  <div class="container my-md-5 my-3" id='main-body'>
+    <h3 class="mb-4">Add New Job</h3>
+    <div id="form"></div>
+    <!-- <form id="job_ad_form">
       <div class="mb-3">
         <label for="companyName" class="form-label">Company Name</label>
         <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
@@ -105,9 +99,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
             <label for="upload" class="form-label">Company Image</label>
             <input type="file" class="form-control" id="upload" aria-describedby="image">
           </div>
-        </div>
-        <!-- Uploaded image result area-->
-      </div>
+        </div> -->
+    <!-- Uploaded image result area-->
+    <!-- </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -127,8 +121,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  </div>
-<!--   
+  </div> -->
+    <!--   
   <footer class="container-fluid">
     <div class='row d-flex justify-content-evenly justify-content-md-center bg-dark text-break text-dark py-2'>
       <div class='d-flex flex-column col-12 col-md-3 text-white'>
@@ -201,20 +195,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       </div>
     </div>
   </footer> -->
-
-  <script type='text/javascript' src='../../js/addHeader.js'></script>
-  <script type='text/javascript' src='../../js/addNavFooter.js'></script>
-  <script type='text/javascript' src='../../js/Alumni/AddJobPage.js'></script>
-  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
+  
+    <script type="text/javascript" src='/src/js/dummydata.js'></script>
+    <script type='text/javascript' src='/src/js/Alumni/AddJobPage.js'></script>
+    <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
+    <script type="text/javascript" src='/src/js/addHeader.js'></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 </body>
 
 </html>

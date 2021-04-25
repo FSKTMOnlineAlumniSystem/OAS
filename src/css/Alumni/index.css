@@ -71,7 +71,7 @@ a.nostyle:visited {
 #notification-panel{
   background-color: white;
   color: black;
-  z-index: 1;
+  z-index: 3;
   top: 50px;
   position: absolute;
   min-width: 200px;
@@ -80,14 +80,36 @@ a.nostyle:visited {
   border: 1px solid rgb(103, 103, 103);
   font-size: 12px;
 }
-
-.dot {
-  height: 10px;
-  width: 10px;
-  max-width: 5px;
-  background-color: rgb(53, 115, 238);
-  border-radius: 50%;
-  display: inline-block;
+#profile-panel{
+  background-color: white;
+  color: black;
+  z-index: 4;
+  top: 50px;
+  position: absolute;
+  min-width: 150px;
+  max-width: 350px;
+  font-weight: 400;
+  border: 1px solid rgb(103, 103, 103);
+  font-size: 12px;
+}
+#profile-header:hover{
+  color: var(--light-gray);
+  cursor: pointer;
+}
+.profile-panel--display-none{
+  display: none;
+}
+.profile-panel__item--dark-bg:hover{
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+.item--hover-light-bg:hover{
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+.panel__icon--hover-dark-bg:hover{
+  color: var(--dark-gray);
+  cursor: pointer;
 }
 
 #contact-us-nav-item,#notification-icon{
