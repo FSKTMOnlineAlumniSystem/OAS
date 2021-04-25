@@ -4,6 +4,7 @@ const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
+const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
 const email = document.querySelector('#email');
@@ -103,21 +104,32 @@ form.addEventListener('submit', (e) => {
         alumni.email = email.value;
         alumni.contactNumber = contactNumber.value;
         alumni.biography = biography.value;
+        alumni.name = name.value;
+        alumni.graduated = graduatedFormat.value;
+        alumni.department = department.value;
+        alumni.gender = gender.value;
     }
 });
+
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
     if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
-        alumni.biography == biography.value) {
+        alumni.biography == biography.value &&
+        alumni.name == name.value &&
+        alumni.graduated == graduated.value &&
+        alumni.gender == gender.value &&
+        alumni.department == department.value) {
         location.href = "Admin-AlumniListPage.html";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
 });
+
+
 
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
