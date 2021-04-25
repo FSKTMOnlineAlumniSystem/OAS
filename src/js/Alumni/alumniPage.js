@@ -90,7 +90,7 @@ const loadAlumniList = (pageIndex) => {
     overflow: hidden;
     text-overflow: ellipsis;">${dummyResponse.Alumni[i].biography}</small>
     </div></div>
-    </div></div>`;
+    </div>`;
   }
 };
 
