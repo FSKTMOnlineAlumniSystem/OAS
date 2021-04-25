@@ -1,6 +1,6 @@
 // check if this is alumni or admin
 localStorage.setItem('SignedInAlumniId', "AL-1");
-import dummyResponse from "./dummydata.js"
+import { dummyResponse } from "./dummydata.js"
 let curUser;
 let isAlumni = false;
 
