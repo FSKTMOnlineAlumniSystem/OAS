@@ -78,6 +78,7 @@ a:hover{
     border-radius: 50%;
   }
 
-  /* .card-desk{
-    margin-bottom:10px;
-  } */
+.w-100{
+  aspect-ratio:2/1; 
+  overflow:hidden;
+}

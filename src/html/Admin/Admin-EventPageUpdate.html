@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--(Create,Update)-->
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,33 +20,36 @@
 
     </header>
     <main>
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">Invite Alumni</a>
-      <form>
-        <div class="form-group">
-          <label for="formGroupExampleInput">Event Title :</label>
-          <input type="text" class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput"
-            placeholder="Enter new event title" value="CP Workshop">
-        </div>
 
-        <!-- <div class="form-group">
+      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">Invite
+        Alumni</a>
+      <form>
+        <div id="updateForm">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Event Title :</label>
+            <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
+              value="CP Workshop">
+          </div>
+
+          <!-- <div class="form-group">
           <label for="formGroupExampleInput2">Schedule :</label>
           <input type="text" class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
             placeholder="Enter new schedule" value="04, Apr 2021; 11:53:53 PM">
-        </div> -->
+           </div> -->
 
 
-        <div class="form-group">
-          <label for="formGroupExampleInput2" >Schedule :</label> <br>
-        <input type=date value="2021-04-04"> &nbsp;
-        <input type=time value="20:00"> to <input type=time value="22:00" >
-      </div>
-        
-        <div class="form-group">
-          <label for="formGroupExampleInput2">Description :</label>
-          <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
-            placeholder="Enter new schedule" value="description" rows="5" ;>Learn more about CP</textarea>
-        </div>
-        <!--
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Schedule :</label> <br>
+            <input type=date value="2021-04-04" id="date"> &nbsp;
+            <input type=time value="20:00"> to <input type=time value="22:00">
+          </div>
+
+          <div class="form-group">
+            <label for="formGroupExampleInput2" id="description">Description :</label>
+            <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
+              placeholder="Enter new schedule" value="description" rows="5" ;>Learn more about CP</textarea>
+          </div>
+          <!--
           <form class="form-group">
             <div class="mb-3">
               <label for="validationTextarea">Description :</label>
@@ -58,19 +60,19 @@
             </div>
           </div> -->
 
-        <div class="form-group">
-          <label for="formGroupExampleInput2 ">Location :</label>
-          <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
-            placeholder="Enter new location" value="FSKTM, MM2">
-        </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2" id="location">Location :</label>
+            <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
+              placeholder="Enter new location" value="FSKTM, MM2">
+          </div>
 
 
-        <div>
-          <label for="phfile">Image:</label>
-          <img id="prevImage" src="/Assets/imgs/eventPageUpdateImg.png" alt="update Image" width="150" length="150">
-          <input type="file" id="phfile" onchange="readURL(this)">
-        </div>
-        <!--
+          <div>
+            <label for="phfile">Image:</label>
+            <img id="prevImage" src="/Assets/imgs/eventPageUpdateImg.png" alt="update Image" width="150" length="150">
+            <input type="file" id="phfile" onchange="readURL(this)">
+          </div>
+          <!--
         <div class="container">
           <div class="picture-container">
             <div class="picture">
@@ -84,12 +86,13 @@
           </div>
         </div>
 
--->
-<a button type="button" class="btn btn-danger float-right ml-2" href="Admin-EventPage.html">Save</a>
+        -->
+        </div>
+        <a button type="button" class="btn btn-danger float-right ml-2" onclick="update_array()" href="Admin-EventPage.html">Save</a>
+        <!-- Admin-EventPage.html -->
         <a button type="button" class="btn btn-secondary float-right" href="Admin-EventPage.html">Cancel</a>
       </form>
-
-      <script src="../../js/Admin/Admin-EventPageUpdate.js"></script>
+      <script type="module" src="../../js/Admin/Admin-EventPageUpdate.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

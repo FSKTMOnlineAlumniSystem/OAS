@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>Alumni Online System</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -15,375 +16,285 @@
 </head>
 
 <body class="back">
-    <header class="headerColour">
+    <!-- <header class="headerColour">
         <div class="div1">
-            <button onclick=" document.getElementById('sigup').style.display='block';" class="signUPbutton"
+            <button type="signUp" class="signUPbutton"
                 data-toggle="modal" data-target="#signUP">Sign Up</button>
-            <button onclick="document.getElementById('signin').style.display='block'" class="signINbutton"
+            <button type="signIn" class="signINbutton"
                 data-toggle="modal" data-target="#signIN">Sign In</button>
         </div>
-    </header>
+    </header> -->
 
     <main>
 
 
         <!-- SignIn -->
-        <div class="modal fade" id="signIN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="signIN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content was-validated">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Sign In</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                    <form id="form_1">
+
+                        <div class="modal-body">
+
+
+
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                                <div class="FORM col-sm-8 mr-1">
+                                    <input type="text" class="form-control" id="staticEmail" >
+                                    <small class="invalid-feedback">Please provide a valid email.</small>
+                                    <small class="valid-feedback">Hi!</small>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword" required>
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
+                                <div class="col-sm-8 mr-1">
+                                    <input type="password" class="form-control" id="inputPassword" >
+                                    <small class="invalid-feedback">Please provide a valid password.</small>
+                                    <small class="valid-feedback">Hi!</small>
 
+                                </div>
                             </div>
+
+
+
+
+                            <span onclick="document.getElementById('forgot').style.display='block'" data-toggle="modal"
+                                data-target="#forgot">
+                                <span data-dismiss="modal" aria-label="Close" class="forgotPsw">Forgot
+                                    Password?</span></span>
+
+                            <span class="smallWarning">
+                                Your account has not been verified / your account is not exist</span>
                         </div>
-                        <span onclick="document.getElementById('forgot').style.display='block'" data-toggle="modal"
-                            data-target="#forgot">
-                            <span data-dismiss="modal" aria-label="Close" class="forgotPsw">Forgot
-                                Password?</span></span>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn signinbtn">Sign In</button>
+                        </div>
 
-                        <span class="smallWarning">
-                            Your account has not been verified / your account is not exist</span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn signinbtn">Sign In</button>
-
-                    </div>
+                    </form>
                 </div>
             </div>
-        </div>
-
-
-
-        <!-- <div id="signin" class="popUp">
-            <form class="signInform" action="/action_page.php" id="signinform">
-                <div class="closeDiv">
-                    <span onclick="document.getElementById('signin').style.display='none'"
-                        class="close">&times;</span>
-                </div>
-                <h1 class="signinText">Sign In</h1>
-                <div class="container">
-
-                    <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticEmail">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-                    <span onclick="" class="forgotPsw">Forgot Password?</span>
-                    <div class="clearfix">
-                        <button type="submit" class="signinbtn">Sign In</button>
-                    </div>
-                    <span class="smallWarning">
-                        Your account has not been verified / your account is not exist</span>
-                </div>
-            </form>
         </div> -->
+
 
 
 
 
 
         <!-- Modal -->
-        <div class="modal fade" id="forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content was-validated">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Forgot Password</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <span>When you fill in your registered email address,
-                            you will be sent instructions on how to reset your password.</span>
-                        <br>
-                        <div class="mb-2 mt-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                    <form id="form_2">
+                        <div class="modal-body">
+
+                            <span>When you fill in your registered email address,
+                                you will be sent instructions on how to reset your password.</span>
+                            <br>
+
+
+
+                            <div class="mb-2 mt-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <input type="text" class="form-control" id="sendEmail" >
+                                    <div class="invalid-feedback">Please provide a valid email.</div>
+                                </div>
                             </div>
+
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn signinbtn">Submit</button>
-                    </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn signinbtn">Submit</button>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
         <!-- SignUp -->
-        <div class="modal fade" id="signUP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="signUP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content was-validated">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Sign Up</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <form id="form">
+                        <div class="modal-body">
 
 
-                        <div class="mb-3 row">
+                            <div class="mb-3 row">
 
-                            <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="FirstName" required>
+                                <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="text" class="form-control" id="FirstNameID">
+                                        <small class="invalid-feedback">Please provide a valid First Name.</small>
+                                        <small class="valid-feedback">Hi!</small>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="LastName" required>
+                            <div class="mb-3 row">
+                                <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="text" class="form-control" id="LastNameID">
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                        <small class="invalid-feedback">Please provide a valid Last Name.</small>
+                                        <small class="valid-feedback">Hi There!</small>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword"
-                                    onfocus="verifyPasswordCriteria()" required>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="mb-3 row">
+                                <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <select class="form-select p-1" id="Gender" aria-label="Default select example"
+                                            >
+                                            <option value="0">Gender</option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                        </select>
+
+                                        <small class="invalid-feedback">Select a Gender</small>
+                                        <small class="valid-feedback">Nice!</small>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                </select>
+                            <div class="mb-3 row">
+                                <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <select class="form-select p-1" id="Batch" aria-label="Default select example"
+                                            >
+                                            <option value="0">Batch</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                        </select>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                        <small class="invalid-feedback">Select a batch</small>
+                                        <small class="valid-feedback">Welcome!</small>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Batch</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2000">2000</option>
-                                </select>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="text" class="form-control" id="Email" >
+                                        <small class="invalid-feedback">Please provide a valid Email.</small>
+                                        <small class="valid-feedback">Good!</small>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="staticEmail" required>
+                            <div class="mb-3 row">
+                                <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="tel" class="form-control" id="IC" >
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                        <small class="invalid-feedback">Please provide a valid IC.</small>
+                                        <small class="valid-feedback">Thanks!</small>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="tel" class="form-control" id="IC" required>
+                            <div class="mb-3 row">
+                                <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <select class="form-select p-1" id="Department"
+                                            aria-label="Default select example" >
+                                            <option value="0">Department</option>
+                                            <option value="software">Software Engineering</option>
+                                            <option value="ai">Artificial Intellegent</option>
+                                            <option value="csn">Computer System and Technology</option>
+                                            <option value="is">Information System</option>
+                                            <option value="multimedia">Multimedia</option>
+                                        </select>
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                        <small class="invalid-feedback">Select a department</small>
+                                        <small class="valid-feedback">Okay!</small>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputDepartment" class="col-sm-3 col-form-label ml-1">Department:</label>
-                            <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" aria-label="Default select example" required>
-                                    <option value="0">Department</option>
-                                    <option value="software">Software Engineering</option>
-                                    <option value="ai">Artificial Intellegent</option>
-                                    <option value="csn">Computer System and Technology</option>
-                                    <option value="is">Information System</option>
-                                    <option value="multimedia">Multimedia</option>
-                                </select>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
+                                <div class="col-sm-8 mr-1">
+                                    <div class="FORM">
+                                        <input type="password" class="form-control" id="Password" >
 
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                        <small class="invalid-feedback">Please enter only 6-20 characters available for
+                                            password.</small>
+                                        <small class="valid-feedback">Perfect!</small>
+                                    </div>
+                                </div>
                             </div>
+
+
+
+
+
+                            <span class="ml-1">Already have an account?
+                                <span onclick="document.getElementById('signIN').style.display='block'"
+                                    data-toggle="modal" data-target="#signIN">
+                                    <span data-dismiss="modal" aria-label="Close" class="jumpToSignIn">Sign
+                                        In</span></span></span>
+
                         </div>
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="inputPassword" required>
-
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn signinbtn">Sign Up</button>
                         </div>
 
-                        <span class="ml-1">Already have an account?
-                            <span onclick="document.getElementById('signIN').style.display='block'" data-toggle="modal"
-                                data-target="#signIN">
-                                <span data-dismiss="modal" aria-label="Close" class="jumpToSignIn">Sign
-                                    In</span></span></span>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn signinbtn">Sign Up</button>
-
-                    </div>
+                    </form>
                 </div>
             </div>
-        </div>
-
-
-        <!-- <div id="signup" class="popUp">
-            <form class="signUpform" action="/action_page.php" onclick="closeSignUp()">
-                <div class="closeDiv">
-                    <span onclick="document.getElementById('signup').style.display='none'" class="close">&times;</span>
-                </div>
-
-                <h1 class="signupText">Sign Up</h1>
-                <span class="jumptoSignInText">Already have an account?
-                    <span onclick="document.getElementById('signin').style.display='block'">
-                        <span onclick="document.getElementById('signup').style.display='none'" class="jumpToSignIn">Sign
-                            In</span></span></span>
-                <br>
-                <div class="container">
-                    <div class="mb-3 row">
-                        <label for="FirstName" class="col-sm-2 col-form-label">First Name:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="FirstName">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="LastName" class="col-sm-2 col-form-label">Last Name:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="LastName">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputGender" class="col-sm-2 col-form-label">Gender:</label>
-                        <div class="col-sm-10">
-                            <select class="form-select p-1" aria-label="Default select example">
-                                <option selected>Gender</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputBatch" class="col-sm-2 col-form-label">Batch:</label>
-                        <div class="col-sm-10">
-                            <select class="form-select p-1" aria-label="Default select example">
-                                <option selected>Batch</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
-                                <option value="2014">2014</option>
-                                <option value="2013">2013</option>
-                                <option value="2012">2012</option>
-                                <option value="2011">2011</option>
-                                <option value="2010">2010</option>
-                                <option value="2009">2009</option>
-                                <option value="2008">2008</option>
-                                <option value="2007">2007</option>
-                                <option value="2006">2006</option>
-                                <option value="2005">2005</option>
-                                <option value="2004">2004</option>
-                                <option value="2003">2003</option>
-                                <option value="2002">2002</option>
-                                <option value="2001">2001</option>
-                                <option value="2000">2000</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticEmail">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="IC" class="col-sm-2 col-form-label">Ic no.:</label>
-                        <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="IC">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputDepartment" class="col-sm-2 col-form-label">Department:</label>
-                        <div class="col-sm-10">
-                            <select class="form-select p-1" aria-label="Default select example">
-                                <option selected>Department</option>
-                                <option value="software">Software Engineering</option>
-                                <option value="ai">Artificial Intellegent</option>
-                                <option value="csn">Computer System and Technology</option>
-                                <option value="is">Information System</option>
-                                <option value="multimedia">Multimedia</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                        <button type="submit" class="signupbtn">Sign Up</button>
-                    </div>
-
-                </div>
-            </form>
         </div> -->
+
+
 
 
 
@@ -396,16 +307,7 @@
 
                     <div class="row no-gutters">
                         <div class="col-lg-2 col-md-2 col-sm-2 p-0"></div>
-                        <!-- <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                          </div> -->
+
 
                         <div class="col-lg-2 col-md-2 col-sm-12 p-0">
                             <select class="form-controlSearch" id="exampleFormControlSelect1">
@@ -419,7 +321,7 @@
                         <div class="col-lg-6 col-md-5 col-sm-12 p-0">
                             <div class="input-group">
                                 <input type="text" placeholder="Search..." class="form-control" id="search"
-                                    name="search">
+                                    name="search" style="border-radius: 0px 0px 0px 0px;">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-secondary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -446,387 +348,18 @@
         <div class="container-fluid d-flex flex-column align-items-center">
             <!-- Only insert photos with same width and height -->
             <span class="Title">Events</span>
+
+
+
             <div class="w-85 bg-grey d-flex flex-column align-items-center">
                 <div class="swiper-container p-5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left ">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
+                    <div class="swiper-wrapper" id="event">
 
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
 
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
 
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
-
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
-
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
-
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top h-50" src="../../../Assets/imgs/Event_1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-left">UM3MT Competition (FSKTM)</h5>
-                                    <div class="card-text">
-
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">Mar 05,2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    <path
-                                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">11.00AM - 12.00AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-2 d-flex flex-column">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                    <path
-                                                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-10 d-flex flex-column">
-                                                <span class="t">The Cube, FCSIT</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                     <!-- Add Pagination -->
@@ -844,7 +377,7 @@
 
             <span class="Title">Jobs</span>
             <div class="w-85">
-                <div class="row mb-4 mt-1">
+                <div class="row mb-4 mt-1" id="job_row1">
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_1.png" alt="..."
                                 width="100%"></a>
@@ -855,9 +388,10 @@
                     </div>
 
                 </div>
-                <div class="row mt-1">
+                <div class="row mt-1" id="job_row2">
                     <div class="col">
-                        <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_3.png" alt="..." width="100%"></a>
+                        <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_3.png" alt="..."
+                                width="100%"></a>
                     </div>
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_4.png" alt="..." width="100%"
@@ -872,36 +406,12 @@
 
 
             <span class="Title">Alumni</span>
-            
+
 
             <div class="w-85 bg-grey d-flex flex-column align-items-center">
                 <div class="swiper-container p-5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="../../../Assets/imgs/Alumni_1.jpg" alt="Card image cap"
-                                    width="100%">
+                    <div class="swiper-wrapper" id="alumni">
 
-                                <div class="card-body">
-                                    <div class="row">
-                                        <h5 class="card-title-title font-weight-900px ml-2 mr-2">
-                                            DR. TEY KOK SOON</h5>
-                                    </div>
-
-                                    <p class="card-text mb-1"><span>Achievement:</span><br>
-                                    <p class="card-text mb-0" style="display: -webkit-box;
-                                        -webkit-line-clamp: 3;
-                                        -webkit-box-orient: vertical;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;">This is a longer card with supporting text below as a
-                                        natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    </p>
-                                    <p class="card-text text-center"><small class="text-muted">
-                                            Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="swiper-slide pl-1 pr-1">
                             <div class="card h-100">
                                 <img class="card-img-top" src="../../../Assets/imgs/Alumni_2.png" alt="Card image cap"
@@ -1078,11 +588,11 @@
             <div class="mb-5">
 
             </div>
-           
+
         </div>
     </main>
 
-    <script src="../../js/Alumni/HomePage.js"></script>
+    <!-- <script src="../../js/Alumni/HomePage.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -1094,35 +604,10 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="module">
-        import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
-        var slidesPerView = 3;
-        var spaceBetween = 80;
 
-        if (window.innerWidth<1000 || screen.width < 1000) {
-            slidesPerView = 2;
-            spaceBetween = 30;
-        }
-        if (window.innerWidth<600 || screen.width < 600) {
-            slidesPerView = 1;
-            spaceBetween = 10;
-        }
-
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: slidesPerView,
-            spaceBetween: spaceBetween,
-            slidesPerGroup: slidesPerView,
-            loop: true,
-            loopFillGroupWithBlank: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
     </script>
+
+    <script type="module" src="../../js/Alumni/HomePage.js"></script>
 </body>
 
 </html>

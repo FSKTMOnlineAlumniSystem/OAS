@@ -823,6 +823,11 @@ button:hover {
 
 .d-contents{
     display: contents;
+   
+}
+
+.pic_class{
+  width: "100%";
 }
 
 .dropdownBar:hover .dropdownBarContent{
@@ -895,7 +900,6 @@ button:hover {
     font-size: 17px;
     font-family: 'Garamond', Times, serif;
     font-weight: 700;
-    
 }
 
 .t{
@@ -908,7 +912,6 @@ button:hover {
     font-weight: 900;
     font-size: 16px;
     text-align: left;
-
 }
 
 .center-cropped {

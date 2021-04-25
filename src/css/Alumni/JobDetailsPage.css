@@ -17,3 +17,19 @@ body {
     text-decoration: none;
     color: #7A7A7A;
 }
+
+.back:hover{
+    text-decoration: none;
+}
+
+.bi-box-arrow-left{
+   vertical-align: -0.7rem;
+   font-size:23px;
+   font-style: normal;
+   color: black;
+}
+
+.back {
+    text-decoration: none;
+    color:black;
+}
