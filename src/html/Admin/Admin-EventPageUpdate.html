@@ -41,7 +41,7 @@
           <div class="form-group">
             <label for="formGroupExampleInput2">Schedule :</label> <br>
             <input type=date value="2021-04-04" id="date"> &nbsp;
-            <input type=time value="20:00"> to <input type=time value="22:00">
+            <input type=time value="20:00"> to <input type=time value="${getReadableTime()">
           </div>
 
           <div class="form-group">
@@ -87,11 +87,13 @@
         </div>
 
         -->
+        
         </div>
         <a button type="button" class="btn btn-danger float-right ml-2" onclick="update_array()" href="Admin-EventPage.html">Save</a>
         <!-- Admin-EventPage.html -->
         <a button type="button" class="btn btn-secondary float-right" href="Admin-EventPage.html">Cancel</a>
       </form>
+      <script type="text/javascript" src="../../js/utility.js"></script>
       <script type="module" src="../../js/Admin/Admin-EventPageUpdate.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

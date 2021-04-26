@@ -13,7 +13,7 @@ window.readURL = function (input) {
 }
 
 
-import dummyResponse from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 window.add_element_to_array = function() {
     console.log("add element")
     // var table = document.getElementsByClassName(
@@ -22,8 +22,8 @@ window.add_element_to_array = function() {
 
   var title = document.getElementById("title").value;
   var date = document.getElementById("date").value;
-  var stime = document.getElementById("startTime").value;
-  var etime = document.getElementById("endTime").value;
+  var time = document.getElementById("time").value;
+  // var etime = document.getElementById("endTime").value;
   var description = document.getElementById("description").value;
   var location = document.getElementById("location").value;
   var image = document.getElementById("prevImage").value;
@@ -32,7 +32,8 @@ window.add_element_to_array = function() {
   var eventId="E-"+ newId
   var adminId="ad-2"; //need connect to localstorege ltr
   // var d = new Date(dummyResponse.Event[i].dateTime);
-var newEvent={eventId:eventId,
+var newEvent={
+  eventId:eventId,
   adminId: adminId,
   title: title,
   dateTime: new Date(), //change
@@ -41,7 +42,7 @@ var newEvent={eventId:eventId,
   location: location
 }
 dummyResponse.Event.splice(endIndex,0,newEvent)
-
+updateDummyData(dummyResponse)
   console.log(dummyResponse)
   // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
   // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);

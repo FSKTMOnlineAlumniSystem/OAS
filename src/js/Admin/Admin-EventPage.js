@@ -1,4 +1,5 @@
 import {dummyResponse, updateDummyData} from "../dummydata.js";
+const imgPath = "/Assets/imgs/";
 console.log("link js");
 // model
 // $('#myModal').on('shown.bs.modal', function () {
@@ -89,12 +90,11 @@ const loadEventList = (pageIndex) => {
     i++
   ) {
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
-    var d = new Date(dummyResponse.Event[i].dateTime);
-    // console.log(dummyResponse.Event[i].dateTime)
-    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-    // console.log(`${da}, ${mo} ${ye}`);
+    // var d = new Date(dummyResponse.Event[i].dateTime);
+    // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+    // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+    
     // d.toLocaleDateString('en-GB')
 
 
@@ -110,8 +110,8 @@ const loadEventList = (pageIndex) => {
                       <label class="custom-control-label" for="Boxes${i}"></label>
                     </div>
                   </td>
-                 <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
-                 <div style="font-weight: 200; font-size: 14px">${d.toLocaleTimeString()}</div>
+                 <td style="font-weight: 400; font-size: 18px">${getReadableDate(dummyResponse.Event[i].dateTime)}
+                 <div style="font-weight: 200; font-size: 14px">${getReadableTime(dummyResponse.Event[i].dateTime)}</div>
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                  <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
@@ -205,6 +205,7 @@ window.DeleteRowFunction = function (o) {
   console.log("the id is:" + findId)
   dummyResponse.Event.splice(findId, 1)
   console.log(dummyResponse.Event)
+  updateDummyData(dummyResponse)
   // var p = o.parentNode.parentNode.parentNode;
   // console.log(p)
   // p.parentNode.removeChild(p);
@@ -217,6 +218,7 @@ window.DeleteCheckedRow = function () {
       dummyResponse.Event.splice(i, 1)
     }
   }
+  updateDummyData(dummyResponse)
   loadEventList(pageIndex)
 }
 // window.addRow = function () {
@@ -239,7 +241,7 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       </button>
                     </div>
                     <div class="modal-body" >
-                      <img src="/Assets/imgs/${dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <img src="${imgPath+dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
                       <br>
                       <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
                       ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 

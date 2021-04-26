@@ -11,11 +11,18 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-import dummyResponse from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
+const imgPath = "/Assets/imgs/";
+
 var i = localStorage.getItem("updateId")
 var d = new Date(dummyResponse.Event[i].dateTime);
-var todayDate = new Date().toISOString().slice(0, 10);
-console.log(todayDate);
+var todayDate = d.toISOString().slice(0, 10);
+console.log("date"+todayDate);
+
+const minute = d.getMinutes();
+let hour = d.getHours();
+
+
 document.getElementById("updateForm").innerHTML=`
 <div class="form-group">
             <label for="formGroupExampleInput">Event Title :</label>
@@ -26,24 +33,24 @@ document.getElementById("updateForm").innerHTML=`
           <div class="form-group">
             <label for="formGroupExampleInput2">Schedule :</label> <br>
             <input type=date value="${todayDate}" id="date"> &nbsp;
-            <input type=time value="${d.toLocaleTimeString()}"> to <input type=time value="22:00">
+            <input type=time value="${hour}:${minute}" id="time"> 
           </div>
 
           <div class="form-group">
-            <label for="formGroupExampleInput2" id="description">Description :</label>
-            <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
+            <label for="formGroupExampleInput2" >Description :</label>
+            <textarea type="text" class="form-control rounded-0" id="description"
               placeholder="Enter new schedule" value="${dummyResponse.Event[i].description}" rows="5" ;>${dummyResponse.Event[i].description}</textarea>
           </div>
       
           <div class="form-group">
-            <label for="formGroupExampleInput2" id="location">Location :</label>
-            <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
+            <label for="formGroupExampleInput2" >Location :</label>
+            <input type="text " class="form-control rounded-0 w-75 p-3" id="location"
               placeholder="Enter new location" value="${dummyResponse.Event[i].location}">
           </div>
 
           <div>
             <label for="phfile">Image:</label>
-            <img id="prevImage" src="${dummyResponse.Event[i].imageId}" alt="update Image" width="150" length="150">
+            <img id="prevImage" src="${imgPath+dummyResponse.Event[i].imageId}" alt="update Image" width="150" length="150">
             <input type="file" id="phfile" onchange="readURL(this)">
           </div>
 
@@ -54,8 +61,23 @@ window.update_array = function () {
     console.log("i=" + i)
     console.log("update element")
     var title = document.getElementById("title").value;
-    // var date = document.getElementById("date").value;
-    // var stime = document.getElementById("startTime").value;
+    var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
+console.log(date)
+    var year = date.split("-")[0];
+    var month =  date.split("-")[1];
+    var day = date.split("-")[2];
+    var hours = time.split(":")[0];
+    var min = time.split(":")[1];
+    const newDate = new Date(year, month, day, hours, min, "0");
+    // console.log(year)
+    // console.log(month)
+    // console.log(day)
+    // console.log(hours)
+    // console.log(min)
+    // console.log("new date: "+newDate)
+    // const tryDate = new Date(2001,9,12,8,30,0);
+    // console.log("try date: "+ tryDate)
     // var etime = document.getElementById("endTime").value;
     var description = document.getElementById("description").value;
     var location = document.getElementById("location").value;
@@ -68,11 +90,12 @@ window.update_array = function () {
         eventId: eventId,
         adminId: adminId,
         title: title,
-        dateTime: new Date(), //change
+        dateTime: newDate, //change
         description: description,
         imageId: image,
         location: location
     }
     dummyResponse.Event.splice(i, 1, newEvent)
+    updateDummyData(dummyResponse)
     console.log(dummyResponse)
 }
