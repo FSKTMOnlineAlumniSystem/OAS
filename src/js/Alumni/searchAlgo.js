@@ -1,9 +1,16 @@
-import dummyResponse from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+import loadAlumniList from "./alumniPage.js";
 
+var result = null;
 document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
-    searching(e);
+    result = searching(e);
+    if (!result) {
+      loadAlumniList(0, result);
+    } else {
+      loadAlumniList(0, dummyResponse.Alumni);
+    }
   });
 
 function searching(e) {
@@ -18,9 +25,8 @@ function searching(e) {
   console.log(choose);
 
   if (choose == "Alumni") {
-    location.href = "alumniPage.html";
     console.log("searching is in");
-    const result = dummyResponse.Alumni.filter(function (Alumni) {
+    result = dummyResponse.Alumni.filter(function (Alumni) {
       var match = false;
       if (Alumni.name.toLowerCase().includes(searchQuery) === true) {
         console.log("searching name");
@@ -43,10 +49,9 @@ function searching(e) {
         return match;
       }
     });
-    console.log(result);
   } else if (choose == "Event") {
     console.log("searching is in");
-    const result = dummyResponse.Event.filter(function (Event) {
+    result = dummyResponse.Event.filter(function (Event) {
       var match = false;
       if (Event.title.toLowerCase().includes(searchQuery) === true) {
         console.log("searching title");
@@ -68,7 +73,7 @@ function searching(e) {
     console.log(result);
   } else if (choose == "Jobs") {
     console.log("searching is in");
-    const result = dummyResponse.Job.filter(function (Job) {
+    result = dummyResponse.Job.filter(function (Job) {
       var match = false;
       if (Job.title.toLowerCase().includes(searchQuery) === true) {
         console.log("searching title");
@@ -92,8 +97,10 @@ function searching(e) {
       }
       return match;
     });
-    console.log(result);
   }
+  // console.log(result);
+  if (result.length == 0) {
+    alert("Sorry, we cannot match any result for your search");
+  }
+  return result;
 }
-
-export default result;
