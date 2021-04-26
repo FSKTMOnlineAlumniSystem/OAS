@@ -9,7 +9,19 @@ document
     if (result) {
       loadAlumniList(0, result);
     } else {
-      loadAlumniList(0, dummyResponse.Alumni);
+      switch (localStorage.getItem("choose")) {
+        case "Alumni":
+          loadAlumniList(0, dummyResponse.Alumni);
+          break;
+        case "Event":
+          // code block
+          break;
+        case "Jobs":
+          // code block
+          break;
+        default:
+        // code block
+      }
     }
   });
 
@@ -23,6 +35,7 @@ function searching(e) {
   var e = document.getElementById("exampleFormControlSelect1");
   var choose = e.options[e.selectedIndex].text;
   console.log(choose);
+  localStorage.setItem("choose", JSON.stringify(choose));
 
   if (choose == "Alumni") {
     console.log("searching is in");

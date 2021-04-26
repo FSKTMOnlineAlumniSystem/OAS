@@ -115,4 +115,9 @@ window.previousPage = function () {
   loadAlumniList(pageIndex, outputList);
 };
 
+window.clickProfile = function (profileClicked) {
+  localStorage.setItem("alumniprofile", JSON.stringify(profileClicked));
+  window.open("AlumniProfilePage.html");
+};
+
 export default loadAlumniList;
