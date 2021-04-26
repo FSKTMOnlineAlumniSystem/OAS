@@ -6,7 +6,7 @@ document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
     result = searching(e);
-    if (!result) {
+    if (result) {
       loadAlumniList(0, result);
     } else {
       loadAlumniList(0, dummyResponse.Alumni);
