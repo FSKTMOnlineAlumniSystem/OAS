@@ -1,3 +1,5 @@
+import { dummyResponse } from '../dummydata.js';
+
 const upcomingEventSection = document.getElementById('upcoming-event-section');
 const yourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
 
@@ -11,7 +13,7 @@ console.log(notMyEvent);
 
 // build html nodes based on myEvent
 myEvent.forEach(event => {
-  eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
+  const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
   const { title, dateTime, imageId } = eventDetails;
   // console.log(`${title} ${dateTime} ${imageId}`);
   
@@ -52,7 +54,7 @@ myEvent.forEach(event => {
 });
 // build html nodes based on notMyEvent
 notMyEvent.forEach(event => {
-  eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
+  const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
   const { title, dateTime, imageId } = eventDetails;
   
   const cardDiv = document.createElement('div');
