@@ -1,3 +1,12 @@
+/**
+ * Load this script after loading addHeader.js and addNavFooter.js
+ * The search bar will first trigger by Enter or Click event performed by user
+ * Every time user perform search behavior, the value in localStorage changed
+ * If user reload the page, this script found there's value in localStorage
+ * it will load that value which is not so good 
+ * (Google store search query in url)
+ */
+
 const searchBarSection = document.createElement('div');
 searchBarSection.setAttribute('class', 'searchBarBG');
 searchBarSection.innerHTML = `<form class="search-form">
@@ -6,19 +15,20 @@ searchBarSection.innerHTML = `<form class="search-form">
     <div class="col-lg-2 col-md-2 col-sm-2 p-0"></div>
 
     <div class="col-lg-2 col-md-2 col-sm-12 p-0">
-      <select class="form-controlSearch" id="exampleFormControlSelect1">
-        <option selected>Event</option>
+      <select
+        class="form-controlSearch"
+        id="exampleFormControlSelect1"
+      >
         <option>Alumni</option>
+        <option>Event</option>
         <option>Jobs</option>
       </select>
     </div>
+
     <div class="col-lg-6 col-md-5 col-sm-12 p-0">
-      <div
-        class="input-group"
-        style="position: unset; top: 0; width: 100%; left: 0"
-      >
+      <div class="input-group">
         <input
-          type="text"
+          type="search"
           placeholder="Search..."
           class="form-control"
           id="search"
@@ -29,7 +39,11 @@ searchBarSection.innerHTML = `<form class="search-form">
           "
         />
         <div class="input-group-append">
-          <button type="submit" class="btn btn-secondary">
+          <button
+            type="submit"
+            id="search-button"
+            class="btn btn-secondary"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
