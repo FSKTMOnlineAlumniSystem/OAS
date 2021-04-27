@@ -47,5 +47,7 @@ const iconClassName = {
   'settingIcon':'fas fa-cog',
   'userIcon':'fas fa-user-circle',
   'homeIcon': 'fas fa-home',
-  'trashIcon': 'fas fa-trash'
+  'trashIcon': 'fas fa-trash',
+  'clockIcon': 'fa fa-clock-o',
+  'logOutIcon': 'fas fa-sign-out-alt',
 }

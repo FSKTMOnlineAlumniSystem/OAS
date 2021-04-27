@@ -17,7 +17,8 @@ body,
   --dark-purple: rgb(134, 75, 189);
   --light-purple: #c9b3cd;
   --light-gray: rgb(223, 223, 223);
-  --dark-gray: rgb(141, 141, 141);
+  --dark-gray: #3A3A3A;
+  /* --dark-gray: rgb(141, 141, 141); */
 }
 
 .custom-dark-purple {
@@ -32,8 +33,9 @@ body,
   background-color: var(--light-gray);
 }
 .custom-dark-gray {
-  background-color: var(--light-gray);
+  background-color: var(--dark-gray);
 }
+
 .header--gradient{
   background: linear-gradient(to left, #6E48AA, #cd8ee6);
 }
@@ -113,6 +115,7 @@ a.nostyle:visited {
   cursor: pointer;
 }
 .panel__icon--hover-dark-bg:hover{
+  /* color: var(--dark-purple); */
   color: var(--dark-gray);
   cursor: pointer;
 }

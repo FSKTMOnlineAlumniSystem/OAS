@@ -224,28 +224,28 @@ let dummyResponse = {
             "eventId": "E-1",
             "viewedByAlumni": "true",
             "dateTime": "2021-04-14T15:53:53+00:00",
-            "notificationClosedByAlumni": "true"
+            "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "true",
+            "viewedByAlumni": "false",
             "dateTime": "2021-04-15T15:53:53+00:00",
-            "notificationClosedByAlumni": "true"
+            "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
             "viewedByAlumni": "true",
             "dateTime": "2021-04-16T15:53:53+00:00",
-            "notificationClosedByAlumni": "true"
+            "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-4",
             "viewedByAlumni": "false",
             "dateTime": "2021-04-24T15:53:53+00:00",
-            "notificationClosedByAlumni": "true"
+            "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",

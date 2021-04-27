@@ -1,5 +1,5 @@
-import dummyResponse from "../dummydata.js";
-
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+const imgPath = "../../../Assets/imgs/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
 const alumniProfile = document.getElementById("main-body");
@@ -8,6 +8,13 @@ const loadAlumniProfile = (index) => {
   alumniProfile.innerHTML = "";
   alumniProfile.innerHTML = `
     <div id="main-body" class="container my-5">
+    <div>
+        <a
+          href="../../html/Alumni/AlumniPage.html"
+          class="btn btn-link float-left back pt-1"
+          ><i class="fas fa-chevron-left fa-2x"></i
+        ></a>
+    </div>
     <div class="row justify-content-between">
         <h2>Alumni Profile</h2>
     </div>
@@ -20,7 +27,7 @@ const loadAlumniProfile = (index) => {
             >
             <img
                 id="profilePicture"
-                src="../../../Assets/imgs/${dummyResponse.Alumni[i].imageId}"
+                src="${imgPath}${dummyResponse.Alumni[i].imageId}"
                 alt="Profile Picture"
                 class="img-fluid"
             />
