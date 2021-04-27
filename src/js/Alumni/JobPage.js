@@ -1,20 +1,18 @@
-import dummyResponse from '../dummydata.js';
+import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 const imgPath = "/Assets/imgs/";
 let pageIndex = 0;
 
 
-let myJob = JSON.parse(localStorage.getItem("job"));
+// let myJob = JSON.parse(localStorage.getItem("job"));
 
-const myJobLength = Object.values(myJob).flat().length;
-console.log(myJob);
-
-console.log(myJobLength);
+// const myJobLength = Object.values(dummyResponse.Job).flat().length;
+// console.log(myJobLength);
 
 
 
 // document.getElementById("pageIndex").innerHTML = "";
-for(let i=1; i<=(Math.ceil(myJobLength/9)); i++){
+for(let i=1; i<=(Math.ceil(dummyResponse.Job.length/9)); i++){
     console.log('start')
     document.getElementById("pageIndex").innerHTML += 
     `<li class="page-item"><button class="page-link">`+i+`</button></li>`;
@@ -32,11 +30,9 @@ const loadJobList = (pageIndex) => {
     document.getElementById('jobList').innerHTML = "";
     let jobStartIndex = pageIndex * 9;
     let jobEndIndex = jobStartIndex + 9;
-    console.log(pageIndex)
-    console.log(jobStartIndex)
-    console.log(jobEndIndex)
+   
 
-    if(jobEndIndex>=myJobLength){
+    if(jobEndIndex>=dummyResponse.Job.length){
         document.getElementById("nextPage").disabled = true;
         console.log('here')
     }
@@ -52,29 +48,29 @@ const loadJobList = (pageIndex) => {
     }
     // document.getElementById('jobList').innerHTML += '<div class="card-desk">' +'<div class="row row-cols-4">'
     
-    for (let i = jobStartIndex; i < jobEndIndex && i < myJobLength; i++) {
+    for (let i = jobStartIndex; i < jobEndIndex && i < dummyResponse.Job.length; i++) {
 
-        console.log(myJob[i].imageId)
-        console.log(myJob[i].imgaeUrl)
+        console.log(dummyResponse.Job[i].imageId)
+        console.log(dummyResponse.Job[i].imgaeUrl)
         
-        if(myJob[i].imageId == null){
+        if(dummyResponse.Job[i].imageId == null){
             document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
         <a href="../../html/Alumni/JobDetailsPage.html">
         <div class="card h-100" data-name=${myJob[i].jobId}>
         <div class="w-100">
-            <img src="${myJob[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
+            <img src="${dummyResponse.Job[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
         </div>
         <div class="card-body">
-        <h5 class="card-title">${myJob[i].title}</h5>
+        <h5 class="card-title">${dummyResponse.Job[i].title}</h5>
         <p class="card-text">
         <div class="row cards">
-        <div class="col-1"> <img src="../../../Assets/imgs/locationIcon.png" alt="location" width="30" height="30"></div>
-        <div class="col-7">${myJob[i].location}</div>
+        <div class="col-1"><i class="fas fa-map-marked-alt fa-lg" alt="location" width="30" height="50"></i></div>
+        <div class="col-7">${dummyResponse.Job[i].location}</div>
         </div>
         <div class="row cards">
-        <div class="col-1">  <img src="../../../Assets/imgs/salaryIcon.png" alt="time" height="24" width="24"></div>
-        <div class="col-7">${myJob[i].salary}</div>
+        <div class="col-1">  <img src="#" alt="time" height="24" width="24"></div>
+        <div class="col-7">RM${dummyResponse.Job[i].salary}</div>
         </div>
         </p>
         </div></div></a></div>`;
@@ -90,26 +86,29 @@ const loadJobList = (pageIndex) => {
         document.getElementById('jobList').innerHTML += 
         `<div class="col mb-4">
         <a href="../../html/Alumni/JobDetailsPage.html">
-        <div class="card h-100" data-name=${myJob[i].jobId}>
+        <div class="card h-100" data-name=${dummyResponse.Job[i].jobId}>
         <div class="w-100">
-            <img class="w-100" src="../../../Assets/imgs/${myJob[i].imageId}" class="card-img-top" alt="jobPhoto">
+            <img class="w-100" src="../../../Assets/imgs/${dummyResponse.Job[i].imageId}" class="card-img-top" alt="jobPhoto">
         </div>
         <div class="card-body">
-        <h5 class="card-title">${myJob[i].title}</h5>
+        <h5 class="card-title">${dummyResponse.Job[i].title}</h5>
         <p class="card-text">
         <div class="row cards">
-        <div class="col-1"> <img src="../../../Assets/imgs/locationIcon.png" alt="location" width="30" height="30"></div>
-        <div class="col-7">${myJob[i].location}</div>
+        <div class="col-1"> <i class="fas fa-map-marked-alt fa-lg" alt="location" width="30" height="50"></i></div>
+        <div class="col-7">${dummyResponse.Job[i].location}</div>
         </div>
         <div class="row cards">
         <div class="col-1">  <img src="../../../Assets/imgs/salaryIcon.png" alt="time" height="24" width="24"></div>
-        <div class="col-7">${myJob[i].salary}</div>
+        <div class="col-7">RM${dummyResponse.Job[i].salary}</div>
         </div>
         </p>
         </div></div></a></div>`;}
 
     }
+
 }
+
+// iconClassName.locationIcon
 
 
 // const nextPage = () => {
@@ -118,15 +117,14 @@ const loadJobList = (pageIndex) => {
 // }
 
 //CLICK
-$("#jobList").on("click", ".card ", function () {
-    
+$("#jobList").on("click", ".card ", function () {  
 var jobName = $(this).attr("data-name");
 var myJobList = [];
 console.log(jobName)
-for(let i=0; i <myJobLength; i++){
-    if(myJob[i].jobId == jobName){
+for(let i=0; i <dummyResponse.Job.length; i++){
+    if(dummyResponse.Job[i].jobId == jobName){
         console.log('click')
-        myJobList.push(myJob[i]);
+        myJobList.push(dummyResponse.Job[i]);
         localStorage.setItem('JobList',JSON.stringify(myJobList)); 
         break;
     }
@@ -157,5 +155,3 @@ document.getElementById('previousPage').addEventListener("click", function(){
 });
 
 loadJobList(pageIndex);
-
-
