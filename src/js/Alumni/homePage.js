@@ -14,65 +14,134 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
 
     console.log(dummyResponse.Event[i].imageId);
 
+    const card_event = document.createElement('div');
+    card_event.setAttribute('class','swiper-slide pl-1 pr-1');
 
-    document.getElementById('event').innerHTML += `
-  <div class="swiper-slide pl-1 pr-1" >
-  <div class="card h-100">
-    <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
-      <img class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[i].imageId}" alt="Card image cap">
-      </div>
-      <div class="card-body">
-          <h5 class="card-title text-left">${dummyResponse.Event[i].title}</h5>
-          <div class="card-text">
+    card_event.innerHTML = `
+
+
+
+    <div class="card h-100" id="${dummyResponse.Event[i].eventId}">
+        <a href=" /src/html/Alumni/EventDetailsPage.html" target="_self"  class="jump">
+            <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
+        
+                <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[i].imageId}" alt="Card image cap">
+            
+            </div>
+
+        </a>
+        <div class="card-body">
+            <h5 class="card-title text-left">${dummyResponse.Event[i].title}</h5>
+            <div class="card-text">
  
-              <div class="row">
-                  <div class="col-2 d-flex flex-column">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                <div class="row">
+                    <div class="col-2 d-flex flex-column">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                           fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                          <path
+                            <path
                               d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                      </svg>
-                  </div>
-                  <div class="col-10 d-flex flex-column">
-                      <span class="t">${`${da}, ${mo} ${ye}`}</span>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-2 d-flex flex-column">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                          fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                          <path
-                              d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                          <path
-                              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                      </svg>
-                  </div>
-                  <div class="col-10 d-flex flex-column">
-                      <span class="t">${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-2 d-flex flex-column">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                          fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                          <path
+                        </svg>
+                     </div>
+                    <div class="col-10 d-flex flex-column">
+                        <span class="t">${`${da}, ${mo} ${ye}`}</span>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-2 d-flex flex-column">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path
+                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                <path
+                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                            </svg>
+                        </div>
+
+                        <div class="col-10 d-flex flex-column">
+                            <span class="t">${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-2 d-flex flex-column">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path
                               d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                          <path
+                            <path
                               d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                      </svg>
-                  </div>
-                  <div class="col-10 d-flex flex-column">
-                      <span class="t">${dummyResponse.Event[i].location}</span>
-                  </div>
-              </div>
+                            </svg>
+                    </div>
+                    <div class="col-10 d-flex flex-column">
+                        <span class="t">${dummyResponse.Event[i].location}</span>
+                    </div>
+                </div>
  
-          </div>
-          <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
+            </div>
+                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
                   ago</small></p>
-      </div>
-  </div>
-</div>`;
+         </div>
+    </div>
+  `;
+
+    // var eventt = document.getElementById("cardd");
+
+    // eventt.addEventListener('click', (evt) => {
+
+    //     let eventname = $(this).attr("data-name");
+    //     console.log(eventname);
+    //     localStorage.setItem('eventId', JSON.stringify(eventname));
+
+
+    // });
+
+   const E = document.getElementById('event');
+    console.log(E);
+
+    const evtHandler = evt => {
+        console.log(`set eventId to ${dummyResponse.Event[i].eventId}`);
+        localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
+    };
+
+    console.log(dummyResponse.Event[i].eventId);
+    card_event.querySelector('#' + dummyResponse.Event[i].eventId).addEventListener('click', evtHandler);
+
+
+    E.appendChild(card_event);
+
 }
+
+
+
+// $("a").on("click",".card",function(){
+
+//     localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
+
+// });
+
+
+
+
+// var eventt = document.getElementById("cardd");
+
+// eventt.addEventListener('click', (evt) => {
+
+//     let eventname = $(this).attr("data-name");
+//     console.log(eventname);
+//     localStorage.setItem('eventId', JSON.stringify(eventname));
+
+
+// });
+
+
+
+// const evtHandler = evt => {
+//     // console.log(`set eventId to ${dummyResponse.Event[i].eventId}`);
+//     localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
+//   };
+
+// var C = document.getElementById('jump');
+// document.querySelector(dummyResponse.Event[i].eventId).addEventListener('click', evtHandler);
+
 
 
 
