@@ -70,18 +70,14 @@ console.log(date)
     var hours = time.split(":")[0];
     var min = time.split(":")[1];
     const newDate = new Date(year, month, day, hours, min, "0");
-    // console.log(year)
-    // console.log(month)
-    // console.log(day)
-    // console.log(hours)
-    // console.log(min)
-    // console.log("new date: "+newDate)
-    // const tryDate = new Date(2001,9,12,8,30,0);
-    // console.log("try date: "+ tryDate)
-    // var etime = document.getElementById("endTime").value;
+
     var description = document.getElementById("description").value;
     var location = document.getElementById("location").value;
-    var image = document.getElementById("prevImage").value;
+    var image = document.getElementById("prevImage").src;
+  //   console.log(image)
+  //   var imageArr=image.split("/");
+  // var imageName=imageArr[imageArr.length-1];
+  // console.log(imageName);
     var eventId = dummyResponse.Event[i].eventId
     var adminId = dummyResponse.Event[i].adminId 
     //need connect to localstorege ltr
@@ -92,7 +88,7 @@ console.log(date)
         title: title,
         dateTime: newDate, //change
         description: description,
-        imageId: image,
+        imageId: image, 
         location: location
     }
     dummyResponse.Event.splice(i, 1, newEvent)

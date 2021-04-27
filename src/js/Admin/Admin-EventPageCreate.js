@@ -12,7 +12,6 @@ window.readURL = function (input) {
     }
 }
 
-
 import {dummyResponse, updateDummyData} from "../dummydata.js";
 window.add_element_to_array = function() {
     console.log("add element")
@@ -23,7 +22,13 @@ window.add_element_to_array = function() {
   var title = document.getElementById("title").value;
   var description = document.getElementById("description").value;
   var location = document.getElementById("location").value;
-  var image = document.getElementById("prevImage").value;
+  var image = document.getElementById("prevImage").src;
+
+  console.log(image);
+  var imageArr=image.split("/");
+  var imageName=imageArr[imageArr.length-1];
+  console.log("image name: "+imageName);
+
   var endIndex = dummyResponse.Event.length;
   var newId=endIndex+1
   var eventId="E-"+ newId
@@ -46,7 +51,7 @@ var newEvent={
   title: title,
   dateTime: newDate, 
   description: description,
-  imageId: image,
+  imageId: imageName,
   location: location
 }
 dummyResponse.Event.splice(endIndex,0,newEvent)
