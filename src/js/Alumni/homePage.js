@@ -63,14 +63,14 @@ for (let i = 0; i < 6; i++) {
     card_event.innerHTML = `
 
     <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
-        <a href=" /src/html/Alumni/EventDetailsPage.html" target="_self"  class="jump">
+       
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
         
                 <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
             
             </div>
 
-        </a>
+        
         <div class="card-body">
             <h5 class="card-title text-left">${dummyResponse.Event[latest_1[i]].title}</h5>
             <div class="card-text">
@@ -120,6 +120,7 @@ for (let i = 0; i < 6; i++) {
             </div>
                    
          </div>
+       
     </div>
   `;
 
@@ -130,6 +131,7 @@ for (let i = 0; i < 6; i++) {
     const evtHandler = evt => {
         // console.log(`set eventId to ${dummyResponse.Event[latest_1[i]].eventId}`);
         localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
+        location.href = "/src/html/Alumni/EventDetailsPage.html";
     };
 
     console.log(dummyResponse.Event[latest_1[i]].eventId);
@@ -154,12 +156,12 @@ for (let i = 0; i < 6; i++) {
     card_alumni.innerHTML = `
                      
                             <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
-                                <a href="/src/html/Alumni/AlumniProfilePage.html" target="_self"  class="jump">
+                               
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
                                     <img class="card-img-top w-100" src="/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
-                                </a>
+                                
                                 <div class="card-body">
                                     <div class="row">
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
@@ -175,6 +177,7 @@ for (let i = 0; i < 6; i++) {
                                     </p>
                                     
                                 </div>
+                             
                             </div>
                        
 `
@@ -191,6 +194,7 @@ const A = document.getElementById('alumni');
         // console.log(s[3]);
         // console.log(s);
         localStorage.setItem('alumniprofile', s[3]);
+        location.href = "/src/html/Alumni/AlumniProfilePage.html";
         
     };
 
@@ -260,11 +264,10 @@ for (let i = 0; i < 2; i++) {
     card_job.innerHTML = `
  
         <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-        <a class="d-contents" href="/src/html/Alumni/JobDetailsPage.html">
+      
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" style="aspect-ratio: 2/1; overflow: hidden;">
-        </a>
-   
+            width="100%" class="job_image" >
+     
     
     `
 
@@ -279,6 +282,7 @@ for (let i = 0; i < 2; i++) {
         myJobList_1.push(dummyResponse.Job[latest[i]]);
         // console.log(myJobList_1);
         localStorage.setItem('JobList', JSON.stringify(myJobList_1)); 
+        location.href = "/src/html/Alumni/JobDetailsPage.html";
         
     };
 
@@ -302,7 +306,7 @@ for (let i = 2; i < 4; i++) {
         <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
         <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" style="aspect-ratio: 2/1; overflow: hidden;">
+            width="100%" class="job_image" >
         </a>
    
     

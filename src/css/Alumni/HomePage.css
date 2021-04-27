@@ -475,7 +475,7 @@ border-radius: 15px;
 
 .d-contents{
   display: contents;
- 
+  text-decoration: none;
 }
 
 .pic_class{
@@ -543,6 +543,14 @@ background-color: white;
   font-size: 18px;
 }
 
+.card{
+  cursor: pointer;
+}
+
+.card:hover{
+  transform: scale(1.05);
+}
+
 .card-text{
   text-align:left;
   font-size: 16px;
@@ -552,6 +560,17 @@ background-color: white;
   font-size: 17px;
   font-family: 'Garamond', Times, serif;
   font-weight: 700;
+}
+
+.job_image{
+  cursor: pointer;
+  aspect-ratio: 2/1; 
+  /* overflow: hidden; */
+}
+
+.job_image:hover{
+  opacity: 0.6;
+ 
 }
 
 .t{
@@ -680,6 +699,7 @@ font-size: 18px;
 padding: 14px 25px;
 color: #4A6F89;
 background-color: #F7C600;
+text-decoration: none;
 /* border-radius: 30px; */
 /* left: 46%;
 bottom: 15px; */

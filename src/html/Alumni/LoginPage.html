@@ -123,7 +123,7 @@
                     </div>
  
                     <div class="modal-footer">
-                        <button type="submit" class="btn signinbtn">Submit</button>
+                        <button type="submit" class="btn btn-outline-secondary signinbtn">Submit</button>
                     </div>
  
                 </form>
@@ -147,7 +147,24 @@
                 <form id="form">
                     <div class="modal-body">
  
+                        <div class="mb-3 row">
+                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
+                                <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
+                                    <div class="w-50 position-relative">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="" class="picture-src"
+                                                    id="wizardPicturePreview" title="">
+                                                <input type="file" id="wizard-picture">
+                                            </div>
+                                            <h6 id="choosePictureDescription">Choose Picture</h6>
+                                        </div>
+                                </div>
  
+                            </div>
+                        </div>
+                        
+                        
                         <div class="mb-3 row">
  
                             <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
@@ -155,7 +172,7 @@
  
                                 <input type="text" class="form-control" id="FirstNameID">
                                 <small class="invalid-feedback">Please provide a valid First Name.</small>
-                                <small class="valid-feedback">Hi!</small>
+                                <small class="valid-feedback">Okay!</small>
  
  
  
@@ -169,7 +186,7 @@
                                 <input type="text" class="form-control" id="LastNameID">
  
                                 <small class="invalid-feedback">Please provide a valid Last Name.</small>
-                                <small class="valid-feedback">Hi There!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
@@ -185,7 +202,7 @@
                                 </select>
  
                                 <small class="invalid-feedback">Select a Gender</small>
-                                <small class="valid-feedback">Nice!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
@@ -220,7 +237,7 @@
                                 </select>
  
                                 <small class="invalid-feedback">Select a batch</small>
-                                <small class="valid-feedback">Welcome!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
@@ -230,7 +247,7 @@
  
                                 <input type="text" class="form-control" id="Email">
                                 <small class="invalid-feedback">Please provide a valid Email.</small>
-                                <small class="valid-feedback">Good!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
@@ -241,26 +258,11 @@
                                 <input type="tel" class="form-control" id="IC">
  
                                 <small class="invalid-feedback">Please provide a valid IC.</small>
-                                <small class="valid-feedback">Thanks!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
-                                <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
-                                    <div class="w-50 position-relative">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
-                                                    id="wizardPicturePreview" title="">
-                                                <input type="file" id="wizard-picture">
-                                            </div>
-                                            <h6 id="choosePictureDescription">Choose Picture</h6>
-                                        </div>
-                                </div>
- 
-                            </div>
-                        </div>
+                        
                         <div class="mb-3 row">
                             <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
                             <div class="col-sm-8 mr-1">
@@ -287,15 +289,16 @@
  
                                 <small class="invalid-feedback">Please enter only 5-20 characters available for
                                     password.</small>
-                                <small class="valid-feedback">Perfect!</small>
+                                <small class="valid-feedback">Okay!</small>
  
                             </div>
                         </div>
+                        
  
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn signinbtn">Sign Up</button>
+                        <button type="submit" class="btn btn-outline-secondary signinbtn">Sign Up</button>
                     </div>
  
                 </form>
