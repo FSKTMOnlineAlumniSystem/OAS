@@ -18,17 +18,17 @@ body {
     color: #7A7A7A;
 }
 
-.bi-box-arrow-left{
+/* .bi-box-arrow-left{
     font-size: large;
     justify-content: center;
 }
 
 #head{
     padding-left: 10px;;
-}
+} */
 
 
-.back:hover{
+/* .back:hover{
     text-decoration: none;
 }
 
@@ -37,9 +37,10 @@ body {
    font-size:23px;
    font-style: normal;
    color: black;
-}
+}*/
 
 .back {
     text-decoration: none;
     color:black;
-}
+} 
+
