@@ -40,7 +40,7 @@ ${isAlumni?
 
 <div id='notification-panel' class="profile-panel--display-none"></div>`
 
-body.insertBefore(header, nav);
+body.insertBefore(header, document.getElementById('main-body'));
 
 const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');
