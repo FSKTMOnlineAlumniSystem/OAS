@@ -21,22 +21,30 @@ window.add_element_to_array = function() {
     // )[0];
 
   var title = document.getElementById("title").value;
-  var date = document.getElementById("date").value;
-  var time = document.getElementById("time").value;
-  // var etime = document.getElementById("endTime").value;
   var description = document.getElementById("description").value;
   var location = document.getElementById("location").value;
   var image = document.getElementById("prevImage").value;
   var endIndex = dummyResponse.Event.length;
   var newId=endIndex+1
   var eventId="E-"+ newId
-  var adminId="ad-2"; //need connect to localstorege ltr
+  var adminId=localStorage.getItem("SignedInAlumniId"); //need connect to localstorege ltr
   // var d = new Date(dummyResponse.Event[i].dateTime);
+  var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
+console.log(date)
+    var year = date.split("-")[0];
+    var month =  date.split("-")[1];
+    var day = date.split("-")[2];
+    var hours = time.split(":")[0];
+    var min = time.split(":")[1];
+    const newDate = new Date(year, month, day, hours, min, "0");
+console.log(date)
+
 var newEvent={
   eventId:eventId,
   adminId: adminId,
   title: title,
-  dateTime: new Date(), //change
+  dateTime: newDate, 
   description: description,
   imageId: image,
   location: location
