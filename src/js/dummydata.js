@@ -167,7 +167,7 @@ let dummyResponse = {
             "eventId": "E-1",
             "adminId": "AD-1",
             "title": "Constraint programming Workshop",
-            "dateTime": "2021-04-04T15:53:53+00:00",
+            "dateTime": "2021-04-04T15:00:53+00:00",
             "description": "Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.\n\nThrough this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.",
             "imageId": "E-1.png",
             "location": "FSKTM, MM2"
@@ -176,7 +176,7 @@ let dummyResponse = {
             "eventId": "E-2",
             "adminId": "AD-1",
             "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:53:53+00:00",
+            "dateTime": "2021-04-03T15:05:53+00:00",
             "description": "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.\n\nDatabase Admin Career will tell you the job scope as a Database Administrator in details!",
             "imageId": "E-2.png",
             "location": "FSKTM, MM3"
