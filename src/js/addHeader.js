@@ -1,10 +1,17 @@
+/**
+ * Make sure there's either 'SignedInAlumniId' or 'SignedInAdminId' in localStorage
+ * Having 2 together will cause bug
+ */
+
 // check if this is alumni or admin
 localStorage.setItem('SignedInAlumniId', "AL-1");
 import { dummyResponse } from "./dummydata.js"
+console.log(dummyResponse);
 let curUser;
 let isAlumni = false;
 
-if(localStorage.getItem('SignedInAlumniId')){
+// check if the user is alumni to display bell icon
+if(localStorage.getItem('SignedInAlumniId') && !localStorage.getItem('SignedInAdminId')){
   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
   isAlumni = true;
 }else{
@@ -12,16 +19,23 @@ if(localStorage.getItem('SignedInAlumniId')){
 }
 
 const body = document.body;
-const mainBody = document.getElementById('main-body');
-
 const header = document.createElement('header');
+
+// check if got notification not viewed and the notification not closed by the alumni
+const hasEventNotViewedByAlumni = dummyResponse.Alumni_Event.filter(alumni_event => {
+  return !(alumni_event.viewedByAlumni==="true") && !(alumni_event.notificationClosedByAlumni==="true") && alumni_event.alumniId === localStorage.getItem('SignedInAlumniId');
+}).length === 0 ? false : true;
+console.log(hasEventNotViewedByAlumni);
+
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
 <img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>
-<img src="/Assets/icons/bell.svg" alt="bell icon" class="header__img mx-2" id='notification-icon'>
+${isAlumni? 
+`<img src="${hasEventNotViewedByAlumni ? '/Assets/icons/notification.svg':'/Assets/icons/bell.svg'}" alt="bell icon" class="mx-2" id='notification-icon' style="height:20px;">` : ``
+}
 <div id='profile-panel' class="profile-panel--display-none"></div>
 
 <div id='notification-panel' class="profile-panel--display-none"></div>`
@@ -32,21 +46,27 @@ const notificationPanel = document.getElementById('notification-panel');
 const profilePanel = document.getElementById('profile-panel');
 function toggleNotificationPanel() {
   if(!isAlumni) return;
+  // close profile panel if it's opened
   if (profilePanel.style.display === 'block') {
     toggleProfilePanel();
   }
   // first-time click will add childnode under panel 
   if (!notificationPanel.hasChildNodes()) {
     // build the content from dummy data
-    notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0">Notifications</div>
+    notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 d-flex justify-content-between">
+    Notifications<i class="fa fa-times p-1 panel__icon--hover-dark-bg" aria-hidden="true" id="close-panel-icon"></i>
+    </div>
       <ul class='m-0 list-unstyled'>
         <li class="p-2 border-top notification-border"></li>
       </ul>`
+    const closePanelIcon = notificationPanel.querySelector('#close-panel-icon');
+    console.log(closePanelIcon);
+    closePanelIcon.addEventListener('click', toggleNotificationPanel);
     // sort to let not reviewed event at front of array
     let result = []; let lastTrueElementIdx = 0;
     dummyResponse.Alumni_Event.forEach(event => {
       if (event.alumniId == localStorage.getItem('SignedInAlumniId')) {
-        if (event.viewedByAlumni === 'TRUE') { result.push(event); }
+        if (event.viewedByAlumni === 'true') { result.push(event); }
         else { result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
       } else {
         console.log('not this alumni');
@@ -60,8 +80,11 @@ function toggleNotificationPanel() {
       notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
       notificationPanel.appendChild(div1);
     }
+    // used as a method to display 'You have no notification'
+    let atLeastHasOneEventNotClosed = false;
     result.forEach((event, index) => {
-      if(event.notificationClosedByAlumni) return;
+      if(event.notificationClosedByAlumni === "true") return;
+      atLeastHasOneEventNotClosed = true;
       const div1 = document.createElement('div');
       div1.setAttribute('class', 'py-2 d-flex container-fluid border-bottom item--hover-light-bg');
 
@@ -73,7 +96,7 @@ function toggleNotificationPanel() {
 
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
-      const dotClass = event.viewedByAlumni === 'TRUE' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
+      const dotClass = event.viewedByAlumni === 'true' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
       const secondSinceInvitation = (new Date() - new Date(event.dateTime)) / 1000;
       const minute = Math.floor(secondSinceInvitation / 60);
       const hour = Math.floor(minute / 60);
@@ -123,11 +146,10 @@ function toggleNotificationPanel() {
           // console.log(list.childNodes);
         }
       });
-
       list.appendChild(div1);
     });
     // if have no notification
-    if (result.length === 0 && isAlumni) {
+    if ((result.length === 0 || !atLeastHasOneEventNotClosed) && isAlumni) {
       showNoNotification();
     }
     notificationPanel.style.display = "block";
@@ -139,6 +161,7 @@ function toggleNotificationPanel() {
     }
   }
 }
+
 function toggleProfilePanel() {
   if (notificationPanel.style.display === 'block') {
     toggleNotificationPanel();
