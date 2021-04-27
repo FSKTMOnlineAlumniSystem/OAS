@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
     <title>Alumni Online System</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
-    <title>Document</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
- 
+
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="../../css/Alumni/HomePage.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
 </head>
- 
+
 <body class="back">
     <!-- <header class="headerColour">
         <div class="div1">
@@ -24,10 +25,10 @@
                 data-toggle="modal" data-target="#signIN">Sign In</button>
         </div>
     </header> -->
- 
+
     <main>
- 
- 
+
+
         <!-- SignIn -->
         <!-- <div class="modal fade" id="signIN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -81,12 +82,12 @@
                 </div>
             </div>
         </div> -->
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
         <!-- Modal -->
         <!-- <div class="modal fade" id="forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -125,9 +126,9 @@
                 </div>
             </div>
         </div> -->
- 
- 
- 
+
+
+
         <!-- SignUp -->
         <!-- <div class="modal fade" id="signUP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -293,22 +294,22 @@
                 </div>
             </div>
         </div> -->
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
         <div class="image1">
- 
+
             <form class="search-form">
                 <div class="container">
- 
+
                     <div class="row no-gutters">
                         <div class="col-lg-2 col-md-2 col-sm-2 p-0"></div>
- 
- 
+
+
                         <div class="col-lg-2 col-md-2 col-sm-12 p-0">
                             <select class="form-controlSearch" id="exampleFormControlSelect1">
                                 <option selected>Search</option>
@@ -317,7 +318,7 @@
                                 <option>Alumni</option>
                             </select>
                         </div>
- 
+
                         <div class="col-lg-6 col-md-5 col-sm-12 p-0">
                             <div class="input-group">
                                 <input type="text" placeholder="Search..." class="form-control" id="search"
@@ -336,77 +337,79 @@
                             </div>
                         </div>
                     </div>
- 
+
                 </div>
             </form>
- 
- 
+
+
         </div>
- 
- 
- 
+
+
+
         <div class="container-fluid d-flex flex-column align-items-center">
             <!-- Only insert photos with same width and height -->
             <span class="Title">Events</span>
- 
- 
- 
+
+
+
             <div class="w-85 bg-grey d-flex flex-column align-items-center">
                 <div class="swiper-container p-5">
                     <div class="swiper-wrapper" id="event">
- 
+
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
- 
+
                 </div>
-                <a class="d-contents" href="../../html/Alumni/EventPage.html"><button onclick="viewMoreEvents()" class="viewMorebtn m-4 rounded-pill">View
+                <a class="d-contents" href="../../html/Alumni/EventPage.html"><button onclick="viewMoreEvents()"
+                        class="viewMorebtn m-4 rounded-pill">View
                         More</button></a>
             </div>
- 
- 
- 
+
+
+
             <span class="Title">Jobs</span>
             <div class="w-85">
                 <div class="row mb-4 mt-1" id="job_row1">
-                    <div class="col">
+                    <!-- <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_1.png" alt="..."
                                 width="100%"></a>
                     </div>
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_2.png" alt="..."
                                 width="100%"></a>
-                    </div>
- 
+                    </div> -->
+
                 </div>
                 <div class="row mt-1" id="job_row2">
-                    <div class="col">
+                    <!-- <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_3.png" alt="..."
                                 width="100%"></a>
                     </div>
                     <div class="col">
                         <a class="d-contents" href="#"><img src="../../../Assets/imgs/Job_4.png" alt="..." width="100%"
                                 height="100%"></a>
-                    </div>
- 
+                    </div> -->
+
                 </div>
             </div>
-            <a class="d-contents" href="../../html/Alumni/JobPage.html"><button onclick="viewMoreJob()" class="viewMorebtn m-4 rounded-pill">View
+            <a class="d-contents" href="../../html/Alumni/JobPage.html"><button onclick="viewMoreJob()"
+                    class="viewMorebtn m-4 rounded-pill">View
                     More</button></a>
- 
- 
- 
+
+
+
             <span class="Title">Alumni</span>
- 
- 
+
+
             <div class="w-85 bg-grey d-flex flex-column align-items-center">
                 <div class="swiper-container p-5">
                     <div class="swiper-wrapper" id="alumni">
- 
-                        <div class="swiper-slide pl-1 pr-1">
+
+                        <!-- <div class="swiper-slide pl-1 pr-1">
                             <div class="card h-100">
                                 <img class="card-img-top" src="../../../Assets/imgs/Alumni_2.png" alt="Card image cap"
                                     width="100%">
@@ -415,7 +418,7 @@
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. OW SIEW HOCK</h5>
                                     </div>
- 
+
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                             -webkit-line-clamp: 3;
@@ -439,10 +442,10 @@
                                     <div class="row">
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. ANG TAN FONG
- 
+
                                         </h5>
                                     </div>
- 
+
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                             -webkit-line-clamp: 3;
@@ -467,7 +470,7 @@
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. ANG TAN FONG sgh ashfiehr hsigheriohg wefsnjkwscnow
                                             sefnwlefn
- 
+
                                         </h5>
                                     </div>
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
@@ -494,7 +497,7 @@
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. ANG TAN FONG sgh ashfiehr hsigheriohg wefsnjkwscnow
                                             sefnwlefn
- 
+
                                         </h5>
                                     </div>
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
@@ -521,7 +524,7 @@
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. ANG TAN FONG sgh ashfiehr hsigheriohg wefsnjkwscnow
                                             sefnwlefn
- 
+
                                         </h5>
                                     </div>
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
@@ -548,7 +551,7 @@
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
                                             ASSOCIATE PROF. DR. ANG TAN FONG sgh ashfiehr hsigheriohg wefsnjkwscnow
                                             sefnwlefn
- 
+
                                         </h5>
                                     </div>
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
@@ -565,27 +568,28 @@
                                             ago</small></p>
                                 </div>
                             </div>
-                        </div>
- 
+                        </div> -->
+
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
- 
+
                 </div>
-                <a class="d-contents" href="../../html/Alumni/alumniPage.html"><button onclick="viewMoreAlumni()" class="viewMorebtn m-4 rounded-pill">View
+                <a class="d-contents" href="../../html/Alumni/alumniPage.html"><button onclick="viewMoreAlumni()"
+                        class="viewMorebtn m-4 rounded-pill">View
                         More</button></a>
             </div>
- 
+
             <div class="mb-5">
- 
+
             </div>
- 
+
         </div>
     </main>
- 
+
     <!-- <script src="../../js/Alumni/HomePage.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -593,16 +597,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
- 
+
     <!-- Swiper package https://swiperjs.com/get-started -->
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="module">
- 
+
     </script>
- 
+
     <script type="module" src="../../js/Alumni/HomePage.js"></script>
 </body>
- 
-</html>
 
+</html>

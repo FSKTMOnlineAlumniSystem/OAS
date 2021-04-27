@@ -3,6 +3,10 @@ console.log("link js");
 
 document.getElementById('event').innerHTML = "";
 
+var latest_1 = [];
+var dayy_1 = [];
+var yearr_1 = [];
+
 for (let i = 0; i < dummyResponse.Event.length; i++) {
 
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
@@ -12,26 +16,63 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    console.log(dummyResponse.Event[i].imageId);
+    dayy_1[i] = da + ","+ mo + "," + i;
+    yearr_1[i] = ye;
+
+}
+
+dayy_1.sort();
+console.log(dayy_1);
+console.log(yearr_1);
+
+
+for (var i = 0; i < dayy_1.length; i++) {
+
+
+    //day,month,index
+    var a_1 = dayy_1[i].split(",");
+    var currentYr_1 = new Date();
+    var Yr_1 = currentYr_1.getFullYear();
+
+    console.log(a_1[2]);
+    console.log(yearr_1[a_1[2]]);
+
+
+    if (yearr_1[a_1[2]] == Yr_1) {
+
+        latest_1[i] = a_1[2];
+    }
+
+}
+
+console.log(latest_1);
+
+
+for (let i = 0; i < 6; i++) {
+
+    // console.log("previous time" + dummyResponse.Event[i].dateTime)
+    var d = new Date(dummyResponse.Event[i].dateTime);
+    // console.log(dummyResponse.Event[i].dateTime)
+    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
     const card_event = document.createElement('div');
     card_event.setAttribute('class','swiper-slide pl-1 pr-1');
 
     card_event.innerHTML = `
 
-
-
-    <div class="card h-100" id="${dummyResponse.Event[i].eventId}">
+    <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
         <a href=" /src/html/Alumni/EventDetailsPage.html" target="_self"  class="jump">
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
         
-                <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[i].imageId}" alt="Card image cap">
+                <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
             
             </div>
 
         </a>
         <div class="card-body">
-            <h5 class="card-title text-left">${dummyResponse.Event[i].title}</h5>
+            <h5 class="card-title text-left">${dummyResponse.Event[latest_1[i]].title}</h5>
             <div class="card-text">
  
                 <div class="row">
@@ -72,7 +113,7 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
                             </svg>
                     </div>
                     <div class="col-10 d-flex flex-column">
-                        <span class="t">${dummyResponse.Event[i].location}</span>
+                        <span class="t">${dummyResponse.Event[latest_1[i]].location}</span>
                     </div>
                 </div>
  
@@ -98,12 +139,12 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
     console.log(E);
 
     const evtHandler = evt => {
-        console.log(`set eventId to ${dummyResponse.Event[i].eventId}`);
-        localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
+        console.log(`set eventId to ${dummyResponse.Event[latest_1[i]].eventId}`);
+        localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
     };
 
-    console.log(dummyResponse.Event[i].eventId);
-    card_event.querySelector('#' + dummyResponse.Event[i].eventId).addEventListener('click', evtHandler);
+    console.log(dummyResponse.Event[latest_1[i]].eventId);
+    card_event.querySelector('#' + dummyResponse.Event[latest_1[i]].eventId).addEventListener('click', evtHandler);
 
 
     E.appendChild(card_event);
@@ -192,7 +233,7 @@ for (let i = 0; i < dummyResponse.Job.length; i++) {
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy[i] = da + "," + i;
+    dayy[i] = da + ","+ mo + "," + i;
     yearr[i] = ye;
 
 }
@@ -205,17 +246,18 @@ console.log(yearr);
 for (var i = 0; i < dayy.length; i++) {
 
 
+    //day,month,index
     var a = dayy[i].split(",");
     var currentYr = new Date();
     var Yr = currentYr.getFullYear();
 
-    console.log(a[1]);
-    console.log(yearr[a[i]]);
+    console.log(a[2]);
+    console.log(yearr[a[2]]);
 
 
-    if (yearr[a[1]] == Yr) {
+    if (yearr[a[2]] == Yr) {
 
-        latest[i] = a[1];
+        latest[i] = a[2];
     }
 
 }
