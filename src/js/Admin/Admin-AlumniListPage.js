@@ -2,6 +2,7 @@ import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 let pageIndex = 0;
 const loadAlumniList = (pageIndex) => {
+  console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
   console.log("the length" + dummyResponse.Alumni.length);
   // document.getElementById('eventList').innerHTML = "";
@@ -88,7 +89,6 @@ window.previousPage = function () {
 };
 loadAlumniList(pageIndex);
 
-
 const tbody = document.getElementsByTagName('tbody')[0];
 dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
@@ -168,81 +168,6 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   tbody.appendChild(tr);
 });
 
-
-
-
-
-
-
-//   var newRowContent = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-//   ${dummyResponse.Alumni[i].name}
-// </button>
-
-// <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//   <div class="modal-dialog modal-dialog-centered">
-//     <div class="modal-content">
-//       <div class="modal-header">
-//         <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-//         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//           <span aria-hidden="true">&times;</span>
-//         </button>
-//       </div>
-//       <div class="modal-body">
-//         <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px" height="auto">
-      
-//         <div class="col">
-//           <div class="row mb-2">
-//               <div class="col-4">Name:</div>
-//               <div id="name" class="col-8">  ${dummyResponse.Alumni[i].name}
-//               </div>
-//           </div>
-//           <div class="row mb-2">
-//               <div class="col-4">Gender:</div>
-//               <div id="gender" class="col-8">  ${dummyResponse.Alumni[i].gender}
-//               </div>
-//           </div>
-//           <div class="row mb-2">
-//               <div class="col-4">Graduated:</div>
-//               <div id="graduated" class="col-8">  ${dummyResponse.Alumni[i].graduated}
-//               </div>
-//           </div>
-//           <div class="row mb-2">
-//               <div class="col-4">Department:</div>
-//               <div id="department" class="col-8">  ${dummyResponse.Alumni[i].department}
-//               </div>
-//           </div>
-//           <div class="row mb-2">
-//               <div class="col-4">E-mail:</div>
-//               <div id="email" class="col-8">  ${dummyResponse.Alumni[i].email}
-//               </div>
-//           </div>
-//           <div class="row mb-2">
-//               <div class="col-4">Contact Number:</div>
-//               <div id="contactNumber" class="col-8">  ${dummyResponse.Alumni[i].contactNumber}
-//               </div>
-//           </div>
-
-//           <div class="row mb-2">
-//             <div class="col-4">Ic No:</div>
-//             <div id="icNumber" class="col-8">${dummyResponse.Alumni[i].icNumber}</div>
-//         </div>
-
-//         <div class="row mb-2">
-//           <div class="col-4">Account Status:</div>
-//           <div id="accStatus" class="col-8">Verified</div>
-//       </div>
-//       </div>
-        
-//       </div>
-//       <div class="modal-footer">
-//         <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
-//         <button type="button" class="btn btn-info">Approve</button>
-//             </div>
-//       </div>
-//     </div>`;
-    
-
-
   window.filterSearchBar = function() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchBar");
@@ -278,9 +203,9 @@ window.toggle=function(source) {
 window.DeleteRowFunction = function(o) {
   var p=o.parentNode.parentNode.parentNode;
       p.parentNode.removeChild(p);
+      dummyResponse.Alumni.splice(o.target.id, 1)
+      updateDummyData(dummyResponse)
  }
-
-
 
 $(document).ready(function () {
     $("#status,#department").on("change", function () {
@@ -324,41 +249,45 @@ window.SearchData = function(status, department) {
     }
 }
 
-window.deleteMultipleRow = function(tableID)  {
-    var table = document.getElementById("myTable").tBodies[0];
-    var rowCount = table.rows.length;
-
-    // var i=1 to start after header
-    for(var i=0; i<rowCount; i++) {
-        var row = table.rows[i];
-        // index of td contain checkbox is 8
-        var chkbox = row.cells[0].getElementsByTagName('input')[0];
-        if('checkbox' == chkbox.type && true == chkbox.checked) {
-            table.deleteRow(i);
-         }
+//deleteMultipleRow
+window.deleteMultipleRow = function (tableID) {
+  var table = document.getElementById("myTable").tBodies[0];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = checkboxes.length-1; i >= 0; i--) {
+    if(checkboxes[i].checked){
+      table.deleteRow(i-1);
+      dummyResponse.Alumni.splice(i-1, 1)
     }
+  }
+  loadAlumniList(pageIndex)
+  updateDummyData(dummyResponse)
 }
 
+//clearAll
 $("#clearAll").on("click", function () {
 $('#department option').prop('selected', function() {
     $('#myTable tbody tr').show();
-
     return this.defaultSelected;
 });
 $('#status option').prop('selected', function() {
     $('#myTable tbody tr').show();
     return this.defaultSelected;
-    
+});
 });
 
-});
-
+// modal
 document.querySelectorAll('.alumniName').forEach((alumni)=>{
   alumni.addEventListener('click',(e)=>{
     console.log($('#exampleModal'))
+    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
+    $("#name").text(dummyResponse.Alumni[e.target.id].name);
+    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
+    $("#department").text(dummyResponse.Alumni[e.target.id].department);
+    $("#email").text(dummyResponse.Alumni[e.target.id].email);
+    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
+    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
+    $("verified").text("Verified");
     $('#exampleModal').modal("show");
-    // $("#image").attr('src', "/Assets/imgs/" + this.alumni.id)
-    console.log(alumni);
     console.log(e.target.id);
   })
 })
