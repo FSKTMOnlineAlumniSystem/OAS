@@ -1,3 +1,5 @@
+import { dummyResponse } from '../dummydata.js';
+
 // const eventTitle = document.getElementById('event-title');
 // eventTitle.innerText = localStorage.getItem('eventId');
 const theEvent = dummyResponse.Event.filter(event => event.eventId === localStorage.getItem('eventId'))[0];
