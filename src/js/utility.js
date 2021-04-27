@@ -11,7 +11,8 @@ const getReadableDate = (dateTime) => {
 }
 const getReadableTime = (dateTime) => {
   const eventDateTime = new Date(dateTime);
-  const minute = eventDateTime.getMinutes();
+  let minute = eventDateTime.getMinutes().toString();
+  minute = minute.padStart(2,'0');
   let hour = eventDateTime.getHours();
   const period = hour > 11 ? 'p.m.' : 'a.m.';
   hour = hour === 0 ? 12 : hour;
