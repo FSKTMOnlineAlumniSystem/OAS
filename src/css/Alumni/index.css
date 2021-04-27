@@ -115,6 +115,7 @@ a.nostyle:visited {
   cursor: pointer;
 }
 .panel__icon--hover-dark-bg:hover{
+  /* color: var(--dark-purple); */
   color: var(--dark-gray);
   cursor: pointer;
 }

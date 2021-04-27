@@ -181,8 +181,8 @@ function toggleProfilePanel() {
   }
   // first-time click will add childnode under panel
   if (!profilePanel.hasChildNodes()) {
-    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/Alumni/AlumniProfilePage.html" class="nostyle d-flex align-items-center"><i class="fas fa-user-circle px-2" style="font-size:17px"></i>My Profile</a></div>
-    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/Alumni/HomePage.html" class="nostyle d-flex align-items-center"><i class="fas fa-sign-out-alt px-2" style="font-size:17px"></i>Log Out</a></div>`;
+    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/${isAlumni? 'Alumni/MyProfilePage.html':'Admin/Admin-MyProfilePage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-user-circle px-2" style="font-size:17px"></i>My Profile</a></div>
+    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/${isAlumni? 'Alumni/LoginPage.html':'Admin/Admin-LoginPage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-sign-out-alt px-2" style="font-size:17px"></i>Log Out</a></div>`;
     profilePanel.style.display = "block";
   } else {
     if (profilePanel.style.display === "none") {
