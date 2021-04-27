@@ -1,5 +1,6 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 import loadAlumniList from "./alumniPage.js";
+import loadJobList from "./JobPage.js";
 
 var result = null;
 document
@@ -17,7 +18,7 @@ document
           // code block
           break;
         case "Jobs":
-          // code block
+          loadJobList(0);
           break;
         default:
         // code block
