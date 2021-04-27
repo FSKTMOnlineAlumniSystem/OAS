@@ -6,8 +6,9 @@ console.log("link js");
 //   $('#myInput').trigger('focus')
 // })
 //eventList
-let pageIndex = 0;
+let pageIndex = '0';
 const loadEventList = (pageIndex) => {
+  console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
   console.log("the length" + dummyResponse.Event.length);
   // document.getElementById('eventList').innerHTML = "";
@@ -210,6 +211,7 @@ window.DeleteRowFunction = function (o) {
   // console.log(p)
   // p.parentNode.removeChild(p);
   loadEventList(pageIndex)
+  // location.reload();
 }
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -220,6 +222,7 @@ window.DeleteCheckedRow = function () {
   }
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
+  // location.reload();
 }
 // window.addRow = function () {
 //   console.log('add row')

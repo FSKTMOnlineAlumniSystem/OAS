@@ -1,6 +1,13 @@
 console.log('testing')
 sessionStorage.setItem('event', 'update')
-function readURL(input) {
+import {dummyResponse, updateDummyData} from "../dummydata.js";
+const imgPath = "/Assets/imgs/";
+
+var inputValue;
+window.readURL=function(input) {
+  inputValue=input.value;
+  console.log(inputValue)
+  
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -10,9 +17,9 @@ function readURL(input) {
         }
         reader.readAsDataURL(input.files[0]);
     }
+    
 }
-import {dummyResponse, updateDummyData} from "../dummydata.js";
-const imgPath = "/Assets/imgs/";
+
 
 var i = localStorage.getItem("updateId")
 var d = new Date(dummyResponse.Event[i].dateTime);
@@ -51,7 +58,7 @@ document.getElementById("updateForm").innerHTML=`
           <div>
             <label for="phfile">Image:</label>
             <img id="prevImage" src="${imgPath+dummyResponse.Event[i].imageId}" alt="update Image" width="150" length="150">
-            <input type="file" id="phfile" onchange="readURL(this)">
+            <input type="file" id="phfile" onchange="readURL(this)" >
           </div>
 
 
@@ -73,11 +80,18 @@ console.log(date)
 
     var description = document.getElementById("description").value;
     var location = document.getElementById("location").value;
-    var image = document.getElementById("prevImage").src;
-  //   console.log(image)
-  //   var imageArr=image.split("/");
-  // var imageName=imageArr[imageArr.length-1];
-  // console.log(imageName);
+    // var image = document.getElementById("prevImage").value;
+if(inputValue){
+    var imageArr=inputValue.split("\\");
+    var imageName=imageArr[imageArr.length-1];
+}
+else{
+  var image=document.getElementById("prevImage").src;
+  var imageArr=image.split("/");
+  var imageName=imageArr[imageArr.length-1];
+}
+console.log(imageName)
+    console.log("image name: "+imageName);
     var eventId = dummyResponse.Event[i].eventId
     var adminId = dummyResponse.Event[i].adminId 
     //need connect to localstorege ltr
@@ -88,7 +102,7 @@ console.log(date)
         title: title,
         dateTime: newDate, //change
         description: description,
-        imageId: image, 
+        imageId: imageName, 
         location: location
     }
     dummyResponse.Event.splice(i, 1, newEvent)
