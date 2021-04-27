@@ -11,6 +11,7 @@ const email = document.querySelector('#email');
 const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
+const saveButton = document.querySelector('#saveButton');
 const cancelButton = document.querySelector('#cancelButton');
 const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
 const stayButton = document.querySelector('#stayButton');
@@ -61,6 +62,7 @@ const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
+    e.preventDefault();
     let errorExist = false; //false if no error exists in email, contactNumber, biography
 
     if (isEmpty(email) || !email.value.match(emailFormat)) {
@@ -84,8 +86,7 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
-    if (errorExist) e.preventDefault();
-    else {
+    if (!errorExist){
         dummyResponse.Alumni.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
                 if(img.value){
@@ -98,6 +99,10 @@ form.addEventListener('submit', (e) => {
                 updateDummyData(dummyResponse);
             }
         });
+        saveButton.textContent='Saving...';
+        setTimeout(()=>{
+            location.href='MyProfilePage.html';
+        },1000);
     }
 });
 

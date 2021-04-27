@@ -54,7 +54,7 @@ function verifyPasswordAndConfirmPassword(e) {
                 al.password = newPassword.value;
                 updateDummyData(dummyResponse);
                 changePasswordButton.textContent='Updating...';
-                setInterval(function(){
+                setTimeout(function(){
                     location.reload();
                 },1000);
                 return;
@@ -94,7 +94,7 @@ function deleteAccount(e) {
                 dummyResponse.Alumni.splice(index,1);
                 deleteAccountButton.textContent='Deleting...';
                 updateDummyData(dummyResponse);
-                setInterval(function(){
+                setTimeout(function(){
                     window.location.href = '/src/html/Alumni/LoginPage.html';
                 },1000);
             }

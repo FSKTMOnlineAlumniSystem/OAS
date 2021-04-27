@@ -46,7 +46,7 @@ function verifyPasswordAndConfirmPassword(e) {
                 ad.password = newPassword.value;
                 updateDummyData(dummyResponse);
                 changePasswordButton.textContent='Updating...';
-                setInterval(function(){
+                setTimeout(function(){
                     location.reload();
                 },1000);
                 return;
