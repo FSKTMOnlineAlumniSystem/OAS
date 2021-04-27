@@ -13,10 +13,10 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
     var d = new Date(dummyResponse.Event[i].dateTime);
     // console.log(dummyResponse.Event[i].dateTime)
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    let mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy_1[i] = da + ","+ mo + "," + i;
+    dayy_1[i] = mo + "," + da + "," + i;
     yearr_1[i] = ye;
 
 }
@@ -51,14 +51,14 @@ console.log(latest_1);
 for (let i = 0; i < 6; i++) {
 
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
-    var d = new Date(dummyResponse.Event[i].dateTime);
+    var d = new Date(dummyResponse.Event[latest_1[i]].dateTime);
     // console.log(dummyResponse.Event[i].dateTime)
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
     const card_event = document.createElement('div');
-    card_event.setAttribute('class','swiper-slide pl-1 pr-1');
+    card_event.setAttribute('class', 'swiper-slide pl-1 pr-1');
 
     card_event.innerHTML = `
 
@@ -118,28 +118,17 @@ for (let i = 0; i < 6; i++) {
                 </div>
  
             </div>
-                    <p class="card-text text-center"><small class="text-muted">Last updated 3 mins
-                  ago</small></p>
+                   
          </div>
     </div>
   `;
 
-    // var eventt = document.getElementById("cardd");
 
-    // eventt.addEventListener('click', (evt) => {
-
-    //     let eventname = $(this).attr("data-name");
-    //     console.log(eventname);
-    //     localStorage.setItem('eventId', JSON.stringify(eventname));
-
-
-    // });
-
-   const E = document.getElementById('event');
-    console.log(E);
+    const E = document.getElementById('event');
+    // console.log(E);
 
     const evtHandler = evt => {
-        console.log(`set eventId to ${dummyResponse.Event[latest_1[i]].eventId}`);
+        // console.log(`set eventId to ${dummyResponse.Event[latest_1[i]].eventId}`);
         localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
     };
 
@@ -153,51 +142,24 @@ for (let i = 0; i < 6; i++) {
 
 
 
-// $("a").on("click",".card",function(){
-
-//     localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
-
-// });
-
-
-
-
-// var eventt = document.getElementById("cardd");
-
-// eventt.addEventListener('click', (evt) => {
-
-//     let eventname = $(this).attr("data-name");
-//     console.log(eventname);
-//     localStorage.setItem('eventId', JSON.stringify(eventname));
-
-
-// });
-
-
-
-// const evtHandler = evt => {
-//     // console.log(`set eventId to ${dummyResponse.Event[i].eventId}`);
-//     localStorage.setItem('eventId', dummyResponse.Event[i].eventId);
-//   };
-
-// var C = document.getElementById('jump');
-// document.querySelector(dummyResponse.Event[i].eventId).addEventListener('click', evtHandler);
-
-
-
 
 
 document.getElementById('alumni').innerHTML = "";
 
 for (let i = 0; i < 6; i++) {
 
-    document.getElementById('alumni').innerHTML += `
-                        <div class="swiper-slide pl-1 pr-1">
-                            <div class="card h-100">
+    const card_alumni = document.createElement('div');
+    card_alumni.setAttribute('class', 'swiper-slide pl-1 pr-1');
+
+    card_alumni.innerHTML = `
+                     
+                            <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
+                                <a href="/src/html/Alumni/AlumniProfilePage.html" target="_self"  class="jump">
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
                                     <img class="card-img-top w-100" src="/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
+                                </a>
                                 <div class="card-body">
                                     <div class="row">
                                         <h5 class="card-title-title font-weight-900px ml-2 mr-2">
@@ -214,8 +176,30 @@ for (let i = 0; i < 6; i++) {
                                     
                                 </div>
                             </div>
-                        </div>
+                       
 `
+
+
+const A = document.getElementById('alumni');
+    // console.log(A);
+
+    const evtHandler = evt => {
+
+        // console.log("clickkk");
+        // console.log(`set eventId to ${dummyResponse.Alumni[i].alumniId}`);
+        var s = dummyResponse.Alumni[i].alumniId.split("");
+        // console.log(s[3]);
+        // console.log(s);
+        localStorage.setItem('alumniprofile', s[3]);
+        
+    };
+
+    // console.log(dummyResponse.Alumni[i].alumniId);
+    card_alumni.querySelector('#' + dummyResponse.Alumni[i].alumniId).addEventListener('click', evtHandler);
+
+
+    A.appendChild(card_alumni);
+
 
 }
 
@@ -233,14 +217,14 @@ for (let i = 0; i < dummyResponse.Job.length; i++) {
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy[i] = da + ","+ mo + "," + i;
+    dayy[i] = mo + "," + da + "," + i;
     yearr[i] = ye;
 
 }
 
 dayy.sort();
-console.log(dayy);
-console.log(yearr);
+// console.log(dayy);
+// console.log(yearr);
 
 
 for (var i = 0; i < dayy.length; i++) {
@@ -251,8 +235,8 @@ for (var i = 0; i < dayy.length; i++) {
     var currentYr = new Date();
     var Yr = currentYr.getFullYear();
 
-    console.log(a[2]);
-    console.log(yearr[a[2]]);
+    // console.log(a[2]);
+    // console.log(yearr[a[2]]);
 
 
     if (yearr[a[2]] == Yr) {
@@ -262,34 +246,89 @@ for (var i = 0; i < dayy.length; i++) {
 
 }
 
-console.log(latest);
+// console.log(latest);
 
-document.getElementById('job_row1').innerHTML = "";
+
+document.getElementById('job_row_1').innerHTML = "";
+
 
 for (let i = 0; i < 2; i++) {
+    
+    const card_job = document.createElement('div');
+    card_job.setAttribute('class', 'col');
 
-    document.getElementById('job_row1').innerHTML += `
+    card_job.innerHTML = `
  
-    <div class="col">
-    <a class="d-contents" href="#"><img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" height="100%"></a>
-    </div>
+        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
+        <a class="d-contents" href="/src/html/Alumni/JobDetailsPage.html">
+            <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            width="100%" style="aspect-ratio: 2/1; overflow: hidden;">
+        </a>
+   
     
     `
+
+    const J = document.getElementById('job_row_1');
+    // console.log(J);
+    var myJobList_1 = [];
+    myJobList_1.push(dummyResponse.Job[latest[i]]);
+
+    const evtHandler = evt => {
+        // console.log(dummyResponse.Job[latest[i]]);
+        var myJobList_1 = [];
+        myJobList_1.push(dummyResponse.Job[latest[i]]);
+        // console.log(myJobList_1);
+        localStorage.setItem('JobList', JSON.stringify(myJobList_1)); 
+        
+    };
+
+    card_job.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+
+    J.appendChild(card_job);
+    
+    
 }
 
-document.getElementById('job_row2').innerHTML = "";
+document.getElementById('job_row_2').innerHTML = "";
+
 
 for (let i = 2; i < 4; i++) {
+    
+    const card_job_1 = document.createElement('div');
+    card_job_1.setAttribute('class', 'col');
 
-    document.getElementById('job_row2').innerHTML += `
+    card_job_1.innerHTML = `
  
-    <div class="col">
-    <a class="d-contents" href="#"><img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" height="100%"></a>
-    </div>
+        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
+        <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
+            <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            width="100%" style="aspect-ratio: 2/1; overflow: hidden;">
+        </a>
+   
     
     `
+    
+   
+
+
+    const J_1 = document.getElementById('job_row_2');
+    // console.log(J_1);
+    var myJobList = [];
+    myJobList.push(dummyResponse.Job[latest[i]]);
+
+    const evtHandler = evt => {
+        // console.log(dummyResponse.Job[latest[i]]);
+        var myJobList = [];
+        myJobList.push(dummyResponse.Job[latest[i]]);
+        // console.log(myJobList);
+        localStorage.setItem('JobList', JSON.stringify(myJobList)); 
+        
+    };
+
+    card_job_1.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+
+    J_1.appendChild(card_job_1);
+    
 }
 
 
@@ -335,241 +374,6 @@ function viewMoreJob() {
 function viewMoreAlumni() {
     location.replace("../../html/Alumni/alumniPage.html");
 }
-
-
-
-// function openSignUp(){
-//     document.getElementById('signUP').style.display='block';
-// }
-
-// function closeSignUp(){
-//     window.onclick = function(event) {
-//         if (event.target == popUp) {
-//           popUp.style.display = "none";
-//         }
-//       }
-// }
-
-// function openSignIn(){
-//     document.getElementById('signIN').style.display='block';
-//     window.onclick = function(event) {
-//         if (event.target == popUp) {
-//           popUp.style.display = "none";
-//         }
-//       }
-// }
-
-// function search(){
-//     document.getElementById('search');
-// }
-
-
-// const form_2 = document.getElementById('forgot');
-// const sendEmail = document.getElementById('sendEmail');
-
-
-// const form_1 = document.getElementById('signIN');
-// const staticEmail = document.getElementById('staticEmail');
-// const inputPassword = document.getElementById('inputPassword');
-
-
-// const form = document.getElementById('signUP');
-// const FirstName = document.getElementById('FirstNameID');
-// const LastName = document.getElementById('LastNameID');
-// const Email = document.getElementById('Email');
-// const IC = document.getElementById('IC');
-// const password = document.getElementById('Password');
-// const Department = document.getElementById('Department');
-// const Batch = document.getElementById('Batch');
-// const Gender = document.getElementById('Gender');
-
-
-
-// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-
-// form_2.addEventListener('submit', (evt) => {
-
-//     let errorExist = false;
-
-//     const sendEmailValue = sendEmail.value.trim();
-
-//     if (isEmpty(sendEmailValue) || !sendEmail.value.match(emailFormat)) {
-//         setErrorFor(sendEmail);
-//         errorExist = true;
-//     } else {
-//         setSuccessFor(sendEmail);
-//     }
-
-//     if (errorExist) {
-//         evt.preventDefault();}
-
-// });
-
-
-// form_1.addEventListener('submit', (ev) => {
-
-//     let errorExist = false;
-
-//     const staticEmailValue = staticEmail.value.trim();
-//     const inputPasswordValue = inputPassword.value.trim();
-
-//     console.log(staticEmailValue);
-//     console.log(inputPasswordValue);
-
-
-//     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
-//         setErrorFor(staticEmail);
-//         errorExist = true;
-//     } else {
-//         setSuccessFor(staticEmail);
-//     }
-
-
-//     if(isEmpty(inputPasswordValue)) {
-//         setErrorFor(inputPassword);
-//         errorExist = true;
-//     }else{
-//         setSuccessFor(inputPassword);
-//     }
-
-
-//     if (errorExist) {
-//         ev.preventDefault();}
-
-// });
-
-
-
-// form.addEventListener('submit', (e) => {
-
-//     let errorExist = false;
-
-//     const FirstNameValue = FirstNameID.value.trim();
-//     const emailValue = Email.value.trim();
-//     const LastNameValue = LastNameID.value.trim();
-//     const ICValue = IC.value.trim();
-//     const passwordValue = Password.value.trim();
-//     const DepartmentValue = Department.value.trim();
-//     const BatchValue = Batch.value.trim();
-//     const GenderValue = Gender.value.trim();
-
-
-
-
-//     if(DepartmentValue == 0){
-//         console.log("errordep");
-//         setErrorFor(Department);
-//         errorExist = true;
-//         }else{
-//             console.log("succdep");
-//             setSuccessFor(Department);
-//         }
-
-//     if(BatchValue == 0){
-//         console.log("errordep");
-//         setErrorFor(Batch);
-//         errorExist = true;
-//         }else{
-//             console.log("succdep");
-//             setSuccessFor(Batch);
-//         }
-
-//     if(GenderValue == 0){
-//         console.log("errordep");
-//         setErrorFor(Gender);
-//         errorExist = true;
-//         }else{
-//             console.log("succdep");
-//             setSuccessFor(Gender);
-//         }
-
-//     if(isEmpty(FirstNameValue)){
-//         setErrorFor(FirstName);
-//         errorExist = true;
-//     }else{
-//         setSuccessFor(FirstName);
-//     }
-
-//     if(isEmpty(LastNameValue)){
-//         setErrorFor(LastName);
-//         errorExist = true;
-//     }else{
-//         setSuccessFor(LastName);
-//     }
-
-
-//     if (isEmpty(emailValue) || !Email.value.match(emailFormat)) {
-//         setErrorFor(Email);
-//         errorExist = true;
-//     } else {
-//         setSuccessFor(Email);
-//     }
-
-
-//     if(isEmpty(ICValue) || (ICValue.length == 11)){
-//         setErrorFor(IC);
-//         errorExist = true;
-//     }else{
-//         setSuccessFor(IC);
-//     }
-
-
-//     if(isEmpty(passwordValue) || checkLength(passwordValue)) {
-//         setErrorFor(Password);
-//         errorExist = true;
-//     }else{
-//         setSuccessFor(Password);
-//     }
-
-
-
-//     if (errorExist) {
-//         e.preventDefault();}
-
-
-// });
-
-
-
-//  function checkLength(passwordValue) {
-//      console.log('checkmethod');
-//     if(Password.value.length < 6 ){
-//         return true;
-//     }else if(Password.value.length > 20 ){
-//         return true;
-//     }else{
-//         return false;
-//     }
-
-//  }
-
-// function setErrorFor(input) {
-//     if (input.classList.contains("is-valid")) {
-//         input.classList.replace("is-valid", "is-invalid");
-//     } else {
-//         input.classList.add("is-invalid");
-//     }
-// }
-
-// function setSuccessFor(input) {
-//     if (input.classList.contains("is-invalid")) {
-//         input.classList.replace("is-invalid", "is-valid");
-//     } else {
-//         input.classList.add("is-valid");
-//     }
-// }
-
-// //  function isEmail(email) {
-// //      console.log("isemail");
-// //     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-// //  }
-
-//  function isEmpty(obj) {
-//     return obj.length == 0;
-// }
-
-
-
 
 
 

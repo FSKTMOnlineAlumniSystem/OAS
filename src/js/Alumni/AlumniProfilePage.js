@@ -1,5 +1,5 @@
-import dummyResponse from "../dummydata.js";
-
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+const imgPath = "../../../Assets/imgs/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
 const alumniProfile = document.getElementById("main-body");
@@ -20,7 +20,7 @@ const loadAlumniProfile = (index) => {
             >
             <img
                 id="profilePicture"
-                src="../../../Assets/imgs/${dummyResponse.Alumni[i].imageId}"
+                src="${imgPath}${dummyResponse.Alumni[i].imageId}"
                 alt="Profile Picture"
                 class="img-fluid"
             />
