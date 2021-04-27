@@ -1,3 +1,17 @@
+// To add left navigation bar for admin interface
+// make sure the html page has the following structure
+/*
+ <main class="container-fluid h-100" id='main-body'>
+   <div class="row h-100">
+     <div class="col-2 custom-dark-gray px-0" id="left-nav">
+       // the left nav will be at here
+     </div>
+     <div class="col-10">
+       // the main content of the page goes here
+     </div>
+</main>
+*/
+
 const leftNav = document.getElementById('left-nav');
 leftNav.innerHTML = `<ul class="d-flex flex-column list-unstyled text-dark">
 <li class="pl-3 py-2 container-fluid border-bottom border-secondary admin-nav__brighten">
