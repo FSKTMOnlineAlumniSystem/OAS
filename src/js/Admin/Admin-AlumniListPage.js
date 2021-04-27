@@ -1,4 +1,4 @@
-import dummyResponse from "../dummydata.js";
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 let pageIndex = 0;
 const loadAlumniList = (pageIndex) => {
@@ -357,6 +357,8 @@ document.querySelectorAll('.alumniName').forEach((alumni)=>{
   alumni.addEventListener('click',(e)=>{
     console.log($('#exampleModal'))
     $('#exampleModal').modal("show");
+    // $("#image").attr('src', "/Assets/imgs/" + this.alumni.id)
+    console.log(alumni);
     console.log(e.target.id);
   })
 })
