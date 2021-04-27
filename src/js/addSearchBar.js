@@ -7,6 +7,10 @@
  * (Google store search query in url)
  */
 
+const isJobPage = location.href.toLowerCase().includes('job');
+const isEventPage = location.href.toLowerCase().includes('event');
+// if it's job page or event page, it will not be alumni page
+const isAlumniPage = !(isJobPage || isEventPage);
 const searchBarSection = document.createElement('div');
 searchBarSection.setAttribute('class', 'searchBarBG');
 searchBarSection.innerHTML = `<form class="search-form">
@@ -17,11 +21,10 @@ searchBarSection.innerHTML = `<form class="search-form">
     <div class="col-lg-2 col-md-2 col-sm-12 p-0">
       <select
         class="form-controlSearch"
-        id="exampleFormControlSelect1"
-      >
-        <option>Alumni</option>
-        <option>Event</option>
-        <option>Jobs</option>
+        id="exampleFormControlSelect1">
+        <option ${isAlumniPage? 'selected':''}>Alumni</option>
+        <option ${isEventPage? 'selected':''}>Event</option>
+        <option ${isJobPage? 'selected':''}>Jobs</option>
       </select>
     </div>
 

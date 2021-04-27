@@ -12,7 +12,7 @@ const notMyEvent = dummyResponse.Alumni_Event.filter(event => {
 // <img src="/Assets/imgs/calendar.png" alt="time" height="24" width="24">
 // <img src="/Assets/imgs/time.png" alt="time" height="24" width="24">
 const getCardStructure = (eventId, imageId, title, dateTime) => {
-  return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card">
+  return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
   <div class="card h-100">
     <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height" alt="eventPhoto">
     <div class="card-body">
