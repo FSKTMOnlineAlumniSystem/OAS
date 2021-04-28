@@ -140,27 +140,12 @@ a.nostyle:visited {
 }
 .btn-primary:focus,.btn-primary:active{
   box-shadow: 0 0 0 0.2rem #b700ff46 !important;
-  /* outline: 1px #b700ff !important; */
 }
 
-/* .btn-secondary{
-  background-color: #cc8ce4 !important;
-  border: 2px solid #cc8ce4 !important;
-  color:rgb(255, 255, 255) !important;
-} */
-
-/* .btn-secondary:hover{
-  color: #a53ecd !important;
-  border: 2px solid #a53ecd !important;
-}  */
-
-/* .btn-outline-secondary{
-  border: 1px solid #ae48d6 !important;
-  color: #ae48d6 !important;
-  outline-width: 0px !important;
+#left-nav{
+  width:90px;
 }
 
-.btn-outline-secondary:hover{
-  background-color: #c56ae9 !important;
-  color:white !important;
-} */
+#right-content{
+  width:calc(100% - 90px);
+}

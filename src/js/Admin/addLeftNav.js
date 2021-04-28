@@ -1,13 +1,14 @@
 //<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+//    <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
 
 /**
  * Make sure the structure of the html page as below
  * <main class="container-fluid h-100" id='main-body'>
-    <div class="row h-100">
-      <div class="col-1 custom-dark-gray px-0" id="left-nav">
-        // Admin left nav bar will be here
-      </div>
-      <div class="col-11">
+      <div class="row h-100">
+        <div class="custom-dark-gray px-0" id="left-nav">
+          // Admin left nav bar will be here
+        </div>
+      <div id="right-content">
         // The main content of the html page goes here
       </div>
   </main>
