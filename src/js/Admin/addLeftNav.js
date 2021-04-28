@@ -8,8 +8,9 @@
         <div class="custom-dark-gray px-0" id="left-nav">
           // Admin left nav bar will be here
         </div>
-      <div id="right-content">
-        // The main content of the html page goes here
+        <div id="right-content">
+          // The main content of the html page goes here
+        </div>
       </div>
   </main>
  */
