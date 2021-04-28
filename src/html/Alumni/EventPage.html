@@ -4,14 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="../../css/Alumni/index.css" />
     <link
       rel="stylesheet"
@@ -27,112 +26,12 @@
     <title>FSKTM Online Alumni System</Menu></title>
   </head>
   <body>
-    <header
-      class="d-flex flex-row-reverse align-items-center custom-dark-purple p-2 fw-bold text-white"
-    >
-      Dr Tey Kok Soon
-      <img
-        src="../../../../Assets/imgs/DrTey.jpg"
-        alt=""
-        class="header__img m-1"
-      />
-    </header>
-    <div class="searchBarBG">
-      <form class="search-form">
-        <div class="containerSB">
-          <div class="row no-gutters" style="white-space: nowrap">
-            <div class="col-lg-2 col-md-2 col-sm-2 p-0"></div>
-
-            <div class="col-lg-2 col-md-2 col-sm-12 p-0">
-              <select class="form-controlSearch" id="exampleFormControlSelect1">
-                <option selected>Event</option>
-                <option>Alumni</option>
-                <option>Jobs</option>
-              </select>
-            </div>
-            <div class="col-lg-6 col-md-5 col-sm-12 p-0">
-              <div
-                class="input-group"
-                style="position: unset; top: 0; width: 100%; left: 0"
-              >
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  class="form-control"
-                  id="search"
-                  name="search"
-                  style="
-                    border-radius: 0px 0px 0px 0px;
-                    border-left-color: #eaeaea;
-                  "
-                />
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-secondary">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="20"
-                      viewBox="0 0 24 28"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-search"
-                    >
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="container my-5" id="main-body">
+    
+    <div class="container-fluid my-5" id="main-body">
       <h1>Event</h1>
-      <!-- <div class="wrapper_background">
-          <img src="vector background.jpg">
-          <div class="backgroundImage">
-              <img src="../../../Assets/imgs/vector background2.jpg" height="250" width="1300">
-              <div class="input-group ">
-                <input type="search" class="form-control rounded" placeholder="Filter name, courses, etc" aria-label="Search"
-                  aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
-              </div>
-          
-          </div>
-          
-      </div>
-        <br><br> -->
-
-      <!-- <div class="container-fluid"> -->
       <h2>Your Upcoming Events</h2>
       <br />
       <div class="row" id="your-upcoming-event-section">
-        <!-- <div class="col-12 col-sm-6 col-md-4 mb-4">
-        <a href="#" target="_blank">
-          <div class="card">
-            <img src="../../../Assets/imgs/eventPhoto.png" class="card-img-top" alt="eventPhoto">
-            <div class="card-body">
-              <h5 class="card-title">Keselamatan Siber Di Kalangan Kanak-Kanak</h5>
-              <p class="card-text">
-              <div class="row cards">
-                <div class="col-1"> <img src="../../../../Assets/imgs/calendar.png" alt="calendar" width="24"
-                    height="24"></div>
-                <div class="col-7">April 16,2021</div>
-              </div>
-              <div class="row cards">
-                <div class="col-1"> <img src="../../../../Assets/imgs/time.png" alt="time" height="24" width="24"></div>
-                <div class="col-9">8:00pm - 10:00pm</div>
-              </div>
-              </p>
-            </div>
-          </div>
-        </a>
-      </div> -->
       </div>
       <br />
 
@@ -160,9 +59,10 @@
       <br />
     </div>
     <script type="text/javascript" src="/src/js/utility.js"></script>
-    <script type="text/javascript" src="/src/js/dummydata.js"></script>
     <script type="text/javascript" src="/src/js/addNavFooter.js"></script>
+    <script type="text/javascript" src="/src/js/addSearchBar.js"></script>
     <script type="module" src="/src/js/addHeader.js"></script>
+    <script type="module" src="../../js/Alumni/searchAlgo.js"></script>
     <script type="module" src="/src/js/Alumni/EventPage.js"></script>
 
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
