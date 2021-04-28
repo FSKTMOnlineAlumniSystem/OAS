@@ -1,3 +1,9 @@
+@import url('/src/css/Alumni/index.css');
+
+body{
+  background-color: rgb(240, 240, 240);
+}
+
 .header__img {
   height: 20px;
   width: 20px;
@@ -9,3 +15,7 @@
   width: auto;
   max-height: 200px;
 }
+
+/* .card--bg-light-gray{
+  background-color: var(--dark-purple);
+} */
