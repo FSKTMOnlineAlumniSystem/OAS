@@ -7,7 +7,7 @@ const loadAlumniProfile = (index) => {
   var i = index;
   alumniProfile.innerHTML = "";
   alumniProfile.innerHTML = `
-    <div id="main-body" class="container my-5">
+  <div class="col-lg-7">
     <div>
         <a
           href="../../html/Alumni/AlumniPage.html"

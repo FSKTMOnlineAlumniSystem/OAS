@@ -1,14 +1,19 @@
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 
 document.getElementById("form").innerHTML += 
 `<form id="job_ad_form" action="/src/html/Alumni/MyJobPage.html">
 <div class="mb-3">
   <label for="companyName" class="form-label">Company Name</label>
-  <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" required>
-</div>
+  <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
+  <div class="valid-feedback">Valid.</div>
+  <div class="invalid-feedback">Please provide a company name.</div>
+  </div>
 <div class="mb-3">
 <label for="jobTitle" class="form-label">Job Title</label>
-<input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle" required>
+<input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
+<div class="valid-feedback">Valid.</div>
+<div class="invalid-feedback">Please provide a job title.</div>
 </div>
 <div class="container-fluid mb-3">
         <div class='row'>
@@ -23,97 +28,193 @@ document.getElementById("form").innerHTML +=
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+          <div class="valid-feedback">Valid</div>
+          <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
         </div>
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>
-          <input type="text" class="form-control" id="location" required>
+          <input type="text" class="form-control" id="location">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please provide the location of the company.</div>
         </div>
         <div class="mb-3">
           <label for="salary" class="form-label">Job Salary</label>
-          <input type="text" class="form-control" id="salary" required>
+          <input type="text" class="form-control" id="salary" >
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea name="comment" form="job_ad_form" id="description" class="form-control"
-            placeholder="Enter description here..." required></textarea>
+            placeholder="Enter description here..."></textarea>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please provide the description of the job.</div>
         </div>
-        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+           <button type="submit" id="submit" class="btn btn-primary float-right ml-2">Submit</button>
+            <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
+        <br>
       </form>
     </div>`;
 
-/*  ==========================================
-    SHOW UPLOADED IMAGE
-* ========================================== */
-var input = document.getElementById('upload');
-function readURL(input) {
-  if (input.files && input.files[0]) {
-      var reader = new FileReader();
+// /*  ==========================================
+//     SHOW UPLOADED IMAGE
+// * ========================================== */
+// var input = document.getElementById('upload');
+// function readURL(input) {
+//   if (input.files && input.files[0]) {
+//       var reader = new FileReader();
    
-      reader.onload = function (e) {
-        console.log(e);
-        document.getElementById('imageResult').setAttribute('src', e.target.result)
-        // localStorage.setItem("recent-image", reader.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-  }
-}
-input.addEventListener( 'change', (event)=>readURL(input));
+//       reader.onload = function (e) {
+//         console.log(e);
+//         document.getElementById('imageResult').setAttribute('src', e.target.result)
+//         // localStorage.setItem("recent-image", reader.result);
+//       };
+//       reader.readAsDataURL(input.files[0]);
+//   }
+// }
+// input.addEventListener( 'change', (event)=>readURL(input));
 
   //INPUT
-  let myJob = JSON.parse(localStorage.getItem("job"));
-  console.log(myJob);
-  const myJobLength = Object.values(myJob).flat().length;
-  console.log(myJobLength)
   var imageUrl;
-  var newJob = {};
+  const companyName = document.getElementById("companyName");
+  const jobTitle = document.getElementById("jobTitle");
+  const location = document.getElementById("location");
+  const salary = document.getElementById("salary");
+  const email = document.getElementById("email");
+  const description = document.getElementById("description");
+  const form = document.querySelector('form');
+  const jobIndex = dummyResponse.Job[(dummyResponse.Job.length)-1].jobId.split("-");
+console.log(jobIndex);
 
-  // console.log(myJobLength.jobId);
-  // console.log((myJob[myJobLength-1].jobId).split("-"));
-  const jobIndex = myJob[myJobLength-1].jobId.split("-");
-  // console.log(parseInt(jobIndex[1])+1);
+ 
 
-  document.getElementById("submit").addEventListener("click", function(){
-    console.log('submit')
-    var newData_company = document.getElementById("companyName").value;
-    var newData_title = document.getElementById("jobTitle").value;
-    var newData_location = document.getElementById("location").value;
-    var newData_salary = document.getElementById("salary").value;
-    var newData_email = document.getElementById("email").value;
-    var newData_description = document.getElementById("description").value;
 
-    console.log(myJobLength.jobId);
-    console.log(myJob[myJobLength-1].jobId);
-    // const jobIndex = 
 
+
+
+  function setInValid(el) {
+    if (el.classList.contains("is-valid")) {
+        el.classList.replace("is-valid", "is-invalid");
+    } else {
+        el.classList.add("is-invalid");
+    }
+  }
+  function setValid(el) {
+    if (el.classList.contains("is-invalid")) {
+        el.classList.replace("is-invalid", "is-valid");
+    } else {
+        el.classList.add("is-valid");
+    }
+  }
+
+  function isEmpty(obj) {
+    return obj.value.length == 0;
+  }
+  const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
+  const regex=/^[0-9]+$/;
+
+  console.log('here')
+
+  // form.addEventListener("submit", (e)=>{
+
+    // document.getElementById("submit").addEventListener("click", function(){
+
+  form.addEventListener("submit", (e)=>{
+    console.log("submit");
+  
+    let errorExist = false; //false if no error exists in email, contactNumber, biography
+
+    if (isEmpty(companyName)) {
+      setInValid(companyName);
+      errorExist = true;
+  } else {
+      setValid(companyName);
+  }
+  
+    if (isEmpty(jobTitle)) {
+        setInValid(jobTitle);
+        errorExist = true;
+    } else {
+        setValid(jobTitle);
+    }
+  
+    if (isEmpty(location)) {
+      setInValid(location);
+      errorExist = true;
+  } else {
+      setValid(location);
+  }
+  
+  if (isEmpty(salary) || !salary.value.match(regex)) {
+    setInValid(salary);
+    errorExist = true;
+  } else {
+    setValid(salary);
+  }
+  
+  if (isEmpty(email) || !email.value.match(emailFormat)) {
+    setInValid(email);
+    errorExist = true;
+  } else {
+    setValid(email);
+  }
+  
+    if (isEmpty(description)) {
+      setInValid(description);
+      errorExist = true;
+  } else {
+      setValid(description);
+  }
+
+
+  if (errorExist){
+    console.log('error');
+  e.preventDefault();}
+  else{
+    var newJob = {};
     newJob = {
-      "jobId" :  "J-"+(parseInt(jobIndex[1])+1), 
-      "alumniId" : "AL-1",
-      "description" : newData_description,
-      "salary" : newData_salary,
-      "email" : newData_email,
-      "location" : newData_location,
-      "title" : newData_title,
-      "company" : newData_company, 
-      "imageId" : null,
-      "imgaeUrl" : imageUrl
-    };
-
-    console.log(newJob);
-    myJob.push(newJob);
-    console.log(myJob);
-
-    localStorage.setItem('job', JSON.stringify(myJob));
-    console.log(myJob);
-
-//     myJob[index].title = newData_title;
-//     myJob[index].location = newData_location;
-//     myJob[index].salary = newData_salary;
-//     myJob[index].email = newData_email;
-//     myJob[index].description = newData_description;
-
-//     localStorage.setItem('job', JSON.stringify(myJob));
+        "jobId" :  "J-"+(parseInt(jobIndex[1])+1), 
+        "alumniId" : "AL-1",
+        "description" : description.value,
+        "salary" : salary.value,
+        "email" : email.value,
+        "location" : location.value,
+        "title" : jobTitle.value,
+        "company" : companyName.value, 
+        "imageId" : null,
+        "imgaeUrl" : imageUrl
+      };
+      dummyResponse.Job.push(newJob);
+      updateDummyData(dummyResponse);
+  }
+ 
 });
+
+
+ 
+
+  
+//   document.getElementById("submit").addEventListener("click", function(){
+//   if (errorExist) e.preventDefault();
+//   else {
+
+//     newJob = {
+//       "jobId" :  "J-"+(parseInt(jobIndex[1])+1), 
+//       "alumniId" : "AL-1",
+//       "description" : description.value,
+//       "salary" : salary.value,
+//       "email" : email.value,
+//       "location" : location.value,
+//       "title" : jobTitle.value,
+//       "company" : companyName.value, 
+//       "imageId" : null,
+//       "imgaeUrl" : imageUrl
+//     };
+   
+//     dummyResponse.Job.push(newJob);
+//     updateDummyData(dummyResponse);}
+// });
 
 
 
@@ -162,3 +263,12 @@ input.addEventListener( 'change', (event)=>readURL(input));
   
 }
 input.addEventListener( 'change', (event)=>readURL(input));
+
+/*Form Validation for Edit My Profile (email, contactNumber, biography)*/
+
+
+
+
+
+
+
