@@ -1,13 +1,13 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 import loadAlumniList from "./alumniPage.js";
-import loadJobList from "./JobPage.js";
+// import loadJobList from "./JobPage.js";
 
 var result = null;
 document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
     result = searching(e);
-    if (result) {
+    if (result.length != 0) {
       loadAlumniList(0, result);
     } else {
       switch (localStorage.getItem("choose")) {
@@ -18,7 +18,7 @@ document
           // code block
           break;
         case "Jobs":
-          loadJobList(0);
+          // loadJobList(0);
           break;
         default:
         // code block

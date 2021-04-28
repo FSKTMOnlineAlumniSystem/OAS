@@ -86,7 +86,11 @@ function loadAlumniList(pageIndex, outputList) {
     i < alumniEndIndex && i < outputList.length;
     i++
   ) {
-    alumniList.innerHTML += `<div onclick="clickProfile(${i})" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;">
+    var index = getindex(outputList[i].alumniId);
+    function getindex(onClickAlumniID) {
+      return onClickAlumniID.split("-")[1] - 1;
+    }
+    alumniList.innerHTML += `<div onclick="clickProfile(${index})" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;">
     <div class="image m-auto col-2 p-3">
     <div style="aspect-ratio:1/1;overflow:hidden;">
     <img src=${imgPath}${outputList[i].imageId} class="w-100" alt=${outputList[i].name}>
