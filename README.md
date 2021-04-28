@@ -16,6 +16,7 @@ Make sure you know how to revert changes made to reverse any destructive changes
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="../../css/Alumni/index.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/Alumni/SearchBar.css" />
 ``` 
 - [ ] Add below script before the close tag of body tag
 ```
