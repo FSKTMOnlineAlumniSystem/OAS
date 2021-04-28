@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -101,13 +101,18 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) e.preventDefault();
     else {
-        alumni.email = email.value;
-        alumni.contactNumber = contactNumber.value;
-        alumni.biography = biography.value;
-        alumni.name = name.value;
-        alumni.graduated = graduatedFormat.value;
-        alumni.department = department.value;
-        alumni.gender = gender.value;
+        dummyResponse.Alumni.forEach((al) => {
+            if (al.alumniId === currentAlumniId) {
+                al.email = email.value;
+                al.contactNumber = contactNumber.value;
+                al.biography = biography.value;
+                al.graduated = graduated.value;
+                al.department = department.value;
+                al.gender = gender.value;
+                al.name = name.value;
+                updateDummyData(dummyResponse);
+            }
+        });
     }
 });
 
@@ -138,10 +143,21 @@ function closeModal(modalId) {
     $(modalId).modal('hide');
 }
 
+// function loadData() {
+//     wizardPicturePreview.src = imgPath+alumni.imageId;
+//     name.textContent = alumni.name;
+//     graduated.textContent = alumni.graduated;
+//     email.value = alumni.email;
+//     contactNumber.value = alumni.contactNumber;
+//     biography.value = alumni.biography;
+// }
+
 function loadData() {
-    wizardPicturePreview.src = imgPath+alumni.imageId;
+    wizardPicturePreview.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;
+    gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
+    department.textContent = alumni.department;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;

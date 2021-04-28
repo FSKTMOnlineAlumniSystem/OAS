@@ -139,16 +139,24 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   div.setAttribute('class', 'text-white rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
-  const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
-    return alumni_event.eventId === 'E-1' && alumni.alumniId === alumni_event.alumniId;
+  // const foundAlumniEvent = dummyResponse.Alumni.filter(alumni_event => {
+  //   return alumni_event.approvedBy !== "";
+  // })[0];
+
+  const alumniVerified = dummyResponse.Alumni.filter(alumniVeri => {
+    return alumniVeri.alumniId.approvedBy !== "";
   })[0];
-  if(foundAlumniEvent){
-    div.classList.add('bg-success')
-    div.innerText = 'Verified';
-  }else{
-    div.classList.add('bg-danger')
+  console.log(alumniVerified)
+  console.log(alumni.alumniId.approvedBy)
+  if(alumniVerified){
+     div.classList.add('bg-danger')
     div.innerText = 'Not Verified';
+  }else{
+ div.classList.add('bg-success')
+    div.innerText = 'Verified';
   }
+  
+  
   td.appendChild(div);
   tr.appendChild(td);
 
@@ -282,12 +290,27 @@ document.querySelectorAll('.alumniName').forEach((alumni)=>{
     $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
     $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
-    $("#department").text(dummyResponse.Alumni[e.target.id].department);
+    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
     $("#email").text(dummyResponse.Alumni[e.target.id].email);
     $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
     $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
-    $("verified").text("Verified");
+    console.log
+   
+    if(dummyResponse.Alumni[e.target.id].approvedBy === ""){
+      $("#accStatus").text("Not Verified");
+    }else{
+    $("#accStatus").text("Verified");}
+
     $('#exampleModal').modal("show");
     console.log(e.target.id);
+     $("#approve").click(function(){
+      if(dummyResponse.Alumni[e.target.id].approvedBy === ""){
+        $("#accStatus").text("Verified");
+      }else{
+        $('#accStatus').prop('disabled',true);
+          }      
+        });
+    
   })
 })
+
