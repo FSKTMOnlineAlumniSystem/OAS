@@ -78,6 +78,7 @@ const loadAlumniList = (pageIndex) => {
 }
 }
 
+loadAlumniList(pageIndex);
 
 window.nextPage = function () {
   pageIndex++;
@@ -87,9 +88,10 @@ window.previousPage = function () {
   pageIndex--;
   loadAlumniList(pageIndex);
 };
-loadAlumniList(pageIndex);
+
 
 const tbody = document.getElementsByTagName('tbody')[0];
+tbody.innerHTML="";
 dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
@@ -290,15 +292,15 @@ document.querySelectorAll('.alumniName').forEach((alumni)=>{
   }
   $("#approve").click(function(){
     if(dummyResponse.Alumni[e.target.id].approvedBy !== "" ){
-        $(this).prop("disabled",true);
     }
     else{
-    dummyResponse.Alumni[e.target.id].approvedBy = "#";
+    dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
     updateDummyData(dummyResponse);
     location.reload();
 }})
 
     $('#exampleModal').modal("show");
     console.log(e.target.id);
+ 
   })
 })

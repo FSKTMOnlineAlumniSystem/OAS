@@ -155,9 +155,9 @@ function closeModal(modalId) {
 function loadData() {
     wizardPicturePreview.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
+    // gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
+    // department.textContent = alumni.department;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;
