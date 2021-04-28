@@ -64,7 +64,7 @@ const loadAlumniProfile = (index) => {
 
     <div class="row mt-5">
         <h4>Biography</h4>
-        <div class="rounded bg-grey p-5 mb-2">
+        <div class="col-12 rounded bg-grey p-5 mb-2">
         <div id="biography" class="profile__biography_valueContainer_value">
         ${dummyResponse.Alumni[i].biography}
         </div>

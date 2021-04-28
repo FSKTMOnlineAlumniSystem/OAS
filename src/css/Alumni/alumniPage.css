@@ -1,7 +1,3 @@
-.d-flex {
-  background-image: url(searchBar.png);
-}
-
 .input-field[type="text"] {
   float: center;
   padding: 9px;

@@ -1,32 +1,45 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-import loadAlumniList from "./alumniPage.js";
-import loadJobList from "./JobPage.js";
+// import loadAlumniList from "./alumniPage.js";
+// import loadJobList from "./JobPage.js";
+import loadAlumniList from "./alumniPageModule.js";
+// import { loadEventList } from "./EventPageModule.js";
+// console.log(loadEventList);
 
-var result = null;
+let result = null;
 document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
+    // e.preventDefault();
+    console.log("click");
     result = searching(e);
-    if (result) {
-      loadAlumniList(0, result);
-    } else {
-      switch (localStorage.getItem("choose")) {
+    console.log(result);
+    console.log(localStorage.getItem("choose"));
+    const chooseVariable = JSON.parse(localStorage.getItem("choose"));
+    if (result.length != 0) {
+      switch (chooseVariable) {
         case "Alumni":
-          loadAlumniList(0, dummyResponse.Alumni);
+          loadAlumniList(0, result);
           break;
         case "Event":
           // code block
+          loadEventList(
+            result,
+            document.getElementById("event-page-section"),
+            true
+          );
           break;
         case "Jobs":
-          loadJobList(0);
+          // code block
           break;
         default:
+          console.log("there is no match");
         // code block
       }
     }
   });
 
 function searching(e) {
+  console.log("start searching");
   e.preventDefault();
   var searchQuery = document.getElementById("search");
   localStorage.setItem("searchQuery", JSON.stringify(searchQuery.value));
@@ -35,7 +48,6 @@ function searching(e) {
   searchQuery = searchQuery.value.toLowerCase();
   var e = document.getElementById("exampleFormControlSelect1");
   var choose = e.options[e.selectedIndex].text;
-  console.log(choose);
   localStorage.setItem("choose", JSON.stringify(choose));
 
   if (choose == "Alumni") {
@@ -64,7 +76,6 @@ function searching(e) {
       }
     });
   } else if (choose == "Event") {
-    console.log("searching is in");
     result = dummyResponse.Event.filter(function (Event) {
       var match = false;
       if (Event.title.toLowerCase().includes(searchQuery) === true) {
@@ -73,7 +84,7 @@ function searching(e) {
         return match;
       }
       if (Event.description.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching des");
+        console.log("searching description");
         match = true;
         return match;
       }
@@ -114,6 +125,20 @@ function searching(e) {
   }
   // console.log(result);
   if (result.length == 0) {
+    switch (localStorage.getItem("choose")) {
+      case "Alumni":
+        console.log("load alumni");
+        loadAlumniList(0, dummyResponse.Alumni);
+        break;
+      case "Event":
+        loadEventList(0, dummyResponse.Event);
+        break;
+      case "Jobs":
+        // loadJobList(0);
+        break;
+      default:
+      // code block
+    }
     alert("Sorry, we cannot match any result for your search");
   }
   return result;
