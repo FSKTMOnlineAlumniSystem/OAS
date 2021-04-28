@@ -53,4 +53,5 @@ const iconClassName = {
   'salaryIcon': 'fas fa-sack-dollar',
   'mailIcon': 'fas fa-envelope-open-text',
   'pencilEditIcon': 'fas fa-pencil-alt',
+  'AddUserIcon': 'fas fa-user-plus',
 }

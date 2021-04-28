@@ -1,6 +1,7 @@
 import { dummyResponse } from '../dummydata.js';
 import { getCardStructure } from './EventPageModule.js'
 
+
 const upcomingEventSection = document.getElementById('upcoming-event-section');
 const yourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
 
@@ -11,7 +12,8 @@ const notMyEvent = dummyResponse.Alumni_Event.filter(event => {
   return event.alumniId !== localStorage.getItem('SignedInAlumniId');
 });
 
-const loadEventSection = (eventArr, parentNode) => {
+// the parent node should be a div with class 'row'
+export const loadEventSection = (eventArr, parentNode) => {
   eventArr.forEach(event => {
     const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
     const { title, dateTime, imageId } = eventDetails;

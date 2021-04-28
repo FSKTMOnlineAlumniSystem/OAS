@@ -20,7 +20,7 @@ document
           break;
         case "Event":
           // code block
-          loadEventList(result, document.getElementById('main-body'), true);
+          loadEventList(result, document.getElementById('event-page-section'), true);
           break;
         case "Jobs":
           // code block

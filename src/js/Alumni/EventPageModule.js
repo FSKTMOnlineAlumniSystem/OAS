@@ -1,4 +1,5 @@
 import { dummyResponse } from '../dummydata.js';
+import { loadEventSection } from './EventPage.js';
 
 export const getCardStructure = (eventId, imageId, title, dateTime) => {
   return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
@@ -23,9 +24,9 @@ export const getCardStructure = (eventId, imageId, title, dateTime) => {
 }
 
 export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
-  console.log('loading event');
+  console.log('loading event based on search query');
   if(eraseEventPage){
-    document.getElementById('main-body').innerHTML = ``;
+    document.getElementById('event-page-section').innerHTML = ``;
   }
   // append the title
   const pageTitle = document.createElement('h3');
@@ -33,7 +34,15 @@ export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
   pageTitle.setAttribute('class', 'pb-2');
   const section = document.createElement('div');
   section.setAttribute('class', 'row');
-
+  if(eventArr.length === 0){
+    pageTitle.innerText = 'All Upcoming Events'
+    // append the sectio in event-page-section first
+    document.getElementById('event-page-section').appendChild(pageTitle);
+    document.getElementById('event-page-section').appendChild(section);
+    loadEventSection(dummyResponse.Event, section);
+    return;
+  }
+  
   parentNode.appendChild(pageTitle);
   eventArr.forEach(event => {
     const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
