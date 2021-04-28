@@ -137,25 +137,14 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   td = document.createElement('td');
   div = document.createElement('div');
   div.setAttribute('class', 'text-white rounded p-1');
-
-  // check if this alumni invited in this 'Event 1'
-  // const foundAlumniEvent = dummyResponse.Alumni.filter(alumni_event => {
-  //   return alumni_event.approvedBy !== "";
-  // })[0];
-
-  const alumniVerified = dummyResponse.Alumni.filter(alumniVeri => {
-    return alumniVeri.alumniId.approvedBy !== "";
-  })[0];
-  console.log(alumniVerified)
-  console.log(alumni.alumniId.approvedBy)
-  if(alumniVerified){
+  
+  if(alumni.approvedBy === ""){
      div.classList.add('bg-danger')
     div.innerText = 'Not Verified';
   }else{
  div.classList.add('bg-success')
     div.innerText = 'Verified';
   }
-  
   
   td.appendChild(div);
   tr.appendChild(td);
@@ -294,23 +283,22 @@ document.querySelectorAll('.alumniName').forEach((alumni)=>{
     $("#email").text(dummyResponse.Alumni[e.target.id].email);
     $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
     $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
-    console.log
-   
     if(dummyResponse.Alumni[e.target.id].approvedBy === ""){
       $("#accStatus").text("Not Verified");
     }else{
-    $("#accStatus").text("Verified");}
+    $("#accStatus").text("Verified");
+  }
+  $("#approve").click(function(){
+    if(dummyResponse.Alumni[e.target.id].approvedBy !== "" ){
+        $(this).prop("disabled",true);
+    }
+    else{
+    dummyResponse.Alumni[e.target.id].approvedBy = "#";
+    updateDummyData(dummyResponse);
+    location.reload();
+}})
 
     $('#exampleModal').modal("show");
     console.log(e.target.id);
-     $("#approve").click(function(){
-      if(dummyResponse.Alumni[e.target.id].approvedBy === ""){
-        $("#accStatus").text("Verified");
-      }else{
-        $('#accStatus').prop('disabled',true);
-          }      
-        });
-    
   })
 })
-
