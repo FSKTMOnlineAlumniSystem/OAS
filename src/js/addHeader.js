@@ -10,7 +10,7 @@ import { dummyResponse } from "./dummydata.js"
 
 // check if this is alumni or admin
 let curUser = {};
-let isAlumni = false;
+let isAlumni = !location.href.toLowerCase().includes('admin-');
 if (isAlumni) {
   localStorage.setItem('SignedInAlumniId', "AL-1");
   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
@@ -39,7 +39,7 @@ const hasEventNotViewedByAlumni = dummyResponse.Alumni_Event.filter(alumni_event
 }).length === 0 ? false : true;
 console.log(hasEventNotViewedByAlumni);
 
-header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient p-2 font-weight-bold text-white');
+header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
 <img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>

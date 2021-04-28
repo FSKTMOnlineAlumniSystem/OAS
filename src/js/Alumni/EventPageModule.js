@@ -1,9 +1,8 @@
 import { dummyResponse } from '../dummydata.js';
-import { loadEventSection } from './EventPage.js';
 
 export const getCardStructure = (eventId, imageId, title, dateTime) => {
   return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
-  <div class="card h-100">
+  <div class="card h-100 card--bg-light-gray">
     <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height" alt="eventPhoto">
     <div class="card-body">
       <h5 class="card-title">${title}</h5>
@@ -21,6 +20,33 @@ export const getCardStructure = (eventId, imageId, title, dateTime) => {
     </div>
   </div>
 </a>`
+}
+// the parent node should be a div with class 'row'
+export const loadEventSection = (eventArr, parentNode, errorMsg) => {
+  console.log('loading event section');
+  console.log(eventArr);
+  if(eventArr.length === 0){
+    const noEventSection = document.createElement('div');
+    noEventSection.setAttribute('class', 'alert custom-light-purple');
+    noEventSection.innerText = errorMsg;
+    parentNode.appendChild(noEventSection);
+  }
+  eventArr.forEach(event => {
+    const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
+    const { title, dateTime, imageId } = eventDetails;
+    
+    const cardDiv = document.createElement('div');
+    cardDiv.setAttribute('class', 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4');
+    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime);
+    parentNode.appendChild(cardDiv);
+  
+    // function to be called when this card clicked
+    const evtHandler = evt => {
+      console.log(`set eventId to ${event.eventId}`);
+      localStorage.setItem('eventId', event.eventId);
+    };
+    cardDiv.querySelector('#' + event.eventId + '-card').addEventListener('click', evtHandler);
+  });
 }
 
 export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
