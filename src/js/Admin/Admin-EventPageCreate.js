@@ -68,4 +68,9 @@ updateDummyData(dummyResponse)
   console.log(dummyResponse)
   // location.reload();
 }
-
+window.setEventId=function (){
+  var endIndex = dummyResponse.Event.length;
+  var newId=endIndex+1
+  var eventId="E-"+ newId
+  localStorage.setItem('eventId',eventId);
+}

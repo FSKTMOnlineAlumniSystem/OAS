@@ -7,6 +7,7 @@ console.log("link js");
 // })
 //eventList
 let pageIndex = '0';
+var loaded='0';
 const loadEventList = (pageIndex) => {
   console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
@@ -130,10 +131,10 @@ const loadEventList = (pageIndex) => {
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
+                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}"><i class="fas fa-pencil-alt fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
 
                     </i></a>
-                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
+                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="far fa-trash-alt fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
                        </i></a>
                   </div>
                 </td>
@@ -262,7 +263,8 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                 </div>`
   }
   )
-})
+}
+)
 
  //model
 //  document.getElementById("schedule").innerHTML =

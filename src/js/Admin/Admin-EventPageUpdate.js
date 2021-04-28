@@ -22,6 +22,7 @@ window.readURL=function(input) {
 
 
 var i = localStorage.getItem("updateId")
+localStorage.setItem('eventId',dummyResponse.Event[i].eventId)
 var d = new Date(dummyResponse.Event[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
 console.log("date"+todayDate);

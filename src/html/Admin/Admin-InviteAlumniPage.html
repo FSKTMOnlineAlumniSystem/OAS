@@ -33,30 +33,34 @@
           <h3 class='col-12 p-3'>Invite Alumni</h3>
           <form class='col-12'>
             <div class='row bg-light p-4 m-1'>
-              <div class="form-group col-4">
+              <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="status" oninput="filterStatus()">
                   <option>All</option>
                   <option>Invited</option>
                   <option>Not Invited</option>
                 </select>
               </div>
-              <div class="form-group col-4">
+              <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="department" oninput="filterDepartment()">
                   <option>All</option>
                   <option>Software Engineering</option>
+                  <option>Artificial Intelligence</option>
+                  <option>Information System</option>
+                  <option>Data Science</option>
+                  <option>Multimedia</option>
+                  <option>Computer System and Network</option>
                 </select>
               </div>
-              <div class="form-group col-4">
+              <!-- <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Graduated</label>
                 <select class="form-control" id="exampleFormControlSelect1">
                   <option>All</option>
                   <option>2019</option>
                 </select>
-              </div>
+              </div> -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button type="submit" class="btn text-white mx-2 custom-dark-purple">Filter</button>
                 <button type="submit" class="btn text-white custom-dark-purple">Clear All</button>
               </div>
             </div>
@@ -66,14 +70,14 @@
           <form class="col-12 my-2">
             <div class="row">
               <div class="col-7">
-                <button type="button" class="btn btn-outline-danger">
-                  <a href="#" role="button"><i class="fa fa-trash text-danger" aria-hidden="true"
-                      style="font-size: 20px;"></i>
+                <button type="button" class="btn" style="background-color:#C9B3CD" onclick='inviteCheckedAlumni()'>
+                  <a href="#" role="button"><i class="fas fa-user-plus" aria-hidden="true"
+                      style="font-size: 20px; color: #000000"></i>
                   </a>
                 </button>
               </div>
               <div class="col-5 input-group mb-3">
-                <input type="text" class="form-control" style="font-weight: 200; font-style: italic"
+                <input id="searchBar" type="text" class="form-control" style="font-weight: 200; font-style: italic"
                   placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">
@@ -85,12 +89,12 @@
           </form>
 
           <div class="table-responsive col-12">
-            <table class="table table-sm table-bordered">
+            <table  id="myTable" class="table table-striped table-bordered">
               <thead style="font-weight: 200; color:#ffffff" class="custom-dark-purple">
                 <tr>
                   <th class="text-center">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="CheckAllBoxes">
+                      <input  onclick="toggle(this);" type="checkbox" class="custom-control-input" id="CheckAllBoxes" onclick="toggle(this);">
                       <label class="custom-control-label" for="CheckAllBoxes"></label>
                     </div>
                   </th>
@@ -138,6 +142,9 @@
           </div>
         </div>
       </div>
+      <div id="previousPagePage"></div>
+      <div class="pages"></div>
+      <div id="nextPage"></div>
   </main>
 
   <script type="module" src="/src/js/Admin/Admin-InviteAlumniPage.js"></script>
