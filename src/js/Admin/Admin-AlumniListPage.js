@@ -304,3 +304,8 @@ document.querySelectorAll('.alumniName').forEach((alumni)=>{
  
   })
 })
+window.updateEvent = function (o) {
+  var eventId = o.id.split(" ")[1]
+  localStorage.setItem("updateId", eventId)
+  console.log("update event")
+}

@@ -107,8 +107,6 @@ form.addEventListener('submit', (e) => {
                 al.contactNumber = contactNumber.value;
                 al.biography = biography.value;
                 al.graduated = graduated.value;
-                al.department = department.value;
-                al.gender = gender.value;
                 al.name = name.value;
                 updateDummyData(dummyResponse);
             }
@@ -125,10 +123,13 @@ cancelButton.addEventListener('click', () => {
         alumni.biography == biography.value &&
         alumni.name == name.value &&
         alumni.graduated == graduated.value &&
-        alumni.gender == gender.value &&
-        alumni.department == department.value) {
+        alumni.department == department.value &&
+        alumni.gender == gender.value) 
+        {
         location.href = "Admin-AlumniListPage.html";
     } else {
+        console.log(alumni.gender)
+        console.log(gender.value)
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
@@ -142,15 +143,6 @@ stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 function closeModal(modalId) {
     $(modalId).modal('hide');
 }
-
-// function loadData() {
-//     wizardPicturePreview.src = imgPath+alumni.imageId;
-//     name.textContent = alumni.name;
-//     graduated.textContent = alumni.graduated;
-//     email.value = alumni.email;
-//     contactNumber.value = alumni.contactNumber;
-//     biography.value = alumni.biography;
-// }
 
 function loadData() {
     wizardPicturePreview.src = imgPath + alumni.imageId;
