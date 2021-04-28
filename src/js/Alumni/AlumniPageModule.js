@@ -1,4 +1,4 @@
-const imgPath = "../../..//Assets/imgs/";
+const imgPath = "../../../Assets/imgs/";
 
 function loadAlumniList(pageIndex, outputList) {
   console.log("called");
