@@ -77,25 +77,16 @@ for (let i = 0; i < 6; i++) {
  
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                          fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                            <path
-                              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                        </svg>
+                    <i class="far fa-calendar-alt"></i>
                      </div>
                     <div class="col-10 d-flex flex-column">
                         <span class="t">${`${da}, ${mo} ${ye}`}</span>
                     </div>
+                    
                 </div>
                     <div class="row">
                         <div class="col-2 d-flex flex-column">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                <path
-                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                <path
-                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                            </svg>
+                        <i class="far fa-clock"></i>
                         </div>
 
                         <div class="col-10 d-flex flex-column">
@@ -104,13 +95,7 @@ for (let i = 0; i < 6; i++) {
                     </div>
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                            <path
-                              d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                            <path
-                              d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>
+                            <i class="fas fa-map-marked-alt"></i>
                     </div>
                     <div class="col-10 d-flex flex-column">
                         <span class="t">${dummyResponse.Event[latest_1[i]].location}</span>
@@ -183,7 +168,7 @@ for (let i = 0; i < 6; i++) {
 `
 
 
-const A = document.getElementById('alumni');
+    const A = document.getElementById('alumni');
     // console.log(A);
 
     const evtHandler = evt => {
@@ -195,7 +180,7 @@ const A = document.getElementById('alumni');
         // console.log(s);
         localStorage.setItem('alumniprofile', s[3]);
         location.href = "/src/html/Alumni/AlumniProfilePage.html";
-        
+
     };
 
     // console.log(dummyResponse.Alumni[i].alumniId);
@@ -257,7 +242,7 @@ document.getElementById('job_row_1').innerHTML = "";
 
 
 for (let i = 0; i < 2; i++) {
-    
+
     const card_job = document.createElement('div');
     card_job.setAttribute('class', 'col');
 
@@ -281,23 +266,23 @@ for (let i = 0; i < 2; i++) {
         var myJobList_1 = [];
         myJobList_1.push(dummyResponse.Job[latest[i]]);
         // console.log(myJobList_1);
-        localStorage.setItem('JobList', JSON.stringify(myJobList_1)); 
+        localStorage.setItem('JobList', JSON.stringify(myJobList_1));
         location.href = "/src/html/Alumni/JobDetailsPage.html";
-        
+
     };
 
     card_job.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
 
     J.appendChild(card_job);
-    
-    
+
+
 }
 
 document.getElementById('job_row_2').innerHTML = "";
 
 
 for (let i = 2; i < 4; i++) {
-    
+
     const card_job_1 = document.createElement('div');
     card_job_1.setAttribute('class', 'col');
 
@@ -311,8 +296,8 @@ for (let i = 2; i < 4; i++) {
    
     
     `
-    
-   
+
+
 
 
     const J_1 = document.getElementById('job_row_2');
@@ -325,14 +310,14 @@ for (let i = 2; i < 4; i++) {
         var myJobList = [];
         myJobList.push(dummyResponse.Job[latest[i]]);
         // console.log(myJobList);
-        localStorage.setItem('JobList', JSON.stringify(myJobList)); 
-        
+        localStorage.setItem('JobList', JSON.stringify(myJobList));
+
     };
 
     card_job_1.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
 
     J_1.appendChild(card_job_1);
-    
+
 }
 
 
@@ -367,16 +352,44 @@ var swiper = new Swiper('.swiper-container', {
 });
 
 
-function viewMoreEvents() {
-    location.replace("../../html/Alumni/EventPage.html");
+// function viewMoreEvents() {
+//     console.log("eventviewmore");
+//     location.replace("../../html/Alumni/EventPage.html");
+// }
+
+// function viewMoreJob() {
+//     console.log("jobviewmore");
+//     location.replace("../../html/Alumni/JobPage.html");
+// }
+
+// function viewMoreAlumni() {
+//     console.log("alumniviewmore");
+//     location.replace("../../html/Alumni/alumniPage.html");
+// }
+
+
+var EventView = document.getElementById('viewMoreEvents');
+
+EventView.onclick = function () {
+
+    location.href = "../../html/Alumni/EventPage.html";
+
 }
 
-function viewMoreJob() {
-    location.replace("../../html/Alumni/JobPage.html");
+var JobView = document.getElementById('viewMoreJob');
+
+JobView.onclick = function () {
+
+    location.href = "../../html/Alumni/JobPage.html";
+
 }
 
-function viewMoreAlumni() {
-    location.replace("../../html/Alumni/alumniPage.html");
+var AlumniView = document.getElementById('viewMoreAlumni');
+
+AlumniView.onclick = function () {
+
+    location.href = "../../html/Alumni/alumniPage.html";
+
 }
 
 

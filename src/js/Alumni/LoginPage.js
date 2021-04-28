@@ -111,12 +111,19 @@ form_1.addEventListener('submit', (ev) => {
         ev.preventDefault();
     }
     else {
-        location.replace("../../html/Alumni/homePage.html");
+
         ev.preventDefault();
+        jumpHome();
     }
  
  
 });
+
+
+function jumpHome() { 
+    location.replace("../../html/Alumni/homePage.html");
+ }
+ 
  
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
@@ -250,15 +257,24 @@ form.addEventListener('submit', (e) => {
             "imageId": im,
             "contactNumber": "03-79676347",
         }
- 
+        
         dummyResponse.Alumni.push(obj);
         updateDummyData(dummyResponse);
+
+        e.preventDefault(); 
+        getWait();
+        
+
     }
  
  
 });
  
- 
+function getWait() {
+    $('#wait').modal('toggle');
+    $('#signUP').modal('hide');
+
+}
  
 function checkLength(passwordValue) {
  
