@@ -1,6 +1,8 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
+// import loadAlumniList from "./alumniPage.js";
+// import loadJobList from "./JobPage.js";
 import loadAlumniList from "./alumniPageModule.js";
-import { loadEventList } from './EventPageModule.js';
+// import { loadEventList } from "./EventPageModule.js";
 // console.log(loadEventList);
 
 let result = null;
@@ -8,48 +10,36 @@ document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
     // e.preventDefault();
-    console.log('click');
+    console.log("click");
     result = searching(e);
     console.log(result);
     console.log(localStorage.getItem("choose"));
     const chooseVariable = JSON.parse(localStorage.getItem("choose"));
-    if (result) {
+    if (result.length != 0) {
       switch (chooseVariable) {
         case "Alumni":
           loadAlumniList(0, result);
           break;
         case "Event":
           // code block
-          loadEventList(result, document.getElementById('event-page-section'), true);
+          loadEventList(
+            result,
+            document.getElementById("event-page-section"),
+            true
+          );
           break;
         case "Jobs":
           // code block
           break;
         default:
-          console.log('there is no match');
-        // code block
-      }
-    } else {
-      switch (localStorage.getItem("choose")) {
-        case "Alumni":
-          console.log('load alumni');
-          loadAlumniList(0, dummyResponse.Alumni);
-          break;
-        case "Event":
-          // code block
-          loadEventList(0, dummyResponse.Event);
-          break;
-        case "Jobs":
-          // code block
-          break;
-        default:
+          console.log("there is no match");
         // code block
       }
     }
   });
 
 function searching(e) {
-  console.log('start searching');
+  console.log("start searching");
   e.preventDefault();
   var searchQuery = document.getElementById("search");
   localStorage.setItem("searchQuery", JSON.stringify(searchQuery.value));
@@ -135,6 +125,20 @@ function searching(e) {
   }
   // console.log(result);
   if (result.length == 0) {
+    switch (localStorage.getItem("choose")) {
+      case "Alumni":
+        console.log("load alumni");
+        loadAlumniList(0, dummyResponse.Alumni);
+        break;
+      case "Event":
+        loadEventList(0, dummyResponse.Event);
+        break;
+      case "Jobs":
+        // loadJobList(0);
+        break;
+      default:
+      // code block
+    }
     alert("Sorry, we cannot match any result for your search");
   }
   return result;
