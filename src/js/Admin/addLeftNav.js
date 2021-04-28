@@ -3,12 +3,12 @@
 
 /**
  * Make sure the structure of the html page as below
- * <main class="container-fluid h-100" id='main-body'>
+ * <main class="container-fluid height-after-minus-header" id='main-body'>
       <div class="row h-100">
         <div class="custom-dark-gray px-0" id="left-nav">
           // Admin left nav bar will be here
         </div>
-      <div id="right-content">
+      <div class="container-fluid" id="right-content">
         // The main content of the html page goes here
       </div>
   </main>
