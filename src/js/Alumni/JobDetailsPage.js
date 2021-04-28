@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 // let index;
 // let myJob = JSON.parse(localStorage.getItem("job"));
@@ -18,8 +18,8 @@ console.log(myJob[0].jobId);
 if(myJob[0].imageId == null){
 document.getElementById("jobDetails").innerHTML += 
 `<div class="row">
-<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a>  
-<div class="col-sm-8">  
+<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="fas fa-chevron-left fa-2x" ></i></a>  
+<div class="col-sm-9">  
 <h1>${myJob[0].company} - ${myJob[0].title}</h1>
 </div>
 </div>
@@ -32,9 +32,10 @@ document.getElementById("jobDetails").innerHTML +=
                 </div>
             </div>
             <div class="col">
+            <br>
                 <div class="container-fluid ">
                     <div class="row mb-3 mx-auto">
-                        <img src="https://img.icons8.com/color/48/000000/marker--v1.png" width="40" height="auto">
+                        <i class="fas fa-map-marked-alt fa-2x" alt="location" width="30" height="50"></i>
                         <div class="col ">
                             <p id="info">${myJob[0].location}</p>
                         </div>
@@ -72,8 +73,8 @@ document.getElementById("jobDetails").innerHTML +=
     }else{
         document.getElementById("jobDetails").innerHTML += 
 `<div class="row">
-<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a> 
-<div class="col-sm-8">  
+<a href="../../html/Alumni/JobPage.html" class="btn btn-link float-left back" ><i class="fas fa-chevron-left fa-2x" ></i></a> 
+<div class="col-sm-9">  
 <h1>${myJob[0].company} - ${myJob[0].title}</h1>
 </div>
 </div>
@@ -85,11 +86,14 @@ document.getElementById("jobDetails").innerHTML +=
                     <img src="../../../Assets/imgs/${myJob[0].imageId}" alt="Company Logo" width="100%">
                 </div>
             </div>
+
             <div class="col">
-                <div class="container-fluid ">
-                    <div class="row mb-3 mx-auto">
-                        <img src="https://img.icons8.com/color/48/000000/marker--v1.png" width="40" height="auto">
+            <br>
+                <div class="container-fluid ">            
+                    <div class="row mb-3 mx-auto">                     
+                        <i class="fas fa-map-marked-alt fa-2x" alt="location" width="30" height="50"></i>                    
                         <div class="col ">
+                            
                             <p id="info">${myJob[0].location}</p>
                         </div>
                     </div>
