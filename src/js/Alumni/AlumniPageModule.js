@@ -69,7 +69,7 @@ function loadAlumniList(pageIndex, outputList) {
               pageIndex + 3
             }</button></li>`;
   }
-
+  alumniList.innerHTML += ` <hr></hr><br>`;
   for (
     let i = alumniStartIndex;
     i < alumniEndIndex && i < outputList.length;
