@@ -16,17 +16,8 @@ searchBarSection.setAttribute("class", "searchBarBG");
 searchBarSection.innerHTML = `<form class="search-form">
 <div class="containerSB">
   <div class="row no-gutters" style="white-space: nowrap">
-    <div class="col-lg-2 col-md-2 col-sm-12 p-0"></div>
-
-    <div class="col-lg-2 col-md-2 col-sm-12 p-0">
-      <select class="form-controlSearch" id="exampleFormControlSelect1">
-        <option ${isAlumniPage ? "selected" : ""}>Alumni</option>
-        <option ${isEventPage ? "selected" : ""}>Event</option>
-        <option ${isJobPage ? "selected" : ""}>Jobs</option>
-      </select>
-    </div>
-
-    <div class="col-lg-6 col-md-5 col-sm-12 p-0 input-group">
+    <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group">
       <input type="search" placeholder="Search..." class="form-control" id="search" name="search" style="
       border-radius: 0px 0px 0px 0px;
       border-left-color: #eaeaea;" />

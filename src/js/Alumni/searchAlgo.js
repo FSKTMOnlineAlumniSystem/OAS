@@ -3,7 +3,6 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 // import loadJobList from "./JobPage.js";
 import loadAlumniList from "./alumniPageModule.js";
 import { loadEventList } from "./EventPageModule.js";
-// console.log(loadEventList);
 
 let result = null;
 document
