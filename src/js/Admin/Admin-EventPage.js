@@ -131,8 +131,8 @@ const loadEventList = (pageIndex) => {
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}"><i class="fas fa-pencil-alt fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
-
+                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}">
+                    <i class="fas fa-pencil-alt fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
                     </i></a>
                       <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="far fa-trash-alt fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
                        </i></a>

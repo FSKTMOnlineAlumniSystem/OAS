@@ -35,7 +35,7 @@ document.getElementById("updateForm").innerHTML=`
 <div class="form-group">
             <label for="formGroupExampleInput">Event Title :</label>
             <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
-              value="${dummyResponse.Event[i].title}">
+              value="${dummyResponse.Event[i].title}" required>
           </div>
 
           <div class="form-group">

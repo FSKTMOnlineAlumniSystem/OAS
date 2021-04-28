@@ -18,6 +18,10 @@
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
   <link rel="stylesheet" type="text/css" href="/src/css/Admin/Admin-AlumniListPage.css">
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
 
   <title>Invite Alumni - Online Alumni System</title>
 </head>
@@ -43,7 +47,7 @@
               </div>
               <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="department" oninput="filterDepartment()">
+                <select class="form-control" id="department">
                   <option>All</option>
                   <option>Software Engineering</option>
                   <option>Artificial Intelligence</option>
@@ -61,7 +65,7 @@
                 </select>
               </div> -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button type="submit" class="btn text-white custom-dark-purple">Clear All</button>
+                <button type="submit" id="clearAll" class="btn text-white custom-dark-purple">Clear All</button>
               </div>
             </div>
           </form>
@@ -78,7 +82,7 @@
               </div>
               <div class="col-5 input-group mb-3">
                 <input id="searchBar" type="text" class="form-control" style="font-weight: 200; font-style: italic"
-                  placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                  placeholder="Search" onkeyup="filterSearchBar()" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -133,7 +137,7 @@
           </div>
 
           <div class="col-12 d-flex justify-content-end">
-            <button type="button" class="btn " style="background-color:#C9B3CD;padding-right: 5px;" onclick='inviteCheckedAlumni()'>
+            <button type="button" class="btn " style="background-color:#C9B3CD" onclick='inviteCheckedAlumni()'>
               Invite
             </button>
 

@@ -148,13 +148,14 @@ window.filterSearchBar = function() {
 //       updateDummyData(dummyResponse)
 //  }
 
-// $(document).ready(function () {
-//     $("#status,#department").on("change", function () {
-//         var status = $('#status').find("option:selected").val();
-//         var department = $('#department').find("option:selected").val();
-//         SearchData(status, department)
-//     });
-// });
+$(document).ready(function () {
+    $("#status,#department").on("change", function () {
+        var status = $('#status').find("option:selected").val();
+        var department = $('#department').find("option:selected").val();
+        SearchData(status, department)
+    });
+});
+
 window.SearchData = function(status, department) {
     if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
         $('#myTable tbody tr').show();
@@ -189,7 +190,17 @@ window.SearchData = function(status, department) {
         });
     }
 }
-
+//clearAll
+$("#clearAll").on("click", function () {
+  $('#department option').prop('selected', function() {
+      $('#myTable tbody tr').show();
+      return this.defaultSelected;
+  });
+  $('#status option').prop('selected', function() {
+      $('#myTable tbody tr').show();
+      return this.defaultSelected;
+  });
+  });
 // window.inviteAlumni = function(o) {
 //   var p=o.parentNode.parentNode;
 //   // console.log("p")
