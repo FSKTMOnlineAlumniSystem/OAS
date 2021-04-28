@@ -8,6 +8,13 @@ const loadAlumniProfile = (index) => {
   alumniProfile.innerHTML = "";
   alumniProfile.innerHTML = `
     <div id="main-body" class="container my-5">
+    <div>
+        <a
+          href="../../html/Alumni/AlumniPage.html"
+          class="btn btn-link float-left back pt-1"
+          ><i class="fas fa-chevron-left fa-2x"></i
+        ></a>
+    </div>
     <div class="row justify-content-between">
         <h2>Alumni Profile</h2>
     </div>
@@ -57,7 +64,7 @@ const loadAlumniProfile = (index) => {
 
     <div class="row mt-5">
         <h4>Biography</h4>
-        <div class="rounded bg-grey p-5 mb-2">
+        <div class="col-12 rounded bg-grey p-5 mb-2">
         <div id="biography" class="profile__biography_valueContainer_value">
         ${dummyResponse.Alumni[i].biography}
         </div>

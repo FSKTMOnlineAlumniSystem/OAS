@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 // let index;
 
@@ -32,7 +32,7 @@ console.log(myJob[0].jobId);
 document.getElementById("MyJobTitle").innerHTML += 
 `
 
-<a href="../../html/Alumni/MyJobPage.html" class="btn btn-link float-left back" ><i class="bi bi-box-arrow-left" ></i></a>
+<a href="../../html/Alumni/MyJobPage.html" class="btn btn-link float-left back" ><i class="fas fa-chevron-left fa-2x" ></i></a>
 
 <div class="col-sm-8">
 <h1>${myJob[0].company} - ${myJob[0].title}</h1>
@@ -55,9 +55,10 @@ if(myJob[0].imageId == null){
     <img src="" id="image" alt="Company Logo" width="100%">
     </div></div>
     <div class="col">
+    <br>
     <div class="container-fluid ">
     <div class="row mb-3 mx-auto">
-    <img src="https://img.icons8.com/color/48/000000/marker--v1.png" width="40" height="auto">
+    <i class="fas fa-map-marked-alt fa-2x" alt="location" width="30" height="50"></i>     
     <div class="col">
     <p  id="info">${myJob[0].location}</p>
     </div></div>
@@ -93,10 +94,12 @@ if(myJob[0].imageId == null){
     <img src="../../../Assets/imgs/${myJob[0].imageId}" alt="Company Logo" width="100%" >
     </div></div>
     <div class="col">
+    <br>
 <div class="container-fluid ">
 <div class="row mb-3 mx-auto">
-<img src="https://img.icons8.com/color/48/000000/marker--v1.png" width="40" height="auto">
+<i class="fas fa-map-marked-alt fa-2x" alt="location" width="30" height="50"></i>     
 <div class="col">
+
 <p  id="info">${myJob[0].location}</p>
 </div></div>
 <div class="row mb-3 mx-auto">
