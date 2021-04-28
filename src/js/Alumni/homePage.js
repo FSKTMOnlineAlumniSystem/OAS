@@ -1,6 +1,7 @@
 import { dummyResponse } from "../dummydata.js";
 console.log("link js");
 
+localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
 
 var latest_1 = [];
@@ -175,10 +176,10 @@ for (let i = 0; i < 6; i++) {
 
         // console.log("clickkk");
         // console.log(`set eventId to ${dummyResponse.Alumni[i].alumniId}`);
-        var s = dummyResponse.Alumni[i].alumniId.split("");
+        // var s = dummyResponse.Alumni[i].alumniId.split("");
         // console.log(s[3]);
         // console.log(s);
-        localStorage.setItem('alumniprofile', s[3]);
+        localStorage.setItem('alumniprofile', i);
         location.href = "/src/html/Alumni/AlumniProfilePage.html";
 
     };
