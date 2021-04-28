@@ -39,7 +39,9 @@ body,
 .header--gradient{
   background: linear-gradient(to left, #6E48AA, #cd8ee6);
 }
-
+.header--fixed-height{
+  height: 45px;
+}
 .footer--gradient{
   background: linear-gradient(to left, #6E48AA, #a53ecd);
 }
@@ -148,4 +150,8 @@ a.nostyle:visited {
 
 #right-content{
   width:calc(100% - 90px);
+}
+
+.height-after-minus-header{
+  height: calc(100% - 45px);
 }
