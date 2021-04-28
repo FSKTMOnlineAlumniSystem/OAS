@@ -35,7 +35,8 @@ document
           console.log("there is no match");
         // code block
       }
-    });
+    }
+  });
 
 function searching(e) {
   console.log("start searching");
