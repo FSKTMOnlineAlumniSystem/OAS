@@ -17,6 +17,7 @@ Make sure you know how to revert changes made to reverse any destructive changes
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="../../css/Alumni/index.css" />
   <link rel="stylesheet" type="text/css" href="../../css/Alumni/SearchBar.css" />
+  <add any your other css file here>
 ``` 
 - [ ] Add below script before the close tag of body tag
 ```
@@ -27,7 +28,7 @@ Make sure you know how to revert changes made to reverse any destructive changes
   <script type="text/javascript" src="/src/js/addSearchBar.js"></script>
   <script type="module" src="/src/js/Alumni/searchAlgo.js"></script>
   <!-- custom js files -->
-  <script type="module" src="/src/js/Alumni/EventPage.js"></script>
+  <script type="module" src="/src/js/Alumni/<Your-File>.js"></script>
   <!-- bootstrap javascript files -->
   <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
