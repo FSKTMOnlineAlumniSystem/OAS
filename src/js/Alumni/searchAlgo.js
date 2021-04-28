@@ -18,8 +18,8 @@ document
     console.log("click");
     result = searching(e);
     console.log(result);
-    console.log(localStorage.getItem("choose"));
-    const chooseVariable = JSON.parse(localStorage.getItem("choose"));
+    // console.log(localStorage.getItem("choose"));
+    // const chooseVariable = JSON.parse(localStorage.getItem("choose"));
     if (result.length != 0) {
       switch (url) {
         case "AlumniPage.html":
@@ -127,6 +127,35 @@ function searching(e) {
         console.log("searching company");
         match = true;
         return match;
+      }
+      return match;
+    });
+  } else if (url == "MyJobPage.html") {
+    console.log("searching is in");
+    result = dummyResponse.Job.filter(function (Job) {
+      var match = false;
+      console.log(localStorage.getItem("SignedInAlumniId"));
+      if (localStorage.getItem("SignedInAlumniId") == Job.alumniId) {
+        if (Job.title.toLowerCase().includes(searchQuery) === true) {
+          console.log("searching title");
+          match = true;
+          return match;
+        }
+        if (Job.description.toLowerCase().includes(searchQuery) === true) {
+          console.log("searching des");
+          match = true;
+          return match;
+        }
+        if (Job.location.toLowerCase().includes(searchQuery) === true) {
+          console.log("searching location");
+          match = true;
+          return match;
+        }
+        if (Job.company.toLowerCase().includes(searchQuery) === true) {
+          console.log("searching company");
+          match = true;
+          return match;
+        }
       }
       return match;
     });
