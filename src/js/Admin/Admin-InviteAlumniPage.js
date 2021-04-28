@@ -1,9 +1,12 @@
 import{ dummyResponse,updateDummyData} from "../dummydata.js";
 
 console.log(dummyResponse);
-
+let pageIndex = '0';
+var clickedSomething=0;
+const loadEventList = (pageIndex) => {
 // const loadEventList = () => {
 const tbody = document.getElementsByTagName('tbody')[0];
+tbody.innerHTML="";
 dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
@@ -40,17 +43,17 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // name column
  
   td = document.createElement('td');
-  td.innerHTML = `
-  <span class="alumniName">${alumni.name}</span>`
-  // let span = document.createElement('span');
-  // span.innerHTML = alumni.name;
-  // td.appendChild(span);
-  tr.appendChild(td);
- // td = document.createElement('td');
-  let span = document.createElement('span');
-  // span.innerHTML = alumni.name;
-  // td.appendChild(span);
+  // td.innerHTML = `
+  // <span class="alumniName">${alumni.name}</span>`
+  // // let span = document.createElement('span');
+  // // span.innerHTML = alumni.name;
+  // // td.appendChild(span);
   // tr.appendChild(td);
+ td = document.createElement('td');
+  let span = document.createElement('span');
+  span.innerHTML = alumni.name;
+  td.appendChild(span);
+  tr.appendChild(td);
 
   // department column
   td = document.createElement('td');
@@ -63,6 +66,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   td = document.createElement('td');
   div = document.createElement('div');
   div.setAttribute('class', 'text-white rounded p-1');
+
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
     return alumni_event.eventId === localStorage.getItem("eventId") && alumni.alumniId === alumni_event.alumniId;
@@ -91,8 +95,8 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // a.innerHTML = `<i class="fas fa-user-plus fa-3x pl-2" aria-hidden="true" style="font-size: 35px; color: #000000">
   // </i>`;
   td.innerHTML=`
-  <a href="#" class="inviteNewAlumni"  role='button'>
-  <i class="fas fa-user-plus fa-3x pl-2" id=${index} aria-hidden="true" style="font-size: 35px; color: #000000">
+  <a href="#" class="inviteNewAlumni"  role='button' id=${index} onclick='inviteNewAlumni(this),clicked()'>
+  <i class="fas fa-user-plus fa-3x pl-2"  aria-hidden="true" style="font-size: 35px; color: #000000">
   </i>
 </a>
   `
@@ -100,10 +104,10 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   tr.appendChild(td);
 
   tbody.appendChild(tr);
-console.log(document.getElementById(index));
+// console.log(document.getElementById(index));
 });
 // };
-
+}
 window.toggle = function (source) {
   console.log("checkbox")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -193,13 +197,34 @@ window.SearchData = function(status, department) {
 // console.log("inviteAlumni");
 // }
 
-document.querySelectorAll('.inviteNewAlumni').forEach((alumni)=>{
-  alumni.addEventListener('click',(e)=>{
-    console.log("target id: "+e.target.id)
-    var alumniId= dummyResponse.Alumni[e.target.id].alumniId;
+// document.querySelectorAll('.inviteNewAlumni').forEach((alumni)=>{
+//   alumni.addEventListener('click',(e)=>{
+//     console.log("target id: "+e.target.id)
+//     var alumniId= dummyResponse.Alumni[e.target.id].alumniId;
+//     var eventId=localStorage.getItem('eventId')
+//     var dateTime=new Date().toISOString();
+
+//     var newAlumniEvent={
+//       "alumniId": alumniId,
+//             "eventId": eventId,
+//             "viewedByAlumni": "false",
+//             "dateTime": dateTime,
+//             "notificationClosedByAlumni": "false"
+//     }
+//     dummyResponse.Alumni_Event.push(newAlumniEvent)
+//     updateDummyData(dummyResponse)
+//     console.log(dummyResponse)
+//     // loadEventList(0);
+//     location.reload();
+//   })
+// })
+
+window.inviteNewAlumni = function(o){
+  var i=o.id;
+  console.log("invite new alumni"+i)
+    var alumniId= dummyResponse.Alumni[i].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
-
     var newAlumniEvent={
       "alumniId": alumniId,
             "eventId": eventId,
@@ -209,10 +234,8 @@ document.querySelectorAll('.inviteNewAlumni').forEach((alumni)=>{
     }
     dummyResponse.Alumni_Event.push(newAlumniEvent)
     updateDummyData(dummyResponse)
-    console.log(dummyResponse)
-    location.reload();
-  })
-})
+  loadEventList(0)
+}
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i >= 0; i--) {
@@ -231,6 +254,16 @@ window.inviteCheckedAlumni = function () {
     }
   }
   updateDummyData(dummyResponse)
-  location.reload();
+  loadEventList(0)
+  // location.reload();
 }
-
+window.clicked=function(){
+  clickedSomething=clickedSomething+1;
+}
+window.backToPreviousPage=function(){
+  if(clickedSomething>0){
+    window.history.back();
+    window.history.back();
+  }else{window.history.back()}
+}
+loadEventList(0);
