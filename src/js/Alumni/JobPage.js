@@ -3,7 +3,7 @@ import loadJobList from "./JobPageModule.js";
 
 let pageIndex = 0;
 var outputList = dummyResponse.Job;
-
+console.log(outputList[0].imageId)
 
 window.nextPage = function () {
   pageIndex++;

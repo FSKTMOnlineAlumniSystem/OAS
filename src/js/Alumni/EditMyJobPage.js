@@ -150,6 +150,7 @@ if(dummyResponse.Job[index].imageId == null){
     const salary = document.getElementById("salary");
     const email = document.getElementById("email");
     const description = document.getElementById("description");
+    const cancel = document.getElementById("cancel");
     const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
     const regex=/^[0-9]+$/;
 
@@ -214,11 +215,16 @@ if(dummyResponse.Job[index].imageId == null){
             console.log('error');
             e.preventDefault();}
         else{
-            dummyResponse.Job[index].title = jobTitle.value;
+                dummyResponse.Job[index].title = jobTitle.value;
                 dummyResponse.Job[index].location = location.value;
                 dummyResponse.Job[index].salary = salary.value;
                 dummyResponse.Job[index].email = email.value;
                 dummyResponse.Job[index].description = description.value;
                 updateDummyData(dummyResponse);
+                localStorage.removeItem("EditJob");
         }
+    });
+
+    cancel.addEventListener("click", function(){
+        localStorage.removeItem("EditJob");
     });
