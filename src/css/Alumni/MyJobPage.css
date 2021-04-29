@@ -39,11 +39,11 @@ body{
   flex-direction: column; */
 }
 
-.fa-trash{
+.fa-trash-alt{
   opacity: 0.3;
 }
 
-.fa-trash:hover{
+.fa-trash-alt:hover{
 opacity: 1.0;
 color: red;
 }
@@ -81,4 +81,8 @@ a{
 .w-100{
 aspect-ratio:2/1; 
 overflow:hidden;
+}
+
+.h3, h3{
+  color: #660761b2;
 }

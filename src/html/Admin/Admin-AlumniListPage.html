@@ -9,52 +9,39 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
-  <link rel="stylesheet" type="text/css" href="/src/css/Admin/Admin-AlumniListPage.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+
+  <!-- <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css"> -->
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/src/css/Admin/Admin-AlumniListPage.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
   <title>Alumni List</title>
 </head>
 
 <body>
-  <main class="container-fluid h-100" id='main-body'>
+
+  <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100">
-      <div class="col-2 custom-dark-gray px-0">
-        <ul class="d-flex flex-column list-unstyled text-dark">
-          <li class="p-3 py-2 container-fluid border-bottom border-secondary admin-nav__brighten">
-            <a class="nostyle row no-gutters" href="#">
-              <i class="d-flex align-items-center justify-content-center fa fa-home fa-2x col-6"></i>
-              <span class="d-flex align-items-center col-6">Home</span>
-            </a>
-          </li>
-          <li class="pl-3 py-2 container-fluid border-bottom border-secondary">
-            <a class="nostyle row no-gutters" href="#">
-              <i class="d-flex align-items-center justify-content-center fa fa-users fa-2x col-6"></i>
-              <span class="d-flex align-items-center col-6">Alumni</span>
-            </a>
-          </li>
-          <li class="pl-3 py-2 container-fluid border-bottom border-secondary">
-            <a class="nostyle row no-gutters" href="#">
-              <i class="d-flex align-items-center justify-content-center fa fa-calendar fa-2x col-6"></i>
-              <span class="d-flex align-items-center col-6">Event</span>
-            </a>
-          </li>
-        </ul>
+      <div class="custom-dark-gray px-0" id="left-nav">
       </div>
-      <div class="col-10">
+      <div class="container-fluid" id="right-content">
         <div class="row">
           <h3 class='col-12 p-3'>List of Alumni</h3>
           <form class='col-12'>
             <div class='row bg-light p-4 m-1'>
-              <div class="form-group col-4">
+              <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Status</label>
                 <select class="form-control" id="status" oninput="filterStatus()">
                   <option>All</option>
@@ -62,7 +49,7 @@
                   <option>Not Verified</option>
                 </select>
               </div>
-              <div class="form-group col-4">
+              <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Department</label>
                 <select class="form-control" id="department" oninput="filterDepartment()">
                   <option>All</option>
@@ -74,15 +61,14 @@
                   <option>Computer System and Network</option>
                 </select>
               </div>
-              <div class="form-group col-4">
+              <!-- <div class="form-group col-4">
                 <label for="exampleFormControlSelect1">Graduated</label>
                 <select class="form-control" id="graduated">
                   <option>All</option>
                   <option>2019</option>
                 </select>
-              </div>
+              </div> -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button type="submit" class="btn text-white mx-2 custom-dark-purple">Filter</button>
                 <button id="clearAll" type="submit" class="btn text-white custom-dark-purple">Clear All</button>
               </div>
             </div>
@@ -93,7 +79,8 @@
             <div class="row">
               <div class="col-7">
                 <button id="delete" type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
-                  <a href="#" role="button"><i class="fa fa-trash text-danger" aria-hidden="true"
+                  <a href="#" role="button">
+                    <i class="far fa-trash-alt text-danger" aria-hidden="true"
                       style="font-size: 20px;"></i>
                   </a>
                 </button>
@@ -148,7 +135,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <img src="/Assets/imgs/v8_30.png" class="mx-auto d-block" alt="name" width="150px"
+                        <img src="/Assets/imgs/v8_30.png" id="image" class="mx-auto d-block" alt="name" width="150px"
                           height="auto">
 
                         <div class="col">
@@ -166,7 +153,7 @@
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Department:</div>
-                            <div id="department" class="col-8">Software Engineering</div>
+                            <div id="department1" class="col-8">Software Engineering</div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">E-mail:</div>
@@ -190,9 +177,9 @@
 
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                          onclick="location.href ='Admin-EditAlumniProfilePage.html'">Edit</button>
-                        <button  type="button" class="btn btn-info">Approve</button>
+                        <button id="update" type="button" class="btn btn-success" data-dismiss="modal"
+                          onclick="location.href ='Admin-EditAlumniProfilePage.html';updateEvent(this)">Edit</button>
+                        <button id="approve" type="button" class="btn btn-info">Approve</button>
                       </div>
                     </div>
                   </div>
@@ -246,48 +233,43 @@
 
           </tbody>
           </table>
-           <!-- yanwen button -->
-      <nav aria-label="Page navigation example">
-        <!-- <div class="col text-center">
+          <!-- yanwen button -->
+          <nav aria-label="Page navigation example">
+            <!-- <div class="col text-center">
           <button id="btn previousPage-btn btn-light btn-sm" onclick="previousPage()">Previous</button>
           <span id="pageIndex"></span>
           <button id="btn nextPage-btn btn-sm" onclick="nextPage()">Next</button>
       </div> -->
-        <!-- <div class="col text-center"> -->
-        <ul class="pagination justify-content-center">
-          <li class="page-item" id="previousPage">
-            <button onclick="previousPage()" class="page-link">Previous</button>
-          </li>
-          <div class="pages list-group list-group-horizontal">
-            <li class="page-item disabled">
-              <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
-            </li>
-            <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
-            <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
+            <!-- <div class="col text-center"> -->
+            <ul class="pagination justify-content-center">
+              <li class="page-item" id="previousPage">
+                <button onclick="previousPage()" class="page-link">Previous</button>
+              </li>
+              <div class="pages list-group list-group-horizontal">
+                <li class="page-item disabled">
+                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+                </li>
+                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
+                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
 
-          </div>
+              </div>
 
-          <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
-          <li class="page-item" id="nextPage">
-            <button onclick="nextPage()" class="page-link">Next</button>
-          </li>
-        </ul>
-        <!-- </div> -->
-      </nav>
+              <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
+              <li class="page-item" id="nextPage">
+                <button onclick="nextPage()" class="page-link">Next</button>
+              </li>
+            </ul>
+            <!-- </div> -->
+          </nav>
         </div>
       </div>
-    </div>
   </main>
 
-
-  <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
-  <script type='text/javascript' src='/src/js/addHeader.js'></script>
+  <script type='text/javascript' src='/src/js/utility.js'></script>
   <script type="module" src="../../js/Admin/Admin-AlumniListPage.js"></script>
-
-
-  </script>
-  <script>
-  </script>
+  <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+  <script type='module' src='/src/js/addHeader.js'></script>
+  <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script>
 </body>
 
 </html>

@@ -23,63 +23,6 @@
         </header> -->
         <div class ="container my-5" id='main-body'>
           <h1>Jobs</h1>
-      <div class="searchBarBG">
-        <form class="search-form">
-          <div class="containerSB">
-            <div class="row no-gutters" style="white-space: nowrap">
-              <div class="col-lg-2 col-md-2 col-sm-2 p-0"></div>
-
-              <div class="col-lg-2 col-md-2 col-sm-12 p-0">
-                <select
-                  class="form-controlSearch"
-                  id="exampleFormControlSelect1"
-                >
-                  <option>MyJobs?</option>
-                  <option>Alumni</option>
-                  <option>Event</option>
-                </select>
-              </div>
-              <div class="col-lg-6 col-md-5 col-sm-12 p-0">
-                <div
-                  class="input-group"
-                  style="position: unset; top: 0; width: 100%; left: 0"
-                >
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    class="form-control"
-                    id="search"
-                    name="search"
-                    style="
-                      border-radius: 0px 0px 0px 0px;
-                      border-left-color: #eaeaea;
-                    "
-                  />
-                  <div class="input-group-append">
-                    <button type="submit" id="search-button" class="btn btn-secondary">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="20"
-                        viewBox="0 0 24 28"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-search"
-                      >
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
      
         <!-- <h1>Jobs</h1> -->
         <!-- <div class="wrapper_background">
@@ -107,6 +50,8 @@
           <h2>Your Job Advertisement
             <span class="d-flex flex-row-reverse"> <a href="../Alumni/AddJobPage.html" class="btn btn-outline-info"> + Add Jobs </a></button></span>
         </h2>
+        <br>
+          <div class="row justify-content-md-center" id="top"></div>
           <div class="card-desk">
             <div class="row row-cols-3" id="jobList"></div>
             </div>
@@ -274,30 +219,42 @@
               </li>
             </ul>
           </nav> -->
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center" id="pageIndex">
+          <!-- <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pageIndex"> -->
               <!-- <li class="page-item">
                 <button class="page-link" id="previousPage" >Previous</button>
               </li> -->
               <!-- <li class="page-item">
                 <button class="page-link" id="nextPage">Next</button></li> 
               </li> -->
+            <!-- </ul>
+          </nav> -->
+          <span id="pageIndex"></span>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <div id="previousPage"></div>
+              <div class="pages list-group list-group-horizontal"></div>
+              <div id="nextPage"></div>
             </ul>
           </nav>
+          <br /><br />
 
-
-          <br>
+         
     </div>
     <!-- </div> -->
     <script type="module" src="../../js/Alumni/MyJobPage.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    
+    
     <script type='module' src='/src/js/addHeader.js'></script>
     <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
+    <script type="text/javascript" src="/src/js/addSearchBar.js"></script>
+    <script type="module" src="/src/js/Alumni/searchAlgo.js"></script>
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
     crossorigin="anonymous"></script>
