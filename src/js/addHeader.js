@@ -6,7 +6,7 @@
  * Below header set the alumni as AL-1
  */
 
-import { dummyResponse } from "./dummydata.js"
+import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin
 let curUser = {};
@@ -19,17 +19,6 @@ if (isAlumni) {
   curUser = dummyResponse.Admin.filter(admin => admin.adminId === localStorage.getItem('SignedInAdminId'))[0];
 }
 
-// check if the user is alumni to display bell icon - this is the real condition check
-// if (!localStorage.getItem('SignedInAlumniId') && !localStorage.getItem('SignedInAdminId') ||
-//   localStorage.getItem('SignedInAlumniId') && localStorage.getItem('SignedInAdminId') ||
-//   localStorage.getItem('SignedInAlumniId')) {
-//   localStorage.setItem('SignedInAlumniId', "AL-1");
-//   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
-//   isAlumni = true;
-// } else {
-//   curUser = dummyResponse.Admin.filter(admin => admin.adminId === localStorage.getItem('SignedInAdminId'))[0];
-// }
-
 const body = document.body;
 const header = document.createElement('header');
 
@@ -41,7 +30,7 @@ console.log(hasEventNotViewedByAlumni);
 
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
-<img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
+<img src="/Assets/imgs/${curUser.imageId}" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>
@@ -89,8 +78,8 @@ function toggleNotificationPanel() {
     const showNoNotification = () => {
       const div1 = document.createElement('div');
       div1.setAttribute('class', 'py-2 container-fluid d-flex align-items-center');
-      div1.innerHTML = `You have no notification`
-      notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
+      div1.innerHTML = `You have no notification`;
+      notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`;
       notificationPanel.appendChild(div1);
     }
     // used as a method to display 'You have no notification'
@@ -103,10 +92,13 @@ function toggleNotificationPanel() {
 
       // direct to respective EventDetailsPage
       div1.addEventListener('click', (evt) => {
+        event.viewedByAlumni = "true";
+        updateDummyData(dummyResponse);
         localStorage.setItem('eventId', event.eventId);
-        window.open('EventDetailsPage.html');
+        window.open('EventDetailsPage.html',"_self");
       });
-
+      
+      console.log(event.viewedByAlumni);
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
       const dotClass = event.viewedByAlumni === 'true' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
@@ -150,9 +142,11 @@ function toggleNotificationPanel() {
       const icon = div1.querySelector('i.fa-times');
       const list = notificationPanel.querySelector('li');
       icon.classList.add('panel__icon--hover-dark-bg');
-      icon.addEventListener('click', (event) => {
+      icon.addEventListener('click', (evt) => {
         list.removeChild(div1);
-        event.stopPropagation();
+        evt.stopPropagation();
+        event.notificationClosedByAlumni = "true";
+        updateDummyData(dummyResponse);
         if (!list.hasChildNodes()) {
           showNoNotification();
         } else {

@@ -12,7 +12,7 @@ let dummyResponse = {
             "graduated": "2003",
             "imageId": "AL-1.png",
             "contactNumber": "03-79676347",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Teh Kok Soon is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-2",
@@ -26,7 +26,7 @@ let dummyResponse = {
             "graduated": "2006",
             "imageId": "AL-2.png",
             "contactNumber": "03-79676348",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Ang Tan Foo is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-3",
@@ -72,8 +72,7 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-6",
-            "approvedBy": "",
-            "email": "ang@gmail.com",
+            "email": "rachel@gmail.com",
             "password": "3Vq8PcwNks5Ng",
             "icNumber": "800110-10-1256",
             "gender": "female",
@@ -134,7 +133,7 @@ let dummyResponse = {
             "icNumber": "920126-10-1210",
             "gender": "female",
             "name": "Rohana binti Jani",
-            "department": "Multemedia",
+            "department": "Multimedia",
             "graduated": "2019",
             "imageId": "AL-10.jpg",
             "contactNumber": "012-6773226",

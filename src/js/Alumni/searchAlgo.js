@@ -19,6 +19,7 @@ document
     // e.preventDefault();
     console.log("click");
     result = searching(e);
+    console.log('print result');
     console.log(result);
     // console.log(localStorage.getItem("choose"));
     // const chooseVariable = JSON.parse(localStorage.getItem("choose"));
@@ -168,7 +169,7 @@ function searching(e) {
         loadAlumniList(0, dummyResponse.Alumni);
         break;
       case "EventPage.html":
-        loadEventList(0, dummyResponse.Event);
+        loadEventList(result, dummyResponse.Event, true);
         break;
       case "JobPage.html":
         loadJobList(0, dummyResponse.Job);
