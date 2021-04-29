@@ -9,6 +9,8 @@ function loadMyJobList(pageIndex, outputList, count) {
   var dataLength = count;
   var remainingLength = dataLength - jobStartIndex;
 
+  updateDummyData(dummyResponse)
+
   /*   js for button*/
   if (count != 0) {
     if (jobEndIndex >= count) {
@@ -197,8 +199,9 @@ function loadMyJobList(pageIndex, outputList, count) {
           dummyResponse.Job = outputList;
           updateDummyData(dummyResponse);
           closeModal("#deleteModal");
+          console.log(outputList);
           console.log(count);
-          loadJobList(pageIndex, outputList, count);
+          loadMyJobList(pageIndex, outputList, count);
         }
       }
     });
