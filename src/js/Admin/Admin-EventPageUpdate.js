@@ -42,14 +42,17 @@ var d = new Date(dummyResponse.Event[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
 console.log("date"+todayDate);
 
-const minute = d.getMinutes();
+// const minute = d.getMinutes();
 let hour = d.getHours();
+let minute = d.getMinutes().toString();
+  minute = minute.padStart(2, '0');
 console.log(hour)
 console.log(minute)
 
 document.getElementById('title').value=dummyResponse.Event[i].title
 document.getElementById('date').value=todayDate
-document.getElementById('time').value=hour +':'+minute
+document.getElementById('time').value=hour +':'+ minute
+console.log(hour +':'+ minute)
 document.getElementById('description').value=dummyResponse.Event[i].description
 document.getElementById('location').value=dummyResponse.Event[i].location
 document.getElementById('prevImage').src=imgPath+dummyResponse.Event[i].imageId
