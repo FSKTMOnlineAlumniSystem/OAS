@@ -229,10 +229,15 @@ cancelButton.addEventListener('click', () => {
   console.log('date: ' + datevalue)
   console.log('time: ' + timevalue)
 
+  // console.log('compare: '+(titlevalue=='hellooooo'))
   var image = document.getElementById("prevImage").src;
   var compare = image.localeCompare("https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no")
-  if (!img.value && !titlevalue && !descriptionvalue && !locatevalue
-    && !datevalue && !timevalue) {
+  if (!img.value && 
+    titlevalue==title.value && 
+    descriptionvalue==description.value && 
+    locatevalue==locate.value&& 
+    datevalue==date.value && 
+    timevalue==time.value) {
     console.log("hereeeeeeeeeee")
     location.href = 'Admin-EventPage.html';
   } else {
