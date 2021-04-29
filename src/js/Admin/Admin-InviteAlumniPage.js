@@ -248,7 +248,7 @@ window.inviteNewAlumni = function(o){
 }
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length-1; i >= 0; i--) {
+  for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
       var alumniId= dummyResponse.Alumni[i-1].alumniId;
     var eventId=localStorage.getItem('eventId')
