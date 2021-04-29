@@ -1,4 +1,4 @@
-import dummyResponse from '../dummydata.js';
+import {dummyResponse, updateDummyData} from "../dummydata.js";
 
 const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -15,13 +15,17 @@ const cancelButton = document.querySelector('#cancelButton');
 const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
+const icNumber = document.querySelector('#icNumber');
 
-
-const currentAlumniId = "AL-1";
+var i = localStorage.getItem("updateId")
+console.log(i)
+const currentAlumniId = dummyResponse.Alumni[i].alumniId;
+console.log(currentAlumniId)
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
+console.log(alumni.imageId)
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
         el.classList.replace("is-valid", "is-invalid");
@@ -60,6 +64,7 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 const graduatedFormat = /[0-9]{4}/;
+const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography
@@ -76,6 +81,13 @@ form.addEventListener('submit', (e) => {
         errorExist = true;
     } else {
         setValid(contactNumber);
+    }
+
+    if (isEmpty(icNumber) || !icNumber.value.match(icNumberFormat)) {
+        setInValid(icNumber);
+        errorExist = true;
+    } else {
+        setValid(icNumber);
     }
 
     if (isEmpty(biography)) {
@@ -101,13 +113,19 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) e.preventDefault();
     else {
-        alumni.email = email.value;
-        alumni.contactNumber = contactNumber.value;
-        alumni.biography = biography.value;
-        alumni.name = name.value;
-        alumni.graduated = graduatedFormat.value;
-        alumni.department = department.value;
-        alumni.gender = gender.value;
+        dummyResponse.Alumni.forEach((al) => {
+            if (al.alumniId === currentAlumniId) {
+                al.email = email.value;
+                al.contactNumber = contactNumber.value;
+                al.biography = biography.value;
+                al.graduated = graduated.value;
+                al.name = name.value;
+                al.icNumber = icNumber.value;
+                al.gender = gender.value;
+                al.department = department.value;
+                updateDummyData(dummyResponse);
+            }
+        });
     }
 });
 
@@ -120,10 +138,13 @@ cancelButton.addEventListener('click', () => {
         alumni.biography == biography.value &&
         alumni.name == name.value &&
         alumni.graduated == graduated.value &&
+        alumni.department == department.value &&
         alumni.gender == gender.value &&
-        alumni.department == department.value) {
+        alumni.icNumber == icNumber.value) 
+        {
         location.href = "Admin-AlumniListPage.html";
     } else {
+        
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
@@ -139,12 +160,15 @@ function closeModal(modalId) {
 }
 
 function loadData() {
-    wizardPicturePreview.src = imgPath+alumni.imageId;
-    name.textContent = alumni.name;
-    graduated.textContent = alumni.graduated;
+    wizardPicturePreview.src = imgPath + alumni.imageId;
+    name.value = alumni.name;
+    gender.value = alumni.gender;
+    department.value = alumni.department;
+    graduated.value = alumni.graduated;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;
+    icNumber.value = alumni.icNumber;
 }
 
 loadData();

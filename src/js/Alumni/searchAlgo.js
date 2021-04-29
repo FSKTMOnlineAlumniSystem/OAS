@@ -1,12 +1,44 @@
-import dummyResponse from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+// import loadAlumniList from "./alumniPage.js";
+// import loadJobList from "./JobPage.js";
+import loadAlumniList from "./alumniPageModule.js";
+import { loadEventList } from "./EventPageModule.js";
 
+let result = null;
 document
   .getElementById("search-button")
   .addEventListener("click", function (e) {
-    searching(e);
+    // e.preventDefault();
+    console.log("click");
+    result = searching(e);
+    console.log(result);
+    console.log(localStorage.getItem("choose"));
+    const chooseVariable = JSON.parse(localStorage.getItem("choose"));
+    if (result.length != 0) {
+      switch (chooseVariable) {
+        case "Alumni":
+          loadAlumniList(0, result);
+          break;
+        case "Event":
+          // code block
+          loadEventList(
+            result,
+            document.getElementById("event-page-section"),
+            true
+          );
+          break;
+        case "Jobs":
+          // code block
+          break;
+        default:
+          console.log("there is no match");
+        // code block
+      }
+    }
   });
 
 function searching(e) {
+  console.log("start searching");
   e.preventDefault();
   var searchQuery = document.getElementById("search");
   localStorage.setItem("searchQuery", JSON.stringify(searchQuery.value));
@@ -15,12 +47,11 @@ function searching(e) {
   searchQuery = searchQuery.value.toLowerCase();
   var e = document.getElementById("exampleFormControlSelect1");
   var choose = e.options[e.selectedIndex].text;
-  console.log(choose);
+  localStorage.setItem("choose", JSON.stringify(choose));
 
   if (choose == "Alumni") {
-    location.href = "alumniPage.html";
     console.log("searching is in");
-    const result = dummyResponse.Alumni.filter(function (Alumni) {
+    result = dummyResponse.Alumni.filter(function (Alumni) {
       var match = false;
       if (Alumni.name.toLowerCase().includes(searchQuery) === true) {
         console.log("searching name");
@@ -43,10 +74,8 @@ function searching(e) {
         return match;
       }
     });
-    console.log(result);
   } else if (choose == "Event") {
-    console.log("searching is in");
-    const result = dummyResponse.Event.filter(function (Event) {
+    result = dummyResponse.Event.filter(function (Event) {
       var match = false;
       if (Event.title.toLowerCase().includes(searchQuery) === true) {
         console.log("searching title");
@@ -54,7 +83,7 @@ function searching(e) {
         return match;
       }
       if (Event.description.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching des");
+        console.log("searching description");
         match = true;
         return match;
       }
@@ -68,7 +97,7 @@ function searching(e) {
     console.log(result);
   } else if (choose == "Jobs") {
     console.log("searching is in");
-    const result = dummyResponse.Job.filter(function (Job) {
+    result = dummyResponse.Job.filter(function (Job) {
       var match = false;
       if (Job.title.toLowerCase().includes(searchQuery) === true) {
         console.log("searching title");
@@ -92,8 +121,31 @@ function searching(e) {
       }
       return match;
     });
-    console.log(result);
   }
+  // console.log(result);
+  if (result.length == 0) {
+    switch (localStorage.getItem("choose")) {
+      case "Alumni":
+        console.log("load alumni");
+        location.href = "alumniPage.html";
+        loadAlumniList(0, dummyResponse.Alumni);
+        break;
+      case "Event":
+        location.href = "EventPage.html";
+        loadEventList(0, dummyResponse.Event);
+        break;
+      case "Jobs":
+        location.href = "JobPage.html";
+        loadJobList(0, dummyResponse.Job);
+        break;
+      case "MyJobs":
+        location.href = "MyJobPage.html";
+        // loadJobList(0, dummyResponse.Job);
+        break;
+      default:
+      // code block
+    }
+    alert("Sorry, we cannot match any result for your search");
+  }
+  return result;
 }
-
-export default result;
