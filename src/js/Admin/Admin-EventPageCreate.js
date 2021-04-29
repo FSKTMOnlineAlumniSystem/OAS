@@ -1,142 +1,218 @@
 console.log('testing')
-sessionStorage.setItem('event', 'create')
-window.readURL = function (input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-           document.getElementById("prevImage").src=e.target.result;
-           document.getElementById("wizardPicturePreview").src=e.target.result;
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+sessionStorage.setItem('event', 'create')
+var imageName;
+var inputValue;
+const img = document.querySelector('#wizard-picture');
+const title = document.getElementById("title");
+const description = document.getElementById("description");
+const locate = document.getElementById("location");
+const date = document.getElementById("date");
+const time = document.getElementById("time");
+const form = document.querySelector('form');
+const saveButton = document.querySelector('#saveButton');
+const cancelButton = document.querySelector('#cancelButton');
+const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
+const stayButton = document.querySelector('#stayButton');
+const choosePictureDescription = document.querySelector('#choosePictureDescription');
+
+// window.readURL = function (input) {
+//   inputValue = input.value;
+//   if (input.files && input.files[0]) {
+//     var reader = new FileReader();
+
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//       document.getElementById("wizardPicturePreview").src = e.target.result;
+//     }
+//     reader.readAsDataURL(input.files[0]);
+//   }
+// }
+function setInValid(el) {
+  if (el.classList.contains("is-valid")) {
+    el.classList.replace("is-valid", "is-invalid");
+  } else {
+    el.classList.add("is-invalid");
+  }
+}
+function setValid(el) {
+  if (el.classList.contains("is-invalid")) {
+    el.classList.replace("is-invalid", "is-valid");
+  } else {
+    el.classList.add("is-valid");
+  }
 }
 
+/*Check the file extension of the image & Update preview*/
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+  console.log('what is change :'+ e.target.files +"   "+e.target.files[0])
+  let allowedExtensions =
+    /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    var reader = new FileReader();
+    console.log("reader")
+    reader.onload = function (e) {
+      document.getElementById("prevImage").src = e.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "";
+  } else {
+    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    
+  }
+  // console.log('jpg: '+allowedExtensions.test(e.target.value))
+  // if(allowedExtensions.test(e.target.value)){
+  //   setValid(img)
+  // }else{setInValid(img);
+  //   errorExist = true;
+  // }
+}
+/*Form Validation for Edit My Profile (email, contactNumber, biography)*/
+function isEmpty(obj) {
+  return obj.value.length == 0;
+}
+// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
+// const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
-import dummyResponse from "../dummydata.js";
-window.add_element_to_array = function() {
-    console.log("add element")
-    // var table = document.getElementsByClassName(
-    //   "table table-striped table-sm something"
-    // )[0];
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let errorExist = false; //false if no error exists in email, contactNumber, biography
 
+  if (isEmpty(title)) {
+    setInValid(title);
+    errorExist = true;
+  } else {
+    setValid(title);
+  }
+
+  if (isEmpty(description)) {
+    setInValid(description);
+    errorExist = true;
+  } else {
+    setValid(description);
+  }
+
+  if (isEmpty(locate)) {
+    setInValid(locate);
+    errorExist = true;
+  } else {
+    setValid(locate);
+  }
+
+  if (isEmpty(date)) {
+    setInValid(date);
+    errorExist = true;
+  } else {
+    setValid(date);
+  }
+
+  if (isEmpty(time)) {
+    setInValid(time);
+    errorExist = true;
+  } else {
+    setValid(time);
+  }
+
+
+  // if (isEmpty(img)) {
+  //   setInValid(img);
+  //   errorExist = true;
+  // } else {
+  //   setValid(img);
+  // }
+
+  if (!errorExist) {
+    add_element_to_array();
+    console.log('no error')
+    saveButton.textContent = 'Saving...';
+    setTimeout(() => {
+      location.href = 'Admin-EventPage.html';
+    }, 1000);
+  }
+});
+
+window.add_element_to_array = function () {
+  console.log("add element")
   var title = document.getElementById("title").value;
-  var date = document.getElementById("date").value;
-  var stime = document.getElementById("startTime").value;
-  var etime = document.getElementById("endTime").value;
   var description = document.getElementById("description").value;
   var location = document.getElementById("location").value;
-  var image = document.getElementById("prevImage").value;
+
+  if(img.value){
+    const imgLocalPathArr = img.value.split('\\');
+    imageName = imgLocalPathArr[imgLocalPathArr.length-1];
+}
+
+  // var imageArr = inputValue.split("\\");
+  // imageName = imageArr[imageArr.length - 1];
+  // console.log("imageName: " + imageName);
   var endIndex = dummyResponse.Event.length;
-  var newId=endIndex+1
-  var eventId="E-"+ newId
-  var adminId="ad-2"; //need connect to localstorege ltr
+  var newId = endIndex + 1
+  var eventId = "E-" + newId
+  var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege ltr
   // var d = new Date(dummyResponse.Event[i].dateTime);
-var newEvent={eventId:eventId,
-  adminId: adminId,
-  title: title,
-  dateTime: new Date(), //change
-  description: description,
-  imageId: image,
-  location: location
-}
-dummyResponse.Event.splice(endIndex,0,newEvent)
+  var date = document.getElementById("date").value;
+  var time = document.getElementById("time").value;
+  console.log(date)
+  var year = date.split("-")[0];
+  var month = date.split("-")[1];
+  var day = date.split("-")[2];
+  var hours = time.split(":")[0];
+  var min = time.split(":")[1];
+  const newDate = new Date(year, month, day, hours, min, "0");
+  console.log(date)
 
+  var newEvent = {
+    eventId: eventId,
+    adminId: adminId,
+    title: title,
+    dateTime: newDate,
+    description: description,
+    imageId: imageName,
+    location: location
+  }
+  dummyResponse.Event.splice(endIndex, 0, newEvent)
+  updateDummyData(dummyResponse)
   console.log(dummyResponse)
-  // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-  // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-  // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-
-//   sessionstorage
-//   sessionStorage.setItem('title', document.getElementById("title").value)
-//   sessionStorage.setItem('date', document.getElementById("date").value)
-//   sessionStorage.setItem('stime', document.getElementById("startTime").value)
-//   sessionStorage.setItem('etime', document.getElementById("endTime").value)
-//   sessionStorage.setItem('description', document.getElementById("description").value)
-//   sessionStorage.setItem('location', document.getElementById("location").value)
-//   sessionStorage.setItem('prevImage', document.getElementById("prevImage").value)
-// addRow();
-
-// let myJob = JSON.parse(localStorage.getItem("JobList"));
-  // var newRowContent = `<tr class="rowss">
-              
-  //            <td>
-  //                 <div class="custom-control custom-checkbox text-center">
-  //                   <input type="checkbox" class="custom-control-input" id="Boxes1">
-  //                   <label class="custom-control-label" for="Boxes1"></label>
-  //                 </div>
-  //               </td>
-  //              <td style="font-weight: 400; font-size: 18px">${date}
-  //              <div style="font-weight: 200; font-size: 14px">${stime}</div>
-             
-  //              <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-  //              <a href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
-  //             ${title}
-  //           </a>
-      
-  //           <!-- Modal -->
-  //           <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  //             <div class="modal-dialog">
-  //               <div class="modal-content">
-  //                 <div class="modal-header">
-  //                   <h5 class="modal-title" id="exampleModalLabel">Event</h5>
-  //                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-  //                     <span aria-hidden="true">&times;</span>
-  //                   </button>
-  //                 </div>
-  //                 <div class="modal-body" >
-  //                   <img src="/Assets/imgs/E-1.jpg" class="mx-auto d-block" alt="name" width="200px" height="auto">
-  //                   <br>
-  //                   <p>Schedule :${date}; ${stime}</p>
-  //                   <p> Title : ${title}</p>
-  //                   <p>Description : ${description}</p>
-  //                   <p>Location : ${location} </p>
-  //                 </div>
-  //                 <div class="modal-footer">
-  //                   <button type="button" class="btn btn-success"
-  //                     onclick="location.href = 'Admin-EventPageUpdate.html';">Edit</button>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //           </td>
-
-  //             <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${
-  //               description
-  //             }</td>
-  //             <td style="font-weight: 200; font-size: 18px">${
-  //               location
-  //             }</td>
-  //             <td>
-  //               <div class="btn-group" role="group" aria-label="Third group">
-  //                 <a href="Admin-EventPageUpdate.html" cnclick="onload(i)"role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
-  //                 </i></a>
-  //                   <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
-  //                   </i></a>
-  //               </div>
-  //             </td>
-  //         </tr>`;
-  
-  
-  //         var tableRef = document
-  //   .getElementsByClassName("table table-striped table-sm something")[0]
-  //   .getElementsByTagName("tbody")[0];
-  // var newRow = tableRef.insertRow(tableRef.rows.length);
-  // // table.insertRow(newRow)
-  // // console.log(newRow)
-  // newRow.innerHTML = newRowContent;
-
-//    dummyResponse.EventTry[endIndex] =  {
-//         "eventId": "E-3",
-//         "adminId": "AD-3",
-//         "title": title,
-//         "date":date,
-//         "startTime": stime,
-//         "endTime":etime,
-//         "description": description,
-//         "imageId": image,
-//         "location": location
-//       }
-//   alert("Element  Added at index " + endIndex);
+  // location.reload();
 }
 
+window.setEventId = function () {
+  var endIndex = dummyResponse.Event.length;
+  var newId = endIndex + 1
+  var eventId = "E-" + newId
+  localStorage.setItem('eventId', eventId);
+}
+/*Check whether there is any changes that might be lost*/
+// const cancelButton = document.querySelector('#cancelButton');
+cancelButton.addEventListener('click', () => {
+  var titlevalue = document.getElementById("title").value;
+  var descriptionvalue = document.getElementById("description").value;
+  var locatevalue = document.getElementById("location").value;
+  var datevalue = document.getElementById("date").value;
+  var timevalue = document.getElementById("time").value;
+  console.log('title: ' + titlevalue)
+  console.log('description: ' + descriptionvalue)
+  console.log('location: ' + locatevalue)
+  console.log('date: ' + datevalue)
+  console.log('time: ' + timevalue)
+
+  var image = document.getElementById("prevImage").src;
+  var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
+  if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
+    && !datevalue && !timevalue) {
+    console.log("hereeeeeeeeeee")
+    location.href = 'Admin-EventPage.html';
+  } else {
+    /*POP UP MODAL ask if cancel will lose changes */
+    $('#cancelChangesModal').modal('show');
+  }
+});
+
+/*Close Modal */
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+  $(modalId).modal('hide');
+}

@@ -1,55 +1,52 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
+function loadMyJobList(pageIndex, outputList, count) {
+  const alumniID = localStorage.getItem("SignedInAlumniId");
+  const jobList = document.getElementById("jobList");
+  jobList.innerHTML = "";
+  let jobStartIndex = pageIndex * 9;
+  let jobEndIndex = jobStartIndex + 9;
+  var dataLength = count;
+  var remainingLength = dataLength - jobStartIndex;
 
-
-function loadJobList (pageIndex, outputList,count) {
-
-    const alumniID = localStorage.getItem('SignedInAlumniId');
-    const jobList = document.getElementById('jobList');
-    jobList.innerHTML = "";
-    let jobStartIndex = pageIndex * 9;
-    let jobEndIndex = jobStartIndex + 9;
-    var dataLength = count;
-    var remainingLength = dataLength - jobStartIndex;
-
-    /*   js for button*/
-    if(count!=0){
-    if (jobEndIndex >=count) {
-        document.getElementById("nextPage").innerHTML = `
+  /*   js for button*/
+  if (count != 0) {
+    if (jobEndIndex >= count) {
+      document.getElementById("nextPage").innerHTML = `
             <li class="page-item disabled">
             <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
           </li>`;
-        console.log("last page");
-      } else {
-        document.getElementById("nextPage").innerHTML = `
+      console.log("last page");
+    } else {
+      document.getElementById("nextPage").innerHTML = `
             <li class="page-item" id="nextPage">
                 <button  onclick="nextPage()" class="page-link" >Next</button>
               </li>`;
-      }
-      if (pageIndex == 0) {
-        document.getElementById("previousPage").innerHTML = `
+    }
+    if (pageIndex == 0) {
+      document.getElementById("previousPage").innerHTML = `
             <li class="page-item disabled">
             <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
           </li>`;
-        console.log("first page");
-      } else {
-        document.getElementById("previousPage").innerHTML = `
+      console.log("first page");
+    } else {
+      document.getElementById("previousPage").innerHTML = `
             <li class="page-item" id="previousPage">
                 <button onclick="previousPage()" class="page-link">Previous</button>
               </li>`;
-      }
-      // js for 1,2,3
-      if (remainingLength <= 10) {
-        console.log("<=10");
-        document.getElementsByClassName("pages")[0].innerHTML = `
+    }
+    // js for 1,2,3
+    if (remainingLength <= 10) {
+      console.log("<=10");
+      document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
                   pageIndex + 1
                 }</button>
                 </li>`;
-      } else if (remainingLength <= 20) {
-        console.log("<=20");
-        document.getElementsByClassName("pages")[0].innerHTML = `
+    } else if (remainingLength <= 20) {
+      console.log("<=20");
+      document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
                   pageIndex + 1
@@ -58,9 +55,9 @@ function loadJobList (pageIndex, outputList,count) {
                 <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage()">${
                   pageIndex + 2
                 }</button></li>`;
-      } else {
-        console.log("<=30");
-        document.getElementsByClassName("pages")[0].innerHTML = `
+    } else {
+      console.log("<=30");
+      document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
                   pageIndex + 1
@@ -82,12 +79,10 @@ function loadJobList (pageIndex, outputList,count) {
       return;
     }
 
-    for (let i = jobStartIndex;  i < outputList.length ; i++) {
-
-        if(outputList[i].alumniId == alumniID){
-            if(outputList[i].imageId == null){
-                document.getElementById('jobList').innerHTML +=
-                `<div class="col mb-4">
+  for (let i = jobStartIndex; i < outputList.length; i++) {
+    if (outputList[i].alumniId == alumniID) {
+      if (outputList[i].imageId == null) {
+        document.getElementById("jobList").innerHTML += `<div class="col mb-4">
                 <div class="card h-100" data-name=${outputList[i].jobId}>
                 <a href="../../html/Alumni/MyJobDetailsPage.html" >
                 <div class="w-100">
@@ -127,11 +122,9 @@ function loadJobList (pageIndex, outputList,count) {
                 </div>
                 </div>
                 </div>`;
-    }
-            else{
-              console.log(outputList[i].jobId);
-                document.getElementById('jobList').innerHTML +=
-                `<div class="col mb-4">
+      } else {
+        console.log(outputList[i].jobId);
+        document.getElementById("jobList").innerHTML += `<div class="col mb-4">
                  <div class="card h-100" data-name=${outputList[i].jobId}> 
                  <a href="../../html/Alumni/MyJobDetailsPage.html">
                  <div class="w-100">
@@ -171,51 +164,49 @@ function loadJobList (pageIndex, outputList,count) {
                 </div>
                 </div>
                 </div>
-                </div>`;      
-            }
-        }
+                </div>`;
+      }
     }
+  }
 
+  const deleteButton = document.getElementById("deleteButton");
+  const closeDeleteModalButton = document.querySelector("#closeDeleteButton");
+  const clickButton = document.querySelector(".clickButton");
 
-const deleteButton = document.getElementById("deleteButton");
-const closeDeleteModalButton = document.querySelector('#closeDeleteButton');
-const clickButton = document.querySelector('.clickButton');
+  clickButton.addEventListener("click", function () {
+    // var name = e.target.dataset.name;
+    //  name = e.getA;
+    // console.log('first click'+ e.target.dataset.name)
+    $("#deleteModal").modal("show");
+  });
 
+  if (closeDeleteModalButton) {
+    closeDeleteModalButton.addEventListener("click", () =>
+      closeModal("#deleteModal")
+    );
+  }
 
-clickButton.addEventListener("click", function(){
-  // var name = e.target.dataset.name;
-  //  name = e.getA;
-  // console.log('first click'+ e.target.dataset.name)
-  $('#deleteModal').modal('show');
-});
-
-   
-if(closeDeleteModalButton){
-closeDeleteModalButton.addEventListener('click', () => closeModal('#deleteModal'));
-}
-
-if(deleteButton){
-deleteButton.addEventListener('click', function deleteButton(e){
-  console.log('delete')
-  console.log(e.target.dataset.name)
-    for (let i = 0; i < outputList.length; i++) {
+  if (deleteButton) {
+    deleteButton.addEventListener("click", function deleteButton(e) {
+      console.log("delete");
+      console.log(e.target.dataset.name);
+      for (let i = 0; i < outputList.length; i++) {
         if (outputList[i].jobId == e.target.dataset.name) {
-            outputList.splice(i, 1);
-            count--;
-            dummyResponse.Job = outputList;
-            updateDummyData(dummyResponse);
-            closeModal('#deleteModal');
-            console.log(count)
-            loadJobList(pageIndex,outputList,count);
-        }      
-    }
-});
-}
+          outputList.splice(i, 1);
+          count--;
+          dummyResponse.Job = outputList;
+          updateDummyData(dummyResponse);
+          closeModal("#deleteModal");
+          console.log(count);
+          loadJobList(pageIndex, outputList, count);
+        }
+      }
+    });
+  }
 
-
-function closeModal(modalId) {
-    $(modalId).modal('hide');
-}
+  function closeModal(modalId) {
+    $(modalId).modal("hide");
+  }
 
   //CLICK
   $("#jobList").on("click", ".card ", function () {
@@ -231,9 +222,6 @@ function closeModal(modalId) {
       }
     }
   });
+}
 
-
-};
-
-
-export default loadJobList;
+export default loadMyJobList;
