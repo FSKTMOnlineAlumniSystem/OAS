@@ -152,7 +152,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
   a.innerHTML = `<a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)">
-  <i class="fa fa-trash fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
+  <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i>`;
   td.appendChild(a);
   tr.appendChild(td);
