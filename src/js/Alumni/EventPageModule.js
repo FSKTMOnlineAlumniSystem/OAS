@@ -68,7 +68,7 @@ export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
     loadEventSection(dummyResponse.Event, section);
     return;
   }
-  
+  console.log(parentNode);
   parentNode.appendChild(pageTitle);
   eventArr.forEach(event => {
     const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
