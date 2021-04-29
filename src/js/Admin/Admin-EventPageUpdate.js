@@ -85,7 +85,7 @@ function readURL(e) {
       document.getElementById("prevImage").src = e.target.result;
     }
     reader.readAsDataURL(e.target.files[0]);
-    choosePictureDescription.textContent = "hiiiiiiiiiiiiii";
+    choosePictureDescription.textContent = "";
   } else {
     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
