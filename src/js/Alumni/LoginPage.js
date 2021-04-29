@@ -89,7 +89,7 @@ form_1.addEventListener('submit', (ev) => {
                             localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
                             if (!localStorage.getItem('dummyResponse')) {
                                 updateDummyData(dummyResponse);
-                               
+
                             }
 
                             setSuccessFor(inputPassword);
@@ -107,6 +107,7 @@ form_1.addEventListener('submit', (ev) => {
             }
 
         }
+
 
         if (!getEmail) {
             errorExist = true;
