@@ -226,7 +226,7 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if (isEmpty(ICValue) || (ICValue.length == 11)) {
+    if (isEmpty(ICValue) || (ICValue.length < 11)) {
         setErrorFor(IC);
         errorExist = true;
     } else {
