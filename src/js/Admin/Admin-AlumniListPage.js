@@ -276,6 +276,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
     $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
+    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
     $("#department1").text(dummyResponse.Alumni[e.target.id].department);
     $("#email").text(dummyResponse.Alumni[e.target.id].email);
     $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);

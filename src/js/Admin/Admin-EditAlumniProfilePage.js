@@ -19,7 +19,8 @@ const icNumber = document.querySelector('#icNumber');
 
 var i = localStorage.getItem("updateId")
 console.log(i)
-const currentAlumniId = "AL-1";
+const currentAlumniId = dummyResponse.Alumni[i].alumniId;
+console.log(currentAlumniId)
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
@@ -120,6 +121,8 @@ form.addEventListener('submit', (e) => {
                 al.graduated = graduated.value;
                 al.name = name.value;
                 al.icNumber = icNumber.value;
+                al.gender = gender.value;
+                al.department = department.value;
                 updateDummyData(dummyResponse);
             }
         });
@@ -158,13 +161,14 @@ function closeModal(modalId) {
 
 function loadData() {
     wizardPicturePreview.src = imgPath + alumni.imageId;
-    name.textContent = alumni.name;
-    // gender.textContent = alumni.gender;
-    graduated.textContent = alumni.graduated;
-    // department.textContent = alumni.department;
+    name.value = alumni.name;
+    gender.value = alumni.gender;
+    department.value = alumni.department;
+    graduated.value = alumni.graduated;
     email.value = alumni.email;
     contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;
+    icNumber.value = alumni.icNumber;
 }
 
 loadData();
