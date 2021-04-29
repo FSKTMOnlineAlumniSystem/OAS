@@ -2,8 +2,7 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 // import loadAlumniList from "./alumniPage.js";
 // import loadJobList from "./JobPage.js";
 import loadAlumniList from "./alumniPageModule.js";
-// import { loadEventList } from "./EventPageModule.js";
-// console.log(loadEventList);
+import { loadEventList } from "./EventPageModule.js";
 
 let result = null;
 document
@@ -128,13 +127,20 @@ function searching(e) {
     switch (localStorage.getItem("choose")) {
       case "Alumni":
         console.log("load alumni");
+        location.href = "alumniPage.html";
         loadAlumniList(0, dummyResponse.Alumni);
         break;
       case "Event":
+        location.href = "EventPage.html";
         loadEventList(0, dummyResponse.Event);
         break;
       case "Jobs":
-        // loadJobList(0);
+        location.href = "JobPage.html";
+        loadJobList(0, dummyResponse.Job);
+        break;
+      case "MyJobs":
+        location.href = "MyJobPage.html";
+        // loadJobList(0, dummyResponse.Job);
         break;
       default:
       // code block

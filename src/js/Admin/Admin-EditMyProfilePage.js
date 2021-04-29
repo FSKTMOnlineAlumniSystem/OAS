@@ -1,11 +1,11 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector("#wizardPicturePreview");
 const img = document.querySelector("#wizard-picture");
 const name = document.querySelector("#name");
 const email = document.querySelector("#email");
 const form = document.querySelector("form");
+const saveButton = document.querySelector("#saveButton");
 const cancelButton = document.querySelector("#cancelButton");
 const closeCancelChangesModalButton = document.querySelector(
   "#closeCancelChangesModalButton"
@@ -63,6 +63,7 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 form.addEventListener("submit", (e) => {
+  e.preventDefault();
   let errorExist = false; //false if no error exists in name, email
   if (name.value.length < 5) {
     setInValid(name);
@@ -78,13 +79,20 @@ form.addEventListener("submit", (e) => {
     setValid(email);
   }
 
-  if (errorExist) e.preventDefault();
-  else {
+  if(!errorExist) {
     dummyResponse.Admin.forEach((ad) => {
       if (ad.adminId === currentAdminId) {
+        if (img.value) {
+          const imgLocalPathArr = img.value.split('\\');
+          ad.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
+        }
         ad.name = name.value;
         ad.email = email.value;
         updateDummyData(dummyResponse);
+        saveButton.textContent='Saving...';
+        setTimeout(()=>{
+            location.href='Admin-MyProfilePage.html';
+        },1000);
       }
     });
   }
@@ -93,7 +101,7 @@ form.addEventListener("submit", (e) => {
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener("click", () => {
   if (
-    wizardPicturePreview.src.includes(imgPath + admin.imageId) &&
+    !img.value &&
     admin.name == name.value &&
     admin.email == email.value
   ) {

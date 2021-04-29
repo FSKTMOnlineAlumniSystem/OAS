@@ -39,7 +39,9 @@ body,
 .header--gradient{
   background: linear-gradient(to left, #6E48AA, #cd8ee6);
 }
-
+.header--fixed-height{
+  height: 45px;
+}
 .footer--gradient{
   background: linear-gradient(to left, #6E48AA, #a53ecd);
 }
@@ -122,4 +124,34 @@ a.nostyle:visited {
 
 #contact-us-nav-item,#notification-icon{
   cursor: pointer;
+}
+
+.dropdown-item:focus,.dropdown-item:active{
+  background: #a43ecdd8!important;
+}
+
+.btn-primary{
+  background-color: #a53ecd !important;
+  border: 0px !important;
+  color: white !important;
+  outline-width: 0px !important;
+}
+
+.btn-primary:hover{
+  background-color: #48175b !important;
+}
+.btn-primary:focus,.btn-primary:active{
+  box-shadow: 0 0 0 0.2rem #b700ff46 !important;
+}
+
+#left-nav{
+  width:90px;
+}
+
+#right-content{
+  width:calc(100% - 90px);
+}
+
+.height-after-minus-header{
+  height: calc(100% - 45px);
 }
