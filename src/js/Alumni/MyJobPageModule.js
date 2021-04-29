@@ -1,31 +1,10 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-let count=0;
-
-var array;
 
 
-// document.getElementById("pageIndex").innerHTML = `<li class="page-item">
-//     <button class="page-link" id="previousPage">Previous</button></li>` ;
+function loadJobList (pageIndex, outputList,count) {
 
-// for (let i = 1; i <= (Math.ceil(count / 9)); i++) {
-//     document.getElementById("pageIndex").innerHTML +=
-//         `<li class="page-item"><button class="page-link inner">` + i + `</button></li>`;
-// }
-
-// document.getElementById("pageIndex").innerHTML += `<li class="page-item">
-//     <button class="page-link" id="nextPage">Next</button></li>` ;
-
-
-function loadJobList (pageIndex, outputList) {
-
-    //Only display job ads by AL-1
-    for(let i=0; i<outputList.length; i++){
-        if(outputList[i].alumniId == "AL-1"){
-            count++;
-        }
-    }    
-
+    const alumniID = localStorage.getItem('SignedInAlumniId');
     const jobList = document.getElementById('jobList');
     jobList.innerHTML = "";
     let jobStartIndex = pageIndex * 9;
@@ -96,66 +75,63 @@ function loadJobList (pageIndex, outputList) {
       }
     }else{
       document.getElementById('top').innerHTML = 
-      `<h3>Empty list! Please add new job addvertisement!!</h3>`
+      `<h3>Empty list! Please add new job addvertisement!!</h3>`;
+      document.getElementById("nextPage").innerHTML = "";
+      document.getElementsByClassName("pages")[0].innerHTML = "";
+      document.getElementById("previousPage").innerHTML = "";
     }
 
     for (let i = jobStartIndex;  i < outputList.length ; i++) {
 
-        if(outputList[i].alumniId == "AL-1"){
-
-            
-
+        if(outputList[i].alumniId == alumniID){
             if(outputList[i].imageId == null){
-              console.log('heree')
-              console.log(outputList[i].jobId);
-        document.getElementById('jobList').innerHTML +=
-        `<div class="col mb-4">
-        <div class="card h-100">
-        <a href="../../html/Alumni/MyJobDetailsPage.html" >
-        <div class="w-100">
-        <img src="${outputList[i].imgaeUrl}" id="image" class="card-img-top">
-        </div>
-        <div class="card-body">
-        <h5 class="card-title">${outputList[i].company} - ${outputList[i].title}</h5>
-        <p class="card-text">
-        <div class="row cards">
-        <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
-        <div class="col-7">${outputList[i].location}</div>
-        </div>
-        <div class="row cards">
-        <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-        <div class="col-7">${outputList[i].salary}</div>
-        </div>
-        </p>
-        </div></a>
-        <div class="card-footer mt-auto">
-        <button type="button" class="clickButton" role="button" aria-pressed="true" data-name=${outputList[i].jobId}><i class="far fa-trash-alt"></i></button>  
-        </div></div><div>
-        <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="cancelChangesModalLabel">Confirmation</h5>
-                            <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this job advertisement?
-                        </div>
-                        <div class="modal-footer">
-                            <button id="deleteButton" type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
-                        </div>
-                    </div>
+                document.getElementById('jobList').innerHTML +=
+                `<div class="col mb-4">
+                <div class="card h-100" data-name=${outputList[i].jobId}>
+                <a href="../../html/Alumni/MyJobDetailsPage.html" >
+                <div class="w-100">
+                <img src="${outputList[i].imgaeUrl}" id="image" class="card-img-top">
                 </div>
-            </div>`;
+                <div class="card-body">
+                <h5 class="card-title">${outputList[i].company} - ${outputList[i].title}</h5>
+                <p class="card-text">
+                <div class="row cards">
+                <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
+                <div class="col-7">${outputList[i].location}</div>
+                </div>
+                <div class="row cards">
+                <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
+                <div class="col-7">${outputList[i].salary}</div>
+                </div>
+                </p>
+                </div></a>
+                <div class="card-footer mt-auto">
+                <button type="button" class="clickButton close" role="button" aria-pressed="true" ><i class="far fa-trash-alt"></i></button>  
+                </div></div><div>
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+                <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                Are you sure you want to delete this job advertisement?
+                </div>
+                <div class="modal-footer">
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                </div>
+                </div>
+                </div>
+                </div>`;
     }
             else{
               console.log(outputList[i].jobId);
                 document.getElementById('jobList').innerHTML +=
                 `<div class="col mb-4">
-                 <div class="card h-100" >
-                 
+                 <div class="card h-100" data-name=${outputList[i].jobId}> 
                  <a href="../../html/Alumni/MyJobDetailsPage.html">
                  <div class="w-100">
                  <img class="w-100" src="../../../Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
@@ -174,110 +150,87 @@ function loadJobList (pageIndex, outputList) {
                 </p>
                 </div></a>
                 <div class="card-footer mt-auto">
-                <button type="button" class="clickButton" role="button" aria-pressed="true" data-name=${outputList[i].jobId}><i class="far fa-trash-alt"></i></button>  
+                <button type="button" class="clickButton close" role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
                 </div></div><div>
                 
-                <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="cancelChangesModalLabel">Confirmation</h5>
-                            <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this job advertisement?
-                        </div>
-                        <div class="modal-footer">
-                            <button id="deleteButton" type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
-                        </div>
-                    </div>
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+                <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
-            </div>`;      
+                <div class="modal-body">
+                Are you sure you want to delete this job advertisement?
+                </div>
+                <div class="modal-footer">
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                </div>
+                </div>
+                </div>
+                </div>`;      
             }
         }
     }
 
 
-//CLICK
-// document.querySelector("#card").addEventListener("click", function(){
-//     $("#jobList").on("click", ".card ", function () {
-//         console.log('click')
-//     var jobName = $(this).attr("data-name");
-//     var myJobList = [];
-//     for(let i=0; i <outputList.length; i++){
-//         if(outputList[i].jobId == jobName){
-//             myJobList.push(outputList[i]);
-//             localStorage.setItem('MyJobList',JSON.stringify(myJobList)); 
-//             break;
-//         }
-//     }
-  
-// });
-
 const deleteButton = document.getElementById("deleteButton");
-const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
+const closeDeleteModalButton = document.querySelector('#closeDeleteButton');
 const clickButton = document.querySelector('.clickButton');
-// const deleteButton = document.querySelector('#deleteButton');
-var name;
 
-if(clickButton){
-clickButton.addEventListener("click", function(e){
-  name = e.target.dataset.name;
+
+clickButton.addEventListener("click", function(){
+  // var name = e.target.dataset.name;
   //  name = e.getA;
-  console.log('first click'+name)
-  $('#cancelChangesModal').modal('show');
+  // console.log('first click'+ e.target.dataset.name)
+  $('#deleteModal').modal('show');
 });
-}
-   
 
-if(closeCancelChangesModalButton){
-closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+   
+if(closeDeleteModalButton){
+closeDeleteModalButton.addEventListener('click', () => closeModal('#deleteModal'));
 }
 
 if(deleteButton){
-deleteButton.addEventListener('click', function deleteButton(){
+deleteButton.addEventListener('click', function deleteButton(e){
   console.log('delete')
-  console.log(name)
+  console.log(e.target.dataset.name)
     for (let i = 0; i < outputList.length; i++) {
-        if (outputList[i].jobId == name) {
+        if (outputList[i].jobId == e.target.dataset.name) {
             outputList.splice(i, 1);
+            count--;
             dummyResponse.Job = outputList;
             updateDummyData(dummyResponse);
-            closeModal('#cancelChangesModal');
-            console.log(pageIndex)
-            loadJobList(pageIndex,outputList);
+            closeModal('#deleteModal');
+            console.log(count)
+            loadJobList(pageIndex,outputList,count);
         }      
     }
 });
 }
 
-// function deleteButton(){
-//     console.log(name);
-//     return name;
-// }
 
 function closeModal(modalId) {
     $(modalId).modal('hide');
 }
 
+  //CLICK
+  $("#jobList").on("click", ".card ", function () {
+    var jobName = $(this).attr("data-name");
+    var myJobList = [];
+    console.log(jobName);
+    for (let i = 0; i < outputList.length; i++) {
+      if (outputList[i].jobId == jobName) {
+        console.log("click");
+        myJobList.push(outputList[i]);
+        localStorage.setItem("MyJobList", JSON.stringify(myJobList));
+        break;
+      }
+    }
+  });
 
-
-// Delete the job advertisement 
-// $("#jobList").on("click", "#deleteButton", function () {
-//     for (let i = 0; i < outputList.length; i++) {
-//         if (outputList[i].jobId == name) {
-//             outputList.splice(i, 1);  //at position i remove 1 item
-//             dummyResponse.Job = outputList;
-//             updateDummyData
-//             $('#cancelChangesModal').modal('hide');
-//             // updateDummyData(dummyResponse); //assign array back to localStorage
-//             break;
-//         }
-//     }
-//     loadJobList(pageIndex,outputList);
-// });
 
 };
 

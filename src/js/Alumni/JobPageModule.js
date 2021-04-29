@@ -130,17 +130,6 @@ function loadJobList (pageIndex, outputList) {
     }
   });
   
-//   document.getElementById("nextPage").addEventListener("click", function () {
-//     pageIndex++;
-//     loadJobList(pageIndex);
-//     console.log("here" + pageIndex);
-//   });
-  
-//   document.getElementById("previousPage").addEventListener("click", function () {
-//     pageIndex--;
-//     loadJobList(pageIndex);
-//     console.log("next" + pageIndex);
-//   });
   
   };
 
