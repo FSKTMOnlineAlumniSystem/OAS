@@ -1,12 +1,15 @@
 import {dummyResponse, updateDummyData} from "../dummydata.js";
+const imgPath = "/Assets/imgs/";
 console.log("link js");
 // model
 // $('#myModal').on('shown.bs.modal', function () {
 //   $('#myInput').trigger('focus')
 // })
 //eventList
-let pageIndex = 0;
+let pageIndex = '0';
+var loaded='0';
 const loadEventList = (pageIndex) => {
+  console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
   console.log("the length" + dummyResponse.Event.length);
   // document.getElementById('eventList').innerHTML = "";
@@ -48,28 +51,29 @@ const loadEventList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" >
+        <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>
-        <li class="page-item" ><button onclick="nextPage();nextPage()">${pageIndex + 3
+        <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
       }</button></li>`;
   }
 
@@ -89,12 +93,11 @@ const loadEventList = (pageIndex) => {
     i++
   ) {
     // console.log("previous time" + dummyResponse.Event[i].dateTime)
-    var d = new Date(dummyResponse.Event[i].dateTime);
-    // console.log(dummyResponse.Event[i].dateTime)
-    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-    // console.log(`${da}, ${mo} ${ye}`);
+    // var d = new Date(dummyResponse.Event[i].dateTime);
+    // let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+    // let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    // let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+    
     // d.toLocaleDateString('en-GB')
 
 
@@ -110,8 +113,8 @@ const loadEventList = (pageIndex) => {
                       <label class="custom-control-label" for="Boxes${i}"></label>
                     </div>
                   </td>
-                 <td style="font-weight: 400; font-size: 18px">${`${da}, ${mo} ${ye}`}
-                 <div style="font-weight: 200; font-size: 14px">${d.toLocaleTimeString()}</div>
+                 <td style="font-weight: 400; font-size: 18px">${getReadableDate(dummyResponse.Event[i].dateTime)}
+                 <div style="font-weight: 200; font-size: 14px">${getReadableTime(dummyResponse.Event[i].dateTime)}</div>
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                  <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
@@ -129,10 +132,11 @@ const loadEventList = (pageIndex) => {
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 35px">
-
+                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}">
+                    <i class="fas fa-edit pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 25px">
                     </i></a>
-                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="fa fa-trash fa-3x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 35px">
+                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}">
+                      <i class="far fa-trash-alt pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 25px">
                        </i></a>
                   </div>
                 </td>
@@ -205,19 +209,23 @@ window.DeleteRowFunction = function (o) {
   console.log("the id is:" + findId)
   dummyResponse.Event.splice(findId, 1)
   console.log(dummyResponse.Event)
+  updateDummyData(dummyResponse)
   // var p = o.parentNode.parentNode.parentNode;
   // console.log(p)
   // p.parentNode.removeChild(p);
   loadEventList(pageIndex)
+  // location.reload();
 }
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i >= 0; i--) {
     if(checkboxes[i].checked){
-      dummyResponse.Event.splice(i, 1)
+      dummyResponse.Event.splice(i-1, 1)
     }
   }
+  updateDummyData(dummyResponse)
   loadEventList(pageIndex)
+  // location.reload();
 }
 // window.addRow = function () {
 //   console.log('add row')
@@ -239,7 +247,7 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       </button>
                     </div>
                     <div class="modal-body" >
-                      <img src="/Assets/imgs/${dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
+                      <img src="${imgPath+dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
                       <br>
                       <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
                       ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
@@ -250,15 +258,84 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-success"
-                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">Edit</button>
+                      <button type="button" class="btn btn-primary"
+                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">
+                        <i class="fas fa-edit" >
+                    </i>
+                        Edit</button>
                     </div>
                   </div>
                 </div>`
   }
   )
-})
+}
+)
+// filter
+window.filterSearchBar = function() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchBar");
+  filter = input.value.toUpperCase();
+  table = document.getElementsByClassName("table-responsive")[0];
+  tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var tds = tr[i].getElementsByTagName("td");
+    var flag = false;
+    for(var j = 0; j < tds.length; j++){
+      var td = tds[j];
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        flag = true;
+      } 
+    }
+    if(flag){
+        tr[i].style.display = "";
+    }
+    else {
+        tr[i].style.display = "none";
+    }
+  }
+}
+$(document).ready(function () {
+    $("#status,#department").on("change", function () {
+        var status = $('#status').find("option:selected").val();
+        var department = $('#department').find("option:selected").val();
+        SearchData(status, department)
+    });
+});
 
+window.SearchData = function(status, department) {
+    if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
+        $('#myTable tbody tr').show();
+    } else {
+        $('#myTable tbody tr:has(td)').each(function () {
+            var rowStatus = $.trim($(this).find('td:eq(4)').text());
+            var rowDepartment = $.trim($(this).find('td:eq(3)').text());
+            if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
+                if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
+                if (status != 'All' || department == 'All') {
+                    if (rowStatus.toUpperCase() == status.toUpperCase()) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                }
+                if (department != 'All' || status =='All') {
+                    if (rowDepartment == department) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                }
+            }
+
+        });
+    }
+}
  //model
 //  document.getElementById("schedule").innerHTML =
 

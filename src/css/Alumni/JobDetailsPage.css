@@ -38,3 +38,16 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.fa-map-marked-alt{
+    color: rgb(231, 56, 56);
+  }
+  
+  .fa-sack-dollar{
+    color: rgb(224, 221, 0);
+    /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
+  }
+
+  .fa-envelope-open-text{
+      color: cornflowerblue;
+  }
