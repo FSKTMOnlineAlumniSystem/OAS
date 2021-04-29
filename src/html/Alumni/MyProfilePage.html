@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Alumni Online System</title>
+    <title>My Profile - Alumni Online System</title>
     <!-- GOOGLE FONT POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -30,18 +30,18 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="EditMyProfilePage.html" class="dropdown-item">
-                            <i class="bi bi-pencil mr-2"></i>
+                            <i class="fas fa-user-edit mr-2"></i>
                             Edit Profile
                         </a>
                         <button type="button" class="dropdown-item" data-toggle="modal"
                             data-target="#changePasswordModal">
-                            <i class="bi bi-lock mr-2"></i>
+                            <i class="fas fa-lock-alt mr-2"></i>
                             Change Password
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" class="dropdown-item text-danger" data-toggle="modal"
                             data-target="#deleteAccountModal">
-                            <i class="bi bi-person-x mr-2"></i>
+                            <i class="fas fa-user-times mr-2"></i>
                             Delete Account
                         </button>
                     </div>
@@ -176,8 +176,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="deleteAccountButton" type="button" class="btn btn-danger">Delete Account</button>
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="deleteAccountButton" type="button" class="btn btn-danger">Delete Account</button>
                 </div>
             </div>
         </div>

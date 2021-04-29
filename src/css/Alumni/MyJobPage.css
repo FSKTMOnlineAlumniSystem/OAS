@@ -39,11 +39,11 @@ body{
   flex-direction: column; */
 }
 
-.fa-trash{
+.fa-trash-alt{
   opacity: 0.3;
 }
 
-.fa-trash:hover{
+.fa-trash-alt:hover{
 opacity: 1.0;
 color: red;
 }
@@ -81,4 +81,17 @@ a{
 .w-100{
 aspect-ratio:2/1; 
 overflow:hidden;
+}
+
+.h3, h3{
+  color: #660761b2;
+}
+
+.fa-map-marked-alt{
+  color: rgb(231, 56, 56);
+}
+
+.fa-sack-dollar{
+  color: rgb(224, 221, 0);
+  /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
 }

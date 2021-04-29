@@ -40,7 +40,11 @@ document.getElementById("form").innerHTML +=
         </div>
         <div class="mb-3">
           <label for="salary" class="form-label">Job Salary</label>
-          <input type="text" class="form-control" id="salary" >
+          <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
+          </div>
+          <input type="text" class="form-control" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
           <div class="valid-feedback">Valid.</div>
           <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
         </div>

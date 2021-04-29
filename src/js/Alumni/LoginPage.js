@@ -42,6 +42,8 @@ form_2.addEventListener('submit', (evt) => {
 
     if (errorExist) {
         evt.preventDefault();
+    } else {
+        localStorage.setItem('ForgotPassword', sendEmailValue);
     }
 
 });
@@ -74,28 +76,38 @@ form_1.addEventListener('submit', (ev) => {
                     setErrorFor(inputPassword);
                     errorExist = true;
                 } else {
-                    console.log("dummy");
-                    if (inputPasswordValue == dummyResponse.Alumni[i].password) {
 
-                        //To save who is logged in
-                        localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
-                        if (!localStorage.getItem('dummyResponse')) {
-                            updateDummyData(dummyResponse);
-                        }
-
-                        setSuccessFor(inputPassword);
-                        errorExist = false;
-
-                    } else {
-
+                    if (!dummyResponse.Alumni[i].approvedBy) {
                         setErrorFor(inputPassword);
                         errorExist = true;
+                    } else {
+
+                        if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+
+                            //To save who is logged in
+                            console.log(dummyResponse.Alumni[i].alumniId);
+                            localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
+                            if (!localStorage.getItem('dummyResponse')) {
+                                updateDummyData(dummyResponse);
+
+                            }
+
+                            setSuccessFor(inputPassword);
+                            errorExist = false;
+
+                        } else {
+
+                            setErrorFor(inputPassword);
+                            errorExist = true;
+                        }
                     }
+
                 }
                 break;
             }
 
         }
+
 
         if (!getEmail) {
             errorExist = true;
@@ -109,12 +121,19 @@ form_1.addEventListener('submit', (ev) => {
         ev.preventDefault();
     }
     else {
-        location.replace("../../html/Alumni/homePage.html");
+
         ev.preventDefault();
+        jumpHome();
     }
 
 
 });
+
+
+function jumpHome() {
+    location.replace("../../html/Alumni/homePage.html");
+}
+
 
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
@@ -127,7 +146,7 @@ function readURL(e) {
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-    }else{
+    } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
@@ -208,7 +227,7 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if (isEmpty(ICValue) || (ICValue.length == 11)) {
+    if (isEmpty(ICValue) || (ICValue.length < 11)) {
         setErrorFor(IC);
         errorExist = true;
     } else {
@@ -223,12 +242,19 @@ form.addEventListener('submit', (e) => {
         setSuccessFor(Password);
     }
 
+    console.log(img.value);
+    var imgValue = img.value;
+    var imgid = imgValue.split("\\");
+    var i = imgid.length - 1;
+    var im = imgid[i];
+
+    console.log(im);
 
     if (errorExist) {
         e.preventDefault();
-    }else{
+    } else {
 
-        const obj={
+        const obj = {
             "alumniId": "AL-" + dummyResponse.Alumni.length,
             "approvedBy": "",
             "email": emailValue,
@@ -238,18 +264,27 @@ form.addEventListener('submit', (e) => {
             "name": FirstNameValue + LastNameValue,
             "department": DepartmentValue,
             "graduated": BatchValue,
-            "imageId": img.value,
+            "imageId": im,
             "contactNumber": "03-79676347",
         }
 
         dummyResponse.Alumni.push(obj);
         updateDummyData(dummyResponse);
+
+        e.preventDefault();
+        getWait();
+
+
     }
 
 
 });
 
+function getWait() {
+    $('#wait').modal('toggle');
+    $('#signUP').modal('hide');
 
+}
 
 function checkLength(passwordValue) {
 
@@ -282,3 +317,5 @@ function setSuccessFor(input) {
 function isEmpty(obj) {
     return obj.length == 0;
 }
+
+

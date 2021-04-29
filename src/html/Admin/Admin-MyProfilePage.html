@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Alumni Online System</title>
+    <title>My Profile - Alumni Online System</title>
     <!-- GOOGLE FONT POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -19,12 +19,12 @@
 </head>
 
 <body>
-    <main class="container-fluid h-100" id='main-body'>
+    <main class="container-fluid height-after-minus-header" id='main-body'>
         <div class="row h-100">
             <div class="custom-dark-gray px-0" id="left-nav">
 
             </div>
-            <div id="right-content" class="d-flex flex-column" style="background:url(/Assets/imgs/JAN_17_TECNOLOGIA_EEZY_01.png);background-size:70%;background-repeat: no-repeat;background-position:bottom right;">
+            <div id="right-content" class="container-fluid" style="background:url(/Assets/imgs/JAN_17_TECNOLOGIA_EEZY_01.png);background-size:70%;background-repeat: no-repeat;background-position:bottom right;">
                 <div class="container mt-5">
                     <div class="row justify-content-between">
                         <h2>My Profile</h2>
@@ -35,12 +35,12 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="Admin-EditMyProfilePage.html" class="dropdown-item">
-                                    <i class="bi bi-pencil mr-2"></i>
+                                    <i class="fas fa-user-edit mr-2"></i>
                                     Edit Profile
                                 </a>
                                 <button type="button" class="dropdown-item" data-toggle="modal"
                                     data-target="#changePasswordModal">
-                                    <i class="bi bi-lock mr-2"></i>
+                                    <i class="fas fa-lock-alt mr-2"></i>
                                     Change Password
                                 </button>
                             </div>
@@ -58,12 +58,12 @@
                         </div>
                         <div class="col-sm-7 justify-content-center align-items-center text-dark">
                             <div class="row mb-3">
-                                <div class="col-sm-4 h5">Name:</div>
-                                <div id="name" class="col-sm-8 h5">Teh Kok Soon</div>
+                                <div class="col-sm-3 h5">Name:</div>
+                                <div id="name" class="col-sm-9 h5">Teh Kok Soon</div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-sm-4 h5">E-mail:</div>
-                                <div id="email" class="col-sm-8 h5">koksoon@um.edu.my</div>
+                                <div class="col-sm-3 h5">E-mail:</div>
+                                <div id="email" class="col-sm-9 h5">koksoon@um.edu.my</div>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header align-items-center">
                                     <h5 class="modal-title" id="changePasswordModalLabel">Change password</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
