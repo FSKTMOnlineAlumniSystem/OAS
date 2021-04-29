@@ -78,7 +78,7 @@ for (let i = 0; i < 6; i++) {
  
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
-                    <i class="far fa-calendar-alt"></i>
+                    <i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
                      </div>
                     <div class="col-10 d-flex flex-column">
                         <span class="t">${`${da}, ${mo} ${ye}`}</span>
@@ -87,7 +87,7 @@ for (let i = 0; i < 6; i++) {
                 </div>
                     <div class="row">
                         <div class="col-2 d-flex flex-column">
-                        <i class="far fa-clock"></i>
+                        <i class="far fa-clock" style="color: rgb(118, 172, 250);"></i>
                         </div>
 
                         <div class="col-10 d-flex flex-column">
@@ -96,7 +96,8 @@ for (let i = 0; i < 6; i++) {
                     </div>
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
-                            <i class="fas fa-map-marked-alt"></i>
+                            <i class="fas fa-map-marked-alt" 
+                            style="color: rgb(167, 0, 0);"></i>
                     </div>
                     <div class="col-10 d-flex flex-column">
                         <span class="t">${dummyResponse.Event[latest_1[i]].location}</span>
@@ -452,7 +453,13 @@ window.onload = function () {
     document.body.appendChild(css);
 };
 
+function loop() {
+    $('.carousel').carousel({
+        interval: 500
+      });
+}
 
+loop();
 
 // var vid = document.getElementById("myVideo");
 
