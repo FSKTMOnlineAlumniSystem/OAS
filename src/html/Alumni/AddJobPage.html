@@ -1,203 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
   <link rel="stylesheet" type="text/css" href="/src/css/Alumni/AddJobPage.css">
   <!-- icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <title>Add Job</title>
 </head>
 
 <body>
-  <!-- <header class='d-flex flex-row-reverse align-items-center header--gradient p-2 font-weight-bold text-white'>
-    <div id="profile-header">
-      <img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
-      <span class="px-1 py-auto">Dr Tey Kok Soon</span>
-      <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
-    </div>
-    <img src="/Assets/icons/bell.svg" alt="bell icon" class="header__img mx-2" id='notification-icon'>
-    <div id='profile-panel' class="profile-panel--display-none">
-      <div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/Alumni/AlumniProfilePage.html" class="nostyle">My Profile</a></div>
-    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/Alumni/HomePage.html" class="nostyle">Log Out</a></div>
-    </div>
-
-    <div id='notification-panel'
-     class="profile-panel--display-none"
-    >
-      <div class="p-2 fw-bold h6 m-0">Notifications</div>
-      <ul class='m-0 list-unstyled'>
-        <li class="p-2 border-top notification-border">
-        </li>
-      </ul>
-    </div>
-
-  </header> -->
-  <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
-          <img src="..\..\..\Assets\imgs\\umfsktm.png" alt="" class='nav__img'>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/src/html/Alumni/HomePage.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/src/html/Alumni/AlumniPage.html">Alumni</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Jobs
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/src/html/Alumni/JobPage.html">All Job Advertisement</a></li>
-                <li><a class="dropdown-item" href="/src/html/Alumni/MyJobPage.html">Your Job Advertisement</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/src/html/Alumni/EventPage.html">Event</a>
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" id="contact-us-nav-item">Contact Us</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      </nav> -->
-
   <div class="container my-md-5 my-3" id='main-body'>
     <h3 class="mb-4">Add New Job</h3>
     <div id="form"></div>
-    <!-- <form id="job_ad_form">
-      <div class="mb-3">
-        <label for="companyName" class="form-label">Company Name</label>
-        <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="jobTitle" class="form-label">Job Title</label>
-        <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
-      </div>
 
-
-      <div class="container-fluid mb-3">
-        <div class='row'>
-          <div class='image-area col-md-4 col-12 d-flex flex-column justify-content-center align-items-center'>
-            <span class='image-area-content'>Uploaded image result</span>
-            <img id="imageResult" src="#" alt="" class="p-1">
-          </div>
-          <div class='p-2 col-md-8 col-12'>
-            <label for="upload" class="form-label">Company Image</label>
-            <input type="file" class="form-control" id="upload" aria-describedby="image">
-          </div>
-        </div> -->
-    <!-- Uploaded image result area-->
-    <!-- </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
-        <input type="text" class="form-control" id="location">
-      </div>
-      <div class="mb-3">
-        <label for="salary" class="form-label">Job Salary</label>
-        <input type="text" class="form-control" id="salary">
-      </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea name="comment" form="job_ad_form" id="description" class="form-control"
-          placeholder="Enter description here..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div> -->
-    <!--   
-  <footer class="container-fluid">
-    <div class='row d-flex justify-content-evenly justify-content-md-center bg-dark text-break text-dark py-2'>
-      <div class='d-flex flex-column col-12 col-md-3 text-white'>
-        <div>
-          <a class="btn text-white" role="button" data-toggle="collapse" data-target="#contactUs" aria-expanded="false"
-            aria-controls="contactUs"><u>Contact Us</u></a>
-        </div>
-        <div class="collapse" id="contactUs">
-          <div class="d-flex flex-column px-3">
-            <span class='pt-2'>+603 7967 6300</span>
-            <span class='pt-2'>dekan_fsktm@um.edu.my</span>
-            <span class='pt-2'>FCSIT Technical Team
-              Level 2 Block A
-              Faculty of Computer Science and
-              Information Technology
-              University of Malaya
-              50603 Kuala Lumpur</span>
-          </div>
-        </div>
-      </div>
-      <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white' id='links'>
-        <div>
-          <a class="btn text-white" role="button" data-toggle="collapse" data-target="#quickLinks"
-            aria-expanded="false" aria-controls="quickLinks"><u>
-              Quick Links
-            </u>
-          </a>
-        </div>
-        <div class="collapse" id="quickLinks">
-          <div class="d-flex flex-column px-3">
-            <a class="nostyle" href="#">Home</a>
-            <a class="nostyle" href="#">Alumni</a>
-            <a class="nostyle" href="#">Jobs</a>
-            <a class="nostyle" href="#">Events</a>
-          </div>
-        </div>
-      </div>
-      <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white'>
-        <div>
-          <a class="btn text-white" role="button" data-toggle="collapse" data-target="#resources" aria-expanded="false"
-            aria-controls="resources"><u>
-              Resources
-            </u>
-          </a>
-        </div>
-        <div class="collapse" id="resources">
-          <div class="d-flex flex-column px-3">
-            <a class="nostyle" href="#">UM Library</a>
-            <a class="nostyle" href="#">UM Expert</a>
-            <a class="nostyle" href="#">UM Research</a>
-          </div>
-        </div>
-      </div>
-      <div class='d-flex flex-column col-12 col-md-3 mt-2 mt-md-0 text-white'>
-        <div>
-          <a class="btn text-white" role="button" data-toggle="collapse" data-target="#followUs" aria-expanded="false"
-            aria-controls="followUs"><u>
-              Follow Us
-            </u>
-          </a>
-        </div>
-        <div class="collapse" id="followUs">
-          <div class="d-flex flex-column px-3">
-            <a class="nostyle" href="#">Instagram</a>
-            <a class="nostyle" href="#">Facebook</a>
-            <a class="nostyle" href="#">Youtube</a>
-            <a class="nostyle" href="#">Twitter</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer> -->
-  
-    <!-- <script type="text/javascript" src='/src/js/dummydata.js'></script> -->
-    <script type='text/javascript' src='/src/js/Alumni/AddJobPage.js'></script>
+    <script type='module' src='/src/js/Alumni/AddJobPage.js'></script>
     <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
     <script type="module" src='/src/js/addHeader.js'></script>
     <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>

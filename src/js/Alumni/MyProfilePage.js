@@ -5,7 +5,6 @@ const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
-const imgPath = "/Assets/imgs/";
 const profilePicture = document.querySelector('#profilePicture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
@@ -55,7 +54,7 @@ function verifyPasswordAndConfirmPassword(e) {
                 al.password = newPassword.value;
                 updateDummyData(dummyResponse);
                 changePasswordButton.textContent='Updating...';
-                setInterval(function(){
+                setTimeout(function(){
                     location.reload();
                 },1000);
                 return;
@@ -95,8 +94,8 @@ function deleteAccount(e) {
                 dummyResponse.Alumni.splice(index,1);
                 deleteAccountButton.textContent='Deleting...';
                 updateDummyData(dummyResponse);
-                setInterval(function(){
-                    window.location.href = '/src/html/Alumni/homePage.html';
+                setTimeout(function(){
+                    window.location.href = '/src/html/Alumni/LoginPage.html';
                 },1000);
             }
         });

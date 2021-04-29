@@ -1,6 +1,5 @@
 import { dummyResponse, updateDummyData } from '../dummydata.js';
 
-const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 const img = document.querySelector('#wizard-picture');
@@ -12,12 +11,13 @@ const email = document.querySelector('#email');
 const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
+const saveButton = document.querySelector('#saveButton');
 const cancelButton = document.querySelector('#cancelButton');
 const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-const currentAlumniId = "AL-1";
+const currentAlumniId = localStorage.getItem('SignedInAlumniId');
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
@@ -62,6 +62,7 @@ const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
+    e.preventDefault();
     let errorExist = false; //false if no error exists in email, contactNumber, biography
 
     if (isEmpty(email) || !email.value.match(emailFormat)) {
@@ -85,22 +86,29 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
-    if (errorExist) e.preventDefault();
-    else {
+    if (!errorExist){
         dummyResponse.Alumni.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
+                if(img.value){
+                    const imgLocalPathArr = img.value.split('\\');
+                    al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
+                }
                 al.email = email.value;
                 al.contactNumber = contactNumber.value;
                 al.biography = biography.value;
                 updateDummyData(dummyResponse);
             }
         });
+        saveButton.textContent='Saving...';
+        setTimeout(()=>{
+            location.href='MyProfilePage.html';
+        },1000);
     }
 });
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+    if (!img.value &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {

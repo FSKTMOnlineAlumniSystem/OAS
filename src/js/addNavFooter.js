@@ -1,4 +1,3 @@
-
 const nav = document.createElement('nav');
 nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light container-fluid');
 nav.innerHTML = `
@@ -100,7 +99,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
 const contactUsNavItem = nav.querySelector('#contact-us-nav-item');
 contactUsNavItem.addEventListener('click', function(event){
   console.log('clicked');
-  footer.scrollIntoView();
+  footer.scrollIntoView({behavior: "smooth"});
 });
 
 document.body.insertBefore(nav, document.getElementById('main-body'));
