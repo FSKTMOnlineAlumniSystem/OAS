@@ -92,13 +92,7 @@ function toggleNotificationPanel() {
 
       // direct to respective EventDetailsPage
       div1.addEventListener('click', (evt) => {
-        const theAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
-          return alumni_event.eventId === event.eventId;
-        })[0];
-        console.log(event.viewedByAlumni);
-        console.log(theAlumniEvent.viewedByAlumni);
-        theAlumniEvent.viewedByAlumni = "true";
-        console.log(dummyResponse.Alumni_Event);
+        event.viewedByAlumni = "true";
         updateDummyData(dummyResponse);
         localStorage.setItem('eventId', event.eventId);
         window.open('EventDetailsPage.html',"_self");
@@ -148,9 +142,11 @@ function toggleNotificationPanel() {
       const icon = div1.querySelector('i.fa-times');
       const list = notificationPanel.querySelector('li');
       icon.classList.add('panel__icon--hover-dark-bg');
-      icon.addEventListener('click', (event) => {
+      icon.addEventListener('click', (evt) => {
         list.removeChild(div1);
-        event.stopPropagation();
+        evt.stopPropagation();
+        event.notificationClosedByAlumni = "true";
+        updateDummyData(dummyResponse);
         if (!list.hasChildNodes()) {
           showNoNotification();
         } else {

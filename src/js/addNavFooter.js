@@ -13,10 +13,10 @@ nav.innerHTML = `
             <li class="nav-item ${location.href.toLowerCase().includes('homepage')? "active":""}">
               <a class="nav-link" aria-current="page" href="/src/html/Alumni/HomePage.html">Home</a>
             </li>
-            <li class="nav-item ${location.href.toLowerCase().includes('alumni')? "active":""}">
+            <li class="nav-item ${location.href.toLowerCase().includes('alumnipage')? "active":""}">
               <a class="nav-link" href="/src/html/Alumni/AlumniPage.html">Alumni</a>
             </li>
-            <li class="nav-item dropdown ${location.href.toLowerCase().includes('job')? "active":""}">
+            <li class="nav-item dropdown ${location.href.toLowerCase().includes('jobpage')? "active":""}">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Jobs
               </a>
@@ -25,7 +25,7 @@ nav.innerHTML = `
                 <li><a class="dropdown-item" href="/src/html/Alumni/MyJobPage.html">My Job Advertisement</a></li>
               </ul>
             </li>
-            <li class="nav-item ${location.href.toLowerCase().includes('event')? "active":""}">
+            <li class="nav-item ${location.href.toLowerCase().includes('eventpage')? "active":""}">
               <a class="nav-link" href="/src/html/Alumni/EventPage.html">Event</a>
             </li>
             <li class="nav-item">
