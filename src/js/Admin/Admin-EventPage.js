@@ -51,28 +51,28 @@ const loadEventList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-link" ><button onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-link" ><button onclick="nextPage()">${pageIndex + 2
       }</button></li>
-        <li class="page-item" ><button onclick="nextPage();nextPage()">${pageIndex + 3
+        <li class="page-link" ><button onclick="nextPage();nextPage()">${pageIndex + 3
       }</button></li>`;
   }
 
@@ -218,7 +218,7 @@ window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i >= 0; i--) {
     if(checkboxes[i].checked){
-      dummyResponse.Event.splice(i, 1)
+      dummyResponse.Event.splice(i-1, 1)
     }
   }
   updateDummyData(dummyResponse)
