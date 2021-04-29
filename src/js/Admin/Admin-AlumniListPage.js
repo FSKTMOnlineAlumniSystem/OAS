@@ -197,6 +197,7 @@ window.DeleteRowFunction = function (o) {
   p.parentNode.removeChild(p);
   dummyResponse.Alumni.splice(o.target.id, 1)
   updateDummyData(dummyResponse)
+  location.reload();
 }
 
 $(document).ready(function () {
@@ -252,7 +253,9 @@ window.deleteMultipleRow = function (tableID) {
     }
   }
   loadAlumniList(pageIndex)
+
   updateDummyData(dummyResponse)
+  location.reload();
 }
 
 //clearAll
@@ -270,7 +273,7 @@ $("#clearAll").on("click", function () {
 // modal
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
-    localStorage.setItem('updateId',e.target.id);
+    localStorage.setItem('updateId', e.target.id);
     console.log($('#exampleModal'))
     $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
@@ -280,7 +283,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $("#email").text(dummyResponse.Alumni[e.target.id].email);
     $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
     $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
-    $("#update").attr("id", "update "+e.target.id);
+    $("#update").attr("id", "update " + e.target.id);
     if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
       $("#accStatus").text("Not Verified");
     } else {
@@ -304,13 +307,6 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
       localStorage.setItem("updateId", eventId)
       console.log("update event")
     }
-
-    // var update = document.getElementsByClassName("btn btn-success")[0];
-    // update.addEventListener("click", function(o) {
-    //   var eventId = o.id.split(" ")[1]
-    //   localStorage.setItem("updateId", eventId)
-    //   console.log("Hello")
-    // });
   })
 })
 
