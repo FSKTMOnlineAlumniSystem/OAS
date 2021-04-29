@@ -13,6 +13,7 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/Alumni/LoginPage.css">
     <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
 
 </head>
 <style>
@@ -69,7 +70,7 @@
                         </div>
 
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
-                            type="submit" style="background: #4F006E;">Sign in</button>
+                            type="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
 
                     <div class="row w-100">
@@ -122,7 +123,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn signinbtn">Submit</button>
+                        <button type="submit" class="btn  btn-primary  signinbtn">Submit</button>
                     </div>
 
                 </form>
@@ -146,6 +147,22 @@
                 <form id="form">
                     <div class="modal-body">
 
+                        <div class="mb-3 row">
+                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
+                            <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
+                                <div class="w-50 position-relative">
+                                    <div class="picture-container">
+                                        <div class="picture">
+                                            <img src="../../../Assets/imgs/add_image.jpg" class="picture-src m-auto" id="wizardPicturePreview" title="" >
+                                            <input type="file" id="wizard-picture">
+                                        </div>
+                                        <h6 id="choosePictureDescription">Choose Picture</h6>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
 
                         <div class="mb-3 row">
 
@@ -154,7 +171,7 @@
 
                                 <input type="text" class="form-control" id="FirstNameID">
                                 <small class="invalid-feedback">Please provide a valid First Name.</small>
-                                <small class="valid-feedback">Hi!</small>
+                                <small class="valid-feedback">Okay!</small>
 
 
 
@@ -168,7 +185,7 @@
                                 <input type="text" class="form-control" id="LastNameID">
 
                                 <small class="invalid-feedback">Please provide a valid Last Name.</small>
-                                <small class="valid-feedback">Hi There!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
@@ -184,7 +201,7 @@
                                 </select>
 
                                 <small class="invalid-feedback">Select a Gender</small>
-                                <small class="valid-feedback">Nice!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
@@ -219,7 +236,7 @@
                                 </select>
 
                                 <small class="invalid-feedback">Select a batch</small>
-                                <small class="valid-feedback">Welcome!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
@@ -229,7 +246,7 @@
 
                                 <input type="text" class="form-control" id="Email">
                                 <small class="invalid-feedback">Please provide a valid Email.</small>
-                                <small class="valid-feedback">Good!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
@@ -240,26 +257,11 @@
                                 <input type="tel" class="form-control" id="IC">
 
                                 <small class="invalid-feedback">Please provide a valid IC.</small>
-                                <small class="valid-feedback">Thanks!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
-                                <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
-                                    <div class="w-50 position-relative">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
-                                                    id="wizardPicturePreview" title="">
-                                                <input type="file" id="wizard-picture">
-                                            </div>
-                                            <h6 id="choosePictureDescription">Choose Picture</h6>
-                                        </div>
-                                </div>
 
-                            </div>
-                        </div>
                         <div class="mb-3 row">
                             <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
                             <div class="col-sm-8 mr-1">
@@ -268,7 +270,8 @@
                                     <option value="0">Department</option>
                                     <option value="Software Engineering">Software Engineering</option>
                                     <option value="Artificial Intellegent">Artificial Intellegent</option>
-                                    <option value="Computer System and Technology">Computer System and Technology</option>
+                                    <option value="Computer System and Technology">Computer System and Technology
+                                    </option>
                                     <option value="Information System">Information System</option>
                                     <option value="Multimedia">Multimedia</option>
                                 </select>
@@ -286,15 +289,16 @@
 
                                 <small class="invalid-feedback">Please enter only 5-20 characters available for
                                     password.</small>
-                                <small class="valid-feedback">Perfect!</small>
+                                <small class="valid-feedback">Okay!</small>
 
                             </div>
                         </div>
 
-                        
+
+
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn signinbtn">Sign Up</button>
+                        <button type="submit" class="btn btn-primary signinbtn">Sign Up</button>
                     </div>
 
                 </form>
@@ -302,6 +306,39 @@
         </div>
     </div>
 
+    <!-- btn-outline-secondary signinbtn -->
+
+
+
+
+    <div class="modal fade" id="wait" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thank you!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="form_3">
+                    <div class="modal-body">
+
+                        <span>Thank you for signing up.<br>
+                        Your application is successfully submitted, please wait for the verification.<br>
+                        </span>
+                        <br>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary signinbtn">Got It!</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 
 
