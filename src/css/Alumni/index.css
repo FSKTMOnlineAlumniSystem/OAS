@@ -155,3 +155,9 @@ a.nostyle:visited {
 .height-after-minus-header{
   height: calc(100% - 45px);
 }
+
+.image--max-size-100-percent{
+  height: auto;
+  max-width: 100%;
+  width: auto;
+}
