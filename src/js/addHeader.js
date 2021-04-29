@@ -19,17 +19,6 @@ if (isAlumni) {
   curUser = dummyResponse.Admin.filter(admin => admin.adminId === localStorage.getItem('SignedInAdminId'))[0];
 }
 
-// check if the user is alumni to display bell icon - this is the real condition check
-// if (!localStorage.getItem('SignedInAlumniId') && !localStorage.getItem('SignedInAdminId') ||
-//   localStorage.getItem('SignedInAlumniId') && localStorage.getItem('SignedInAdminId') ||
-//   localStorage.getItem('SignedInAlumniId')) {
-//   localStorage.setItem('SignedInAlumniId', "AL-1");
-//   curUser = dummyResponse.Alumni.filter(alumni => alumni.alumniId === localStorage.getItem('SignedInAlumniId'))[0];
-//   isAlumni = true;
-// } else {
-//   curUser = dummyResponse.Admin.filter(admin => admin.adminId === localStorage.getItem('SignedInAdminId'))[0];
-// }
-
 const body = document.body;
 const header = document.createElement('header');
 
@@ -41,7 +30,7 @@ console.log(hasEventNotViewedByAlumni);
 
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
-<img src="/Assets/imgs/AL-1.png" alt="" class="header__img m-1">
+<img src="/Assets/imgs/${curUser.imageId}" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>
