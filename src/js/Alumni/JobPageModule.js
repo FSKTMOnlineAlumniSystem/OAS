@@ -1,4 +1,6 @@
-const loadJobList = (pageIndex, outputList) => {
+// const imgPath = "../../..//Assets/imgs/";
+
+function loadJobList (pageIndex, outputList) {
     const jobList = document.getElementById("jobList");
     jobList.innerHTML = "";
     let jobStartIndex = pageIndex * 9;
@@ -67,77 +69,67 @@ const loadJobList = (pageIndex, outputList) => {
               }</button></li>`;
     }
     for ( let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
-  
-      if (outputList.Job[i].imageId == null) {
+     
+      if (outputList[i].imageId == null) {
+      
         document.getElementById("jobList").innerHTML += `<div class="col mb-4">
           <a href="../../html/Alumni/JobDetailsPage.html">
-          <div class="card h-100" data-name=${outputList.Job[i].jobId}>
+          <div class="card h-100" data-name=${outputList[i].jobId}>
           <div class="w-100">
-              <img src="${outputList.Job[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
+              <img src="${outputList[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
           </div>
           <div class="card-body">
-          <h5 class="card-title">${outputList.Job[i].title}</h5>
+          <h5 class="card-title">${outputList[i].title}</h5>
           <p class="card-text">
           <div class="row cards">
           <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
-          <div class="col-7">${outputList.Job[i].location}</div>
+          <div class="col-7">${outputList[i].location}</div>
           </div>
           <div class="row cards">
           <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-          <div class="col-7">RM${outputList.Job[i].salary}</div>
+          <div class="col-7">RM${outputList[i].salary}</div>
           </div>
           </p>
           </div></div></a></div>`;
       } else {
+        console.log(outputList[i].imageId);
         document.getElementById("jobList").innerHTML += `<div class="col mb-4">
           <a href="../../html/Alumni/JobDetailsPage.html">
-          <div class="card h-100" data-name=${outputList.Job[i].jobId}>
+          <div class="card h-100" data-name=${outputList[i].jobId}>
           <div class="w-100">
-              <img class="w-100" src="../../../Assets/imgs/${outputList.Job[i].imageId}" class="card-img-top" alt="jobPhoto">
+              <img class="w-100" src="../../../Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
           </div>
           <div class="card-body">
-          <h5 class="card-title">${outputList.Job[i].title}</h5>
+          <h5 class="card-title">${outputList[i].title}</h5>
           <p class="card-text">
           <div class="row cards">
           <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
-          <div class="col-7">${outputList.Job[i].location}</div>
+          <div class="col-7">${outputList[i].location}</div>
           </div>
           <div class="row cards">
           <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-          <div class="col-7">RM${outputList.Job[i].salary}</div>
+          <div class="col-7">RM${outputList[i].salary}</div>
           </div>
           </p>
           </div></div></a></div>`;
       }
     }
-  
-  
+
   //CLICK
   $("#jobList").on("click", ".card ", function () {
     var jobName = $(this).attr("data-name");
     var myJobList = [];
     console.log(jobName);
-    for (let i = 0; i < dummyResponse.Job.length; i++) {
-      if (dummyResponse.Job[i].jobId == jobName) {
+    for (let i = 0; i < outputList.length; i++) {
+      if (outputList[i].jobId == jobName) {
         console.log("click");
-        myJobList.push(dummyResponse.Job[i]);
+        myJobList.push(outputList[i]);
         localStorage.setItem("JobList", JSON.stringify(myJobList));
         break;
       }
     }
   });
   
-//   document.getElementById("nextPage").addEventListener("click", function () {
-//     pageIndex++;
-//     loadJobList(pageIndex);
-//     console.log("here" + pageIndex);
-//   });
-  
-//   document.getElementById("previousPage").addEventListener("click", function () {
-//     pageIndex--;
-//     loadJobList(pageIndex);
-//     console.log("next" + pageIndex);
-//   });
   
   };
 
