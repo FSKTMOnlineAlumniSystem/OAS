@@ -4,7 +4,6 @@ var imageID = false;
 //START
 let myJob = localStorage.getItem("EditJob");
 let index;
-updateDummyData(dummyResponse)
 
 
 for(let i=0; i<dummyResponse.Job.length; i++){
