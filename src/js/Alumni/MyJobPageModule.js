@@ -101,7 +101,7 @@ function loadJobList (pageIndex, outputList,count) {
                 </div>
                 <div class="row cards">
                 <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-                <div class="col-7">${outputList[i].salary}</div>
+                <div class="col-7">RM ${outputList[i].salary}</div>
                 </div>
                 </p>
                 </div></a>
@@ -145,7 +145,7 @@ function loadJobList (pageIndex, outputList,count) {
                 </div>
                  <div class="row cards">
                 <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-                <div class="col-7">${outputList[i].salary}</div>
+                <div class="col-7">RM ${outputList[i].salary}</div>
                 </div>
                 </p>
                 </div></a>
