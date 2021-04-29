@@ -2,7 +2,7 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 
 document.getElementById("form").innerHTML += 
-`<form id="job_ad_form" action="/src/html/Alumni/MyJobPage.html">
+`<form id="job_ad_form">
 <div class="mb-3">
   <label for="companyName" class="form-label">Company Name</label>
   <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
@@ -34,7 +34,7 @@ document.getElementById("form").innerHTML +=
         </div>
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>
-          <input type="text" class="form-control" id="location">
+          <input type="text" class="form-control" id="locations">
           <div class="valid-feedback">Valid.</div>
           <div class="invalid-feedback">Please provide the location of the company.</div>
         </div>
@@ -83,7 +83,7 @@ document.getElementById("form").innerHTML +=
   var imageUrl;
   const companyName = document.getElementById("companyName");
   const jobTitle = document.getElementById("jobTitle");
-  const location = document.getElementById("location");
+  const locations = document.getElementById("locations");
   const salary = document.getElementById("salary");
   const email = document.getElementById("email");
   const description = document.getElementById("description");
@@ -126,7 +126,7 @@ console.log(jobIndex);
 
   form.addEventListener("submit", (e)=>{
     console.log("submit");
-  
+    e.preventDefault();
     let errorExist = false; //false if no error exists in email, contactNumber, biography
 
     if (isEmpty(companyName)) {
@@ -143,11 +143,11 @@ console.log(jobIndex);
         setValid(jobTitle);
     }
   
-    if (isEmpty(location)) {
-      setInValid(location);
+    if (isEmpty(locations)) {
+      setInValid(locations);
       errorExist = true;
   } else {
-      setValid(location);
+      setValid(locations);
   }
   
   if (isEmpty(salary) || !salary.value.match(regex)) {
@@ -183,7 +183,7 @@ console.log(jobIndex);
         "description" : description.value,
         "salary" : salary.value,
         "email" : email.value,
-        "location" : location.value,
+        "location" : locations.value,
         "title" : jobTitle.value,
         "company" : companyName.value, 
         "imageId" : null,
@@ -191,6 +191,7 @@ console.log(jobIndex);
       };
       dummyResponse.Job.push(newJob);
       updateDummyData(dummyResponse);
+      location.href = "MyJobPage.html";
   }
  
 });
