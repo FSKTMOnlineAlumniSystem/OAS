@@ -15,13 +15,16 @@ const cancelButton = document.querySelector('#cancelButton');
 const closeCancelChangesModalButton = document.querySelector('#closeCancelChangesModalButton');
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
+const icNumber = document.querySelector('#icNumber');
 
-
+var i = localStorage.getItem("updateId")
+console.log(i)
 const currentAlumniId = "AL-1";
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
+console.log(alumni.imageId)
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
         el.classList.replace("is-valid", "is-invalid");
@@ -60,6 +63,7 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 const graduatedFormat = /[0-9]{4}/;
+const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
 form.addEventListener('submit', (e) => {
     let errorExist = false; //false if no error exists in email, contactNumber, biography
@@ -76,6 +80,13 @@ form.addEventListener('submit', (e) => {
         errorExist = true;
     } else {
         setValid(contactNumber);
+    }
+
+    if (isEmpty(icNumber) || !icNumber.value.match(icNumberFormat)) {
+        setInValid(icNumber);
+        errorExist = true;
+    } else {
+        setValid(icNumber);
     }
 
     if (isEmpty(biography)) {
@@ -108,6 +119,7 @@ form.addEventListener('submit', (e) => {
                 al.biography = biography.value;
                 al.graduated = graduated.value;
                 al.name = name.value;
+                al.icNumber = icNumber.value;
                 updateDummyData(dummyResponse);
             }
         });
@@ -124,12 +136,12 @@ cancelButton.addEventListener('click', () => {
         alumni.name == name.value &&
         alumni.graduated == graduated.value &&
         alumni.department == department.value &&
-        alumni.gender == gender.value) 
+        alumni.gender == gender.value &&
+        alumni.icNumber == icNumber.value) 
         {
         location.href = "Admin-AlumniListPage.html";
     } else {
-        console.log(alumni.gender)
-        console.log(gender.value)
+        
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
