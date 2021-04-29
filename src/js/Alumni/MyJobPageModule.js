@@ -9,6 +9,8 @@ function loadMyJobList(pageIndex, outputList, count) {
   var dataLength = count;
   var remainingLength = dataLength - jobStartIndex;
 
+  updateDummyData(dummyResponse)
+
   /*   js for button*/
   if (count != 0) {
     if (jobEndIndex >= count) {
@@ -69,15 +71,15 @@ function loadMyJobList(pageIndex, outputList, count) {
                 <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage();nextPage()">${
                   pageIndex + 3
                 }</button></li>`;
+      }
+    }else{
+      document.getElementById('top').innerHTML = 
+      `<h3>Empty list! Please add new job addvertisement!!</h3>`;
+      document.getElementById("nextPage").innerHTML = "";
+      document.getElementsByClassName("pages")[0].innerHTML = "";
+      document.getElementById("previousPage").innerHTML = "";
+      return;
     }
-  } else {
-    document.getElementById(
-      "top"
-    ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
-    document.getElementById("nextPage").innerHTML = "";
-    document.getElementsByClassName("pages")[0].innerHTML = "";
-    document.getElementById("previousPage").innerHTML = "";
-  }
 
   for (let i = jobStartIndex; i < outputList.length; i++) {
     if (outputList[i].alumniId == alumniID) {
@@ -97,7 +99,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </div>
                 <div class="row cards">
                 <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-                <div class="col-7">${outputList[i].salary}</div>
+                <div class="col-7">RM ${outputList[i].salary}</div>
                 </div>
                 </p>
                 </div></a>
@@ -117,7 +119,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 Are you sure you want to delete this job advertisement?
                 </div>
                 <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
                 </div>
                 </div>
                 </div>
@@ -139,7 +141,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </div>
                  <div class="row cards">
                 <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
-                <div class="col-7">${outputList[i].salary}</div>
+                <div class="col-7">RM ${outputList[i].salary}</div>
                 </div>
                 </p>
                 </div></a>
@@ -160,7 +162,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 Are you sure you want to delete this job advertisement?
                 </div>
                 <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
                 </div>
                 </div>
                 </div>
@@ -197,8 +199,9 @@ function loadMyJobList(pageIndex, outputList, count) {
           dummyResponse.Job = outputList;
           updateDummyData(dummyResponse);
           closeModal("#deleteModal");
+          console.log(outputList);
           console.log(count);
-          loadJobList(pageIndex, outputList, count);
+          loadMyJobList(pageIndex, outputList, count);
         }
       }
     });
