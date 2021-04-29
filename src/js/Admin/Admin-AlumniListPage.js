@@ -141,7 +141,6 @@ dummyResponse.Alumni.forEach((alumni, index) => {
     div.classList.add('bg-success')
     div.innerText = 'Verified';
   }
-
   td.appendChild(div);
   tr.appendChild(td);
 
