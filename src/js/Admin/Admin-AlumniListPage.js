@@ -45,14 +45,14 @@ const loadAlumniList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
         <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
@@ -61,7 +61,7 @@ const loadAlumniList = (pageIndex) => {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
         <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
@@ -108,15 +108,20 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 
   // avatar column
   td = document.createElement('td');
-  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; overflow:hidden;">
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
     <img class='table__td--height' src=${'/Assets/imgs/' + alumni.imageId}>
   </div>`
+  td.setAttribute('width','140px')
   tr.appendChild(td);
 
   // name column
   td = document.createElement('td');
-  td.innerHTML = `
-  <span class="alumniName" id=${index}>${alumni.name}</span>`
+  td.innerHTML = `<p id=${index} class="alumniName">
+                      ${alumni.name}
+                    </p>`
+  td.setAttribute('class','eventTitle');
+                    // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
+  // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
   // let span = document.createElement('span');
   // span.innerHTML = alumni.name;
   // td.appendChild(span);
@@ -132,7 +137,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   // status column
   td = document.createElement('td');
   div = document.createElement('div');
-  div.setAttribute('class', 'text-white rounded p-1');
+  div.setAttribute('class', 'text-black rounded p-1');
 
   if (alumni.approvedBy === "") {
     div.classList.add('bg-danger')
@@ -253,7 +258,6 @@ window.deleteMultipleRow = function (tableID) {
     }
   }
   loadAlumniList(pageIndex)
-
   updateDummyData(dummyResponse)
   location.reload();
 }
