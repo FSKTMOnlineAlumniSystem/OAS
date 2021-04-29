@@ -1,6 +1,8 @@
 import { dummyResponse } from "../dummydata.js";
 import { loadEventSection } from "../Alumni/EventPageModule.js";
 
+const yourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
+const upcomingEventSection = document.getElementById('upcoming-event-section');
 const myEvent = dummyResponse.Alumni_Event.filter((event) => {
   return event.alumniId === localStorage.getItem("SignedInAlumniId");
 });
