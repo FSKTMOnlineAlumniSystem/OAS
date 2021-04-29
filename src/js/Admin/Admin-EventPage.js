@@ -61,7 +61,8 @@ const loadEventList = (pageIndex) => {
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-link" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" >
+        <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
     console.log("<=30");
@@ -70,9 +71,9 @@ const loadEventList = (pageIndex) => {
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-link" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>
-        <li class="page-link" ><button onclick="nextPage();nextPage()">${pageIndex + 3
+        <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
       }</button></li>`;
   }
 

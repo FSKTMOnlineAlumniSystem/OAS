@@ -15,25 +15,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <!-- css -->
-  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
   <link rel="stylesheet" href="../../css/Admin/Admin-EventPageCreate.css">
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
  
 
   <title>Create Event</title>
 </head>
 
 <body>
-  <div class="container my-5" id="main-block">
-
+  <!-- <div class="container my-5" id="main-block"> -->
+    <main class="container-fluid height-after-minus-header" id='main-body'>
+      <div class="row h-100">
+      <div class="container" id="right-content">
     <h1>
       New Event
     </h1><br>
 
 
     <main>
-      <a button type="button" class="btn btn-primary float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html"
+      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html"
         onclick='setEventId()'>
         <i class="fas fa-user-plus"></i>
         Invite Alumni</a>
@@ -173,14 +175,13 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
   </div>
-  <br>
+  
   <script type="text/javascript" src="../../js/utility.js"></script>
   <script type="module" src="../../js/Admin/Admin-EventPageCreate.js"></script>
-
-
+  <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+  <script type='module' src='/src/js/addHeader.js'></script>
   </main>
 
-
 </body>
-
+<br>
 </html>

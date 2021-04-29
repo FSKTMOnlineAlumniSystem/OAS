@@ -20,10 +20,7 @@
   <!-- fontawesome -->
   <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> -->
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+  
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
 
@@ -33,19 +30,15 @@
 </head>
 
 <body>
-  <div class="container my-5">
-
-    <h1>
-      Update Event <br>
-    </h1>
-
-
+  <!-- <div class="container my-5"> -->
     <main class="container-fluid height-after-minus-header" id='main-body'>
       <div class="row h-100">
         
-      <div class="container-fluid" id="right-content">
-
-
+      <div class="container" id="right-content">
+        <br>
+    <h1>
+      Update Event <br>
+    </h1>
         <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a>
@@ -101,12 +94,13 @@
                   <img src="${imgPath+dummyResponse.Event[i].imageId}" id="prevImage" alt="update Image" width="150"
                     length="150">
                   <input type="file" id="wizard-picture">
-
+                  
                 </div>
               </div>
+              <h6 id="choosePictureDescription"></h6>
               <div id="contactNumberFeedback" class="invalid-feedback">
                 Please provide a picture for the event.
-                <h6 id="choosePictureDescription"></h6>
+                
               </div>
             </div>
 
@@ -139,23 +133,21 @@
                 <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
                   Page</button>
               </div>
-
             </div>
-
           </div>
         </div>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
       </div>
-
-
-    
-      <br>
-
     </main>
     <script type="text/javascript" src="../../js/utility.js"></script>
     <script type="module" src="../../js/Admin/Admin-EventPageUpdate.js"></script>
     <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
     <script type='module' src='/src/js/addHeader.js'></script>
 </body>
-
+<br>
 </html>
