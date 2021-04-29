@@ -6,7 +6,7 @@
  * Below header set the alumni as AL-1
  */
 
-import { dummyResponse } from "./dummydata.js"
+import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin
 let curUser = {};
@@ -78,8 +78,8 @@ function toggleNotificationPanel() {
     const showNoNotification = () => {
       const div1 = document.createElement('div');
       div1.setAttribute('class', 'py-2 container-fluid d-flex align-items-center');
-      div1.innerHTML = `You have no notification`
-      notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`
+      div1.innerHTML = `You have no notification`;
+      notificationPanel.innerHTML = `<div class="p-2 fw-bold h6 m-0 border-bottom">Notifications</div>`;
       notificationPanel.appendChild(div1);
     }
     // used as a method to display 'You have no notification'
@@ -92,10 +92,19 @@ function toggleNotificationPanel() {
 
       // direct to respective EventDetailsPage
       div1.addEventListener('click', (evt) => {
+        const theAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
+          return alumni_event.eventId === event.eventId;
+        })[0];
+        console.log(event.viewedByAlumni);
+        console.log(theAlumniEvent.viewedByAlumni);
+        theAlumniEvent.viewedByAlumni = "true";
+        console.log(dummyResponse.Alumni_Event);
+        updateDummyData(dummyResponse);
         localStorage.setItem('eventId', event.eventId);
-        window.open('EventDetailsPage.html');
+        window.open('EventDetailsPage.html',"_self");
       });
-
+      
+      console.log(event.viewedByAlumni);
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
       const dotClass = event.viewedByAlumni === 'true' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;
