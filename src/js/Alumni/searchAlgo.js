@@ -1,13 +1,15 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-// import loadAlumniList from "./alumniPage.js";
-// import loadJobList from "./JobPage.js";
+import loadMyJobList from "./MyJobPageModule.js";
+import loadJobList from "./JobPageModule.js";
 import loadAlumniList from "./alumniPageModule.js";
 import { loadEventList } from "./EventPageModule.js";
-// console.log(loadEventList);
 
 var url = geturl(location.href);
 function geturl(link) {
-  return link.split("/")[6];
+  return link.split("/")[6].split("?")[0];
+}
+function getindex(onClickAlumniID) {
+  return onClickAlumniID.split("-")[1];
 }
 
 let result = null;
@@ -21,6 +23,7 @@ document
     // console.log(localStorage.getItem("choose"));
     // const chooseVariable = JSON.parse(localStorage.getItem("choose"));
     if (result.length != 0) {
+      console.log(url);
       switch (url) {
         case "AlumniPage.html":
           loadAlumniList(0, result);
@@ -34,11 +37,10 @@ document
           );
           break;
         case "JobPage.html":
-          loadJobList(0, dummyResponse.Job);
-          // code block
+          loadJobList(0, result);
           break;
         case "MyJobPage.html":
-          // loadJobList(0, dummyResponse.Job);
+          loadMyJobList(0, result, 0);
           break;
         default:
           console.log("there is no match");
@@ -58,7 +60,7 @@ function searching(e) {
   // var choose = e.options[e.selectedIndex].text;
   // localStorage.setItem("choose", JSON.stringify(choose));
 
-  if (url == "AlumniPage.html") {
+  if (url.includes("AlumniPage.html")) {
     console.log("searching is in");
     result = dummyResponse.Alumni.filter(function (Alumni) {
       var match = false;
@@ -83,7 +85,7 @@ function searching(e) {
         return match;
       }
     });
-  } else if (url == "EventPage.html") {
+  } else if (url.includes("EventPage.html")) {
     result = dummyResponse.Event.filter(function (Event) {
       var match = false;
       if (Event.title.toLowerCase().includes(searchQuery) === true) {
@@ -104,33 +106,7 @@ function searching(e) {
       return match;
     });
     console.log(result);
-  } else if (url == "JobPage.html") {
-    console.log("searching is in");
-    result = dummyResponse.Job.filter(function (Job) {
-      var match = false;
-      if (Job.title.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching title");
-        match = true;
-        return match;
-      }
-      if (Job.description.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching des");
-        match = true;
-        return match;
-      }
-      if (Job.location.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching location");
-        match = true;
-        return match;
-      }
-      if (Job.company.toLowerCase().includes(searchQuery) === true) {
-        console.log("searching company");
-        match = true;
-        return match;
-      }
-      return match;
-    });
-  } else if (url == "MyJobPage.html") {
+  } else if (url.includes("MyJobPage.html")) {
     console.log("searching is in");
     result = dummyResponse.Job.filter(function (Job) {
       var match = false;
@@ -159,9 +135,34 @@ function searching(e) {
       }
       return match;
     });
+  } else if (url.includes("JobPage.html")) {
+    console.log("searching is in");
+    result = dummyResponse.Job.filter(function (Job) {
+      var match = false;
+      if (Job.title.toLowerCase().includes(searchQuery) === true) {
+        console.log("searching title");
+        match = true;
+        return match;
+      }
+      if (Job.description.toLowerCase().includes(searchQuery) === true) {
+        console.log("searching des");
+        match = true;
+        return match;
+      }
+      if (Job.location.toLowerCase().includes(searchQuery) === true) {
+        console.log("searching location");
+        match = true;
+        return match;
+      }
+      if (Job.company.toLowerCase().includes(searchQuery) === true) {
+        console.log("searching company");
+        match = true;
+        return match;
+      }
+      return match;
+    });
   }
   if (result.length == 0) {
-    console.log(location.href);
     switch (url) {
       case "AlumniPage.html":
         loadAlumniList(0, dummyResponse.Alumni);
@@ -173,7 +174,8 @@ function searching(e) {
         loadJobList(0, dummyResponse.Job);
         break;
       case "MyJobPage.html":
-        // loadJobList(0, dummyResponse.Job);
+        var index = getindex(localStorage.getItem("SignedInAlumniId"));
+        loadMyJobList(0, dummyResponse.Job, index);
         break;
       default:
       // code block
