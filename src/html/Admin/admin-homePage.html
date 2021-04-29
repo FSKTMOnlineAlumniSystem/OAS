@@ -17,41 +17,72 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
   <link rel="stylesheet" type="text/css" href="../../css/Admin/Admin-HomePage.css">
+  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+  <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
+
   <title>Admin Home Page - Online Alumni System</Menu>
   </title>
 </head>
 
 <body>
-  <main class="container-fluid h-100" id='main-body'>
+  <main class="container-fluid height-after-minus-header" id='main-body'>
+    
     <div class="row h-100">
-      <div class="col-1 custom-dark-gray px-0" id="left-nav">
-
+      <div class="custom-dark-gray px-0" id="left-nav">
       </div>
-      <div class="col-11">
-        <div class="row">
+      <div class="container-fluid" id="right-content">
+        <!-- <div id="editProfileBg"></div> -->
 
-          <div class="col-10">
-            <br><br>
+        <div class="m-2 bg-white">
+          <br><br>
 
-            <div class="alert alert-success size" role="alert">
-              <h4 class="alert-heading">Welcome Admin!</h4>
-              <hr>
-              <a id="alumniText" href="#">
-                <div id="container">
-                  2 <br> Alumni
+          <div class="container">
+            <h4 class="alert-heading">Welcome back, Admin!</h4>
+            <hr>
+  
+            <div class="row p-2 justify-content-between">
+              <!-- <div class="col-lg-3 alert alert-warning rounded p-5 m-2">
+                <div class="row justify-content-center">
+                  <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-lg-2"></i>
+                  <h5 class="col-lg-10 text-center">New Registered Alumni</h5>
                 </div>
-              </a>
+                <h1 class="text-center">6</h1>
+              </div> -->
+              <div class="col-lg-3 alert alert-success rounded p-5 m-2">
+                <div class="row justify-content-center">
+                  <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-lg-2"></i>
+                  <h5 class="col-lg-10 text-center">Approved Alumni</h5>
+                </div>
+                <h1 class="text-center" id="approvedAlumni">6</h1>
+              </div>
+              <div class="col-lg-3 alert alert-danger rounded p-5 m-2">
+                <div class="row justify-content-center">
+                  <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-lg-2"></i>
+                  <h5 class="col-lg-10 text-center">Unapproved Alumni</h5>
+                </div>
+                <h1 class="text-center" id="unapprovedAlumni">6</h1>
+              </div>
+              <div class="col-lg-3 alert alert-warning rounded p-5 m-2">
+                <div class="row justify-content-center">
+                  <i class="d-flex align-items-center justify-content-center far fa-calendar-alt fa-2x col-lg-2"></i>
+                  <h5 class="col-lg-10 text-center">Number of Events</h5>
+                </div>
+                <h1 class="text-center" id="numberOfEvents">6</h1>
+              </div>
+            </div>
+            <div class="row p-2 justify-content-between">
             </div>
 
           </div>
+
         </div>
       </div>
   </main>
 
   <script type="module" src="/src/js/addHeader.js"></script>
   <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script>
+  <script type='module' src='/src/js/Admin/Admin-HomePage.js'></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
