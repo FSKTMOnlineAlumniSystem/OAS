@@ -79,6 +79,7 @@ function loadJobList (pageIndex, outputList,count) {
       document.getElementById("nextPage").innerHTML = "";
       document.getElementsByClassName("pages")[0].innerHTML = "";
       document.getElementById("previousPage").innerHTML = "";
+      return;
     }
 
     for (let i = jobStartIndex;  i < outputList.length ; i++) {
@@ -121,7 +122,7 @@ function loadJobList (pageIndex, outputList,count) {
                 Are you sure you want to delete this job advertisement?
                 </div>
                 <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
                 </div>
                 </div>
                 </div>
@@ -166,7 +167,7 @@ function loadJobList (pageIndex, outputList,count) {
                 Are you sure you want to delete this job advertisement?
                 </div>
                 <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-primary" data-dismiss="modal">Yes, delete it.</button>
+                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
                 </div>
                 </div>
                 </div>
