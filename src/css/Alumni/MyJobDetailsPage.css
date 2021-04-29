@@ -28,14 +28,10 @@ body {
 } 
 
 .fa-map-marked-alt{
-    color: rgb(231, 56, 56);
+    color: rgb(167, 0, 0);
   }
   
   .fa-sack-dollar{
-    color: rgb(224, 221, 0);
+    color: #28a745;
     /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
-  }
-
-  .fa-envelope-open-text{
-      color: cornflowerblue;
   }

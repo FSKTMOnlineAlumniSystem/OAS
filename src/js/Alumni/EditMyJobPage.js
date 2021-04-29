@@ -74,7 +74,7 @@ if(dummyResponse.Job[index].imageId == null){
     </div>
     <div class="row mb-3 mx-auto mb-xl-5">
     <div class="col-1">
-    <span><i class="fas fa-envelope-open-text fa-2x"></i></span>
+    <span><i class="fas fa-envelope-open-text text-primary fa-2x"></i></span>
     </div>
     <div class="col mx-auto">
     <input type="email" class="form-control" placeholder="Enter your active email address" id="email" value="${dummyResponse.Job[index].email}">
@@ -161,7 +161,7 @@ if(dummyResponse.Job[index].imageId == null){
     </div>
     <div class="row mb-3 mx-auto mb-xl-5">
     <div class="col-1">
-    <span><i class="fas fa-envelope-open-text fa-2x"></i></span>
+    <span><i class="fas fa-envelope-open-text text-primary fa-2x"></i></span>
     </div>
     <div class="col mx-auto">
     <input type="email" class="form-control" id="email" value="${dummyResponse.Job[index].email}">
