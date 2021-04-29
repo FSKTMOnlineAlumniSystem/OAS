@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--(Create,Update)-->
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- GOOGLE FONT POPPINS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <!-- ICON FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- BOOTSTRAP -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- css -->
   <link rel="stylesheet" href="../../css/Admin/Admin-EventPageCreate.css">
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
+ 
 
   <title>Create Event</title>
 </head>
 
 <body>
-  <div class="container my-5" id="main-block">
-
+  <!-- <div class="container my-5" id="main-block"> -->
+    <main class="container-fluid height-after-minus-header" id='main-body'>
+      <div class="row h-100">
+      <div class="container" id="right-content">
     <h1>
       New Event
     </h1><br>
 
 
     <main>
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">Invite
-        Alumni</a>
+      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html"
+        onclick='setEventId()'>
+        <i class="fas fa-user-plus"></i>
+        Invite Alumni</a>
       <form>
         <div class="form-group">
           <label for="formGroupExampleInput">Event Title :</label>
-          <input type="text" class="form-control rounded-0 w-75 p-3" id="title"
-            placeholder="Enter event title">
+          <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter event title">
+
+          <div class="valid-feedback">Valid.</div>
+          <div id="contactNumberFeedback" class="invalid-feedback">
+            Please provide the title of the event.
+          </div>
         </div>
 
         <!-- <div class="form-group">
@@ -38,14 +58,24 @@
 
         <div class="form-group">
           <label for="formGroupExampleInput2">Schedule :</label> <br>
-          <input type=date id= date> &nbsp;
-          <input type=time id=startTime> to <input type=time id=endTime>
+          <input type=date id="date">
+          &nbsp;
+          <input type=time id="time">
+
+          <div id="contactNumberFeedback" class="invalid-feedback">
+            Please provide both date and time of the event.
+          </div>
+          <!-- <div class="valid-feedback">Valid.</div> -->
         </div>
 
         <div class="form-group">
           <label for="formGroupExampleInput2">Description :</label>
-          <textarea type="text" class="form-control rounded-0" id="description"
-            placeholder="Enter event description" rows="5" style="height:100%;"></textarea>
+          <textarea type="text" class="form-control rounded-0" id="description" placeholder="Enter event description"
+            rows="5" style="height:100%;"></textarea>
+          <div class="valid-feedback">Valid.</div>
+          <div id="contactNumberFeedback" class="invalid-feedback">
+            Please provide a brief description for the event.
+          </div>
         </div>
         <!--
           <form class="form-group">
@@ -60,26 +90,40 @@
 
         <div class="form-group">
           <label for="formGroupExampleInput2 ">Location :</label>
-          <input type="text " class="form-control rounded-0 w-75 p-3" id="location"
-            placeholder="Enter location">
+          <input type="text " class="form-control rounded-0 w-75 p-3" id="location" placeholder="Enter location">
+          <div class="valid-feedback">Valid.</div>
+          <div id="contactNumberFeedback" class="invalid-feedback">
+            Please provide the location of the event.
+          </div>
         </div>
 
 
+        <div class="w-25 position-relative">
+          <label for="phfile">Event Picture:</label>
+        <div class="picture-container">
+          <div class="picture">
+            
+            <img
+              src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
+              id="prevImage" alt="update Image" width="100%" >
+            <input type="file" id="wizard-picture">
+            <!-- onchange="readURL(this)" -->
+            
+          </div>
+        
+        
+      </div>
+      <h6 id="choosePictureDescription"></h6>
+      <div id="contactNumberFeedback" class="invalid-feedback">
+        Please provide a picture for the event.
+      </div>
+      </div>
 
-        <div>
-          <label for="phfile">Image:</label>
-          <img id="prevImage"
-            src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"
-            alt="update Image" width="150" length="150">
-          <input type="file" id="phfile" onchange="readURL(this)">
-        </div>
 
-
-        <a button type="button" class="btn btn-danger float-right ml-2" onclick="add_element_to_array()"
-          href="Admin-EventPage.html">Save</a>
-          <!-- Admin-EventPage.html -->
-        <a button type="button" class="btn btn-secondary float-right" href="Admin-EventPage.html">Cancel</a>
-
+        <button type="submit" id="saveButton" class="btn btn-primary float-right ml-2">Save</button>
+        <!-- Admin-EventPage.html -->
+        <!-- <a button type="button" class="btn btn-secondary float-right" id="cancelButton" href="Admin-EventPage.html">Cancel</a> -->
+        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
         <!--    
           <div class="container">
@@ -98,8 +142,32 @@
 
 
       </form>
-
-      <script src="../../js/Admin/Admin-EventPageCreate.js"></script>
+<!-- modal -->
+      <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
+              <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              You have made changes. They will be lost if you continue.
+              Are you sure you want to leave this page?
+            </div>
+            <div class="modal-footer">
+              <a href="Admin-EventPage.html"><button type="button" class="btn btn-secondary">Leave this
+                  Page</button></a>
+              <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
+                Page</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <script src="../../js/Admin/Admin-EventPageCreate.js"></script> -->
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -107,12 +175,13 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
   </div>
+  
+  <script type="text/javascript" src="../../js/utility.js"></script>
   <script type="module" src="../../js/Admin/Admin-EventPageCreate.js"></script>
-
-
+  <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+  <script type='module' src='/src/js/addHeader.js'></script>
   </main>
 
-
 </body>
-
+<br>
 </html>

@@ -115,6 +115,10 @@ form.addEventListener('submit', (e) => {
     else {
         dummyResponse.Alumni.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
+                if(img.value){
+                    const imgLocalPathArr = img.value.split('\\');
+                    al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
+                }
                 al.email = email.value;
                 al.contactNumber = contactNumber.value;
                 al.biography = biography.value;
@@ -126,8 +130,14 @@ form.addEventListener('submit', (e) => {
                 updateDummyData(dummyResponse);
             }
         });
+        saveButton.textContent='Saving...';
+        setTimeout(()=>{
+            location.href='MyProfilePage.html';
+        },1000);
     }
 });
+
+
 
 
 /*Check whether there is any changes that might be lost*/

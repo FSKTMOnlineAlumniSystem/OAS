@@ -52,21 +52,24 @@
 }
 
 #editProfileBg {
-    background: #9D50BB;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6E48AA, #cd8ee6);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6E48AA, #cd8ee6);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /* background-image: url(/Assets/imgs/JAN_17_TECNOLOGIA_EEZY_01.png);
+    background-image: url(/Assets/imgs/JAN_17_TECNOLOGIA_EEZY_01.png);
     background-repeat: no-repeat;
     background-size: 80%;
-    background-position: bottom right; */
+    background-position: bottom right;
+    position:fixed;
+    height:100%;
+    width: 100%;
+    bottom:0px;
+    /* background-image: url(/Assets/imgs/21770.png);
+    background-size: 100%;
+    background-repeat: no-repeat; */
 }
+
 
 .blurContainer {
     box-shadow: 0 0 1rem 0 rgb(0 0 0 / 20%);
     border-radius: 5px;
-    backdrop-filter: blur(66px);
-    background: #ffffffd0;
+    /* backdrop-filter: blur(66px); */
+    background: #ffffff;
+    border-top: 8px solid #6f49ab !important;
 }
