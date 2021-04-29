@@ -27,7 +27,7 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
   <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
-  <title>Alumni List</title>
+  <title>Alumni List - Online Alumni System</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       </div>
       <div class="container-fluid" id="right-content">
         <div class="row">
-          <h3 class='col-12 p-3'>List of Alumni</h3>
+          <h1 class='col-12 p-3 font-weight-bold'>List of Alumni</h1>
           <form class='col-12'>
             <div class='row bg-light p-4 m-1'>
               <div class="form-group col-6">
@@ -235,12 +235,7 @@
           </table>
           <!-- yanwen button -->
           <nav aria-label="Page navigation example">
-            <!-- <div class="col text-center">
-          <button id="btn previousPage-btn btn-light btn-sm" onclick="previousPage()">Previous</button>
-          <span id="pageIndex"></span>
-          <button id="btn nextPage-btn btn-sm" onclick="nextPage()">Next</button>
-      </div> -->
-            <!-- <div class="col text-center"> -->
+           
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
                 <button onclick="previousPage()" class="page-link">Previous</button>
@@ -253,13 +248,10 @@
                 <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
 
               </div>
-
-              <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
               <li class="page-item" id="nextPage">
                 <button onclick="nextPage()" class="page-link">Next</button>
               </li>
             </ul>
-            <!-- </div> -->
           </nav>
         </div>
       </div>

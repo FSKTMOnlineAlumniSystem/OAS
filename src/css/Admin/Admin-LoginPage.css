@@ -15,6 +15,17 @@
   border-radius: 2rem;
 }
 
+.bottom-right{
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+.jumpPagelink{
+  
+  color: #777;
+}
+
 .forgotPsw{
   display: flex;
   justify-content: flex-end;
