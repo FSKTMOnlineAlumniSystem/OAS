@@ -10,30 +10,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
   <!-- CSS only -->
   <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
-  
-
   <link rel="stylesheet" href="..\..\css\Admin\Admin-EventPage.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+ <!-- jquery -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+ crossorigin="anonymous"></script>
+ <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 <!-- fontawesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <meta charset="utf-8" />
+   
+
 </head>
 
 <body style="font-family: Poppins; background-color:rgb(245,245,245);">
-  <main>
-    <div class="container-fluid h-100" id='main-body'>
-      <div class="row h-100">
-        <div class="col-2 custom-dark-gray px-0" id="left-nav">
-          </div>
+  <main class="container-fluid height-after-minus-header" id='main-body'>
+    <div class="row h-100">
+      <div class="custom-dark-gray px-0" id="left-nav">
+      </div>
+    <div class="container-fluid" id="right-content">
+<br>
           <div class="col-10">
             <h2 style="font-weight: 600">List of Events</h2>
           </divc>
@@ -41,8 +44,8 @@
           <!--search button-->
           <div class="rightop">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" style="font-weight: 200; font-style: italic" placeholder="Search"
-                aria-label="Search" aria-describedby="basic-addon2">
+              <input id="searchBar" type="text" class="form-control" style="font-weight: 200; font-style: italic" placeholder="Search"
+                 aria-label="Search" onkeyup="filterSearchBar()" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>

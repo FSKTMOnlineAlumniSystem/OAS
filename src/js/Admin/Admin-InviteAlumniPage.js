@@ -232,7 +232,6 @@ $("#clearAll").on("click", function () {
 
 window.inviteNewAlumni = function(o){
   var i=o.id;
-  console.log("invite new alumni"+i)
     var alumniId= dummyResponse.Alumni[i].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();

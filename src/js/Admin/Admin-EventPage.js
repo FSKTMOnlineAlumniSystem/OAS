@@ -132,9 +132,10 @@ const loadEventList = (pageIndex) => {
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                     <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}">
-                    <i class="fas fa-edit fa-3x pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 28px">
+                    <i class="fas fa-edit pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 25px">
                     </i></a>
-                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}"><i class="far fa-trash-alt fa-2x pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 28px">
+                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}">
+                      <i class="far fa-trash-alt pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 25px">
                        </i></a>
                   </div>
                 </td>
@@ -256,8 +257,11 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
                       <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-success"
-                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">Edit</button>
+                      <button type="button" class="btn btn-primary"
+                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">
+                        <i class="fas fa-edit" >
+                    </i>
+                        Edit</button>
                     </div>
                   </div>
                 </div>`
@@ -265,7 +269,72 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
   )
 }
 )
+// filter
+window.filterSearchBar = function() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchBar");
+  filter = input.value.toUpperCase();
+  table = document.getElementsByClassName("table-responsive")[0];
+  tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var tds = tr[i].getElementsByTagName("td");
+    var flag = false;
+    for(var j = 0; j < tds.length; j++){
+      var td = tds[j];
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        flag = true;
+      } 
+    }
+    if(flag){
+        tr[i].style.display = "";
+    }
+    else {
+        tr[i].style.display = "none";
+    }
+  }
+}
+$(document).ready(function () {
+    $("#status,#department").on("change", function () {
+        var status = $('#status').find("option:selected").val();
+        var department = $('#department').find("option:selected").val();
+        SearchData(status, department)
+    });
+});
 
+window.SearchData = function(status, department) {
+    if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
+        $('#myTable tbody tr').show();
+    } else {
+        $('#myTable tbody tr:has(td)').each(function () {
+            var rowStatus = $.trim($(this).find('td:eq(4)').text());
+            var rowDepartment = $.trim($(this).find('td:eq(3)').text());
+            if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
+                if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
+                if (status != 'All' || department == 'All') {
+                    if (rowStatus.toUpperCase() == status.toUpperCase()) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                }
+                if (department != 'All' || status =='All') {
+                    if (rowDepartment == department) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                }
+            }
+
+        });
+    }
+}
  //model
 //  document.getElementById("schedule").innerHTML =
 

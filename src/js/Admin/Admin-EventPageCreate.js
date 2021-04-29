@@ -17,18 +17,18 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-window.readURL = function (input) {
-  inputValue = input.value;
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
+// window.readURL = function (input) {
+//   inputValue = input.value;
+//   if (input.files && input.files[0]) {
+//     var reader = new FileReader();
 
-    reader.onload = function (e) {
-      document.getElementById("prevImage").src = e.target.result;
-      document.getElementById("wizardPicturePreview").src = e.target.result;
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//       document.getElementById("wizardPicturePreview").src = e.target.result;
+//     }
+//     reader.readAsDataURL(input.files[0]);
+//   }
+// }
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -115,19 +115,13 @@ form.addEventListener('submit', (e) => {
     setValid(time);
   }
 
-  if (isEmpty(time)) {
-    setInValid(time);
-    errorExist = true;
-  } else {
-    setValid(time);
-  }
 
-  if (isEmpty(img)) {
-    setInValid(img);
-    errorExist = true;
-  } else {
-    setValid(img);
-  }
+  // if (isEmpty(img)) {
+  //   setInValid(img);
+  //   errorExist = true;
+  // } else {
+  //   setValid(img);
+  // }
 
   if (!errorExist) {
     add_element_to_array();

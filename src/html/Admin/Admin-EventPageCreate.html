@@ -17,7 +17,9 @@
   <!-- css -->
   <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
   <link rel="stylesheet" href="../../css/Admin/Admin-EventPageCreate.css">
-
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+ 
 
   <title>Create Event</title>
 </head>
@@ -31,9 +33,10 @@
 
 
     <main>
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html"
-        onclick='setEventId()'>Invite
-        Alumni</a>
+      <a button type="button" class="btn btn-primary float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html"
+        onclick='setEventId()'>
+        <i class="fas fa-user-plus"></i>
+        Invite Alumni</a>
       <form>
         <div class="form-group">
           <label for="formGroupExampleInput">Event Title :</label>
@@ -94,28 +97,31 @@
 
 
         <div class="w-25 position-relative">
+          <label for="phfile">Event Picture:</label>
         <div class="picture-container">
           <div class="picture">
-            <label for="phfile">Event Picture:</label>
+            
             <img
-              src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"
-              id="prevImage" alt="update Image" width="150" length="150">
+              src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
+              id="prevImage" alt="update Image" width="100%" >
             <input type="file" id="wizard-picture">
             <!-- onchange="readURL(this)" -->
-            <div id="contactNumberFeedback" class="invalid-feedback">
-              Please provide a picture for the event.
-            </div>
+            
           </div>
         
-        <h6 id="choosePictureDescription"></h6>
+        
+      </div>
+      <h6 id="choosePictureDescription"></h6>
+      <div id="contactNumberFeedback" class="invalid-feedback">
+        Please provide a picture for the event.
       </div>
       </div>
 
 
-        <button type="submit" id="saveButton" class="btn btn-danger float-right ml-2">Save</button>
+        <button type="submit" id="saveButton" class="btn btn-primary float-right ml-2">Save</button>
         <!-- Admin-EventPage.html -->
         <!-- <a button type="button" class="btn btn-secondary float-right" id="cancelButton" href="Admin-EventPage.html">Cancel</a> -->
-        <button id="cancelButton" type="button" class="btn btn-secondary float-right">Cancel</button>
+        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
         <!--    
           <div class="container">
@@ -134,6 +140,7 @@
 
 
       </form>
+<!-- modal -->
       <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -166,6 +173,7 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
   </div>
+  <br>
   <script type="text/javascript" src="../../js/utility.js"></script>
   <script type="module" src="../../js/Admin/Admin-EventPageCreate.js"></script>
 

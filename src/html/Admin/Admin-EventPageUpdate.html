@@ -1,110 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--(Create,Update)-->
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- GOOGLE FONT POPPINS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <!-- ICON FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- BOOTSTRAP -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
   <link rel="stylesheet" href="../../css/Admin/Admin-EventPageCreate.css">
+  <!-- fontawesome -->
+  <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> -->
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+
+
+
   <title>Update Event</title>
 </head>
 
 <body>
   <div class="container my-5">
-    
-      <h1>
-        Update Event <br>
-      </h1>
 
-    
-    <main>
-
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">Invite
-        Alumni</a>
-      <form>
-        <div id="updateForm">
-          <div class="form-group">
-            <label for="formGroupExampleInput">Event Title :</label>
-            <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
-              value="CP Workshop">
-          </div>
-
-          <!-- <div class="form-group">
-          <label for="formGroupExampleInput2">Schedule :</label>
-          <input type="text" class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
-            placeholder="Enter new schedule" value="04, Apr 2021; 11:53:53 PM">
-           </div> -->
+    <h1>
+      Update Event <br>
+    </h1>
 
 
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Schedule :</label> <br>
-            <input type=date value="2021-04-04" id="date"> &nbsp;
-            <input type=time value="20:00"> to <input type=time value="${getReadableTime()">
-          </div>
-
-          <div class="form-group">
-            <label for="formGroupExampleInput2" id="description">Description :</label>
-            <textarea type="text" class="form-control rounded-0" id="formGroupExampleInput2"
-              placeholder="Enter new schedule" value="description" rows="5" ;>Learn more about CP</textarea>
-          </div>
-          <!--
-          <form class="form-group">
-            <div class="mb-3">
-              <label for="validationTextarea">Description :</label>
-              <textarea class="form-control" id="validationTextarea" placeholder="Enter new description of the event.">xxx</textarea>
-                 <div class="invalid-feedback">
-                Please enter description of the event.
-              </div
-            </div>
-          </div> -->
-
-          <div class="form-group">
-            <label for="formGroupExampleInput2" id="location">Location :</label>
-            <input type="text " class="form-control rounded-0 w-75 p-3" id="formGroupExampleInput2"
-              placeholder="Enter new location" value="FSKTM, MM2">
-          </div>
-
-
-          <div>
-            <label for="phfile">Image:</label>
-            <img id="prevImage" src="/Assets/imgs/eventPageUpdateImg.png" alt="update Image" width="150" length="150">
-            <input type="file" id="phfile" onchange="readURL(this)">
-          </div>
-          <!--
-        <div class="container">
-          <div class="picture-container">
-            <div class="picture">
-              <img
-                src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"
-                class="picture-src" id="wizardPicturePreview" title="">
-              <input type="file" id="wizard-picture" onchange="readURL(this)">
-            </div>
-            <h6 class="">Choose Picture</h6>
-
-          </div>
-        </div>
-
-        -->
+    <main class="container-fluid height-after-minus-header" id='main-body'>
+      <div class="row h-100">
         
+      <div class="container-fluid" id="right-content">
+
+
+        <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">
+          <i class="fas fa-user-plus"></i>
+          Invite Alumni</a>
+        <form>
+          <div id="updateForm">
+            <div class="form-group">
+              <label for="formGroupExampleInput">Event Title :</label>
+              <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
+                value="${dummyResponse.Event[i].title}" required>
+              <div class="valid-feedback">Valid.</div>
+              <div id="contactNumberFeedback" class="invalid-feedback">
+                Please provide the title of the event.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Schedule :</label> <br>
+              <input type=date value="${todayDate}" id="date"> &nbsp;
+              <input type=time value="${hour}:${minute}" id="time">
+
+              <div id="contactNumberFeedback" class="invalid-feedback">
+                Please provide both date and time of the event.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Description :</label>
+              <textarea type="text" class="form-control rounded-0" id="description" placeholder="Enter new schedule"
+                value="${dummyResponse.Event[i].description}" rows="5"
+                ;>${dummyResponse.Event[i].description}</textarea>
+              <div class="valid-feedback">Valid.</div>
+              <div id="contactNumberFeedback" class="invalid-feedback">
+                Please provide a brief description for the event.
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Location :</label>
+              <input type="text " class="form-control rounded-0 w-75 p-3" id="location" placeholder="Enter new location"
+                value="${dummyResponse.Event[i].location}">
+              <div class="valid-feedback">Valid.</div>
+              <div id="contactNumberFeedback" class="invalid-feedback">
+                Please provide the location of the event.
+              </div>
+            </div>
+
+
+            <div class="w-25 position-relative">
+              <label for="phfile">Event Picture:</label>
+              <div class="picture-container">
+                <div class="picture">
+                  <img src="${imgPath+dummyResponse.Event[i].imageId}" id="prevImage" alt="update Image" width="150"
+                    length="150">
+                  <input type="file" id="wizard-picture">
+
+                </div>
+              </div>
+              <div id="contactNumberFeedback" class="invalid-feedback">
+                Please provide a picture for the event.
+                <h6 id="choosePictureDescription"></h6>
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" id="saveButton" class="btn btn-primary float-right ml-2">Save</button>
+          <!-- Admin-EventPage.html -->
+          <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
+
+        </form>
+
+
+        <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
+                <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                You have made changes. They will be lost if you continue.
+                Are you sure you want to leave this page?
+              </div>
+              <div class="modal-footer">
+                <a href="Admin-EventPage.html"><button type="button" class="btn btn-outline-secondary">Leave this
+                    Page</button></a>
+                <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
+                  Page</button>
+              </div>
+
+            </div>
+
+          </div>
         </div>
-        <a button type="button;submit" class="btn btn-danger float-right ml-2" onclick="update_array()" href="Admin-EventPage.html">Save</a>
-        <!-- Admin-EventPage.html -->
-        <a button type="button" class="btn btn-secondary float-right" href="Admin-EventPage.html">Cancel</a>
-      </form>
-      <script type="text/javascript" src="../../js/utility.js"></script>
-      <script type="module" src="../../js/Admin/Admin-EventPageUpdate.js"></script>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-  </div>
-  </main>
-  <footer>
-  </footer>
+
+      </div>
+
+
+    
+      <br>
+
+    </main>
+    <script type="text/javascript" src="../../js/utility.js"></script>
+    <script type="module" src="../../js/Admin/Admin-EventPageUpdate.js"></script>
+    <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
+    <script type='module' src='/src/js/addHeader.js'></script>
 </body>
 
 </html>

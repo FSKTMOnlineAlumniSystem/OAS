@@ -4,9 +4,9 @@ a {
   overflow: auto;
 }
 
-.form-control {
+/* .form-control {
   background-color: #C4C4C4;
-}
+} */
 
 .picture-container {
   position: relative;
@@ -15,13 +15,16 @@ a {
 }
 
 .picture {
-  /* background-color: #999999;
-  border: 4px solid #CCCCCC; */
+  background-color: #999999;
+  border: 4px solid #CCCCCC;
   color: #000000;
-  margin: 0px auto;
   overflow: hidden;
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
+  width: 150px;
+  /* aspect-ratio: 1/1; */
+
+  
 }
 
 .picture:hover {
@@ -43,7 +46,6 @@ a {
 .content.ct-wizard-red .picture:hover {
   border-color: #ff3b30;
 }
-
 .picture input[type="file"] {
   cursor: pointer;
   display: block;
