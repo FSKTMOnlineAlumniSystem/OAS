@@ -58,9 +58,7 @@
           <br />
 
           <!--add and delete button-->
-          <!-- <div class="container"> -->
             <div class="row m-0">
-              <!-- <div class="col-12 align-items-center p-2 mb-2"> -->
                 <div class="btn-group" role="group" aria-label="Third group">
                   <!--add button-->
                   <a button type="button"
@@ -68,20 +66,16 @@
                     href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
                       style="font-size: 20px; "></i></a>
 
-
-
                   <!--trash button-->
                   <button type="button"
                     class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded"
                     onclick="DeleteCheckedRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
                       style="font-size: 20px; "></i></button>
                 </div>
-              <!-- </div> -->
-            <!-- </div> -->
           </div>
           <br />
 
-          <!-- <div id="table"> -->
+
           <div class="table-responsive">
             <table id="myTable" class="table table-striped table-sm something">
               <thead style="background-color:rgb(134, 75, 189);font-weight: 200; color:#ffffff">
@@ -106,63 +100,6 @@
                 </tr>
 
                 <tr class="rowss">
-                  <td>
-                    <div class="custom-control custom-checkbox mr-sm-2 ml-2">
-                      <input type="checkbox" class="custom-control-input" id="Boxes2">
-                      <label class="custom-control-label" for="Boxes2"></label>
-                    </div>
-                  </td>
-                  <td style="font-weight: 400; font-size: 18px">4, April 2021
-                    <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
-                  </td>
-                  </td>
-                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                    <a href="Admin-EventPageUpdate.html">
-                      Sample Event
-                    </a>
-                  </td>
-                  <td
-                    style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                    Sample Description</td>
-                  <td style="font-weight: 200; font-size: 18px">xxx, Penang</td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Third group">
-                      <a href="#" role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true"
-                          style="color: rgb(0, 0, 0); font-size: 35px">
-                        </i></a>
-                      <!-- Button trigger modal -->
-                      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Launch demo modal
-                          </button> -->
-                      <a href="#" role="button" data-toggle="modal" data-target="#exampleModal"><i
-                          class="fa fa-trash fa-3x pl-2" aria-hidden="true"
-                          style="color: rgb(255, 49, 49); font-size: 35px">
-                        </i></a>
-
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              Are you sure you want to delete event?
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                              <button type="button" class="btn btn-primary"
-                                onclick="DeleteRowFunction(this)">Yes</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
                 </tr>
               </tbody>
 
@@ -175,7 +112,7 @@
           </div>
           <span id="pageIndex"></span>
 
-          <!-- yanwen button -->
+          <!-- swtich page button -->
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
@@ -190,7 +127,7 @@
 
               </div>
 
-              <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
+              
               <li class="page-item" id="nextPage">
                 <button onclick="nextPage()" class="page-link">Next</button>
               </li>

@@ -17,18 +17,6 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-// window.readURL = function (input) {
-//   inputValue = input.value;
-//   if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-
-//     reader.onload = function (e) {
-//       document.getElementById("prevImage").src = e.target.result;
-//       document.getElementById("wizardPicturePreview").src = e.target.result;
-//     }
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// }
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -62,19 +50,12 @@ function readURL(e) {
     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
   }
-  // console.log('jpg: '+allowedExtensions.test(e.target.value))
-  // if(allowedExtensions.test(e.target.value)){
-  //   setValid(img)
-  // }else{setInValid(img);
-  //   errorExist = true;
-  // }
 }
+
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
   return obj.value.length == 0;
 }
-// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-// const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -115,14 +96,6 @@ form.addEventListener('submit', (e) => {
     setValid(time);
   }
 
-
-  // if (isEmpty(img)) {
-  //   setInValid(img);
-  //   errorExist = true;
-  // } else {
-  //   setValid(img);
-  // }
-
   if (!errorExist) {
     add_element_to_array();
     console.log('no error')
@@ -144,14 +117,10 @@ window.add_element_to_array = function () {
     imageName = imgLocalPathArr[imgLocalPathArr.length-1];
 }
 
-  // var imageArr = inputValue.split("\\");
-  // imageName = imageArr[imageArr.length - 1];
-  // console.log("imageName: " + imageName);
   var endIndex = dummyResponse.Event.length;
   var newId = endIndex + 1
   var eventId = "E-" + newId
-  var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege ltr
-  // var d = new Date(dummyResponse.Event[i].dateTime);
+  var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege later
   var date = document.getElementById("date").value;
   var time = document.getElementById("time").value;
   console.log(date)
@@ -175,7 +144,6 @@ window.add_element_to_array = function () {
   dummyResponse.Event.splice(endIndex, 0, newEvent)
   updateDummyData(dummyResponse)
   console.log(dummyResponse)
-  // location.reload();
 }
 
 window.setEventId = function () {
@@ -185,7 +153,6 @@ window.setEventId = function () {
   localStorage.setItem('eventId', eventId);
 }
 /*Check whether there is any changes that might be lost*/
-// const cancelButton = document.querySelector('#cancelButton');
 cancelButton.addEventListener('click', () => {
   var titlevalue = document.getElementById("title").value;
   var descriptionvalue = document.getElementById("description").value;

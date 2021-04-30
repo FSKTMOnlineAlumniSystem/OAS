@@ -1,10 +1,8 @@
 import{ dummyResponse,updateDummyData} from "../dummydata.js";
 
 console.log(dummyResponse);
-let pageIndex = '0';
-var clickedSomething=0;
+let pageIndex = 0;
 const loadEventList = (pageIndex) => {
-// const loadEventList = () => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 dummyResponse.Alumni.forEach((alumni,index) => {
@@ -34,23 +32,13 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   </div>`
   td.setAttribute('width','140px')
   const img = document.createElement('img');
-  // img.setAttribute('src', '/Assets/imgs/'+alumni.imageId);
-  // img.setAttribute('width',100);
-  // img.setAttribute('height',150);
   img.classList.add('table__td--height');
   td.appendChild(img);
   tr.appendChild(td);
   
   // name column
- 
   td = document.createElement('td');
-  // td.innerHTML = `
-  // <span class="alumniName">${alumni.name}</span>`
-  // // let span = document.createElement('span');
-  // // span.innerHTML = alumni.name;
-  // // td.appendChild(span);
-  // tr.appendChild(td);
- td = document.createElement('td');
+  td = document.createElement('td');
   let span = document.createElement('span');
   span.innerHTML = alumni.name;
   td.appendChild(span);
@@ -85,29 +73,14 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // action column
   td = document.createElement('td');
   td.setAttribute('class', 'text-center');
-  // let a = document.createElement('a');
-  // // insert 'toggle invitation' function here
-  // a.setAttribute('href', '#');
-  // a.setAttribute('class','inviteNewAlumni')
-  // a.setAttribute('id',index)
-  // a.setAttribute('role', 'button');
-  // // a.setAttribute('onclick','inviteAlumni(this)');
-  
-  // a.innerHTML = `<i class="fas fa-user-plus fa-3x pl-2" aria-hidden="true" style="font-size: 35px; color: #000000">
-  // </i>`;
   td.innerHTML=`
   <button class="inviteNewAlumni" id=${index} onclick='inviteNewAlumni(this)'>
   <i class="fas fa-user-plus pl-2"  aria-hidden="true" >
   </i>
-</button>
-  `
-  // td.appendChild(a);
+  </button>`
   tr.appendChild(td);
-
   tbody.appendChild(tr);
-// console.log(document.getElementById(index));
 });
-// };
 }
 window.toggle = function (source) {
   console.log("checkbox")
@@ -117,33 +90,7 @@ window.toggle = function (source) {
       checkboxes[i].checked = source.checked;
   }
 }
-
-// window.filterSearchBar = function() {
-//   // e.preventDefault();
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("searchBar");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   for (var i = 1; i < tr.length; i++) {
-//     var tds = tr[i].getElementsByTagName("td");
-//     var flag = false;
-//     for(var j = 0; j < tds.length; j++){
-//       var td = tds[j];
-//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//         flag = true;
-//       } 
-//     }
-//     e.preventDefault();
-//     if(flag){
-//         tr[i].style.display = "";
-//     }
-//     else {
-//         tr[i].style.display = "none";
-//     }
-//   }
-// }
-
+// search bar
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
@@ -223,7 +170,6 @@ window.SearchData = function(status, department) {
 //clearAll
 // document.getque
 $("#clearAll").on("click", function (e) {
-  // clickedSomething=1;
   e.preventDefault();
   $('#department option').prop('selected', function() {
       $('#myTable tbody tr').show();
@@ -234,35 +180,7 @@ $("#clearAll").on("click", function (e) {
       return this.defaultSelected;
   });
   });
-// window.inviteAlumni = function(o) {
-//   var p=o.parentNode.parentNode;
-//   // console.log("p")
-//   // console.log(p)
-// console.log("inviteAlumni");
-// }
-
-// document.querySelectorAll('.inviteNewAlumni').forEach((alumni)=>{
-//   alumni.addEventListener('click',(e)=>{
-//     console.log("target id: "+e.target.id)
-//     var alumniId= dummyResponse.Alumni[e.target.id].alumniId;
-//     var eventId=localStorage.getItem('eventId')
-//     var dateTime=new Date().toISOString();
-
-//     var newAlumniEvent={
-//       "alumniId": alumniId,
-//             "eventId": eventId,
-//             "viewedByAlumni": "false",
-//             "dateTime": dateTime,
-//             "notificationClosedByAlumni": "false"
-//     }
-//     dummyResponse.Alumni_Event.push(newAlumniEvent)
-//     updateDummyData(dummyResponse)
-//     console.log(dummyResponse)
-//     // loadEventList(0);
-//     location.reload();
-//   })
-// })
-
+  // invite single alumni
 window.inviteNewAlumni = function(o){
   var i=o.id;
     var alumniId= dummyResponse.Alumni[i].alumniId;
@@ -279,6 +197,7 @@ window.inviteNewAlumni = function(o){
     updateDummyData(dummyResponse)
   loadEventList(0)
 }
+// invite alumni that is checked
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
@@ -299,16 +218,11 @@ window.inviteCheckedAlumni = function () {
   checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(0)
-  // location.reload();
 }
 window.clicked=function(){
   clickedSomething=clickedSomething+1;
 }
 window.backToPreviousPage=function(){
-  // localStorage.getItem('')
-  if(clickedSomething>0){
     window.history.back();
-    window.history.back();
-  }else{window.history.back()}
 }
-loadEventList(0);
+loadEventList(pageIndex);
