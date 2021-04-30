@@ -133,7 +133,7 @@ let dummyResponse = {
             "icNumber": "920126-10-1210",
             "gender": "female",
             "name": "Rohana binti Jani",
-            "department": "Multemedia",
+            "department": "Multimedia",
             "graduated": "2019",
             "imageId": "AL-10.jpg",
             "contactNumber": "012-6773226",
