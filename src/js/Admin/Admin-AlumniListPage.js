@@ -1,77 +1,77 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-let pageIndex = 0;
-const loadAlumniList = (pageIndex) => {
-  // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
-  // document.getElementById('eventList').innerHTML = "";
-  let alumniStartIndex = pageIndex * 10;
-  let alumniEndIndex = alumniStartIndex + 10;
+// let pageIndex = 0;
+// const loadAlumniList = (pageIndex) => {
+//   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
+//   // document.getElementById('eventList').innerHTML = "";
+//   let alumniStartIndex = pageIndex * 10;
+//   let alumniEndIndex = alumniStartIndex + 10;
 
-  var dataLength = dummyResponse.Alumni.length;
-  var remainingLength = dataLength - alumniStartIndex;
+//   var dataLength = dummyResponse.Alumni.length;
+//   var remainingLength = dataLength - alumniStartIndex;
 
-  /*   js for button*/
-  if (alumniEndIndex >= dummyResponse.Alumni.length) {
-    document.getElementById("nextPage").innerHTML = `
-        <li class="page-item disabled">
-        <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
-      </li>`;
-  } else {
-    document.getElementById("nextPage").innerHTML = `
-        <li class="page-item" id="nextPage">
-            <button  onclick="nextPage()" class="page-link" >Next</button>
-          </li>`;
-  }
-  if (pageIndex == 0) {
-    document.getElementById("previousPage").innerHTML = `
-        <li class="page-item disabled">
-        <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
-      </li>`;
-  } else {
-    document.getElementById("previousPage").innerHTML = `
-        <li class="page-item" id="previousPage">
-            <button   onclick="previousPage()" class="page-link">Previous</button>
-          </li>`;
-  }
-  // js for 1,2,3
-  if (remainingLength <= 10) {
-    document.getElementsByClassName("pages")[0].innerHTML = `
-        <li class="page-item disabled">
-        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
-        </li>`;
-  } else if (remainingLength <= 20) {
-    document.getElementsByClassName("pages")[0].innerHTML = `
-        <li class="page-item disabled">
-        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
-        </li>
-        <li class="page-item" >
-        <button class="page-link" onclick="nextPage()">${pageIndex + 2
-      }</button></li>`;
-  } else {
-    document.getElementsByClassName("pages")[0].innerHTML = `
-        <li class="page-item disabled">
-        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-      }</button>
-        </li>
-        <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
-      }</button></li>
-        <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
-      }</button></li>`;
-  }
-}
+//   /*   js for button*/
+//   if (alumniEndIndex >= dummyResponse.Alumni.length) {
+//     document.getElementById("nextPage").innerHTML = `
+//         <li class="page-item disabled">
+//         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+//       </li>`;
+//   } else {
+//     document.getElementById("nextPage").innerHTML = `
+//         <li class="page-item" id="nextPage">
+//             <button  onclick="nextPage()" class="page-link" >Next</button>
+//           </li>`;
+//   }
+//   if (pageIndex == 0) {
+//     document.getElementById("previousPage").innerHTML = `
+//         <li class="page-item disabled">
+//         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+//       </li>`;
+//   } else {
+//     document.getElementById("previousPage").innerHTML = `
+//         <li class="page-item" id="previousPage">
+//             <button   onclick="previousPage()" class="page-link">Previous</button>
+//           </li>`;
+//   }
+//   // js for 1,2,3
+//   if (remainingLength <= 10) {
+//     document.getElementsByClassName("pages")[0].innerHTML = `
+//         <li class="page-item disabled">
+//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+//       }</button>
+//         </li>`;
+//   } else if (remainingLength <= 20) {
+//     document.getElementsByClassName("pages")[0].innerHTML = `
+//         <li class="page-item disabled">
+//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+//       }</button>
+//         </li>
+//         <li class="page-item" >
+//         <button class="page-link" onclick="nextPage()">${pageIndex + 2
+//       }</button></li>`;
+//   } else {
+//     document.getElementsByClassName("pages")[0].innerHTML = `
+//         <li class="page-item disabled">
+//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+//       }</button>
+//         </li>
+//         <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
+//       }</button></li>
+//         <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
+//       }</button></li>`;
+//   }
+// }
 
-loadAlumniList(pageIndex);
+// loadAlumniList(pageIndex);
 
-window.nextPage = function () {
-  pageIndex++;
-  loadAlumniList(pageIndex);
-};
-window.previousPage = function () {
-  pageIndex--;
-  loadAlumniList(pageIndex);
-};
+// window.nextPage = function () {
+//   pageIndex++;
+//   loadAlumniList(pageIndex);
+// };
+// window.previousPage = function () {
+//   pageIndex--;
+//   loadAlumniList(pageIndex);
+// };
 // add alumni list
 const reload = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
