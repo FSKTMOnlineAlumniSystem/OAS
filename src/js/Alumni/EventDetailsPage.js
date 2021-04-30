@@ -9,10 +9,9 @@ const { title, dateTime, description, imageId } = theEvent;
 const titleAndImage = document.createElement('div');
 titleAndImage.setAttribute('class', 'row')
 titleAndImage.innerHTML = `
-
-  <div class="col-0 col-md-2">
+  <div class="col-0 col-md-1 col-lg-2">
   </div>
-  <div class="col-12 col-md-8">
+  <div class="col-12 col-md-10 col-lg-8">
     <div class="row align-items-center">
       <div class="col-12">
         <a href="../../html/Alumni/EventPage.html" class="btn btn-link back">
@@ -74,9 +73,9 @@ eventInfo.innerHTML = ``
 const descriptionBlock = document.createElement('div');
 descriptionBlock.setAttribute('class', 'row')
 descriptionBlock.innerHTML = `
-  <div class="col-0 col-md-2">
+  <div class="col-0 col-md-1 col-lg-2">
   </div>
-  <div class="col-12 col-md-8">
+  <div class="col-12 col-md-10 col-lg-8">
     <div class="jumbotron">
       <div class="container">
         <div class="row">
