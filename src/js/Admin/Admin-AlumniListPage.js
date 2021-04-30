@@ -156,7 +156,6 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
-    console.log($('#exampleModal'))
     $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
     $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
@@ -181,7 +180,6 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
       }
     })
     $('#exampleModal').modal("show");
-    console.log(e.target.id);
   })
 })
 }
@@ -223,7 +221,6 @@ window.toggle = function (source) {
 }
 //delete row by row only
 window.DeleteRowFunction = function (o) {
-  console.log('id:' + o.id)
   dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
   reload();
@@ -298,33 +295,4 @@ $("#clearAll").on("click", function () {
   });
 });
 
-// click alumni name will pop out alumni details
-document.querySelectorAll('.alumniName').forEach((alumni) => {
-  alumni.addEventListener('click', (e) => {
-    localStorage.setItem('updateId', e.target.id);
-    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
-    $("#name").text(dummyResponse.Alumni[e.target.id].name);
-    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
-    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
-    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
-    $("#email").text(dummyResponse.Alumni[e.target.id].email);
-    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
-    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
-    $("#update").attr("id", "update " + e.target.id);
-    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
-      $("#accStatus").text("Not Verified");
-    } else {
-      $("#accStatus").text("Verified");
-    }
-    $("#approve").click(function () {
-      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
-      }
-      else {
-        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-        updateDummyData(dummyResponse);
-        location.reload();
-      }
-    })
-    $('#exampleModal').modal("show");
-  })
-})
+
