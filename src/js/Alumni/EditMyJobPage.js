@@ -9,7 +9,6 @@ let index;
 for(let i=0; i<dummyResponse.Job.length; i++){
     if(dummyResponse.Job[i].jobId === myJob){
         index=i;
-        console.log(index)
         break;
     }
 }
@@ -191,7 +190,6 @@ if(dummyResponse.Job[index].imageId == null){
 }
 
     //GET THE ID 
-    const imgPath = "/Assets/imgs/";
     const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
     const img = document.querySelector('#wizard-picture');
     const companyName = document.getElementById("companyName");
@@ -221,7 +219,6 @@ if(dummyResponse.Job[index].imageId == null){
     }
     }
 
-    console.log(wizardPicturePreview.src)
 
     //INPUT WITH HANDLING ERROR 
     function setInValid(el) {
@@ -290,7 +287,6 @@ if(dummyResponse.Job[index].imageId == null){
         }
 
         if (errorExist){
-            console.log('error');
             e.preventDefault();}
         else{   
                 //IF NO ERROR, THE DATA WILL BE SAVED IN DUMMYDATA

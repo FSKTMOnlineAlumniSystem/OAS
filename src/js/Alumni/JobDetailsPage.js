@@ -150,7 +150,6 @@ if (myJob[0].imageId == null) {
 }
 
 // CLICK BACK BUTTON
-$(".back").on("click", function () {
-  console.log("click");
-  localStorage.removeItem("JobList");
-});
+    $(".back").on("click", function(){
+        localStorage.removeItem('JobList');
+    });
