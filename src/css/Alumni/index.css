@@ -10,8 +10,7 @@ body,
   min-width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins' !important;
-  font-weight: bold !important;
+  font-family: 'Poppins',sans-serif;
 }
 
 /* use color in bootstrap for other common color */
