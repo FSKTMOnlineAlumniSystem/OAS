@@ -63,7 +63,7 @@ for (let i = 0; i < 6; i++) {
 
     card_event.innerHTML = `
 
-    <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
+    <div class="card h-100" style="aspect-ratio:1/1.5;overflow:hidden;" id="${dummyResponse.Event[latest_1[i]].eventId}">
        
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
         
@@ -72,7 +72,7 @@ for (let i = 0; i < 6; i++) {
             </div>
 
         
-        <div class="card-body">
+        <div class="card-body" >
             <h5 class="card-title text-left">${dummyResponse.Event[latest_1[i]].title}</h5>
             <div class="card-text">
  
@@ -150,9 +150,9 @@ for (let i = 0; i < 6; i++) {
                                 </div>
                                 
                                 <div class="card-body">
-                                    <div class="row">
-                                        <h5 class="card-title-title font-weight-900px ml-2 mr-2">
-                                            ${dummyResponse.Alumni[i].name}</h5>
+                                    <div class="row d-flex justify-content-center m-0">
+                                        <b><h5 class="card-title-title">
+                                            ${dummyResponse.Alumni[i].name}</h5><b>
                                     </div>
  
                                     <p class="card-text mb-1"><span>Achievement:</span><br>
