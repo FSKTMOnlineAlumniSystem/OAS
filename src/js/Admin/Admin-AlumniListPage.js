@@ -82,8 +82,8 @@ window.previousPage = function () {
   pageIndex--;
   loadAlumniList(pageIndex);
 };
-
 // add alumni list
+const reload = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
 dummyResponse.Alumni.forEach((alumni, index) => {
@@ -116,9 +116,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 
   // name column
   td = document.createElement('td');
-  td.innerHTML = `<p id=${index} class="alumniName">
-                      ${alumni.name}
-                    </p>`
+  td.innerHTML = `<p id=${index} class="alumniName">${alumni.name}</p>`
   td.setAttribute('class', 'eventTitle');
   // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
   // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
@@ -148,7 +146,6 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   }
   td.appendChild(div);
   tr.appendChild(td);
-
   // action column
   td = document.createElement('td');
   td.setAttribute('class', 'text-center');
@@ -165,6 +162,42 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 
   tbody.appendChild(tr);
 });
+
+// click alumni name will pop out alumni details
+document.querySelectorAll('.alumniName').forEach((alumni) => {
+  alumni.addEventListener('click', (e) => {
+    localStorage.setItem('updateId', e.target.id);
+    console.log($('#exampleModal'))
+    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
+    $("#name").text(dummyResponse.Alumni[e.target.id].name);
+    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
+    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
+    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
+    $("#email").text(dummyResponse.Alumni[e.target.id].email);
+    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
+    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
+    $("#update").attr("id", "update " + e.target.id);
+    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
+      $("#accStatus").text("Not Verified");
+    } else {
+      $("#accStatus").text("Verified");
+    }
+    $("#approve").click(function () {
+      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
+      }
+      else {
+        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+        updateDummyData(dummyResponse);
+        reload();
+      }
+    })
+    $('#exampleModal').modal("show");
+    console.log(e.target.id);
+  })
+})
+}
+reload();
+
 //search bar filter
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
@@ -180,7 +213,7 @@ searchBar.addEventListener('click', (e) => {
     var flag = false;
     for (var j = 0; j < tds.length; j++) {
       var td = tds[j];
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      if (td.textContent.toUpperCase().indexOf(filter) > -1) {
         flag = true;
       }
     }
@@ -202,14 +235,10 @@ window.toggle = function (source) {
 }
 //delete row by row only
 window.DeleteRowFunction = function (o) {
-  console.log("o" + o)
-  var p = o.parentNode.parentNode.parentNode;
   console.log('id:' + o.id)
-  p.parentNode.removeChild(p);
   dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
-  location.reload();
-  e.preventDefault();
+  reload();
 }
 //filter by using dropdown
 $(document).ready(function () {
@@ -266,7 +295,7 @@ window.deleteMultipleRow = function (tableID) {
   }
   loadAlumniList(pageIndex)
   updateDummyData(dummyResponse)
-  location.reload();
+  reload();
 }
 
 //clearAll
@@ -281,41 +310,9 @@ $("#clearAll").on("click", function () {
   });
 });
 
-// click alumni name will pop out alumni details
-document.querySelectorAll('.alumniName').forEach((alumni) => {
-  alumni.addEventListener('click', (e) => {
-    localStorage.setItem('updateId', e.target.id);
-    console.log($('#exampleModal'))
-    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
-    $("#name").text(dummyResponse.Alumni[e.target.id].name);
-    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
-    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
-    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
-    $("#email").text(dummyResponse.Alumni[e.target.id].email);
-    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
-    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
-    $("#update").attr("id", "update " + e.target.id);
-    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
-      $("#accStatus").text("Not Verified");
-    } else {
-      $("#accStatus").text("Verified");
-    }
-    $("#approve").click(function () {
-      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
-      }
-      else {
-        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-        updateDummyData(dummyResponse);
-        location.reload();
-      }
-    })
-
-    $('#exampleModal').modal("show");
-    console.log(e.target.id);
 
 
-  })
-})
+
 
 
 
