@@ -588,13 +588,14 @@ font-family: Poppins; */
 
 .card-text {
   text-align: left;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .card-title {
-  font-size: 17px;
-  font-family: 'Garamond', Times, serif;
-  font-weight: 700;
+  font-size: 16px;
+  /* font-family: 'Garamond', Times, serif; */
+  font-weight: 600!important;
 }
 
 .job_image {
@@ -608,15 +609,16 @@ font-family: Poppins; */
 }
 
 .t {
-  font-family: 'Garamond', Times, serif;
+  /* font-family: 'Garamond', Times, serif; */
   font-size: 15px;
+  font-weight: 400;
 }
 
 .card-title-title {
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: 900;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-weight: 700;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
 }
 
 .center-cropped {
@@ -755,7 +757,7 @@ bottom: 15px; */
   color: rgba(71, 71, 71, 1);
   /* position: absolute; */
   font-family: Poppins;
-  font-weight: SemiBold;
+  font-weight: 500;
   font-size: 40px;
   margin-top: 3%;
   opacity: 1;
