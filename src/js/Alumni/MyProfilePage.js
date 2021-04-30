@@ -1,6 +1,8 @@
 import  { dummyResponse, updateDummyData } from '../dummydata.js';
 
+//get the current signed in alumni id from localStorage
 const currentAlumniId = localStorage.getItem('SignedInAlumniId');
+//get the current alumni object
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
@@ -22,6 +24,7 @@ const changePasswordButton = document.querySelector('#changePasswordButton');
 const deleteAccountInput = document.querySelector('#deleteAccountInput');
 const deleteAccountButton = document.querySelector('#deleteAccountButton');
 
+//Validation for change password
 function verifyPasswordAndConfirmPassword(e) {
     let errorExist = false;
     if (oldPassword.value!==alumni.password) {
@@ -63,20 +66,6 @@ function verifyPasswordAndConfirmPassword(e) {
     }
 }
 
-function setInValid(el){
-    if(el.classList.contains("is-valid")){
-        el.classList.replace("is-valid","is-invalid");
-    }else {
-        el.classList.add("is-invalid");
-    }
-}
-function setValid(el){
-    if(el.classList.contains("is-invalid")) {
-        el.classList.replace("is-invalid", "is-valid");
-    }else{
-        el.classList.add("is-valid");       
-    }
-}
 
 function verifyPasswordCriteria(password) {
     //valid password length range from 5 to 20
@@ -86,6 +75,7 @@ function verifyPasswordCriteria(password) {
     return true;
 }
 
+//Delete user account from the data
 function deleteAccount(e) {
     if (deleteAccountInput.value === 'DELETE') {
         /* SUCCESS DELETE ACCOUNT */
@@ -107,6 +97,7 @@ function deleteAccount(e) {
     }
 }
 
+//load all the data when landing the page
 function loadData() {
     profilePicture.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;
