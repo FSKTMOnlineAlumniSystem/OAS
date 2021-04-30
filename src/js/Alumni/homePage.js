@@ -4,15 +4,15 @@ console.log("link js");
 localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
 
+
+//get latest event
 var latest_1 = [];
 var dayy_1 = [];
 var yearr_1 = [];
 
 for (let i = 0; i < dummyResponse.Event.length; i++) {
 
-    // console.log("previous time" + dummyResponse.Event[i].dateTime)
     var d = new Date(dummyResponse.Event[i].dateTime);
-    // console.log(dummyResponse.Event[i].dateTime)
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
@@ -35,9 +35,6 @@ for (var i = 0; i < dayy_1.length; i++) {
     var currentYr_1 = new Date();
     var Yr_1 = currentYr_1.getFullYear();
 
-    console.log(a_1[2]);
-    console.log(yearr_1[a_1[2]]);
-
 
     if (yearr_1[a_1[2]] == Yr_1) {
 
@@ -46,14 +43,13 @@ for (var i = 0; i < dayy_1.length; i++) {
 
 }
 
-console.log(latest_1);
 
-
+//event card
 for (let i = 0; i < 6; i++) {
 
-    // console.log("previous time" + dummyResponse.Event[i].dateTime)
+  
     var d = new Date(dummyResponse.Event[latest_1[i]].dateTime);
-    // console.log(dummyResponse.Event[i].dateTime)
+
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
@@ -81,7 +77,7 @@ for (let i = 0; i < 6; i++) {
                     <i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
                      </div>
                     <div class="col-10 d-flex flex-column">
-                        <span class="t">${`${da}, ${mo} ${ye}`}</span>
+                        <span>${`${da}, ${mo} ${ye}`}</span>
                     </div>
                     
                 </div>
@@ -91,7 +87,7 @@ for (let i = 0; i < 6; i++) {
                         </div>
 
                         <div class="col-10 d-flex flex-column">
-                            <span class="t">${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                            <span>${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                     </div>
                 <div class="row">
@@ -100,7 +96,7 @@ for (let i = 0; i < 6; i++) {
                             style="color: rgb(167, 0, 0);"></i>
                     </div>
                     <div class="col-10 d-flex flex-column">
-                        <span class="t">${dummyResponse.Event[latest_1[i]].location}</span>
+                        <span>${dummyResponse.Event[latest_1[i]].location}</span>
                     </div>
                 </div>
  
@@ -132,7 +128,7 @@ for (let i = 0; i < 6; i++) {
 
 
 
-
+//alumni card
 document.getElementById('alumni').innerHTML = "";
 
 for (let i = 0; i < 6; i++) {
@@ -194,16 +190,16 @@ for (let i = 0; i < 6; i++) {
 
 }
 
-
+//get latest date
 var latest = [];
 var dayy = [];
 var yearr = [];
 
 for (let i = 0; i < dummyResponse.Job.length; i++) {
 
-    // console.log("previous time" + dummyResponse.Event[i].dateTime)
+ 
     var d = new Date(dummyResponse.Job[i].postedDate);
-    // console.log(dummyResponse.Event[i].dateTime)
+  
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
@@ -214,8 +210,7 @@ for (let i = 0; i < dummyResponse.Job.length; i++) {
 }
 
 dayy.sort();
-// console.log(dayy);
-// console.log(yearr);
+
 
 
 for (var i = 0; i < dayy.length; i++) {
@@ -226,8 +221,7 @@ for (var i = 0; i < dayy.length; i++) {
     var currentYr = new Date();
     var Yr = currentYr.getFullYear();
 
-    // console.log(a[2]);
-    // console.log(yearr[a[2]]);
+
 
 
     if (yearr[a[2]] == Yr) {
@@ -237,9 +231,9 @@ for (var i = 0; i < dayy.length; i++) {
 
 }
 
-// console.log(latest);
 
 
+//job
 document.getElementById('job_row_1').innerHTML = "";
 
 
@@ -264,10 +258,10 @@ for (let i = 0; i < 2; i++) {
     myJobList_1.push(dummyResponse.Job[latest[i]]);
 
     const evtHandler = evt => {
-        // console.log(dummyResponse.Job[latest[i]]);
+  
         var myJobList_1 = [];
         myJobList_1.push(dummyResponse.Job[latest[i]]);
-        // console.log(myJobList_1);
+       
         localStorage.setItem('JobList', JSON.stringify(myJobList_1));
         location.href = "/src/html/Alumni/JobDetailsPage.html";
 
@@ -303,15 +297,15 @@ for (let i = 2; i < 4; i++) {
 
 
     const J_1 = document.getElementById('job_row_2');
-    // console.log(J_1);
+    
     var myJobList = [];
     myJobList.push(dummyResponse.Job[latest[i]]);
 
     const evtHandler = evt => {
-        // console.log(dummyResponse.Job[latest[i]]);
+      
         var myJobList = [];
         myJobList.push(dummyResponse.Job[latest[i]]);
-        // console.log(myJobList);
+       
         localStorage.setItem('JobList', JSON.stringify(myJobList));
 
     };
@@ -354,20 +348,6 @@ var swiper = new Swiper('.swiper-container', {
 });
 
 
-// function viewMoreEvents() {
-//     console.log("eventviewmore");
-//     location.replace("../../html/Alumni/EventPage.html");
-// }
-
-// function viewMoreJob() {
-//     console.log("jobviewmore");
-//     location.replace("../../html/Alumni/JobPage.html");
-// }
-
-// function viewMoreAlumni() {
-//     console.log("alumniviewmore");
-//     location.replace("../../html/Alumni/alumniPage.html");
-// }
 
 
 var EventView = document.getElementById('viewMoreEvents');

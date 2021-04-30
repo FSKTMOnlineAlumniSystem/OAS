@@ -27,6 +27,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
+//form validation for forgot modal
 form_2.addEventListener('submit', (evt) => {
 
     let errorExist = false;
@@ -48,7 +49,7 @@ form_2.addEventListener('submit', (evt) => {
 
 });
 
-
+//form validation for sign in
 form_1.addEventListener('submit', (ev) => {
 
     let errorExist = false;
@@ -85,7 +86,7 @@ form_1.addEventListener('submit', (ev) => {
                         if (inputPasswordValue == dummyResponse.Alumni[i].password) {
 
                             //To save who is logged in
-                            console.log(dummyResponse.Alumni[i].alumniId);
+
                             localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
                             if (!localStorage.getItem('dummyResponse')) {
                                 updateDummyData(dummyResponse);
@@ -151,6 +152,7 @@ function readURL(e) {
     }
 }
 
+//form validation for sign up
 form.addEventListener('submit', (e) => {
 
     let errorExist = false;
@@ -164,14 +166,6 @@ form.addEventListener('submit', (e) => {
     const BatchValue = Batch.value.trim();
     const GenderValue = Gender.value.trim();
 
-    console.log(FirstNameValue);
-    console.log(emailValue);
-    console.log(LastNameValue);
-    console.log(ICValue);
-    console.log(passwordValue);
-    console.log(DepartmentValue);
-    console.log(BatchValue);
-    console.log(GenderValue);
 
 
     if (DepartmentValue == 0) {
@@ -248,7 +242,6 @@ form.addEventListener('submit', (e) => {
     var i = imgid.length - 1;
     var im = imgid[i];
 
-    console.log(im);
 
     if (errorExist) {
         e.preventDefault();
@@ -280,10 +273,10 @@ form.addEventListener('submit', (e) => {
 
 });
 
+//pop up the wait for verification modal
 function getWait() {
     $('#wait').modal('toggle');
     $('#signUP').modal('hide');
-
 }
 
 function checkLength(passwordValue) {
