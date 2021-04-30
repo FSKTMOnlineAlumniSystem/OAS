@@ -96,7 +96,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // a.innerHTML = `<i class="fas fa-user-plus fa-3x pl-2" aria-hidden="true" style="font-size: 35px; color: #000000">
   // </i>`;
   td.innerHTML=`
-  <button class="inviteNewAlumni" id=${index} onclick='inviteNewAlumni(this),clicked()'>
+  <button class="inviteNewAlumni" id=${index} onclick='inviteNewAlumni(this)'>
   <i class="fas fa-user-plus pl-2"  aria-hidden="true" >
   </i>
 </button>
