@@ -1,64 +1,64 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 document.getElementById("form").innerHTML += `
-<form id="job_ad_form">
-  <div class="mb-3">
-    <label for="companyName" class="form-label">Company Name</label>
-    <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please provide a company name.</div>
-  </div>
-  <div class="mb-3">
-    <label for="jobTitle" class="form-label">Job Title</label>
-    <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please provide a job title.</div>
-  </div>
-  <div class="container-fluid mb-3">
-    <div class='row'>
-      <div class='col-md-4 col-12 d-flex flex-column justify-content-center align-items-center image-area px-0'>
-        <img id="imageResult" src="#" alt="" class="company-image">
-      </div>
-      <div class='col-md-8 col-12 p-0 px-md-2'>
-        <label for="upload" class="form-label">Company Image</label>
-        <input type="file" class="form-control-file" id="upload" aria-describedby="image">
-      </div>
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-    <div class="valid-feedback">Valid</div>
-    <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
-  </div>
-  <div class="mb-3">
-    <label for="location" class="form-label">Location</label>
-    <input type="text" class="form-control" id="locations">
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please provide the location of the company.</div>
-  </div>
-  <div class="mb-3">
-    <label for="salary" class="form-label">Job Salary</label>
-    <div class="input-group input-group-sm mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
-      </div>
-      <input type="text" class="form-control" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  <form id="job_ad_form">
+    <div class="mb-3">
+      <label for="companyName" class="form-label">Company Name</label>
+      <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
+      <div class="invalid-feedback">Please provide a company name.</div>
     </div>
     <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea name="comment" form="job_ad_form" id="description" class="form-control"
-      placeholder="Enter description here..."></textarea>
+      <label for="jobTitle" class="form-label">Job Title</label>
+      <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please provide the description of the job.</div>
+      <div class="invalid-feedback">Please provide a job title.</div>
     </div>
-    <button type="submit" id="submit" class="btn btn-primary float-right ml-2">Submit</button>
-    <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
-    <br>
-  </div>
-</form>`;
+    <div class="container-fluid mb-3">
+      <div class='row'>
+        <div class='col-md-4 col-12 d-flex flex-column justify-content-center align-items-center image-area px-0'>
+          <img id="imageResult" src="#" alt="" class="company-image">
+        </div>
+        <div class='col-md-8 col-12 p-0 px-md-2'>
+          <label for="upload" class="form-label">Company Image</label>
+          <input type="file" class="form-control-file" id="upload" aria-describedby="image">
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+      <div class="valid-feedback">Valid</div>
+      <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="locations">
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please provide the location of the company.</div>
+    </div>
+    <div class="mb-3">
+      <label for="salary" class="form-label">Job Salary</label>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
+        </div>
+        <input type="text" class="form-control" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="comment" form="job_ad_form" id="description" class="form-control"
+        placeholder="Enter description here..."></textarea>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please provide the description of the job.</div>
+      </div>
+      <button type="submit" id="submit" class="btn btn-primary float-right ml-2">Submit</button>
+      <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
+      <br>
+    </div>
+  </form>`;
 
 // /*  ==========================================
 //     SHOW UPLOADED IMAGE
