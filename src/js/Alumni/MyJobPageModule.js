@@ -1,54 +1,55 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-function loadMyJobList(pageIndex, outputList, count) {
-  const alumniID = localStorage.getItem("SignedInAlumniId");
-  const jobList = document.getElementById("jobList");
-  jobList.innerHTML = "";
-  let jobStartIndex = pageIndex * 9;
-  let jobEndIndex = jobStartIndex + 9;
-  var dataLength = count;
-  var remainingLength = dataLength - jobStartIndex;
 
-  updateDummyData(dummyResponse)
 
-  /*   js for button*/
-  if (count != 0) {
-    if (jobEndIndex >= count) {
-      document.getElementById("nextPage").innerHTML = `
+function loadMyJobList (pageIndex, outputList,count) {
+
+    const alumniID = localStorage.getItem('SignedInAlumniId');
+    const jobList = document.getElementById('jobList');
+    jobList.innerHTML = "";
+    let jobStartIndex = pageIndex * 9;
+    let jobEndIndex = jobStartIndex + 9;
+    var dataLength = count;
+    var remainingLength = dataLength - jobStartIndex;
+
+    /*   js for button*/
+    if(count!=0){
+    if (jobEndIndex >=count) {
+        document.getElementById("nextPage").innerHTML = `
             <li class="page-item disabled">
             <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
           </li>`;
-      console.log("last page");
-    } else {
-      document.getElementById("nextPage").innerHTML = `
+        console.log("last page");
+      } else {
+        document.getElementById("nextPage").innerHTML = `
             <li class="page-item" id="nextPage">
                 <button  onclick="nextPage()" class="page-link" >Next</button>
               </li>`;
-    }
-    if (pageIndex == 0) {
-      document.getElementById("previousPage").innerHTML = `
+      }
+      if (pageIndex == 0) {
+        document.getElementById("previousPage").innerHTML = `
             <li class="page-item disabled">
             <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
           </li>`;
-      console.log("first page");
-    } else {
-      document.getElementById("previousPage").innerHTML = `
+        console.log("first page");
+      } else {
+        document.getElementById("previousPage").innerHTML = `
             <li class="page-item" id="previousPage">
                 <button onclick="previousPage()" class="page-link">Previous</button>
               </li>`;
-    }
-    // js for 1,2,3
-    if (remainingLength <= 10) {
-      console.log("<=10");
-      document.getElementsByClassName("pages")[0].innerHTML = `
+      }
+      // js for 1,2,3
+      if (remainingLength <= 10) {
+        console.log("<=10");
+        document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
                   pageIndex + 1
                 }</button>
                 </li>`;
-    } else if (remainingLength <= 20) {
-      console.log("<=20");
-      document.getElementsByClassName("pages")[0].innerHTML = `
+      } else if (remainingLength <= 20) {
+        console.log("<=20");
+        document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
                   pageIndex + 1
@@ -57,9 +58,9 @@ function loadMyJobList(pageIndex, outputList, count) {
                 <li class="page-item" ><button class="btn btn-link page-link" onclick="nextPage()">${
                   pageIndex + 2
                 }</button></li>`;
-    } else {
-      console.log("<=30");
-      document.getElementsByClassName("pages")[0].innerHTML = `
+      } else {
+        console.log("<=30");
+        document.getElementsByClassName("pages")[0].innerHTML = `
                 <li class="page-item disabled">
                 <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
                   pageIndex + 1
@@ -81,10 +82,12 @@ function loadMyJobList(pageIndex, outputList, count) {
       return;
     }
 
-  for (let i = jobStartIndex; i < outputList.length; i++) {
-    if (outputList[i].alumniId == alumniID) {
-      if (outputList[i].imageId == null) {
-        document.getElementById("jobList").innerHTML += `<div class="col mb-4">
+    for (let i = jobStartIndex;  i < outputList.length ; i++) {
+
+        if(outputList[i].alumniId == alumniID){
+            if(outputList[i].imageId == null){
+                document.getElementById('jobList').innerHTML +=
+                `<div class="col mb-4">
                 <div class="card h-100" data-name=${outputList[i].jobId}>
                 <a href="../../html/Alumni/MyJobDetailsPage.html" >
                 <div class="w-100">
@@ -104,29 +107,13 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </p>
                 </div></a>
                 <div class="card-footer mt-auto">
-                <button type="button" class="clickButton close" role="button" aria-pressed="true" ><i class="far fa-trash-alt"></i></button>  
-                </div></div><div>
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
-                <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                Are you sure you want to delete this job advertisement?
-                </div>
-                <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
-                </div>
-                </div>
-                </div>
-                </div>`;
-      } else {
-        console.log(outputList[i].jobId);
-        document.getElementById("jobList").innerHTML += `<div class="col mb-4">
+                <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true" ><i class="far fa-trash-alt"></i></button>  
+                </div></div><div>`;
+    }
+            else{
+              console.log(outputList[i].jobId);
+                document.getElementById('jobList').innerHTML +=
+                `<div class="col mb-4">
                  <div class="card h-100" data-name=${outputList[i].jobId}> 
                  <a href="../../html/Alumni/MyJobDetailsPage.html">
                  <div class="w-100">
@@ -146,70 +133,58 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </p>
                 </div></a>
                 <div class="card-footer mt-auto">
-                <button type="button" class="clickButton close" role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
-                </div></div><div>
-                
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
-                <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                Are you sure you want to delete this job advertisement?
-                </div>
-                <div class="modal-footer">
-                <button id="deleteButton" data-name=${outputList[i].jobId} type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
-                </div>
-                </div>
-                </div>
-                </div>`;
-      }
+                <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
+                </div></div><div>`
+                ;      
+            }
+        }
     }
-  }
 
-  const deleteButton = document.getElementById("deleteButton");
-  const closeDeleteModalButton = document.querySelector("#closeDeleteButton");
-  const clickButton = document.querySelector(".clickButton");
 
-  clickButton.addEventListener("click", function () {
-    // var name = e.target.dataset.name;
-    //  name = e.getA;
-    // console.log('first click'+ e.target.dataset.name)
-    $("#deleteModal").modal("show");
-  });
+const deleteButton = document.querySelector("#deleteButton");
+const closeDeleteModalButton = document.querySelector('#closeDeleteModalButton');
+const clickButton = document.querySelectorAll('.clickButton');
+var deleteID;
 
-  if (closeDeleteModalButton) {
-    closeDeleteModalButton.addEventListener("click", () =>
-      closeModal("#deleteModal")
-    );
-  }
+clickButton.forEach(function(btn){
+btn.addEventListener("click", function(e){
+  deleteID = e.currentTarget.id;
+  $(`#deleteModal`).modal('show');
+  console.log(e.currentTarget.id)
+});
 
-  if (deleteButton) {
-    deleteButton.addEventListener("click", function deleteButton(e) {
-      console.log("delete");
-      console.log(e.target.dataset.name);
-      for (let i = 0; i < outputList.length; i++) {
-        if (outputList[i].jobId == e.target.dataset.name) {
+});
+
+
+  deleteButton.addEventListener("click", function(e){
+
+    for (let i = 0; i < outputList.length; i++) {
+      if (outputList[i].jobId == deleteID) {
           outputList.splice(i, 1);
           count--;
           dummyResponse.Job = outputList;
           updateDummyData(dummyResponse);
-          closeModal("#deleteModal");
-          console.log(outputList);
-          console.log(count);
-          loadMyJobList(pageIndex, outputList, count);
-        }
-      }
-    });
+          closeModal(`#deleteModal`);
+          console.log(e.target.id)
+          loadMyJobList(pageIndex,outputList,count);
+      }      
   }
-
+  
+  });
+  
   function closeModal(modalId) {
-    $(modalId).modal("hide");
-  }
+    $(modalId).modal('hide');
+}
+
+
+   
+if(closeDeleteModalButton){
+closeDeleteModalButton.addEventListener('click', () => closeModal('#deleteModal'));
+}
+
+
+
+
 
   //CLICK
   $("#jobList").on("click", ".card ", function () {
@@ -225,6 +200,9 @@ function loadMyJobList(pageIndex, outputList, count) {
       }
     }
   });
-}
+
+
+};
+
 
 export default loadMyJobList;

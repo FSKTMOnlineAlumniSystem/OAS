@@ -45,30 +45,30 @@ const loadAlumniList = (pageIndex) => {
     console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
     console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" >
+        <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
     console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
-        <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>
-        <li class="page-item" ><button onclick="nextPage()">${pageIndex + 2
+        <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>
-        <li class="page-item" ><button onclick="nextPage();nextPage()">${pageIndex + 3
+        <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
       }</button></li>`;
-
   }
 }
 
@@ -108,15 +108,20 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 
   // avatar column
   td = document.createElement('td');
-  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; overflow:hidden;">
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
     <img class='table__td--height' src=${'/Assets/imgs/' + alumni.imageId}>
   </div>`
+  td.setAttribute('width','140px')
   tr.appendChild(td);
 
   // name column
   td = document.createElement('td');
-  td.innerHTML = `
-  <span class="alumniName" id=${index}>${alumni.name}</span>`
+  td.innerHTML = `<p id=${index} class="alumniName">
+                      ${alumni.name}
+                    </p>`
+  td.setAttribute('class','eventTitle');
+                    // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
+  // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
   // let span = document.createElement('span');
   // span.innerHTML = alumni.name;
   // td.appendChild(span);
@@ -132,7 +137,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   // status column
   td = document.createElement('td');
   div = document.createElement('div');
-  div.setAttribute('class', 'text-white rounded p-1');
+  div.setAttribute('class', 'text-black rounded p-1');
 
   if (alumni.approvedBy === "") {
     div.classList.add('bg-danger')
@@ -151,38 +156,39 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)">
+  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
-  </i>`;
-  td.appendChild(a);
+  </i></a>`;
+  console.log(index);
+    td.appendChild(a);
   tr.appendChild(td);
 
   tbody.appendChild(tr);
 });
 
-window.filterSearchBar = function () {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchBar");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (var i = 1; i < tr.length; i++) {
-    var tds = tr[i].getElementsByTagName("td");
-    var flag = false;
-    for (var j = 0; j < tds.length; j++) {
-      var td = tds[j];
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-      }
-    }
-    if (flag) {
-      tr[i].style.display = "";
-    }
-    else {
-      tr[i].style.display = "none";
-    }
-  }
-}
+// window.filterSearchBar = function () {
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("searchBar");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("myTable");
+//   tr = table.getElementsByTagName("tr");
+//   for (var i = 1; i < tr.length; i++) {
+//     var tds = tr[i].getElementsByTagName("td");
+//     var flag = false;
+//     for (var j = 0; j < tds.length; j++) {
+//       var td = tds[j];
+//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//         flag = true;
+//       }
+//     }
+//     if (flag) {
+//       tr[i].style.display = "";
+//     }
+//     else {
+//       tr[i].style.display = "none";
+//     }
+//   }
+// }
 
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -193,9 +199,11 @@ window.toggle = function (source) {
 }
 
 window.DeleteRowFunction = function (o) {
+  console.log("o"+o)
   var p = o.parentNode.parentNode.parentNode;
+  console.log('id:'+ o.id)
   p.parentNode.removeChild(p);
-  dummyResponse.Alumni.splice(o.target.id, 1)
+  dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
   location.reload();
 }
@@ -253,7 +261,6 @@ window.deleteMultipleRow = function (tableID) {
     }
   }
   loadAlumniList(pageIndex)
-
   updateDummyData(dummyResponse)
   location.reload();
 }
@@ -309,4 +316,6 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     }
   })
 })
+
+
 

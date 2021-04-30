@@ -47,7 +47,7 @@ if(myJob[0].imageId == null){
     </div></div>
     <div id = "email" class="row mb-3 mx-auto mr-5 mb-xl-5">
     <div class="col-1">                    
-    <span><i class="fas fa-envelope-open-text fa-2x" ></i></span>
+    <span><i class="fas fa-envelope-open-text text-primary fa-2x" ></i></span>
     </div> 
     <div class="col">
     <a href="mailto:${myJob[0].email}">${myJob[0].email}</a>
@@ -92,7 +92,7 @@ if(myJob[0].imageId == null){
     </div></div>
     <div id = "email" class="row mb-3 mx-auto mr-5 mb-xl-5">
     <div class="col-1">                    
-    <span><i class="fas fa-envelope-open-text fa-2x" ></i></span>
+    <span><i class="fas fa-envelope-open-text text-primary fa-2x" ></i></span>
     </div> 
     <div class="col">
     <a href="mailto:${myJob[0].email}">${myJob[0].email}</a>

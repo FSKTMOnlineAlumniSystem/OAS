@@ -1,20 +1,26 @@
 import { dummyResponse } from '../dummydata.js';
 
-export const getCardStructure = (eventId, imageId, title, dateTime) => {
+export const getCardStructure = (eventId, imageId, title, dateTime, location) => {
   return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
   <div class="card h-100 card--bg-light-gray">
-    <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height" alt="eventPhoto">
+    <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
+      <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+    </div>
     <div class="card-body">
       <h5 class="card-title">${title}</h5>
       <p class="card-text">
       <div class="row cards">
-        <div class="col-2"><i class="far fa-calendar-alt text-danger"></i>
+        <div class="col-2"><i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
         </div>
         <div class="col-10">${getReadableDate(dateTime)}</div>
       </div>
       <div class="row cards">
         <div class="col-2"><i class="far fa-clock text-primary"></i></div>
         <div class="col-10">${getReadableTime(dateTime)}</div>
+      </div>
+      <div class="row cards">
+        <div class="col-2"><i class="fas fa-map-marked-alt text-danger"></i></div>
+        <div class="col-10">${location}</div>
       </div>
       </p>
     </div>
@@ -23,11 +29,10 @@ export const getCardStructure = (eventId, imageId, title, dateTime) => {
 }
 // the parent node should be a div with class 'row'
 export const loadEventSection = (eventArr, parentNode, errorMsg) => {
-  console.log('loading event section');
   console.log(eventArr);
   if(eventArr.length === 0){
     const noEventSection = document.createElement('div');
-    noEventSection.setAttribute('class', 'alert custom-light-purple');
+    noEventSection.setAttribute('class', 'alert custom-light-purple text-white');
     noEventSection.innerText = errorMsg;
     parentNode.appendChild(noEventSection);
   }
@@ -37,7 +42,7 @@ export const loadEventSection = (eventArr, parentNode, errorMsg) => {
     
     const cardDiv = document.createElement('div');
     cardDiv.setAttribute('class', 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4');
-    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime);
+    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime, eventDetails.location);
     parentNode.appendChild(cardDiv);
   
     // function to be called when this card clicked
@@ -76,7 +81,7 @@ export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
     
     const cardDiv = document.createElement('div');
     cardDiv.setAttribute('class', 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4');
-    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime);
+    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime, eventDetails.location);
     section.appendChild(cardDiv);
     // function to be called when this card clicked
     const evtHandler = evt => {

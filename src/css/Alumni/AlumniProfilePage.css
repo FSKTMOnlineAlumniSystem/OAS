@@ -1,19 +1,18 @@
 body {
-    font-family: 'Poppins';
-    font-weight: bold;
-    margin: 5%;
-
-    }
-#bio{
-    background-color: #EBEBEB;
-    color: #797979;
+  font-family: "Poppins";
+  font-weight: bold;
+  margin: 5%;
+}
+#bio {
+  background-color: #ebebeb;
+  color: #797979;
 }
 
-#info{
-    color: #7A7A7A;
+#info {
+  color: #7a7a7a;
 }
 
-.col a{
-    text-decoration: none;
-    color: #7A7A7A;
+.col a {
+  text-decoration: none;
+  color: #7a7a7a;
 }

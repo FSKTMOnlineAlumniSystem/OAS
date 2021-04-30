@@ -1,18 +1,19 @@
-let dummyResponse = {
+let dummyResponse =
+{
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "teh@gmail.com",
-            "password": "evpgZk!8rm0H",
+            "email": "tey@gmail.com",
+            "password": "12345",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Teh Kok Soon",
+            "name": "Tey Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "2003",
             "imageId": "AL-1.png",
             "contactNumber": "03-79676347",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Tey is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-2",
@@ -21,12 +22,12 @@ let dummyResponse = {
             "password": "CR4Z!f$@jJaK",
             "icNumber": "730110-10-1253",
             "gender": "male",
-            "name": "Ang Tan Foo",
+            "name": "Ang Tan Fong",
             "department": "Artificial Intelligence",
             "graduated": "2006",
             "imageId": "AL-2.png",
             "contactNumber": "03-79676348",
-            "biography": "XXX is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Ang is currently working at Sony, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-3",
@@ -73,7 +74,7 @@ let dummyResponse = {
         {
             "alumniId": "AL-6",
             "approvedBy": "",
-            "email": "ang@gmail.com",
+            "email": "rachel@gmail.com",
             "password": "3Vq8PcwNks5Ng",
             "icNumber": "800110-10-1256",
             "gender": "female",
@@ -174,7 +175,7 @@ let dummyResponse = {
             "eventId": "E-1",
             "adminId": "AD-1",
             "title": "Constraint programming Workshop",
-            "dateTime": "2021-04-04T15:00:53+00:00",
+            "dateTime": "2021-04-04T15:53:53+00:00",
             "description": "Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.\n\nThrough this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.",
             "imageId": "E-1.png",
             "location": "FSKTM, MM2"
@@ -183,7 +184,7 @@ let dummyResponse = {
             "eventId": "E-2",
             "adminId": "AD-1",
             "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:05:53+00:00",
+            "dateTime": "2021-04-03T15:53:53+00:00",
             "description": "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.\n\nDatabase Admin Career will tell you the job scope as a Database Administrator in details!",
             "imageId": "E-2.png",
             "location": "FSKTM, MM3"
@@ -212,7 +213,7 @@ let dummyResponse = {
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
             "description": "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.\n\nWait no more and join React to React now!!!",
-            "imageId": "E-5.jpg",
+            "imageId": "E-5.png",
             "location": "FSKTM, MM6"
         },
         {
@@ -221,7 +222,7 @@ let dummyResponse = {
             "title": "Machine Learning Workshop",
             "dateTime": "2021-03-08T15:53:53+00:00",
             "description": "Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.\n\nWe are sure that you will gain a lot by joining our workshop!",
-            "imageId": "E-6.jpg",
+            "imageId": "E-6.png",
             "location": "FSKTM, MM7"
         }
     ],
@@ -230,21 +231,21 @@ let dummyResponse = {
             "alumniId": "AL-1",
             "eventId": "E-1",
             "viewedByAlumni": "true",
-            "dateTime": "2021-04-14T15:53:53+00:00",
+            "dateTime": "2021-04-14T13:53:53+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "false",
-            "dateTime": "2021-04-15T15:53:53+00:00",
+            "viewedByAlumni": "true",
+            "dateTime": "2021-04-15T15:00:53+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "true",
-            "dateTime": "2021-04-16T15:53:53+00:00",
+            "viewedByAlumni": "false",
+            "dateTime": "2021-04-16T15:53:13+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
@@ -255,14 +256,14 @@ let dummyResponse = {
             "notificationClosedByAlumni": "false"
         },
         {
-            "alumniId": "AL-1",
+            "alumniId": "AL-2",
             "eventId": "E-5",
             "viewedByAlumni": "false",
             "dateTime": "2021-04-24T16:49:53+00:00",
             "notificationClosedByAlumni": "true"
         },
         {
-            "alumniId": "AL-2",
+            "alumniId": "AL-1",
             "eventId": "E-6",
             "viewedByAlumni": "false",
             "dateTime": "2021-04-24T16:53:53+00:00",
@@ -395,7 +396,7 @@ let dummyResponse = {
         {
             "adminId": "AD-1",
             "email": "xingyee@gmail.com",
-            "password": "@1bo86*1u-2?zw",
+            "password": "12345",
             "name": "Ong Xing Yee",
             "imageId": "AD-1.jpg"
         },

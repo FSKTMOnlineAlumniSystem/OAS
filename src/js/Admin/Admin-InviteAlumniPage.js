@@ -29,9 +29,10 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   
   // avatar column
   td = document.createElement('td');
-  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:20px;margin-right:auto;overflow:hidden">
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
     <img class='table__td--height' src=${'/Assets/imgs/'+alumni.imageId}>
   </div>`
+  td.setAttribute('width','140px')
   const img = document.createElement('img');
   // img.setAttribute('src', '/Assets/imgs/'+alumni.imageId);
   // img.setAttribute('width',100);
@@ -65,7 +66,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // status column
   td = document.createElement('td');
   div = document.createElement('div');
-  div.setAttribute('class', 'text-white rounded p-1');
+  div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
@@ -95,10 +96,10 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // a.innerHTML = `<i class="fas fa-user-plus fa-3x pl-2" aria-hidden="true" style="font-size: 35px; color: #000000">
   // </i>`;
   td.innerHTML=`
-  <a href="#" class="inviteNewAlumni"  role='button' id=${index} onclick='inviteNewAlumni(this),clicked()'>
-  <i class="fas fa-user-plus fa-3x pl-2"  aria-hidden="true" style="font-size: 35px; color: #000000">
+  <button class="inviteNewAlumni" id=${index} onclick='inviteNewAlumni(this),clicked()'>
+  <i class="fas fa-user-plus pl-2"  aria-hidden="true" >
   </i>
-</a>
+</button>
   `
   // td.appendChild(a);
   tr.appendChild(td);
@@ -117,9 +118,38 @@ window.toggle = function (source) {
   }
 }
 
-window.filterSearchBar = function() {
+// window.filterSearchBar = function() {
+//   // e.preventDefault();
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("searchBar");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("myTable");
+//   tr = table.getElementsByTagName("tr");
+//   for (var i = 1; i < tr.length; i++) {
+//     var tds = tr[i].getElementsByTagName("td");
+//     var flag = false;
+//     for(var j = 0; j < tds.length; j++){
+//       var td = tds[j];
+//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//         flag = true;
+//       } 
+//     }
+//     e.preventDefault();
+//     if(flag){
+//         tr[i].style.display = "";
+//     }
+//     else {
+//         tr[i].style.display = "none";
+//     }
+//   }
+// }
+
+var searchBar=document.getElementById('searchBar');
+searchBar.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('click search')
   var input, filter, table, tr, td, i;
-  input = document.getElementById("searchBar");
+  input = document.getElementById("input1");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
@@ -139,14 +169,14 @@ window.filterSearchBar = function() {
         tr[i].style.display = "none";
     }
   }
-}
+});
 
-// window.DeleteRowFunction = function(o) {
-//   var p=o.parentNode.parentNode.parentNode;
-//       p.parentNode.removeChild(p);
-//       dummyResponse.Alumni.splice(o.target.id, 1)
-//       updateDummyData(dummyResponse)
-//  }
+window.DeleteRowFunction = function(o) {
+  var p=o.parentNode.parentNode.parentNode;
+      p.parentNode.removeChild(p);
+      dummyResponse.Alumni.splice(o.target.id, 1)
+      updateDummyData(dummyResponse)
+ }
 
 $(document).ready(function () {
     $("#status,#department").on("change", function () {
@@ -191,7 +221,10 @@ window.SearchData = function(status, department) {
     }
 }
 //clearAll
-$("#clearAll").on("click", function () {
+// document.getque
+$("#clearAll").on("click", function (e) {
+  // clickedSomething=1;
+  e.preventDefault();
   $('#department option').prop('selected', function() {
       $('#myTable tbody tr').show();
       return this.defaultSelected;
@@ -248,7 +281,7 @@ window.inviteNewAlumni = function(o){
 }
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length-1; i >= 0; i--) {
+  for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
       var alumniId= dummyResponse.Alumni[i-1].alumniId;
     var eventId=localStorage.getItem('eventId')
@@ -263,6 +296,7 @@ window.inviteCheckedAlumni = function () {
     dummyResponse.Alumni_Event.push(newAlumniEvent)
     }
   }
+  checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(0)
   // location.reload();
@@ -271,6 +305,7 @@ window.clicked=function(){
   clickedSomething=clickedSomething+1;
 }
 window.backToPreviousPage=function(){
+  // localStorage.getItem('')
   if(clickedSomething>0){
     window.history.back();
     window.history.back();
