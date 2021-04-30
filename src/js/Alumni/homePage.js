@@ -155,7 +155,7 @@ for (let i = 0; i < 6; i++) {
                                             ${dummyResponse.Alumni[i].name}</h5><b>
                                     </div>
  
-                                    <p class="card-text mb-1"><span>Achievement:</span><br>
+                                    <p class="card-text mb-1"><span>Achievement</span><i class="fas fa-trophy ml-2" style="color: rgba(232, 196, 115, 0.88);"></i><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                         -webkit-line-clamp: 3;
                                         -webkit-box-orient: vertical;
