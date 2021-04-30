@@ -1,4 +1,4 @@
-// const imgPath = "../../..//Assets/imgs/";
+
 
 function loadJobList(pageIndex, outputList) {
   const jobList = document.getElementById("jobList");

@@ -1,7 +1,9 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
+//GET THE ARRAY FROM THE MYJOBPAGE WHEN USER CLICK ON IT
 let myJob = JSON.parse(localStorage.getItem("MyJobList"));
 
+//DISPALY THE DETAILS OF THE JOB ADS 
 if(myJob[0].imageId == null){
 
 document.getElementById("main-body").innerHTML += 
@@ -84,7 +86,6 @@ document.getElementById("main-body").innerHTML +=
     </div>
   </div>
   `;
-
     const readImageUrl = myJob[0].imgaeUrl;
     
     if(readImageUrl){
@@ -175,13 +176,13 @@ document.getElementById("main-body").innerHTML +=
 `;
 }
 
-// CLICK
+// CLICK BACK BUTTON
 $(".back").on("click", function () {
   console.log("click");
   localStorage.removeItem("MyJobList");
 });
 
-//EDIT
+//CLICK ON EDIT BUTTON 
 $(".edit").on("click", function () {
   console.log("click");
   localStorage.removeItem("MyJobList");

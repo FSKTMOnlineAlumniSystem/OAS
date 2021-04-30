@@ -3,6 +3,7 @@ import { dummyResponse, updateDummyData } from '../dummydata.js';
 
 let myJob = JSON.parse(localStorage.getItem("JobList"));
 
+//LOAD DETAILS AND DISPLAY
 if(myJob[0].imageId == null){
         document.getElementById("main-body").innerHTML += 
         `<div class="row">
@@ -170,8 +171,7 @@ if(myJob[0].imageId == null){
   `;
     }
 
-// CLICK 
-// document.querySelector(".back").addEventListener("click", function(){
+// CLICK BACK BUTTON
     $(".back").on("click", function(){
         console.log("click");
         localStorage.removeItem('JobList');

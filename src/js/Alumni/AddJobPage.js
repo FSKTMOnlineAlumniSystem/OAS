@@ -1,5 +1,6 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
+//CREATE A FORM TO CAPTURE USER INPUT
 document.getElementById("form").innerHTML += `
   <form id="job_ad_form">
     <div class="mb-3">
@@ -60,25 +61,8 @@ document.getElementById("form").innerHTML += `
     </div>
   </form>`;
 
-// /*  ==========================================
-//     SHOW UPLOADED IMAGE
-// * ========================================== */
-// var input = document.getElementById('upload');
-// function readURL(input) {
-//   if (input.files && input.files[0]) {
-//       var reader = new FileReader();
 
-//       reader.onload = function (e) {
-//         console.log(e);
-//         document.getElementById('imageResult').setAttribute('src', e.target.result)
-//         // localStorage.setItem("recent-image", reader.result);
-//       };
-//       reader.readAsDataURL(input.files[0]);
-//   }
-// }
-// input.addEventListener( 'change', (event)=>readURL(input));
-
-//INPUT
+//GET ID
 var imageUrl;
 const companyName = document.getElementById("companyName");
 const jobTitle = document.getElementById("jobTitle");
@@ -87,11 +71,9 @@ const salary = document.getElementById("salary");
 const email = document.getElementById("email");
 const description = document.getElementById("description");
 const form = document.querySelector("form");
-const jobIndex = dummyResponse.Job[dummyResponse.Job.length - 1].jobId.split(
-  "-"
-);
-console.log(jobIndex);
+const jobIndex = dummyResponse.Job[dummyResponse.Job.length - 1].jobId.split("-");
 
+//INPUT HANDLING ERROR
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -110,19 +92,15 @@ function setValid(el) {
 function isEmpty(obj) {
   return obj.value.length == 0;
 }
+
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const regex = /^[0-9]+$/;
 
-console.log("here");
 
-// form.addEventListener("submit", (e)=>{
-
-// document.getElementById("submit").addEventListener("click", function(){
-
+// CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
 form.addEventListener("submit", (e) => {
-  console.log("submit");
   e.preventDefault();
-  let errorExist = false; //false if no error exists in email, contactNumber, biography
+  let errorExist = false; 
 
   if (isEmpty(companyName)) {
     setInValid(companyName);
@@ -170,6 +148,7 @@ form.addEventListener("submit", (e) => {
     console.log("error");
     e.preventDefault();
   } else {
+    //IF NO ERROR, ADD THE NEW JOB ADS DETAILS INTO DUMMYDATA
     var newJob = {};
     newJob = {
       jobId: "J-" + (parseInt(jobIndex[1]) + 1),
@@ -189,29 +168,8 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-//   document.getElementById("submit").addEventListener("click", function(){
-//   if (errorExist) e.preventDefault();
-//   else {
-
-//     newJob = {
-//       "jobId" :  "J-"+(parseInt(jobIndex[1])+1),
-//       "alumniId" : "AL-1",
-//       "description" : description.value,
-//       "salary" : salary.value,
-//       "email" : email.value,
-//       "location" : location.value,
-//       "title" : jobTitle.value,
-//       "company" : companyName.value,
-//       "imageId" : null,
-//       "imgaeUrl" : imageUrl
-//     };
-
-//     dummyResponse.Job.push(newJob);
-//     updateDummyData(dummyResponse);}
-// });
-
+//DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
 var input = document.getElementById("upload");
-
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -220,7 +178,6 @@ function readURL(input) {
     reader.size = input.files[0].size;
 
     reader.onload = function (e) {
-      // const imgElement = document.getElementsByTagName("img");
       console.log(e);
 
       var img = new Image();
@@ -241,16 +198,10 @@ function readURL(input) {
         const srcEncoded = ctx.canvas.toDataURL(el.target, "image/jpg");
         console.log(srcEncoded);
         imageUrl = srcEncoded;
-        // document.getElementById('imageResult').setAttribute('src', e.target.result)
         document.querySelector("#imageResult").src = srcEncoded;
-        // document.getElementById('imageResult').setAttribute('src', el.target.result)
       };
     };
-    // localStorage.setItem("recent-image", reader.result);
-    // imageUrl = srcEncoded;
   }
-  // reader.readAsDataURL(input.files[0]);
 }
 input.addEventListener("change", (event) => readURL(input));
 
-/*Form Validation for Edit My Profile (email, contactNumber, biography)*/
