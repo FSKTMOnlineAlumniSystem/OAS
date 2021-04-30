@@ -144,7 +144,6 @@ function searching(e) {
       return match;
     });
   }
-  console.log(result);
   if (result.length == 0) {
     switch (url) {
       case "AlumniPage.html":
