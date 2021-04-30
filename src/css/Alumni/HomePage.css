@@ -139,14 +139,6 @@ button:hover {
   --swiper-theme-color: #78797b;
 }
 
-.eventTitle {
-  width: 147px;
-  color: rgba(71, 71, 71, 1);
-  font-family: Poppins;
-  font-weight: SemiBold;
-  font-size: 40px;
-  opacity: 1;
-}
 
 ::-webkit-scrollbar {
   width: 2px;

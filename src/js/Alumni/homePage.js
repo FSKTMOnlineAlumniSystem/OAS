@@ -440,13 +440,3 @@ function loop() {
 }
 
 loop();
-
-// var vid = document.getElementById("myVideo");
-
-// v();
-
-// function v() {
-
-//     vid.volume = 0.1;
-
-// }
