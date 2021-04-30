@@ -30,7 +30,7 @@ export const getCardStructure = (eventId, imageId, title, dateTime, location) =>
 }
 // the parent node should be a div with class 'row'
 export const loadEventSection = (eventArr, parentNode, errorMsg) => {
-  console.log(eventArr);
+  // console.log(eventArr);
   if(eventArr.length === 0){
     const noEventSection = document.createElement('div');
     noEventSection.setAttribute('class', 'alert custom-light-purple text-white');
@@ -48,7 +48,7 @@ export const loadEventSection = (eventArr, parentNode, errorMsg) => {
   
     // function to be called when this card clicked
     const evtHandler = evt => {
-      console.log(`set eventId to ${event.eventId}`);
+      // console.log(`set eventId to ${event.eventId}`);
       localStorage.setItem('eventId', event.eventId);
     };
     cardDiv.querySelector('#' + event.eventId + '-card').addEventListener('click', evtHandler);
@@ -57,7 +57,7 @@ export const loadEventSection = (eventArr, parentNode, errorMsg) => {
 
 // the parent node should be a div with class 'row'
 export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
-  console.log('loading event based on search query');
+  // console.log('loading event based on search query');
   if(eraseEventPage){
     document.getElementById('event-page-section').innerHTML = ``;
   }
@@ -75,7 +75,7 @@ export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
     loadEventSection(dummyResponse.Event, section);
     return;
   }
-  console.log(parentNode);
+  // console.log(parentNode);
   parentNode.appendChild(pageTitle);
   eventArr.forEach(event => {
     const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
@@ -87,7 +87,7 @@ export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
     section.appendChild(cardDiv);
     // function to be called when this card clicked
     const evtHandler = evt => {
-      console.log(`set eventId to ${event.eventId}`);
+      // console.log(`set eventId to ${event.eventId}`);
       localStorage.setItem('eventId', event.eventId);
     };
     cardDiv.querySelector('#' + event.eventId + '-card').addEventListener('click', evtHandler);

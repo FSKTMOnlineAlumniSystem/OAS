@@ -2,15 +2,10 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 let pageIndex = 0;
 const loadAlumniList = (pageIndex) => {
-  console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
-  console.log("the length" + dummyResponse.Alumni.length);
   // document.getElementById('eventList').innerHTML = "";
   let alumniStartIndex = pageIndex * 10;
   let alumniEndIndex = alumniStartIndex + 10;
-  console.log("page index" + pageIndex);
-  console.log("StartIndex" + alumniStartIndex);
-  console.log("EndIndex" + alumniEndIndex);
 
   var dataLength = dummyResponse.Alumni.length;
   var remainingLength = dataLength - alumniStartIndex;
@@ -21,7 +16,6 @@ const loadAlumniList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-    console.log("last page");
   } else {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item" id="nextPage">
@@ -33,7 +27,6 @@ const loadAlumniList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
-    console.log("first page");
   } else {
     document.getElementById("previousPage").innerHTML = `
         <li class="page-item" id="previousPage">
@@ -42,14 +35,12 @@ const loadAlumniList = (pageIndex) => {
   }
   // js for 1,2,3
   if (remainingLength <= 10) {
-    console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
-    console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -59,7 +50,6 @@ const loadAlumniList = (pageIndex) => {
         <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
-    console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -156,7 +146,6 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
-  console.log(index);
   td.appendChild(a);
   tr.appendChild(td);
 
@@ -202,7 +191,6 @@ reload();
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log('click search')
   var input, filter, table, tr, td, i;
   input = document.getElementById("input1");
   filter = input.value.toUpperCase();
@@ -310,9 +298,33 @@ $("#clearAll").on("click", function () {
   });
 });
 
-
-
-
-
-
-
+// click alumni name will pop out alumni details
+document.querySelectorAll('.alumniName').forEach((alumni) => {
+  alumni.addEventListener('click', (e) => {
+    localStorage.setItem('updateId', e.target.id);
+    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
+    $("#name").text(dummyResponse.Alumni[e.target.id].name);
+    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
+    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
+    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
+    $("#email").text(dummyResponse.Alumni[e.target.id].email);
+    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
+    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
+    $("#update").attr("id", "update " + e.target.id);
+    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
+      $("#accStatus").text("Not Verified");
+    } else {
+      $("#accStatus").text("Verified");
+    }
+    $("#approve").click(function () {
+      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
+      }
+      else {
+        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+        updateDummyData(dummyResponse);
+        location.reload();
+      }
+    })
+    $('#exampleModal').modal("show");
+  })
+})

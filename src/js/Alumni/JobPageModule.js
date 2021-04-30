@@ -8,13 +8,12 @@ function loadJobList(pageIndex, outputList) {
   var dataLength = outputList.length;
   var remainingLength = dataLength - jobStartIndex;
 
-  /*   js for button*/
+  /*   create  button*/
   if (jobEndIndex >= outputList.length) {
     document.getElementById("nextPage").innerHTML = `
       <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-    console.log("last page");
   } else {
     document.getElementById("nextPage").innerHTML = `
       <li class="page-item" id="nextPage">
@@ -26,7 +25,6 @@ function loadJobList(pageIndex, outputList) {
       <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
-    console.log("first page");
   } else {
     document.getElementById("previousPage").innerHTML = `
       <li class="page-item" id="previousPage">
@@ -35,7 +33,6 @@ function loadJobList(pageIndex, outputList) {
   }
   // js for 1,2,3
   if (remainingLength <= 10) {
-    console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -43,7 +40,6 @@ function loadJobList(pageIndex, outputList) {
         }</button>
       </li>`;
   } else if (remainingLength <= 20) {
-    console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -56,7 +52,6 @@ function loadJobList(pageIndex, outputList) {
         }</button>
       </li>`;
   } else {
-    console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
@@ -100,7 +95,6 @@ function loadJobList(pageIndex, outputList) {
           </a>
         </div>`;
     } else {
-      console.log(outputList[i].imageId);
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
           <a href="../../html/Alumni/JobDetailsPage.html">
@@ -127,14 +121,12 @@ function loadJobList(pageIndex, outputList) {
     }
   }
 
-  //CLICK
+  //CLICK TO LINK TO JOBDETAILSPAGE
   $("#jobList").on("click", ".card ", function () {
     var jobName = $(this).attr("data-name");
     var myJobList = [];
-    console.log(jobName);
     for (let i = 0; i < outputList.length; i++) {
       if (outputList[i].jobId == jobName) {
-        console.log("click");
         myJobList.push(outputList[i]);
         localStorage.setItem("JobList", JSON.stringify(myJobList));
         break;

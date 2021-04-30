@@ -15,18 +15,19 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
- <!-- jquery -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
- integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
- crossorigin="anonymous"></script>
- <!-- bootstrap -->
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
-<!-- fontawesome -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <meta charset="utf-8" />
-   
+
 
 </head>
 
@@ -35,19 +36,17 @@
     <div class="row h-100">
       <div class="custom-dark-gray px-0" id="left-nav">
       </div>
-    <div class="container-fluid" id="right-content">
-<br>
-          <div class="col-12">
-            <h2 style="font-weight: 600">List of Events</h2>
+      <div class="container-fluid" id="right-content">
+        <br>
+        <div class="col-12">
+          <h2 style="font-weight: 600">List of Events</h2>
           </divc>
 
           <!--search button-->
           <div class="rightop">
             <div class="input-group mb-3">
-              <input id="input1" type="text" class="form-control" 
-                style="font-weight: 200; font-style: italic" placeholder="Search"
-                aria-label="Search"  aria-describedby="basic-addon2">
-                 <!-- onkeyup="filterSearchBar(this)" -->
+              <input id="input1" type="text" class="form-control" style="font-weight: 200; font-style: italic"
+                placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button id="searchBar" class="btn btn-secondary my-2 my-sm-0" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
@@ -57,31 +56,24 @@
           </div>
           <br />
 
-          <!--add and delete button-->
-          <!-- <div class="container"> -->
-            <div class="row m-0">
-              <!-- <div class="col-12 align-items-center p-2 mb-2"> -->
-                <div class="btn-group" role="group" aria-label="Third group">
-                  <!--add button-->
-                  <a button type="button"
-                    class="btn btn-primary d-flex justify-content-center align-items-center rounded mr-2"
-                    href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
-                      style="font-size: 20px; "></i></a>
 
+          <div class="row m-0">
+            <div class="btn-group" role="group" aria-label="Third group">
+              <a button type="button"
+                class="btn btn-primary d-flex justify-content-center align-items-center rounded mr-2"
+                href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
+                  style="font-size: 20px; "></i></a>
 
-
-                  <!--trash button-->
-                  <button type="button"
-                    class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded"
-                    onclick="DeleteCheckedRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
-                      style="font-size: 20px; "></i></button>
-                </div>
-              <!-- </div> -->
-            <!-- </div> -->
+              <!--trash button-->
+              <button type="button"
+                class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded"
+                onclick="DeleteCheckedRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
+                  style="font-size: 20px; "></i></button>
+            </div>
           </div>
           <br />
 
-          <!-- <div id="table"> -->
+          <!-- table -->
           <div class="table-responsive">
             <table id="myTable" class="table table-striped table-sm something">
               <thead style="background-color:rgb(134, 75, 189);font-weight: 200; color:#ffffff">
@@ -100,69 +92,11 @@
                 </tr>
               </thead>
 
-
               <tbody>
                 <tr class="rowss">
                 </tr>
 
                 <tr class="rowss">
-                  <td>
-                    <div class="custom-control custom-checkbox mr-sm-2 ml-2">
-                      <input type="checkbox" class="custom-control-input" id="Boxes2">
-                      <label class="custom-control-label" for="Boxes2"></label>
-                    </div>
-                  </td>
-                  <td style="font-weight: 400; font-size: 18px">4, April 2021
-                    <div style="font-weight: 200; font-size: 14px">8:00pm - 10:00pm</div>
-                  </td>
-                  </td>
-                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                    <a href="Admin-EventPageUpdate.html">
-                      Sample Event
-                    </a>
-                  </td>
-                  <td
-                    style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                    Sample Description</td>
-                  <td style="font-weight: 200; font-size: 18px">xxx, Penang</td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Third group">
-                      <a href="#" role="button"><i class="fa fa-pencil fa-3x pr-2" aria-hidden="true"
-                          style="color: rgb(0, 0, 0); font-size: 35px">
-                        </i></a>
-                      <!-- Button trigger modal -->
-                      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Launch demo modal
-                          </button> -->
-                      <a href="#" role="button" data-toggle="modal" data-target="#exampleModal"><i
-                          class="fa fa-trash fa-3x pl-2" aria-hidden="true"
-                          style="color: rgb(255, 49, 49); font-size: 35px">
-                        </i></a>
-
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              Are you sure you want to delete event?
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                              <button type="button" class="btn btn-primary"
-                                onclick="DeleteRowFunction(this)">Yes</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
                 </tr>
               </tbody>
 
@@ -173,33 +107,61 @@
           <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
           </div>
+
+
           <span id="pageIndex"></span>
 
-          <!-- yanwen button -->
+
+          <!-- title modal -->
+          <div class="modal fade" id="titleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+                  <button type="button" id="closeCancelChangesModalButton" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                  <img src='' class="mx-auto d-block" alt="name" id="imageTitle" width="200px" height="auto">
+                  <br>
+                  <b class="m-0"> Title : </b>
+                  <p id="title"></p>
+                  <b class="m-0"> Description : </b>
+                  <p id="description"></p>
+                  <b class="m-0"> Location : </b>
+                  <p id="location"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="editButton" class="btn btn-primary"
+                    onclick="location.href = 'Admin-EventPageUpdate.html'">
+
+                    <i class="fas fa-edit">
+                    </i>
+                    Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  button -->
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
                 <button onclick="previousPage()" class="page-link">Previous</button>
               </li>
               <div class="pages list-group list-group-horizontal">
-                <li class="page-item disabled">
-                  <button class="page-item" tabindex="-1" aria-disabled="true">1</button>
-                </li>
-                <li class="page-item"><button onclick="nextPage()">2</button></li>
-                <li class="page-item"><button onclick="nextPage();nextPage()">3</button></li>
-
               </div>
-
-              <!-- <li class="page-item" id="btn3"><button onclick="nextPage();nextPage()">3</button></li> -->
               <li class="page-item" id="nextPage">
                 <button onclick="nextPage()" class="page-link">Next</button>
               </li>
             </ul>
           </nav>
+
         </div>
       </div>
   </main>
-  
+
   <script type="text/javascript" src="../../js/utility.js"></script>
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
   <script src="..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>

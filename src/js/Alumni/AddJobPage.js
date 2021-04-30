@@ -145,7 +145,6 @@ form.addEventListener("submit", (e) => {
   }
 
   if (errorExist) {
-    console.log("error");
     e.preventDefault();
   } else {
     //IF NO ERROR, ADD THE NEW JOB ADS DETAILS INTO DUMMYDATA
@@ -178,7 +177,6 @@ function readURL(input) {
     reader.size = input.files[0].size;
 
     reader.onload = function (e) {
-      console.log(e);
 
       var img = new Image();
       img.src = e.target.result;
@@ -194,9 +192,7 @@ function readURL(input) {
         const ctx = canvas.getContext("2d");
 
         ctx.drawImage(el.target, 0, 0, canvas.width, canvas.height);
-        console.log(e.target);
         const srcEncoded = ctx.canvas.toDataURL(el.target, "image/jpg");
-        console.log(srcEncoded);
         imageUrl = srcEncoded;
         document.querySelector("#imageResult").src = srcEncoded;
       };

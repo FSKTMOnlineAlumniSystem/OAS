@@ -1,5 +1,3 @@
-console.log('testing')
-
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 sessionStorage.setItem('event', 'create')
 var imageName;
@@ -17,18 +15,6 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-// window.readURL = function (input) {
-//   inputValue = input.value;
-//   if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-
-//     reader.onload = function (e) {
-//       document.getElementById("prevImage").src = e.target.result;
-//       document.getElementById("wizardPicturePreview").src = e.target.result;
-//     }
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// }
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -47,12 +33,10 @@ function setValid(el) {
 /*Check the file extension of the image & Update preview*/
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
-  console.log('what is change :'+ e.target.files +"   "+e.target.files[0])
   let allowedExtensions =
     /(\.png|\.jpg|\.jpeg)$/i;
   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
     var reader = new FileReader();
-    console.log("reader")
     reader.onload = function (e) {
       document.getElementById("prevImage").src = e.target.result;
     }
@@ -62,19 +46,12 @@ function readURL(e) {
     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
   }
-  // console.log('jpg: '+allowedExtensions.test(e.target.value))
-  // if(allowedExtensions.test(e.target.value)){
-  //   setValid(img)
-  // }else{setInValid(img);
-  //   errorExist = true;
-  // }
 }
+
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
   return obj.value.length == 0;
 }
-// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-// const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -115,17 +92,8 @@ form.addEventListener('submit', (e) => {
     setValid(time);
   }
 
-
-  // if (isEmpty(img)) {
-  //   setInValid(img);
-  //   errorExist = true;
-  // } else {
-  //   setValid(img);
-  // }
-
   if (!errorExist) {
     add_element_to_array();
-    console.log('no error')
     saveButton.textContent = 'Saving...';
     setTimeout(() => {
       location.href = 'Admin-EventPage.html';
@@ -134,7 +102,6 @@ form.addEventListener('submit', (e) => {
 });
 
 window.add_element_to_array = function () {
-  console.log("add element")
   var title = document.getElementById("title").value;
   var description = document.getElementById("description").value;
   var location = document.getElementById("location").value;
@@ -144,25 +111,19 @@ window.add_element_to_array = function () {
     imageName = imgLocalPathArr[imgLocalPathArr.length-1];
 }
 
-  // var imageArr = inputValue.split("\\");
-  // imageName = imageArr[imageArr.length - 1];
-  // console.log("imageName: " + imageName);
   var endIndex = dummyResponse.Event.length;
   var newId = endIndex + 1
   var eventId = "E-" + newId
-  var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege ltr
-  // var d = new Date(dummyResponse.Event[i].dateTime);
+  var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege later
   var date = document.getElementById("date").value;
   var time = document.getElementById("time").value;
-  console.log(date)
   var year = date.split("-")[0];
   var month = date.split("-")[1];
   var day = date.split("-")[2];
   var hours = time.split(":")[0];
   var min = time.split(":")[1];
   const newDate = new Date(year, month, day, hours, min, "0");
-  console.log(date)
-
+  
   var newEvent = {
     eventId: eventId,
     adminId: adminId,
@@ -174,9 +135,7 @@ window.add_element_to_array = function () {
   }
   dummyResponse.Event.splice(endIndex, 0, newEvent)
   updateDummyData(dummyResponse)
-  console.log(dummyResponse)
-  // location.reload();
-}
+  }
 
 window.setEventId = function () {
   var endIndex = dummyResponse.Event.length;
@@ -185,24 +144,16 @@ window.setEventId = function () {
   localStorage.setItem('eventId', eventId);
 }
 /*Check whether there is any changes that might be lost*/
-// const cancelButton = document.querySelector('#cancelButton');
 cancelButton.addEventListener('click', () => {
   var titlevalue = document.getElementById("title").value;
   var descriptionvalue = document.getElementById("description").value;
   var locatevalue = document.getElementById("location").value;
   var datevalue = document.getElementById("date").value;
   var timevalue = document.getElementById("time").value;
-  console.log('title: ' + titlevalue)
-  console.log('description: ' + descriptionvalue)
-  console.log('location: ' + locatevalue)
-  console.log('date: ' + datevalue)
-  console.log('time: ' + timevalue)
-
   var image = document.getElementById("prevImage").src;
   var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
   if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
     && !datevalue && !timevalue) {
-    console.log("hereeeeeeeeeee")
     location.href = 'Admin-EventPage.html';
   } else {
     /*POP UP MODAL ask if cancel will lose changes */
