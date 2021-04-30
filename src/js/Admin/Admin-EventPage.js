@@ -1,20 +1,22 @@
 import {dummyResponse, updateDummyData} from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
+
+
 let pageIndex = 0;
 
 const loadEventList = (pageIndex) => {
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
+ 
   var dataLength = dummyResponse.Event.length;
   var remainingLength = dataLength - eventStartIndex;
-
   /*   js for button*/
   if (eventEndIndex >= dummyResponse.Event.length) {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-     } else {
+   } else {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item" id="nextPage">
             <button  onclick="nextPage()" class="page-link" >Next</button>
@@ -25,17 +27,15 @@ const loadEventList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
-    
     } else {
     document.getElementById("previousPage").innerHTML = `
         <li class="page-item" id="previousPage">
             <button   onclick="previousPage()" class="page-link">Previous</button>
           </li>`;
   }
-
   // js for 1,2,3
   if (remainingLength <= 10) {
-    document.getElementsByClassName("pages")[0].innerHTML = `
+     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
@@ -88,7 +88,7 @@ const loadEventList = (pageIndex) => {
                  <div style="font-weight: 200; font-size: 14px">${getReadableTime(dummyResponse.Event[i].dateTime)}</div>
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                 <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#exampleModal">
+                 <a class="eventTitle" id=${i} href="Admin-EventPageUpdate.html" data-toggle="modal" data-target="#titleModal">
                 ${dummyResponse.Event[i].title
       }
               </a>
@@ -122,12 +122,13 @@ const loadEventList = (pageIndex) => {
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
     var newRow = tableRef.insertRow(tableRef.rows.length);
+
     newRow.innerHTML = newRowContent;
   }
 };
 
-// check all 
 window.toggle = function (source) {
+
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i] != source)
@@ -135,11 +136,13 @@ window.toggle = function (source) {
   }
 }
 
-// check single box
+
 window.check = function (source, i) {
+
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes[i].checked = source.checked;
-  }
+
+}
 
 window.nextPage = function () {
   pageIndex++;
@@ -151,6 +154,15 @@ window.previousPage = function () {
 };
 loadEventList(pageIndex);
 
+// window.onload = function (i) {
+//   console.log("function is running")
+//   // localStorage.setItem("eventID",dummyResponse.Event[i].eventId)
+//   // console.log("event id"+ dummyResponse.Event[i].eventId)
+//   console.log(i)
+//   // console.log(dummyResponse.Event[i].eventId)
+// }
+
+
 window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
@@ -158,12 +170,14 @@ window.updateEvent = function (o) {
 }
 
 window.DeleteRowFunction = function (o) {
+
   var findId = o.id.split(" ")[1]
   dummyResponse.Event.splice(findId, 1)
   updateDummyData(dummyResponse)
-  loadEventList(pageIndex)
-}
 
+  loadEventList(pageIndex)
+  // location.reload();
+}
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
@@ -174,44 +188,37 @@ window.DeleteCheckedRow = function () {
   checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
+  // location.reload();
 }
 
-
+var clickedAlumniId;
 document.querySelectorAll('.eventTitle').forEach((title) => {
-  title.addEventListener('click', (e) => {
-    document.getElementById("exampleModal").innerHTML =
-      `<div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Event</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body" >
-                      <img src="${imgPath+dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
-                      <br>
-                      <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
-                      ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
-                      ${new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}`}; 
-                      ${new Date(dummyResponse.Event[e.target.id].dateTime).toLocaleTimeString()}</p> -->
-                      <p> Title : ${dummyResponse.Event[e.target.id].title}</p>
-                      <p>Description : ${dummyResponse.Event[e.target.id].description}</p>
-                      <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary"
-                        onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">
-                        <i class="fas fa-edit" >
-                    </i>
-                        Edit</button>
-                    </div>
-                  </div>
-                </div>`
-  }
-  )
-}
-)
+  title.addEventListener('click',(e)=>{
+		clickedAlumniId = e.target.id;
+    // localStorage.setItem('updateId',clickedAlumniId);
+    console.log("hiiiiiii"+clickedAlumniId)
+		document.querySelector('#title').textContent = dummyResponse.Event[clickedAlumniId].title
+    document.querySelector('#description').textContent = dummyResponse.Event[clickedAlumniId].description
+    document.querySelector('#location').textContent = dummyResponse.Event[clickedAlumniId].location
+    
+
+  })
+})
+
+// var updateId;
+// document.querySelector('#editButton').addEventListener {
+  
+  
+// }
+
+// document.querySelectorAll().forEach(btn=>
+//   {
+//     btn.addEventListener('click',(e)=>{
+//       clickedAlumniId = e.target.id;
+//     })
+//   }
+//   )
+
 // filter
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
@@ -281,3 +288,66 @@ window.SearchData = function(status, department) {
         });
     }
 }
+/*Close Modal */
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+  $(modalId).modal('hide');
+}
+ //model
+//  document.querySelectorAll('.eventTitle').forEach((title) => {
+//   title.addEventListener('click', (e) => {
+//     console.log(document.getElementById("exampleModal"));
+//     document.getElementById("exampleModal").innerHTML =
+//       `<div class="modal-dialog">
+//                   <div class="modal-content">
+//                     <div class="modal-header">
+//                       <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+//                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//                         <span aria-hidden="true">&times;</span>
+//                       </button>
+//                     </div>
+//                     <div class="modal-body" >
+//                       <img src="${imgPath+dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
+//                       <br>
+//                       <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
+//                       ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
+//                       ${new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}`}; 
+//                       ${new Date(dummyResponse.Event[e.target.id].dateTime).toLocaleTimeString()}</p> -->
+//                       <p> Title : ${dummyResponse.Event[e.target.id].title}</p>
+//                       <p>Description : ${dummyResponse.Event[e.target.id].description}</p>
+//                       <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
+//                     </div>
+//                     <div class="modal-footer">
+//                       <button type="button" class="btn btn-primary"
+//                         onclick="location.href = 'Admin-EventPageUpdate.html'; ${localStorage.setItem('updateId', e.target.id)}">
+//                         <i class="fas fa-edit" >
+//                     </i>
+//                         Edit</button>
+//                     </div>
+//                   </div>
+//                 </div>`
+//   }
+//   )
+// }
+// )
+
+
+//
+// console.log(document.getElementById("titleModal"));
+// document.getElementById("modal-body").innerHTML =
+//   `
+//                   <img src="${imgPath+dummyResponse.Event[e.target.id].imageId}" class="mx-auto d-block" alt="name" width="200px" height="auto">
+//                   <br>
+//                   <!-- <p>Schedule :${`${new Intl.DateTimeFormat("en", { day: "2-digit" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}, 
+//                   ${new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))} 
+//                   ${new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date(dummyResponse.Event[e.target.id].dateTime))}`}; 
+//                   ${new Date(dummyResponse.Event[e.target.id].dateTime).toLocaleTimeString()}</p> -->
+//                   <p> Title : ${dummyResponse.Event[e.target.id].title}</p>
+//                   <p>Description : ${dummyResponse.Event[e.target.id].description}</p>
+//                   <p>Location : ${dummyResponse.Event[e.target.id].location} </p>
+//                 `
+//                 console.log('target id: '+e.target.id);
+//                 localStorage.setItem('updateId', e.target.id)
+//                 // localStorage.setItem('UpdateId',e.target.id);
+//                 $("#titleModal").modal()
