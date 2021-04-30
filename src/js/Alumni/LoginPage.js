@@ -27,6 +27,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
+//form validation for forgot modal
 form_2.addEventListener('submit', (evt) => {
 
     let errorExist = false;
@@ -48,7 +49,7 @@ form_2.addEventListener('submit', (evt) => {
 
 });
 
-
+//form validation for sign in
 form_1.addEventListener('submit', (ev) => {
 
     let errorExist = false;
@@ -61,7 +62,6 @@ form_1.addEventListener('submit', (ev) => {
         setErrorFor(staticEmail);
         errorExist = true;
     } else {
-        console.log("elseemail");
 
         for (let i = 0; i < dummyResponse.Alumni.length; i++) {
 
@@ -85,7 +85,7 @@ form_1.addEventListener('submit', (ev) => {
                         if (inputPasswordValue == dummyResponse.Alumni[i].password) {
 
                             //To save who is logged in
-                            console.log(dummyResponse.Alumni[i].alumniId);
+
                             localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
                             if (!localStorage.getItem('dummyResponse')) {
                                 updateDummyData(dummyResponse);
@@ -114,43 +114,50 @@ form_1.addEventListener('submit', (ev) => {
             setErrorFor(staticEmail);
             setErrorFor(inputPassword);
         }
-
     }
 
     if (errorExist) {
         ev.preventDefault();
     }
     else {
-
         ev.preventDefault();
         jumpHome();
     }
-
-
 });
 
 
+//go to homePage
 function jumpHome() {
+
     location.replace("../../html/Alumni/homePage.html");
+
 }
 
 
 img.addEventListener('change', (e) => readURL(e));
+
 function readURL(e) {
+
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
+
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+
         var reader = new FileReader();
+
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
+
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
+
 }
 
+//form validation for sign up
 form.addEventListener('submit', (e) => {
 
     let errorExist = false;
@@ -164,43 +171,25 @@ form.addEventListener('submit', (e) => {
     const BatchValue = Batch.value.trim();
     const GenderValue = Gender.value.trim();
 
-    console.log(FirstNameValue);
-    console.log(emailValue);
-    console.log(LastNameValue);
-    console.log(ICValue);
-    console.log(passwordValue);
-    console.log(DepartmentValue);
-    console.log(BatchValue);
-    console.log(GenderValue);
-
 
     if (DepartmentValue == 0) {
-
         setErrorFor(Department);
         errorExist = true;
-
     } else {
-
         setSuccessFor(Department);
     }
 
     if (BatchValue == 0) {
-
         setErrorFor(Batch);
         errorExist = true;
-
     } else {
-
         setSuccessFor(Batch);
-
     }
 
     if (GenderValue == 0) {
-
         setErrorFor(Gender);
         errorExist = true;
     } else {
-
         setSuccessFor(Gender);
     }
 
@@ -242,18 +231,16 @@ form.addEventListener('submit', (e) => {
         setSuccessFor(Password);
     }
 
-    console.log(img.value);
+
     var imgValue = img.value;
     var imgid = imgValue.split("\\");
     var i = imgid.length - 1;
     var im = imgid[i];
 
-    console.log(im);
 
     if (errorExist) {
         e.preventDefault();
     } else {
-
         const obj = {
             "alumniId": "AL-" + dummyResponse.Alumni.length,
             "approvedBy": "",
@@ -274,13 +261,12 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         getWait();
 
-
     }
-
-
 });
 
+//pop up the wait for verification modal
 function getWait() {
+
     $('#wait').modal('toggle');
     $('#signUP').modal('hide');
 
@@ -299,23 +285,29 @@ function checkLength(passwordValue) {
 }
 
 function setErrorFor(input) {
+
     if (input.classList.contains("is-valid")) {
         input.classList.replace("is-valid", "is-invalid");
     } else {
         input.classList.add("is-invalid");
     }
+
 }
 
 function setSuccessFor(input) {
+
     if (input.classList.contains("is-invalid")) {
         input.classList.replace("is-invalid", "is-valid");
     } else {
         input.classList.add("is-valid");
     }
+
 }
 
 function isEmpty(obj) {
+
     return obj.length == 0;
+
 }
 
 

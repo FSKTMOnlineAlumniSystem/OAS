@@ -2,15 +2,10 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 let pageIndex = 0;
 const loadAlumniList = (pageIndex) => {
-  console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
-  console.log("the length" + dummyResponse.Alumni.length);
   // document.getElementById('eventList').innerHTML = "";
   let alumniStartIndex = pageIndex * 10;
   let alumniEndIndex = alumniStartIndex + 10;
-  console.log("page index" + pageIndex);
-  console.log("StartIndex" + alumniStartIndex);
-  console.log("EndIndex" + alumniEndIndex);
 
   var dataLength = dummyResponse.Alumni.length;
   var remainingLength = dataLength - alumniStartIndex;
@@ -21,7 +16,6 @@ const loadAlumniList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-    console.log("last page");
   } else {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item" id="nextPage">

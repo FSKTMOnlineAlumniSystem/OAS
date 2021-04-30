@@ -102,7 +102,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
 // scroll to bottom when user click 'Contact Us'
 const contactUsNavItem = nav.querySelector('#contact-us-nav-item');
 contactUsNavItem.addEventListener('click', function(event){
-  console.log('clicked');
+  // console.log('clicked');
   footer.scrollIntoView({behavior: "smooth"});
 });
 
