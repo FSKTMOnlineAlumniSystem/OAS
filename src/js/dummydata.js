@@ -1,18 +1,19 @@
-let dummyResponse = {
+let dummyResponse =
+{
     "Alumni": [
         {
             "alumniId": "AL-1",
             "approvedBy": "AD-1",
-            "email": "teh@gmail.com",
-            "password": "evpgZk!8rm0H",
+            "email": "tey@gmail.com",
+            "password": "12345",
             "icNumber": "690110-10-1251",
             "gender": "male",
-            "name": "Teh Kok Soon",
+            "name": "Tey Kok Soon",
             "department": "Artificial Intelligence",
             "graduated": "2003",
             "imageId": "AL-1.png",
             "contactNumber": "03-79676347",
-            "biography": "Teh Kok Soon is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Tey is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-2",
@@ -26,7 +27,7 @@ let dummyResponse = {
             "graduated": "2006",
             "imageId": "AL-2.png",
             "contactNumber": "03-79676348",
-            "biography": "Ang Tan Foo is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
+            "biography": "Ang is currently working at Sony, Hokkaido in Japan, building and expanding systems as a full stack lead developer. ."
         },
         {
             "alumniId": "AL-3",
@@ -85,7 +86,6 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-7",
-            "approvedBy": "",
             "email": "tan@gmail.com",
             "password": "/[x62r6akK!TL",
             "icNumber": "810110-10-1258",
@@ -99,7 +99,6 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-8",
-            "approvedBy": "",
             "email": "limxt@gmail.com",
             "password": "SaH$?6K^;zD",
             "icNumber": "820110-10-1714",
@@ -113,7 +112,6 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-9",
-            "approvedBy": "",
             "email": "alisa21@gmail.com",
             "password": "p_A3/eh!eG@",
             "icNumber": "880110-10-1100",
@@ -127,13 +125,12 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-10",
-            "approvedBy": "",
             "email": "rohana@um.edu.my",
             "password": ").2VKRk[v^?fwsQEFb",
             "icNumber": "920126-10-1210",
             "gender": "female",
             "name": "Rohana binti Jani",
-            "department": "Multimedia",
+            "department": "Multemedia",
             "graduated": "2019",
             "imageId": "AL-10.jpg",
             "contactNumber": "012-6773226",
@@ -141,7 +138,6 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-11",
-            "approvedBy": "",
             "email": "juliana@gmail.com",
             "password": "VULhL,]D8L",
             "icNumber": "930109-10-1260",
@@ -155,7 +151,6 @@ let dummyResponse = {
         },
         {
             "alumniId": "AL-12",
-            "approvedBy": "",
             "email": "behyunlian@gmail.com",
             "password": "#<3{\\mJ$65",
             "icNumber": "930210-10-1262",
@@ -173,7 +168,7 @@ let dummyResponse = {
             "eventId": "E-1",
             "adminId": "AD-1",
             "title": "Constraint programming Workshop",
-            "dateTime": "2021-04-04T15:00:53+00:00",
+            "dateTime": "2021-04-04T15:53:53+00:00",
             "description": "Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.\n\nThrough this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.",
             "imageId": "E-1.png",
             "location": "FSKTM, MM2"
@@ -182,7 +177,7 @@ let dummyResponse = {
             "eventId": "E-2",
             "adminId": "AD-1",
             "title": "Database Admin Career",
-            "dateTime": "2021-04-03T15:05:53+00:00",
+            "dateTime": "2021-04-03T15:53:53+00:00",
             "description": "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.\n\nDatabase Admin Career will tell you the job scope as a Database Administrator in details!",
             "imageId": "E-2.png",
             "location": "FSKTM, MM3"
@@ -229,21 +224,21 @@ let dummyResponse = {
             "alumniId": "AL-1",
             "eventId": "E-1",
             "viewedByAlumni": "true",
-            "dateTime": "2021-04-14T15:53:53+00:00",
+            "dateTime": "2021-04-14T13:53:53+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-2",
-            "viewedByAlumni": "false",
-            "dateTime": "2021-04-15T15:53:53+00:00",
+            "viewedByAlumni": "true",
+            "dateTime": "2021-04-15T15:00:53+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
             "alumniId": "AL-1",
             "eventId": "E-3",
-            "viewedByAlumni": "true",
-            "dateTime": "2021-04-16T15:53:53+00:00",
+            "viewedByAlumni": "false",
+            "dateTime": "2021-04-16T15:53:13+00:00",
             "notificationClosedByAlumni": "false"
         },
         {
@@ -261,7 +256,7 @@ let dummyResponse = {
             "notificationClosedByAlumni": "true"
         },
         {
-            "alumniId": "AL-2",
+            "alumniId": "AL-1",
             "eventId": "E-6",
             "viewedByAlumni": "false",
             "dateTime": "2021-04-24T16:53:53+00:00",
@@ -394,7 +389,7 @@ let dummyResponse = {
         {
             "adminId": "AD-1",
             "email": "xingyee@gmail.com",
-            "password": "@1bo86*1u-2?zw",
+            "password": "12345",
             "name": "Ong Xing Yee",
             "imageId": "AD-1.jpg"
         },
