@@ -156,38 +156,39 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)">
+  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
-  </i>`;
-  td.appendChild(a);
+  </i></a>`;
+  console.log(index);
+    td.appendChild(a);
   tr.appendChild(td);
 
   tbody.appendChild(tr);
 });
 
-window.filterSearchBar = function () {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchBar");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (var i = 1; i < tr.length; i++) {
-    var tds = tr[i].getElementsByTagName("td");
-    var flag = false;
-    for (var j = 0; j < tds.length; j++) {
-      var td = tds[j];
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-      }
-    }
-    if (flag) {
-      tr[i].style.display = "";
-    }
-    else {
-      tr[i].style.display = "none";
-    }
-  }
-}
+// window.filterSearchBar = function () {
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("searchBar");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("myTable");
+//   tr = table.getElementsByTagName("tr");
+//   for (var i = 1; i < tr.length; i++) {
+//     var tds = tr[i].getElementsByTagName("td");
+//     var flag = false;
+//     for (var j = 0; j < tds.length; j++) {
+//       var td = tds[j];
+//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//         flag = true;
+//       }
+//     }
+//     if (flag) {
+//       tr[i].style.display = "";
+//     }
+//     else {
+//       tr[i].style.display = "none";
+//     }
+//   }
+// }
 
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -198,9 +199,11 @@ window.toggle = function (source) {
 }
 
 window.DeleteRowFunction = function (o) {
+  console.log("o"+o)
   var p = o.parentNode.parentNode.parentNode;
+  console.log('id:'+ o.id)
   p.parentNode.removeChild(p);
-  dummyResponse.Alumni.splice(o.target.id, 1)
+  dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
   location.reload();
 }
