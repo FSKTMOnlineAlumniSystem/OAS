@@ -1,7 +1,13 @@
 import { dummyResponse, updateDummyData } from '../dummydata.js';
 
-const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
+//get the current signed in alumni id from localStorage
+const currentAlumniId = localStorage.getItem('SignedInAlumniId');
+//get the current alumni object
+const alumni = dummyResponse.Alumni.filter(function (alumni) {
+    return alumni.alumniId === currentAlumniId;
+})[0];
 
+const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
@@ -17,25 +23,6 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
-const currentAlumniId = localStorage.getItem('SignedInAlumniId');
-const alumni = dummyResponse.Alumni.filter(function (alumni) {
-    return alumni.alumniId === currentAlumniId;
-})[0];
-
-function setInValid(el) {
-    if (el.classList.contains("is-valid")) {
-        el.classList.replace("is-valid", "is-invalid");
-    } else {
-        el.classList.add("is-invalid");
-    }
-}
-function setValid(el) {
-    if (el.classList.contains("is-invalid")) {
-        el.classList.replace("is-invalid", "is-valid");
-    } else {
-        el.classList.add("is-valid");
-    }
-}
 
 /*Check the file extension of the image & Update preview*/
 img.addEventListener('change', (e) => readURL(e));
@@ -126,6 +113,7 @@ function closeModal(modalId) {
     $(modalId).modal('hide');
 }
 
+//load all the data when landing the page
 function loadData() {
     wizardPicturePreview.src = imgPath + alumni.imageId;
     name.textContent = alumni.name;

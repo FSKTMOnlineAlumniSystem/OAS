@@ -4,6 +4,7 @@ const approvedAlumni = document.querySelector('#approvedAlumni');
 const unapprovedAlumni = document.querySelector('#unapprovedAlumni');
 const numberOfEvents = document.querySelector('#numberOfEvents');
 
+//load all the data when landing the page
 function loadData(){
     approvedAlumni.textContent = 0;
     unapprovedAlumni.textContent = 0;

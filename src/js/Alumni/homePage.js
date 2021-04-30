@@ -63,7 +63,7 @@ for (let i = 0; i < 6; i++) {
 
     card_event.innerHTML = `
 
-    <div class="card h-100" style="aspect-ratio:1/1.5;overflow:hidden;" id="${dummyResponse.Event[latest_1[i]].eventId}">
+    <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
        
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
         

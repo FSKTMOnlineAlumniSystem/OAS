@@ -9,24 +9,17 @@ body {
     color: #797979;
 }
 
-#info{
+.info{
     color: #7A7A7A;
 }
 
-.col a{
+.col-8 a{
     text-decoration: none;
     color: #7A7A7A;
 }
 
 .back:hover{
     text-decoration: none;
-}
-
-.bi-box-arrow-left{
-   vertical-align: -0.7rem;
-   font-size:23px;
-   font-style: normal;
-   color: black;
 }
 
 .back {
@@ -43,8 +36,7 @@ body {
     color: rgb(167, 0, 0);
   }
   
-  .fa-sack-dollar{
+.fa-sack-dollar{
     color: #28a745;
-    /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
-  }
+ }
 
