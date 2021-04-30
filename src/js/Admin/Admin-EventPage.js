@@ -6,8 +6,8 @@ console.log("link js");
 //   $('#myInput').trigger('focus')
 // })
 //eventList
-let pageIndex = '0';
-var loaded='0';
+let pageIndex = 0;
+
 const loadEventList = (pageIndex) => {
   console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
