@@ -1,5 +1,12 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
+//get the signed in admin Id from localStorage
+const currentAdminId = localStorage.getItem("SignedInAdminId");
+//get the current admin object
+const admin = dummyResponse.Admin.filter(function (admin) {
+  return admin.adminId === currentAdminId;
+})[0];
+
 const wizardPicturePreview = document.querySelector("#wizardPicturePreview");
 const img = document.querySelector("#wizard-picture");
 const name = document.querySelector("#name");
@@ -15,25 +22,6 @@ const choosePictureDescription = document.querySelector(
   "#choosePictureDescription"
 );
 
-const currentAdminId = localStorage.getItem("SignedInAdminId");
-const admin = dummyResponse.Admin.filter(function (admin) {
-  return admin.adminId === currentAdminId;
-})[0];
-
-function setInValid(el) {
-  if (el.classList.contains("is-valid")) {
-    el.classList.replace("is-valid", "is-invalid");
-  } else {
-    el.classList.add("is-invalid");
-  }
-}
-function setValid(el) {
-  if (el.classList.contains("is-invalid")) {
-    el.classList.replace("is-invalid", "is-valid");
-  } else {
-    el.classList.add("is-valid");
-  }
-}
 
 /*Check the file extension of the image & Update preview*/
 img.addEventListener("change", (e) => readURL(e));
@@ -116,11 +104,13 @@ cancelButton.addEventListener("click", () => {
 closeCancelChangesModalButton.addEventListener("click", () =>
   closeModal("#cancelChangesModal")
 );
+//Stay at the page
 stayButton.addEventListener("click", () => closeModal("#cancelChangesModal"));
 function closeModal(modalId) {
   $(modalId).modal("hide");
 }
 
+//load all the data when landing the page
 function loadData() {
   wizardPicturePreview.src = imgPath + admin.imageId;
   name.value = admin.name;

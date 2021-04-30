@@ -2,18 +2,18 @@ body {
     font-family: 'Poppins';
     font-weight: bold;
     margin: 5%;
+}
 
-    }
 #job{
     background-color: #EBEBEB;
     color: #797979;
 }
 
-#info{
+.info{
     color: #7A7A7A;
 }
 
-.col a{
+.col-8 a{
     text-decoration: none;
     color: #7A7A7A;
 }
@@ -22,6 +22,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .back {
     text-decoration: none;
     color:black;
@@ -33,5 +34,4 @@ body {
   
   .fa-sack-dollar{
     color: #28a745;
-    /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
   }

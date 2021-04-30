@@ -1,5 +1,6 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 
+//PASS IN THE FUNCTION
 function loadMyJobList(pageIndex, outputList, count) {
   const alumniID = localStorage.getItem("SignedInAlumniId");
   const jobList = document.getElementById("jobList");
@@ -86,6 +87,7 @@ function loadMyJobList(pageIndex, outputList, count) {
     return;
   }
 
+  //LOAD THE JOBLIST BASED ON DUMMYDATA
   for (let i = jobStartIndex; i < outputList.length; i++) {
     if (outputList[i].alumniId == alumniID) {
       if (outputList[i].imageId == null) {
@@ -147,12 +149,11 @@ function loadMyJobList(pageIndex, outputList, count) {
   }
 
   const deleteButton = document.querySelector("#deleteButton");
-  const closeDeleteModalButton = document.querySelector(
-    "#closeDeleteModalButton"
-  );
+  const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
   const clickButton = document.querySelectorAll(".clickButton");
   var deleteID;
 
+  //CLICKING THE TRASH ICON
   clickButton.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       deleteID = e.currentTarget.id;
@@ -161,6 +162,7 @@ function loadMyJobList(pageIndex, outputList, count) {
     });
   });
 
+  //CLICK ON THE "DELETE" BUTTON IN CONFIMARTION MODAL
   deleteButton.addEventListener("click", function (e) {
     for (let i = 0; i < outputList.length; i++) {
       if (outputList[i].jobId == deleteID) {
@@ -175,17 +177,19 @@ function loadMyJobList(pageIndex, outputList, count) {
     }
   });
 
+  //CLOSE THE MODAL
   function closeModal(modalId) {
     $(modalId).modal("hide");
   }
 
+  //CLICK ON THE CLOSE BUTTON OF THE CONFIRMATION MODAL
   if (closeDeleteModalButton) {
     closeDeleteModalButton.addEventListener("click", () =>
       closeModal("#deleteModal")
     );
   }
 
-  //CLICK
+  //CLICK ON THE CARDS WHICH WILL LINK TO MYJOBDETAILS PAGE
   $("#jobList").on("click", ".card ", function () {
     var jobName = $(this).attr("data-name");
     var myJobList = [];
