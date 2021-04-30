@@ -431,10 +431,12 @@ let dummyResponse =
     ]
 };
 
+//Check if localStorage contains the dummyResponse and replace it
 if (localStorage.getItem('dummyResponse')) {
     dummyResponse = JSON.parse(localStorage.getItem('dummyResponse'));
 }
 
+//Update the current changes(CREATE, DELETE, EDIT) to the localStorage
 function updateDummyData(dummyResponse) {
     localStorage.setItem('dummyResponse', JSON.stringify(dummyResponse));
 }
