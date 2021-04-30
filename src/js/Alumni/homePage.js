@@ -1,5 +1,4 @@
 import { dummyResponse } from "../dummydata.js";
-console.log("link js");
 
 localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
@@ -23,8 +22,6 @@ for (let i = 0; i < dummyResponse.Event.length; i++) {
 }
 
 dayy_1.sort();
-console.log(dayy_1);
-console.log(yearr_1);
 
 
 for (var i = 0; i < dayy_1.length; i++) {
@@ -37,7 +34,6 @@ for (var i = 0; i < dayy_1.length; i++) {
 
 
     if (yearr_1[a_1[2]] == Yr_1) {
-
         latest_1[i] = a_1[2];
     }
 
@@ -109,22 +105,17 @@ for (let i = 0; i < 6; i++) {
 
 
     const E = document.getElementById('event');
-    // console.log(E);
 
     const evtHandler = evt => {
-        // console.log(`set eventId to ${dummyResponse.Event[latest_1[i]].eventId}`);
+    
         localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
         location.href = "/src/html/Alumni/EventDetailsPage.html";
     };
 
-    console.log(dummyResponse.Event[latest_1[i]].eventId);
     card_event.querySelector('#' + dummyResponse.Event[latest_1[i]].eventId).addEventListener('click', evtHandler);
 
-
     E.appendChild(card_event);
-
 }
-
 
 
 
@@ -167,26 +158,17 @@ for (let i = 0; i < 6; i++) {
 
 
     const A = document.getElementById('alumni');
-    // console.log(A);
 
     const evtHandler = evt => {
 
-        // console.log("clickkk");
-        // console.log(`set eventId to ${dummyResponse.Alumni[i].alumniId}`);
-        // var s = dummyResponse.Alumni[i].alumniId.split("");
-        // console.log(s[3]);
-        // console.log(s);
         localStorage.setItem('alumniprofile', i);
         location.href = "/src/html/Alumni/AlumniProfilePage.html";
 
     };
 
-    // console.log(dummyResponse.Alumni[i].alumniId);
     card_alumni.querySelector('#' + dummyResponse.Alumni[i].alumniId).addEventListener('click', evtHandler);
 
-
     A.appendChild(card_alumni);
-
 
 }
 
@@ -211,8 +193,6 @@ for (let i = 0; i < dummyResponse.Job.length; i++) {
 
 dayy.sort();
 
-
-
 for (var i = 0; i < dayy.length; i++) {
 
 
@@ -221,21 +201,15 @@ for (var i = 0; i < dayy.length; i++) {
     var currentYr = new Date();
     var Yr = currentYr.getFullYear();
 
-
-
-
     if (yearr[a[2]] == Yr) {
-
         latest[i] = a[2];
     }
-
 }
 
 
 
 //job
 document.getElementById('job_row_1').innerHTML = "";
-
 
 for (let i = 0; i < 2; i++) {
 
@@ -248,12 +222,9 @@ for (let i = 0; i < 2; i++) {
       
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" class="job_image" >
-     
-    
     `
 
     const J = document.getElementById('job_row_1');
-    // console.log(J);
     var myJobList_1 = [];
     myJobList_1.push(dummyResponse.Job[latest[i]]);
 
@@ -270,8 +241,6 @@ for (let i = 0; i < 2; i++) {
     card_job.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
 
     J.appendChild(card_job);
-
-
 }
 
 document.getElementById('job_row_2').innerHTML = "";
@@ -289,12 +258,7 @@ for (let i = 2; i < 4; i++) {
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" class="job_image" >
         </a>
-   
-    
     `
-
-
-
 
     const J_1 = document.getElementById('job_row_2');
     
@@ -313,7 +277,6 @@ for (let i = 2; i < 4; i++) {
     card_job_1.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
 
     J_1.appendChild(card_job_1);
-
 }
 
 
@@ -428,7 +391,6 @@ window.onload = function () {
     }
     // INJECT CSS
     var css = document.createElement("style");
-    css.type = "text/css";
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
 };

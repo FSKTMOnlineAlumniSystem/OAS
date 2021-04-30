@@ -62,7 +62,6 @@ form_1.addEventListener('submit', (ev) => {
         setErrorFor(staticEmail);
         errorExist = true;
     } else {
-        console.log("elseemail");
 
         for (let i = 0; i < dummyResponse.Alumni.length; i++) {
 
@@ -236,7 +235,6 @@ form.addEventListener('submit', (e) => {
         setSuccessFor(Password);
     }
 
-    console.log(img.value);
     var imgValue = img.value;
     var imgid = imgValue.split("\\");
     var i = imgid.length - 1;
