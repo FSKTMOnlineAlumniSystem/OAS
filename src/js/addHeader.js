@@ -3,7 +3,8 @@
  * Having 2 together may cause bug
  * So this script make it customizable
  * just set if you want the user to be Alumni or Admin below
- * Below header set the alumni as AL-1
+ * Below header set the user as AD-1 admin if the url includes 'admin'
+ * else set the user as AL-1 alumni
  */
 
 import { dummyResponse, updateDummyData } from "./dummydata.js"

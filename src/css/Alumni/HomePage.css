@@ -430,7 +430,7 @@ font-family: Poppins; */
 }
 
 .image--max-size-100-percent{
-  height: 70vh;
+  /* height: 70vh; */
   max-width: 100%;
   width: auto;
   aspect-ratio: 2.4/1;

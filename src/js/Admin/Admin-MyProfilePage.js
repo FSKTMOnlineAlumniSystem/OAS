@@ -1,6 +1,8 @@
 import {dummyResponse,updateDummyData} from '../dummydata.js';
 
+//get the signed in admin Id from localStorage
 const currentAdminId = localStorage.getItem('SignedInAdminId');
+//get the current admin object
 const admin = dummyResponse.Admin.filter(function (admin) {
     return admin.adminId === currentAdminId;
 })[0];
@@ -14,6 +16,7 @@ const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
 const changePasswordButton = document.querySelector('#changePasswordButton');
 
+//Validation for change password
 function verifyPasswordAndConfirmPassword(e) {
     let errorExist = false;
     if (oldPassword.value!==admin.password) {
@@ -55,21 +58,7 @@ function verifyPasswordAndConfirmPassword(e) {
     }
 }
 
-function setInValid(el){
-    if(el.classList.contains("is-valid")){
-        el.classList.replace("is-valid","is-invalid");
-    }else {
-        el.classList.add("is-invalid");
-    }
-}
-function setValid(el){
-    if(el.classList.contains("is-invalid")) {
-        el.classList.replace("is-invalid", "is-valid");
-    }else{
-        el.classList.add("is-valid");       
-    }
-}
-
+//validate the new password criteria
 function verifyPasswordCriteria(password) {
     //valid password length range from 5 to 20
     if (password.value.length < 5 || password.value.length > 20) {
@@ -78,6 +67,7 @@ function verifyPasswordCriteria(password) {
     return true;
 }
 
+//load all the data when landing the page
 function loadData() {
     profilePicture.src = imgPath + admin.imageId;
     name.textContent = admin.name;

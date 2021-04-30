@@ -83,7 +83,7 @@ window.previousPage = function () {
   loadAlumniList(pageIndex);
 };
 
-
+// add alumni list
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
 dummyResponse.Alumni.forEach((alumni, index) => {
@@ -111,7 +111,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
     <img class='table__td--height' src=${'/Assets/imgs/' + alumni.imageId}>
   </div>`
-  td.setAttribute('width','140px')
+  td.setAttribute('width', '140px')
   tr.appendChild(td);
 
   // name column
@@ -119,8 +119,8 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   td.innerHTML = `<p id=${index} class="alumniName">
                       ${alumni.name}
                     </p>`
-  td.setAttribute('class','eventTitle');
-                    // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
+  td.setAttribute('class', 'eventTitle');
+  // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
   // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
   // let span = document.createElement('span');
   // span.innerHTML = alumni.name;
@@ -160,36 +160,39 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
   console.log(index);
-    td.appendChild(a);
+  td.appendChild(a);
   tr.appendChild(td);
 
   tbody.appendChild(tr);
 });
-
-// window.filterSearchBar = function () {
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("searchBar");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   for (var i = 1; i < tr.length; i++) {
-//     var tds = tr[i].getElementsByTagName("td");
-//     var flag = false;
-//     for (var j = 0; j < tds.length; j++) {
-//       var td = tds[j];
-//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//         flag = true;
-//       }
-//     }
-//     if (flag) {
-//       tr[i].style.display = "";
-//     }
-//     else {
-//       tr[i].style.display = "none";
-//     }
-//   }
-// }
-
+//search bar filter
+var searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('click search')
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("input1");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var tds = tr[i].getElementsByTagName("td");
+    var flag = false;
+    for (var j = 0; j < tds.length; j++) {
+      var td = tds[j];
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        flag = true;
+      }
+    }
+    if (flag) {
+      tr[i].style.display = "";
+    }
+    else {
+      tr[i].style.display = "none";
+    }
+  }
+});
+//select all check box
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = 0; i < checkboxes.length; i++) {
@@ -197,17 +200,17 @@ window.toggle = function (source) {
       checkboxes[i].checked = source.checked;
   }
 }
-
+//delete row by row only
 window.DeleteRowFunction = function (o) {
-  console.log("o"+o)
+  console.log("o" + o)
   var p = o.parentNode.parentNode.parentNode;
-  console.log('id:'+ o.id)
+  console.log('id:' + o.id)
   p.parentNode.removeChild(p);
   dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
   location.reload();
 }
-
+//filter by using dropdown
 $(document).ready(function () {
   $("#status,#department").on("change", function () {
     var status = $('#status').find("option:selected").val();
@@ -277,7 +280,7 @@ $("#clearAll").on("click", function () {
   });
 });
 
-// modal
+// click alumni name will pop out alumni details
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
@@ -309,11 +312,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $('#exampleModal').modal("show");
     console.log(e.target.id);
 
-    window.updateEvent = function (o) {
-      var eventId = o.id.split(" ")[1]
-      localStorage.setItem("updateId", eventId)
-      console.log("update event")
-    }
+
   })
 })
 

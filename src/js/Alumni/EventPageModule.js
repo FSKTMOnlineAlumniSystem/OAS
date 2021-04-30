@@ -1,5 +1,6 @@
 import { dummyResponse } from '../dummydata.js';
 
+// return the node of card
 export const getCardStructure = (eventId, imageId, title, dateTime, location) => {
   return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
   <div class="card h-100 card--bg-light-gray">
@@ -54,6 +55,7 @@ export const loadEventSection = (eventArr, parentNode, errorMsg) => {
   });
 }
 
+// the parent node should be a div with class 'row'
 export const loadEventList = (eventArr, parentNode, eraseEventPage) => {
   console.log('loading event based on search query');
   if(eraseEventPage){
