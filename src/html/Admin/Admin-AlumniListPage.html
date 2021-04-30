@@ -86,14 +86,23 @@
                 </button>
               </div>
               <div class="col-5 input-group mb-3">
-                <input id="searchBar" type="text" onkeyup="filterSearchBar()" class="form-control"
+                <input id="input1" type="text" class="form-control" 
+                style="font-weight: 200; font-style: italic" placeholder="Search"
+                aria-label="Search"  aria-describedby="basic-addon2">
+                 <!-- onkeyup="filterSearchBar(this)" -->
+              <div class="input-group-append">
+                <button id="searchBar" class="btn btn-secondary my-2 my-sm-0" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+                <!-- <input id="searchBar" type="text" onkeyup="filterSearchBar()" class="form-control"
                   style="font-weight: 200; font-style: italic" placeholder="Search" aria-label="Search"
                   aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="fa fa-search" aria-hidden="true"></i>
                   </button>
-                </div>
+                </div> -->
               </div>
             </div>
           </form>

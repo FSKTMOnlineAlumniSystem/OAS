@@ -24,3 +24,17 @@ td a {
     text-decoration: inherit;
   }
 .eventTitle:hover { background-color: #B19CD9; }
+
+
+.deleteRowButton{
+  font-size:  25px; 
+  color: rgb(255, 49, 49);
+  border: none;
+background: none;
+}
+.updateButton{
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  border: none;
+  background: none;
+}
