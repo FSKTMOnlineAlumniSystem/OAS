@@ -132,12 +132,16 @@ const loadEventList = (pageIndex) => {
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                    <a href="Admin-EventPageUpdate.html" role="button" onclick="updateEvent(this)" id="update ${i}">
-                    <i class="fas fa-edit pr-2" aria-hidden="true" style="color: rgb(0, 0, 0); font-size: 25px">
-                    </i></a>
-                      <a href="#" role="button" value="Delete Row" onclick="DeleteRowFunction(this)" id="row ${i}">
-                      <i class="far fa-trash-alt pl-2" aria-hidden="true" style="color: rgb(255, 49, 49); font-size: 25px">
-                       </i></a>
+                   
+                  <button class="updateButton" onclick="updateEvent(this)" id="update ${i}">
+                    <i class="fas fa-edit pr-2" aria-hidden="true">
+                    </i></button>
+                    
+
+
+                      <button class="deleteRowButton d-flex justify-content-center align-items-center" onclick="DeleteRowFunction(this)" id="row ${i}">
+                      <i class="far fa-trash-alt pl-2" aria-hidden="true">
+                       </i></button>
                   </div>
                 </td>
             </tr>`;
@@ -200,6 +204,7 @@ window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
   console.log("update event")
+  location.href="Admin-EventPageUpdate.html"
 }
 
 window.DeleteRowFunction = function (o) {
@@ -272,11 +277,38 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
 }
 )
 // filter
-window.filterSearchBar = function() {
+// window.filterSearchBar = function() {
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("searchBar");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementsByClassName("table-responsive")[0];
+//   tr = table.getElementsByTagName("tr");
+//   for (var i = 1; i < tr.length; i++) {
+//     var tds = tr[i].getElementsByTagName("td");
+//     var flag = false;
+//     for(var j = 0; j < tds.length; j++){
+//       var td = tds[j];
+//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//         flag = true;
+//       } 
+//     }
+//     if(flag){
+//         tr[i].style.display = "";
+//     }
+//     else {
+//         tr[i].style.display = "none";
+//     }
+//   }
+// }
+
+var searchBar=document.getElementById('searchBar');
+searchBar.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('click search event')
   var input, filter, table, tr, td, i;
-  input = document.getElementById("searchBar");
+  input = document.getElementById("input1");
   filter = input.value.toUpperCase();
-  table = document.getElementsByClassName("table-responsive")[0];
+  table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (var i = 1; i < tr.length; i++) {
     var tds = tr[i].getElementsByTagName("td");
@@ -294,7 +326,8 @@ window.filterSearchBar = function() {
         tr[i].style.display = "none";
     }
   }
-}
+});
+
 $(document).ready(function () {
     $("#status,#department").on("change", function () {
         var status = $('#status').find("option:selected").val();
