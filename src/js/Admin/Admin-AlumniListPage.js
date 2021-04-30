@@ -27,6 +27,7 @@ const loadAlumniList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
+    console.log("first page");
   } else {
     document.getElementById("previousPage").innerHTML = `
         <li class="page-item" id="previousPage">
@@ -35,12 +36,14 @@ const loadAlumniList = (pageIndex) => {
   }
   // js for 1,2,3
   if (remainingLength <= 10) {
+    console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
+    console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -50,6 +53,7 @@ const loadAlumniList = (pageIndex) => {
         <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
+    console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -149,6 +153,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
+  console.log(index);
   td.appendChild(a);
   tr.appendChild(td);
 
@@ -158,6 +163,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log('click search')
   var input, filter, table, tr, td, i;
   input = document.getElementById("input1");
   filter = input.value.toUpperCase();
@@ -190,7 +196,9 @@ window.toggle = function (source) {
 }
 //delete row by row only
 window.DeleteRowFunction = function (o) {
+  console.log("o" + o)
   var p = o.parentNode.parentNode.parentNode;
+  console.log('id:' + o.id)
   p.parentNode.removeChild(p);
   dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
@@ -270,6 +278,7 @@ $("#clearAll").on("click", function () {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
+    console.log($('#exampleModal'))
     $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
     $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
@@ -295,6 +304,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     })
 
     $('#exampleModal').modal("show");
+    console.log(e.target.id);
 
 
   })

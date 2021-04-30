@@ -18,11 +18,14 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 const icNumber = document.querySelector('#icNumber');
 
 var i = localStorage.getItem("updateId")
+console.log(i)
 const currentAlumniId = dummyResponse.Alumni[i].alumniId;
+console.log(currentAlumniId)
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
+console.log(alumni.imageId)
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
         el.classList.replace("is-valid", "is-invalid");
@@ -155,6 +158,8 @@ cancelButton.addEventListener('click', () => {
         $('#cancelChangesModal').modal('show');
     }
 });
+
+
 
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
