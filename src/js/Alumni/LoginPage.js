@@ -114,41 +114,47 @@ form_1.addEventListener('submit', (ev) => {
             setErrorFor(staticEmail);
             setErrorFor(inputPassword);
         }
-
     }
 
     if (errorExist) {
         ev.preventDefault();
     }
     else {
-
         ev.preventDefault();
         jumpHome();
     }
-
-
 });
 
 
+//go to homePage
 function jumpHome() {
+
     location.replace("../../html/Alumni/homePage.html");
+
 }
 
 
 img.addEventListener('change', (e) => readURL(e));
+
 function readURL(e) {
+
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
+
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+
         var reader = new FileReader();
+
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
+
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
+
 }
 
 //form validation for sign up
@@ -166,34 +172,24 @@ form.addEventListener('submit', (e) => {
     const GenderValue = Gender.value.trim();
 
 
-
     if (DepartmentValue == 0) {
-
         setErrorFor(Department);
         errorExist = true;
-
     } else {
-
         setSuccessFor(Department);
     }
 
     if (BatchValue == 0) {
-
         setErrorFor(Batch);
         errorExist = true;
-
     } else {
-
         setSuccessFor(Batch);
-
     }
 
     if (GenderValue == 0) {
-
         setErrorFor(Gender);
         errorExist = true;
     } else {
-
         setSuccessFor(Gender);
     }
 
@@ -235,6 +231,7 @@ form.addEventListener('submit', (e) => {
         setSuccessFor(Password);
     }
 
+
     var imgValue = img.value;
     var imgid = imgValue.split("\\");
     var i = imgid.length - 1;
@@ -244,7 +241,6 @@ form.addEventListener('submit', (e) => {
     if (errorExist) {
         e.preventDefault();
     } else {
-
         const obj = {
             "alumniId": "AL-" + dummyResponse.Alumni.length,
             "approvedBy": "",
@@ -265,16 +261,15 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         getWait();
 
-
     }
-
-
 });
 
 //pop up the wait for verification modal
 function getWait() {
+
     $('#wait').modal('toggle');
     $('#signUP').modal('hide');
+
 }
 
 function checkLength(passwordValue) {
@@ -290,23 +285,29 @@ function checkLength(passwordValue) {
 }
 
 function setErrorFor(input) {
+
     if (input.classList.contains("is-valid")) {
         input.classList.replace("is-valid", "is-invalid");
     } else {
         input.classList.add("is-invalid");
     }
+
 }
 
 function setSuccessFor(input) {
+
     if (input.classList.contains("is-invalid")) {
         input.classList.replace("is-invalid", "is-valid");
     } else {
         input.classList.add("is-valid");
     }
+
 }
 
 function isEmpty(obj) {
+
     return obj.length == 0;
+
 }
 
 

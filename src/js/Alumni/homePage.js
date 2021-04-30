@@ -26,12 +26,10 @@ dayy_1.sort();
 
 for (var i = 0; i < dayy_1.length; i++) {
 
-
     //day,month,index
     var a_1 = dayy_1[i].split(",");
     var currentYr_1 = new Date();
     var Yr_1 = currentYr_1.getFullYear();
-
 
     if (yearr_1[a_1[2]] == Yr_1) {
         latest_1[i] = a_1[2];
@@ -43,7 +41,6 @@ for (var i = 0; i < dayy_1.length; i++) {
 //event card
 for (let i = 0; i < 6; i++) {
 
-  
     var d = new Date(dummyResponse.Event[latest_1[i]].dateTime);
 
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
@@ -58,30 +55,24 @@ for (let i = 0; i < 6; i++) {
     <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
        
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
-        
                 <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
-            
             </div>
 
-        
         <div class="card-body" >
             <h5 class="card-title text-left">${dummyResponse.Event[latest_1[i]].title}</h5>
             <div class="card-text">
- 
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
                     <i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
                      </div>
                     <div class="col-10 d-flex flex-column">
                         <span>${`${da}, ${mo} ${ye}`}</span>
-                    </div>
-                    
+                    </div>                    
                 </div>
                     <div class="row">
                         <div class="col-2 d-flex flex-column">
                         <i class="far fa-clock" style="color: rgb(118, 172, 250);"></i>
                         </div>
-
                         <div class="col-10 d-flex flex-column">
                             <span>${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
@@ -95,11 +86,8 @@ for (let i = 0; i < 6; i++) {
                         <span>${dummyResponse.Event[latest_1[i]].location}</span>
                     </div>
                 </div>
- 
-            </div>
-                   
+            </div>                
          </div>
-       
     </div>
   `;
 
@@ -107,9 +95,10 @@ for (let i = 0; i < 6; i++) {
     const E = document.getElementById('event');
 
     const evtHandler = evt => {
-    
+
         localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
         location.href = "/src/html/Alumni/EventDetailsPage.html";
+
     };
 
     card_event.querySelector('#' + dummyResponse.Event[latest_1[i]].eventId).addEventListener('click', evtHandler);
@@ -130,18 +119,16 @@ for (let i = 0; i < 6; i++) {
     card_alumni.innerHTML = `
                      
                             <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
-                               
+
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
                                     <img class="card-img-top w-100" src="/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
-                                
                                 <div class="card-body">
                                     <div class="row d-flex justify-content-center m-0">
                                         <b><h5 class="card-title-title">
                                             ${dummyResponse.Alumni[i].name}</h5><b>
                                     </div>
- 
                                     <p class="card-text mb-1"><i class="fas fa-book-user text-secondary  mr-2"></i><span>Biography</span><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                         -webkit-line-clamp: 3;
@@ -149,12 +136,8 @@ for (let i = 0; i < 6; i++) {
                                         overflow: hidden;
                                         text-overflow: ellipsis;">${dummyResponse.Alumni[i].biography}</p>
                                     </p>
-                                    
                                 </div>
-                             
-                            </div>
-                       
-`
+                            </div> `
 
 
     const A = document.getElementById('alumni');
@@ -179,9 +162,9 @@ var yearr = [];
 
 for (let i = 0; i < dummyResponse.Job.length; i++) {
 
- 
+
     var d = new Date(dummyResponse.Job[i].postedDate);
-  
+
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
@@ -219,20 +202,18 @@ for (let i = 0; i < 2; i++) {
     card_job.innerHTML = `
  
         <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-      
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" class="job_image" >
-    `
+            width="100%" class="job_image" > `
 
     const J = document.getElementById('job_row_1');
     var myJobList_1 = [];
     myJobList_1.push(dummyResponse.Job[latest[i]]);
 
     const evtHandler = evt => {
-  
+
         var myJobList_1 = [];
         myJobList_1.push(dummyResponse.Job[latest[i]]);
-       
+
         localStorage.setItem('JobList', JSON.stringify(myJobList_1));
         location.href = "/src/html/Alumni/JobDetailsPage.html";
 
@@ -257,19 +238,19 @@ for (let i = 2; i < 4; i++) {
         <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
             <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" class="job_image" >
-        </a>
-    `
+        </a> `
+
 
     const J_1 = document.getElementById('job_row_2');
-    
+
     var myJobList = [];
     myJobList.push(dummyResponse.Job[latest[i]]);
 
     const evtHandler = evt => {
-      
+
         var myJobList = [];
         myJobList.push(dummyResponse.Job[latest[i]]);
-       
+
         localStorage.setItem('JobList', JSON.stringify(myJobList));
 
     };
@@ -340,6 +321,7 @@ AlumniView.onclick = function () {
 
 
 var TxtType = function (el, toRotate, period) {
+
     this.toRotate = toRotate;
     this.el = el;
     this.loopNum = 0;
@@ -347,9 +329,11 @@ var TxtType = function (el, toRotate, period) {
     this.txt = '';
     this.tick();
     this.isDeleting = false;
+
 };
 
 TxtType.prototype.tick = function () {
+
     var i = this.loopNum % this.toRotate.length;
     var fullTxt = this.toRotate[i];
 
@@ -376,29 +360,40 @@ TxtType.prototype.tick = function () {
     }
 
     setTimeout(function () {
+
         that.tick();
     }, delta);
+
 };
 
 window.onload = function () {
+
     var elements = document.getElementsByClassName('typewrite');
+
     for (var i = 0; i < elements.length; i++) {
+
         var toRotate = elements[i].getAttribute('data-type');
         var period = elements[i].getAttribute('data-period');
+
         if (toRotate) {
             new TxtType(elements[i], JSON.parse(toRotate), period);
         }
+
     }
+
     // INJECT CSS
     var css = document.createElement("style");
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
+
 };
 
 function loop() {
+
     $('.carousel').carousel({
         interval: 500
-      });
+    });
+
 }
 
 loop();

@@ -25,9 +25,11 @@ form_2.addEventListener('submit', (evt) => {
     } else {
         setSuccessFor(sendEmail);
     }
+
     if (errorExist) {
         evt.preventDefault();
     }
+
 });
 
 //form validation for sign in
@@ -84,27 +86,34 @@ form_1.addEventListener('submit', (ev) => {
         location.replace("../../html/Admin/admin-homePage.html");
         ev.preventDefault();
     }
+
 });
 
 
 
 function setErrorFor(input) {
+
     if (input.classList.contains("is-valid")) {
         input.classList.replace("is-valid", "is-invalid");
     } else {
         input.classList.add("is-invalid");
     }
+
 }
 
 function setSuccessFor(input) {
+
     if (input.classList.contains("is-invalid")) {
         input.classList.replace("is-invalid", "is-valid");
     } else {
         input.classList.add("is-valid");
     }
+
 }
 
 function isEmpty(obj) {
+
     return obj.length == 0;
+
 }
 
