@@ -267,6 +267,7 @@ window.inviteCheckedAlumni = function () {
     dummyResponse.Alumni_Event.push(newAlumniEvent)
     }
   }
+  checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(0)
   // location.reload();
