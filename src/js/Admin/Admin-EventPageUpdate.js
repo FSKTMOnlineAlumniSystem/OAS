@@ -1,4 +1,3 @@
-console.log('testing')
 sessionStorage.setItem('event', 'update')
 import {dummyResponse, updateDummyData} from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
@@ -23,19 +22,15 @@ var i = localStorage.getItem("updateId")
 localStorage.setItem('eventId',dummyResponse.Event[i].eventId)
 var d = new Date(dummyResponse.Event[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
-console.log("date"+todayDate);
 
 // const minute = d.getMinutes();
 let hour = d.getHours();
 let minute = d.getMinutes().toString();
   minute = minute.padStart(2, '0');
-console.log(hour)
-console.log(minute)
 
 document.getElementById('title').value=dummyResponse.Event[i].title
 document.getElementById('date').value=todayDate
 document.getElementById('time').value=hour +':'+ minute
-console.log(hour +':'+ minute)
 document.getElementById('description').value=dummyResponse.Event[i].description
 document.getElementById('location').value=dummyResponse.Event[i].location
 document.getElementById('prevImage').src=imgPath+dummyResponse.Event[i].imageId
@@ -64,12 +59,10 @@ function setValid(el) {
 /*Check the file extension of the image & Update preview*/
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
-  console.log('what is change :'+ e.target.files +"   "+e.target.files[0])
   let allowedExtensions =
     /(\.png|\.jpg|\.jpeg)$/i;
   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
     var reader = new FileReader();
-    console.log("reader")
     reader.onload = function (e) {
       document.getElementById("prevImage").src = e.target.result;
     }
@@ -126,7 +119,6 @@ form.addEventListener('submit', (e) => {
 
   if (!errorExist) {
     update_array();
-    console.log('no error')
     saveButton.textContent = 'Saving...';
     setTimeout(() => {
       location.href = 'Admin-EventPage.html';
@@ -136,12 +128,9 @@ form.addEventListener('submit', (e) => {
 
 window.update_array = function () {
     var i = localStorage.getItem("updateId")
-    console.log("i=" + i)
-    console.log("update element")
     var title = document.getElementById("title").value;
     var date = document.getElementById("date").value;
     var time = document.getElementById("time").value;
-console.log(date)
     var year = date.split("-")[0];
     var month =  date.split("-")[1];
     var day = date.split("-")[2];
@@ -155,10 +144,8 @@ console.log(date)
     if(img.value){
       const imgLocalPathArr = img.value.split('\\');
       imageName = imgLocalPathArr[imgLocalPathArr.length-1];
-      console.log("the image name is: "+imageName);
-    }
+      }
     else{
-      console.log('image value over here')
       imageName=dummyResponse.Event[i].imageId;
     }
     var eventId = dummyResponse.Event[i].eventId
@@ -174,16 +161,9 @@ console.log(date)
     }
     dummyResponse.Event.splice(i, 1, newEvent)
     updateDummyData(dummyResponse)
-    console.log(dummyResponse)
-}
+    }
 cancelButton.addEventListener('click', () => {
   
-  console.log('title: ' + titlevalue)
-  console.log('description: ' + descriptionvalue)
-  console.log('location: ' + locatevalue)
-  console.log('date: ' + datevalue)
-  console.log('time: ' + timevalue)
-
   var image = document.getElementById("prevImage").src;
   if (!img.value && 
     titlevalue==title.value && 
@@ -191,7 +171,6 @@ cancelButton.addEventListener('click', () => {
     locatevalue==locate.value&& 
     datevalue==date.value && 
     timevalue==time.value) {
-    console.log("hereeeeeeeeeee")
     location.href = 'Admin-EventPage.html';
   } else {
     /*POP UP MODAL ask if cancel will lose changes */

@@ -1,17 +1,10 @@
 import {dummyResponse, updateDummyData} from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
-console.log("link js");
 let pageIndex = 0;
 
 const loadEventList = (pageIndex) => {
-  console.log(dummyResponse)
-  console.log("the length" + dummyResponse.Event.length);
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
-  console.log("page index" + pageIndex);
-  console.log("StartIndex" + eventStartIndex);
-  console.log("EndIndex" + eventEndIndex);
-
   var dataLength = dummyResponse.Event.length;
   var remainingLength = dataLength - eventStartIndex;
 
@@ -21,8 +14,7 @@ const loadEventList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-    console.log("last page");
-  } else {
+     } else {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item" id="nextPage">
             <button  onclick="nextPage()" class="page-link" >Next</button>
@@ -33,8 +25,8 @@ const loadEventList = (pageIndex) => {
         <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
-    console.log("first page");
-  } else {
+    
+    } else {
     document.getElementById("previousPage").innerHTML = `
         <li class="page-item" id="previousPage">
             <button   onclick="previousPage()" class="page-link">Previous</button>
@@ -43,14 +35,12 @@ const loadEventList = (pageIndex) => {
 
   // js for 1,2,3
   if (remainingLength <= 10) {
-    console.log("<=10");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
       }</button>
         </li>`;
   } else if (remainingLength <= 20) {
-    console.log("<=20");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -60,7 +50,6 @@ const loadEventList = (pageIndex) => {
         <button class="page-link" onclick="nextPage()">${pageIndex + 2
       }</button></li>`;
   } else {
-    console.log("<=30");
     document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
@@ -139,7 +128,6 @@ const loadEventList = (pageIndex) => {
 
 // check all 
 window.toggle = function (source) {
-  console.log("checkbox")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i] != source)
@@ -149,11 +137,9 @@ window.toggle = function (source) {
 
 // check single box
 window.check = function (source, i) {
-  console.log("check row")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes[i].checked = source.checked;
-  console.log(i)
-}
+  }
 
 window.nextPage = function () {
   pageIndex++;
@@ -168,17 +154,12 @@ loadEventList(pageIndex);
 window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
-  console.log("update event")
   location.href="Admin-EventPageUpdate.html"
 }
 
 window.DeleteRowFunction = function (o) {
-  console.log(o)
-  console.log(o.id)
   var findId = o.id.split(" ")[1]
-  console.log("the id is:" + findId)
   dummyResponse.Event.splice(findId, 1)
-  console.log(dummyResponse.Event)
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
 }
@@ -198,7 +179,6 @@ window.DeleteCheckedRow = function () {
 
 document.querySelectorAll('.eventTitle').forEach((title) => {
   title.addEventListener('click', (e) => {
-    console.log(document.getElementById("exampleModal"));
     document.getElementById("exampleModal").innerHTML =
       `<div class="modal-dialog">
                   <div class="modal-content">
@@ -236,7 +216,6 @@ document.querySelectorAll('.eventTitle').forEach((title) => {
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log('click search event')
   var input, filter, table, tr, td, i;
   input = document.getElementById("input1");
   filter = input.value.toUpperCase();
