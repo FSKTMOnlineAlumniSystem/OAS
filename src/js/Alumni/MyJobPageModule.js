@@ -10,14 +10,13 @@ function loadMyJobList(pageIndex, outputList, count) {
   var dataLength = count;
   var remainingLength = dataLength - jobStartIndex;
 
-  /*   js for button*/
+  /*   create button*/
   if (count != 0) {
     if (jobEndIndex >= count) {
       document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
           <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
         </li>`;
-      console.log("last page");
     } else {
       document.getElementById("nextPage").innerHTML = `
         <li class="page-item" id="nextPage">
@@ -29,7 +28,6 @@ function loadMyJobList(pageIndex, outputList, count) {
         <li class="page-item disabled">
           <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
         </li>`;
-      console.log("first page");
     } else {
       document.getElementById("previousPage").innerHTML = `
         <li class="page-item" id="previousPage">
@@ -38,7 +36,6 @@ function loadMyJobList(pageIndex, outputList, count) {
     }
     // js for 1,2,3
     if (remainingLength <= 10) {
-      console.log("<=10");
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -46,7 +43,6 @@ function loadMyJobList(pageIndex, outputList, count) {
           }</button>
         </li>`;
     } else if (remainingLength <= 20) {
-      console.log("<=20");
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -59,7 +55,6 @@ function loadMyJobList(pageIndex, outputList, count) {
           }</button>
         </li>`;
     } else {
-      console.log("<=30");
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
@@ -117,7 +112,6 @@ function loadMyJobList(pageIndex, outputList, count) {
             </div>
           </div>`;
       } else {
-        console.log(outputList[i].jobId);
         document.getElementById("jobList").innerHTML += `
           <div class="col mb-4">
             <div class="card h-100" data-name=${outputList[i].jobId}> 
@@ -158,7 +152,6 @@ function loadMyJobList(pageIndex, outputList, count) {
     btn.addEventListener("click", function (e) {
       deleteID = e.currentTarget.id;
       $(`#deleteModal`).modal("show");
-      console.log(e.currentTarget.id);
     });
   });
 
@@ -171,7 +164,6 @@ function loadMyJobList(pageIndex, outputList, count) {
         dummyResponse.Job = outputList;
         updateDummyData(dummyResponse);
         closeModal(`#deleteModal`);
-        console.log(e.target.id);
         loadMyJobList(pageIndex, outputList, count);
       }
     }
@@ -193,10 +185,8 @@ function loadMyJobList(pageIndex, outputList, count) {
   $("#jobList").on("click", ".card ", function () {
     var jobName = $(this).attr("data-name");
     var myJobList = [];
-    console.log(jobName);
     for (let i = 0; i < outputList.length; i++) {
       if (outputList[i].jobId == jobName) {
-        console.log("click");
         myJobList.push(outputList[i]);
         localStorage.setItem("MyJobList", JSON.stringify(myJobList));
         break;
