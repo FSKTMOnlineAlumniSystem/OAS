@@ -49,8 +49,13 @@ td p {
   }
 .eventTitle:hover { background-color: #B19CD9; }
 
-main {
+/* main {
   font-size: 18px !important;
   font-family: Poppins !important;
 }
+ */
 
+ form, table{
+  font-size: 18px !important;
+  font-family: Poppins !important; 
+ }
