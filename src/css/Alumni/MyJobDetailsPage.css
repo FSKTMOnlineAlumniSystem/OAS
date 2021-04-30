@@ -9,11 +9,11 @@ body {
     color: #797979;
 }
 
-#info{
+.info{
     color: #7A7A7A;
 }
 
-.col a{
+.col-8 a{
     text-decoration: none;
     color: #7A7A7A;
 }
