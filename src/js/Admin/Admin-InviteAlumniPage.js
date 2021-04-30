@@ -66,7 +66,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // status column
   td = document.createElement('td');
   div = document.createElement('div');
-  div.setAttribute('class', 'text-white rounded p-1');
+  div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
