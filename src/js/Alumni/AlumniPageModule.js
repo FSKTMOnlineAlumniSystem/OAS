@@ -3,12 +3,13 @@ const imgPath = "../../../Assets/imgs/";
 function loadAlumniList(pageIndex, outputList) {
   const alumniList = document.getElementById("alumniList");
   alumniList.innerHTML = "";
+  // we set page content limit to 10
   let alumniStartIndex = pageIndex * 10;
   let alumniEndIndex = alumniStartIndex + 10;
 
   var dataLength = outputList.length;
   var remainingLength = dataLength - alumniStartIndex;
-  /*   js for button*/
+  /*   This is pages button for button*/
   if (alumniEndIndex >= outputList.length) {
     document.getElementById("nextPage").innerHTML = `
       <li class="page-item disabled">
