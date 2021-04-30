@@ -9,12 +9,17 @@ const { title, dateTime, description, imageId } = theEvent;
 const titleAndImage = document.createElement('div');
 titleAndImage.setAttribute('class', 'row')
 titleAndImage.innerHTML = `
-  <div class="col-12">
+
+  <div class="col-0 col-md-2">
+  </div>
+  <div class="col-12 col-md-8">
     <div class="row align-items-center">
-      <a href="../../html/Alumni/EventPage.html" class="btn btn-link back">
-      <i class="fas fa-chevron-left fa-2x"></i>
-      </a>
-      <h3 class="d-inline m-0">${title}</h3>
+      <div class="col-12">
+        <a href="../../html/Alumni/EventPage.html" class="btn btn-link back">
+        <i class="fas fa-chevron-left fa-2x"></i>
+        </a>
+        <h3 class="d-inline">${title}</h3>
+      </div>
     </div>
     
     <hr
@@ -26,7 +31,7 @@ titleAndImage.innerHTML = `
       "
     />
     <div class="row">
-      <div class="col-12 col-md-auto d-flex justify-content-center mb-3">
+      <div class="col-12 col-md-6 d-flex justify-content-center mb-3">
         <img
           src="/Assets/imgs/${imageId}"
           class="image--max-size-100-percent"
@@ -67,19 +72,24 @@ eventInfo.innerHTML = ``
 {/* <i class="far fa-clock fa-3x" style="color: rgb(118, 172, 250); font-size: 50px"></i> */}
 {/* <i class="fas fa-map-marked-alt fa-3x" style="color: rgb(167, 0, 0); font-size: 50px"></i> */}
 const descriptionBlock = document.createElement('div');
+descriptionBlock.setAttribute('class', 'row')
 descriptionBlock.innerHTML = `
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h4 class="pt-3"><b>Event Description</b></h4>
-        <p class="lead">
-          ${description}
-        </p>
+  <div class="col-0 col-md-2">
+  </div>
+  <div class="col-12 col-md-8">
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h4 class="pt-3"><b>Event Description</b></h4>
+            <p class="lead">
+              ${description}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>`
+  </div>`
 // console.log(eventInfo);
 document.getElementById('main-body').appendChild(titleAndImage);
 document.getElementById('main-body').appendChild(document.createElement('br'));
