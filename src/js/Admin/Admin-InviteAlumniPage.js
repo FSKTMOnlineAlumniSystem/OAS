@@ -29,9 +29,10 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   
   // avatar column
   td = document.createElement('td');
-  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:20px;margin-right:auto;overflow:hidden">
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
     <img class='table__td--height' src=${'/Assets/imgs/'+alumni.imageId}>
   </div>`
+  td.setAttribute('width','140px')
   const img = document.createElement('img');
   // img.setAttribute('src', '/Assets/imgs/'+alumni.imageId);
   // img.setAttribute('width',100);
@@ -65,7 +66,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   // status column
   td = document.createElement('td');
   div = document.createElement('div');
-  div.setAttribute('class', 'text-white rounded p-1');
+  div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
@@ -191,7 +192,10 @@ window.SearchData = function(status, department) {
     }
 }
 //clearAll
-$("#clearAll").on("click", function () {
+// document.getque
+$("#clearAll").on("click", function (e) {
+  // clickedSomething=1;
+  e.preventDefault();
   $('#department option').prop('selected', function() {
       $('#myTable tbody tr').show();
       return this.defaultSelected;
@@ -263,6 +267,7 @@ window.inviteCheckedAlumni = function () {
     dummyResponse.Alumni_Event.push(newAlumniEvent)
     }
   }
+  checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(0)
   // location.reload();
@@ -271,6 +276,7 @@ window.clicked=function(){
   clickedSomething=clickedSomething+1;
 }
 window.backToPreviousPage=function(){
+  // localStorage.getItem('')
   if(clickedSomething>0){
     window.history.back();
     window.history.back();
