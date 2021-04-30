@@ -1,6 +1,5 @@
 import{ dummyResponse,updateDummyData} from "../dummydata.js";
 
-console.log(dummyResponse);
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
@@ -83,7 +82,6 @@ dummyResponse.Alumni.forEach((alumni,index) => {
 });
 }
 window.toggle = function (source) {
-  console.log("checkbox")
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i] != source)
@@ -94,7 +92,6 @@ window.toggle = function (source) {
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log('click search')
   var input, filter, table, tr, td, i;
   input = document.getElementById("input1");
   filter = input.value.toUpperCase();
