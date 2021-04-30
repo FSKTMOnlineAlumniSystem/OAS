@@ -13,7 +13,7 @@ body{
 .image__fixed-height {
   height: auto;
   width: auto;
-  max-height: 200px;
+  /* max-height: 200px; */
 }
 
 /* .card--bg-light-gray{

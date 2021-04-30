@@ -3,6 +3,10 @@
   --input-padding-y: 0.75rem;
 }
 
+body{
+  
+  font-weight: 100!important;
+}
 
 .login-heading {
   font-weight: 300;

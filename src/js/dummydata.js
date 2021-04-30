@@ -22,7 +22,7 @@ let dummyResponse =
             "password": "CR4Z!f$@jJaK",
             "icNumber": "730110-10-1253",
             "gender": "male",
-            "name": "Ang Tan Foo",
+            "name": "Ang Tan Fong",
             "department": "Artificial Intelligence",
             "graduated": "2006",
             "imageId": "AL-2.png",
@@ -213,7 +213,7 @@ let dummyResponse =
             "title": "React to React",
             "dateTime": "2021-03-09T15:53:53+00:00",
             "description": "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.\n\nWait no more and join React to React now!!!",
-            "imageId": "E-5.jpg",
+            "imageId": "E-5.png",
             "location": "FSKTM, MM6"
         },
         {
@@ -222,7 +222,7 @@ let dummyResponse =
             "title": "Machine Learning Workshop",
             "dateTime": "2021-03-08T15:53:53+00:00",
             "description": "Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.\n\nWe are sure that you will gain a lot by joining our workshop!",
-            "imageId": "E-6.jpg",
+            "imageId": "E-6.png",
             "location": "FSKTM, MM7"
         }
     ],
