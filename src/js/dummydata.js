@@ -22,7 +22,7 @@ let dummyResponse =
             "password": "CR4Z!f$@jJaK",
             "icNumber": "730110-10-1253",
             "gender": "male",
-            "name": "Ang Tan Foo",
+            "name": "Ang Tan Fong",
             "department": "Artificial Intelligence",
             "graduated": "2006",
             "imageId": "AL-2.png",
