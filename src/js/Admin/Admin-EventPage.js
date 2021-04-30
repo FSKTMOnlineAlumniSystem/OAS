@@ -125,7 +125,7 @@ const loadEventList = (pageIndex) => {
 
     newRow.innerHTML = newRowContent;
   }
-
+// modal
   var clickedAlumniIndex;
   document.querySelectorAll('.eventTitle').forEach((title) => {
     title.addEventListener('click', (e) => {
@@ -179,9 +179,7 @@ window.DeleteRowFunction = function (o) {
   var findId = o.id.split(" ")[1]
   dummyResponse.Event.splice(findId, 1)
   updateDummyData(dummyResponse)
-
   loadEventList(pageIndex)
-  // location.reload();
 }
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -193,24 +191,7 @@ window.DeleteCheckedRow = function () {
   checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
-  // location.reload();
 }
-
-
-
-// var updateId;
-// document.querySelector('#editButton').addEventListener {
-
-
-// }
-
-// document.querySelectorAll().forEach(btn=>
-//   {
-//     btn.addEventListener('click',(e)=>{
-//       clickedAlumniIndex = e.target.id;
-//     })
-//   }
-//   )
 
 // filter
 var searchBar = document.getElementById('searchBar');
