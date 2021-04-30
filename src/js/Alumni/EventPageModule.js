@@ -29,7 +29,6 @@ export const getCardStructure = (eventId, imageId, title, dateTime, location) =>
 }
 // the parent node should be a div with class 'row'
 export const loadEventSection = (eventArr, parentNode, errorMsg) => {
-  console.log('loading event section');
   console.log(eventArr);
   if(eventArr.length === 0){
     const noEventSection = document.createElement('div');

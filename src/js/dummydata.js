@@ -256,7 +256,7 @@ let dummyResponse =
             "notificationClosedByAlumni": "false"
         },
         {
-            "alumniId": "AL-1",
+            "alumniId": "AL-2",
             "eventId": "E-5",
             "viewedByAlumni": "false",
             "dateTime": "2021-04-24T16:49:53+00:00",

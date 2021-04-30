@@ -10,7 +10,13 @@ const titleAndImage = document.createElement('div');
 titleAndImage.setAttribute('class', 'row')
 titleAndImage.innerHTML = `
   <div class="col-12">
-    <h3>${title}</h3>
+    <div class="row align-items-center">
+      <a href="../../html/Alumni/EventPage.html" class="btn btn-link back">
+      <i class="fas fa-chevron-left fa-2x"></i>
+      </a>
+      <h3 class="d-inline m-0">${title}</h3>
+    </div>
+    
     <hr
       style="
         height: 3px;
@@ -20,14 +26,14 @@ titleAndImage.innerHTML = `
       "
     />
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-auto d-flex justify-content-center mb-3">
         <img
           src="/Assets/imgs/${imageId}"
           class="image--max-size-100-percent"
           alt="Event Poster "
         />
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
         <div class='row my-3'>
           <div class='col-4 d-flex justify-content-center'>
             <i class="far fa-calendar-alt fa-3x" style="color: rgb(218, 58, 47); font-size: 50px"></i>
