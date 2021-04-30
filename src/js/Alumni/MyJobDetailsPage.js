@@ -1,5 +1,4 @@
-import { dummyResponse, updateDummyData } from '../dummydata.js';
-
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 let myJob = JSON.parse(localStorage.getItem("MyJobList"));
 
@@ -176,20 +175,15 @@ document.getElementById("main-body").innerHTML +=
 `;
 }
 
-// CLICK 
-$(".back").on("click", function(){
-    console.log("click");
-    localStorage.removeItem('MyJobList');
+// CLICK
+$(".back").on("click", function () {
+  console.log("click");
+  localStorage.removeItem("MyJobList");
 });
-
 
 //EDIT
-$(".edit").on("click", function(){
-    console.log("click");
-    localStorage.removeItem('MyJobList');
-    localStorage.setItem('EditJob', myJob[0].jobId);
+$(".edit").on("click", function () {
+  console.log("click");
+  localStorage.removeItem("MyJobList");
+  localStorage.setItem("EditJob", myJob[0].jobId);
 });
-
-
-
-

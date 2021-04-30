@@ -1,3 +1,7 @@
+/**
+ * Load this script after loading addHeader.js
+ * This nav make respective nav item 'active' based on the url
+ */
 const nav = document.createElement('nav');
 nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light container-fluid');
 nav.innerHTML = `
