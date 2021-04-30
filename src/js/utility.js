@@ -54,4 +54,5 @@ const iconClassName = {
   'mailIcon': 'fas fa-envelope-open-text',
   'pencilEditIcon': 'fas fa-pencil-alt',
   'AddUserIcon': 'fas fa-user-plus',
+  'tickIcon': 'fas fa-check-circle',
 }
