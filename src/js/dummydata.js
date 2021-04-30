@@ -73,6 +73,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-6",
+            "approvedBy": "",
             "email": "rachel@gmail.com",
             "password": "3Vq8PcwNks5Ng",
             "icNumber": "800110-10-1256",
@@ -86,6 +87,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-7",
+            "approvedBy": "",
             "email": "tan@gmail.com",
             "password": "/[x62r6akK!TL",
             "icNumber": "810110-10-1258",
@@ -99,6 +101,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-8",
+            "approvedBy": "",
             "email": "limxt@gmail.com",
             "password": "SaH$?6K^;zD",
             "icNumber": "820110-10-1714",
@@ -112,6 +115,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-9",
+            "approvedBy": "",
             "email": "alisa21@gmail.com",
             "password": "p_A3/eh!eG@",
             "icNumber": "880110-10-1100",
@@ -125,6 +129,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-10",
+            "approvedBy": "",
             "email": "rohana@um.edu.my",
             "password": ").2VKRk[v^?fwsQEFb",
             "icNumber": "920126-10-1210",
@@ -138,6 +143,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-11",
+            "approvedBy": "",
             "email": "juliana@gmail.com",
             "password": "VULhL,]D8L",
             "icNumber": "930109-10-1260",
@@ -151,6 +157,7 @@ let dummyResponse =
         },
         {
             "alumniId": "AL-12",
+            "approvedBy": "",
             "email": "behyunlian@gmail.com",
             "password": "#<3{\\mJ$65",
             "icNumber": "930210-10-1262",
