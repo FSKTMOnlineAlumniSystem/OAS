@@ -1,7 +1,6 @@
 const imgPath = "../../../Assets/imgs/";
 
 function loadAlumniList(pageIndex, outputList) {
-  console.log("called");
   const alumniList = document.getElementById("alumniList");
   alumniList.innerHTML = "";
   let alumniStartIndex = pageIndex * 10;
@@ -15,7 +14,7 @@ function loadAlumniList(pageIndex, outputList) {
       <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
       </li>`;
-    console.log("last page");
+    //This is the last page
   } else {
     document.getElementById("nextPage").innerHTML = `
       <li class="page-item" id="nextPage">
@@ -27,16 +26,16 @@ function loadAlumniList(pageIndex, outputList) {
       <li class="page-item disabled">
         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
       </li>`;
-    console.log("first page");
+    // This is the first page
   } else {
     document.getElementById("previousPage").innerHTML = `
       <li class="page-item" id="previousPage">
         <button onclick="previousPage()" class="page-link">Previous</button>
       </li>`;
   }
-  // js for 1,2,3
+  // these are for the 1,2,3 pages
   if (remainingLength <= 10) {
-    console.log("<=10");
+    // when pages content <=10
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -44,7 +43,7 @@ function loadAlumniList(pageIndex, outputList) {
         }</button>
       </li>`;
   } else if (remainingLength <= 20) {
-    console.log("<=20");
+    // when pages content <=20
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -57,7 +56,7 @@ function loadAlumniList(pageIndex, outputList) {
         }</button>
       </li>`;
   } else {
-    console.log("<=30");
+    // when pages content <=30
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">${
@@ -83,6 +82,7 @@ function loadAlumniList(pageIndex, outputList) {
   ) {
     var index = getindex(outputList[i].alumniId);
     function getindex(onClickAlumniID) {
+      // this function get the index of alumni array using alumni ID
       return onClickAlumniID.split("-")[1] - 1;
     }
     alumniList.innerHTML += `
