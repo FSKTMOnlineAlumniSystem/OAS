@@ -190,7 +190,7 @@ searchBar.addEventListener('click', (e) => {
     else {
       tr[i].style.display = "none";
     }
-  }
+  } e.preventDefault();
 });
 //select all check box
 window.toggle = function (source) {
@@ -209,6 +209,7 @@ window.DeleteRowFunction = function (o) {
   dummyResponse.Alumni.splice(o.id, 1)
   updateDummyData(dummyResponse)
   location.reload();
+  e.preventDefault();
 }
 //filter by using dropdown
 $(document).ready(function () {
