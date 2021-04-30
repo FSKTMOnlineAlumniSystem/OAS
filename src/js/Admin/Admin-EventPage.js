@@ -264,7 +264,7 @@ window.SearchData = function (status, department) {
 }
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 function closeModal(modalId) {
   $(modalId).modal('hide');
 }
