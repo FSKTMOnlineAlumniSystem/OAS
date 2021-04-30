@@ -1,5 +1,5 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-import loadAlumniList from "./alumniPageModule.js";
+import loadAlumniList from "./AlumniPageModule.js";
 
 let pageIndex = 0;
 var outputList = dummyResponse.Alumni;
