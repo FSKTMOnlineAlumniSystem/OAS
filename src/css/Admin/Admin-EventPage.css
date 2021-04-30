@@ -21,9 +21,12 @@ td a {
     height: 100%;
     display: block;
     color: inherit;
-    text-decoration: inherit;
+    text-decoration: none !important;
   }
-.eventTitle:hover { background-color: #B19CD9; }
+.eventTitle:hover { 
+  background-color: #B19CD9; 
+  cursor: pointer;
+}
 
 
 .deleteRowButton{
