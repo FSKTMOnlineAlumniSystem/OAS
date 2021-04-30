@@ -6,8 +6,8 @@ console.log("link js");
 //   $('#myInput').trigger('focus')
 // })
 //eventList
-let pageIndex = '0';
-var loaded='0';
+let pageIndex = 0;
+
 const loadEventList = (pageIndex) => {
   console.log(dummyResponse)
   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
@@ -218,11 +218,12 @@ window.DeleteRowFunction = function (o) {
 }
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length-1; i >= 0; i--) {
+  for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
       dummyResponse.Event.splice(i-1, 1)
     }
   }
+  checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
   // location.reload();

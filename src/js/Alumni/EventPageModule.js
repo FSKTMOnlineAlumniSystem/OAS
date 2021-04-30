@@ -3,7 +3,7 @@ import { dummyResponse } from '../dummydata.js';
 export const getCardStructure = (eventId, imageId, title, dateTime, location) => {
   return `<a href="/src/html/Alumni/EventDetailsPage.html" target="_self" id="${eventId}-card" class="nostyle">
   <div class="card h-100 card--bg-light-gray">
-    <div style="aspect-ratio:1/1;">
+    <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
       <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
     </div>
     <div class="card-body">
@@ -29,11 +29,10 @@ export const getCardStructure = (eventId, imageId, title, dateTime, location) =>
 }
 // the parent node should be a div with class 'row'
 export const loadEventSection = (eventArr, parentNode, errorMsg) => {
-  console.log('loading event section');
   console.log(eventArr);
   if(eventArr.length === 0){
     const noEventSection = document.createElement('div');
-    noEventSection.setAttribute('class', 'alert custom-light-purple');
+    noEventSection.setAttribute('class', 'alert custom-light-purple text-white');
     noEventSection.innerText = errorMsg;
     parentNode.appendChild(noEventSection);
   }
