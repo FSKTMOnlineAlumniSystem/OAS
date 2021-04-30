@@ -123,7 +123,7 @@ function toggleNotificationPanel() {
       div1.innerHTML = `
       <div class="row">
         <div class='col-2 d-flex justify-content-center align-items-center'>
-          <i class="fa fa-calendar fa-2x text-primary"></i>
+          <i class="far fa-calendar-alt fa-2x text-primary"></i>
         </div>
         <div class='col-8 flex-grow-1 px-0'>
           You have been invited to join our event!!
