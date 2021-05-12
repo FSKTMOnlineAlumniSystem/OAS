@@ -1,15 +1,12 @@
 <?php
 include '../config/config.php';
-include '../src/utilities/core.php';
-include '../src/models/Database.php';
 session_start();
 
-
-if (preg_match('/^(\/?|\/(home|activities)\/?)$/i', $_SERVER['REQUEST_URI'])) {
+if (preg_match('/^(\/?|\/(home)\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/modules/home/home.php';
     
-} elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/api/handler.php';
 

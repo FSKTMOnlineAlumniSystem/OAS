@@ -1,37 +1,20 @@
-<?php 
+<?php
 
-class EventModel{
+class EventModel
+{
   private PDO $connection;
 
-  public function __construct(PDO $connection)
-  {
-      $this->connection = $connection;
-  }
-
-  public function getAll(): array
-  {
-      try {
-          $stmt = $this->connection->prepare('SELECT * FROM activity WHERE activity_date >= CURDATE() ORDER BY activity_date');
-          $stmt->execute();
-          $data = $stmt->fetchAll();
-
-          if (!$data) {
-              return array();
-          }
-          return $data;
-
-      } catch (PDOException $exception) {
-          error_log('ActivityModel: getAll: ' . $exception->getMessage());
-          throw $exception;
-      }
-  }
-  public function getById(int $id): array
+    public function __construct(PDO $connection)
     {
+        $this->connection = $connection;
+    }
 
+    public function getAll(): array
+    {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM activity WHERE id = ?');
-            $stmt->execute([$id]);
-            $data = $stmt->fetch();
+            $stmt = $this->connection->prepare('SELECT * FROM events');
+            $stmt->execute();
+            $data = $stmt->fetchAll();
 
             if (!$data) {
                 return array();
@@ -39,10 +22,26 @@ class EventModel{
             return $data;
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: getById: ' . $exception->getMessage() . ' id: ' . $id);
+            error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
     }
-}
 
-?>
+  // public function getById(int $id): array
+  // {
+
+  //   try {
+  //     $stmt = $this->connection->prepare('SELECT * FROM activity WHERE id = ?');
+  //     $stmt->execute([$id]);
+  //     $data = $stmt->fetch();
+
+  //     if (!$data) {
+  //       return array();
+  //     }
+  //     return $data;
+  //   } catch (PDOException $exception) {
+  //     error_log('ActivityModel: getById: ' . $exception->getMessage() . ' id: ' . $id);
+  //     throw $exception;
+  //   }
+  // }
+}

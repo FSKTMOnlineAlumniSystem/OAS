@@ -16,6 +16,14 @@ define('DATABASE_NAME', 'OAS');
 define('DATABASE_USERNAME', 'root');
 define('DATABASE_PASSWORD', '');
 
+// connect to MySQL
+// $mysqli = new mysqli('localhost', DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME); 
+// if ($mysqli->connect_error) {
+// 	die("Connection failed: " . $mysqli->connect_error);
+// }
+// echo "Database connected successfully <br>";
+// The connection will be closed automatically when the script ends.
+
 // Use your own email with password if this is not working. 
 define('SMTP_SERVER_HOST', 'smtp.gmail.com');
 define('SMTP_SERVER_PORT', 587);
@@ -29,7 +37,7 @@ if (!is_dir(EVENT_UPLOAD_PATH)) {
     mkdir(EVENT_UPLOAD_PATH, 0754, true);
 }
 
-define('CAROUSEL_IMAGES_PATH', realpath($_SERVER['DOCUMENT_ROOT'] . '/assets/img/carousel/'));
+// define('CAROUSEL_IMAGES_PATH', realpath($_SERVER['DOCUMENT_ROOT'] . '/assets/img/carousel/'));
 
 ##################################################### APP CONSTANTS ####################################################
 
@@ -46,6 +54,8 @@ define('STATUS_REJECTED', 2);
 define('TITLE_OAS', 'Online Alumni System');
 define('TITLE_EVENTS', 'Events');
 define('TITLE_NOT_FOUND', 'Page Not Found');
+
+
 
 
 ?>
