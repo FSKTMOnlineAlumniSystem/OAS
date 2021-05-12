@@ -14,8 +14,4 @@
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/public/css/Alumni/index.css" />
   <link rel="stylesheet" type="text/css" href="/public/css/Alumni/SearchBar.css" />
-  <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" />
-
-  <title>Event - Online Alumni System</title>
-</head>
-<body>
+  

@@ -1,5 +1,13 @@
 <?php
 include '../header.php';
+?>
+<link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" />
+
+  <title><?= $GLOBALS['title']; ?></title>
+</head>
+<body>
+  
+  <?php
 include '../../../config/config.php';
 include './EventModel.php';
 include '../Database.php';
@@ -37,6 +45,6 @@ try {
   </div>
   </div>
   <!-- custom js files -->
-  <script type="module" src="/src/js/Alumni/EventPage.js"></script>
+  <script type="module" src="/public/js/Alumni/EventPage.js"></script>
   
   <?php include '../footer.php' ?>
