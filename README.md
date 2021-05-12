@@ -3,49 +3,19 @@ This is the main repo for the alumni system. So treat the repo carefully :kissin
 Make sure you know how to revert changes made to reverse any destructive changes to the repo.   
 
 ## TO-DO :hugs:
-- [ ] Add below code into the head tag of html
-```
-<!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <!-- font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <!-- icon - fontawesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="../../css/Alumni/index.css" />
-  <link rel="stylesheet" type="text/css" href="../../css/Alumni/SearchBar.css" />
-  <add any your other css file here>
-``` 
-- [ ] Add below script before the close tag of body tag
-```
-  <!-- general js files -->
-  <script type="text/javascript" src="/src/js/utility.js"></script>
-  <script type="module" src="/src/js/addHeader.js"></script>
-  <script type="text/javascript" src="/src/js/addNavFooter.js"></script>
-  <script type="text/javascript" src="/src/js/addSearchBar.js"></script>
-  <script type="module" src="/src/js/Alumni/searchAlgo.js"></script>
-  <!-- custom js files -->
-  <script type="module" src="/src/js/Alumni/<Your-File>.js"></script>
-  <!-- bootstrap javascript files -->
-  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-```
-### Crosscheck before Thursday testing
-- [ ] Yong Ming
-- [ ] He Lin
-- [ ] Nicole
-- [ ] Wei Hao
-- [ ] Xin Joe
-- [ ] Yan Wen
-- [ ] Rachel
+
+
+## Links
+### MySQL
+[Windows FAQ](https://www.apachefriends.org/faq_windows.html)  
+[From MariaDB to MySQL 1](https://ourcodeworld.com/articles/read/1215/how-to-use-mysql-5-7-instead-of-mariadb-in-xampp-for-windows)  
+[From MariaDB to MySQL 2](https://stackoverflow.com/questions/39654428/how-can-i-change-mariadb-to-mysql-in-xampp)  
+[Error: Access denied for user 'pma'@'localhost' (using password: NO)](https://stackoverflow.com/questions/46736319/phpmyadmin-error-mysqli-real-connect-hy000-1045-access-denied-for-user-p/57469097)  
+[Why we should choose PDO over mysqli](https://stackoverflow.com/questions/13569/mysqli-or-pdo-what-are-the-pros-and-cons)  
+
+### User Access
+[We should store image in directory instead of as base64](https://makitweb.com/upload-and-store-an-image-in-the-database-with-php/)
+[Ultimate Guide about .htaccess](https://www.whoishostingthis.com/resources/htaccess/)
 
 ## Requirements :snowflake:
 The system should provide the following functions: 
