@@ -1,7 +1,7 @@
 <?php
-include '../header.php';
+include '../src/Domain/header.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/EventPage.css" />
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -9,9 +9,9 @@ include '../header.php';
 <body>
 
   <?php
-  include '../../../config/config.php';
-  include './EventModel.php';
-  include '../Database.php';
+  // include '../config/config.php';
+  include '../src/Domain/Event/EventModel.php';
+  include '../src/Domain/Database.php';
 
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -51,12 +51,12 @@ include '../header.php';
   <script type="text/javascript">
     let color = "<?= $color ?>";
   </script>
-  <?php include '../footer.php' ?>
+  <?php include '../src/Domain/footer.php' ?>
   <!-- custom js files -->
-  <script type="module" src="/public/js/Alumni/EventPage.js"></script>
-  <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
-  <script type="text/javascript" src="/public/js/addSearchBar.js"></script>
-  <script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
+  <script type="module" src="/js/Alumni/EventPage.js"></script>
+  <script type="text/javascript" src="/js/addNavFooter.js"></script>
+  <script type="text/javascript" src="/js/addSearchBar.js"></script>
+  <script type="module" src="/js/Alumni/searchAlgo.js"></script>
 
 </body>
 
