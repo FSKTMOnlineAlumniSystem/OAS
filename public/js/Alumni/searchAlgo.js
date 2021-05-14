@@ -4,10 +4,12 @@ import loadJobList from "./JobPageModule.js";
 import loadAlumniList from "./alumniPageModule.js";
 import { loadEventList } from "./EventPageModule.js";
 
-var url = geturl(location.href);
-function geturl(link) {
-  return link.split("/")[6].split("?")[0];
-}
+var url = location.href;
+// var url = geturl(location.href);
+// function geturl(link) {
+//   console.log(link.split("/")[6].split("?")[0]);
+//   return link.split("/")[6].split("?")[0];
+// }
 function getindex(onClickAlumniID) {
   return onClickAlumniID.split("-")[1];
 }
@@ -20,20 +22,20 @@ document
     if (result.length != 0) {
       // Output the search result
       switch (url) {
-        case "AlumniPage.html":
+        case "AlumniPage.php":
           loadAlumniList(0, result);
           break;
-        case "EventPage.html":
+        case "EventPage.php":
           loadEventList(
             result,
             document.getElementById("event-page-section"),
             true
           );
           break;
-        case "JobPage.html":
+        case "JobPage.php":
           loadJobList(0, result);
           break;
-        case "MyJobPage.html":
+        case "MyJobPage.php":
           loadMyJobList(0, result, 0);
           break;
       }
@@ -47,7 +49,7 @@ function searching(e) {
   // we can know user searching by getting the searchQuery.value
   searchQuery = searchQuery.value.toLowerCase();
 
-  if (url.includes("AlumniPage.html")) {
+  if (url.includes("AlumniPage.php")) {
     result = dummyResponse.Alumni.filter(function (Alumni) {
       var match = false;
       if (Alumni.name.toLowerCase().includes(searchQuery) === true) {
@@ -71,7 +73,7 @@ function searching(e) {
         return match;
       }
     });
-  } else if (url.includes("EventPage.html")) {
+  } else if (url.includes("EventPage.php")) {
     result = dummyResponse.Event.filter(function (Event) {
       var match = false;
       if (Event.title.toLowerCase().includes(searchQuery) === true) {
@@ -91,7 +93,7 @@ function searching(e) {
       }
       return match;
     });
-  } else if (url.includes("MyJobPage.html")) {
+  } else if (url.includes("MyJobPage.php")) {
     result = dummyResponse.Job.filter(function (Job) {
       var match = false;
       if (localStorage.getItem("SignedInAlumniId") == Job.alumniId) {
@@ -118,7 +120,7 @@ function searching(e) {
       }
       return match;
     });
-  } else if (url.includes("JobPage.html")) {
+  } else if (url.includes("JobPage.php")) {
     result = dummyResponse.Job.filter(function (Job) {
       var match = false;
       if (Job.title.toLowerCase().includes(searchQuery) === true) {
@@ -146,16 +148,16 @@ function searching(e) {
   }
   if (result.length == 0) {
     switch (url) {
-      case "AlumniPage.html":
+      case "AlumniPage.php":
         loadAlumniList(0, dummyResponse.Alumni);
         break;
-      case "EventPage.html":
+      case "EventPage.php":
         loadEventList(result, dummyResponse.Event, true);
         break;
-      case "JobPage.html":
+      case "JobPage.php":
         loadJobList(0, dummyResponse.Job);
         break;
-      case "MyJobPage.html":
+      case "MyJobPage.php":
         var index = getindex(localStorage.getItem("SignedInAlumniId"));
         loadMyJobList(0, dummyResponse.Job, index);
         break;

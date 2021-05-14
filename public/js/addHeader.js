@@ -45,9 +45,7 @@ header.setAttribute(
   "d-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white"
 );
 header.innerHTML = `<div id="profile-header">
-<img src="/public/Assets/imgs/${
-  curUser.imageId
-}" alt="" class="header__img m-1">
+<img src="/uploads/alumni/${curUser.imageId}" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>

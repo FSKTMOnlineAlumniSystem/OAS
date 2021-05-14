@@ -1,5 +1,5 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-const imgPath = "/public/Assets/imgs/";
+const imgPath = "/uploads/alumni/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
 const alumniProfile = document.getElementById("main-body");
@@ -60,10 +60,6 @@ const loadAlumniProfile = (index) => {
                 <div class="row mb-3">
                     <div class="col-sm-4">E-mail:</div>
                     <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-4">Contact Number:</div>
-                    <div id="contactNumber" class="col-sm-8">${dummyResponse.Alumni[i].contactNumber}</div>
                 </div>
             </div>
         </div>
