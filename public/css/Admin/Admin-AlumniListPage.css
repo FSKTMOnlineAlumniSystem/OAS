@@ -2,10 +2,7 @@
   width: 100%;
 }
 
- .alumniNameBlock:hover{
-  background-color: #B19CD9;
-  cursor: pointer;
-}
+ 
 .alumniName:hover { 
   background-color: #B19CD9;
   cursor: pointer;
@@ -20,24 +17,15 @@
    background-color: #9f28a74f !important;
  }
 
- /* td span {
-  width: 100%;
-  display: block;
-  height: 50px;
-} */
-
 td p {
   width: 100%;
   display: block;
   height: 50px;
-  /* font-weight: 400; 
-  font-size: 18px; */
 }
 
 .eventTitle{
     width: 300px;
-    height: 50px;
-    
+    height: 50px;  
 }
 .eventTitle p
 {
@@ -49,8 +37,8 @@ td p {
   }
 .eventTitle:hover { background-color: #B19CD9; }
 
-main {
-  font-size: 18px !important;
-  font-family: Poppins !important;
-}
 
+ form, table{
+  font-size: 18px !important;
+  font-family: Poppins !important; 
+ }

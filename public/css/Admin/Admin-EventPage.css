@@ -21,6 +21,23 @@ td a {
     height: 100%;
     display: block;
     color: inherit;
-    text-decoration: inherit;
+    text-decoration: none !important;
   }
-.eventTitle:hover { background-color: #B19CD9; }
+.eventTitle:hover { 
+  background-color: #B19CD9; 
+  cursor: pointer;
+}
+
+
+.deleteRowButton{
+  font-size:  25px; 
+  color: rgb(255, 49, 49);
+  border: none;
+background: none;
+}
+.updateButton{
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  border: none;
+  background: none;
+}

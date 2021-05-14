@@ -1,4 +1,4 @@
-import {dummyResponse, updateDummyData} from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 const imgPath = "/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -18,14 +18,11 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 const icNumber = document.querySelector('#icNumber');
 
 var i = localStorage.getItem("updateId")
-console.log(i)
 const currentAlumniId = dummyResponse.Alumni[i].alumniId;
-console.log(currentAlumniId)
 const alumni = dummyResponse.Alumni.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
-console.log(alumni.imageId)
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
         el.classList.replace("is-valid", "is-invalid");
@@ -52,7 +49,7 @@ function readURL(e) {
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-    }else{
+    } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
@@ -67,7 +64,7 @@ const graduatedFormat = /[0-9]{4}/;
 const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
 form.addEventListener('submit', (e) => {
-    let errorExist = false; //false if no error exists in email, contactNumber, biography
+    let errorExist = false; //false if no error exists in alumni details
 
     if (isEmpty(email) || !email.value.match(emailFormat)) {
         setInValid(email);
@@ -115,9 +112,9 @@ form.addEventListener('submit', (e) => {
     else {
         dummyResponse.Alumni.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
-                if(img.value){
+                if (img.value) {
                     const imgLocalPathArr = img.value.split('\\');
-                    al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
+                    al.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
                 }
                 al.email = email.value;
                 al.contactNumber = contactNumber.value;
@@ -130,10 +127,10 @@ form.addEventListener('submit', (e) => {
                 updateDummyData(dummyResponse);
             }
         });
-        saveButton.textContent='Saving...';
-        setTimeout(()=>{
-            location.href='MyProfilePage.html';
-        },1000);
+        saveButton.textContent = 'Saving...';
+        setTimeout(() => {
+            location.href = 'MyProfilePage.html';
+        }, 1000);
     }
 });
 
@@ -142,7 +139,7 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath+alumni.imageId) &&
+    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
         alumni.email == email.value &&
         alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value &&
@@ -150,17 +147,14 @@ cancelButton.addEventListener('click', () => {
         alumni.graduated == graduated.value &&
         alumni.department == department.value &&
         alumni.gender == gender.value &&
-        alumni.icNumber == icNumber.value) 
-        {
+        alumni.icNumber == icNumber.value) {
         location.href = "Admin-AlumniListPage.html";
     } else {
-        
+
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
     }
 });
-
-
 
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));

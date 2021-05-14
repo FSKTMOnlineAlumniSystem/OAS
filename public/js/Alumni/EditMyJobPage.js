@@ -1,20 +1,19 @@
 import { dummyResponse, updateDummyData } from '../dummydata.js';
 var imageID = false;
 
-//START
+//GET THE JOB ID FROM THE MYJOBDETAILSPAGE
 let myJob = localStorage.getItem("EditJob");
 let index;
 
-
+//LOOP THROUGH TO FIND INDEX OF THE ARRAY OF THE JOBID
 for(let i=0; i<dummyResponse.Job.length; i++){
     if(dummyResponse.Job[i].jobId === myJob){
         index=i;
-        console.log(index)
         break;
     }
 }
 
-
+//DISPLAYING THE DETAILS AND ALLOWIGN THE USER TO EDIT
 if(dummyResponse.Job[index].imageId == null){
     document.getElementsByClassName("container my-5")[0].innerHTML += 
     `<div class="row">
@@ -190,8 +189,7 @@ if(dummyResponse.Job[index].imageId == null){
     </div></div>`;
 }
 
-    //INPUT WITH HANDLING ERROR 
-    const imgPath = "/Assets/imgs/";
+    //GET THE ID 
     const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
     const img = document.querySelector('#wizard-picture');
     const companyName = document.getElementById("companyName");
@@ -221,9 +219,8 @@ if(dummyResponse.Job[index].imageId == null){
     }
     }
 
-    console.log(wizardPicturePreview.src)
 
-
+    //INPUT WITH HANDLING ERROR 
     function setInValid(el) {
         if (el.classList.contains("is-valid")) {
             el.classList.replace("is-valid", "is-invalid");
@@ -242,7 +239,8 @@ if(dummyResponse.Job[index].imageId == null){
       function isEmpty(obj) {
         return obj.value.length == 0;
       }
-
+    
+    //CHECKING THE VALIDITY OF INPUT WHEN THE USER PRESS POST BUTTON
     document.getElementById("post").addEventListener("click", function(e){
         let errorExist = false; 
 
@@ -289,9 +287,9 @@ if(dummyResponse.Job[index].imageId == null){
         }
 
         if (errorExist){
-            console.log('error');
             e.preventDefault();}
         else{   
+                //IF NO ERROR, THE DATA WILL BE SAVED IN DUMMYDATA
                 dummyResponse.Job[index].company = companyName.value;
                 dummyResponse.Job[index].title = jobTitle.value;
                 dummyResponse.Job[index].location = location.value;
@@ -309,6 +307,7 @@ if(dummyResponse.Job[index].imageId == null){
         }
     });
 
+    //CLICK CANCEL BUTTON TO BACK TO MYJOBPAGE
     cancel.addEventListener("click", function(){
         localStorage.removeItem("EditJob");
     });

@@ -34,11 +34,12 @@ crossorigin="anonymous"></script>
 
       </div>
       <div class="container-fluid" id="right-content">
-        <div class="row">
+        <div class="row col-12">
           <h3 class='col-12 p-3'>Invite Alumni</h3>
           <form class='col-12'>
             <div class='row bg-light p-4 m-1'>
               <div class="form-group col-6">
+                <!-- filter status -->
                 <label for="exampleFormControlSelect1">Status</label>
                 <select class="form-control" id="status" oninput="filterStatus()">
                   <option>All</option>
@@ -47,6 +48,7 @@ crossorigin="anonymous"></script>
                 </select>
               </div>
               <div class="form-group col-6">
+                <!-- filter department -->
                 <label for="exampleFormControlSelect1">Department</label>
                 <select class="form-control" id="department">
                   <option>All</option>
@@ -58,37 +60,33 @@ crossorigin="anonymous"></script>
                   <option>Computer System and Network</option>
                 </select>
               </div>
-              <!-- <div class="form-group col-4">
-                <label for="exampleFormControlSelect1">Graduated</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>All</option>
-                  <option>2019</option>
-                </select>
-              </div> -->
+
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
                 <button type="submit" id="clearAll" class="btn text-white custom-dark-purple">Clear All</button>
               </div>
             </div>
           </form>
         </div>
-        <div class="row">
+        <div class="row col-12">
           <form class="col-12 my-2">
             <div class="row">
               <div class="col-7">
+                <!-- invite checked alumni -->
                 <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
                   <i class="fas fa-user-plus" aria-hidden="true"
                       style="font-size: 20px;"></i>
-                  <!-- style="background-color:#C9B3CD" -->
+
                 </button>
               </div>
               <div class="col-5 input-group mb-3">
-                <input id="searchBar" type="text" class="form-control" style="font-weight: 200; font-style: italic"
-                  placeholder="Search" onkeyup="filterSearchBar()" aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </div>
+                <input id="input1" type="text" class="form-control" 
+                style="font-weight: 200; font-style: italic" placeholder="Search"
+                aria-label="Search"  aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button id="searchBar" class="btn btn-secondary my-2 my-sm-0" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
               </div>
             </div>
           </form>
@@ -111,28 +109,6 @@ crossorigin="anonymous"></script>
                 </tr>
               </thead>
               <tbody>
-                <!-- <tr>
-                  <td>
-                    <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="Boxes1">
-                      <label class="custom-control-label" for="Boxes1"></label>
-                    </div>
-                  </td>
-                  <td><img src="/Assets/imgs/DrTey.jpg" alt="" class='table__td--height'>
-                  </td>
-                  <td>XXX</td>
-                  <td>Software Engineering</td>
-                  <td>
-                    <div class="bg-danger text-white rounded p-1">
-                      Not Invited
-                    </div>
-                  </td>
-                  <td class='text-center'>
-                    <a href="#" role="button">
-                      <i class="fa fa-trash fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
-                      </i></a>
-                  </td>
-                </tr> -->
               </tbody>
             </table>
           </div>
@@ -141,7 +117,6 @@ crossorigin="anonymous"></script>
             <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
               <i class="fas fa-user-plus"></i> Invite
             </button>
-            <!-- style="background-color:#C9B3CD" -->
             <button type="button" class="btn btn-primary ml-2" onclick='backToPreviousPage()'>
               Done
             </button>
@@ -161,7 +136,6 @@ crossorigin="anonymous"></script>
   <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script>
   <!-- custom js files -->
   <script type="module" src="/src/js/Admin/Admin-InviteAlumniPage.js"></script>
-  <script type="module" src="/src/js/Alumni/EventPage.js"></script>
   <!-- bootstrap javascript files -->
   <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,3 +1,4 @@
+// get readable date from ISO string
 const getReadableDate = (dateTime) => {
   const eventDateTime = new Date(dateTime);
   const mm = eventDateTime.getMonth();
@@ -9,6 +10,8 @@ const getReadableDate = (dateTime) => {
   const yyyy = eventDateTime.getFullYear();
   return `${month} ${dd}, ${yyyy}`;
 }
+
+// get readable time from ISO string
 const getReadableTime = (dateTime) => {
   const eventDateTime = new Date(dateTime);
   let minute = eventDateTime.getMinutes().toString();
@@ -36,8 +39,13 @@ function setValid(el) {
   }
 }
 
-const imgPath = "/Assets/imgs/";
+const PUBLIC_IMG_PATH = "/public/Assets/imgs/";
+const ALUMNI_IMG_PATH = "/uploads/alumni/";
+const ADMIN_IMG_PATH = "/uploads/admin/";
+const EVENT_IMG_PATH = "/uploads/event/";
+const JOB_IMG_PATH = "/uploads/job/";
 
+// not being called, just a reference to make sure everyone use the same icon 
 const iconClassName = {
   'backButtonIcon': 'fas fa-chevron-left',
   'calenderIcon': 'far fa-calendar-alt',
@@ -54,4 +62,6 @@ const iconClassName = {
   'mailIcon': 'fas fa-envelope-open-text',
   'pencilEditIcon': 'fas fa-pencil-alt',
   'AddUserIcon': 'fas fa-user-plus',
+  'tickIcon': 'fas fa-check-circle',
+  'achivementIcon': '"fas fa-trophy',
 }

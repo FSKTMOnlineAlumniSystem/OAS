@@ -3,7 +3,8 @@
  * Having 2 together may cause bug
  * So this script make it customizable
  * just set if you want the user to be Alumni or Admin below
- * Below header set the alumni as AL-1
+ * Below header set the user as AD-1 admin if the url includes 'admin'
+ * else set the user as AL-1 alumni
  */
 console.log(color);
 import { dummyResponse, updateDummyData } from "./dummydata.js"
@@ -26,7 +27,7 @@ const header = document.createElement('header');
 const hasEventNotViewedByAlumni = dummyResponse.Alumni_Event.filter(alumni_event => {
   return !(alumni_event.viewedByAlumni === "true") && !(alumni_event.notificationClosedByAlumni === "true") && alumni_event.alumniId === localStorage.getItem('SignedInAlumniId');
 }).length === 0 ? false : true;
-console.log(hasEventNotViewedByAlumni);
+// console.log(hasEventNotViewedByAlumni);
 
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
@@ -62,7 +63,7 @@ function toggleNotificationPanel() {
         <li class="p-2 border-top notification-border"></li>
       </ul>`
     const closePanelIcon = notificationPanel.querySelector('#close-panel-icon');
-    console.log(closePanelIcon);
+    // console.log(closePanelIcon);
     closePanelIcon.addEventListener('click', toggleNotificationPanel);
     // sort to let not reviewed event at front of array
     let result = []; let lastTrueElementIdx = 0;
@@ -71,7 +72,7 @@ function toggleNotificationPanel() {
         if (event.viewedByAlumni === 'true') { result.push(event); }
         else { result.splice(lastTrueElementIdx, 0, event); lastTrueElementIdx++; }
       } else {
-        console.log('not this alumni');
+        // console.log('not this alumni');
       }
     });
     // a function to show 'No notification'
@@ -98,7 +99,7 @@ function toggleNotificationPanel() {
         window.open('EventDetailsPage.html',"_self");
       });
       
-      console.log(event.viewedByAlumni);
+      // console.log(event.viewedByAlumni);
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
       const dotClass = event.viewedByAlumni === 'true' ? `` : `fa fa-circle p-1 d-flex justify-content-center text-primary`;

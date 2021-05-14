@@ -1,3 +1,7 @@
+/**
+ * Load this script after loading addHeader.js
+ * This nav make respective nav item 'active' based on the url
+ */
 const nav = document.createElement('nav');
 nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light container-fluid');
 nav.innerHTML = `
@@ -98,7 +102,7 @@ footer.innerHTML = `<div class='row d-flex justify-content-evenly justify-conten
 // scroll to bottom when user click 'Contact Us'
 const contactUsNavItem = nav.querySelector('#contact-us-nav-item');
 contactUsNavItem.addEventListener('click', function(event){
-  console.log('clicked');
+  // console.log('clicked');
   footer.scrollIntoView({behavior: "smooth"});
 });
 
