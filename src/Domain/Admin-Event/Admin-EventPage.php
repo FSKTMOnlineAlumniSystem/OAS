@@ -2,7 +2,7 @@
 include '../header.php';
 ?>
    <!-- CSS -->
-  <!-- <link rel="stylesheet" href="..\..\css\Admin\Admin-EventPage.css" /> -->
+  <link rel="stylesheet" href="../../../../public/css/Admin/Admin-EventPage.css" />
   <title>Event - Online Alumni System</title>
 </head>
 
@@ -15,13 +15,13 @@ include '../Database.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-    $event_model = new EventModel($db->getConnection());
+    $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     if (!empty($all_activities)) {
   
       foreach ($all_activities as $activity) {
         echo "$activity[eventId] ";
-        // $div = $dochtml->getElementById('date')->$activity[dateTime];
+        // getElementById('date')->"$activity[dateTime]";
       }
     }
   } catch (Exception $e) {
@@ -94,29 +94,44 @@ try {
 
               <!-- js getElement -->
               <tbody>
-                  
-                <tr class="rowss">
+              <?php
+                try {
+    // $event_model = new Admin_EventModel($db->getConnection());
+    // $all_activities = $event_model->getAll();
+    if (!empty($all_activities)) {
+  
+      foreach ($all_activities as $activity) {
+        echo "$activity[eventId] ";
+        // getElementById('date')->"$activity[dateTime]";
+        echo '       <tr class="rowss">
+
+
                 <td> 
                         <div class="custom-control custom-checkbox text-center">
                       <input type="checkbox" class="custom-control-input" id="Boxes${i}">
                       <label class="custom-control-label" for="Boxes${i}"></label>
                     </div>
                   </td>
-                 <td style="font-weight: 400; font-size: 18px" id="date"> $getReadableDate(dummyResponse.Event[i].dateTime)
-                 <div style="font-weight: 200; font-size: 14px" id="time"> $getReadableTime(dummyResponse.Event[i].dateTime)</div>
-               
+                 <td style="font-weight: 400; font-size: 18px" id="date"> <?php echo "activity[dateTime]"; ?>
+                 <!-- $getReadableDate(dummyResponse.Event[i].dateTime) -->
+                 <div style="font-weight: 200; font-size: 14px" id="time">'?> <?php echo "$activity[dateTime]"; ?>)</div>
+               <?php echo'
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                 <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">
-                $dummyResponse.Event[i].title
+                 <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">';?>
+                 <?php echo "$activity[title]"; ?>
+                 <?php echo'
               </a>
         
               <!-- Modal -->
 
               </td>
 
-                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" id="description">$dummyResponse.Event[i].description</td>
-                <td style="font-weight: 200; font-size: 18px" id="locate"> 
-                $dummyResponse.Event[i].location</td>
+                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" id="description">';?>
+                <?php echo "$activity[description]"; ?>
+                <?php echo'n</td>
+                <td style="font-weight: 200; font-size: 18px" id="locate"> ';?>
+                 <?php echo "$activity[location]"; ?>
+                 <?php echo'</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                    
@@ -131,8 +146,14 @@ try {
                        </i></button>
                   </div>
                 </td>
-                </tr>
-                
+                </tr>';
+            }
+        }
+      } catch (Exception $e) {
+        echo "Exception here!";
+        echo $e;
+      }
+      ?>
               </tbody>
 
             </table>
@@ -168,6 +189,22 @@ try {
                   <b class="m-0"> Location : </b>
                   <p id="location"></p>
                 </div>
+
+            <?php
+//  try {
+//     if (!empty($all_activities)) {
+  
+//       foreach ($all_activities as $activity) {
+//         echo "$activity[eventId] ";
+
+
+
+
+//     } catch (Exception $e) {
+//         echo "Exception here!";
+//         echo $e;
+//       }
+            ?>
                 <div class="modal-footer">
                   <button type="button" id="editButton" class="btn btn-primary"
                     onclick="location.href = 'Admin-EventPageUpdate.html'">
@@ -197,10 +234,10 @@ try {
       </div>
   </main>
 
-  <!-- <script type="text/javascript" src="../../js/utility.js"></script>
+  <!-- <script type="text/javascript" src="../../js/utility.js"></script> -->
   <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
-  <script type='module' src='/src/js/addHeader.js'></script>
-  <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script> -->
+  <!-- <script type='module' src='/src/js/addHeader.js'></script>
+  <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script> --> 
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
