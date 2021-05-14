@@ -66,8 +66,8 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
             <div class="row align-items-center h-100">
                 <div
                     class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
-                    <img src="../../../Assets/imgs/umfsktm.png" class="w-75 mb-4">
-                    <img src="../../../Assets/imgs/AdminLoginImageDark.png" class="w-75">
+                    <img src="/public/Assets/imgs/umfsktm.png" class="w-75 mb-4">
+                    <img src="/public/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
                     class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">

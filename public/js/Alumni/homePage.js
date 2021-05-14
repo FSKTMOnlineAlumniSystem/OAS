@@ -121,7 +121,7 @@ for (let i = 0; i < 6; i++) {
                             <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
 
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
-                                    <img class="card-img-top w-100" src="../public/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
+                                    <img class="card-img-top w-100" src="/public/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
                                 <div class="card-body">
@@ -389,5 +389,13 @@ window.onload = function () {
 };
 
 
+function loop() {
 
+    $('.carousel').carousel({
+        interval: 700
+    });
+
+}
+
+loop();
 

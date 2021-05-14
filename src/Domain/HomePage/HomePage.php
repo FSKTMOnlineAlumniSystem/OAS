@@ -21,7 +21,7 @@
 
     <link href="/public/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/public/css/Alumni/index.css" />
-    <link rel="stylesheet" type="text/css" href="/public/css/Alumni/SearchBar.css" />
+   
     <title><?= $GLOBALS['title']; ?></title>
     </head>
     <body>
@@ -56,15 +56,15 @@ try {
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="../../../Assets/imgs/hp_slide7.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/public/Assets/imgs/hp_slide7.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
         <div class="carousel-item">
-            <img src="../../../Assets/imgs/hp_slide8.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/public/Assets/imgs/hp_slide8.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
         <div class="carousel-item">
-            <img src="../../../Assets/imgs/hp_slide5.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/public/Assets/imgs/hp_slide5.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
     </div>
@@ -135,21 +135,29 @@ try {
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    
+
     <script type="module" src="/public/js/Alumni/homePage.js"></script>
 
-    <script>
-      $(document).ready(function() {
-         $('.carousel').carousel({
-            interval: 550 * 10
-         });
-      });
-   </script>
+    <script type="text/javascript" src="/public/js/utility.js"></script>
+    <script type="module" src="/public/js/addHeader.js"></script>
+    <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
+
+
+    
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+
+
+</body>
+
+</html>
+
    
-    <?php include '../footer.php' ?>
