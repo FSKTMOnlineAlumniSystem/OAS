@@ -14,7 +14,6 @@ const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
 const email = document.querySelector('#email');
-const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
 const saveButton = document.querySelector('#saveButton');
@@ -41,29 +40,21 @@ function readURL(e) {
     }
 }
 
-/*Form Validation for Edit My Profile (email, contactNumber, biography)*/
+/*Form Validation for Edit My Profile (email, biography)*/
 function isEmpty(obj) {
     return obj.value.length == 0;
 }
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let errorExist = false; //false if no error exists in email, contactNumber, biography
+    // e.preventDefault();
+    let errorExist = false; //false if no error exists in email, biography
 
     if (isEmpty(email) || !email.value.match(emailFormat)) {
         setInValid(email);
         errorExist = true;
     } else {
         setValid(email);
-    }
-
-    if (isEmpty(contactNumber) || !contactNumber.value.match(phoneNumberFormat)) {
-        setInValid(contactNumber);
-        errorExist = true;
-    } else {
-        setValid(contactNumber);
     }
 
     if (isEmpty(biography)) {
@@ -81,15 +72,16 @@ form.addEventListener('submit', (e) => {
                     al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
                 }
                 al.email = email.value;
-                al.contactNumber = contactNumber.value;
                 al.biography = biography.value;
                 updateDummyData(dummyResponse);
             }
         });
         saveButton.textContent='Saving...';
         setTimeout(()=>{
-            location.href='MyProfilePage.html';
+            // location.href='MyProfilePage.html';
         },1000);
+    }else{
+        e.preventDefault();
     }
 });
 
@@ -97,7 +89,6 @@ form.addEventListener('submit', (e) => {
 cancelButton.addEventListener('click', () => {
     if (!img.value &&
         alumni.email == email.value &&
-        alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value) {
         location.href = "MyProfilePage.html";
     } else {
@@ -115,13 +106,12 @@ function closeModal(modalId) {
 
 //load all the data when landing the page
 function loadData() {
-    wizardPicturePreview.src = imgPath + alumni.imageId;
+    wizardPicturePreview.src = PUBLIC_IMG_PATH + alumni.imageId;
     name.textContent = alumni.name;
     gender.textContent = alumni.gender;
     graduated.textContent = alumni.graduated;
     department.textContent = alumni.department;
     email.value = alumni.email;
-    contactNumber.value = alumni.contactNumber;
     biography.value = alumni.biography;
 }
 

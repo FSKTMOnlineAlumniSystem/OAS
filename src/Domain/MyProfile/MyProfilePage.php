@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html>
+<?php
+include_once '../src/Domain/header.php';
+// include_once '../header.php';
 
-<head>
-    <title>My Profile - Alumni Online System</title>
-    <!-- GOOGLE FONT POPPINS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <!-- ICON FONT AWESOME -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../css/Alumni/MyProfilePage.css">
-    <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+include '../src/Domain/Database.php';
+include '../src/Domain/MyProfile/MyProfileModel.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+try {
+    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+} catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+}
+?>
+
+
+<title>My Profile - Alumni Online System</title>
+<link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
+<link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
 
 </head>
 
@@ -24,63 +27,55 @@
             <div class="row justify-content-between">
                 <h2><b>My Profile</b></h2>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog mr-2"></i>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog mr-2"></i>
                         Settings
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="EditMyProfilePage.html" class="dropdown-item">
+                        <a href="/myprofile/edit" class="dropdown-item">
                             <i class="fas fa-user-edit mr-2"></i>
                             Edit Profile
                         </a>
-                        <button type="button" class="dropdown-item" data-toggle="modal"
-                            data-target="#changePasswordModal">
+                        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal">
                             <i class="fas fa-lock-alt mr-2"></i>
                             Change Password
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" class="dropdown-item text-danger" data-toggle="modal"
-                            data-target="#deleteAccountModal">
+                        <button type="button" class="dropdown-item text-danger" data-toggle="modal" data-target="#deleteAccountModal">
                             <i class="fas fa-user-times mr-2"></i>
                             Delete Account
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="row mt-3 mb-3 align-items-center">
                 <div class="col-sm-5 d-flex align-items-center justify-content-center">
                     <div class="w-50 position-relative">
                         <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
-                            <img id="profilePicture" src="../../../Assets/imgs/AL-1.png" alt="Profile Picture"
-                                class="img-fluid">
+                            <img id="profilePicture" src=<?= constant('ALUMNI_IMG_PATH') . $alumni->getProfilePicture(); ?> alt="Profile Picture" class="img-fluid">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-7 justify-content-center align-items-center">
                     <div class="row mb-3">
                         <div class="col-sm-4">Name:</div>
-                        <div id="name" class="col-sm-8">Teh Kok Soon</div>
+                        <div id="name" class="col-sm-8"><?= $alumni->getName(); ?></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">Gender:</div>
-                        <div id="gender" class="col-sm-8">Male</div>
+                        <div id="gender" class="col-sm-8"><?= $alumni->getGender(); ?></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">Graduated:</div>
-                        <div id="graduated" class="col-sm-8">2014</div>
+                        <div id="graduated" class="col-sm-8"><?= $alumni->getGraduatedYear(); ?></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">Department:</div>
-                        <div id="department" class="col-sm-8">Software Engineering</div>
+                        <div id="department" class="col-sm-8"><?= $alumni->getDepartment(); ?></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-4">E-mail:</div>
-                        <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-4">Contact Number:</div>
-                        <div id="contactNumber" class="col-sm-8">03-79676347</div>
+                        <div id="email" class="col-sm-8"><?= $alumni->getEmail(); ?></div>
                     </div>
                 </div>
             </div>
@@ -89,24 +84,13 @@
                 <h4>Biography</h4>
                 <div class="col-12 rounded bg-grey p-5 mb-2">
                     <div id="biography" class="profile__biography_valueContainer_value text-break">
-                        Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the
-                        University
-                        of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant
-                        with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of
-                        Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System
-                        and
-                        Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a
-                        Senior
-                        Lecturer. His research interests include renewable energy control system, energy management,
-                        power
-                        efficiency of PV system and inverter control of PV system.
+                        <?= $alumni->getBiography(); ?>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal"
-            aria-hidden="true">
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -140,16 +124,14 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                        <button id="changePasswordButton" type="button" class="btn text-white"
-                            style="background: #a53ecd;">Confirm</button>
+                        <button id="changePasswordButton" type="button" class="btn text-white" style="background: #a53ecd;">Confirm</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -183,24 +165,13 @@
             </div>
         </div>
     </div>
-    <script type='module' src='/src/js/addHeader.js'></script>
-    <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
-    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="/src/js/utility.js"></script>
-    <script type='module' src="../../js/Alumni/MyProfilePage.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-</body>
+    <!-- <script type='text/javascript'>var alumniName="Ng Yong Ming"</script>
+    <script type='module' src="/public/js/Alumni/MyProfilePage.js"></script> -->
+    <script type="text/javascript" src="/js/addNavFooter.js"></script>
+
+    <?php include_once '../src/Domain/footer.php' ?>
+
+    </body>
 
 </html>

@@ -13,7 +13,6 @@ const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
 const email = document.querySelector('#email');
-const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 
 const oldPassword = document.getElementById('oldPassword');
@@ -98,17 +97,16 @@ function deleteAccount(e) {
 }
 
 //load all the data when landing the page
-function loadData() {
-    profilePicture.src = imgPath + alumni.imageId;
-    name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
-    graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
-    email.textContent = alumni.email;
-    contactNumber.textContent = alumni.contactNumber;
-    biography.textContent = alumni.biography;
-}
+// function loadData() {
+//     profilePicture.src = ALUMNI_IMG_PATH + alumni.imageId;
+//     name.textContent = alumniName;
+//     gender.textContent = alumni.gender;
+//     graduated.textContent = alumni.graduated;
+//     department.textContent = alumni.department;
+//     email.textContent = alumni.email;
+//     biography.textContent = alumni.biography;
+// }
 
-loadData();
+// loadData();
 changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
 deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));
