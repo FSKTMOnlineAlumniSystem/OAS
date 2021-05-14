@@ -99,7 +99,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
   // avatar column
   td = document.createElement('td');
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${'/Assets/imgs/' + alumni.imageId}>
+    <img class='table__td--height' src=${'/public/Assets/imgs/' + alumni.imageId}>
   </div>`
   td.setAttribute('width', '140px')
   tr.appendChild(td);
@@ -156,7 +156,7 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
-    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
+    $("#image").attr('src', "/public/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
     $("#name").text(dummyResponse.Alumni[e.target.id].name);
     $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
     $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
