@@ -3,8 +3,19 @@ This is the main repo for the alumni system. So treat the repo carefully :kissin
 Make sure you know how to revert changes made to reverse any destructive changes to the repo.   
 
 ## TO-DO :hugs:
-- [x] Basic setup of repository(Web project folder structure)
-- [x] Every members successfully make pull request and approved to be added into the repo
+
+
+## Links
+### MySQL
+[Windows FAQ](https://www.apachefriends.org/faq_windows.html)  
+[From MariaDB to MySQL 1](https://ourcodeworld.com/articles/read/1215/how-to-use-mysql-5-7-instead-of-mariadb-in-xampp-for-windows)  
+[From MariaDB to MySQL 2](https://stackoverflow.com/questions/39654428/how-can-i-change-mariadb-to-mysql-in-xampp)  
+[Error: Access denied for user 'pma'@'localhost' (using password: NO)](https://stackoverflow.com/questions/46736319/phpmyadmin-error-mysqli-real-connect-hy000-1045-access-denied-for-user-p/57469097)  
+[Why we should choose PDO over mysqli](https://stackoverflow.com/questions/13569/mysqli-or-pdo-what-are-the-pros-and-cons)  
+
+### User Access
+[We should store image in directory instead of as base64](https://makitweb.com/upload-and-store-an-image-in-the-database-with-php/)
+[Ultimate Guide about .htaccess](https://www.whoishostingthis.com/resources/htaccess/)
 
 ## Requirements :snowflake:
 The system should provide the following functions: 
