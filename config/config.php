@@ -54,6 +54,7 @@ define('STATUS_REJECTED', 2);
 define('TITLE_OAS', 'Online Alumni System');
 define('TITLE_EVENTS', 'Events');
 define('TITLE_NOT_FOUND', 'Page Not Found');
+define('IMG_PATH','/public/Assets/imgs/');
 
 
 

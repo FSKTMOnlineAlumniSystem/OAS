@@ -1,5 +1,5 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-const imgPath = "../../../Assets/imgs/";
+const imgPath = "/public/Assets/imgs/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
 const alumniProfile = document.getElementById("main-body");
@@ -10,7 +10,7 @@ const loadAlumniProfile = (index) => {
     <div class="col-12 col-md-10 col-lg-8">
         <div class="row align-items-center">
         <div class="col-12">
-            <a href="../../html/Alumni/alumniPage.html" class="btn btn-link back">
+            <a href="/src/Domain/Alumni/AlumniPage.php" class="btn btn-link back">
             <i class="fas fa-chevron-left fa-2x"></i>
             </a>
             <h3 class="d-inline">Alumni Profile</h3>

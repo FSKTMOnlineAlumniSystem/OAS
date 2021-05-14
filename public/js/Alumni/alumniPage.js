@@ -16,7 +16,7 @@ window.previousPage = function () {
 
 window.clickProfile = function (profileClicked) {
   localStorage.setItem("alumniprofile", JSON.stringify(profileClicked));
-  location.href = "AlumniProfilePage.html";
+  location.href = "/src/Domain/Alumni/AlumniProfilePage.php";
 };
 
 loadAlumniList(pageIndex, outputList);
