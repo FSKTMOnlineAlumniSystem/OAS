@@ -39,7 +39,11 @@ function setValid(el) {
   }
 }
 
-const imgPath = "/Assets/imgs/";
+const PUBLIC_IMG_PATH = "/public/Assets/imgs/";
+const ALUMNI_IMG_PATH = "/uploads/alumni/";
+const ADMIN_IMG_PATH = "/uploads/admin/";
+const EVENT_IMG_PATH = "/uploads/event/";
+const JOB_IMG_PATH = "/uploads/job/";
 
 // not being called, just a reference to make sure everyone use the same icon 
 const iconClassName = {
