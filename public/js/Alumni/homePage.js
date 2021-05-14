@@ -388,12 +388,6 @@ window.onload = function () {
 
 };
 
-function loop() {
 
-    $('.carousel').carousel({
-        interval: 500
-    });
 
-}
 
-loop();

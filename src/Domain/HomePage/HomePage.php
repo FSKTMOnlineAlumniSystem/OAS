@@ -1,13 +1,27 @@
-<?php
-include '../header.php';
-?>
+<!DOCTYPE html>
+<html>
+
+<head>
 
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+   <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <link href="/public/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/Alumni/index.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/Alumni/SearchBar.css" />
     <title><?= $GLOBALS['title']; ?></title>
     </head>
     <body>
@@ -127,7 +141,15 @@ try {
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    
     <script type="module" src="/public/js/Alumni/homePage.js"></script>
 
+    <script>
+      $(document).ready(function() {
+         $('.carousel').carousel({
+            interval: 550 * 10
+         });
+      });
+   </script>
+   
     <?php include '../footer.php' ?>
