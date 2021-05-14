@@ -3,31 +3,32 @@ include '../header.php';
 ?>
 <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" />
 
-  <title><?= $GLOBALS['title']; ?></title>
+<title><?= $GLOBALS['title']; ?></title>
 </head>
+
 <body>
-  
+
   <?php
-include '../../../config/config.php';
-include './EventModel.php';
-include '../Database.php';
+  include '../../../config/config.php';
+  include './EventModel.php';
+  include '../Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-try {
-  $event_model = new EventModel($db->getConnection());
-  $all_activities = $event_model->getAll();
-  if (!empty($all_activities)) {
+  try {
+    $event_model = new EventModel($db->getConnection());
+    $all_activities = $event_model->getAll();
+    if (!empty($all_activities)) {
 
-    foreach ($all_activities as $activity) {
-      echo "$activity[eventId] ";
+      foreach ($all_activities as $activity) {
+        echo "$activity[eventId] ";
+      }
     }
+  } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
   }
-} catch (Exception $e) {
-  echo "Exception here!";
-}
 
-?>
+  ?>
 
   <div class="container my-5" id="main-body">
     <h1><b>Event</b></h1>
@@ -44,7 +45,19 @@ try {
     </div>
   </div>
   </div>
+  <?php
+  $color = "Red";
+  ?>
+  <script type="text/javascript">
+    let color = "<?= $color ?>";
+  </script>
+  <?php include '../footer.php' ?>
   <!-- custom js files -->
   <script type="module" src="/public/js/Alumni/EventPage.js"></script>
-  
-  <?php include '../footer.php' ?>
+  <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
+  <script type="text/javascript" src="/public/js/addSearchBar.js"></script>
+  <script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
+
+</body>
+
+</html>

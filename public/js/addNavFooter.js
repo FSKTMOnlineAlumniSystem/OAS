@@ -3,7 +3,7 @@ nav.setAttribute('class', 'navbar navbar-light navbar-expand-md bg-light contain
 nav.innerHTML = `
 <div class="container-fluid">
         <a class="navbar-brand" href="https://fsktm.um.edu.my/" target="_blank">
-          <img src="/Assets/imgs/umfsktm.png" alt="" class='nav__img'>
+          <img src="/public/Assets/imgs/umfsktm.png" alt="" class='nav__img'>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

@@ -5,7 +5,7 @@
  * just set if you want the user to be Alumni or Admin below
  * Below header set the alumni as AL-1
  */
-
+console.log(color);
 import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin
@@ -30,12 +30,12 @@ console.log(hasEventNotViewedByAlumni);
 
 header.setAttribute('class', 'd-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white');
 header.innerHTML = `<div id="profile-header">
-<img src="/Assets/imgs/${curUser.imageId}" alt="" class="header__img m-1">
+<img src="/public/Assets/imgs/${curUser.imageId}" alt="" class="header__img m-1">
 <span class="px-1 py-auto">${curUser.name}</span>
 <i class="fa fa-angle-down font-weight-bold px-1" aria-hidden="true"></i>
 </div>
 ${isAlumni ?
-    `<img src="${hasEventNotViewedByAlumni ? '/Assets/icons/notification.svg' : '/Assets/icons/bell.svg'}" alt="bell icon" class="mx-2" id='notification-icon' style="height:20px;">` : ``
+    `<img src="${hasEventNotViewedByAlumni ? '/public/Assets/icons/notification.svg' : '/public/Assets/icons/bell.svg'}" alt="bell icon" class="mx-2" id='notification-icon' style="height:20px;">` : ``
   }
 <div id='profile-panel' class="profile-panel--display-none"></div>
 
