@@ -1,6 +1,5 @@
 <?php
 
-$id = $_GET['id'];
 
 class JobDetailsModel
 {
@@ -14,10 +13,10 @@ class JobDetailsModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM job WHERE jobId=$id');
+            $stmt = $this->connection->prepare('SELECT * FROM job');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
+            
             if (!$data) {
                 return array();
             }
@@ -27,6 +26,18 @@ class JobDetailsModel
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
+    }
+
+    public function getRow($id): array{
+            $stmt = $this->connection->prepare("SELECT * FROM job WHERE jobId='$id'");
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            // print_r($data);
+            if(!$data){
+                return array();
+            }
+            return $data;     
+
     }
 }
 

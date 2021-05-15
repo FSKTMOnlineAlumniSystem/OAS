@@ -72,7 +72,7 @@ function loadJobList(pageIndex, outputList) {
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
-          <a href="">
+          <a href="../Job/JobDetailsPage.php?id=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
                   <img class="w-100" src="/public/Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
@@ -93,25 +93,26 @@ function loadJobList(pageIndex, outputList) {
             </div>
           </a>
         </div>`;
+       
   }
-
+ 
   // ../src/Job/JobDetailsPage.php?id=${outputList[i].jobId}\
 
   //CLICK TO LINK TO JOBDETAILSPAGE
-  $("#jobList").on("click", ".card ", function () {
-    var jobName = $(this).attr("data-name");
-    // var myJobList = [];
-    for (let i = 0; i < outputList.length; i++) {
-      if (outputList[i].jobId == jobName) {
-        // myJobList.push(outputList[i]);
-        // localStorage.setItem("JobList", JSON.stringify(myJobList));
-        // document.location.href = '<?php echo $../Job/JobDetailsPage.php ?>';
-        window.open('../Job/JobDetailsPage.php?id=$outputList[i].jobId');
-        // console.log('as');
-        break;
-      }
-    }
-  });
+  // $("#jobList").on("click", ".card ", function () {
+  //   var jobName = $(this).attr("data-name");
+  //   // var myJobList = [];
+  //   for (let i = 0; i < outputList.length; i++) {
+  //     if (outputList[i].jobId == jobName) {
+  //       // myJobList.push(outputList[i]);
+  //       // localStorage.setItem("JobList", JSON.stringify(myJobList));
+  //       // document.location.href = '<?php echo $../Job/JobDetailsPage.php ?>';
+  //       window.open('../Job/JobDetailsPage.php?id=$outputList[i].jobId');
+  //       // console.log('as');
+  //       break;
+  //     }
+  //   }
+  // });
 }
 
 export default loadJobList;

@@ -15,7 +15,6 @@ class JobModel
             $stmt = $this->connection->prepare('SELECT * FROM job');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
             if (!$data) {
                 return array();
             }
