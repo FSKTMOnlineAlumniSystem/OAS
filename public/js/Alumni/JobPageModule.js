@@ -69,13 +69,15 @@ function loadJobList(pageIndex, outputList) {
         }</button>
       </li>`;
   }
+  // ../src/Domain/Job/JobDetailsPage.php?id=${outputList[i].jobId}
+  //id=${outputList[i].jobId}
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
-          <a href="../Job/JobDetailsPage.php?id=${outputList[i].jobId}">
+          <a href="jobdetails?id=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
-                  <img class="w-100" src="/public/Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+                  <img class="w-100" src="../uploads/job/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
               </div>
               <div class="card-body">
                 <h5 class="card-title">${outputList[i].title}</h5>

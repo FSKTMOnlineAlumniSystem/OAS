@@ -1,16 +1,16 @@
 <?php
-include '../header.php';
+include '../src/Domain/header.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/public/css/Alumni/JobDetailsPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/JobDetailsPage.css" />
 
   <title><?= $GLOBALS['title']; ?></title>
 </head>
 <body>
 
 <?php
-include '../../../config/config.php';
-include './JobDetailsModel.php';
-include '../Database.php';
+// include '../../../config/config.php';
+include '../src/Domain/Job/JobDetailsModel.php';
+include '../src/Domain/Database.php';
 
 $id = $_GET['id'];
 // echo ($id);
@@ -35,4 +35,6 @@ try {
 <div class = "container my-5" id='main-body' ></div>
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
 <script type="module" src="/public/js/Alumni/JobDetailsPage.js"></script>
-<?php include '../footer.php' ?>
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
+<?php include '../src/Domain/footer.php' ?>

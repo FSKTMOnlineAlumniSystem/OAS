@@ -1,16 +1,16 @@
 <?php
-include '../header.php';
+include '../src/Domain/header.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/public/css/Alumni/JobPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/JobPage.css" />
 
   <title><?= $GLOBALS['title']; ?></title>
 </head>
 <body>
 
 <?php
-include '../../../config/config.php';
-include './JobModel.php';
-include '../Database.php';
+// include '../../../config/config.php';
+include '../src/Domain/Job/JobModel.php';
+include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -58,6 +58,8 @@ try {
       </div>
 
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
-<script type="module" src="/public/js/Alumni/JobPage.js"></script>
+<script type="module" src="/js/Alumni/JobPage.js"></script>
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<script type="text/javascript" src="/js/addSearchBar.js"></script>
 <?php $db-> closeConnection() ?>
-<?php include '../footer.php' ?>
+<?php include '../src/Domain/footer.php' ?>
