@@ -11,6 +11,10 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
 
+} elseif (preg_match('/^\/alumniList\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
+
 } elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/api/handler.php';
 
