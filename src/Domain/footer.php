@@ -1,13 +1,8 @@
 <!-- general js files -->
-<script type="text/javascript" src="/public/js/utility.js"></script>
-<script type="module" src="/public/js/addHeader.js"></script>
-<!-- <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
-<script type="text/javascript" src="/public/js/addSearchBar.js"></script> -->
-<script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
-<!-- bootstrap javascript files -->
-<script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-</body>
+<script type="text/javascript" src="/js/utility.js"></script>
+<script type="module" src="/js/addHeader.js"></script>
 
-</html>
+<!-- bootstrap javascript files -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script type="module" src="/libs/bootstrap.bundle.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->

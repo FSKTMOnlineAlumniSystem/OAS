@@ -52,7 +52,7 @@ define('STATUS_REJECTED', 2);
 
 // add our app constants below
 define('TITLE_OAS', 'Online Alumni System');
-define('TITLE_EVENTS', 'Events');
+define('TITLE_EVENTS', 'Events - Online Alumni System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 
