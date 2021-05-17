@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" /> -->
 <!-- <link rel="stylesheet" href="../../../../css/Admin/Admin-EventPageCreate.css"> -->
@@ -7,9 +7,9 @@ include '../header.php';
 </head>
 <body>
  <?php
-include '../../../config/config.php';
-include './Admin-EventModel.php';
-include '../Database.php';
+// include '../../../config/config.php';
+include '../src/Domain/Admin-Event/Admin-EventModel.php';
+include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $title=$_GET['title'];
@@ -181,5 +181,3 @@ if(isset($_POST['update'])){
 
       </div>
     </main>
-    
-  <?php include '../footer.php' ?>

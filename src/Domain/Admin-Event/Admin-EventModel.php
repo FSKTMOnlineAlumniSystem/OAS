@@ -12,10 +12,11 @@ class Admin_EventModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM events WHERE ');
+            $stmt = $this->connection->prepare('SELECT * FROM events');
             $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            $data = $stmt->fetchAll();
 
+            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 return array();
             }

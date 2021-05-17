@@ -1,16 +1,16 @@
 <?php
-include '../header.php';
+include '../src/Domain/header.php';
 ?>
    <!-- CSS -->
-  <link rel="stylesheet" href="../../../../public/css/Admin/Admin-EventPage.css" />
+  <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" />
   <title>Event - Online Alumni System</title>
 </head>
 
 <body>
 <?php
-include '../../../config/config.php';
-include './Admin-EventModel.php';
-include '../Database.php';
+// include '../../../config/config.php';
+include '../src/Domain/Admin-Event/Admin-EventModel.php';
+include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
@@ -93,6 +93,7 @@ try {
 
               <!-- js getElement -->
               <tbody>
+              <tr class="rowss"></tr>
               <?php
                 try {
     // $event_model = new Admin_EventModel($db->getConnection());
@@ -135,7 +136,7 @@ try {
                   <div class="btn-group" role="group" aria-label="Third group">
                    ';?>
                    <?php echo "
-                  <a href=\"Admin-EventPageUpdate.php?title=$activity[title]\"";?>
+                  <a href=\"eventUpdate?title=$activity[title]\"";?>
                   <?php echo' class="updateButton" onclick="updateEvent(this)" id="update ${i}">
                     <i class="fas fa-edit pr-2" aria-hidden="true">
                     </i></a>
@@ -241,10 +242,10 @@ try {
     $color = "Red";
 ?>
 <script type="text/javascript">var color = "<?= $color ?>";</script>
-  <!-- <script type="text/javascript" src="../../js/utility.js"></script> -->
+  <script type="text/javascript" src="/js/utility.js"></script>
 <!-- new path -->
-  <!-- <script type="module" src="../../../public/js/Admin/Admin-EventPage.js"></script> -->
- 
+  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+  <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
   <!-- <script type='module' src='/src/js/addHeader.js'></script>
   <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script> --> 
   <!-- jquery -->
@@ -255,7 +256,6 @@ try {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
-
 
 </body>
 

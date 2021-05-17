@@ -11,6 +11,14 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
 
+}elseif (preg_match('/^\/AdminEventPage\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Admin-Event/Admin-EventPage.php';
+
+} elseif (preg_match('/^\/eventUpdate\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Admin-Event/Admin-EventPageUpdate.php';
+
 } elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/api/handler.php';
 
