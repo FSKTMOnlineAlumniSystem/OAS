@@ -1,7 +1,7 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
 
-
+alert("color: " + activity);
 let pageIndex = 0;
 
 const loadEventList = (pageIndex) => {
@@ -66,15 +66,16 @@ const loadEventList = (pageIndex) => {
   )[0];
   //or use :  var table = document.all.tableid;
 
-  for (var i = table.rows.length - 1; i > 0; i--) {
-    table.deleteRow(i);
-  }
+  // for (var i = table.rows.length - 1; i > 0; i--) {
+  //   table.deleteRow(i);
+  // }
 
   for (
     let i = eventStartIndex;
     i < eventEndIndex && i < dummyResponse.Event.length;
     i++
-  ) {
+  ) 
+  {
 
     var newRowContent = `<tr class="rowss">
                 

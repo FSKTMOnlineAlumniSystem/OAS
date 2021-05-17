@@ -1,8 +1,8 @@
 <!-- general js files -->
 <script type="text/javascript" src="/public/js/utility.js"></script>
 <script type="module" src="/public/js/addHeader.js"></script>
-<script type="text/javascript" src="/public/js/addNavFooter.js"></script>
-<script type="text/javascript" src="/public/js/addSearchBar.js"></script>
+<!-- <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
+<script type="text/javascript" src="/public/js/addSearchBar.js"></script> -->
 <script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
 <!-- bootstrap javascript files -->
 <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>

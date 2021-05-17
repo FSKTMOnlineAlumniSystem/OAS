@@ -13,7 +13,6 @@ include './Admin-EventModel.php';
 include '../Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
@@ -134,10 +133,12 @@ try {
                  <?php echo'</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
-                   
-                  <button class="updateButton" onclick="updateEvent(this)" id="update ${i}">
+                   ';?>
+                   <?php echo "
+                  <a href=\"Admin-EventPageUpdate.php?title=$activity[title]\"";?>
+                  <?php echo' class="updateButton" onclick="updateEvent(this)" id="update ${i}">
                     <i class="fas fa-edit pr-2" aria-hidden="true">
-                    </i></button>
+                    </i></a>
                     
 
 
@@ -233,9 +234,17 @@ try {
         </div>
       </div>
   </main>
-
+  <?php
+    $all_activities =  $event_model->getAll();;
+?>
+<?php
+    $color = "Red";
+?>
+<script type="text/javascript">var color = "<?= $color ?>";</script>
   <!-- <script type="text/javascript" src="../../js/utility.js"></script> -->
-  <script type="module" src="../../js/Admin/Admin-EventPage.js"></script>
+<!-- new path -->
+  <!-- <script type="module" src="../../../public/js/Admin/Admin-EventPage.js"></script> -->
+ 
   <!-- <script type='module' src='/src/js/addHeader.js'></script>
   <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script> --> 
   <!-- jquery -->
