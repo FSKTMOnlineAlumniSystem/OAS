@@ -10,7 +10,7 @@ let myJob = job_array;
         <div class="col-12 col-md-10 col-lg-8">
             <div class="row align-items-center">
                 <div class="col-12">
-                    <a href="../Job/JobPage.php" class="btn btn-link back" ><i class="fas fa-chevron-left fa-2x" ></i></a>   
+                    <a href="job" class="btn btn-link back" ><i class="fas fa-chevron-left fa-2x" ></i></a>   
                     <h3 class="d-inline">${myJob.company} - ${myJob.title}</h3>
                 </div>
             </div>

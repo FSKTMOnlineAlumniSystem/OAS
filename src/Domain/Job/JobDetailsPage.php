@@ -12,7 +12,7 @@ include '../src/Domain/header.php';
 include '../src/Domain/Job/JobDetailsModel.php';
 include '../src/Domain/Database.php';
 
-$id = $_GET['id'];
+$id = $_GET['jobid'];
 // echo ($id);
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -34,7 +34,7 @@ try {
 
 <div class = "container my-5" id='main-body' ></div>
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
-<script type="module" src="/public/js/Alumni/JobDetailsPage.js"></script>
+<script type="module" src="/js/Alumni/JobDetailsPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
 <!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
 <?php include '../src/Domain/footer.php' ?>
