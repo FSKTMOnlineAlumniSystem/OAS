@@ -1,6 +1,7 @@
 // import{ dummyResponse,updateDummyData} from "../dummydata.js";
 let alumniEventArray=alumniEvent_array
 let alumniArray=alumni_array
+
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
@@ -19,6 +20,7 @@ alumniArray.forEach((alumni,index) => {
   let label = document.createElement('label');
   label.setAttribute('class', 'custom-control-label');
   label.setAttribute('for', 'id-'+alumni.alumniId);
+let defineAlumni=alumni.alumniId;
 
   div.appendChild(input);
   div.appendChild(label);

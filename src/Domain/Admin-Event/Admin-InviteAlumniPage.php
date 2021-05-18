@@ -8,7 +8,7 @@ include '../src/Domain/header.php';
 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 crossorigin="anonymous"></script>
 <!-- css -->
-<link rel="stylesheet" href="../../css/Admin/Admin-InviteAlumniPage.css">
+<link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css">
   <title>Invite Alumni - Online Alumni System</title>
 </head>
 
@@ -21,7 +21,7 @@ crossorigin="anonymous"></script>
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
-    $event_model = new Admin_EventModel($db->getConnection());
+    $event_model = new Admin_Alumni_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     if (!empty($all_activities)) {
 
