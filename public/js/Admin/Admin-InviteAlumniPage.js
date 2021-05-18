@@ -1,10 +1,11 @@
-import{ dummyResponse,updateDummyData} from "../dummydata.js";
-
+// import{ dummyResponse,updateDummyData} from "../dummydata.js";
+let alumniEventArray=alumniEvent_array
+let alumniArray=alumni_array
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
-dummyResponse.Alumni.forEach((alumni,index) => {
+alumniArray.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -56,7 +57,7 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
-  const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
+  const foundAlumniEvent = alumniEventArray.filter(alumni_event => {
     return alumni_event.eventId === localStorage.getItem("eventId") && alumni.alumniId === alumni_event.alumniId;
   })[0];
   if(foundAlumniEvent){
@@ -118,7 +119,7 @@ searchBar.addEventListener('click', (e) => {
 window.DeleteRowFunction = function(o) {
   var p=o.parentNode.parentNode.parentNode;
       p.parentNode.removeChild(p);
-      dummyResponse.Alumni.splice(o.target.id, 1)
+      alumniArray.splice(o.target.id, 1)
       updateDummyData(dummyResponse)
  }
 
@@ -180,7 +181,7 @@ $("#clearAll").on("click", function (e) {
   // invite single alumni
 window.inviteNewAlumni = function(o){
   var i=o.id;
-    var alumniId= dummyResponse.Alumni[i].alumniId;
+    var alumniId= alumniArray[i].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
     var newAlumniEvent={
@@ -190,7 +191,7 @@ window.inviteNewAlumni = function(o){
             "dateTime": dateTime,
             "notificationClosedByAlumni": "false"
     }
-    dummyResponse.Alumni_Event.push(newAlumniEvent)
+    alumniEventArray.push(newAlumniEvent)
     updateDummyData(dummyResponse)
   loadEventList(0)
 }
@@ -199,7 +200,7 @@ window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
-      var alumniId= dummyResponse.Alumni[i-1].alumniId;
+      var alumniId= alumniArray[i-1].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
     var newAlumniEvent={
@@ -209,7 +210,7 @@ window.inviteCheckedAlumni = function () {
             "dateTime": dateTime,
             "notificationClosedByAlumni": "false"
     }
-    dummyResponse.Alumni_Event.push(newAlumniEvent)
+    alumniEventArray.push(newAlumniEvent)
     }
   }
   checkboxes[0].checked = false;

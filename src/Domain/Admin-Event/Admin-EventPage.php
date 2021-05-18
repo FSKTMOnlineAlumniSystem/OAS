@@ -60,7 +60,7 @@ try {
             <div class="btn-group" role="group" aria-label="Third group">
               <a button type="button"
                 class="btn btn-primary d-flex justify-content-center align-items-center rounded mr-2"
-                href="Admin-EventPageCreate.html"><i class="fa fa-plus fa-2x" aria-hidden="true"
+                href="adminCreateEvent"><i class="fa fa-plus fa-2x" aria-hidden="true"
                   style="font-size: 20px; "></i></a>
 
               <!--trash button-->
@@ -95,7 +95,7 @@ try {
               <tbody>
               <tr class="rowss"></tr>
               <?php
-                try {
+    /*            try {
     // $event_model = new Admin_EventModel($db->getConnection());
     // $all_activities = $event_model->getAll();
     if (!empty($all_activities)) {
@@ -154,7 +154,7 @@ try {
       } catch (Exception $e) {
         echo "Exception here!";
         echo $e;
-      }
+      }*/
       ?>
               </tbody>
 
@@ -192,24 +192,9 @@ try {
                   <p id="location"></p>
                 </div>
 
-            <?php
-//  try {
-//     if (!empty($all_activities)) {
-  
-//       foreach ($all_activities as $activity) {
-//         echo "$activity[eventId] ";
-
-
-
-
-//     } catch (Exception $e) {
-//         echo "Exception here!";
-//         echo $e;
-//       }
-            ?>
-                <div class="modal-footer">
+                <div class="modal-footer" id="modelEdit">
                   <button type="button" id="editButton" class="btn btn-primary"
-                    onclick="location.href = 'Admin-EventPageUpdate.html'">
+                    onclick="location.href = 'adminUpdateEvent'">
 
                     <i class="fas fa-edit">
                     </i>
@@ -238,11 +223,8 @@ try {
   <?php
     $all_activities =  $event_model->getAll();;
 ?>
-<?php
-    $color = "Red";
-?>
-<script type="text/javascript">var color = "<?= $color ?>";</script>
-  <script type="text/javascript" src="/js/utility.js"></script>
+
+<script type="text/javascript" src="/js/utility.js"></script>
 <!-- new path -->
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>

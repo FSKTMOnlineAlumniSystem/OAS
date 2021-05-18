@@ -2,7 +2,7 @@
 include '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" /> -->
-<!-- <link rel="stylesheet" href="../../../../css/Admin/Admin-EventPageCreate.css"> -->
+<link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css">
 <title>Update Event - Online Alumni System</title>
 </head>
 <body>
@@ -12,32 +12,32 @@ include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$title=$_GET['title'];
-try {
-  $event_model = new Admin_EventModel($db->getConnection());
-  $all_activities = $event_model->getAll();
-  if (!empty($all_activities)) {
+// $title=$_GET['title'];
+// try {
+//   $event_model = new Admin_EventModel($db->getConnection());
+//   $all_activities = $event_model->getAll();
+//   if (!empty($all_activities)) {
 
-    foreach ($all_activities as $res) {
+//     foreach ($all_activities as $res) {
 
-      if($res['title']==$title){
-	$eventId = $res['eventId'];
-	$adminId = $res['adminId'];
-	$title = $res['title'];
-	$dateTime = $res['dateTime'];
-	$description = $res['description'];
-	$locate = $res['location'];
-	$imageId = $res['imageId'];
+//       if($res['title']==$title){
+// 	$eventId = $res['eventId'];
+// 	$adminId = $res['adminId'];
+// 	$title = $res['title'];
+// 	$dateTime = $res['dateTime'];
+// 	$description = $res['description'];
+// 	$locate = $res['location'];
+// 	$imageId = $res['imageId'];
   
-  echo "$locate ";
-  echo "$imageId";
-      }
-}
+//   echo "$locate ";
+//   echo "$imageId";
+//       }
+// }
 
-    }
-} catch (Exception $e) {
-  echo "Exception here!";
-}
+//     }
+// } catch (Exception $e) {
+//   echo "Exception here!";
+// }
 
 
 if(isset($_POST['update'])){
@@ -67,7 +67,7 @@ if(isset($_POST['update'])){
     <h1>
       Update Event <br>
     </h1>
-        <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="Admin-InviteAlumniPage.html">
+        <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a>
         <form method="post" action="">
@@ -147,7 +147,7 @@ if(isset($_POST['update'])){
             </div>
 
           </div>
-				  <input type="hidden" name="title" value=<?php echo $_GET['title'];?>>
+				  <!-- <input type="hidden" name="title" value=<?php echo $_GET['title'];?>> -->
           <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2">Save</input>
           <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
@@ -170,7 +170,7 @@ if(isset($_POST['update'])){
                 Are you sure you want to leave this page?
               </div>
               <div class="modal-footer">
-                <a href="Admin-EventPage.html"><button type="button" class="btn btn-outline-secondary">Leave this
+                <a href="adminEvent"><button type="button" class="btn btn-outline-secondary">Leave this
                     Page</button></a>
                 <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
                   Page</button>
@@ -180,4 +180,19 @@ if(isset($_POST['update'])){
         </div>
 
       </div>
+      
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="../../js/utility.js"></script>
+    <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
+    <script src="/libs/bootstrap.bundle.js"></script>
+
+</body>
+</html>

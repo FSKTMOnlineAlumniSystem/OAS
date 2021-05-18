@@ -1,6 +1,6 @@
 // import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
-
+console.log('connect');
 let eventArray=event_array
 
 let pageIndex = 0;
@@ -77,13 +77,13 @@ const loadEventList = (pageIndex) => {
     i++
   ) 
   {
-
+console.log('hihihihi')
     var newRowContent = `<tr class="rowss">
                 
                <td>
                     <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" >
-                      <label class="custom-control-label" ></label>
+                      <input type="checkbox" class="custom-control-input" id="check ${i}">
+                      <label class="custom-control-label" for="check ${i}"></label>
                     </div>
                   </td>
                  <td style="font-weight: 400; font-size: 18px">${getReadableDate(eventArray[i].dateTime)}
@@ -92,7 +92,7 @@ const loadEventList = (pageIndex) => {
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                  <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">
                 ${eventArray[i].title
-      }
+      } 
               </a>
         
               <!-- Modal -->
@@ -106,9 +106,10 @@ const loadEventList = (pageIndex) => {
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                    
-                  <button class="updateButton" onclick="updateEvent(this)" id="update ${i}">
+                  <a href="adminUpdateEvent" class="updateButton" onclick="updateEvent(this)" id="update ${i}" >
+                  <!--?title=${eventArray[i].title} onclick="updateEvent(this)" id="update ${i}"-->
                     <i class="fas fa-edit pr-2" aria-hidden="true">
-                    </i></button>
+                    </i></a>
                     
 
 
@@ -136,6 +137,14 @@ const loadEventList = (pageIndex) => {
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;
+      // document.querySelector('#editButton').innerHTML=`
+      // <button type="button" id="editButton" class="btn btn-primary"
+      //               onclick="location.href = 'adminUpdateEvent?title=${eventArray[clickedAlumniIndex].title}'">
+
+      //               <i class="fas fa-edit">
+      //               </i>
+      //               Edit</button>
+      // `;
       localStorage.setItem('updateId', clickedAlumniIndex);
     });
   })

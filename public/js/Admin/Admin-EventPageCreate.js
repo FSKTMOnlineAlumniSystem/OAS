@@ -1,4 +1,5 @@
-import { dummyResponse, updateDummyData } from "../dummydata.js";
+// import { dummyResponse, updateDummyData } from "../dummydata.js";
+let eventArray=event_array
 sessionStorage.setItem('event', 'create')
 var imageName;
 var inputValue;
@@ -96,7 +97,7 @@ form.addEventListener('submit', (e) => {
     add_element_to_array();
     saveButton.textContent = 'Saving...';
     setTimeout(() => {
-      location.href = 'Admin-EventPage.html';
+      location.href = 'adminEvent';
     }, 1000);
   }
 });
@@ -111,7 +112,7 @@ window.add_element_to_array = function () {
     imageName = imgLocalPathArr[imgLocalPathArr.length-1];
 }
 
-  var endIndex = dummyResponse.Event.length;
+  var endIndex = eventArray.length;
   var newId = endIndex + 1
   var eventId = "E-" + newId
   var adminId = localStorage.getItem("SignedInAlumniId"); //need connect to localstorege later
@@ -133,18 +134,20 @@ window.add_element_to_array = function () {
     imageId: imageName,
     location: location
   }
-  dummyResponse.Event.splice(endIndex, 0, newEvent)
-  updateDummyData(dummyResponse)
+  eventArray.splice(endIndex, 0, newEvent)
+  // updateDummyData(dummyResponse)
   }
 
 window.setEventId = function () {
-  var endIndex = dummyResponse.Event.length;
+  var endIndex = eventArray.length;
   var newId = endIndex + 1
   var eventId = "E-" + newId
   localStorage.setItem('eventId', eventId);
 }
+console.log('hellooo');
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
+  console.log("hiii");
   var titlevalue = document.getElementById("title").value;
   var descriptionvalue = document.getElementById("description").value;
   var locatevalue = document.getElementById("location").value;
@@ -154,7 +157,7 @@ cancelButton.addEventListener('click', () => {
   var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
   if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
     && !datevalue && !timevalue) {
-    location.href = 'Admin-EventPage.html';
+    location.href = "adminEvent";
   } else {
     /*POP UP MODAL ask if cancel will lose changes */
     $('#cancelChangesModal').modal('show');
