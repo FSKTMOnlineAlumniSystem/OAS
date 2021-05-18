@@ -13,31 +13,31 @@ include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 // $title=$_GET['title'];
-// try {
-//   $event_model = new Admin_EventModel($db->getConnection());
-//   $all_activities = $event_model->getAll();
-//   if (!empty($all_activities)) {
+try {
+  $event_model = new Admin_EventModel($db->getConnection());
+  $all_activities = $event_model->getAll();
+  if (!empty($all_activities)) {
 
-//     foreach ($all_activities as $res) {
+    foreach ($all_activities as $res) {
 
-//       if($res['title']==$title){
-// 	$eventId = $res['eventId'];
-// 	$adminId = $res['adminId'];
-// 	$title = $res['title'];
-// 	$dateTime = $res['dateTime'];
-// 	$description = $res['description'];
-// 	$locate = $res['location'];
-// 	$imageId = $res['imageId'];
+  //     if($res['title']==$title){
+	// $eventId = $res['eventId'];
+	// $adminId = $res['adminId'];
+	// $title = $res['title'];
+	// $dateTime = $res['dateTime'];
+	// $description = $res['description'];
+	// $locate = $res['location'];
+	// $imageId = $res['imageId'];
   
-//   echo "$locate ";
-//   echo "$imageId";
-//       }
-// }
+  // echo "$locate ";
+  // echo "$imageId";
+      // }
+}
 
-//     }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
+    }
+} catch (Exception $e) {
+  echo "Exception here!";
+}
 
 
 if(isset($_POST['update'])){

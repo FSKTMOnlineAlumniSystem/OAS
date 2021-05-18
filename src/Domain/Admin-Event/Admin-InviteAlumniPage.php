@@ -15,7 +15,7 @@ crossorigin="anonymous"></script>
 <body>
 <?php
   // include '../config/config.php';
-  include '../src/Domain/Admin-Event/Admin-InviteAlumniModel.php';
+  include '../src/Domain/Admin-Event/Admin-EventModel.php';
   include '../src/Domain/Database.php';
 
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
