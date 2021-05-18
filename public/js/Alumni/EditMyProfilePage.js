@@ -90,7 +90,7 @@ cancelButton.addEventListener('click', () => {
     if (!img.value &&
         alumni.email == email.value &&
         alumni.biography == biography.value) {
-        location.href = "MyProfilePage.html";
+        location.href = "/myprofile";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');

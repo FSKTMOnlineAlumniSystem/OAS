@@ -42,7 +42,7 @@ try {
             <div class="row mx-0">
                 <h2><b>Edit My Profile</b></h2>
             </div>
-            <form id="editMyProfileForm" method="POST" action="../src/Domain/MyProfile/EditMyProfileController.php">
+            <form id="editMyProfileForm" method="POST" action="/api/myprofile/edit">
                 <div class="row mt-3 mb-3 align-items-center">
                     <div class="col-md-5 d-flex align-items-center justify-content-center">
                         <div class="w-50 position-relative">

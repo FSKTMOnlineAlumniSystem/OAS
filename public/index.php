@@ -2,6 +2,7 @@
 include '../config/config.php';
 session_start();
 
+//VIEW
 if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Event/EventPage.php';
@@ -19,10 +20,21 @@ elseif (preg_match('/^\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/EditMyProfilePage.php';
 }
- elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
-    include '../src/api/handler.php';
 
-} else {
+
+
+//API
+elseif (preg_match('/^\/api\/uploadImage\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/uploadImage.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/EditMyProfileController.php';
+}
+
+//ERROR URL NOT FOUND
+else {
     $GLOBALS['title'] = TITLE_NOT_FOUND;
     include '../src/Domain/General_Pages/page_not_found.php';
 }
