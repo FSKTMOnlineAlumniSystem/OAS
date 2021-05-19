@@ -69,7 +69,11 @@ class MyProfile
     public function setUpdatedData($email, $biography)
     {
         try {
-            $stmt = $this->connection->prepare('UPDATE');
+            $stmt = $this->connection->prepare('UPDATE alumni SET email=:email, biography=:biography WHERE alumniId=:alumniId');
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':biography', $biography);
+            $stmt->bindParam(':alumniId', $this->id);
+            $stmt->execute();
         } catch (PDOException $exception) {
             error_log('MyProfileModel: construct: ' . $exception->getMessage());
             throw $exception;

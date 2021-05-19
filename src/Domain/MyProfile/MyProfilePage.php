@@ -1,6 +1,5 @@
 <?php
-include_once '../src/Domain/header.php';
-// include_once '../header.php';
+include_once '../src/templates/header.php';
 
 include '../src/Domain/Database.php';
 include '../src/Domain/MyProfile/MyProfileModel.php';
@@ -52,7 +51,7 @@ try {
                 <div class="col-sm-5 d-flex align-items-center justify-content-center">
                     <div class="w-50 position-relative">
                         <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
-                            <img id="profilePicture" src=<?= constant('ALUMNI_IMG_PATH') . $alumni->getProfilePicture(); ?> alt="Profile Picture" class="img-fluid">
+                            <img id="profilePicture" src=<?= $alumni->getProfilePicture(); ?> alt="Profile Picture" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -170,7 +169,7 @@ try {
     <script type='module' src="/public/js/Alumni/MyProfilePage.js"></script> -->
     <script type="text/javascript" src="/js/addNavFooter.js"></script>
 
-    <?php include_once '../src/Domain/footer.php' ?>
+    <?php include_once '../src/templates/footer.php' ?>
 
     </body>
 

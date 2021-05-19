@@ -1,6 +1,4 @@
 <?php
-include_once '../src/Domain/header.php';
-// include_once '../header.php';
 
 include '../src/Domain/Database.php';
 include '../src/Domain/MyProfile/MyProfileModel.php';
