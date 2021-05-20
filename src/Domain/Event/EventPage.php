@@ -16,7 +16,7 @@ include '../src/Domain/header.php';
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
-    $event_model = new EventModel($db->getConnection());
+    $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     if (!empty($all_activities)) {
 

@@ -19,6 +19,7 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/api/handler.php';
 
 } else {
+    echo $_SERVER['REQUEST_URI'];
     $GLOBALS['title'] = TITLE_NOT_FOUND;
     include '../src/Domain/General_Pages/page_not_found.php';
 }
