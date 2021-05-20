@@ -121,7 +121,7 @@ form_1.addEventListener('submit', (ev) => {
     }
     else {
         // ev.preventDefault();
-        jumpHome();
+        // jumpHome();
     }
 });
 

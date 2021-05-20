@@ -41,7 +41,12 @@
 
 <body>
 
+
+
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
+        
+
+        
         <div class="container shadow-lg" style="height:75vh;">
             <div class="row align-items-center h-100">
                 <div
@@ -56,7 +61,7 @@
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='./signin_inc.php' id="signIN" method="post">
                         <div class="form-label-group w-100">
-                            <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
+                            <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
                             <label for="staticEmail">Email address</label>
                            
@@ -64,14 +69,14 @@
                             <div class="invalid-feedback">Please provide a correct email</div>
                         </div>
                         <div class="form-label-group w-100">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
                             <label for="inputPassword">Password</label>
                         
                             <div class="valid-feedback">Valid</div>
                             <div class="invalid-feedback">Password is incorrect</div>
                         </div>
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
-                            type="submit" style="background: #7b05aa;">Sign in</button>
+                            type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
                     <div class="row w-100">
                         <div class="col">
@@ -95,6 +100,7 @@
 
 
     <!-- forgot password -->
+    
     <div class="modal fade" id="forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -127,7 +133,65 @@
 
 
 
+    <!-- submitSignUp -->
+    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
+    <!-- <span data-toggle="modal" data-target="#notificationModal">sppp</span>
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thank you for signing up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="form_2">
+                    <div class="modal-body">
+                        <span>When you fill in your registered email address,
+                            you will be sent instructions on how to reset your password.</span>
+                        <br>
+                        <div class="mb-2 mt-3 row">
+                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                            <div class="col-sm-8 mr-1">
+                                <input type="text" class="form-control" id="sendEmail">
+                                <div class="invalid-feedback">Please provide a valid email.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#notificationModal").modal("show");
+        });
+        </script> -->
+
+   
+
     <!-- signUp -->
+    
     <div class="modal fade" id="signUP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -269,7 +333,7 @@
         </div>
     </div>
 
-
+    
 
 
 
@@ -301,6 +365,8 @@
 
     
 </div>
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
