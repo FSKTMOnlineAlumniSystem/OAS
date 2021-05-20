@@ -1,5 +1,6 @@
-import { dummyResponse, updateDummyData } from "../dummydata.js";
-
+// import { dummyResponse, updateDummyData } from "../dummydata.js";
+console.log('connect');
+let alumniArray=alumni_array
 // let pageIndex = 0;
 // const loadAlumniList = (pageIndex) => {
 //   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
@@ -76,7 +77,7 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 const reload = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
-dummyResponse.Alumni.forEach((alumni, index) => {
+alumniArray.forEach((alumni, index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -156,26 +157,26 @@ dummyResponse.Alumni.forEach((alumni, index) => {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
-    $("#image").attr('src', "/public/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
-    $("#name").text(dummyResponse.Alumni[e.target.id].name);
-    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
-    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
-    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
-    $("#email").text(dummyResponse.Alumni[e.target.id].email);
-    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
-    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
+    $("#image").attr('src', "/public/Assets/imgs/" + alumniArray[e.target.id].imageId)
+    $("#name").text(alumniArray[e.target.id].name);
+    $("#gender").text(alumniArray[e.target.id].gender);
+    $("#graduated").text(alumniArray[e.target.id].graduated);
+    $("#department1").text(alumniArray[e.target.id].department);
+    $("#email").text(alumniArray[e.target.id].email);
+    $("#contactNumber").text(alumniArray[e.target.id].contactNumber);
+    $("#icNumber").text(alumniArray[e.target.id].icNumber);
     $("#update").attr("id", "update " + e.target.id);
-    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
+    if (alumniArray[e.target.id].approvedBy === "") {
       $("#accStatus").text("Not Verified");
     } else {
       $("#accStatus").text("Verified");
     }
     $("#approve").click(function () {
-      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
+      if (alumniArray[e.target.id].approvedBy !== "") {
       }
       else {
-        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-        updateDummyData(dummyResponse);
+        alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+        // updateDummyData(dummyResponse);
         reload();
       }
     })
