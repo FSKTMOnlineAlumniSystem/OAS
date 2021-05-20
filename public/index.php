@@ -27,6 +27,9 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/addjob\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Job/AddJobPage.php';
+} elseif (preg_match('/^\/editmyjob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Job/EditMyJobPage.php';
 
 
 } elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {

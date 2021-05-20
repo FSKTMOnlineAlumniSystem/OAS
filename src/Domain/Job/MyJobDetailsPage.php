@@ -1,7 +1,7 @@
 <?php
 include '../src/Domain/header.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobDetailsPage.css" />
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -18,7 +18,7 @@ $myjobid = $_GET['myjobid'];
 try {
     $myjob_model = new MyJobDetailsModel($db->getConnection());
     $myjobdetails = $myjob_model->getRow($myjobid);
-    print_r($myjobdetails);
+    // print_r($myjobdetails);
     //   if (!empty($all_activities)) {
 
     // foreach ($all_activities as $activity) {
@@ -35,5 +35,7 @@ try {
 <div class = "container my-5" id='main-body'></div>
 <br>
 
-
+<script type="text/javascript">var job_array = <?php echo json_encode( $myjobdetails) ?>;</script>
+<script type="module" src="/js/Alumni/MyJobDetailsPage.js"></script>
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
 <?php include '../src/Domain/footer.php' ?>
