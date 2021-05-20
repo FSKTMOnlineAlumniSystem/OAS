@@ -1,12 +1,3 @@
-import { dummyResponse, updateDummyData } from '../dummydata.js';
-
-//get the current signed in alumni id from localStorage
-const currentAlumniId = localStorage.getItem('SignedInAlumniId');
-//get the current alumni object
-const alumni = dummyResponse.Alumni.filter(function (alumni) {
-    return alumni.alumniId === currentAlumniId;
-})[0];
-
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
@@ -31,7 +22,7 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
@@ -65,17 +56,6 @@ form.addEventListener('submit', (e) => {
     }
 
     if (!errorExist){
-        dummyResponse.Alumni.forEach((al) => {
-            if (al.alumniId === currentAlumniId) {
-                if(img.value){
-                    const imgLocalPathArr = img.value.split('\\');
-                    al.imageId = imgLocalPathArr[imgLocalPathArr.length-1];
-                }
-                al.email = email.value;
-                al.biography = biography.value;
-                updateDummyData(dummyResponse);
-            }
-        });
         saveButton.textContent='Saving...';
         setTimeout(()=>{
             // location.href='MyProfilePage.html';
@@ -88,8 +68,8 @@ form.addEventListener('submit', (e) => {
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
     if (!img.value &&
-        alumni.email == email.value &&
-        alumni.biography == biography.value) {
+        alumniEmail == email.value &&
+        alumniBiography == biography.value) {
         location.href = "/myprofile";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
@@ -103,16 +83,3 @@ stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 function closeModal(modalId) {
     $(modalId).modal('hide');
 }
-
-//load all the data when landing the page
-function loadData() {
-    wizardPicturePreview.src = PUBLIC_IMG_PATH + alumni.imageId;
-    name.textContent = alumni.name;
-    gender.textContent = alumni.gender;
-    graduated.textContent = alumni.graduated;
-    department.textContent = alumni.department;
-    email.value = alumni.email;
-    biography.value = alumni.biography;
-}
-
-loadData();

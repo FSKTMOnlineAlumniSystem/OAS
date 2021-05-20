@@ -13,7 +13,6 @@ try {
 }
 ?>
 
-
 <title>My Profile - Alumni Online System</title>
 <link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
 <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
@@ -21,8 +20,37 @@ try {
 </head>
 
 <body>
+
     <div id="main-body" class="row mx-0 my-5 justify-content-center">
         <div class="col-lg-7">
+
+            <?php
+            if (isset($_GET['updated'])) {
+                echo '
+                <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i>Your information is updated.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
+            }
+            if (isset($_GET['delete'])) {
+                echo '
+                <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                    <i class="fas fa-times-circle mr-2"></i>Failed to delete account. Please contact admin to proceed.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
+            }
+            if (isset($_GET['changepassword'])) {
+                echo '
+                <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                    <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
+            }
+            ?>
             <div class="row justify-content-between">
                 <h2><b>My Profile</b></h2>
                 <div class="btn-group">
@@ -98,17 +126,17 @@ try {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form id="changePasswordForm">
+                    <form id="changePasswordForm" method="POST" action="/api/myprofile/changepassword">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <label for="oldPassword" class="col-form-label">Old password</label>
-                                <input type="text" class="form-control" id="oldPassword" required>
+                                <input type="text" class="form-control" id="oldPassword" name="oldPassword" required>
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Old password is wrong</div>
                             </div>
                             <div class="form-group">
                                 <label for="newPassword" class="col-form-label">New password</label>
-                                <input type="password" class="form-control" id="newPassword" required>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Be at least 5 characters and at most 20 characters</div>
                             </div>
@@ -118,59 +146,57 @@ try {
                                 <div class="valid-feedback">New password is correct</div>
                                 <div class="invalid-feedback">Please enter the same new password</div>
                             </div>
-                        </form>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                        <button id="changePasswordButton" type="button" class="btn text-white" style="background: #a53ecd;">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteAccountModalLabel">Are you sure?
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="media alert alert-warning rounded mb-2">
-                        <i class="bi bi-exclamation-circle align-self-center mr-3"></i>
-                        <div class="media-body">
-                            If you delete your account, all of your account data will be permenantly deleted.
                         </div>
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="deleteAccountInput" class="col-form-label">If yes, please type “DELETE” to
-                                delete
-                                your account.</label>
-                            <input type="text" class="form-control" id="deleteAccountInput" required>
-                            <div class="invalid-feedback">Please enter 'DELETE'</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            <button name="submit" type="submit" class="btn btn-primary">Confirm</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                    <button id="deleteAccountButton" type="button" class="btn btn-danger">Delete Account</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteAccountModalLabel">Are you sure?
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id='deleteAccountForm' action="/api/myprofile/delete" method="POST">
+                        <div class="modal-body">
+                            <div class="media alert alert-warning rounded mb-2">
+                                <i class="bi bi-exclamation-circle align-self-center mr-3"></i>
+                                <div class="media-body">
+                                    If you delete your account, all of your account data will be permenantly deleted.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="deleteAccountInput" class="col-form-label">If yes, please type “DELETE” to
+                                    delete
+                                    your account.</label>
+                                <input type="text" class="form-control" id="deleteAccountInput" required>
+                                <div class="invalid-feedback">Please enter 'DELETE'</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="deleteAccountButton" name="submit" type="submit" class="btn btn-danger">Delete Account</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
-
-    <!-- <script type='text/javascript'>var alumniName="Ng Yong Ming"</script>
-    <script type='module' src="/public/js/Alumni/MyProfilePage.js"></script> -->
+    <script type='module' src="/js/Alumni/MyProfilePage.js"></script>
     <script type="text/javascript" src="/js/addNavFooter.js"></script>
-
     <?php include_once '../src/templates/footer.php' ?>
 
-    </body>
+</body>
 
 </html>

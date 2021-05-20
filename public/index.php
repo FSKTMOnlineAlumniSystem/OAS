@@ -6,19 +6,17 @@ session_start();
 if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Event/EventPage.php';
-    
-// } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
+
+    // } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
-
-}elseif (preg_match('/^\/myprofile\/?$/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_MY_PROFILE;
-    include '../src/Domain/MyProfile/MyProfilePage.php';
-}
-elseif (preg_match('/^\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/EditMyProfilePage.php';
+} elseif (preg_match('/^\/myprofile/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/MyProfilePage.php';
 }
 
 
@@ -27,10 +25,18 @@ elseif (preg_match('/^\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
 elseif (preg_match('/^\/api\/uploadImage\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/uploadImage.php';
-}
+} 
 elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/EditMyProfileController.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/ChangePasswordController.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/delete\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/DeleteAccountController.php';
 }
 
 //ERROR URL NOT FOUND
