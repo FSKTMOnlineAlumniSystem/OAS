@@ -1,6 +1,7 @@
 <?php
-include '../src/Domain/header.php';
+include '../src/templates/header.php';
 ?>
+<link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
 <link rel="stylesheet" type="text/css" href="/css/Alumni/EventPage.css" />
 
 <title><?= $GLOBALS['title']; ?></title>
@@ -51,7 +52,7 @@ include '../src/Domain/header.php';
   <script type="text/javascript">
     let color = "<?= $color ?>";
   </script>
-  <?php include '../src/Domain/footer.php' ?>
+  <?php include '../src/templates/footer.php' ?>
   <!-- custom js files -->
   <script type="module" src="/js/Alumni/EventPage.js"></script>
   <script type="text/javascript" src="/js/addNavFooter.js"></script>
