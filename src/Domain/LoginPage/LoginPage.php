@@ -39,27 +39,6 @@
     }
 </style>
 
-<?php
-include '../../../config/config.php';
-include './LoginPageModel.php';
-include '../Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-// try {
-//   $event_model = new EventModel($db->getConnection());
-//   $all_activities = $event_model->getAll();
-//   if (!empty($all_activities)) {
-
-//     foreach ($all_activities as $activity) {
-//       echo "$activity[eventId] ";
-//     }
-//   }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
-
-?>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
         <div class="container shadow-lg" style="height:75vh;">
@@ -74,19 +53,19 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                     <img src="../../../Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
                     </h3>
-                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" id="signIN">
+                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='./signin_inc.php' id="signIN" method="post">
                         <div class="form-label-group w-100">
                             <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
                             <label for="staticEmail">Email address</label>
-                            <!-- <label for="staticEmail"></label> -->
+                           
                             <div class="valid-feedback">Valid</div>
                             <div class="invalid-feedback">Please provide a correct email</div>
                         </div>
                         <div class="form-label-group w-100">
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password">
                             <label for="inputPassword">Password</label>
-                            <!-- <label for="inputPassword"></label> -->
+                        
                             <div class="valid-feedback">Valid</div>
                             <div class="invalid-feedback">Password is incorrect</div>
                         </div>
@@ -157,17 +136,17 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form">
+                <form action="signup_inc.php" id="form" method="post">
                     <div class="modal-body">
                         <div class="mb-3 row">
-                            <label for="IC" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
+                            <label for="profilePic" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
                             <div class="col-sm-8 mr-1 d-flex align-items-center justify-content-center">
                                 <div class="w-50 position-relative">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src="../../../Assets/imgs/add_image.jpg" class="picture-src m-auto"
+                                            <img src="/public/Assets/imgs/add_image.jpg" class="picture-src m-auto"
                                                 id="wizardPicturePreview" title="">
-                                            <input type="file" id="wizard-picture">
+                                            <input type="file" id="wizard-picture" name="profilePic">
                                         </div>
                                         <!-- <h6 id="choosePictureDescription">Choose Picture</h6> -->
                                         <h6 id="choosePictureDescription"></h6>
@@ -181,7 +160,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
                             <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="FirstNameID">
+                                <input type="text" class="form-control" id="FirstNameID" name="FirstNameID">
                                 <small class="invalid-feedback">Please provide a valid First Name.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -189,7 +168,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="LastNameID">
+                                <input type="text" class="form-control" id="LastNameID" name="LastNameID">
                                 <small class="invalid-feedback">Please provide a valid Last Name.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -198,7 +177,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
                             <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" id="Gender" aria-label="Default select example">
+                                <select name="gender" class="form-select p-1" id="Gender" aria-label="Default select example">
                                     <option value="0">Gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -210,7 +189,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
                             <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" id="Batch" aria-label="Default select example">
+                                <select name="Batch" class="form-select p-1" id="Batch" aria-label="Default select example">
                                     <option value="0">Batch</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -242,7 +221,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="Email">
+                                <input type="text" name="email" class="form-control" id="Email">
                                 <small class="invalid-feedback">Please provide a valid Email.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -250,7 +229,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="tel" class="form-control" id="IC">
+                                <input type="tel" name="IC" class="form-control" id="IC">
                                 <small class="invalid-feedback">Please provide a valid IC.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -258,7 +237,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
                             <div class="col-sm-8 mr-1">
-                                <select class="form-select p-1" id="Department" aria-label="Default select example">
+                                <select name="department" class="form-select p-1" id="Department" aria-label="Default select example">
                                     <option value="0">Department</option>
                                     <option value="Software Engineering">Software Engineering</option>
                                     <option value="Artificial Intellegent">Artificial Intellegent</option>
@@ -274,7 +253,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="password" class="form-control" id="Password">
+                                <input type="password" name="Password" class="form-control" id="Password">
                                 <small class="invalid-feedback">Please enter only 5-20 characters available for
                                     password.</small>
                                 <small class="valid-feedback">Okay!</small>
