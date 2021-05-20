@@ -194,7 +194,7 @@ try {
                       <div class="modal-footer">
 
                         <button id="update" type="button" class="btn btn-primary" data-dismiss="modal"
-                          onclick="location.href ='Admin-EditAlumniProfilePage.html';updateEvent(this)">
+                          onclick="location.href ='editAlumniProfile';updateEvent(this)">
                           <i class="fas fa-edit">
                           </i>Edit</button>
                         <button id="approve" type="button" class="btn btn-info">Approve</button>
