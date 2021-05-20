@@ -20,8 +20,8 @@ try {
 
     foreach ($all_activities as $res) {
 
-  //     if($res['title']==$title){
-	// $eventId = $res['eventId'];
+      if($res['title']==$title){
+	$eventId = $res['eventId'];
 	// $adminId = $res['adminId'];
 	// $title = $res['title'];
 	// $dateTime = $res['dateTime'];
@@ -31,7 +31,7 @@ try {
   
   // echo "$locate ";
   // echo "$imageId";
-      // }
+      }
 }
 
     }
@@ -40,23 +40,52 @@ try {
 }
 
 
-if(isset($_POST['update'])){
-  try {
-    // begin a transaction
-    $db->beginTransaction();
-    // a set of queries: if one fails, an exception will be thrown
-    $sql = "UPDATE users SET eventId='$eventId',adminId='$adminId',title='$title' ,dateTime='$dateTime',description='$description',location='$locate'，imageId='$imageId' WHERE title=$title";
-    $db->query($sql);//run the query & returns a PDOStatement object
-    // if we arrive here, it means that no exception was thrown
-    // which means no query has failed, so we can commit the
-    // transaction
-    $db->commit();
-  } catch (Exception $e) {
-    // we must rollback the transaction since an error occurred
-    // with insert
-    $db->rollback();
-  }
+    if(isset($_POST['update'])) {
+    $addJob_model = new  UpdateEventModel($db->getConnection());	
+    // $data = $addJob_model->getMaxId();
+    $eventId = "E-" ;
+    $adminId = "AD-1";         //ned change
+    $title = $_POST['title'];
+    //dateTime
+    // $date =$_POST["date"];
+    // $time =$_POST["time"];
+    $dateTime=$_POST["dateTime"];
+    $description = $_POST['description'];
+    $imageId = $_POST['imageId'];
+    $locate = $_POST['locate'];
+
+    // $year = date.split("-")[0];
+    // $month =  date.split("-")[1];
+    // $day = date.split("-")[2];
+    // $hours = time.split(":")[0];
+    // $min = time.split(":")[1];
+    // $newDate = new Date($year, $month, $day, $hours, $min, "0");
+    echo $dateTime;
+    $addJob_model->updateEvent($eventId,$adminId,$title,$dateTime,$description,$imageId,$locate);
+    
+    // header("Location: myjob");
+
+  
 }
+
+
+// if(isset($_POST['update'])){
+//   try {
+//     // begin a transaction
+//     $db->beginTransaction();
+//     // a set of queries: if one fails, an exception will be thrown
+//     $sql = "UPDATE users SET eventId='$eventId',adminId='$adminId',title='$title' ,dateTime='$dateTime',description='$description',location='$locate'，imageId='$imageId' WHERE title=$title";
+//     $db->query($sql);//run the query & returns a PDOStatement object
+//     // if we arrive here, it means that no exception was thrown
+//     // which means no query has failed, so we can commit the
+//     // transaction
+//     $db->commit();
+//   } catch (Exception $e) {
+//     // we must rollback the transaction since an error occurred
+//     // with insert
+//     $db->rollback();
+//   }
+// }
 ?>
 
 <main class="container-fluid height-after-minus-header" id='main-body'>
@@ -70,12 +99,12 @@ if(isset($_POST['update'])){
         <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a>
-        <form method="post" action="">
+        <form method="post"><!--  onsubmit="checkvalidation()" -->
           <div id="updateForm">
             <div class="form-group">
   
               <label for="formGroupExampleInput">Event Title :</label>
-              <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter new event title"
+              <input type="text" class="form-control rounded-0 w-75 p-3" id="title" name="title" placeholder="Enter new event title"
                 value="<?php echo "$title";?>" required>
               <div class="valid-feedback">Valid.</div>
               <div id="contactNumberFeedback" class="invalid-feedback">
@@ -87,18 +116,19 @@ if(isset($_POST['update'])){
 
             <div class="form-group">
               <label for="formGroupExampleInput2">Schedule :</label> <br>
-              <input type=date value="" id="date"> &nbsp;
-              <input type=time value="" id="time">
+              <input type=date value="" id="date" name="date"> &nbsp;
+              <input type=time value="" id="time" name="time">
+              <input type="hidden" value="" id="dateTime" name="dateTime">
 
-              <script>
-              var d = new Date(<?php $dateTime ?>); //change this thing
+              <!-- <script>
+              var d = new Date( <?php $dateTime ?>); //change this thing
               var todayDate = d.toISOString().slice(0, 10);
               let hour = d.getHours();
               let minute = d.getMinutes().toString();
               minute = minute.padStart(2, '0');
               document.getElementById('date').value=todayDate
               document.getElementById('time').value=hour +':'+ minute
-            </script>
+            </script> -->
 
 
               <div id="contactNumberFeedback" class="invalid-feedback">
@@ -108,7 +138,7 @@ if(isset($_POST['update'])){
 
             <div class="form-group">
               <label for="formGroupExampleInput2">Description :</label>
-              <textarea type="text" class="form-control rounded-0" id="description" placeholder="Enter new schedule"
+              <textarea type="text" class="form-control rounded-0" id="description" name="description" placeholder="Enter new schedule"
                 value=<?php echo "$description";?> rows="5"
                 ;><?php echo "$description";?></textarea>
               <div class="valid-feedback">Valid.</div>
@@ -120,7 +150,7 @@ if(isset($_POST['update'])){
 
             <div class="form-group">
               <label for="formGroupExampleInput2">Location :</label>
-              <input type="text " class="form-control rounded-0 w-75 p-3" id="location" placeholder="Enter new location"
+              <input type="text " class="form-control rounded-0 w-75 p-3" id="location" name="locate" placeholder="Enter new location"
                 value="<?php echo "$locate";?>">
               <div class="valid-feedback">Valid.</div>
               <div id="contactNumberFeedback" class="invalid-feedback">
@@ -135,7 +165,7 @@ if(isset($_POST['update'])){
                 <div class="picture">
                   <img src="<?php echo "$img_Path$imageId";?>" id="prevImage" alt="update Image" width="150"
                     length="150">
-                  <input type="file" id="wizard-picture">
+                  <input type="file" id="wizard-picture" name="imageId">
                   
                 </div>
               </div>
@@ -192,7 +222,8 @@ if(isset($_POST['update'])){
     <script type="text/javascript" src="../../js/utility.js"></script>
     <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
-    <script src="/libs/bootstrap.bundle.js"></script>
+    <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
+
 
 </body>
 </html>

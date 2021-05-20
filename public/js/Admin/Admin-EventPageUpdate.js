@@ -22,7 +22,7 @@ var i = localStorage.getItem("updateId")
 localStorage.setItem('eventId',dummyResponse.Event[i].eventId)
 var d = new Date(dummyResponse.Event[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
-
+document.getElementById('dateTime').value=d; //for php reference
 // const minute = d.getMinutes();
 let hour = d.getHours();
 let minute = d.getMinutes().toString();
@@ -78,8 +78,10 @@ function isEmpty(obj) {
   return obj.value.length == 0;
 }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+// form.addEventListener('submit', (e) => {
+  // e.preventDefault();
+  function checkvalidation() {
+    console.log("here");
   let errorExist = false; //false if no error exists in email, contactNumber, biography
 
   if (isEmpty(title)) {
@@ -124,7 +126,7 @@ form.addEventListener('submit', (e) => {
       location.href = 'adminEvent';
     }, 1000);
   }
-});
+};
 
 window.update_array = function () {
     var i = localStorage.getItem("updateId")

@@ -87,22 +87,49 @@ class AlumniModel
 }
 
 
-  // public function getById(int $id): array
-  // {
+class UpdateEventModel
+{
+  private PDO $connection;
 
-  //   try {
-  //     $stmt = $this->connection->prepare('SELECT * FROM activity WHERE id = ?');
-  //     $stmt->execute([$id]);
-  //     $data = $stmt->fetch();
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+    $prevTitle="";
+    $prevTitle=$_GET['title'];
 
-  //     if (!$data) {
-  //       return array();
-  //     }
-  //     return $data;
-  //   } catch (PDOException $exception) {
-  //     error_log('ActivityModel: getById: ' . $exception->getMessage() . ' id: ' . $id);
-  //     throw $exception;
-  //   }
-  // }
+    public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
+             $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location) WHERE title=$prevTitle";
+             $stmt = $this->connection->prepare($sql);
+            //  $stmt->execute();
+             $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
+
+    }
+    
+}
+class createEventModel
+{
+  private PDO $connection;
+
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+    public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
+             $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
+             $stmt = $this->connection->prepare($sql);
+            //  $stmt->execute();
+             $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
+
+    }
+    
+    // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
+    public function getMaxId(): int{
+        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job")->fetchColumn();
+        return (int)$stmt;
+
+    }
+}
+
 
 ?>
