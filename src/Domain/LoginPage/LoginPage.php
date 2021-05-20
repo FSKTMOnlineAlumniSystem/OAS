@@ -39,6 +39,7 @@
     }
 </style>
 
+<body>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
         <div class="container shadow-lg" style="height:75vh;">
@@ -261,7 +262,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary signinbtn">Sign Up</button>
+                        <button type="submit" name="submit" class="btn btn-primary signinbtn">Sign Up</button>
                     </div>
                 </form>
             </div>
@@ -298,7 +299,9 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
@@ -306,6 +309,6 @@
         crossorigin="anonymous"></script>
     <script type="module" src="/public/js/Alumni/LoginPage.js"></script>
 
-    </body>
+</body>
 
 </html>
