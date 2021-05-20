@@ -48,9 +48,12 @@ CREATE TABLE Events(
   eventId varchar(10) NOT NULL PRIMARY KEY,
   adminId varchar(10) NOT NULL,
   title varchar(255) NOT NULL,
-  dateTime varchar(255) NOT NULL,
   description varchar(10000) NOT NULL,
+  salary int(255) unsigned NOT NULL,
+  email varchar(255) NOT NULL,
+  postedDateTime varchar(255) NOT NULL,
   imageId varchar(255) NOT NULL,
+  company varchar(255) NOT NULL,
   location varchar(255) NOT NULL
 );
 INSERT INTO Admin(
@@ -384,119 +387,151 @@ INSERT INTO Events(
     eventId,
     adminId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-1',
-    'AD-1',
-    'Constraint programming Workshop',
+    'J-1',
+    'AL-1',
+    'Software Engineer',
+    "Have at least a bachelor's degree in software engineering or information technology. Have extensive experience working with various 
+programming languages such as Python, Java, and C++",
+    '3000',
+    'teh@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.
-
-Through this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.',
-    'E-1.png',
-    'FSKTM, MM2'
+    'J-1.jpg',
+    'HSBC',
+    'Kuala Lumpur'
   );
-INSERT INTO Events(
-    eventId,
-    adminId,
+INSERT INTO Job(
+    jobId,
+    alumniId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-2',
-    'AD-1',
-    'Database Admin Career',
-    '2021-04-03T15:53:53+00:00',
-    "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.
-
-Database Admin Career will tell you the job scope as a Database Administrator in details!",
-    'E-2.png',
-    'FSKTM, MM3'
+    'J-2',
+    'AL-2',
+    'Frond-end developer',
+    "Have a degree in Computer Science or similar field.
+Be proficient in coding languages such as HTML, CSS, JavaScript, and jQuery.
+Understand server-side CSS.",
+    '2000',
+    'ang@gmail.com',
+    '2021-04-04T15:53:53+00:00',
+    'J-2.jpg',
+    'Samsung',
+    'Petaling Jaya'
   );
-INSERT INTO Events(
-    eventId,
-    adminId,
+INSERT INTO Job(
+    jobId,
+    alumniId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-3',
-    'AD-2',
-    'Into the world of Cognitive Science',
-    '2021-04-02T15:53:53+00:00',
-    'Cognitive science is the interdisciplinary, scientific study of the mind and its processes. It examines the nature, the tasks, and the functions of cognition (in a broad sense).
-
-It will be very fun to study intelligence and behavior with a focus on how nervous systems represent, process, and transform information.',
-    'E-3.png',
-    'FSKTM, MM4'
+    'J-3',
+    'AL-3',
+    'Back-end developer',
+    'Have a degree in Computer Science.
+Familiar with the database, Server and API',
+    '3000',
+    'lan@gmail.com',
+    '2021-04-04T15:53:53+00:00',
+    'J-3.png',
+    'Apple',
+    'Johor Bharu'
   );
-INSERT INTO Events(
-    eventId,
-    adminId,
+INSERT INTO Job(
+    jobId,
+    alumniId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-4',
-    'AD-3',
-    'Boom Boom Bootstrap',
-    '2021-04-01T15:53:53+00:00',
-    "Quizzes & Projects and Exclusive Content for you! Practice and discover more Bootstrap function in our workshop! Enroll Today! It's Never Too Late to Learn a New Skill! ",
-    'E-4.png',
-    'FSKTM, MM5'
+    'J-4',
+    'AL-4',
+    'Flutter developer',
+    'Good understanding in data structures, algorithms, control flows, and general knowledge in the programming language. Have to master Flutter framework',
+    '2500',
+    'behjiaong@gmail.com',
+    '2021-04-04T15:53:53+00:00',
+    'J-4.jpg',
+    'Google',
+    'Kuala Lumpur'
   );
-INSERT INTO Events(
-    eventId,
-    adminId,
+INSERT INTO Job(
+    jobId,
+    alumniId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-5',
-    'AD-4',
-    'React to React',
-    '2021-03-09T15:53:53+00:00',
-    'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.
-
-Wait no more and join React to React now!!!',
-    'E-5.png',
-    'FSKTM, MM6'
+    'J-5',
+    'AL-5',
+    'Forensic computer analyst',
+    'Qualification in IT or related field.
+Good analytics skills',
+    '4000',
+    'keat@gmail.com',
+    '2021-04-04T15:53:53+00:00',
+    'J-5.png',
+    'Top Glove',
+    'Shah Alam'
   );
-INSERT INTO Events(
-    eventId,
-    adminId,
+INSERT INTO Job(
+    jobId,
+    alumniId,
     title,
-    dateTime,
     description,
+    salary,
+    email,
+    postedDateTime,
     imageId,
+    company,
     location
   )
 VALUES (
-    'E-6',
-    'AD-4',
-    'Machine Learning Workshop',
-    '2021-03-08T15:53:53+00:00',
-    'Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.
-
--- We are sure that you will gain a lot by joining our workshop!',
-    'E-6.png',
-    'FSKTM, MM7'
+    'J-6',
+    'AL-6',
+    'Database Analyst',
+    'Qualification in IT or related field.
+Master Structured Query Language and Python.',
+    '3000',
+    'ang@gmail.com',
+    '2021-04-05T15:53:53+00:00',
+    'J-6.jpg',
+    'HSBC',
+    'Kuala Lumpur'
   );
 INSERT INTO Alumni_Event(
     alumniId,
