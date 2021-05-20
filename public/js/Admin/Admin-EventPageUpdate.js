@@ -121,7 +121,7 @@ form.addEventListener('submit', (e) => {
     update_array();
     saveButton.textContent = 'Saving...';
     setTimeout(() => {
-      location.href = 'adminEvent';
+      location.href = 'Admin-EventPage.html';
     }, 1000);
   }
 });
@@ -171,7 +171,7 @@ cancelButton.addEventListener('click', () => {
     locatevalue==locate.value&& 
     datevalue==date.value && 
     timevalue==time.value) {
-    location.href = "adminEvent";
+    location.href = 'Admin-EventPage.html';
   } else {
     /*POP UP MODAL ask if cancel will lose changes */
     $('#cancelChangesModal').modal('show');
