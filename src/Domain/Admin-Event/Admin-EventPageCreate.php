@@ -32,8 +32,8 @@ include '../src/Domain/header.php';
     echo "Exception: " . $e->getMessage();
   }
   ?>
-<script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script>
+
+  <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
 
   <?php
   if(isset($_POST['Submit'])) {
@@ -54,8 +54,8 @@ include '../src/Domain/header.php';
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
     $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
-    
-    // header("Location: myjob");
+  
+    header("Location: adminEvent");
 echo 'event id+ $data';
 }else{
   echo 'die die go';
@@ -83,7 +83,7 @@ echo 'event id+ $data';
         document.getElementById("formCheck").innerHTML =`
         <form method="post" onsubmit="return checkvalidation()">`
         </script> -->
-      <form method="post" onsubmit="checkvalidation()">
+      <form method="post" onsubmit="return checkvalidation()">
       
         <div class="form-group">
           <label for="formGroupExampleInput">Event Title :</label>
@@ -191,7 +191,7 @@ echo 'event id+ $data';
   
   <script type="text/javascript" src="/js/utility.js"></script>
   <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script> -->
-  <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
+  <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
   <!-- <script type='module' src='/src/js/addHeader.js'></script> -->
   </main>

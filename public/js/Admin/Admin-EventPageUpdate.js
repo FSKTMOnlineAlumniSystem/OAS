@@ -41,92 +41,94 @@ var titlevalue = eventArray[i].title;
   var datevalue = todayDate;
   var timevalue = hour +':'+ minute;
 
-function setInValid(el) {
-  if (el.classList.contains("is-valid")) {
-    el.classList.replace("is-valid", "is-invalid");
-  } else {
-    el.classList.add("is-invalid");
-  }
-}
-function setValid(el) {
-  if (el.classList.contains("is-invalid")) {
-    el.classList.replace("is-invalid", "is-valid");
-  } else {
-    el.classList.add("is-valid");
-  }
-}
+// function setInValid(el) {
+//   if (el.classList.contains("is-valid")) {
+//     el.classList.replace("is-valid", "is-invalid");
+//   } else {
+//     el.classList.add("is-invalid");
+//   }
+// }
+// function setValid(el) {
+//   if (el.classList.contains("is-invalid")) {
+//     el.classList.replace("is-invalid", "is-valid");
+//   } else {
+//     el.classList.add("is-valid");
+//   }
+// }
 
 /*Check the file extension of the image & Update preview*/
-img.addEventListener('change', (e) => readURL(e));
-function readURL(e) {
-  let allowedExtensions =
-    /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById("prevImage").src = e.target.result;
-    }
-    reader.readAsDataURL(e.target.files[0]);
-    choosePictureDescription.textContent = "";
-  } else {
-    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//   let allowedExtensions =
+//     /(\.png|\.jpg|\.jpeg)$/i;
+//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//     }
+//     reader.readAsDataURL(e.target.files[0]);
+//     choosePictureDescription.textContent = "";
+//   } else {
+//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
-  }
-}
+//   }
+// }
+
+
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
-function isEmpty(obj) {
-  return obj.value.length == 0;
-}
+// function isEmpty(obj) {
+//   return obj.value.length == 0;
+// }
 
 // form.addEventListener('submit', (e) => {
   // e.preventDefault();
-  function checkvalidation() {
-    console.log("here");
-  let errorExist = false; //false if no error exists in email, contactNumber, biography
+//   function checkvalidation() {
+//     console.log("here");
+//   let errorExist = false; //false if no error exists in email, contactNumber, biography
 
-  if (isEmpty(title)) {
-    setInValid(title);
-    errorExist = true;
-  } else {
-    setValid(title);
-  }
+//   if (isEmpty(title)) {
+//     setInValid(title);
+//     errorExist = true;
+//   } else {
+//     setValid(title);
+//   }
 
-  if (isEmpty(description)) {
-    setInValid(description);
-    errorExist = true;
-  } else {
-    setValid(description);
-  }
+//   if (isEmpty(description)) {
+//     setInValid(description);
+//     errorExist = true;
+//   } else {
+//     setValid(description);
+//   }
 
-  if (isEmpty(locate)) {
-    setInValid(locate);
-    errorExist = true;
-  } else {
-    setValid(locate);
-  }
+//   if (isEmpty(locate)) {
+//     setInValid(locate);
+//     errorExist = true;
+//   } else {
+//     setValid(locate);
+//   }
 
-  if (isEmpty(date)) {
-    setInValid(date);
-    errorExist = true;
-  } else {
-    setValid(date);
-  }
+//   if (isEmpty(date)) {
+//     setInValid(date);
+//     errorExist = true;
+//   } else {
+//     setValid(date);
+//   }
 
-  if (isEmpty(time)) {
-    setInValid(time);
-    errorExist = true;
-  } else {
-    setValid(time);
-  }
+//   if (isEmpty(time)) {
+//     setInValid(time);
+//     errorExist = true;
+//   } else {
+//     setValid(time);
+//   }
 
-  if (!errorExist) {
-    update_array();
-    saveButton.textContent = 'Saving...';
-    setTimeout(() => {
-      location.href = 'adminEvent';
-    }, 1000);
-  }
-};
+//   if (!errorExist) {
+//     update_array();
+//     saveButton.textContent = 'Saving...';
+//     setTimeout(() => {
+//       location.href = 'adminEvent';
+//     }, 1000);
+//   }
+// };
 
 window.update_array = function () {
     var i = localStorage.getItem("updateId")

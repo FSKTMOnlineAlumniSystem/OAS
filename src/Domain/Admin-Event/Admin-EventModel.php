@@ -100,16 +100,29 @@ class UpdateEventModel
     // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
     public function updateEvent($prevtitle,$eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
             //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
-             $sql = "UPDATE events SET title=:title,dateTime=:newDate,description=:description,imageId=:imageId,location=:locate WHERE title='$prevtitle'";
+            try{
+             $sql = "UPDATE events SET title=?,dateTime=?,description=?,imageId=?,location=? WHERE title=?";
              $stmt = $this->connection->prepare($sql);  
-             $stmt ->bindParam(':title',$title);
-             $stmt ->bindParam(':dateTime',$newDate);
-             $stmt ->bindParam(':description',$description);
-             $stmt ->bindParam(':imageId',$imageId);
-             $stmt ->bindParam(':location',$locate);
-             $stmt->execute();
+
+             $stmt->execute([$title,$newDate,$description,$imageId,$locate,$prevtitle]);
+            }catch (PDOException $exception) {
+                error_log('UpdateEventModel: construct: ' . $exception->getMessage());
+                throw $exception;
+            }
+            
+            //  $stmt ->bindParam(':title',$title);
+            //  $stmt ->bindParam(':dateTime',$newDate);
+            //  $stmt ->bindParam(':description',$description);
+            //  $stmt ->bindParam(':imageId',$imageId);
+            //  $stmt ->bindParam(':location',$locate);
             //  $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
+    }
+    public function editJob($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$imageId,$company,$location){
+        $sql = "UPDATE job SET jobId=?, title=?, alumniId=?, description=?, salary=?, email=?, postedDateTime=?, imageId=?, company=?, location=? WHERE jobId=?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$jobId,$title,$alumniId,$description,$salary,$email,$postedDateTime,$imageId,$company,$location,$jobId]);
+        // echo("success");
     }
     
 }

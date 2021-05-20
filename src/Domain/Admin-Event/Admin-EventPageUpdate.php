@@ -47,7 +47,7 @@ try {
     if(isset($_POST['update'])) {
       $prevtitle=$_GET['title'];
       echo  $prevtitle;
-    $updateEvent = new  UpdateEventModel($db->getConnection());	
+    $updateTheEvent = new  UpdateEventModel($db->getConnection());	
     // $data = $addJob_model->getMaxId();
     $eventId = "E-" ;
     $adminId = "AD-1";         //ned change
@@ -58,9 +58,8 @@ try {
     $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-    $updateEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
- echo 'i am connected hahaha';   
-    // header("Location: myjob");
+    $updateTheEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    // header("Location: adminEvent");
 
 }
 
@@ -217,7 +216,10 @@ try {
         crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="/js/utility.js"></script>
     <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    
     <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script> -->
+  <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
+
     <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
 
 
