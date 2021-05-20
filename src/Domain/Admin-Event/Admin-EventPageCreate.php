@@ -31,6 +31,35 @@ include '../src/Domain/header.php';
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
   }
+  ?>
+<script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+  <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script>
+
+  <?php
+  if(isset($_POST['Submit'])) {
+
+    print 'it suceed';
+    $addEvent = new createEventModel($db->getConnection());	
+    $data = $addEvent->getMaxId();
+    echo 'event id';
+    echo $data;
+    $eventId = "E-" . $data+1;
+    $adminId = "AD-1";         //ned change
+    $title = $_POST['title'];
+    //dateTime
+    $date =$_POST["date"];
+    $time =$_POST["time"];
+    $description = $_POST['description'];
+    $imageId = $_POST['imageId'];
+    $locate = $_POST['locate'];
+    $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
+    $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    
+    // header("Location: myjob");
+echo 'event id+ $data';
+}else{
+  echo 'die die go';
+}
 
   ?>
     <main class="container-fluid height-after-minus-header" id='main-body'>
@@ -46,10 +75,19 @@ include '../src/Domain/header.php';
         onclick='setEventId()'>
         <i class="fas fa-user-plus"></i>
         Invite Alumni</a>
-      <form>
+
+        <!-- <div id="formCheck">
+        hiiiiii
+        </div>
+        <script>
+        document.getElementById("formCheck").innerHTML =`
+        <form method="post" onsubmit="return checkvalidation()">`
+        </script> -->
+      <form method="post" onsubmit="checkvalidation()">
+      
         <div class="form-group">
           <label for="formGroupExampleInput">Event Title :</label>
-          <input type="text" class="form-control rounded-0 w-75 p-3" id="title" placeholder="Enter event title">
+          <input type="text" class="form-control rounded-0 w-75 p-3" id="title" name="title" value="" placeholder="Enter event title">
 
           <div class="valid-feedback">Valid.</div>
           <div id="contactNumberFeedback" class="invalid-feedback">
@@ -61,9 +99,9 @@ include '../src/Domain/header.php';
         <!-- form -->
         <div class="form-group">
           <label for="formGroupExampleInput2">Schedule :</label> <br>
-          <input type=date id="date">
+          <input type=date id="date" name="date" value="">
           &nbsp;
-          <input type=time id="time">
+          <input type=time id="time" name="time" value="">
 
           <div id="contactNumberFeedback" class="invalid-feedback">
             Please provide both date and time of the event.
@@ -72,7 +110,7 @@ include '../src/Domain/header.php';
 
         <div class="form-group">
           <label for="formGroupExampleInput2">Description :</label>
-          <textarea type="text" class="form-control rounded-0" id="description" placeholder="Enter event description"
+          <textarea type="text" class="form-control rounded-0" value="" id="description" name="description" placeholder="Enter event description"
             rows="5" style="height:100%;"></textarea>
           <div class="valid-feedback">Valid.</div>
           <div id="contactNumberFeedback" class="invalid-feedback">
@@ -83,7 +121,7 @@ include '../src/Domain/header.php';
 
         <div class="form-group">
           <label for="formGroupExampleInput2 ">Location :</label>
-          <input type="text " class="form-control rounded-0 w-75 p-3" id="location" placeholder="Enter location">
+          <input type="text " class="form-control rounded-0 w-75 p-3" value="" id="location" name="locate" placeholder="Enter location">
           <div class="valid-feedback">Valid.</div>
           <div id="contactNumberFeedback" class="invalid-feedback">
             Please provide the location of the event.
@@ -99,22 +137,22 @@ include '../src/Domain/header.php';
             <img
               src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
               id="prevImage" alt="update Image" width="100%" >
-            <input type="file" id="wizard-picture">
+            <input type="file" id="wizard-picture" name="imageId">
           </div>
         
         
-      </div>
-      <h6 id="choosePictureDescription"></h6>
-      <div id="contactNumberFeedback" class="invalid-feedback">
+        </div>
+        <h6 id="choosePictureDescription"></h6>
+        <div id="contactNumberFeedback" class="invalid-feedback">
         Please provide a picture for the event.
-      </div>
-      </div>
-
+        </div>
+        </div>
         <!-- ssave button -->
-        <button type="submit" id="saveButton" class="btn btn-primary float-right ml-2">Save</button>
-        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
+        <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
+        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelUpdate()">Cancel</button>
 
-       
+        <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->
+     
 
       </form>
 <!-- modal -->
@@ -125,7 +163,7 @@ include '../src/Domain/header.php';
             <div class="modal-header">
               <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
               <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal"
-                aria-label="Close">
+                aria-label="Close" onclick="closeModal('#cancelChangesModal')">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -136,7 +174,7 @@ include '../src/Domain/header.php';
             <div class="modal-footer">
               <a href="adminEvent"><button type="button" class="btn btn-secondary">Leave this
                   Page</button></a>
-              <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
+              <button id="stayButton" type="button"  class="btn btn-primary" data-dismiss="modal" onclick="closeModal('#cancelChangesModal')">Stay on this
                 Page</button>
             </div>
           </div>
@@ -151,9 +189,9 @@ include '../src/Domain/header.php';
         crossorigin="anonymous"></script>
   </div>
   
-  <script type="text/javascript" src="../../js/utility.js"></script>
-  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="module" src="/js/Admin/Admin-EventPageCreate.js"></script>
+  <script type="text/javascript" src="/js/utility.js"></script>
+  <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script> -->
+  <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
   <!-- <script type='module' src='/src/js/addHeader.js'></script> -->
   </main>

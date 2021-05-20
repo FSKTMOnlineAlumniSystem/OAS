@@ -95,14 +95,20 @@ class UpdateEventModel
     {
         $this->connection = $connection;
     }
-    $prevTitle="";
-    $prevTitle=$_GET['title'];
-
-    public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-             $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location) WHERE title=$prevTitle";
-             $stmt = $this->connection->prepare($sql);
-            //  $stmt->execute();
-             $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
+    // $prevTitle="";
+    // $prevTitle=$_GET['title'];
+    // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
+    public function updateEvent($prevtitle,$eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
+            //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+             $sql = "UPDATE events SET title=:title,dateTime=:newDate,description=:description,imageId=:imageId,location=:locate WHERE title='$prevtitle'";
+             $stmt = $this->connection->prepare($sql);  
+             $stmt ->bindParam(':title',$title);
+             $stmt ->bindParam(':dateTime',$newDate);
+             $stmt ->bindParam(':description',$description);
+             $stmt ->bindParam(':imageId',$imageId);
+             $stmt ->bindParam(':location',$locate);
+             $stmt->execute();
+            //  $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
     }
     
@@ -119,17 +125,39 @@ class createEventModel
              $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
              $stmt = $this->connection->prepare($sql);
             //  $stmt->execute();
-             $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
+             $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
     }
     
     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
     public function getMaxId(): int{
-        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job")->fetchColumn();
+        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM Events")->fetchColumn();
         return (int)$stmt;
 
     }
 }
+// class deleteEventModel
+// {
+//   private PDO $connection;
 
+//     public function __construct(PDO $connection)
+//     {
+//         $this->connection = $connection;
+//     }
+//     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
+//              $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
+//              $stmt = $this->connection->prepare($sql);
+//             //  $stmt->execute();
+//              $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
+//     }
+    
+//     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
+//     public function getMaxId(): int{
+//         $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM Events")->fetchColumn();
+//         return (int)$stmt;
+
+//     }
+// }
+// DELETE FROM `events` WHERE `events`.`eventId` = 'E-18';
 ?>

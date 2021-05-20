@@ -1,7 +1,7 @@
 sessionStorage.setItem('event', 'update')
-import {dummyResponse, updateDummyData} from "../dummydata.js";
+// import {dummyResponse, updateDummyData} from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
-
+let eventArray=event_array
 var inputValue;
 var imageName;
 var inputValue;
@@ -19,8 +19,8 @@ const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
 var i = localStorage.getItem("updateId")
-localStorage.setItem('eventId',dummyResponse.Event[i].eventId)
-var d = new Date(dummyResponse.Event[i].dateTime);
+localStorage.setItem('eventId',eventArray[i].eventId)
+var d = new Date(eventArray[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
 document.getElementById('dateTime').value=d; //for php reference
 // const minute = d.getMinutes();
@@ -28,16 +28,16 @@ let hour = d.getHours();
 let minute = d.getMinutes().toString();
   minute = minute.padStart(2, '0');
 
-document.getElementById('title').value=dummyResponse.Event[i].title
+document.getElementById('title').value=eventArray[i].title
 document.getElementById('date').value=todayDate
 document.getElementById('time').value=hour +':'+ minute
-document.getElementById('description').value=dummyResponse.Event[i].description
-document.getElementById('location').value=dummyResponse.Event[i].location
-document.getElementById('prevImage').src=imgPath+dummyResponse.Event[i].imageId
+document.getElementById('description').value=eventArray[i].description
+document.getElementById('location').value=eventArray[i].location
+document.getElementById('prevImage').src=imgPath+eventArray[i].imageId
 
-var titlevalue = dummyResponse.Event[i].title;
-  var descriptionvalue = dummyResponse.Event[i].description;
-  var locatevalue = dummyResponse.Event[i].location;
+var titlevalue = eventArray[i].title;
+  var descriptionvalue = eventArray[i].description;
+  var locatevalue = eventArray[i].location;
   var datevalue = todayDate;
   var timevalue = hour +':'+ minute;
 
@@ -148,10 +148,10 @@ window.update_array = function () {
       imageName = imgLocalPathArr[imgLocalPathArr.length-1];
       }
     else{
-      imageName=dummyResponse.Event[i].imageId;
+      imageName=eventArray[i].imageId;
     }
-    var eventId = dummyResponse.Event[i].eventId
-    var adminId = dummyResponse.Event[i].adminId 
+    var eventId = eventArray[i].eventId
+    var adminId = eventArray[i].adminId 
     var newEvent = {
         eventId: eventId,
         adminId: adminId,
@@ -161,8 +161,8 @@ window.update_array = function () {
         imageId: imageName, 
         location: location
     }
-    dummyResponse.Event.splice(i, 1, newEvent)
-    updateDummyData(dummyResponse)
+    eventArray.splice(i, 1, newEvent)
+    // updateDummyData(dummyResponse)
     }
 cancelButton.addEventListener('click', () => {
   

@@ -12,7 +12,8 @@ include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-// $title=$_GET['title'];
+$prevtitle=$_GET['title'];
+echo $prevtitle;
 try {
   $event_model = new Admin_EventModel($db->getConnection());
   $all_activities = $event_model->getAll();
@@ -38,34 +39,29 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
+?>
 
-
+    <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
+<?php
     if(isset($_POST['update'])) {
-    $addJob_model = new  UpdateEventModel($db->getConnection());	
+      $prevtitle=$_GET['title'];
+      echo  $prevtitle;
+    $updateEvent = new  UpdateEventModel($db->getConnection());	
     // $data = $addJob_model->getMaxId();
     $eventId = "E-" ;
     $adminId = "AD-1";         //ned change
     $title = $_POST['title'];
-    //dateTime
-    // $date =$_POST["date"];
-    // $time =$_POST["time"];
-    $dateTime=$_POST["dateTime"];
+    $date =$_POST["date"];
+    $time =$_POST["time"];
     $description = $_POST['description'];
     $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
-
-    // $year = date.split("-")[0];
-    // $month =  date.split("-")[1];
-    // $day = date.split("-")[2];
-    // $hours = time.split(":")[0];
-    // $min = time.split(":")[1];
-    // $newDate = new Date($year, $month, $day, $hours, $min, "0");
-    echo $dateTime;
-    $addJob_model->updateEvent($eventId,$adminId,$title,$dateTime,$description,$imageId,$locate);
-    
+    $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
+    $updateEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+ echo 'i am connected hahaha';   
     // header("Location: myjob");
 
-  
 }
 
 
@@ -99,7 +95,7 @@ try {
         <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a>
-        <form method="post"><!--  onsubmit="checkvalidation()" -->
+        <form method="post"onsubmit="checkvalidation()"> 
           <div id="updateForm">
             <div class="form-group">
   
@@ -219,9 +215,9 @@ try {
           <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script> -->
-    <script type="text/javascript" src="../../js/utility.js"></script>
-    <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
+    <script type="text/javascript" src="/js/utility.js"></script>
+    <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script> -->
     <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
 
 

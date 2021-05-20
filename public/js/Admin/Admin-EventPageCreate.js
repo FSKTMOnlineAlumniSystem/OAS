@@ -16,6 +16,8 @@ const closeCancelChangesModalButton = document.querySelector('#closeCancelChange
 const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 
+{/* <form method="post" onsubmit="return checkvalidation()"></form> */}
+console.log('create page')
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -32,30 +34,33 @@ function setValid(el) {
 }
 
 /*Check the file extension of the image & Update preview*/
-img.addEventListener('change', (e) => readURL(e));
-function readURL(e) {
-  let allowedExtensions =
-    /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById("prevImage").src = e.target.result;
-    }
-    reader.readAsDataURL(e.target.files[0]);
-    choosePictureDescription.textContent = "";
-  } else {
-    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+///////////////////////need for validation
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//   let allowedExtensions =
+//     /(\.png|\.jpg|\.jpeg)$/i;
+//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//     }
+//     reader.readAsDataURL(e.target.files[0]);
+//     choosePictureDescription.textContent = "";
+//   } else {
+//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
-  }
-}
+//   }
+// }
 
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
   return obj.value.length == 0;
 }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
+function checkvalidation() {
+  console.log("here");
   let errorExist = false; //false if no error exists in email, contactNumber, biography
 
   if (isEmpty(title)) {
@@ -96,11 +101,11 @@ form.addEventListener('submit', (e) => {
   if (!errorExist) {
     add_element_to_array();
     saveButton.textContent = 'Saving...';
-    setTimeout(() => {
-      location.href = 'adminEvent';
-    }, 1000);
+  //   // setTimeout(() => {
+  //   //   location.href = 'adminEvent';
+  //   // }, 1000);
   }
-});
+};
 
 window.add_element_to_array = function () {
   var title = document.getElementById("title").value;
@@ -124,6 +129,7 @@ window.add_element_to_array = function () {
   var hours = time.split(":")[0];
   var min = time.split(":")[1];
   const newDate = new Date(year, month, day, hours, min, "0");
+document.getElementById('dateTime').value=newDate;
   
   var newEvent = {
     eventId: eventId,
@@ -146,7 +152,8 @@ window.setEventId = function () {
 }
 console.log('hellooo');
 /*Check whether there is any changes that might be lost*/
-cancelButton.addEventListener('click', () => {
+function cancelUpdate(){
+// cancelButton.addEventListener('click', () => {
   console.log("hiii");
   var titlevalue = document.getElementById("title").value;
   var descriptionvalue = document.getElementById("description").value;
@@ -162,11 +169,11 @@ cancelButton.addEventListener('click', () => {
     /*POP UP MODAL ask if cancel will lose changes */
     $('#cancelChangesModal').modal('show');
   }
-});
+};
 
 /*Close Modal */
-closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 function closeModal(modalId) {
   $(modalId).modal('hide');
 }
