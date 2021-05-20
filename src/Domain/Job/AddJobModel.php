@@ -30,7 +30,7 @@ class AddJobModel
         // $stmt->bindParam(':alumniId', $this->id);
         // $stmt->execute();
     }
-
+    
     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
     public function getMaxId(): int{
         $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job")->fetchColumn();

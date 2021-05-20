@@ -12,7 +12,7 @@ include '../src/Domain/header.php';
 <div id="form"></div>
 </div>
 
-<script type="module" src="/js/Alumni/AddJobPage.js"></script>
+<script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
 
 <?php
@@ -45,7 +45,7 @@ if(isset($_POST['Submit'])) {
 }
 ?>
 
-
+<!-- <script type="module" src="/js/Alumni/AddJobPage.js"></script> -->
 
 
 

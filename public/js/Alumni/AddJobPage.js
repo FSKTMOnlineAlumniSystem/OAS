@@ -2,7 +2,7 @@
 
 //CREATE A FORM TO CAPTURE USER INPUT
 document.getElementById("form").innerHTML += `
-  <form id="job_ad_form" method="post">
+  <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()">
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
       <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" name="company">
@@ -55,8 +55,8 @@ document.getElementById("form").innerHTML += `
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please provide the description of the job.</div>
       </div>
-      <button type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2">Submit</button>
-      <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
+      <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button>
+      <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="myjob">Cancel</a>
       <br>
     </div>
   </form>`;
@@ -98,11 +98,13 @@ const regex = /^[0-9]+$/;
 
 
 // CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+// form.addEventListener("submit", (e) => {
+function checkvalidation() {
+  console.log("here");
+// e.preventDefault();
   let errorExist = false; 
 
-  if (isEmpty(companyName)) {
+  if (isEmpty(companyName)) { 
     setInValid(companyName);
     errorExist = true;
   } else {
@@ -145,11 +147,17 @@ form.addEventListener("submit", (e) => {
   }
 
   if (errorExist) {
-    e.preventDefault();
-  } else{
-    document.getElementById("job_ad_form").action = "/addjob.php";
-    // $('#job_ad_form').attr('action', 'addjob');
+    // e.preventDefault();
+    return false;
+  } 
+  else{
+    // console.log("test here");
+    // $('#job_ad_form').submit();
+    return true;
   }
+  //   document.getElementById("job_ad_form").action = "/addjob.php";
+  //   // $('#job_ad_form').attr('action', 'addjob');
+  // }
   // else {
   //   //IF NO ERROR, ADD THE NEW JOB ADS DETAILS INTO DUMMYDATA
   //   var newJob = {};
@@ -169,7 +177,7 @@ form.addEventListener("submit", (e) => {
   //   updateDummyData(dummyResponse);
   //   location.href = "MyJobPage.html";
   // }
-});
+}
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
 var input = document.getElementById("upload");
