@@ -13,10 +13,11 @@ if(isset($_POST["submit"])){
     $Password = $_POST["Password"];
 
 require_once './LoginPageModel.php';
+require_once './LoginPage.php';
 
 insertAlumni($conn,$name,$gender,$Batch,$email,$IC,$department,$Password);
 
-header("location: ../HomePage/HomePage.php");
+// header("location: ../HomePage/HomePage.php");
 
 }
 
