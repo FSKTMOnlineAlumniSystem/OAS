@@ -25,5 +25,3 @@ function uploadImage($connection, $image, $imageId)
     }
 }
 
-// C:/Users/Forge-15 1650/Documents/VisualCodeStudio/OnlineAlumniSystem/core/uploads/admin
-// AD-1

@@ -6,6 +6,8 @@ const changePasswordModal = document.querySelector('#changePasswordModal');
 const deleteAccountInput = document.querySelector('#deleteAccountInput');
 const deleteAccountForm = document.querySelector('#deleteAccountForm');
 
+const privacySwitch = document.querySelector('#privacySwitch');
+
 //Validation for change password
 function verifyPasswordAndConfirmPassword(e) {
     console.log('con')
@@ -54,6 +56,8 @@ function deleteAccount(e) {
         setInValid(deleteAccountInput);
     }
 }
-
 changePasswordModal.addEventListener('submit', (e) => verifyPasswordAndConfirmPassword(e));
 deleteAccountForm.addEventListener('submit', (e) => deleteAccount(e));
+privacySwitch.addEventListener('change',()=>{
+    $('#changePrivacyForm').submit();
+})

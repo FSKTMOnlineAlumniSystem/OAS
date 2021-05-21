@@ -34,6 +34,15 @@ try {
                     </button>
                 </div>';
             }
+            if (isset($_GET['private'])) {
+                echo '
+                <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i>Your account is set '.($_GET['private']=='true'?"private. Your email will be hidden.":"public").'
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
+            }
             if (isset($_GET['delete'])) {
                 echo '
                 <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
@@ -103,6 +112,15 @@ try {
                     <div class="row mb-3">
                         <div class="col-sm-4">E-mail:</div>
                         <div id="email" class="col-sm-8"><?= $alumni->getEmail(); ?></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Private:</div>
+                        <div class="col-sm-8 custom-control custom-switch">
+                            <form id="changePrivacyForm" method="POST" action="/api/myprofile/changeprivacy">
+                            <input type="checkbox" class="custom-control-input" style="position:relative; width:auto;" id="privacySwitch" name="private" <?=$alumni->getIsEmailPublic()?"":"checked"?>>
+                            <label class="custom-control-label" for="privacySwitch"></label>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

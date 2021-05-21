@@ -76,6 +76,28 @@ class MyProfile
         return $this->user['biography'];
     }
 
+    public function getIsActive()
+    {
+        return $this->user['isActive'];
+    }
+    public function getIsEmailPublic()
+    {
+        return $this->user['isEmailPublic'];
+    }
+
+    public function setIsEmailPublic($isEmailPublic)
+    {
+        try {
+            $stmt = $this->connection->prepare('UPDATE alumni SET isEmailPublic=:isEmailPublic WHERE alumniId=:alumniId');
+            $stmt->bindParam(':isEmailPublic', $isEmailPublic);
+            $stmt->bindParam(':alumniId', $this->id);
+            $stmt->execute();
+        } catch (PDOException $exception) {
+            error_log('MyProfileModel: Update Email Privacy: ' . $exception->getMessage());
+            throw $exception;
+        }
+    }
+
     public function setUpdatedData($email, $biography)
     {
         try {
