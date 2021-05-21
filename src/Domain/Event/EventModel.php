@@ -22,7 +22,7 @@ class EventModel
             return $data;
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            error_log('EventModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
     }
