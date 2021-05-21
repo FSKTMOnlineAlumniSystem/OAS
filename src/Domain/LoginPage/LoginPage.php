@@ -282,31 +282,7 @@
 
 
 
-    <!-- wait for verification  -->
-    <div class="modal fade" id="wait" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
-                            style="color: rgb(13, 175, 18);"></i>Thank you!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="form_3">
-                    <div class="modal-body">
-                        <span>Thank you for signing up.<br>
-                            Your application is successfully submitted, please wait for the verification.<br>
-                        </span>
-                        <br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary signinbtn">Got It!</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 
     
 </div>
@@ -317,12 +293,55 @@ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRk
 <script type="module" src="/libs/bootstrap.bundle.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-   <!-- submitSignUp -->
+   
+   <!-- wait for verification  -->
+
    <?php
 
-if (isset($_GET["signup"])) {
-    echo'
-    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    if (isset($_GET["signup"])) {
+        echo'
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                    style="color: rgb(13, 175, 18);"></i>Thank you!</h5>
+                            <button type="button" class="close" data-dismiss="modal" onclick="$("#notificationModal").modal("hide")">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="form_3">
+                            <div class="modal-body">
+                                <span>Thank you for signing up.<br>
+                                    Your application is successfully submitted, please wait for the verification.<br>
+                                </span>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary signinbtn">Got It!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#notificationModal").modal("show");
+                    });
+            </script>
+    ';
+}
+?>
+
+
+<script type="module" src="/public/js/Alumni/LoginPage.js"></script>
+
+</body>
+
+</html>
+
+<!-- <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -350,21 +369,4 @@ if (isset($_GET["signup"])) {
             </form>
         </div>
     </div>
-</div>
-
-<script type="text/javascript">
-        $(document).ready(function(){
-            $("#notificationModal").modal("show");
-        });
-</script>
-  
-    ';
-}
-?>
-
-
-<script type="module" src="/public/js/Alumni/LoginPage.js"></script>
-
-</body>
-
-</html>
+</div> -->

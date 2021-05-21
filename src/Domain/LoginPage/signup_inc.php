@@ -61,7 +61,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $stmt->bindParam(":biography", $biography);
     $stmt->execute();
 
-    header("location: ../LoginPage.php?signup=true");
+    header("location: ./LoginPage.php?signup=true");
     exit();
 
 }
