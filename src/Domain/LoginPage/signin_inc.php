@@ -52,7 +52,6 @@ function loginUser($conn, $email, $password){
             unset($alumniData["icNumber"]);
             session_start();
             $_SESSION["alumni"] = $alumniData;
-            $_SESSION["alumniID"] = $alumniData;
             header("location: ../HomePage/HomePage.php");
             exit();
         // }else {

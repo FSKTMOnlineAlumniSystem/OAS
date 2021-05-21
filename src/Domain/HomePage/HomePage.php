@@ -49,6 +49,9 @@ try {
   echo "Exception here!";
 }
 
+session_start();
+echo $_SESSION["alumni"]["email"];
+
 ?>
 
 <div class="container-fluid d-flex flex-column align-items-center p-0" id="main-body">
