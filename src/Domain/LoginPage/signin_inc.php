@@ -45,9 +45,9 @@ function loginUser($conn, $email, $password){
 
     } else if($checkpassword === true){
 
-        $active = $alumniData["isActive"];
+        // $active = $alumniData["isActive"];
 
-        if($active == 1){
+        // if($active == 1){
             unset($alumniData["password"]);
             unset($alumniData["icNumber"]);
             session_start();
@@ -55,10 +55,10 @@ function loginUser($conn, $email, $password){
             $_SESSION["alumniID"] = $alumniData;
             header("location: ../HomePage/HomePage.php");
             exit();
-        }else {
-            header("location: ./LoginPage.php?account=deleted");
-            exit();
-        }
+        // }else {
+        //     header("location: ./LoginPage.php?account=deleted");
+        //     exit();
+        // }
 
         
         
