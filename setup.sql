@@ -7,7 +7,7 @@ CREATE TABLE Image(
 imageId varchar(10) NOT NULL PRIMARY KEY,
 type varchar(11),
     	imageData longblob NOT NULL
-)
+);
 
 CREATE TABLE Admin(
     adminId varchar(10) NOT NULL PRIMARY KEY,
