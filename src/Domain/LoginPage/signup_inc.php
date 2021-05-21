@@ -39,8 +39,6 @@ exit();
 
 function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography){
     $stmt = $conn->prepare("INSERT INTO alumni (alumniId, approvedBy, email, password, icNumber, gender, name, department, graduated, imageId, isEmailPublic, biography) VALUES(:alumniId, :approvedBy, :email, :password, :icNumber, :gender, :name, :department, :graduated, :imageId, :isEmailPublic, :biography)");
-    
-   
 
     $alumniId = "AL-" . getLength($conn)+1 ;
     $stmt->bindParam(":alumniId", $alumniId);
@@ -62,22 +60,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $stmt->bindParam(":isEmailPublic", $isEmailPublic);
     $stmt->bindParam(":biography", $biography);
     $stmt->execute();
-    // $stmt->close();
 
-    // $sql = "INSERT INTO alumni (alumniId, approvedBy, email, password, icNumber, gender, name, department, graduated, imageId, isEmailPublic, biography) VALUES(:alumniId, :approvedBy, :email, :password, :icNumber, :gender, :name, :department, :graduated, :imageId, :isEmailPublic, :biography);";
-    // $stmt = mysqli_stmt_init($conn);
-    // if (!mysqli_stmt_prepare($stmt,$sql)) {
-    //     header("location: ../LoginPage.php?error=stmtfailed");
-    // }
-
-    // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-
-    // mysqli_stmt_bind_param($stmt,"ssssssssssss",$alumniId, $approvedBy, $email, $hashedPassword, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
-    // mysqli_stmt_execute($stmt);
-    // mysqli_stmt_close($stmt);
-
-    // header("location: ./LoginPage.php");
-    // header("location: ../LoginPage.php?error=donesubmit");
     header("location: ../LoginPage.php?signup=true");
     exit();
 

@@ -34,26 +34,45 @@ function loginUser($conn, $email, $password){
         header("location: ../LoginPage.php?error=passwordWrong");
         exit();
     } else if($checkpassword === true){
+        $alumniId = getID($conn,$email);
         session_start();
-        $_SESSION["email"] = $emailExists["email"];
+        $_SESSION["alumni"] = $emailExists;
         header("location: ../HomePage/HomePage.php");
         exit();
     }
 
 }
 
+
+function getID($conn,$email){
+    $stmt = $conn->prepare("SELECT * FROM `alumni` WHERE email= $email"); 
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $getId = $data["alumniId"];
+    echo $getId;
+    return $getId;
+}
+
+
+
+
 function emailExists($conn, $email){
-    $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM `alumni` WHERE email=?");
-    $stmt->bindParam(':email, $email');
+    $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM `alumni` WHERE email= :email");
+    $stmt->bindParam(':email', $email);
     $stmt->execute(array($email));
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $email_count = $row["count"];
+        $email_count = $row["count"];
+
+        if ($username_count > 0) {
+            //emailexists
+            return $row;
+        }
     }
-    if ($username_count > 0) {
-    return true;
-    }else{
-        return false;
+
+    if ($username_count == 0) {
+        //emailnotExists
+    return false;
     }
 
 

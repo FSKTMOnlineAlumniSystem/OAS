@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
     <link rel="stylesheet" href="/public/css/Alumni/EditMyProfilePage.css">
     <link rel="stylesheet" href="/public/css/Alumni/LoginPage.css">
+    
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -133,63 +134,7 @@
 
 
 
-    <!-- submitSignUp -->
-    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
-  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-    <div class="toast-header">
-      <img src="..." class="rounded mr-2" alt="...">
-      <strong class="mr-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-  </div>
-</div>
-    <!-- <span data-toggle="modal" data-target="#notificationModal">sppp</span>
-    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thank you for signing up</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="form_2">
-                    <div class="modal-body">
-                        <span>When you fill in your registered email address,
-                            you will be sent instructions on how to reset your password.</span>
-                        <br>
-                        <div class="mb-2 mt-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
-                            <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="sendEmail">
-                                <div class="invalid-feedback">Please provide a valid email.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn  btn-primary  signinbtn">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-        <script type="text/javascript">
-        $(document).ready(function(){
-            $("#notificationModal").modal("show");
-        });
-        </script> -->
-
-   
-
+ 
     <!-- signUp -->
     
     <div class="modal fade" id="signUP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -367,13 +312,58 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-    <script type="module" src="/public/js/Alumni/LoginPage.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script type="module" src="/libs/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+   <!-- submitSignUp -->
+   <?php
+
+if (isset($_GET["signup"])) {
+    echo'
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thank you for signing up</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="$("#notificationModal").modal("hide")">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_2">
+                <div class="modal-body">
+                    <span>When you fill in your registered email address,
+                        you will be sent instructions on how to reset your password.</span>
+                    <br>
+                    <div class="mb-2 mt-3 row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
+                        <div class="col-sm-8 mr-1">
+                            <input type="text" class="form-control" id="sendEmail">
+                            <div class="invalid-feedback">Please provide a valid email.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("#notificationModal").modal("show");
+        });
+</script>
+  
+    ';
+}
+?>
+
+
+<script type="module" src="/public/js/Alumni/LoginPage.js"></script>
 
 </body>
 
