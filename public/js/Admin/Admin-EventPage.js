@@ -112,15 +112,39 @@ console.log('hihihihi')
                     </i></a>
                     
 
-
-                      <button class="deleteRowButton d-flex justify-content-center align-items-center" onclick="DeleteRowFunction(this)" id="row ${i}">
+<!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
+                  <!--  <form class="" action="/adminEvent" method="post">-->
+                      <button type="submit" onclick="deleteByJquery(this)" class="deleteRowButton d-flex justify-content-center align-items-center" 
+                      name="deleteButton" id="row ${i}" value="${eventArray[i].eventId}">
                       <i class="far fa-trash-alt pl-2" aria-hidden="true">
                        </i></button>
+                  <!--  </form>  -->
                   </div>
                 </td>
             </tr>`;
 
+// <?php echo DeleteRowPhp(${eventArray[i].eventId});?>
+window.deleteByJquery= function (o){
+  var findId = o.id.split(" ")[1]
+  var $eventToDelete=eventArray[findId].eventId;
+  console.log($eventToDelete);
+  $.ajax({
+    url:"/adminEvent",    //the page containing php script
+    type: "post",    //request type,
+    dataType: 'json',
+    data: { deleteEvent: $eventToDelete},
 
+});
+  // $.post( "Admin-EventPage.php", { deleteEvent: eventArray[findId].eventId});
+
+}
+window.DeleteRowId = function (o) {
+  var findId = o.id.split(" ")[1]
+  console.log(eventArray[findId].eventId);
+  return eventArray[findId].eventId;
+}
+
+// 
     var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
@@ -157,15 +181,13 @@ window.toggle = function (source) {
     if (checkboxes[i] != source)
       checkboxes[i].checked = source.checked;
   }
-}
+};
 
 
 window.check = function (source, i) {
-
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes[i].checked = source.checked;
-
-}
+};
 
 window.nextPage = function () {
   pageIndex++;
@@ -183,7 +205,7 @@ window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
   location.href = "Admin-EventPageUpdate.html"
-}
+};
 
 window.DeleteRowFunction = function (o) {
 
@@ -191,7 +213,7 @@ window.DeleteRowFunction = function (o) {
   eventArray.splice(findId, 1)
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
-}
+};
 window.DeleteCheckedRow = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length - 1; i > 0; i--) {
@@ -202,7 +224,7 @@ window.DeleteCheckedRow = function () {
   checkboxes[0].checked = false;
   updateDummyData(dummyResponse)
   loadEventList(pageIndex)
-}
+};
 
 // filter
 var searchBar = document.getElementById('searchBar');
@@ -276,6 +298,6 @@ window.SearchData = function (status, department) {
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 // stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-function closeModal(modalId) {
+window.closeModal = function (modalId) {
   $(modalId).modal('hide');
 }

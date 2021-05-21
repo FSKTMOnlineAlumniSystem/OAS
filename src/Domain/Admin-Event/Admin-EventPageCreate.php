@@ -41,8 +41,6 @@ include '../src/Domain/header.php';
     print 'it suceed';
     $addEvent = new createEventModel($db->getConnection());	
     $data = $addEvent->getMaxId();
-    echo 'event id';
-    echo $data;
     $eventId = "E-" . $data+1;
     $adminId = "AD-1";         //ned change
     $title = $_POST['title'];
@@ -56,9 +54,6 @@ include '../src/Domain/header.php';
     $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
   
     header("Location: adminEvent");
-echo 'event id+ $data';
-}else{
-  echo 'die die go';
 }
 
   ?>

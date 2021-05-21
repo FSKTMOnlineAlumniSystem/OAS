@@ -108,8 +108,10 @@ class UpdateEventModel
             }catch (PDOException $exception) {
                 error_log('UpdateEventModel: construct: ' . $exception->getMessage());
                 throw $exception;
-            }
-            
+            }     
+    }
+}
+
             //  $stmt ->bindParam(':title',$title);
             //  $stmt ->bindParam(':dateTime',$newDate);
             //  $stmt ->bindParam(':description',$description);
@@ -117,15 +119,6 @@ class UpdateEventModel
             //  $stmt ->bindParam(':location',$locate);
             //  $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
-    }
-    public function editJob($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$imageId,$company,$location){
-        $sql = "UPDATE job SET jobId=?, title=?, alumniId=?, description=?, salary=?, email=?, postedDateTime=?, imageId=?, company=?, location=? WHERE jobId=?";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute([$jobId,$title,$alumniId,$description,$salary,$email,$postedDateTime,$imageId,$company,$location,$jobId]);
-        // echo("success");
-    }
-    
-}
 class createEventModel
 {
   private PDO $connection;
@@ -149,28 +142,19 @@ class createEventModel
 
     }
 }
-// class deleteEventModel
-// {
-//   private PDO $connection;
+class deleteEventModel
+{
+  private PDO $connection;
 
-//     public function __construct(PDO $connection)
-//     {
-//         $this->connection = $connection;
-//     }
-//     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-//              $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
-//              $stmt = $this->connection->prepare($sql);
-//             //  $stmt->execute();
-//              $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
-
-//     }
-    
-//     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
-//     public function getMaxId(): int{
-//         $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM Events")->fetchColumn();
-//         return (int)$stmt;
-
-//     }
-// }
-// DELETE FROM `events` WHERE `events`.`eventId` = 'E-18';
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+    public function deleteEvent($eventId) {
+             $sql = "DELETE FROM events WHERE eventId=?";
+             $stmt = $this->connection->prepare($sql);
+            //  $stmt->execute();
+             $stmt->execute([$eventId]);
+    }
+}
 ?>

@@ -46,7 +46,6 @@ try {
 <?php
     if(isset($_POST['update'])) {
       $prevtitle=$_GET['title'];
-      echo  $prevtitle;
     $updateTheEvent = new  UpdateEventModel($db->getConnection());	
     // $data = $addJob_model->getMaxId();
     $eventId = "E-" ;
@@ -59,7 +58,7 @@ try {
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
     $updateTheEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
-    // header("Location: adminEvent");
+    header("Location: adminEvent");
 
 }
 
@@ -94,7 +93,7 @@ try {
         <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a>
-        <form method="post"onsubmit="checkvalidation()"> 
+        <form method="post" onsubmit="return checkvalidation()"> 
           <div id="updateForm">
             <div class="form-group">
   

@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/header.php';
+include '../src/Domain/header.php'; //16 lines
 ?>
    <!-- CSS -->
   <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" />
@@ -8,9 +8,9 @@ include '../src/Domain/header.php';
 
 <body>
 <?php
-// include '../../../config/config.php';
 include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
+
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
@@ -27,8 +27,56 @@ try {
     echo "Exception here!";
     echo $e;
   }
-  
+?>
+<script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
+  <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
 
+<!-- delete row function -->
+<?php
+DeleteRowPhp('E-1');
+function DeleteRowPhp($eventId){
+  echo 'deleteRowPhp';
+  try {
+  $deleteEventModel = new deleteEventModel($db->getConnection());
+  $deleteEventModel-> deleteEvent($eventId);
+} catch (Exception $e) {
+  echo "Exception here!";
+  echo $e;
+}
+};
+
+function deleteMultipleRow(){
+  
+  function DeleteRowPhp($eventId){
+    echo 'deleteRowPhp';
+    try{
+    var $deleteEventModel = new deleteEventModel($db->getConnection());
+    $deleteEventModel-> deleteEvent($eventId);
+  } catch (Exception $e) {
+    echo "Exception here!";
+    echo $e;
+  }
+  }
+}
+
+//delete event
+if(isset($_POST['deleteEvent'])) {
+$eventToDelete = $_POST['deleteEvent'];
+echo 'delete eventtttttttttttt';
+echo $evenToDelete;
+DeleteRowPhp($eventToDelete);
+  
+}else{echo 'cannot delete event'; }
+//depete button
+// if(isset($_POST['submit'])) {
+//   $eventId=$_POST['deleteButton'];
+//   echo $eventId;
+
+
+// }
+// else{
+//   echo "ahhhhh";
+// }
 ?>
 
   <main class="container-fluid height-after-minus-header" id='main-body'>
@@ -66,8 +114,9 @@ try {
               <!--trash button-->
               <button type="button"
                 class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded"
-                onclick="DeleteCheckedRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
-                  style="font-size: 20px; "></i></button>
+                onclick="deleteMultipleRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
+                  style="font-size: 20px; "></i></button> 
+                  <!-- DeleteCheckedRow() -->
             </div>
           </div>
           <br />
@@ -94,68 +143,7 @@ try {
               <!-- js getElement -->
               <tbody>
               <tr class="rowss"></tr>
-              <?php
-    /*            try {
-    // $event_model = new Admin_EventModel($db->getConnection());
-    // $all_activities = $event_model->getAll();
-    if (!empty($all_activities)) {
-  
-      foreach ($all_activities as $activity) {
-        echo "$activity[eventId] ";
-        // getElementById('date')->"$activity[dateTime]";
-        echo '       <tr class="rowss">
 
-
-                <td> 
-                        <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="Boxes${i}">
-                      <label class="custom-control-label" for="Boxes${i}"></label>
-                    </div>
-                  </td>
-                 <td style="font-weight: 400; font-size: 18px" id="date"> <?php echo "activity[dateTime]"; ?>
-                 <!-- $getReadableDate(dummyResponse.Event[i].dateTime) -->
-                 <div style="font-weight: 200; font-size: 14px" id="time">'?> <?php echo "$activity[dateTime]"; ?>)</div>
-               <?php echo'
-                 <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-                 <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">';?>
-                 <?php echo "$activity[title]"; ?>
-                 <?php echo'
-              </a>
-        
-              <!-- Modal -->
-
-              </td>
-
-                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" id="description">';?>
-                <?php echo "$activity[description]"; ?>
-                <?php echo'n</td>
-                <td style="font-weight: 200; font-size: 18px" id="locate"> ';?>
-                 <?php echo "$activity[location]"; ?>
-                 <?php echo'</td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="Third group">
-                   ';?>
-                   <?php echo "
-                  <a href=\"eventUpdate?title=$activity[title]\"";?>
-                  <?php echo' class="updateButton" onclick="updateEvent(this)" id="update ${i}">
-                    <i class="fas fa-edit pr-2" aria-hidden="true">
-                    </i></a>
-                    
-
-
-                      <button class="deleteRowButton d-flex justify-content-center align-items-center" onclick="DeleteRowFunction(this)" id="row ${i}">
-                      <i class="far fa-trash-alt pl-2" aria-hidden="true">
-                       </i></button>
-                  </div>
-                </td>
-                </tr>';
-            }
-        }
-      } catch (Exception $e) {
-        echo "Exception here!";
-        echo $e;
-      }*/
-      ?>
               </tbody>
 
             </table>
@@ -220,26 +208,87 @@ try {
         </div>
       </div>
   </main>
-  <?php
-    $all_activities =  $event_model->getAll();;
-?>
 
-<script type="text/javascript" src="/js/utility.js"></script>
-<!-- new path -->
-  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
-  <!-- <script type='module' src='/js/addHeader.js'></script> -->
-  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
-  <!-- jquery -->
+  <script type="text/javascript" src="/js/utility.js"></script>
+  <!-- new path -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
+  <script type="module" src="/js/Admin/Admin-EventPage.js"></script> -->
+  <!-- <script type='module' src='/js/addHeader.js'></script> -->
+  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
+  <!-- jquery -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script> -->
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 
 </body>
-
-
 </html>
+<?php
+    /*            try {
+    // $event_model = new Admin_EventModel($db->getConnection());
+    // $all_activities = $event_model->getAll();
+    if (!empty($all_activities)) {
+  
+      foreach ($all_activities as $activity) {
+        echo "$activity[eventId] ";
+        // getElementById('date')->"$activity[dateTime]";
+        echo '       <tr class="rowss">
+
+
+                <td> 
+                        <div class="custom-control custom-checkbox text-center">
+                      <input type="checkbox" class="custom-control-input" id="Boxes${i}">
+                      <label class="custom-control-label" for="Boxes${i}"></label>
+                    </div>
+                  </td>
+                 <td style="font-weight: 400; font-size: 18px" id="date"> <?php echo "activity[dateTime]"; ?>
+                 <!-- $getReadableDate(dummyResponse.Event[i].dateTime) -->
+                 <div style="font-weight: 200; font-size: 14px" id="time">'?> <?php echo "$activity[dateTime]"; ?>)</div>
+               <?php echo'
+                 <td style="font-weight: 400; font-size: 18px" class="eventTitle">
+                 <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">';?>
+                 <?php echo "$activity[title]"; ?>
+                 <?php echo'
+              </a>
+        
+              <!-- Modal -->
+
+              </td>
+
+                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" id="description">';?>
+                <?php echo "$activity[description]"; ?>
+                <?php echo'n</td>
+                <td style="font-weight: 200; font-size: 18px" id="locate"> ';?>
+                 <?php echo "$activity[location]"; ?>
+                 <?php echo'</td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Third group">
+                   ';?>
+                   <?php echo "
+                  <a href=\"eventUpdate?title=$activity[title]\"";?>
+                  <?php echo' class="updateButton" onclick="updateEvent(this)" id="update ${i}">
+                    <i class="fas fa-edit pr-2" aria-hidden="true">
+                    </i></a>
+                    
+
+
+                      <button class="deleteRowButton d-flex justify-content-center align-items-center" onclick="DeleteRowFunction(this)" id="row ${i}">
+                      <i class="far fa-trash-alt pl-2" aria-hidden="true">
+                       </i></button>
+                  </div>
+                </td>
+                </tr>';
+            }
+        }
+      } catch (Exception $e) {
+        echo "Exception here!";
+        echo $e;
+      }*/
+      ?>
