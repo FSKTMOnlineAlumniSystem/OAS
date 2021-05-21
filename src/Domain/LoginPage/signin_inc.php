@@ -45,14 +45,26 @@ function loginUser($conn, $email, $password){
 
     } else if($checkpassword === true){
 
-        unset($alumniData["password"]);
-        unset($alumniData["icNumber"]);
-        session_start();
-        $_SESSION["alumni"] = $alumniData;
-        $_SESSION["alumniID"] = $alumniData;
-        header("location: ../HomePage/HomePage.php");
-        exit();
+        $active = $alumniData["isActive"];
+
+        if($active == 1){
+            unset($alumniData["password"]);
+            unset($alumniData["icNumber"]);
+            session_start();
+            $_SESSION["alumni"] = $alumniData;
+            $_SESSION["alumniID"] = $alumniData;
+            header("location: ../HomePage/HomePage.php");
+            exit();
+        }else {
+            header("location: ./LoginPage.php?account=deleted");
+            exit();
+        }
+
+        
+        
     }
+
+    
 
 }
 
