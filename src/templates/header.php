@@ -45,6 +45,7 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton">
         <?php
+        // need to put as global to access it
         global $all_alumni_events;
         global $all_events;
         $filter_event = function ($eventId) {
