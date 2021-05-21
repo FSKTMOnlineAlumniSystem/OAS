@@ -2,6 +2,23 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/uploads/alumni/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 
+// <div class="row mb-3">
+//     <div class="col-sm-4">E-mail:</div>
+//     <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
+// </div>
+
+function emailNeeded(pub) {
+  var output = ``;
+  console.log("hi");
+  if (pub == true) {
+    output = `<div class="row mb-3">
+        <div class="col-sm-4">E-mail:</div>
+        <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
+        </div>`;
+  }
+  return output;
+}
+
 const alumniProfile = document.getElementById("main-body");
 const loadAlumniProfile = (index) => {
   var i = index;
@@ -43,24 +60,29 @@ const loadAlumniProfile = (index) => {
             <div class="col-sm-7 justify-content-center align-items-center pt-3">
                 <div class="row mb-3">
                     <div class="col-sm-4">Name:</div>
-                    <div id="name" class="col-sm-8">${dummyResponse.Alumni[i].name}</div>
+                    <div id="name" class="col-sm-8">${
+                      dummyResponse.Alumni[i].name
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Gender:</div>
-                    <div id="gender" class="col-sm-8">${dummyResponse.Alumni[i].gender}</div>
+                    <div id="gender" class="col-sm-8">${
+                      dummyResponse.Alumni[i].gender
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Graduated:</div>
-                    <div id="graduated" class="col-sm-8">${dummyResponse.Alumni[i].graduated}</div>
+                    <div id="graduated" class="col-sm-8">${
+                      dummyResponse.Alumni[i].graduated
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Department:</div>
-                    <div id="department" class="col-sm-8">${dummyResponse.Alumni[i].department}</div>
+                    <div id="department" class="col-sm-8">${
+                      dummyResponse.Alumni[i].department
+                    }</div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-sm-4">E-mail:</div>
-                    <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
-                </div>
+                ${emailNeeded(dummyResponse.Alumni[i].isEmailPublic)}
             </div>
         </div>
         <div class="container">
