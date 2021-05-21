@@ -1,4 +1,7 @@
-import { dummyResponse, updateDummyData } from "../dummydata.js";
+// import { dummyResponse, updateDummyData } from "../dummydata.js";
+
+console.log('connect');
+let alumniArray=alumni_array
 
 const imgPath = "/public/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -18,8 +21,8 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 const icNumber = document.querySelector('#icNumber');
 
 var i = localStorage.getItem("updateId")
-const currentAlumniId = dummyResponse.Alumni[i].alumniId;
-const alumni = dummyResponse.Alumni.filter(function (alumni) {
+const currentAlumniId = alumniArray[i].alumniId;
+const alumni = alumniArray.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
@@ -110,7 +113,7 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) e.preventDefault();
     else {
-        dummyResponse.Alumni.forEach((al) => {
+        alumniArray.forEach((al) => {
             if (al.alumniId === currentAlumniId) {
                 if (img.value) {
                     const imgLocalPathArr = img.value.split('\\');
@@ -124,7 +127,7 @@ form.addEventListener('submit', (e) => {
                 al.icNumber = icNumber.value;
                 al.gender = gender.value;
                 al.department = department.value;
-                updateDummyData(dummyResponse);
+                // updateDummyData(dummyResponse);
             }
         });
         saveButton.textContent = 'Saving...';

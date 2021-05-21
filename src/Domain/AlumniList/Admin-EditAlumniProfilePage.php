@@ -27,8 +27,40 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
+// if(isset($_POST['update'])) {
+//     $prevtitle=$_GET['title'];
+//   $updateTheEvent = new  UpdateEventModel($db->getConnection());	
+//   // $data = $addJob_model->getMaxId();
+//   $eventId = "E-" ;
+//   $adminId = "AD-1";         //ned change
+//   $title = $_POST['title'];
+//   $date =$_POST["date"];
+//   $time =$_POST["time"];
+//   $description = $_POST['description'];
+//   $imageId = $_POST['imageId'];
+//   $locate = $_POST['locate'];
+//   $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
+//   $updateTheEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+//   header("Location: adminEvent");
 
-?>
+// }
+//  if(isset($_POST['update'])) {
+//     $alumniId=$_GET['alumniId'];
+//   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
+//   // $data = $addJob_model->getMaxId();
+// //   $eventId = "E-" ;
+// //   $adminId = "AD-1";         //ned change
+//   $imageId = $POST["image"]
+//   $name = $POST["name"];
+//   $gender = $POST["gender"];
+//   $icNumber = $POST["icNumber"];
+//   $department = $POST["department"];
+//   $email = $POST["email"];
+//   $contactNumber = $POST["contactNumber"];
+//   $updateTheAlumni->updatealumni($alumniId,$name,$gender,$icNumber,$department,$email,$imageId,$contactNumber);
+//   header("Location: alumniList");
+// }
+  ?>
 
 <head>
     <title>Edit Alumni Profile - Alumni Online System</title>
@@ -57,7 +89,7 @@ try {
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" action='/src/html/Admin/Admin-AlumniListPage.html'>
+                <form id="editMyProfileForm" method="POST" action='/src/html/Admin/Admin-AlumniListPage.html'>
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">
@@ -66,7 +98,7 @@ try {
                                     <div class="picture">
                                         <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
                                             id="wizardPicturePreview" title="">
-                                        <input type="file" id="wizard-picture" onchange="readURL(this)">
+                                        <input type="file" id="wizard-picture" name="image" onchange="readURL(this)">
                                     </div>
                                     <h6 id="choosePictureDescription">Choose Picture</h6>
                                 </div>
@@ -77,7 +109,7 @@ try {
                             <div class="row mb-3">
                                 <div class="col-sm-4">Name:</div>
                                 <div class="col-sm-8">
-                                    <input type="text" id="name" class="form-control" value="Teh Kok Soon">
+                                    <input method= "post" type="text" id="name" name="name" class="form-control" value="Teh Kok Soon">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please enter alumni's name.
@@ -99,7 +131,7 @@ try {
                             <div class="row mb-3">
                                 <div class="col-sm-4">Ic No:</div>
                                 <div class="col-sm-8">
-                                    <input type="tel" id="icNumber" class="form-control" value="690110-10-1251">
+                                    <input type="tel" id="icNumber" name="icNumber" class="form-control" value="690110-10-1251">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please provide a valid Ic Number.
@@ -109,7 +141,8 @@ try {
                             <!-- alumni graduated year -->
                             <div class="row mb-3">
                                 <div class="col-sm-4">Graduated:</div>
-                                <div class="col-sm-8"><input type="text" id="graduated" class="form-control"
+                                <div class="col-sm-8">
+                                    <input type="text" name="graduated" id="graduated" class="form-control"
                                         value="2014">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
@@ -138,7 +171,7 @@ try {
                             <div class="row mb-3">
                                 <div class="col-sm-4">E-mail:</div>
                                 <div class="col-sm-8">
-                                    <input type="email" id="email" class="form-control" value="koksoon@um.edu.my">
+                                    <input type="email" id="email" name="email" class="form-control" value="koksoon@um.edu.my">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="emailFeedback" class="invalid-feedback">
                                         Please provide a valid email.
@@ -149,7 +182,7 @@ try {
                             <div class="row mb-3">
                                 <div class="col-sm-4">Contact Number:</div>
                                 <div class="col-sm-8">
-                                    <input type="tel" id="contactNumber" class="form-control" value="03-79676347">
+                                    <input type="tel" id="contactNumber" name="contactNumber" class="form-control" value="03-79676347">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please provide a valid phone number.
@@ -172,7 +205,7 @@ try {
                     </div>
                     <div class="row justify-content-end mt-3">
                         <button id="cancelButton" type="button" class="btn btn-outline-secondary">Cancel</button>
-                        <button type="submit" class="btn btn-primary ml-3">Save</button>
+                        <button type="submit" method="post" name="update" class="btn btn-primary ml-3">Save</button>
                     </div>
                 </form>
     </main>
@@ -205,6 +238,7 @@ try {
     </div> <br>
     </div>
     <script type='module' src='../js/addHeader.js'></script>
+    <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="../js/Admin/Admin-EditAlumniProfilePage.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
