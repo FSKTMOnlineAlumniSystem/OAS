@@ -73,3 +73,18 @@ function getLength($conn){
     return $data["COUNT(*)"];
 }
 
+function emailExists($conn,$email){
+
+    $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
+    $stmt->execute(array($email));
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($row['email'] === $email) {
+            //email exists
+            return $row;
+        }
+    }
+        //email not Exists
+        return false;
+}
+

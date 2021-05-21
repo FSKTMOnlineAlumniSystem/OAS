@@ -44,11 +44,11 @@ function loginUser($conn, $email, $password){
         exit();
 
     } else if($checkpassword === true){
-        
+
         unset($alumniData["password"]);
         unset($alumniData["icNumber"]);
         session_start();
-        $_SESSION["alumniData"] = $alumniData;
+        $_SESSION["alumni"] = $alumniData;
         $_SESSION["alumniID"] = $alumniData;
         header("location: ../HomePage/HomePage.php");
         exit();

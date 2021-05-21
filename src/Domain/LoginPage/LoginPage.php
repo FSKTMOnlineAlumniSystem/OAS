@@ -111,7 +111,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form_2">
+                <form id="form_2" action="./forgotPassword.php" method="post">
                     <div class="modal-body">
                         <span>When you fill in your registered email address,
                             you will be sent instructions on how to reset your password.</span>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                        <button type="submit" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
                     </div>
                 </form>
             </div>
