@@ -3,9 +3,9 @@ include '../config/config.php';
 session_start();
 
 //VIEW
-if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
+if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Event/EventPage.php';
+    include '../src/Domain/HomePage/HomePage.php';
 
     // } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
 } 
@@ -32,6 +32,8 @@ elseif (preg_match('/^\/myprofile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/MyProfilePage.php';
 }
+
+
 
 
 
