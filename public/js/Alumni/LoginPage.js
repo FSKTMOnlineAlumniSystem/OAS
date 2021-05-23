@@ -43,87 +43,88 @@ form_2.addEventListener('submit', (evt) => {
 
     if (errorExist) {
         evt.preventDefault();
-    } else {
-        localStorage.setItem('ForgotPassword', sendEmailValue);
-    }
+    } 
+    // else {
+    //     localStorage.setItem('ForgotPassword', sendEmailValue);
+    // }
 
 });
 
 //form validation for sign in
-// form_1.addEventListener('submit', (ev) => {
+form_1.addEventListener('submit', (ev) => {
 
-//     let errorExist = false;
-//     let getEmail = false;
+    let errorExist = false;
+    let getEmail = false;
 
-//     const staticEmailValue = staticEmail.value.trim();
-//     const inputPasswordValue = inputPassword.value.trim();
+    const staticEmailValue = staticEmail.value.trim();
+    const inputPasswordValue = inputPassword.value.trim();
 
-//     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
-//         setErrorFor(staticEmail);
-//         errorExist = true;
-//     } else {
+    if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
+        setErrorFor(staticEmail);
+        errorExist = true;
+    } else {
 
-//         for (let i = 0; i < dummyResponse.Alumni.length; i++) {
+        // for (let i = 0; i < dummyResponse.Alumni.length; i++) {
 
-//             if (staticEmailValue == dummyResponse.Alumni[i].email) {
-//                 getEmail = true;
+        //     if (staticEmailValue == dummyResponse.Alumni[i].email) {
+        //         getEmail = true;
 
-//                 setSuccessFor(staticEmail);
-//                 errorExist = false;
+        //         setSuccessFor(staticEmail);
+        //         errorExist = false;
 
-//                 if (isEmpty(inputPasswordValue)) {
+        //         if (isEmpty(inputPasswordValue)) {
 
-//                     setErrorFor(inputPassword);
-//                     errorExist = true;
-//                 } else {
+        //             setErrorFor(inputPassword);
+        //             errorExist = true;
+        //         } else {
 
-//                     if (!dummyResponse.Alumni[i].approvedBy) {
-//                         setErrorFor(inputPassword);
-//                         errorExist = true;
-//                     } else {
+        //             if (!dummyResponse.Alumni[i].approvedBy) {
+        //                 setErrorFor(inputPassword);
+        //                 errorExist = true;
+        //             } else {
 
-//                         if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+        //                 if (inputPasswordValue == dummyResponse.Alumni[i].password) {
 
-//                             //To save who is logged in
+        //                     //To save who is logged in
 
-//                             localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
-//                             if (!localStorage.getItem('dummyResponse')) {
-//                                 updateDummyData(dummyResponse);
+        //                     localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
+        //                     if (!localStorage.getItem('dummyResponse')) {
+        //                         updateDummyData(dummyResponse);
 
-//                             }
+        //                     }
 
-//                             setSuccessFor(inputPassword);
-//                             errorExist = false;
+        //                     setSuccessFor(inputPassword);
+        //                     errorExist = false;
 
-//                         } else {
+        //                 } else {
 
-//                             setErrorFor(inputPassword);
-//                             errorExist = true;
-//                         }
-//                     }
+        //                     setErrorFor(inputPassword);
+        //                     errorExist = true;
+        //                 }
+        //             }
 
-//                 }
-//                 break;
-//             }
+        //         }
+        //         break;
+        //     }
 
-//         }
+        // }
 
 
-//         if (!getEmail) {
-//             errorExist = true;
-//             setErrorFor(staticEmail);
-//             setErrorFor(inputPassword);
-//         }
-//     }
+        // if (!getEmail) {
+        //     errorExist = true;
+        //     setErrorFor(staticEmail);
+        //     setErrorFor(inputPassword);
+        // }
+    }
 
-//     if (errorExist) {
-//         ev.preventDefault();
-//     }
-//     else {
-//         // ev.preventDefault();
-//         // jumpHome();
-//     }
-// });
+    if (errorExist) {
+        ev.preventDefault();
+    }
+    else {
+        // ev.preventDefault();
+        // jumpHome();
+    }
+});
 
 
 //go to homePage

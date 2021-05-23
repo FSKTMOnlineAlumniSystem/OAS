@@ -46,6 +46,11 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $stmt->bindParam(":approvedBy", $approvedBy);
     $stmt->bindParam(":email", $email);
 
+    $checkEmail = emailExists($conn,$email);
+    if ($checkEmail) {
+        header("location: ./LoginPage.php?emailExists");
+        exit();
+    }
     // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
     // $stmt->bindParam(":password", $hashedPassword);
     

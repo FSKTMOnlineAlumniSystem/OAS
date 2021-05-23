@@ -42,8 +42,6 @@
 
 <body>
 
-
-
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
         
 
@@ -62,19 +60,63 @@
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='./signin_inc.php' id="signIN" method="post">
                         <div class="form-label-group w-100">
-                            <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                            <!-- <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
-                            <label for="staticEmail">Email address</label>
-                           
-                            <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Please provide a correct email</div>
+                            <label for="staticEmail">Email address</label> -->
+                            <?php
+                                if (isset($_GET["emailnotExists"])){
+                                    echo'
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    
+                                    ';
+                                }else if (isset($_GET["passwordWrong"])){
+                                    echo '
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Correct Email</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    ';
+                                }
+                            ?>
+                            
+                            <!-- <div class="valid-feedback">Valid</div>
+                            <div class="invalid-feedback">Please provide a correct email</div> -->
                         </div>
                         <div class="form-label-group w-100">
-                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-                            <label for="inputPassword">Password</label>
-                        
-                            <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Password is incorrect</div>
+                            <!-- <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                            <label for="inputPassword">Password</label> -->
+                            <?php
+                                if (isset($_GET["passwordWrong"])){
+                                    echo'
+                                    <input type="password" name="password" id="inputPassword" class="form-control is-invalid" placeholder="Password">
+                                    <label for="inputPassword">Password</label>
+                                    <div class="invalid-feedback">Password is incorrect</div>
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                                    <label for="inputPassword">Password</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Password is incorrect</div>
+                                    ';
+                                }
+                            ?>
+                            <!-- <div class="valid-feedback">Valid</div>
+                            <div class="invalid-feedback">Password is incorrect</div> -->
                         </div>
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
@@ -99,6 +141,7 @@
         </div>
     </div>
 
+  
 
     <!-- forgot password -->
     
@@ -119,13 +162,13 @@
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="sendEmail">
+                                <input type="text" name="email" class="form-control" id="sendEmail">
                                 <div class="invalid-feedback">Please provide a valid email.</div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                        <button type="submit" onclick="SignIn()" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
                     </div>
                 </form>
             </div>
@@ -231,10 +274,30 @@
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" name="email" class="form-control" id="Email">
-                                <small class="invalid-feedback">Please provide a valid Email.</small>
-                                <small class="valid-feedback">Okay!</small>
+                                <!-- <input type="text" name="email" class="form-control" id="Email"> -->
+                                <?php
+                                    if (isset($_GET["emailExists"])){
+                                    echo '
+                                    <input type="text" name="email" class="form-control is-invalid" id="Email">
+                                    <small class="invalid-feedback">Email is exists.</small>
+                                    <script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $("#signUP").modal("show");
+                                            });
+                                    </script>
+                                    ';
+                                    }else{
+                                    echo '
+                                    <input type="text" name="email" class="form-control" id="Email">
+                                    <small class="invalid-feedback">Please provide a valid Email.</small>
+                                    <small class="valid-feedback">Okay!</small>
+                                    ';
+                                    }
+                                ?>
+                                <!-- <small class="invalid-feedback">Please provide a valid Email.</small>
+                                <small class="valid-feedback">Okay!</small> -->
                             </div>
+                            
                         </div>
                         <div class="mb-3 row">
                             <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
@@ -278,7 +341,17 @@
         </div>
     </div>
 
-    
+    <?php
+        if (isset($_GET["emailExists"])){
+            echo '
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#signUP").modal("show");
+                    });
+            </script>
+            ';
+        }
+    ?>
 
 
 
@@ -334,6 +407,13 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
 }
 ?>
 
+<script type="text/javascript">
+function emailName(){
+    staticEmail = document.getElementById('staticEmail');
+    console.log(staticEmail);
+    return staticEmail;
+}
+</script>
 
 <script type="module" src="/public/js/Alumni/LoginPage.js"></script>
 
