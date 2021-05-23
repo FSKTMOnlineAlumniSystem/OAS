@@ -12,7 +12,7 @@ class JobModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM job');
+            $stmt = $this->connection->prepare('SELECT * FROM job ORDER BY postedDateTime DESC');
             $stmt->execute();
             $data = $stmt->fetchAll();
             if (!$data) {

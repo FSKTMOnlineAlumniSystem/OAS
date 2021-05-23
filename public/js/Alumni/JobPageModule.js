@@ -91,7 +91,9 @@ function loadJobList(pageIndex, outputList) {
                     <div class="col-7">RM ${outputList[i].salary}</div>
                   </div>
                 </p>
+                <small class="text-muted">Posted : ${outputList[i].postedDateTime}</small>
               </div>
+           
             </div>
           </a>
         </div>`;

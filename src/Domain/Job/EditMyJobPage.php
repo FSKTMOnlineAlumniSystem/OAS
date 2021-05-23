@@ -1,5 +1,7 @@
 <?php
-include '../src/Domain/header.php';
+include_once '../src/templates/header.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Job/EditMyJobModel.php';
 ?>
 <link rel="stylesheet" type="text/css" href="/css/Alumni/EditMyJobPage.css" />
 
@@ -9,8 +11,8 @@ include '../src/Domain/header.php';
 
 <?php 
 // include '../../../config/config.php';
-include '../src/Domain/Job/EditMyJobModel.php';
-include '../src/Domain/Database.php';
+// include '../src/Domain/Job/EditMyJobModel.php';
+// include '../src/Domain/Database.php';
 
 $myjobid = $_GET['myjobid'];
 // echo ($myjobid);
@@ -67,4 +69,4 @@ if(isset($_POST['Submit'])) {
 
 
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-<?php include '../src/Domain/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>

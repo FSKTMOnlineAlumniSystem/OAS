@@ -1,9 +1,11 @@
 <?php
-include '../src/Domain/header.php';
+include_once '../src/templates/header.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Job/AddJobModel.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/AddJobPage.css" />
 
-<title><?= $GLOBALS['title']; ?></title>
+<link rel="stylesheet" type="text/css" href="/css/Alumni/AddJobPage.css" />
+<title>Add Job - Alumni Online System</title>
 </head>
 <body>
 
@@ -17,13 +19,20 @@ include '../src/Domain/header.php';
 
 <?php
 // include '../../../config/config.php';
-include '../src/Domain/Job/AddJobModel.php';
-include '../src/Domain/Database.php';
+// include '../src/Domain/Job/AddJobModel.php';
+// include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 
 if(isset($_POST['Submit'])) {
+
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+    $date = date('y-m-d h:i:s');
+    $postedDateTime = date(DATE_ATOM, strtotime($date));
+    // echo($postedDateTime);
+
+
     $addJob_model = new  AddJobModel($db->getConnection());	
     $data = $addJob_model->getMaxId();
     $jobId = "J-" . $data+1;
@@ -32,7 +41,7 @@ if(isset($_POST['Submit'])) {
     $description = $_POST['description'];
     $salary = $_POST['salary'];
 	$email = $_POST['email'];
-    $postedDateTime = '2021-04-04T15:53:53+00:00';      //ned change
+    $postedDateTime = $postedDateTime;      //ned change
     $imageId = $_POST['imageId'];
     $company = $_POST['company'];
     $location = $_POST['location'];
@@ -48,7 +57,7 @@ if(isset($_POST['Submit'])) {
 <!-- <script type="module" src="/js/Alumni/AddJobPage.js"></script> -->
 
 
-
-<?php include '../src/Domain/footer.php' ?>
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<?php include_once '../src/templates/footer.php' ?>
 
 

@@ -1,16 +1,7 @@
 <?php
-include '../src/Domain/header.php';
-?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/JobPage.css" />
-
-  <title><?= $GLOBALS['title']; ?></title>
-</head>
-<body>
-
-<?php
-// include '../../../config/config.php';
-include '../src/Domain/Job/JobModel.php';
+include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
+include '../src/Domain/Job/JobModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -27,8 +18,13 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
-
 ?>
+<title>Job - Alumni Online System</title>
+<link rel="stylesheet" type="text/css" href="/css/Alumni/JobPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
+</head>
+<body>
+
 
   <div class="container my-5" id="main-body">
         <h1><b>Jobs</b></h1>
@@ -60,6 +56,4 @@ try {
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
 <script type="module" src="/js/Alumni/JobPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-<script type="text/javascript" src="/js/addSearchBar.js"></script>
-<?php $db-> closeConnection() ?>
-<?php include '../src/Domain/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>

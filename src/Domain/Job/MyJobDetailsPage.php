@@ -1,16 +1,18 @@
 <?php
-include '../src/Domain/header.php';
+include_once '../src/templates/header.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Job/MyJobDetailsModel.php';
 ?>
 <link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobDetailsPage.css" />
 
-<title><?= $GLOBALS['title']; ?></title>
+<title>My Job Details - Alumni Onlune System</title>
 </head>
 <body>
 
 <?php
 // include '../../../config/config.php';
-include '../src/Domain/Job/MyJobDetailsModel.php';
-include '../src/Domain/Database.php';
+// include '../src/Domain/Job/MyJobDetailsModel.php';
+// include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $myjobid = $_GET['myjobid'];
@@ -38,4 +40,4 @@ try {
 <script type="text/javascript">var job_array = <?php echo json_encode( $myjobdetails) ?>;</script>
 <script type="module" src="/js/Alumni/MyJobDetailsPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-<?php include '../src/Domain/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>

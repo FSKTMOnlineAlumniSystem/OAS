@@ -1,15 +1,15 @@
-<?php
-include '../src/Domain/header.php';
-?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
 
-<title><?= $GLOBALS['title']; ?></title>
+
+
+<title>My Job - Alumni Online System</title>
 </head>
 <body>
 
 <?php
 // include '../../../config/config.php';
 include '../src/Domain/Job/MyJobModel.php';
+// include '../src/Domain/Database.php';
+include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 
 $alumniID = "AL-1";
@@ -22,7 +22,7 @@ try {
     // $num_rows = $myJob_model->getNumRow($alumniID);
     $myJob = $myJob_model->getRow($alumniID);
     // echo("inside" . $num_rows);
-    print_r($myJob);
+    // print_r($myJob);
     //   if (!empty($all_activities)) {
 
     // foreach ($all_activities as $activity) {
@@ -34,6 +34,7 @@ try {
     echo "Exception here!";
 }
 ?>
+<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
 
 <div class ="container my-5" id='main-body'>
           <h1><b>Jobs</b></h1>
@@ -84,5 +85,4 @@ try {
 <script type="text/javascript">var myJob_array = <?php echo json_encode($myJob) ?>;</script>
 <script type="module" src="/js/Alumni/MyJobPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-<script type="text/javascript" src="/js/addSearchBar.js"></script>
-<?php include '../src/Domain/footer.php' ?>
+    <?php include_once '../src/templates/footer.php' ?>

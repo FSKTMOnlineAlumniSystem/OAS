@@ -11,10 +11,10 @@ class MyJobModel
     }
 
     public function getRow($id): array{
-        $stmt = $this->connection->prepare("SELECT * FROM job WHERE alumniId='$id' ");
+        $stmt = $this->connection->prepare("SELECT * FROM job WHERE alumniId='$id' ORDER BY postedDateTime DESC");
         $stmt->execute();
         $data = $stmt->fetchAll();
-        print_r($data);
+        // print_r($data);
         if(!$data){
             return array();
         }
