@@ -1,4 +1,3 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 console.log('connect');
 let alumniArray=alumni_array
@@ -11,7 +10,6 @@ const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
 const email = document.querySelector('#email');
-const contactNumber = document.querySelector('#contactNumber');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
 const cancelButton = document.querySelector('#cancelButton');
@@ -25,6 +23,15 @@ const currentAlumniId = alumniArray[i].alumniId;
 const alumni = alumniArray.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
+
+
+document.getElementById('name').value=alumniArray[i].name
+document.getElementById('gender').value=alumniArray[i].gender
+document.getElementById('icNumber').value=alumniArray[i].icNumber
+document.getElementById('graduated').value=alumniArray[i].graduated
+document.getElementById('department').value=alumniArray[i].department
+document.getElementById('email').value=alumniArray[i].email
+document.getElementById('biography').value=alumniArray[i].biography
 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
@@ -41,21 +48,21 @@ function setValid(el) {
     }
 }
 
-img.addEventListener('change', (e) => readURL(e));
-function readURL(e) {
-    let allowedExtensions =
-        /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            wizardPicturePreview.src = e.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);
-        choosePictureDescription.textContent = "Choose picture";
-    } else {
-        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    }
-}
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//     let allowedExtensions =
+//         /(\.png|\.jpg|\.jpeg)$/i;
+//     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             wizardPicturePreview.src = e.target.result;
+//         }
+//         reader.readAsDataURL(e.target.files[0]);
+//         choosePictureDescription.textContent = "Choose picture";
+//     } else {
+//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+//     }
+// }
 
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
@@ -64,10 +71,11 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 const graduatedFormat = /[0-9]{4}/;
-const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
+// const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
-form.addEventListener('submit', (e) => {
-    let errorExist = false; //false if no error exists in alumni details
+// form.addEventListener('submit', (e) => {
+    function checkvalidation(){
+let errorExist = false; //false if no error exists in alumni details
 
     if (isEmpty(email) || !email.value.match(emailFormat)) {
         setInValid(email);
@@ -111,9 +119,12 @@ form.addEventListener('submit', (e) => {
         setValid(graduated);
     }
 
-    if (errorExist) e.preventDefault();
-    else {
+    if (errorExist) {
+        e.preventDefault();
+        return false;
+    }    else {
         alumniArray.forEach((al) => {
+            return true;
             if (al.alumniId === currentAlumniId) {
                 if (img.value) {
                     const imgLocalPathArr = img.value.split('\\');
@@ -132,50 +143,36 @@ form.addEventListener('submit', (e) => {
         });
         saveButton.textContent = 'Saving...';
         setTimeout(() => {
-            location.href = 'MyProfilePage.html';
+            location = 'alumniList';
         }, 1000);
     }
-});
+};
 
 
 
 
 /*Check whether there is any changes that might be lost*/
-cancelButton.addEventListener('click', () => {
-    if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
-        alumni.email == email.value &&
-        alumni.contactNumber == contactNumber.value &&
-        alumni.biography == biography.value &&
-        alumni.name == name.value &&
-        alumni.graduated == graduated.value &&
-        alumni.department == department.value &&
-        alumni.gender == gender.value &&
-        alumni.icNumber == icNumber.value) {
-        location.href = "Admin-AlumniListPage.html";
-    } else {
+// cancelButton.addEventListener('click', () => {
+//     if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+//         alumni.email == email.value &&
+//         alumni.contactNumber == contactNumber.value &&
+//         alumni.biography == biography.value &&
+//         alumni.name == name.value &&
+//         alumni.graduated == graduated.value &&
+//         alumni.department == department.value &&
+//         alumni.gender == gender.value &&
+//         alumni.icNumber == icNumber.value) {
+//         location.href = "Admin-AlumniListPage.html";
+//     } else {
 
-        /*POP UP MODAL ask if cancel will lose changes */
-        $('#cancelChangesModal').modal('show');
-    }
-});
+//         /*POP UP MODAL ask if cancel will lose changes */
+//         $('#cancelChangesModal').modal('show');
+//     }
+// });
 
 /*Close Modal */
-closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-function closeModal(modalId) {
-    $(modalId).modal('hide');
-}
-
-function loadData() {
-    wizardPicturePreview.src = imgPath + alumni.imageId;
-    name.value = alumni.name;
-    gender.value = alumni.gender;
-    department.value = alumni.department;
-    graduated.value = alumni.graduated;
-    email.value = alumni.email;
-    contactNumber.value = alumni.contactNumber;
-    biography.value = alumni.biography;
-    icNumber.value = alumni.icNumber;
-}
-
-loadData();
+// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// function closeModal(modalId) {
+//     $(modalId).modal('hide');
+// }

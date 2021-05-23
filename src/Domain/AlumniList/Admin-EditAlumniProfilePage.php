@@ -27,39 +27,30 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
-// if(isset($_POST['update'])) {
-//     $prevtitle=$_GET['title'];
-//   $updateTheEvent = new  UpdateEventModel($db->getConnection());	
-//   // $data = $addJob_model->getMaxId();
-//   $eventId = "E-" ;
-//   $adminId = "AD-1";         //ned change
-//   $title = $_POST['title'];
-//   $date =$_POST["date"];
-//   $time =$_POST["time"];
-//   $description = $_POST['description'];
-//   $imageId = $_POST['imageId'];
-//   $locate = $_POST['locate'];
-//   $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-//   $updateTheEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
-//   header("Location: adminEvent");
-
-// }
-//  if(isset($_POST['update'])) {
-//     $alumniId=$_GET['alumniId'];
-//   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
-//   // $data = $addJob_model->getMaxId();
-// //   $eventId = "E-" ;
-// //   $adminId = "AD-1";         //ned change
-//   $imageId = $POST["image"]
-//   $name = $POST["name"];
-//   $gender = $POST["gender"];
-//   $icNumber = $POST["icNumber"];
-//   $department = $POST["department"];
-//   $email = $POST["email"];
-//   $contactNumber = $POST["contactNumber"];
-//   $updateTheAlumni->updatealumni($alumniId,$name,$gender,$icNumber,$department,$email,$imageId,$contactNumber);
+?>
+<script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="text/javascript" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
+<?php
+if(isset($_POST['submit'])) {
+    echo "halo";
+$prevAlumniId=$_GET['alumniId'];
+  $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
+  // $data = $addJob_model->getMaxId();
+  $name = $_POST['name'];
+  $gender =$_POST["gender"];
+  $department =$_POST["department"];
+  $icNumber = $_POST['icNumber'];
+  $imageId = $_POST['imageId'];
+  $graduated = $_POST['graduated'];
+  $biography = $_POST['biography'];
+  $email = $_POST['email'];
+  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$imageId,$graduated,$biography,$email);
 //   header("Location: alumniList");
-// }
+}
+else{
+    echo "laji";
+
+}
   ?>
 
 <head>
@@ -89,7 +80,7 @@ try {
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" method="POST" action='/src/html/Admin/Admin-AlumniListPage.html'>
+                <form id="editMyProfileForm" method="post" action='/src/html/Admin/Admin-AlumniListPage.html' onsubmit="return checkvalidation()">
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">
@@ -178,25 +169,14 @@ try {
                                     </div>
                                 </div>
                             </div>
-                            <!-- alumni contact number -->
-                            <div class="row mb-3">
-                                <div class="col-sm-4">Contact Number:</div>
-                                <div class="col-sm-8">
-                                    <input type="tel" id="contactNumber" name="contactNumber" class="form-control" value="03-79676347">
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div id="contactNumberFeedback" class="invalid-feedback">
-                                        Please provide a valid phone number.
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- alumni biography -->
                     <div class="row mt-5">
                         <h4>Biography</h4>
                         <div class="col-12 rounded bg-grey p-5 mb-2">
-                            <textarea id="biography" class="form-control" id="exampleFormControlTextarea1" rows="10">Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior Lecturer. His research interests include renewable energy control system, energy management, power efficiency of PV system and inverter control of PV system.
-                </textarea>
+                            <textarea id="biography" name ="biography"class="form-control" id="exampleFormControlTextarea1" rows="10">Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior Lecturer. His research interests include renewable energy control system, energy management, power efficiency of PV system and inverter control of PV system.
+                    </textarea>
                             <div class="valid-feedback">Valid.</div>
                             <div id="contactNumberFeedback" class="invalid-feedback">
                                 Biography cannot be empty.
@@ -205,7 +185,7 @@ try {
                     </div>
                     <div class="row justify-content-end mt-3">
                         <button id="cancelButton" type="button" class="btn btn-outline-secondary">Cancel</button>
-                        <button type="submit" method="post" name="update" class="btn btn-primary ml-3">Save</button>
+                        <button type="submit" name="update" class="btn btn-primary ml-3">Save</button>
                     </div>
                 </form>
     </main>
@@ -237,9 +217,9 @@ try {
         </div>
     </div> <br>
     </div>
-    <script type='module' src='../js/addHeader.js'></script>
+    <!-- <script type='module' src='../js/addHeader.js'></script> -->
     <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
-    <script type="module" src="../js/Admin/Admin-EditAlumniProfilePage.js"></script>
+    <script type="module" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
