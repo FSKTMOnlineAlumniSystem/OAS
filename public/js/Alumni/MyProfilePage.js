@@ -10,7 +10,6 @@ const privacySwitch = document.querySelector('#privacySwitch');
 
 //Validation for change password
 function verifyPasswordAndConfirmPassword(e) {
-    console.log('con')
     let errorExist = false;
     if (!verifyPasswordCriteria(oldPassword)) {
         setInValid(oldPassword);

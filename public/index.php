@@ -24,13 +24,13 @@ elseif (preg_match('/^\/myprofile/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/MyProfile/MyProfilePage.php';
 }
 //Admin-MyProfile
-elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
-    include '../src/Domain/Admin-MyProfile/EditMyProfilePage.php';
+    include '../src/Domain/Admin-MyProfile/Admin-EditMyProfilePage.php';
 } 
-elseif (preg_match('/^\/myprofile/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
-    include '../src/Domain/Admin-MyProfile/MyProfilePage.php';
+    include '../src/Domain/Admin-MyProfile/Admin-MyProfilePage.php';
 }
 
 
@@ -55,6 +55,16 @@ elseif (preg_match('/^\/api\/myprofile\/changeprivacy/i', $_SERVER['REQUEST_URI'
 elseif (preg_match('/^\/api\/myprofile\/delete\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/DeleteAccountController.php';
+}
+
+//Admin-MyProfile
+elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/Admin-EditMyProfileController.php';
+}
+elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/AdminChangePasswordController.php';
 }
 
 //ERROR URL NOT FOUND

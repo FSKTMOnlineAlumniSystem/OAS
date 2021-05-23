@@ -34,6 +34,16 @@ try {
                     </button>
                 </div>';
             }
+            if(isset($_GET['error'])){
+                foreach ($_GET['error'] as $error){
+                    echo '
+                    <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                        <i class="fas fa-times-circle mr-2"></i>'.$error.'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>';
+                }
+            }
             if (isset($_GET['private'])) {
                 echo '
                 <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">

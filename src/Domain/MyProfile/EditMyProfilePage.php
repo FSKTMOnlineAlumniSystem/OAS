@@ -48,7 +48,8 @@ try {
                                 <div class="picture">
                                     <img src=<?= $alumni->getProfilePicture(); ?> class="picture-src"
                                         id="wizardPicturePreview" title="">
-                                    <input type="file" name="profilePicture" id="wizard-picture">
+                                    <input type="file" id="wizard-picture">
+                                    <input type="file" name="profilePicture" id="profilePicture" class="d-none">
                                 </div>
                                 <h6 id="choosePictureDescription">Choose Picture</h6>
                             </div>

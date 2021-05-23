@@ -1,5 +1,6 @@
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
+const profilePicture = document.querySelector('#profilePicture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
@@ -22,8 +23,8 @@ function readURL(e) {
     if (e.target.files && e.target.files[0] && e.target.files[0].size>1000000) {
         // To handle the file size
         choosePictureDescription.textContent = "Image size must be smaller than 1MB";
-        e.target.files = null;
     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        profilePicture.files = e.target.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
@@ -32,7 +33,6 @@ function readURL(e) {
         choosePictureDescription.textContent = "Choose picture";
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-        e.target.files = null;
     }
 }
 
@@ -72,7 +72,7 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (!img.value &&
+    if (!profilePicture.value &&
         alumniEmail == email.value &&
         alumniBiography == biography.value) {
         location.href = "/myprofile";
