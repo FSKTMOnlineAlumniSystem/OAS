@@ -19,7 +19,11 @@ img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>1000000) {
+        // To handle the file size
+        choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+        e.target.files = null;
+    }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         var reader = new FileReader();
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
@@ -28,6 +32,7 @@ function readURL(e) {
         choosePictureDescription.textContent = "Choose picture";
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+        e.target.files = null;
     }
 }
 
@@ -55,12 +60,12 @@ form.addEventListener('submit', (e) => {
         setValid(biography);
     }
 
-    if (!errorExist){
-        saveButton.textContent='Saving...';
-        setTimeout(()=>{
+    if (!errorExist) {
+        saveButton.textContent = 'Saving...';
+        setTimeout(() => {
             // location.href='MyProfilePage.html';
-        },1000);
-    }else{
+        }, 1000);
+    } else {
         e.preventDefault();
     }
 });
