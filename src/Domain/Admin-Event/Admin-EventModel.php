@@ -26,6 +26,13 @@ class Admin_EventModel
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
+        
+   }
+   public function deleteEvent($eventId) {
+    $sql = "DELETE FROM events WHERE eventId=?";
+    $stmt = $this->connection->prepare($sql);
+   //  $stmt->execute();
+    $stmt->execute([$eventId]);
     }
 }
 

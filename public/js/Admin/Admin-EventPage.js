@@ -124,20 +124,78 @@ console.log('hihihihi')
             </tr>`;
 
 // <?php echo DeleteRowPhp(${eventArray[i].eventId});?>
+var e;
+// var $eventToDelete='e-3'
+// document.cookie = "username="+$eventToDelete;
 window.deleteByJquery= function (o){
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
   console.log($eventToDelete);
-  $.ajax({
-    url:"/adminEvent",    //the page containing php script
-    type: "post",    //request type,
-    dataType: 'json',
-    data: { deleteEvent: $eventToDelete},
+  //cookies
+  // $_COOKIE['deleteEvent'] = $eventToDelete;
+  
 
+  document.cookie = "deleteEvent="+$eventToDelete;
+  // alert(document.cookie);
+ location.reload();
+ location.reload();
+
+  // $(document).ready(function () {
+  //   createCookie("delete", $(window).height(), "10");
+  // });
+  
+  // function createCookie(name, value, days) {
+  //   var expires;
+  //   if (days) {
+  //     var date = new Date();
+  //     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  //     expires = "; expires=" + date.toGMTString();
+  //   }
+  //   else {
+  //     expires = "";
+  //   }
+  //   document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+  // }
+
+    // var data = {
+    //     fn: "filename",
+    //     deleteEvent: String($eventToDelete)
+    // };
+
+    // $.post("/adminEvent", data);
+
+/*
+  try {
+  $.ajax({
+    url:"./adminEvent",    //the page containing php script
+    data: { deleteEvent: $eventToDelete},
+    type: 'POST',    //request type,
+    dataType: 'json',
+    success: function(output) {
+      alert(output);
+  },
+error: function(request, status, error){
+alert(error);
+}
 });
+} catch (Exception ) {
+  console.log('exception');
+}
+*/
+
+
+// $(document).ready(function(){
+//   $.get("http://localhost/adminEvent", 
+//   {
+//     deleteEvent: $eventToDelete
+//   });
+
+// })
   // $.post( "Admin-EventPage.php", { deleteEvent: eventArray[findId].eventId});
 
-}
+};
+  //another method
+
 window.DeleteRowId = function (o) {
   var findId = o.id.split(" ")[1]
   console.log(eventArray[findId].eventId);

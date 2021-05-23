@@ -1,6 +1,23 @@
 <?php
-include '../src/Domain/header.php'; //16 lines
+// include '../src/Domain/header.php'; //16 lines
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <!-- icon - fontawesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- custom css files -->
+  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+  <link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
+  
+
+
    <!-- CSS -->
   <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" />
   <title>Event - Online Alumni System</title>
@@ -11,8 +28,9 @@ include '../src/Domain/header.php'; //16 lines
 include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
-
+// global $db;
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
 try {
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
@@ -30,47 +48,55 @@ try {
 ?>
 <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 
 <!-- delete row function -->
 <?php
-DeleteRowPhp('E-1');
+
 function DeleteRowPhp($eventId){
-  echo 'deleteRowPhp';
-  try {
-  $deleteEventModel = new deleteEventModel($db->getConnection());
-  $deleteEventModel-> deleteEvent($eventId);
-} catch (Exception $e) {
-  echo "Exception here!";
-  echo $e;
-}
+  global $db;
+    $deleteEvent = new  Admin_EventModel($db->getConnection());	
+  $deleteEvent-> deleteEvent($eventId);
+
 };
 
-function deleteMultipleRow(){
-  
-  function DeleteRowPhp($eventId){
-    echo 'deleteRowPhp';
-    try{
-    var $deleteEventModel = new deleteEventModel($db->getConnection());
-    $deleteEventModel-> deleteEvent($eventId);
-  } catch (Exception $e) {
-    echo "Exception here!";
-    echo $e;
-  }
-  }
+if(isset($_COOKIE["deleteEvent"])){
+  DeleteRowPhp($_COOKIE["deleteEvent"]);  
+
 }
+// function deleteMultipleRow(){
+  
+//   function DeleteRowPhp($eventId){
+//     echo 'deleteRowPhp';
+//     try{
+//     $deleteEventModel = new deleteEventModel($db->getConnection());
+//     $deleteEventModel-> deleteEvent($eventId);
+//   } catch (Exception $e) {
+//     echo "Exception here!";
+//     echo $e;
+//   }
+//   }
+// }
 
 //delete event
-if(isset($_POST['deleteEvent'])) {
-$eventToDelete = $_POST['deleteEvent'];
-echo 'delete eventtttttttttttt';
-echo $evenToDelete;
-DeleteRowPhp($eventToDelete);
+// echo $_POST['deleteEvent'];
+
+
+
+// if(isset($_POST["deleteEvent"])){
+// // if(isset($_POST['deleteEvent'])) {
+// $eventToDelete = $_POST["deleteEvent"];
+// echo 'delete eventtttttttttttt';
+// echo '<br>';
+// echo $eventToDelete;
+// // DeleteRowPhp($eventToDelete);
   
-}else{echo 'cannot delete event'; }
-//depete button
-// if(isset($_POST['submit'])) {
-//   $eventId=$_POST['deleteButton'];
-//   echo $eventId;
+// }else{echo 'cannot delete event'; 
+//   echo $_POST['deleteEvent'];}
+// //depete button
+// // if(isset($_POST['submit'])) {
+// //   $eventId=$_POST['deleteButton'];
+// //   echo $eventId;
 
 
 // }
@@ -216,7 +242,7 @@ DeleteRowPhp($eventToDelete);
     crossorigin="anonymous"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
-  <script type="module" src="/js/Admin/Admin-EventPage.js"></script> -->
+  <script type="text/javascript" src="/js/Admin/Admin-EventPage.js"></script> -->
   <!-- <script type='module' src='/js/addHeader.js'></script> -->
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
   <!-- jquery -->
@@ -224,9 +250,9 @@ DeleteRowPhp($eventToDelete);
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script> -->
   <!-- bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
 
 </body>
 </html>

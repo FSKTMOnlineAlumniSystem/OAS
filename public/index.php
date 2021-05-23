@@ -28,7 +28,7 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Job/AddJobPage.php';
 
-
+//admin-event
 }elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-EventPage.php';
@@ -44,6 +44,10 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
 }elseif (preg_match('/^\/inviteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-InviteAlumniPage.php';
+
+}elseif (preg_match('/^\/try\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Admin-Event/admin-try.php';
 
 } elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/api/handler.php';
