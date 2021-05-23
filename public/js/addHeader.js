@@ -6,7 +6,7 @@
  * Below header set the user as AD-1 admin if the url includes 'admin'
  * else set the user as AL-1 alumni
  */
-console.log(color);
+// console.log(color);
 import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin

@@ -148,7 +148,7 @@ echo 'event id+ $data';
         </div>
         </div>
         <!-- ssave button -->
-        <input type="submit" name="" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
+        <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
         <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelUpdate()">Cancel</button>
 
         <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->

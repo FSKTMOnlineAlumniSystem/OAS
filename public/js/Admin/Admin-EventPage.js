@@ -104,7 +104,8 @@ const loadEventList = (pageIndex) => {
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                    
-                  <button class="updateButton" onclick="updateEvent(this)" id="update ${i}">
+                  <a href="adminUpdateEvent?title=${eventArray[i].title}" class="updateButton" onclick="updateEvent(this)" id="update ${i}" >
+                  <!--?title=${eventArray[i].title} onclick="updateEvent(this)" id="update ${i}"-->
                     <i class="fas fa-edit pr-2" aria-hidden="true">
                     </i></button>
                     
