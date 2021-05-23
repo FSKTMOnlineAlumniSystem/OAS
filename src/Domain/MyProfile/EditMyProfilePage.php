@@ -1,3 +1,17 @@
+<?php
+
+include '../src/Domain/Database.php';
+include '../src/Domain/MyProfile/MyProfileModel.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+try {
+    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+} catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,9 +27,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../css/Alumni/MyProfilePage.css">
-    <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+    <link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
 
 </head>
 
@@ -26,15 +40,15 @@
             <div class="row mx-0">
                 <h2><b>Edit My Profile</b></h2>
             </div>
-            <form id="editMyProfileForm">
+            <form id="editMyProfileForm" method="POST" action="/api/myprofile/edit" enctype="multipart/form-data">
                 <div class="row mt-3 mb-3 align-items-center">
                     <div class="col-md-5 d-flex align-items-center justify-content-center">
                         <div class="w-50 position-relative">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
+                                    <img src=<?= $alumni->getProfilePicture(); ?> class="picture-src"
                                         id="wizardPicturePreview" title="">
-                                    <input type="file" id="wizard-picture">
+                                    <input type="file" name="profilePicture" id="wizard-picture">
                                 </div>
                                 <h6 id="choosePictureDescription">Choose Picture</h6>
                             </div>
@@ -43,37 +57,28 @@
                     <div class="col-md-7 justify-content-center align-items-center">
                         <div class="row mb-3">
                             <div class="col-md-5">Name:</div>
-                            <div id="name" class="col-md-7">Teh Kok Soon</div>
+                            <div id="name" class="col-md-7"><?= $alumni->getName(); ?></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-5">Gender:</div>
-                            <div id="gender" class="col-md-7">Male</div>
+                            <div id="gender" class="col-md-7"><?= $alumni->getGender(); ?></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-5">Graduated:</div>
-                            <div id="graduated" class="col-md-7">2014</div>
+                            <div id="graduated" class="col-md-7"><?= $alumni->getGraduatedYear(); ?></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-5">Department:</div>
-                            <div id="department" class="col-md-7">Software Engineering</div>
+                            <div id="department" class="col-md-7"><?= $alumni->getDepartment(); ?></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-5 font-weight-bold">E-mail:</div>
                             <div class="col-md-7">
-                                <input id="email" type="email" class="form-control" value="koksoon@um.edu.my">
+                                <input id="email" name="email" type="email" class="form-control" 
+                                value=<?= $alumni->getEmail(); ?> >
                                 <div class="valid-feedback">Valid.</div>
                                 <div id="emailFeedback" class="invalid-feedback">
                                     Please provide a valid email.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-5 font-weight-bold">Contact Number:</div>
-                            <div class="col-md-7">
-                                <input id="contactNumber" type="tel" class="form-control" value="03-79676347">
-                                <div class="valid-feedback">Valid.</div>
-                                <div id="contactNumberFeedback" class="invalid-feedback">
-                                    Please provide a valid phone number.
                                 </div>
                             </div>
                         </div>
@@ -83,8 +88,7 @@
                 <div class="row mt-5 mx-0">
                     <h4>Biography</h4>
                     <div class="col-12 rounded bg-grey p-5 mb-2">
-                        <textarea class="form-control" form="editMyProfileForm" id="biography" rows="10">Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior Lecturer. His research interests include renewable energy control system, energy management, power efficiency of PV system and inverter control of PV system.
-                    </textarea>
+                        <textarea class="form-control" name="biography" form="editMyProfileForm" id="biography" rows="10"><?= $alumni->getBiography(); ?></textarea>
                         <div class="valid-feedback">Valid.</div>
                         <div id="contactNumberFeedback" class="invalid-feedback">
                             Biography cannot be empty.
@@ -94,7 +98,7 @@
                 <div class="row justify-content-end mt-3 mx-0">
                     <!-- Need to pop up to ask whether users want to cancel and lose changes -->
                     <button id="cancelButton" type="button" class="btn btn-outline-secondary">Cancel</button>
-                    <button id="saveButton" type="submit" class="btn btn-primary ml-3">Save</button>
+                    <button id="saveButton" type="submit" name ="submit" value="Submit" class="btn btn-primary ml-3">Save</button>
                 </div>
             </form>
         </div>
@@ -115,7 +119,7 @@
                         Are you sure you want to leave this page?
                     </div>
                     <div class="modal-footer">
-                        <a href="MyProfilePage.html"><button type="button" class="btn btn-outline-secondary">Leave this
+                        <a href="/myprofile"><button type="button" class="btn btn-outline-secondary">Leave this
                                 Page</button></a>
                         <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this
                             Page</button>
@@ -125,8 +129,12 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/src/js/utility.js"></script>
-    <script type="module" src="../../js/Alumni/EditMyProfilePage.js"></script>
+    <script type="text/javascript">
+        var alumniEmail= "<?= $alumni->getEmail(); ?>";
+        var alumniBiography="<?= $alumni->getBiography(); ?>";
+    </script>
+    <script type="text/javascript" src="/js/utility.js"></script>
+    <script type="text/javascript" src="/js/Alumni/EditMyProfilePage.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

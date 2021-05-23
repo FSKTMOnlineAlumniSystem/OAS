@@ -3,56 +3,67 @@ CREATE DATABASE OAS;
 
 USE OAS;
 
+CREATE TABLE Image(
+imageId varchar(10) NOT NULL PRIMARY KEY,
+type varchar(11),
+    	imageData longblob NOT NULL
+);
+
 CREATE TABLE Admin(
-  adminId varchar(10) NOT NULL PRIMARY KEY,
-  email varchar(255) NOT NULL,
-  password varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
-  imageId varchar(255) NOT NULL
+    adminId varchar(10) NOT NULL PRIMARY KEY,
+    email varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    name varchar(255) NOT NULL,
+    imageId varchar(255) NOT NULL
 );
 CREATE TABLE Alumni_Event(
-  alumniId varchar(10) NOT NULL,
-  eventId varchar(10) NOT NULL,
-  PRIMARY KEY (alumniId, eventId),
-  viewedByAlumni varchar(255) NOT NULL,
-  dateTime varchar(255) NOT NULL,
-  notificationClosedByAlumni varchar(255) NOT NULL
+    alumniId varchar(10) NOT NULL,
+    eventId varchar(10) NOT NULL,
+    PRIMARY KEY (alumniId, eventId),
+    viewedByAlumni boolean NOT NULL,
+    dateTime varchar(255) NOT NULL,
+    notificationClosedByAlumni boolean NOT NULL
 );
 CREATE TABLE Alumni(
-  alumniId varchar(10) NOT NULL PRIMARY KEY,
-  approvedBy varchar(10) NOT NULL,
-  email varchar(255) NOT NULL,
-  password varchar(255) NOT NULL,
-  icNumber varchar(255) NOT NULL,
-  gender varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
-  department varchar(255) NOT NULL,
-  graduated varchar(255) NOT NULL,
-  imageId varchar(255) NOT NULL,
-  isEmailPublic varchar(255) NOT NULL,
-  biography varchar(255) NOT NULL
+    alumniId varchar(10) NOT NULL PRIMARY KEY,
+    approvedBy varchar(10) NOT NULL,
+    email varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    icNumber varchar(255) NOT NULL,
+    gender varchar(255) NOT NULL,
+    name varchar(255) NOT NULL,
+    department varchar(255) NOT NULL,
+    graduated varchar(255) NOT NULL,
+    imageId varchar(255) NOT NULL,
+    isEmailPublic boolean NOT NULL,
+    isActive boolean NOT NULL,
+    biography varchar(255) NOT NULL
 );
+
+
 CREATE TABLE Job(
-  jobId varchar(10) NOT NULL PRIMARY KEY,
-  alumniId varchar(10) NOT NULL,
-  title varchar(255) NOT NULL,
-  description varchar(10000) NOT NULL,
-  salary int(255) unsigned NOT NULL,
-  email varchar(255) NOT NULL,
-  postedDateTime varchar(255) NOT NULL,
-  imageId varchar(255) NOT NULL,
-  company varchar(255) NOT NULL,
-  location varchar(255) NOT NULL
+    jobId varchar(10) NOT NULL PRIMARY KEY,
+    alumniId varchar(10) NOT NULL,
+    title varchar(255) NOT NULL,
+    description varchar(10000) NOT NULL,
+    salary int(255) unsigned NOT NULL,
+    email varchar(255) NOT NULL,
+    postedDateTime varchar(255) NOT NULL,
+    imageId varchar(255) NOT NULL,
+    company varchar(255) NOT NULL,
+    location varchar(255) NOT NULL
 );
+
 CREATE TABLE Events(
-  eventId varchar(10) NOT NULL PRIMARY KEY,
-  adminId varchar(10) NOT NULL,
-  title varchar(255) NOT NULL,
-  dateTime varchar(255) NOT NULL,
-  description varchar(10000) NOT NULL,
-  imageId varchar(255) NOT NULL,
-  location varchar(255) NOT NULL
+    eventId varchar(10) NOT NULL PRIMARY KEY,
+    adminId varchar(10) NOT NULL,
+    title varchar(255) NOT NULL,
+    dateTime varchar(255) NOT NULL,
+    description varchar(10000) NOT NULL,
+    imageId varchar(255) NOT NULL,
+    location varchar(255) NOT NULL
 );
+
 INSERT INTO Admin(
     adminId,
     email,
@@ -508,9 +519,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-1',
     'E-1',
-    'true',
+    1,
     '2021-04-14T13:53:53+00:00',
-    'false'
+    0
   );
 INSERT INTO Alumni_Event(
     alumniId,
@@ -522,9 +533,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-1',
     'E-2',
-    'true',
+    1,
     '2021-04-15T15:00:53+00:00',
-    'false'
+    0
   );
 INSERT INTO Alumni_Event(
     alumniId,
@@ -536,9 +547,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-1',
     'E-3',
-    'false',
+    0,
     '2021-04-16T15:53:13+00:00',
-    'false'
+    0
   );
 INSERT INTO Alumni_Event(
     alumniId,
@@ -550,9 +561,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-1',
     'E-4',
-    'false',
+    0,
     '2021-04-24T15:53:53+00:00',
-    'false'
+    0
   );
 INSERT INTO Alumni_Event(
     alumniId,
@@ -564,9 +575,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-2',
     'E-5',
-    'false',
+    0,
     '2021-04-24T16:49:53+00:00',
-    'true'
+    1
   );
 INSERT INTO Alumni_Event(
     alumniId,
@@ -578,9 +589,9 @@ INSERT INTO Alumni_Event(
 VALUES (
     'AL-1',
     'E-6',
-    'false',
+    0,
     '2021-04-24T16:53:53+00:00',
-    'true'
+    1
   );
 INSERT INTO Alumni(
     alumniId,
@@ -607,7 +618,7 @@ VALUES (
     'Artificial Intelligence',
     '2003',
     'AL-1.png',
-    'true',
+    1,
     'Tey is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -635,7 +646,7 @@ VALUES (
     'Artificial Intelligence',
     '2006',
     'AL-2.png',
-    'true',
+    1,
     'Ang is currently working at Sony, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -663,7 +674,7 @@ VALUES (
     'Artificial Intelligence',
     '2015',
     'AL-3.jpeg',
-    'true',
+    1,
     'Lan Li Hong is currently working at HCL Technologies Malaysia Sdn. Bhd. as a Data Scientist'
   );
 INSERT INTO Alumni(
@@ -691,7 +702,7 @@ VALUES (
     'Artificial Intelligence',
     '2018',
     'AL-4.jpg',
-    'true',
+    1,
     'Beh Jia Ong is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a Machine Learning Engineer.'
   );
 INSERT INTO Alumni(
@@ -719,7 +730,7 @@ VALUES (
     'Software Engineering',
     '2003',
     'AL-5.jpg',
-    'true',
+    1,
     'Ong Huat Keat is currently working atNimble AppGenie as a Applications developer.'
   );
 INSERT INTO Alumni(
@@ -747,7 +758,7 @@ VALUES (
     'Software Engineering',
     '2008',
     'AL-6.png',
-    'true',
+    1,
     'Rachel Lee Yin is currently working at EDUSPEC Holdings BERHAD as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -775,7 +786,7 @@ VALUES (
     'Software Engineering',
     '2017',
     'AL-7.jpg',
-    'false',
+    0,
     'Tan Yan Win is currently working at Apple Incorporated (AAPL) as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -803,7 +814,7 @@ VALUES (
     'Software Engineering',
     '2019',
     'AL-8.jpg',
-    'false',
+    0,
     'Lim Xin Tong is currently working at GoodCore Software as a Cyber security analyst.'
   );
 INSERT INTO Alumni(
@@ -831,7 +842,7 @@ VALUES (
     'Multimedia',
     '2016',
     'AL-9.jpg',
-    'false',
+    0,
     'Alisa Mok Lian is currently working at Datasonic Group Berhad as a multimedia designer.'
   );
 INSERT INTO Alumni(
@@ -859,7 +870,7 @@ VALUES (
     'Multimedia',
     '2019',
     'AL-10.jpg',
-    'false',
+    0,
     'Rohana binti Jani is currently working at ELSOFT Research Berhad as graphic designer.'
   );
 INSERT INTO Alumni(
@@ -887,7 +898,7 @@ VALUES (
     'Information System',
     '2008',
     'AL-11.jpg',
-    'false',
+    0,
     'Juliana binti Othman is currently working at Samsung electronics as a Information Systems Manager.'
   );
 INSERT INTO Alumni(
@@ -915,7 +926,7 @@ VALUES (
     'Information System',
     '2015',
     'AL-12.jpg',
-    'false',
+    0,
     'Beh Yun Lian is currently working at Nielson as a Computer Systems Analyst'
   );
 ALTER TABLE Job
