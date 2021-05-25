@@ -1,3 +1,11 @@
+<?php
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Admin-MyProfile/AdminModel.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+$admin = new AdminMyProfile($db->getConnection(), 'AD-1');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -13,9 +21,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../css/Alumni/MyProfilePage.css">
-    <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+    <link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
 
 </head>
 
@@ -26,15 +34,16 @@
             <div class="row">
                 <h2>Edit My Profile</h2>
             </div>
-            <form id="editMyProfileForm">
+            <form id="editMyProfileForm" method="POST"  action="/api/adminprofile/edit" enctype="multipart/form-data">
                 <div class="row mt-2 mb-2 align-items-center pt-5 pb-5 rounded">
                     <div class="col-md-5 d-flex align-items-center justify-content-center">
                         <div class="w-75 position-relative">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
+                                    <img src="<?= $admin->getProfilePicture(); ?>" class="picture-src"
                                         id="wizardPicturePreview" title="">
                                     <input type="file" id="wizard-picture">
+                                    <input type="file" name="profilePicture" id="profilePicture" class="d-none">
                                 </div>
                                 <h6 id="choosePictureDescription">Choose Picture</h6>
                             </div>
@@ -44,7 +53,7 @@
                         <div class="row mb-3">
                             <div class="col-md-4">Name:</div>
                             <div class="col-md-8">
-                                <input id="name" type="text" class="form-control" value="Teh Kok Soon">
+                                <input id="name" name="username" type="text" class="form-control" value="<?=$admin->getName();?>">
                                 <div class="valid-feedback">Valid.</div>
                                 <div id="emailFeedback" class="invalid-feedback">
                                     Be at least 5 characters
@@ -54,7 +63,7 @@
                         <div class="row mb-3">
                             <div class="col-md-4">E-mail:</div>
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control" value="koksoon@um.edu.my">
+                                <input id="email" name="email" type="email" class="form-control" value="<?=$admin->getEmail();?>">
                                 <div class="valid-feedback">Valid.</div>
                                 <div id="emailFeedback" class="invalid-feedback">
                                     Please provide a valid email
@@ -66,7 +75,7 @@
                 <div class="row justify-content-end mt-3">
                     <!-- Need to pop up to ask whether users want to cancel and lose changes -->
                     <button id="cancelButton" type="button" class="btn btn-outline-secondary">Cancel</button>
-                    <button id="saveButton" type="submit" form="editMyProfileForm"
+                    <button id="saveButton" type="submit" name="submit" form="editMyProfileForm"
                         class="btn btn-primary ml-3">Save</button>
                 </div>
             </form>
@@ -97,14 +106,19 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/src/js/utility.js"></script>
+    <script type="text/javascript">
+        var adminName = "<?=$admin->getName();?>";
+        var adminEmail = "<?=$admin->getEmail();?>";
+        console.log('haha')
+    </script>
+    <script type="text/javascript" src="/js/utility.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script type='module' src="/src/js/Admin/Admin-EditMyProfilePage.js"></script>
+    <script type='module' src="/js/Admin/Admin-EditMyProfilePage.js"></script>
 </body>
 
 </html>
