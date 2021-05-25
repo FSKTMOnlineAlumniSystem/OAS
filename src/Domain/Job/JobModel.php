@@ -25,6 +25,13 @@ class JobModel
             throw $exception;
         }
     }
+
+
+    public function getProfilePicture()
+    {
+        return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
+    }
+    
 }
 
 ?>

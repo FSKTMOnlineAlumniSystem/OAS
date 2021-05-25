@@ -127,18 +127,48 @@ function loadMyJobList(pageIndex, outputList, count) {
   });
 
   //CLICK ON THE "DELETE" BUTTON IN CONFIMARTION MODAL
-  deleteButton.addEventListener("click", function (e) {
-    for (let i = 0; i < outputList.length; i++) {
-      if (outputList[i].jobId == deleteID) {
-        outputList.splice(i, 1);
-        count--;
-        dummyResponse.Job = outputList;
-        updateDummyData(dummyResponse);
-        closeModal(`#deleteModal`);
-        loadMyJobList(pageIndex, outputList, count);
-      }
+  // deleteButton.addEventListener("click", function (e) {
+    // $(document).on("click",".delete-btn",function(){  
+      // $('.delete').click(function(){
+
+//var dataToPost = { country: 2, amount: 4.02 };
+//data: JSON.stringify(dataToPost),
+
+$('#deleteButton').click(function(){
+  $.ajax({
+    url: 'myjob',
+    type: 'post',
+    data: {ajax : 1, deleteID: deleteID},
+    success: function(){
+       window.location.reload();
+      //  console.log($outputList);
+      // loadMyJobList(0,myJob_array,0);
     }
+     
   });
+
+closeModal("#deleteModal")
+
+
+});
+
+
+   
+
+
+    // for (let i = 0; i < outputList.length; i++) {
+    //   if (outputList[i].jobId == deleteID) {
+    //     outputList.splice(i, 1);
+    //     count--;
+    //     dummyResponse.Job = outputList;
+    //     updateDummyData(dummyResponse);
+    //     closeModal(`#deleteModal`);
+    //     loadMyJobList(pageIndex, outputList, count);
+    //   }
+    // }
+    // console.log("close");
+    // console.log(deleteID);
+  // });
 
   //CLOSE THE MODAL
   function closeModal(modalId) {

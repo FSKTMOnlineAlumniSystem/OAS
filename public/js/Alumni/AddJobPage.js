@@ -2,7 +2,7 @@
 
 //CREATE A FORM TO CAPTURE USER INPUT
 document.getElementById("form").innerHTML += `
-  <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()">
+  <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
       <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" name="company">
@@ -22,7 +22,7 @@ document.getElementById("form").innerHTML += `
         </div>
         <div class='col-md-8 col-12 p-0 px-md-2'>
           <label for="upload" class="form-label">Company Image</label>
-          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="imageId">
+          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="jobImage">
         </div>
       </div>
     </div>

@@ -18,9 +18,11 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 
 try {
-    $myJob_model = new  MyJobModel($db->getConnection());
+    $myJob_model = new  MyJobModel($db->getConnection(),$alumniID);
     // $num_rows = $myJob_model->getNumRow($alumniID);
     $myJob = $myJob_model->getRow($alumniID);
+    // echo ($myJob_model->getProfilePicture());
+    // echo($image);
     // echo("inside" . $num_rows);
     // print_r($myJob);
     //   if (!empty($all_activities)) {
@@ -34,6 +36,9 @@ try {
     echo "Exception here!";
 }
 ?>
+
+
+
 <link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
 
 <div class ="container my-5" id='main-body'>
@@ -43,7 +48,7 @@ try {
           <h2>My Job Advertisement
             <span class="d-flex flex-row-reverse"> <a href="addjob" class="btn btn-primary"> + Add Jobs </a></button></span>
         </h2>
-
+          <img src=<?=$myJob_model->getProfilePicture(); ?>>
           <!-- DISPLAY CARDS OF MY JOB ADS -->
           <div class="row justify-content-md-center" id="top"></div>
           <div class="card-desk">
@@ -64,11 +69,13 @@ try {
               Are you sure you want to delete this job advertisement?
               </div>
               <div class="modal-footer">
-              <button id="deleteButton" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
+              <button id="deleteButton"  name ="delete_row" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
               </div>
               </div>
               </div>
               </div>
+
+              <p id="test"></p>
             
               <!-- PAGE NAVIGATION -->
           <span id="pageIndex"></span>
@@ -82,7 +89,32 @@ try {
           <br /><br />
     </div>
 
+    <?php 
+if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
+  // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  $deleteID =  $_POST['deleteID'];
+  $myJob = $myJob_model->deleteJob($deleteID);
+  // header('Cache-Control: no-store, no-cache, must-revalidate');
+  // exit;
+ }
+
+
+?>
+
+
+<?php include_once '../src/templates/footer.php' ?>
+
 <script type="text/javascript">var myJob_array = <?php echo json_encode($myJob) ?>;</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
 <script type="module" src="/js/Alumni/MyJobPage.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-    <?php include_once '../src/templates/footer.php' ?>
+
+
+
+
+
+
+

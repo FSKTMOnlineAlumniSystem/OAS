@@ -18,10 +18,7 @@ include '../src/Domain/Job/AddJobModel.php';
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
 
 <?php
-// include '../../../config/config.php';
-// include '../src/Domain/Job/AddJobModel.php';
-// include '../src/Domain/Database.php';
-
+include '../src/utilities/uploadImage.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 
@@ -32,8 +29,8 @@ if(isset($_POST['Submit'])) {
     $postedDateTime = date(DATE_ATOM, strtotime($date));
     // echo($postedDateTime);
 
-
     $addJob_model = new  AddJobModel($db->getConnection());	
+    
     $data = $addJob_model->getMaxId();
     $jobId = "J-" . $data+1;
 	$alumniId = "AL-1";         //ned change
@@ -41,13 +38,28 @@ if(isset($_POST['Submit'])) {
     $description = $_POST['description'];
     $salary = $_POST['salary'];
 	$email = $_POST['email'];
-    $postedDateTime = $postedDateTime;      //ned change
-    $imageId = $_POST['imageId'];
+    $postedDateTime = $postedDateTime;     
+    $jobImage = $_FILES['jobImage']['name'];
     $company = $_POST['company'];
     $location = $_POST['location'];
-
-    $addJob_model->addJobs($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$imageId,$company,$location);
+    // $jobImage = basename($_FILES['jobImage']['name']);
+    // echo($jobImage);
+    $addJob_model->addJobs($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$jobImage,$company,$location);
     
+    try{
+        //Upload image to database as blob
+        if($_FILES["jobImage"]['tmp_name']!=null){
+            uploadImage($db->getConnection(),$_FILES["jobImage"],'AL-1');
+        }
+        
+        
+    } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+    }
+
+   
+
+
     header("Location: myjob");
 
   
