@@ -27,6 +27,7 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
+
 ?>
 <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="text/javascript" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
@@ -80,7 +81,7 @@ else{
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" method="post" action='/src/html/Admin/Admin-AlumniListPage.html' onsubmit="return checkvalidation()">
+                <form id="editMyProfileForm" method="post" action='alumniList' onsubmit="return checkvalidation()">
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">

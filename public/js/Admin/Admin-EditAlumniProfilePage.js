@@ -24,7 +24,6 @@ const alumni = alumniArray.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
 
-
 document.getElementById('name').value=alumniArray[i].name
 document.getElementById('gender').value=alumniArray[i].gender
 document.getElementById('icNumber').value=alumniArray[i].icNumber
@@ -171,8 +170,8 @@ let errorExist = false; //false if no error exists in alumni details
 // });
 
 /*Close Modal */
-// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-// function closeModal(modalId) {
-//     $(modalId).modal('hide');
-// }
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+    $(modalId).modal('hide');
+}
