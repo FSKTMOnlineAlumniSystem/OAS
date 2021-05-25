@@ -9,6 +9,7 @@ const alumni = dummyResponse.Alumni.filter(function (alumni) {
 
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
+const profilePicture = document.querySelector('#profilePicture');
 const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
@@ -29,7 +30,11 @@ img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>1000000) {
+        // To handle the file size
+        choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+    }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        profilePicture.files = e.target.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             document.getElementById("wizardPicturePreview").src = e.target.result;
@@ -95,11 +100,10 @@ form.addEventListener('submit', (e) => {
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
-    if (!img.value &&
-        alumni.email == email.value &&
-        alumni.contactNumber == contactNumber.value &&
-        alumni.biography == biography.value) {
-        location.href = "MyProfilePage.html";
+    if (!profilePicture.value &&
+        alumniEmail == email.value &&
+        alumniBiography == biography.value) {
+        location.href = "/myprofile";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');
