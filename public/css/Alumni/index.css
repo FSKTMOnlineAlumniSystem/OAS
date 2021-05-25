@@ -114,8 +114,8 @@ a.nostyle:visited {
   cursor: pointer;
 }
 .panel__icon--hover-dark-bg:hover {
-  /* color: var(--dark-purple); */
-  color: var(--dark-gray);
+  /* color: var(--dark-gray); */
+  color: #7d7d7d;
   cursor: pointer;
 }
 
@@ -170,4 +170,11 @@ a.nostyle:visited {
 }
 #notificationDropdownMenuButton::after{
   display: none;
+}
+
+.custom-notification-panel-width{
+  min-width: 200px;
+  width: 90vw;
+  max-width: 400px;
+  font-size: calc(0.7rem + 0.2vw)
 }
