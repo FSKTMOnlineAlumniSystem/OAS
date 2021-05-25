@@ -164,4 +164,29 @@ class deleteEventModel
              $stmt->execute([$eventId]);
     }
 }
+
+class InviteAlumniModel
+{
+  private PDO $connection;
+
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+     public function InviteAlumni($alumniId,$eventId,$dateTime) {
+        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+        try{
+            $sql ="INSERT INTO alumni_event (alumniId, eventId, viewedByAlumni, dateTime, notificationClosedByAlumni)
+                VALUES (?,?,'false',?,'false')";
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->execute([$alumniId,$eventId,$dateTime]);
+            
+            // [$alumniId,$eventId,"false",$dateTime,"false"]
+            }catch (PDOException $exception) {
+                error_log('InviteAlumniModel: construct: ' . $exception->getMessage());
+                throw $exception;
+            }     
+        }
+}
 ?>

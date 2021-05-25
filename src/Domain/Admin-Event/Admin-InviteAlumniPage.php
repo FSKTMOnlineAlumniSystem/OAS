@@ -46,7 +46,10 @@ crossorigin="anonymous"></script>
     echo "Exception: " . $e->getMessage();
   }
 ?>
-
+ <!-- <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
+  <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
+  <script type="module" src="/js/Admin/Admin-InviteAlumniPage.js"></script> -->
+<nav></nav>
   <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100">
       <div class="custom-dark-gray px-0" id="left-nav">
@@ -151,19 +154,83 @@ crossorigin="anonymous"></script>
 
   <!-- general js files -->
   <script type="text/javascript" src="/js/utility.js"></script>
-  <script type="module" src="/js/addHeader.js"></script>
+  <!-- <script type="module" src="/js/addHeader.js"></script> -->
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
   <!-- custom js files -->
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
   <script type="module" src="/js/Admin/Admin-InviteAlumniPage.js"></script>
   <!-- bootstrap javascript files -->
-  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <!-- <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+
+
+    <?php
+
+function inviteAlumniPhp($alumniId,$eventId,$dateTime){
+  global $db;
+    $inviteAlumni = new InviteAlumniModel($db->getConnection());	
+  $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
+
+};
+// inviteAlumniPhp("AL-1","E-8","2021-04-24T16:53:53+00:00");
+// $_COOKIE["deleteEvent"]='0';dateTime
+if(isset($_COOKIE["alumniId"])){
+  inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
+//   setcookie("inviteAlumni", "", time()-3600);
+  setcookie("alumniId", "", time()-3600);
+  setcookie("eventId", "", time()-3600);
+  setcookie("dateTime", "", time()-3600);
+  // header("Refresh:0");
+}
+if(isset($_COOKIE["checkbox"])){
+
+// $alumniId = $_COOKIE['alumniId'];
+// $alumniId = stripslashes($alumniId);    // string is stored with escape double quotes 
+// $alumniId = json_decode($alumniId, true);
+
+// $eventId = $_COOKIE['eventId'];
+// $eventId = stripslashes($eventId);    // string is stored with escape double quotes 
+// $eventId = json_decode($eventId, true);
+ 
+// $dateTime = $_COOKIE['dateTime'];
+// $dateTime = stripslashes($dateTime);    // string is stored with escape double quotes 
+// $dateTime = json_decode($dateTime, true);
+
+echo 'hello';
+$alumniId = $_COOKIE['alumniId'];
+$alumniId = stripslashes($alumniId);     
+$alumniId = unserialize($alumniId);
+
+$eventId = $_COOKIE['eventId'];
+$eventId = stripslashes($eventId);     
+$eventId = unserialize($eventId);
+
+$dateTime = $_COOKIE['dateTime'];
+$dateTime = stripslashes($dateTime);     
+$dateTime = unserialize($dateTime);
+
+// var_dump($prod);
+
+// echo $alumniId;
+for($i=0; $i<$alumniId.length();$i++){
+  inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
+}
+//   setcookie("inviteAlumni", "", time()-3600);
+  setcookie("alumniId", "", time()-3600);
+  setcookie("eventId", "", time()-3600);
+  setcookie("dateTime", "", time()-3600);
+  // header("Refresh:0");
+}
+
+?>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
 </body>
 

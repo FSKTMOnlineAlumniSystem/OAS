@@ -52,17 +52,16 @@ try {
 
 <!-- delete row function -->
 <?php
-
 function DeleteRowPhp($eventId){
   global $db;
     $deleteEvent = new  Admin_EventModel($db->getConnection());	
   $deleteEvent-> deleteEvent($eventId);
 
 };
-
+// $_COOKIE["deleteEvent"]='0';
 if(isset($_COOKIE["deleteEvent"])){
   DeleteRowPhp($_COOKIE["deleteEvent"]);  
-
+  setcookie("deleteEvent", "", time()-3600);
 }
 // function deleteMultipleRow(){
   

@@ -124,9 +124,6 @@ console.log('hihihihi')
             </tr>`;
 
 // <?php echo DeleteRowPhp(${eventArray[i].eventId});?>
-var e;
-// var $eventToDelete='e-3'
-// document.cookie = "username="+$eventToDelete;
 window.deleteByJquery= function (o){
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
