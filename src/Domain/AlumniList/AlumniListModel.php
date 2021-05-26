@@ -12,7 +12,7 @@ class AlumniListModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
