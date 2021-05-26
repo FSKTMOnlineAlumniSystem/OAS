@@ -29,12 +29,11 @@ try {
 }
 
 ?>
-<script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
-    <script type="text/javascript" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
+
 <?php
 if(isset($_POST['submit'])) {
     echo "halo";
-$prevAlumniId=$_GET['alumniId'];
+  $prevAlumniId=$_GET['alumniId'];
   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
   // $data = $addJob_model->getMaxId();
   $name = $_POST['name'];
@@ -48,7 +47,7 @@ $prevAlumniId=$_GET['alumniId'];
   $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$imageId,$graduated,$biography,$email);
 //   header("Location: alumniList");
 }
-else{
+else{     
     echo "laji";
 
 }
@@ -81,7 +80,7 @@ else{
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" method="post" action='alumniList' onsubmit="return checkvalidation()">
+                <form id="editMyProfileForm" method="post" action="alumniList">
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">

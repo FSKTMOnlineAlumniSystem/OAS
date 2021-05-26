@@ -43,7 +43,6 @@ class UpdateALumniModel
             try{
              $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=? WHERE alumniId=?";
              $stmt = $this->connection->prepare($sql);  
-
              $stmt->execute([$prevAlumniId,$name,$gender,$department,$icNumber,$imageId,$graduated,$biography,$email]);
             }catch (PDOException $exception) {
                 error_log('UpdateAlumniModel: construct: ' . $exception->getMessage());

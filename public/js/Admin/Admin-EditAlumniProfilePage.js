@@ -1,5 +1,5 @@
 
-console.log('connect');
+console.log('connecting');
 let alumniArray=alumni_array
 
 const imgPath = "/public/Assets/imgs/";
@@ -68,26 +68,18 @@ function isEmpty(obj) {
     return obj.value.length == 0;
 }
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
+// const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 const graduatedFormat = /[0-9]{4}/;
-// const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
+const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
-// form.addEventListener('submit', (e) => {
-    function checkvalidation(){
+form.addEventListener('submit', (e) => {
+// window.checkvalidation = function(){
 let errorExist = false; //false if no error exists in alumni details
-
     if (isEmpty(email) || !email.value.match(emailFormat)) {
         setInValid(email);
         errorExist = true;
     } else {
         setValid(email);
-    }
-
-    if (isEmpty(contactNumber) || !contactNumber.value.match(phoneNumberFormat)) {
-        setInValid(contactNumber);
-        errorExist = true;
-    } else {
-        setValid(contactNumber);
     }
 
     if (isEmpty(icNumber) || !icNumber.value.match(icNumberFormat)) {
@@ -121,31 +113,35 @@ let errorExist = false; //false if no error exists in alumni details
     if (errorExist) {
         e.preventDefault();
         return false;
-    }    else {
-        alumniArray.forEach((al) => {
-            return true;
-            if (al.alumniId === currentAlumniId) {
-                if (img.value) {
-                    const imgLocalPathArr = img.value.split('\\');
-                    al.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
-                }
-                al.email = email.value;
-                al.contactNumber = contactNumber.value;
-                al.biography = biography.value;
-                al.graduated = graduated.value;
-                al.name = name.value;
-                al.icNumber = icNumber.value;
-                al.gender = gender.value;
-                al.department = department.value;
-                // updateDummyData(dummyResponse);
-            }
-        });
-        saveButton.textContent = 'Saving...';
-        setTimeout(() => {
-            location = 'alumniList';
-        }, 1000);
+    }    
+    // else {
+    //     alumniArray.forEach((al) => {
+    //         return true;
+    //         if (al.alumniId === currentAlumniId) {
+    //             if (img.value) {
+    //                 const imgLocalPathArr = img.value.split('\\');
+    //                 al.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
+    //             }
+    //             al.email = email.value;
+    //             al.contactNumber = contactNumber.value;
+    //             al.biography = biography.value;
+    //             al.graduated = graduated.value;
+    //             al.name = name.value;
+    //             al.icNumber = icNumber.value;
+    //             al.gender = gender.value;
+    //             al.department = department.value;
+    //             // updateDummyData(dummyResponse);
+    //         }
+    //     });
+        // saveButton.textContent = 'Saving...';
+        // setTimeout(() => {
+        //     location = 'alumniList';
+        // }, 1000);
     }
-};
+)
+
+
+
 
 
 
@@ -170,8 +166,8 @@ let errorExist = false; //false if no error exists in alumni details
 // });
 
 /*Close Modal */
-closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-function closeModal(modalId) {
-    $(modalId).modal('hide');
-}
+// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// function closeModal(modalId) {
+//     $(modalId).modal('hide');
+// }
