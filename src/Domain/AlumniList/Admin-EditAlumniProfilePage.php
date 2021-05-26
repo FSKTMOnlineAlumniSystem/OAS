@@ -31,27 +31,27 @@ try {
 ?>
 
 <?php
-if(isset($_POST['submit'])) {
-    echo "halo";
-  $prevAlumniId=$_GET['alumniId'];
+$prevAlumniId=$_GET['alumniId'];
+if(isset($_POST['update'])) {
   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
   // $data = $addJob_model->getMaxId();
   $name = $_POST['name'];
   $gender =$_POST["gender"];
   $department =$_POST["department"];
   $icNumber = $_POST['icNumber'];
-  $imageId = $_POST['imageId'];
+//   $imageId = $_POST['imageId'];
   $graduated = $_POST['graduated'];
   $biography = $_POST['biography'];
   $email = $_POST['email'];
-  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$imageId,$graduated,$biography,$email);
-//   header("Location: alumniList");
+  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email);
+  header("Location: alumniList");
 }
 else{     
     echo "laji";
 
 }
   ?>
+
 
 <head>
     <title>Edit Alumni Profile - Alumni Online System</title>
@@ -80,7 +80,7 @@ else{
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" method="post" action="alumniList">
+                <form id="editMyProfileForm" method="post">
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">
@@ -111,7 +111,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Gender:</div>
                                 <div class="col-sm-8">
-                                    <select id="gender" class="rounded" type="text" value="Male" name="Gender"
+                                    <select id="gender" class="rounded" type="text" value="Male" name="gender"
                                         style="color:#495057; font-family: 'Poppins';">
                                         <option>male</option>
                                         <option>female</option>
@@ -146,7 +146,7 @@ else{
                                 <div class="col-sm-4">Department:</div>
                                 <div class="col-sm-8">
                                     <select id="department" class="rounded" type="text" value="Software Engineering"
-                                        name="Department"
+                                        name="department"
                                         style="color:#495057; font-family: 'Poppins'; outline: none; ">
                                         <option>Software Engineering</option>
                                         <option>Artificial Intelligence</option>
@@ -206,7 +206,7 @@ else{
                     Are you sure you want to leave this page?
                 </div>
                 <div class="modal-footer">
-                    <a href="Admin-AlumniListPage.html"><button type="button" class="btn btn-outline-secondary">Leave
+                    <a href="/alumniList"><button type="button" class="btn btn-outline-secondary">Leave
                             this
                             Page</button></a>
                     <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on
@@ -226,3 +226,5 @@ else{
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+        
+        

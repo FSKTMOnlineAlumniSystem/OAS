@@ -27,8 +27,17 @@ try {
 } catch (Exception $e) {
   echo "Exception here!";
 }
-
 ?>
+
+<?php
+if(isset($_POST['approve'])) {
+$alumniId = $_COOKIE['alumniId'];
+$adminId = $_COOKIE['signedInAdminId'];
+$updateApprove = new  UpdateAlumniModel($db->getConnection());
+$updateApprove->updateApprovedby($adminId,$alumniId);
+}
+?>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
 
@@ -86,7 +95,7 @@ try {
               </div>
               <!-- clear all button -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button id="clearAll" type="submit" class="btn text-white custom-dark-purple">Clear All</button>
+                <button id="clearAll" class="btn text-white custom-dark-purple" name="clearAll" >Clear All</button>
               </div>
             </div>
           </form>
@@ -189,15 +198,16 @@ try {
                             <div id="accStatus" class="col-8">Verified</div>
                           </div>
                         </div>
-
                       </div>
                       <div class="modal-footer">
 
                         <button id="update" type="button" class="btn btn-primary" data-dismiss="modal"
-                          onclick="location.href ='editAlumniProfile';updateEvent(this)">
+                          onclick="location.href ='editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
-                        <button id="approve" type="button" class="btn btn-info">Approve</button>
+                      <form  method="post">
+                      <button id="approve" name="approve" type="submit" class="btn btn-info">Approve</button>
+                      </form>
                       </div>
                     </div>
                   </div>

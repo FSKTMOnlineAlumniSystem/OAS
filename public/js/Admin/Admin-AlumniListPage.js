@@ -149,7 +149,6 @@ alumniArray.forEach((alumni, index) => {
   </i></a>`;
   td.appendChild(a);
   tr.appendChild(td);
-
   tbody.appendChild(tr);
 });
 
@@ -157,6 +156,7 @@ alumniArray.forEach((alumni, index) => {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
+    localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
     $("#image").attr('src', "/public/Assets/imgs/" + alumniArray[e.target.id].imageId)
     $("#name").text(alumniArray[e.target.id].name);
     $("#gender").text(alumniArray[e.target.id].gender);
@@ -185,6 +185,8 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
 })
 }
 reload();
+document.cookie = "alumniId="+localStorage.getItem("alumniId");
+document.cookie = "signedInAdminId="+localStorage.getItem("SignedInAdminId");
 
 //search bar filter
 var searchBar = document.getElementById('searchBar');
@@ -212,6 +214,11 @@ searchBar.addEventListener('click', (e) => {
     }
   } e.preventDefault();
 });
+
+window.getAlumniId = function(){
+  return localStorage.getItem("alumniId");
+}
+
 //select all check box
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -222,8 +229,8 @@ window.toggle = function (source) {
 }
 //delete row by row only
 window.DeleteRowFunction = function (o) {
-  dummyResponse.Alumni.splice(o.id, 1)
-  updateDummyData(dummyResponse)
+  alumniArray.Alumni.splice(o.id, 1)
+  // updateDummyData(dummyResponse)
   reload();
 }
 //filter by using dropdown
@@ -276,22 +283,21 @@ window.deleteMultipleRow = function (tableID) {
   for (var i = checkboxes.length - 1; i >= 0; i--) {
     if (checkboxes[i].checked) {
       table.deleteRow(i - 1);
-      dummyResponse.Alumni.splice(i - 1, 1)
+      alumniArray.Alumni.splice(i - 1, 1)
     }
   }
-  loadAlumniList(pageIndex)
-  updateDummyData(dummyResponse)
+  // updateDummyData(dummyResponse)
   reload();
 }
 
 //clearAll
 $("#clearAll").on("click", function () {
   $('#department option').prop('selected', function () {
-    $('#myTable tbody tr').show();
+    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
   $('#status option').prop('selected', function () {
-    $('#myTable tbody tr').show();
+    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
 });
