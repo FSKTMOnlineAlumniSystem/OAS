@@ -214,16 +214,23 @@ var count=0;
 var $alumniId=[];
 var $eventId=[];
 var $dateTime=[];
+var count=0;
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
+      count++;
       var alumniId= alumniArray[i-1].alumniId;
-    var eventId=localStorage.getItem('eventId')
-    var dateTime=new Date().toISOString();
+      var eventId=localStorage.getItem('eventId')
+      var dateTime=new Date().toISOString();
+      // document.cookie="alumniId="+ alumniId;
+      // document.cookie="eventId="+ eventId;
+      // document.cookie="dateTime="+ dateTime;
+
     $alumniId.push(alumniId);
     $eventId.push(eventId);
     $dateTime.push(dateTime);
+
     // var newAlumniEvent={
     //         "alumniId": alumniId,
     //         "eventId": eventId,
@@ -242,30 +249,30 @@ window.inviteCheckedAlumni = function () {
 
   // $dateTime = json_encode($dateTime, true); 
   // setcookie('dateTime', $dateTime);
-  console.log($alumniId);
-  console.log('/////////////////////////');
-  $($alumniId).serialize()
+  // console.log($alumniId);
+  // console.log('/////////////////////////');
+  // $($alumniId).serialize()
   // $alumniId = serialize($alumniId); 
   document.cookie="alumniId="+ $alumniId;
   console.log($alumniId);
 
   // $eventId = serialize($eventId); 
-  $($eventId).serialize()
+  // $($eventId).serialize()
   document.cookie="eventId="+ $eventId;
 
   // $dateTime = serialize($dateTime); 
-  $($dateTime).serialize()
+  // $($dateTime).serialize()
   document.cookie="dateTime="+ $dateTime;
 
+  document.cookie="count="+count;
   document.cookie="checkbox="+'checked';
   checkboxes[0].checked = false;
   // updateDummyData(dummyResponse)
-  loadEventList(0)
+  location.reload();
+  location.reload();
+  // loadEventList(0)
 }
 
-window.clicked=function(){
-  clickedSomething=clickedSomething+1;
-}
 window.backToPreviousPage=function(){
     window.history.back();
 }
