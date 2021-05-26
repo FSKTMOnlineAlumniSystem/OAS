@@ -139,35 +139,28 @@ let errorExist = false; //false if no error exists in alumni details
         // }, 1000);
     }
 )
-
-
-
-
-
-
-
 /*Check whether there is any changes that might be lost*/
-// cancelButton.addEventListener('click', () => {
-//     if (wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
-//         alumni.email == email.value &&
-//         alumni.contactNumber == contactNumber.value &&
-//         alumni.biography == biography.value &&
-//         alumni.name == name.value &&
-//         alumni.graduated == graduated.value &&
-//         alumni.department == department.value &&
-//         alumni.gender == gender.value &&
-//         alumni.icNumber == icNumber.value) {
-//         location.href = "Admin-AlumniListPage.html";
-//     } else {
-
-//         /*POP UP MODAL ask if cancel will lose changes */
-//         $('#cancelChangesModal').modal('show');
-//     }
-// });
+cancelButton.addEventListener('click', () => {
+    if (
+        // wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+        alumni.email == email.value &&
+        // alumni.contactNumber == contactNumber.value &&
+        alumni.biography == biography.value &&
+        alumni.name == name.value &&
+        alumni.graduated == graduated.value &&
+        alumni.department == department.value &&
+        alumni.gender == gender.value &&
+        alumni.icNumber == icNumber.value) {
+        location.href = "/alumniList";
+    } else {
+        /*POP UP MODAL ask if cancel will lose changes */
+        $('#cancelChangesModal').modal('show');
+    }
+});
 
 /*Close Modal */
-// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-// function closeModal(modalId) {
-//     $(modalId).modal('hide');
-// }
+closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+function closeModal(modalId) {
+    $(modalId).modal('hide');
+}
