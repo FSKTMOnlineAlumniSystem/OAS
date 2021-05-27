@@ -30,11 +30,13 @@ try {
 ?>
 
 <?php
-if(isset($_POST['approve'])) {
+if(isset($_COOKIE['alumniId'])) {
 $alumniId = $_COOKIE['alumniId'];
 $adminId = $_COOKIE['signedInAdminId'];
 $updateApprove = new  UpdateAlumniModel($db->getConnection());
 $updateApprove->updateApprovedby($adminId,$alumniId);
+setcookie("alumniId", "", time()-3600);
+setcookie("signedInAdminId", "", time()-3600);
 }
 ?>
 
@@ -205,9 +207,7 @@ $updateApprove->updateApprovedby($adminId,$alumniId);
                           onclick="location.href ='editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
-                      <form  method="post">
-                      <button id="approve" name="approve" type="submit" class="btn btn-info">Approve</button>
-                      </form>
+                      <button id="approve" name="approve" type="submit" class="btn btn-info" onclick="approve()">Approve</button>
                       </div>
                     </div>
                   </div>

@@ -171,10 +171,13 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     } else {
       $("#accStatus").text("Verified");
     }
+    if (alumniArray[e.target.id].approvedBy !== "") {
+      document.getElementById("approve").disabled = true;
+    }else{
+      document.getElementById("approve").disabled = false;
+    }
     $("#approve").click(function () {
-      if (alumniArray[e.target.id].approvedBy !== "") {
-      }
-      else {
+      if (alumniArray[e.target.id].approvedBy == "") {
         alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
         // updateDummyData(dummyResponse);
         reload();
@@ -185,9 +188,12 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
 })
 }
 reload();
+window.approve = function(){
 document.cookie = "alumniId="+localStorage.getItem("alumniId");
 document.cookie = "signedInAdminId="+localStorage.getItem("SignedInAdminId");
-
+location.reload();
+location.reload();
+}
 //search bar filter
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
@@ -293,11 +299,11 @@ window.deleteMultipleRow = function (tableID) {
 //clearAll
 $("#clearAll").on("click", function () {
   $('#department option').prop('selected', function () {
-    // $('#myTable tbody tr').show();
+    $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
   $('#status option').prop('selected', function () {
-    // $('#myTable tbody tr').show();
+    $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
 });
