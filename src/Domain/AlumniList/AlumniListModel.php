@@ -58,12 +58,27 @@ class UpdateALumniModel
         }catch (PDOException $exception) {
             error_log('UpdateApprovedByModel: construct: ' . $exception->getMessage());
             throw $exception;
-        }
-        
+        }       
+}    
 }
 
+class DeleteAlumniModel
+{
+  private PDO $connection;
 
-    
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+    public function deleteAlumni($alumniId) {
+            try{
+             $sql = "UPDATE alumni SET isActive = 0 WHERE alumniId=?";
+             $stmt = $this->connection->prepare($sql); 
+             $stmt->execute([$alumniId]);
+            }catch (PDOException $exception) {
+                error_log('DeleteAlumniModel: construct: ' . $exception->getMessage());
+                throw $exception;
+            }
+    }
 }
-
 

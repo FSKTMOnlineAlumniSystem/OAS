@@ -144,7 +144,7 @@ alumniArray.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
+  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="deleteByJquery(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
   td.appendChild(a);
@@ -232,6 +232,20 @@ window.toggle = function (source) {
     if (checkboxes[i] != source)
       checkboxes[i].checked = source.checked;
   }
+}
+
+window.deleteByJquery= function (o){
+  var findId = o.id.split(" ");
+  console.log(findId);
+  var $deleteAlumniId=alumniArray[findId].alumniId;
+  console.log($deleteAlumniId);
+  //cookies
+  // $_COOKIE['deleteEvent'] = $eventToDelete;
+  
+document.cookie = "deleteAlumniId="+$deleteAlumniId;
+  // alert(document.cookie);
+ location.reload();
+ location.reload();
 }
 //delete row by row only
 window.DeleteRowFunction = function (o) {
