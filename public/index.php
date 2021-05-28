@@ -2,18 +2,73 @@
 include '../config/config.php';
 session_start();
 
-if (preg_match('/^(\/?|\/(home)\/?)$/i', $_SERVER['REQUEST_URI'])) {
+//VIEW
+if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/modules/home/home.php';
-    
-} elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
+    include '../src/Domain/HomePage/HomePage.php';
+
+    // } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
+} 
+elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/api/handler.php';
+    include '../src/Domain/Event/EventPage.php';
+} 
 
-} elseif (preg_match('/^\/api(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
-    include '../src/api/handler.php';
+//MyProfile
+elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/EditMyProfilePage.php';
+} 
+elseif (preg_match('/^\/myprofile/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/MyProfilePage.php';
+}
+//Admin-MyProfile
+elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/Admin-EditMyProfilePage.php';
+} 
+elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/Admin-MyProfilePage.php';
+}
 
-} else {
+
+
+
+
+
+//API
+//MyProfile
+elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/EditMyProfileController.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/ChangePasswordController.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/changeprivacy/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/ChangePrivacyController.php';
+}
+elseif (preg_match('/^\/api\/myprofile\/delete\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/MyProfile/DeleteAccountController.php';
+}
+
+//Admin-MyProfile
+elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/Admin-EditMyProfileController.php';
+}
+elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-MyProfile/AdminChangePasswordController.php';
+}
+
+//ERROR URL NOT FOUND
+else {
     $GLOBALS['title'] = TITLE_NOT_FOUND;
-    include '../src/modules/page-not-found.php';
+    include '../src/Domain/General_Pages/page_not_found.php';
 }

@@ -1,15 +1,7 @@
-import { dummyResponse, updateDummyData } from "../dummydata.js";
-
-//get the signed in admin Id from localStorage
-const currentAdminId = localStorage.getItem("SignedInAdminId");
-//get the current admin object
-const admin = dummyResponse.Admin.filter(function (admin) {
-  return admin.adminId === currentAdminId;
-})[0];
-
 const wizardPicturePreview = document.querySelector("#wizardPicturePreview");
 const img = document.querySelector("#wizard-picture");
-const name = document.querySelector("#name");
+const profilePicture = document.querySelector('#profilePicture');
+const username = document.querySelector("#name");
 const email = document.querySelector("#email");
 const form = document.querySelector("form");
 const saveButton = document.querySelector("#saveButton");
@@ -26,12 +18,17 @@ const choosePictureDescription = document.querySelector(
 /*Check the file extension of the image & Update preview*/
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
+  console.log('f')
   let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-  if (
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+    // To handle the file size
+    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+  } else if (
     e.target.files &&
     e.target.files[0] &&
     allowedExtensions.test(e.target.value)
   ) {
+    profilePicture.files = e.target.files;
     var reader = new FileReader();
     reader.onload = function (e) {
       wizardPicturePreview.src = e.target.result;
@@ -51,13 +48,12 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   let errorExist = false; //false if no error exists in name, email
-  if (name.value.length < 5) {
-    setInValid(name);
+  if (username.value.length < 5) {
+    setInValid(username);
     errorExist = true;
   } else {
-    setValid(name);
+    setValid(username);
   }
 
   if (isEmpty(email) || !email.value.match(emailFormat)) {
@@ -67,33 +63,22 @@ form.addEventListener("submit", (e) => {
     setValid(email);
   }
 
-  if(!errorExist) {
-    dummyResponse.Admin.forEach((ad) => {
-      if (ad.adminId === currentAdminId) {
-        if (img.value) {
-          const imgLocalPathArr = img.value.split('\\');
-          ad.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
-        }
-        ad.name = name.value;
-        ad.email = email.value;
-        updateDummyData(dummyResponse);
-        saveButton.textContent='Saving...';
-        setTimeout(()=>{
-            location.href='Admin-MyProfilePage.html';
-        },1000);
-      }
-    });
+  if (!errorExist) {
+    saveButton.textContent = 'Saving...';
+    setTimeout(() => {}, 1000);
+  }else{
+    e.preventDefault();
   }
 });
 
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener("click", () => {
   if (
-    !img.value &&
-    admin.name == name.value &&
-    admin.email == email.value
+    !profilePicture.value &&
+    adminName == username.value &&
+    adminEmail == email.value
   ) {
-    location.href = "Admin-MyProfilePage.html";
+    location.href = "/adminprofile";
   } else {
     /*POP UP MODAL ask if cancel will lose changes */
     $("#cancelChangesModal").modal("show");
@@ -110,11 +95,3 @@ function closeModal(modalId) {
   $(modalId).modal("hide");
 }
 
-//load all the data when landing the page
-function loadData() {
-  wizardPicturePreview.src = imgPath + admin.imageId;
-  name.value = admin.name;
-  email.value = admin.email;
-}
-
-loadData();
