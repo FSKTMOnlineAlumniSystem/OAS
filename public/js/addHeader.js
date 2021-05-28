@@ -7,7 +7,7 @@
  * else set the user as AL-1 alumni
  */
 console.log(color);
-import { dummyResponse, updateDummyData } from "./dummydata.js";
+// import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin
 let curUser = {};
@@ -156,9 +156,7 @@ function toggleNotificationPanel() {
           timeStr = `${hour % 24} hour(s) ${minute % 60} minute(s) ago`;
         }
       } else {
-        timeStr = `${day} day(s) ${hour % 24} hour(s) ${
-          minute % 60
-        } minute(s) ago`;
+        timeStr = `${day} day(s) ago`;
       }
       div1.innerHTML = `
       <div class="row">
