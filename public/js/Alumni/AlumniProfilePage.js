@@ -10,7 +10,7 @@ let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 function emailNeeded(pub) {
   var output = ``;
   console.log("hi");
-  if (pub == true) {
+  if (pub == 1) {
     output = `<div class="row mb-3">
         <div class="col-sm-4">E-mail:</div>
         <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>

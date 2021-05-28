@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include '../../templates/header.php';
 ?>
 <link rel="stylesheet" type="text/css" href="/public/css/Alumni/MyProfilePage.css" />
 
@@ -33,4 +33,4 @@ try {
 <!-- custom js files -->
 <script type="module" src="/public/js/Alumni/AlumniProfilePage.js"></script>
   
-<?php include '../footer.php' ?>
+<?php include '../../templates/footer.php' ?>

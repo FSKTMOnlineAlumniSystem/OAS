@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include '../../templates/header.php';
 ?>
 <link rel="stylesheet" type="text/css" href="/public/css/Alumni/AlumniPage.css" />
 <link rel="stylesheet" href="/public/css/Alumni/SearchBar.css" />
@@ -59,4 +59,4 @@ try {
   <script type="module" src="/public/js/Alumni/AlumniPage.js"></script>
   <script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
   
-  <?php include '../footer.php' ?>
+  <?php include '../../templates/footer.php' ?>
