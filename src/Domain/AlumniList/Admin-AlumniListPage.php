@@ -7,7 +7,7 @@ include '../src/Domain/header.php';
 </head>
 
   
-  <?php
+<?php
 // include '../../../config/config.php';
 // include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/AlumniList/AlumniListModel.php';
@@ -46,6 +46,18 @@ $alumniId = $_COOKIE['deleteAlumniId'];
 $deleteAlumni = new  DeleteAlumniModel($db->getConnection());
 $deleteAlumni->deleteAlumni($alumniId);
 setcookie("alumniId", "", time()-3600);
+}
+?>
+
+<?php
+if(isset($_COOKIE["listOfDeleteAlumniId"])){
+$alumniId = $_COOKIE['listOfDeleteAlumniId'];
+$alumniId=explode(",",$alumniId); //split
+$deleteMultipleAlumni = new DeleteAlumniModel($db->getConnection());
+for($i=0; $i<count($alumniId);$i++){	
+$deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
+}
+  setcookie("listOfDeleteAlumniId", "", time()-3600);
 }
 ?>
 
@@ -106,7 +118,7 @@ setcookie("alumniId", "", time()-3600);
               </div>
               <!-- clear all button -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button id="clearAll" class="btn text-white custom-dark-purple" name="clearAll" >Clear All</button>
+                <button id="clearAll" class="btn text-white custom-dark-purple" >Clear All</button>
               </div>
             </div>
           </form>
@@ -116,7 +128,7 @@ setcookie("alumniId", "", time()-3600);
             <div class="row">
               <!-- delete multiple row button -->
               <div class="col-7">
-                <button id="delete" type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
+                <button id="delete" name="deleteMultipleRow" type="button" class="btn btn-outline-danger" onclick="deleteCheckedRow()">
                   <a href="#" role="button">
                     <i class="far fa-trash-alt text-danger" aria-hidden="true" style="font-size: 20px;"></i>
                   </a>
@@ -221,6 +233,26 @@ setcookie("alumniId", "", time()-3600);
                     </div>
                   </div>
                 </div>
+                 <!-- pagination -->
+          <nav aria-label="Page navigation example">
+
+            <ul class="pagination justify-content-center">
+              <li class="page-item" id="previousPage">
+                <button onclick="previousPage()" class="page-link">Previous</button>
+              </li>
+              <div class="pages list-group list-group-horizontal">
+                <li class="page-item disabled">
+                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+                </li>
+                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
+                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
+
+              </div>
+              <li class="page-item" id="nextPage">
+                <button onclick="nextPage()" class="page-link">Next</button>
+              </li>
+            </ul>
+          </nav>
   </main>
 
   <script type='text/javascript' src='../js/utility.js'></script>

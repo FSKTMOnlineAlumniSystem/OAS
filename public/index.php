@@ -29,7 +29,7 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/Admin-MyProfilePage.php';
     
-} elseif (preg_match('/^\/alumniList\/?/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/alumniList\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
 
