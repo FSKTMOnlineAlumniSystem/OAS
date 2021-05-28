@@ -132,7 +132,7 @@
             $eventTitle = $filter_event($alumni_event['eventId'])['title'];
             $dotClass = $alumni_event['viewedByAlumni'] === 'true'? "":"fa fa-circle p-1 d-flex justify-content-center text-primary";
         ?>
-            <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='#'>
+            <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>'>
               <div class='py-2 container-fluid border-bottom'>
                 <div class="row">
                   <div class='col-2 d-flex justify-content-center align-items-center'>

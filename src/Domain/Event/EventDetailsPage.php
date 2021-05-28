@@ -9,12 +9,24 @@ if(isset($_GET['eventId'])) echo $_GET['eventId'];
 else echo 'No $_GET["eventId"]';
 try {
   $event_model = new EventModel($db->getConnection());
+  $all_events = $event_model->getAll();
+} catch (Exception $e) {
+  echo "Exception: " . $e->getMessage();
+}
+try {
+  $event_model = new Alumni_EventModel($db->getConnection());
+  $all_alumni_events = $event_model->getAll();
+} catch (Exception $e) {
+  echo "Exception: " . $e->getMessage();
+}
+try {
+  $event_model = new EventModel($db->getConnection());
   $event = $event_model->getEvent($_GET['eventId']);
   // echo gettype($event);
-  echo $event['eventId'].'<br>';
-  foreach($event as $key => $value){
-    echo $key.'=>'.$value.'<br>';
-  }
+  // echo $event['eventId'].'<br>';
+  // foreach($event as $key => $value){
+  //   echo $key.'=>'.$value.'<br>';
+  // }
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();
 }
