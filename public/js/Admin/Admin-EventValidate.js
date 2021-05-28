@@ -84,9 +84,15 @@ function cancelUpdate(){
     var timevalue = document.getElementById("time").value;
     var image = document.getElementById("prevImage").src;
     var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
-    if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
-      && !datevalue && !timevalue) {
-      location.href = "adminEvent";
+    // if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
+    //   && !datevalue && !timevalue) {
+      if (!img.value && 
+        titlevalue==title.value && 
+        descriptionvalue==description.value && 
+        locatevalue==locate.value&& 
+        datevalue==date.value && 
+        timevalue==time.value) {
+    location.href = "adminEvent";
     } else {
       /*POP UP MODAL ask if cancel will lose changes */
       $('#cancelChangesModal').modal('show');

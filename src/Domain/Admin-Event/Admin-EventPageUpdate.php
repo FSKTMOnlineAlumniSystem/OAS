@@ -12,7 +12,7 @@ include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$prevtitle=$_GET['title'];
+$prevtitle=$_GET['eventId'];
 echo $prevtitle;
 try {
   $event_model = new Admin_EventModel($db->getConnection());
@@ -45,10 +45,10 @@ try {
     <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 <?php
     if(isset($_POST['update'])) {
-      $prevtitle=$_GET['title'];
+      $eventId=$_GET['eventId'];
     $updateTheEvent = new  UpdateEventModel($db->getConnection());	
     // $data = $addJob_model->getMaxId();
-    $eventId = "E-" ;
+    // $eventId = "E-" ;
     $adminId = "AD-1";         //ned change
     $title = $_POST['title'];
     $date =$_POST["date"];
@@ -57,7 +57,7 @@ try {
     $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-    $updateTheEvent->updateEvent($prevtitle,$eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    $updateTheEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
     header("Location: adminEvent");
 
 }
@@ -173,7 +173,7 @@ try {
           </div>
 				  <!-- <input type="hidden" name="title" value=<?php echo $_GET['title'];?>> -->
           <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2">Save</input>
-          <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
+          <button id="cancelButton" onclick="cancelUpdate()" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
         </form>
 
@@ -210,9 +210,9 @@ try {
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
 
-          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script> -->
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="/js/utility.js"></script>
     <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
     

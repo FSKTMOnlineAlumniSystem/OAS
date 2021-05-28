@@ -130,44 +130,45 @@ var titlevalue = eventArray[i].title;
 //   }
 // };
 
-window.update_array = function () {
-    var i = localStorage.getItem("updateId")
-    var title = document.getElementById("title").value;
-    var date = document.getElementById("date").value;
-    var time = document.getElementById("time").value;
-    var year = date.split("-")[0];
-    var month =  date.split("-")[1];
-    var day = date.split("-")[2];
-    var hours = time.split(":")[0];
-    var min = time.split(":")[1];
-    const newDate = new Date(year, month, day, hours, min, "0");
+// window.update_array = function () {
+//     var i = localStorage.getItem("updateId")
+//     var title = document.getElementById("title").value;
+//     var date = document.getElementById("date").value;
+//     var time = document.getElementById("time").value;
+//     var year = date.split("-")[0];
+//     var month =  date.split("-")[1];
+//     var day = date.split("-")[2];
+//     var hours = time.split(":")[0];
+//     var min = time.split(":")[1];
+//     const newDate = new Date(year, month, day, hours, min, "0");
 
-    var description = document.getElementById("description").value;
-    var location = document.getElementById("location").value;
+//     var description = document.getElementById("description").value;
+//     var location = document.getElementById("location").value;
  
-    if(img.value){
-      const imgLocalPathArr = img.value.split('\\');
-      imageName = imgLocalPathArr[imgLocalPathArr.length-1];
-      }
-    else{
-      imageName=eventArray[i].imageId;
-    }
-    var eventId = eventArray[i].eventId
-    var adminId = eventArray[i].adminId 
-    var newEvent = {
-        eventId: eventId,
-        adminId: adminId,
-        title: title,
-        dateTime: newDate, //change
-        description: description,
-        imageId: imageName, 
-        location: location
-    }
-    eventArray.splice(i, 1, newEvent)
-    // updateDummyData(dummyResponse)
-    }
-cancelButton.addEventListener('click', () => {
-  
+//     if(img.value){
+//       const imgLocalPathArr = img.value.split('\\');
+//       imageName = imgLocalPathArr[imgLocalPathArr.length-1];
+//       }
+//     else{
+//       imageName=eventArray[i].imageId;
+//     }
+//     var eventId = eventArray[i].eventId
+//     var adminId = eventArray[i].adminId 
+//     var newEvent = {
+//         eventId: eventId,
+//         adminId: adminId,
+//         title: title,
+//         dateTime: newDate, //change
+//         description: description,
+//         imageId: imageName, 
+//         location: location
+//     }
+//     eventArray.splice(i, 1, newEvent)
+//     // updateDummyData(dummyResponse)
+//     }
+// cancelButton.addEventListener('click', () => {
+  /*
+  window.cancelUpdate=function (){
   var image = document.getElementById("prevImage").src;
   if (!img.value && 
     titlevalue==title.value && 
@@ -178,13 +179,13 @@ cancelButton.addEventListener('click', () => {
     location.href = "adminEvent";
   } else {
     /*POP UP MODAL ask if cancel will lose changes */
-    $('#cancelChangesModal').modal('show');
-  }
-});
-
+//     $('#cancelChangesModal').modal('show');
+//   }
+// };
+// */
 /*Close Modal */
-closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-function closeModal(modalId) {
-  $(modalId).modal('hide');
-}
+// closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
+// function closeModal(modalId) {
+//   $(modalId).modal('hide');
+// }

@@ -84,10 +84,20 @@ let defineAlumni=alumni.alumniId;
   tbody.appendChild(tr);
 });
 }
+// window.toggle = function (source) {
+//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//   for (var i = 0; i < checkboxes.length; i++) {
+//     console.log();
+//     if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
+//       checkboxes[i].checked = source.checked;
+//   }
+// }
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source)
+  // if($(checkboxes).is(':visible')){
+    for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+    // if($(checkboxes[i]).is(':visible')){
       checkboxes[i].checked = source.checked;
   }
 }
@@ -202,24 +212,27 @@ window.inviteNewAlumni = function(o){
     // }
     // alumniEventArray.push(newAlumniEvent)
     // updateDummyData(dummyResponse)
-    location.reload();
-    location.reload();
+    // location.reload();
+    // location.reload();
+    // location.reload();
+  history.go(0);
+  history.go(0);
+  history.go(0);
+  history.go(0);
+
     // loadEventList(0);
     // loadEventList(0)
 
   }
 
 // invite alumni that is checked
-var count=0;
 var $alumniId=[];
 var $eventId=[];
 var $dateTime=[];
-var count=0;
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
-      count++;
       var alumniId= alumniArray[i-1].alumniId;
       var eventId=localStorage.getItem('eventId')
       var dateTime=new Date().toISOString();
@@ -264,12 +277,16 @@ window.inviteCheckedAlumni = function () {
   // $($dateTime).serialize()
   document.cookie="dateTime="+ $dateTime;
 
-  document.cookie="count="+count;
   document.cookie="checkbox="+'checked';
   checkboxes[0].checked = false;
   // updateDummyData(dummyResponse)
-  location.reload();
-  location.reload();
+  // location.reload();
+  // location.reload();
+  // location.reload();
+  history.go(0);
+  history.go(0);
+  history.go(0);
+  history.go(0);
   // loadEventList(0)
 }
 

@@ -58,10 +58,18 @@ function DeleteRowPhp($eventId){
   $deleteEvent-> deleteEvent($eventId);
 
 };
-// $_COOKIE["deleteEvent"]='0';
-if(isset($_COOKIE["deleteEvent"])){
+if(isset($_COOKIE["checkbox"])){
+  $eventId=$_COOKIE["deleteEvent"];
+  $eventId=explode(",",$eventId);
+  for($i=count($eventId)-1; $i>=0;$i--){
+    DeleteRowPhp($eventId[$i]);  
+  }
+  setcookie("deleteEvent", "");
+  setcookie("checkbox", "");
+
+}else if(isset($_COOKIE["deleteEvent"])){
   DeleteRowPhp($_COOKIE["deleteEvent"]);  
-  setcookie("deleteEvent", "", time()-3600);
+  setcookie("deleteEvent", "");
 }
 // function deleteMultipleRow(){
   
@@ -139,7 +147,7 @@ if(isset($_COOKIE["deleteEvent"])){
               <!--trash button-->
               <button type="button"
                 class="btn btn-outline-danger d-flex justify-content-center align-items-center rounded"
-                onclick="deleteMultipleRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
+                onclick="DeleteCheckedRow()"><i class="far fa-trash-alt fa-2x" aria-hidden="true"
                   style="font-size: 20px; "></i></button> 
                   <!-- DeleteCheckedRow() -->
             </div>

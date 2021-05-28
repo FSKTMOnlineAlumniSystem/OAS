@@ -46,9 +46,38 @@ crossorigin="anonymous"></script>
     echo "Exception: " . $e->getMessage();
   }
 ?>
- <!-- <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
-  <script type="module" src="/js/Admin/Admin-InviteAlumniPage.js"></script> -->
+
+<?php
+
+function inviteAlumniPhp($alumniId,$eventId,$dateTime){
+  global $db;
+    $inviteAlumni = new InviteAlumniModel($db->getConnection());	
+  $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
+};
+
+if(isset($_COOKIE["checkbox"])){
+
+$alumniId = $_COOKIE['alumniId']; $alumniId=explode(",",$alumniId); //split
+$eventId = $_COOKIE['eventId']; $eventId=explode(",",$eventId);
+$dateTime = $_COOKIE['dateTime']; $dateTime=explode(",",$dateTime);
+
+for($i=0; $i<count($alumniId);$i++){
+  inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
+}
+  setcookie("alumniId", "");
+  setcookie("eventId", "");
+  setcookie("dateTime", "");
+  setcookie("checkbox", "");
+}
+else if(isset($_COOKIE["alumniId"])){
+  inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
+//   setcookie("inviteAlumni", "", time()-3600);
+  setcookie("alumniId", "");
+  setcookie("eventId", "");
+  setcookie("dateTime", "");
+}
+
+?>
 <nav></nav>
   <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100">
@@ -170,53 +199,6 @@ crossorigin="anonymous"></script>
     crossorigin="anonymous"></script>
 
 
-    <?php
-
-function inviteAlumniPhp($alumniId,$eventId,$dateTime){
-  global $db;
-    $inviteAlumni = new InviteAlumniModel($db->getConnection());	
-  $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
-
-};
-// inviteAlumniPhp("AL-1","E-8","2021-04-24T16:53:53+00:00");
-// $_COOKIE["deleteEvent"]='0';dateTime
-
-// && $_COOKIE["checkbox"]!=""
-if(isset($_COOKIE["checkbox"])){
-
-$alumniId = $_COOKIE['alumniId'];
-$alumniId=explode(",",$alumniId); //split
-// $alumniId = stripslashes($alumniId);     
-// $alumniId = unserialize($alumniId);
-
-$eventId = $_COOKIE['eventId'];
-$eventId=explode(",",$eventId);
-
-$dateTime = $_COOKIE['dateTime'];
-$dateTime=explode(",",$dateTime);
-
-
-for($i=0; $i<count($alumniId);$i++){
-  inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
-}
-
-  setcookie("alumniId", "", time()-3600);
-  setcookie("eventId", "", time()-3600);
-  setcookie("dateTime", "", time()-3600);
-  setcookie("checkbox", "", time()-3600);
-
-}
-else if(isset($_COOKIE["alumniId"])){
-  inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
-//   setcookie("inviteAlumni", "", time()-3600);
-  setcookie("alumniId", "", time()-3600);
-  setcookie("eventId", "", time()-3600);
-  setcookie("dateTime", "", time()-3600);
-  // header("Refresh:0");
-}
-
-
-?>
 </body>
 
 </html>

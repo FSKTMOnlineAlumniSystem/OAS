@@ -33,6 +33,11 @@ class Admin_EventModel
     $stmt = $this->connection->prepare($sql);
    //  $stmt->execute();
     $stmt->execute([$eventId]);
+
+    //deleteInviteAlumni
+    $sql ="DELETE FROM alumni_event WHERE eventId=?";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([$eventId]);
     }
 }
 
@@ -105,13 +110,13 @@ class UpdateEventModel
     // $prevTitle="";
     // $prevTitle=$_GET['title'];
     // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
-    public function updateEvent($prevtitle,$eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
+    public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
             //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
             try{
-             $sql = "UPDATE events SET title=?,dateTime=?,description=?,imageId=?,location=? WHERE title=?";
+             $sql = "UPDATE events SET title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
              $stmt = $this->connection->prepare($sql);  
 
-             $stmt->execute([$title,$newDate,$description,$imageId,$locate,$prevtitle]);
+             $stmt->execute([$title,$newDate,$description,$imageId,$locate,$eventId]);
             }catch (PDOException $exception) {
                 error_log('UpdateEventModel: construct: ' . $exception->getMessage());
                 throw $exception;
@@ -149,21 +154,6 @@ class createEventModel
 
     }
 }
-class deleteEventModel
-{
-  private PDO $connection;
-
-    public function __construct(PDO $connection)
-    {
-        $this->connection = $connection;
-    }
-    public function deleteEvent($eventId) {
-             $sql = "DELETE FROM events WHERE eventId=?";
-             $stmt = $this->connection->prepare($sql);
-            //  $stmt->execute();
-             $stmt->execute([$eventId]);
-    }
-}
 
 class InviteAlumniModel
 {
@@ -175,18 +165,30 @@ class InviteAlumniModel
     }
      public function InviteAlumni($alumniId,$eventId,$dateTime) {
         //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
-        try{
-            $sql ="INSERT INTO alumni_event (alumniId, eventId, viewedByAlumni, dateTime, notificationClosedByAlumni)
-                VALUES (?,?,'false',?,'false')";
+
+        $sql ="SELECT * FROM alumni_event WHERE alumniId=? AND eventId=?";
             $stmt = $this->connection->prepare($sql);
 
-            $stmt->execute([$alumniId,$eventId,$dateTime]);
-            
-            // [$alumniId,$eventId,"false",$dateTime,"false"]
-            }catch (PDOException $exception) {
-                error_log('InviteAlumniModel: construct: ' . $exception->getMessage());
-                throw $exception;
-            }     
+            $stmt->execute([$alumniId,$eventId]);
+        
+        if($stmt->rowCount() == 0)//no row
+        {
+            try{
+                $sql ="INSERT INTO alumni_event (alumniId, eventId, viewedByAlumni, dateTime, notificationClosedByAlumni)
+                    VALUES (?,?,'false',?,'false')";
+                $stmt = $this->connection->prepare($sql);
+    
+                $stmt->execute([$alumniId,$eventId,$dateTime]);
+                
+                // [$alumniId,$eventId,"false",$dateTime,"false"]
+                }catch (PDOException $exception) {
+                    error_log('InviteAlumniModel: construct: ' . $exception->getMessage());
+                    throw $exception;
+                }     
+            }
         }
+       
+       
+        
 }
 ?>
