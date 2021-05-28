@@ -1,7 +1,11 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/uploads/alumni/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
-
+document.cookie =
+  "clickedID=" +
+  onClickAlumniID +
+  "; expires=" +
+  new Date(9999, 0, 1).toUTCString();
 // <div class="row mb-3">
 //     <div class="col-sm-4">E-mail:</div>
 //     <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
@@ -10,6 +14,7 @@ let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
 function emailNeeded(pub) {
   var output = ``;
   console.log("hi");
+  console.log(dummyResponse.Alumni[0].isEmailPublic);
   if (pub == 1) {
     output = `<div class="row mb-3">
         <div class="col-sm-4">E-mail:</div>
@@ -97,5 +102,4 @@ const loadAlumniProfile = (index) => {
         </div>
     </div>`;
 };
-console.log(onClickAlumniID);
 loadAlumniProfile(onClickAlumniID);

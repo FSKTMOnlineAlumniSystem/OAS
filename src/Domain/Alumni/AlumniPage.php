@@ -17,12 +17,12 @@ include '../Database.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-  $event_model = new AlumniModel($db->getConnection());
-  $all_activities = $event_model->getAll();
-  if (!empty($all_activities)) {
+  $alumnilist = new AlumniModel($db->getConnection());
+  $all_alumni = $alumnilist->getAll();
+  if (!empty($all_alumni)) {
 
-    foreach ($all_activities as $activity) {
-      echo "$activity[alumniId] ";
+    foreach ($all_alumni as $alumni) {
+      echo "$alumni[alumniId] ";
     }
   }
 } catch (Exception $e) {
