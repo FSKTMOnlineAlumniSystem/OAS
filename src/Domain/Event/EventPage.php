@@ -22,7 +22,6 @@ try {
 <?php
 include '../src/utilities/includeWithVariable.php' ?>
 <?php
-// include '../src/templates/header.php';
 includeWithVariables('../src/templates/header.php', array(
   'my_css' => '/css/Alumni/EventPage.css',
   'search_bar' => '/css/Alumni/SearchBar.css'
@@ -45,7 +44,7 @@ include '../src/templates/nav.php';
 
       ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-          <a href="/eventdetails?eventId" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
+          <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
             <div class="card h-100 card--bg-light-gray">
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
                 <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
@@ -84,10 +83,8 @@ include '../src/templates/nav.php';
 
 <?php include '../src/templates/footer.php' ?>
 <?php
-// include '../src/templates/GeneralScripts.php' 
+include '../src/templates/GeneralScripts.php'
 ?>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <!-- custom js files -->
 <script type="module" src="/js/Alumni/EventPage.js"></script>
 <script type="text/javascript" src="/js/addSearchBar.js"></script>

@@ -2,7 +2,6 @@
 include '../config/config.php';
 session_start();
 
-echo $_SERVER['REQUEST_URI'];
 //VIEW
 if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
@@ -16,8 +15,7 @@ elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
 } 
 elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    echo "event details page";
-    // include '../src/Domain/Event/EventPage.php';
+    include '../src/Domain/Event/EventDetailsPage.php';
 }
 
 //MyProfile
