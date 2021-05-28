@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
@@ -60,6 +60,10 @@ $deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
   setcookie("listOfDeleteAlumniId", "", time()-3600);
 }
 ?>
+
+<script type='text/javascript' src='../js/utility.js'></script>
+  <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
+  <script type="module" src="../js/Admin/Admin-AlumniListPage.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
@@ -129,7 +133,8 @@ $deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
               <!-- delete multiple row button -->
               <div class="col-7">
                 <button id="delete" name="deleteMultipleRow" type="button" class="btn btn-outline-danger" onclick="deleteCheckedRow()">
-                  <a href="#" role="button">
+                  
+                <a href="#" role="button">
                     <i class="far fa-trash-alt text-danger" aria-hidden="true" style="font-size: 20px;"></i>
                   </a>
                 </button>
@@ -234,7 +239,7 @@ $deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
                   </div>
                 </div>
                  <!-- pagination -->
-          <nav aria-label="Page navigation example">
+          <!-- <nav aria-label="Page navigation example">
 
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
@@ -252,12 +257,9 @@ $deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
                 <button onclick="nextPage()" class="page-link">Next</button>
               </li>
             </ul>
-          </nav>
+          </nav> -->
   </main>
 
-  <script type='text/javascript' src='../js/utility.js'></script>
-  <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="module" src="../js/Admin/Admin-AlumniListPage.js"></script>
-  <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
-  <script type='module' src='../js/addHeader.js'></script>
+  <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
+  <!-- <script type='module' src='../js/addHeader.js'></script> -->
   <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>  

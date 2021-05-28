@@ -28,6 +28,26 @@ class AlumniListModel
     }
 }
 
+class DeleteAlumniModel
+{
+  private PDO $connection;
+
+    public function __construct(PDO $connection)
+    {
+        $this->connection = $connection;
+    }
+    public function deleteAlumni($alumniId) {
+            try{
+             $sql = "UPDATE alumni SET isActive = 0 WHERE alumniId=?";
+             $stmt = $this->connection->prepare($sql); 
+             $stmt->execute([$alumniId]);
+            }catch (PDOException $exception) {
+                error_log('DeleteAlumniModel: construct: ' . $exception->getMessage());
+                throw $exception;
+            }
+    }
+}
+
 class UpdateALumniModel
 {
   private PDO $connection;
@@ -62,23 +82,4 @@ class UpdateALumniModel
 }    
 }
 
-class DeleteAlumniModel
-{
-  private PDO $connection;
-
-    public function __construct(PDO $connection)
-    {
-        $this->connection = $connection;
-    }
-    public function deleteAlumni($alumniId) {
-            try{
-             $sql = "UPDATE alumni SET isActive = 0 WHERE alumniId=?";
-             $stmt = $this->connection->prepare($sql); 
-             $stmt->execute([$alumniId]);
-            }catch (PDOException $exception) {
-                error_log('DeleteAlumniModel: construct: ' . $exception->getMessage());
-                throw $exception;
-            }
-    }
-}
 
