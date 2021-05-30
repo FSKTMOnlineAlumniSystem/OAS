@@ -18,7 +18,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 
 try {
-    $myJob_model = new  MyJobModel($db->getConnection(),$alumniID);
+    $myJob_model = new  MyJobModel($db->getConnection());
     // $num_rows = $myJob_model->getNumRow($alumniID);
     $myJob = $myJob_model->getRow($alumniID);
     // echo ($myJob_model->getProfilePicture());
@@ -30,6 +30,13 @@ try {
     // foreach ($all_activities as $activity) {
     //   echo "$activity[jobId] ";
     // }
+    // print_r($myJob_model);
+    // $myJob_model->getProfilePicture($alumniID);
+    $image = $myJob_model->getProfilePicture($alumniID);
+    // print_r($image);
+    // print_r($myJob_model);
+
+
 // }
   // print_r($all_activities);
 } catch (Exception $e) {
@@ -48,7 +55,7 @@ try {
           <h2>My Job Advertisement
             <span class="d-flex flex-row-reverse"> <a href="addjob" class="btn btn-primary"> + Add Jobs </a></button></span>
         </h2>
-          <img src=<?=$myJob_model->getProfilePicture(); ?>>
+        
           <!-- DISPLAY CARDS OF MY JOB ADS -->
           <div class="row justify-content-md-center" id="top"></div>
           <div class="card-desk">
@@ -90,13 +97,17 @@ try {
     </div>
 
     <?php 
-if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
-  // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-  $deleteID =  $_POST['deleteID'];
-  $myJob = $myJob_model->deleteJob($deleteID);
-  // header('Cache-Control: no-store, no-cache, must-revalidate');
-  // exit;
- }
+// if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
+//   // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+//   $deleteID =  $_POST['deleteID'];
+//   $myJob = $myJob_model->deleteJob($deleteID);
+//   // header('Cache-Control: no-store, no-cache, must-revalidate');
+//   // exit;
+//   $updatedJob = $myJob_model->getRow($alumniID);
+//   print_r($updatedJob);
+//   echo json_encode($updatedJob);
+ 
+//  }
 
 
 ?>
@@ -105,12 +116,15 @@ if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
 <?php include_once '../src/templates/footer.php' ?>
 
 <script type="text/javascript">var myJob_array = <?php echo json_encode($myJob) ?>;</script>
-
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
 <script type="module" src="/js/Alumni/MyJobPage.js"></script>
+<script type="text/javascript">var image_array = <?php echo json_encode($image) ?>;</script>
+<script type="module" src="/js/Alumni/MyJobPageModule.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
+<script type="text/javascript" src="/js/addSearchBar.js"></script>
 
 
 

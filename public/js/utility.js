@@ -21,7 +21,34 @@ const getReadableTime = (dateTime) => {
   hour = hour === 0 ? 12 : hour;
   hour = hour > 12 ? hour - 12 : hour;
   return `${hour}:${minute} ${period}`;
+
+  
 }
+
+
+const getFormattedDate = (dateTime) => {
+  var date = new Date(dateTime);
+
+  var month = date.getMonth();
+  var monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  var months = monthNames[month];
+  var day = date.getDate();
+  var year = date.getFullYear();
+
+  var minute = date.getMinutes().toString();
+  minute = minute.padStart(2, '0');
+  var hour = date.getHours();
+  var period = hour > 11 ? 'p.m.' : 'a.m.';
+  hour = hour === 0 ? 12 : hour;
+  hour = hour > 12 ? hour - 12 : hour;
+
+  return `${months} ${day}, ${year} ${hour}:${minute} ${period}`;
+  
+
+}
+
 
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {

@@ -91,7 +91,7 @@ function loadJobList(pageIndex, outputList) {
                     <div class="col-7">RM ${outputList[i].salary}</div>
                   </div>
                 </p>
-                <small class="text-muted">Posted : ${outputList[i].postedDateTime}</small>
+                <small class="text-muted">Posted : ${getFormattedDate(outputList[i].postedDateTime)} </small>
               </div>
            
             </div>
@@ -99,6 +99,7 @@ function loadJobList(pageIndex, outputList) {
         </div>`;
        
   }
+  // ${getReadableTime(eventArray[i].dateTime)}
  
   // ../src/Job/JobDetailsPage.php?id=${outputList[i].jobId}\
 

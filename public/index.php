@@ -31,6 +31,10 @@ elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Job/EditMyJobPage.php';
 } 
+elseif (preg_match('/^\/deleteJob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Job/deleteJobController.php';
+} 
 
 
 

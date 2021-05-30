@@ -1,6 +1,9 @@
 // import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 //PASS IN THE FUNCTION
+var image = image_array;
+console.log(image);
+
 function loadMyJobList(pageIndex, outputList, count) {
   // const alumniID = localStorage.getItem("SignedInAlumniId");
   const jobList = document.getElementById("jobList");
@@ -89,7 +92,7 @@ function loadMyJobList(pageIndex, outputList, count) {
             <div class="card h-100" data-name=${outputList[i].jobId}> 
               <a href="myjobdetails?myjobid=${outputList[i].jobId}">
                 <div class="w-100">
-                  <img class="w-100" src="../../../Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+                  <img class="w-100" src="${image[0]}" class="card-img-top" alt="jobPhoto">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">${outputList[i].company} - ${outputList[i].title}</h5>
@@ -136,14 +139,23 @@ function loadMyJobList(pageIndex, outputList, count) {
 
 $('#deleteButton').click(function(){
   $.ajax({
-    url: 'myjob',
+    url: 'deleteJobController.php',
     type: 'post',
+    // contentType: "application/json",
+    // dataType : 'JSON',
     data: {ajax : 1, deleteID: deleteID},
-    success: function(){
-       window.location.reload();
-      //  console.log($outputList);
-      // loadMyJobList(0,myJob_array,0);
-    }
+    success: function(resp){
+      //  window.location.reload();
+      let page = 0;
+      var outputList = JSON.parse(resp);
+      // console.log(outputList.length);
+      // console.log(resp);
+      // console.log(JSON.parse(resp));
+      // console.log(counts)
+      loadMyJobList(page,outputList,outputList.length);
+      // $('#jobList').html(resp);
+    },
+    // dataType : "json"
      
   });
 
