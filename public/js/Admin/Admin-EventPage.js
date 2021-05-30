@@ -108,15 +108,18 @@ console.log('hihihihi')
                    
                   <a href="adminUpdateEvent?eventId=${eventArray[i].eventId}" class="updateButton" onclick="updateEvent(this)" id="update ${i}" >
                   <!--?title=${eventArray[i].title} onclick="updateEvent(this)" id="update ${i}"-->
-                    <i class="fas fa-edit pr-2" aria-hidden="true">
+                    <i class="fas fa-edit pr-3" aria-hidden="true">
                     </i></a>
                     
+                    <a href="inviteAlumni?eventId=${eventArray[i].eventId}" class="inviteButton">
+                  <i class="fas fa-user-plus pr-2" aria-hidden="true"></i>
+                </a>
 
 <!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
                   <!--  <form class="" action="/adminEvent" method="post">-->
                       <button type="submit" onclick="deleteByJquery(this)" class="deleteRowButton d-flex justify-content-center align-items-center" 
                       name="deleteButton" id="row ${i}" value="${eventArray[i].eventId}">
-                      <i class="far fa-trash-alt pl-2" aria-hidden="true">
+                      <i class="far fa-trash-alt" aria-hidden="true">
                        </i></button>
                   <!--  </form>  -->
                   </div>
@@ -140,8 +143,9 @@ console.log('hihihihi')
   var clickedAlumniIndex;
   document.querySelectorAll('.eventTitle').forEach((title) => {
     title.addEventListener('click', (e) => {
+      console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
-      document.querySelector('#imageTitle').src = imgPath + eventArray[clickedAlumniIndex].imageId;
+      // document.querySelector('#imageTitle').src = imgPath + eventArray[clickedAlumniIndex].imageId;
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;

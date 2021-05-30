@@ -14,6 +14,7 @@ crossorigin="anonymous"></script>
 
 <body>
 <?php
+ $eventId=$_GET['eventId'];
   // include '../config/config.php';
   include '../src/Domain/Admin-Event/Admin-EventModel.php';
   include '../src/Domain/Database.php';
@@ -126,7 +127,6 @@ else if(isset($_COOKIE["alumniId"])){
                 <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
                   <i class="fas fa-user-plus" aria-hidden="true"
                       style="font-size: 20px;"></i>
-
                 </button>
               </div>
               <div class="col-5 input-group mb-3">
@@ -188,6 +188,7 @@ else if(isset($_COOKIE["alumniId"])){
   <!-- custom js files -->
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
+  <script type="text/javascript">var $inviteEventId = <?php echo json_encode($eventId) ?>;</script>
   <script type="module" src="/js/Admin/Admin-InviteAlumniPage.js"></script>
   <!-- bootstrap javascript files -->
   <!-- <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script> -->

@@ -1,6 +1,7 @@
 // import{ dummyResponse,updateDummyData} from "../dummydata.js";
 let alumniEventArray=alumniEvent_array
 let alumniArray=alumni_array
+localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
 const loadEventList = (pageIndex) => {

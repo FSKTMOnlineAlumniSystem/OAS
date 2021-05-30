@@ -66,10 +66,10 @@ include '../src/Domain/header.php';
 
 
     <main>
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
+      <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
         onclick='setEventId()'>
         <i class="fas fa-user-plus"></i>
-        Invite Alumni</a>
+        Invite Alumni</a> -->
 
         <!-- <div id="formCheck">
         hiiiiii
@@ -144,7 +144,7 @@ include '../src/Domain/header.php';
         </div>
         <!-- ssave button -->
         <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
-        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelUpdate()">Cancel</button>
+        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelCreate()">Cancel</button>
 
         <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->
      

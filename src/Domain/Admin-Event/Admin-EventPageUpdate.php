@@ -12,8 +12,6 @@ include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$prevtitle=$_GET['eventId'];
-echo $prevtitle;
 try {
   $event_model = new Admin_EventModel($db->getConnection());
   $all_activities = $event_model->getAll();
@@ -90,9 +88,9 @@ try {
     <h1>
       Update Event <br>
     </h1>
-        <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
+        <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
-          Invite Alumni</a>
+          Invite Alumni</a> -->
         <form method="post" onsubmit="return checkvalidation()"> 
           <div id="updateForm">
             <div class="form-group">

@@ -41,7 +41,7 @@ if (preg_match('/^(\/?|\/home\/?)$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-EventPageCreate.php';
 
-}elseif (preg_match('/^\/inviteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+}elseif (preg_match('/^\/inviteAlumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-InviteAlumniPage.php';
 
