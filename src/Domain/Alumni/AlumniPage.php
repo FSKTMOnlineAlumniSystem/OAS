@@ -1,18 +1,23 @@
 <?php
-include '../../templates/header.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Alumni/AlumniModel.php';
+
+include '../src/utilities/includeWithVariable.php';
+// include '../src/templates/header.php';
+includeWithVariables('../src/templates/header.php', array(
+  'my_css' => '/css/Alumni/AlumniPage.css',
+  'search_bar' => '/css/Alumni/SearchBar.css'
+));
+include '../src/templates/nav.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/public/css/Alumni/AlumniPage.css" />
-<link rel="stylesheet" href="/public/css/Alumni/SearchBar.css" />
 
 
-  <title><?= $GLOBALS['title']; ?></title>
+
+  <title>Alumni Profile - Online Alumni System</title>
 </head>
 <body>
   
-  <?php
-include '../../../config/config.php';
-include './AlumniModel.php';
-include '../Database.php';
+<?php
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -43,20 +48,41 @@ try {
         >
       </h1>
       <br />
+      <hr />
+      <br />
       <div id="alumniList"></div>
+      <?=$alumnilist->loadAlumniList($all_alumni)?>
       <br />
       <span id="pageIndex"></span>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <div id="previousPage"></div>
-          <div class="pages list-group list-group-horizontal"></div>
-          <div id="nextPage"></div>
+          <div id="previousPage">
+            <?=$alumnilist->loadPageButton()->previousPageButton()?>
+          </div>
+          <div class="pages list-group list-group-horizontal">
+            <?=$alumnilist->loadPageButton()->remainingPageeButton()?>
+          </div>
+          <div id="nextPage">
+            <?=$alumnilist->loadPageButton()->nextPageButton()?>
+          </div>
         </ul>
       </nav>
       <br />
     </main>
   <!-- custom js files -->
-  <script type="module" src="/public/js/Alumni/AlumniPage.js"></script>
-  <script type="module" src="/public/js/Alumni/searchAlgo.js"></script>
+  <!-- <script type="module" src="/js/Alumni/AlumniPage.js"></script> -->
+  <script type="text/javascript" src="/js/addSearchBar.js"></script>
+  <script type="module" src="/js/Alumni/searchAlgo.js"></script>
+  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous">
+  </script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous">
+  </script>
   
-  <?php include '../../templates/footer.php' ?>
+  <?php include '../src/templates/footer.php' ?>

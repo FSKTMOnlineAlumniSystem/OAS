@@ -1,8 +1,15 @@
 <?php
-include '../../templates/header.php';
-include '../../../config/config.php';
-include '../Database.php';
-include './AlumniProfileModel.php';
+// include '../config/config.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Alumni/AlumniProfileModel.php';
+
+include '../src/utilities/includeWithVariable.php';
+// include '../src/templates/header.php';
+includeWithVariables('../src/templates/header.php', array(
+  'my_css' => '/css/Alumni/AlumniProfilePage.css',
+  'search_bar' => '/css/Alumni/SearchBar.css'
+));
+include '../src/templates/nav.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -11,15 +18,14 @@ try {
     $alumniProfile = $alumni->getAll();
 
   if (!empty($alumniProfile)) {
-    print_r($alumniProfile);
+    // print_r($alumniProfile);
   }
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }
 ?>
 
-<link rel="stylesheet" type="text/css" href="/public/css/Alumni/MyProfilePage.css" />
-  <title><?= $GLOBALS['title']; ?></title>
+  <title>Profile - <?=$alumniProfile[$_COOKIE['clickedID']]['name']?></title>
 </head>
 <body>
   <div id="main-body" class="row mx-0 my-5 justify-content-center">
@@ -28,7 +34,7 @@ try {
     <div class="col-12 col-md-10 col-lg-8">
         <div class="row align-items-center">
           <div class="col-12">
-              <a href="/src/Domain/Alumni/AlumniPage.php" class="btn btn-link back">
+              <a href="/alumni" class="btn btn-link back">
                 <i class="fas fa-chevron-left fa-2x"></i>
               </a>
               <h3 class="d-inline">Alumni Profile</h3>
@@ -100,4 +106,4 @@ try {
 <!-- custom js files -->
 <!-- <script type="module" src="/public/js/Alumni/AlumniProfilePage.js"></script> -->
   
-<?php include '../../templates/footer.php' ?>
+<?php include '../src/templates/footer.php' ?>

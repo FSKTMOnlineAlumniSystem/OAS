@@ -13,7 +13,7 @@ try {
 }
 ?>
 
-<title>My Profile - Alumni Online System</title>
+<title>My Profile - Online Alumni System</title>
 <link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
 <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
 

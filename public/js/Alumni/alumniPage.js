@@ -21,7 +21,7 @@ window.clickProfile = function (profileClicked) {
     profileClicked +
     "; expires=" +
     new Date(9999, 0, 1).toUTCString();
-  location.href = "/src/Domain/Alumni/AlumniProfilePage.php";
+  location.href = "/profile";
 };
 
 loadAlumniList(pageIndex, outputList);

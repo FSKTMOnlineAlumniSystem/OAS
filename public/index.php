@@ -32,6 +32,15 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/Admin-MyProfilePage.php';
 }
+//AlumniList
+elseif (preg_match('/^\/profile/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_PROFILE;
+    include '../src/Domain/Alumni/AlumniProfilePage.php';
+}
+elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
+    include '../src/Domain/Alumni/AlumniPage.php';
+}
 
 
 
