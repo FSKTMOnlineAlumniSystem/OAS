@@ -13,6 +13,10 @@ elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
 } 
+elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Event/EventDetailsPage.php';
+}
 
 //MyProfile
 elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {

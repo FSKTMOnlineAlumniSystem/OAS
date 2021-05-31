@@ -30,7 +30,7 @@ export const getCardStructure = (eventId, imageId, title, dateTime, location) =>
 }
 // the parent node should be a div with class 'row'
 export const loadEventSection = (eventArr, parentNode, errorMsg) => {
-  // console.log(eventArr);
+  console.log(eventArr);
   if(eventArr.length === 0){
     const noEventSection = document.createElement('div');
     noEventSection.setAttribute('class', 'alert custom-light-purple text-white');
@@ -38,20 +38,13 @@ export const loadEventSection = (eventArr, parentNode, errorMsg) => {
     parentNode.appendChild(noEventSection);
   }
   eventArr.forEach(event => {
-    const eventDetails = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0];
-    const { title, dateTime, imageId } = eventDetails;
-    
-    const cardDiv = document.createElement('div');
-    cardDiv.setAttribute('class', 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4');
-    cardDiv.innerHTML = getCardStructure(event.eventId, imageId, title, dateTime, eventDetails.location);
-    parentNode.appendChild(cardDiv);
-  
     // function to be called when this card clicked
     const evtHandler = evt => {
       // console.log(`set eventId to ${event.eventId}`);
-      localStorage.setItem('eventId', event.eventId);
+      // direct to correct event details php page
+      sessionStorage.setItem('eventId', event.querySelector('a').id);
     };
-    cardDiv.querySelector('#' + event.eventId + '-card').addEventListener('click', evtHandler);
+    event.addEventListener('click', evtHandler);
   });
 }
 
