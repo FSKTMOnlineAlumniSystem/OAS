@@ -4,15 +4,19 @@ class AlumniProfileModel
 {
   private PDO $connection;
 
-    public function __construct(PDO $connection)
+    public function __construct(PDO $connection,$id)
     {
         $this->connection = $connection;
+        $this->id = $id;
     }
 
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni
+            WHERE alumniId = :id;
+            ');
+            $stmt->bindParam(':id', $this->id);
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -29,24 +33,6 @@ class AlumniProfileModel
     
     public function getProfilePicture()
     {
-        return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
+        return 'data::'.$this->data['type'].';base64,'.base64_encode($this->user['imageData']);
     }
-
-  // public function getById(int $id): array
-  // {
-
-  //   try {
-  //     $stmt = $this->connection->prepare('SELECT * FROM activity WHERE id = ?');
-  //     $stmt->execute([$id]);
-  //     $data = $stmt->fetch();
-
-  //     if (!$data) {
-  //       return array();
-  //     }
-  //     return $data;
-  //   } catch (PDOException $exception) {
-  //     error_log('ActivityModel: getById: ' . $exception->getMessage() . ' id: ' . $id);
-  //     throw $exception;
-  //   }
-  // }
 }

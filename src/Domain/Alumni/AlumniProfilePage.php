@@ -2,35 +2,44 @@
 // include '../config/config.php';
 include '../src/Domain/Database.php';
 include '../src/Domain/Alumni/AlumniProfileModel.php';
+include '../src/Domain/MyProfile/MyProfileModel.php';
 
 include '../src/utilities/includeWithVariable.php';
 // include '../src/templates/header.php';
 includeWithVariables('../src/templates/header.php', array(
-  'my_css' => '/css/Alumni/AlumniProfilePage.css',
+  'my_css' => '/css/Alumni/MyProfilePage.css',
   'search_bar' => '/css/Alumni/SearchBar.css'
 ));
 include '../src/templates/nav.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
-    $alumni = new AlumniProfileModel($db->getConnection());
+    $link = explode('/',$_SERVER["REQUEST_URI"]);
+    $id = $link[count($link)-1];
+    // if ($id==$_SESSION['SignedInAlumniId']){
+    //   header('Location:http://localhost/myprofile');
+    // }
+    $alumni = new AlumniProfileModel($db->getConnection(),$id);
     $alumniProfile = $alumni->getAll();
-
   if (!empty($alumniProfile)) {
     // print_r($alumniProfile);
   }
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }
-?>
 
-  <title>Profile - <?=$alumniProfile[$_COOKIE['clickedID']]['name']?></title>
+// try {
+//   $link = explode('/',$_SERVER["REQUEST_URI"]);
+//   $alumni = new MyProfile($db->getConnection(), $link);
+
+//   print_r($link);
+// } catch (Exception $e) {
+//   echo "Exception: " . $e->getMessage();
+// }
+?>
 </head>
 <body>
   <div id="main-body" class="row mx-0 my-5 justify-content-center">
-<!-- const imgPath = "/uploads/alumni/"; -->
-
     <div class="col-12 col-md-10 col-lg-8">
         <div class="row align-items-center">
           <div class="col-12">
@@ -67,25 +76,25 @@ try {
             <div class="col-sm-7 justify-content-center align-items-center pt-3">
                 <div class="row mb-3">
                     <div class="col-sm-4">Name:</div>
-                    <div id="name" class="col-sm-8"><?=$alumniProfile[$_COOKIE['clickedID']]['name']?></div>
+                    <div id="name" class="col-sm-8"><?=$alumniProfile[0]['name']?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Gender:</div>
-                    <div id="gender" class="col-sm-8"><?=$alumniProfile[$_COOKIE['clickedID']]['gender']?></div>
+                    <div id="gender" class="col-sm-8"><?=$alumniProfile[0]['gender']?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Graduated:</div>
-                    <div id="graduated" class="col-sm-8"><?=$alumniProfile[$_COOKIE['clickedID']]['graduated']?></div>
+                    <div id="graduated" class="col-sm-8"><?=$alumniProfile[0]['graduated']?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Department:</div>
-                    <div id="department" class="col-sm-8"><?=$alumniProfile[$_COOKIE['clickedID']]['department']?></div>
+                    <div id="department" class="col-sm-8"><?=$alumniProfile[0]['department']?></div>
                 </div>
                 <?php
-                  if ($alumniProfile[$_COOKIE['clickedID']]['isEmailPublic'] == 1) {
+                  if ($alumniProfile[0]['isEmailPublic'] == 1) {
                     echo '<div class="row mb-3">
                     <div class="col-sm-4">E-mail:</div>
-                    <div id="email" class="col-sm-8">'.$alumniProfile[$_COOKIE['clickedID']]['email'].'</div>
+                    <div id="email" class="col-sm-8">'.$alumniProfile[0]['email'].'</div>
                     </div>';
                   }
                 ?>
@@ -96,7 +105,7 @@ try {
                 <h4>Biography</h4>
                 <div class="col-12 rounded bg-grey p-5 mb-2">
                     <div id="biography" class="profile__biography_valueContainer_value">
-                      <?=$alumniProfile[$_COOKIE['clickedID']]['biography']?>
+                      <?=$alumniProfile[0]['biography']?>
                     </div>
                 </div>
             </div>
@@ -105,5 +114,26 @@ try {
   </div>
 <!-- custom js files -->
 <!-- <script type="module" src="/public/js/Alumni/AlumniProfilePage.js"></script> -->
+<script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous">
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+  crossorigin="anonymous">
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous">
+</script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+  crossorigin="anonymous">
+</script>
   
 <?php include '../src/templates/footer.php' ?>
