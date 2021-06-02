@@ -163,6 +163,25 @@ class InviteAlumniModel
     {
         $this->connection = $connection;
     }
+    public function getAll(): array
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT * FROM alumni_event');
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$data) {
+                return array();
+            }
+            return $data;
+
+        } catch (PDOException $exception) {
+            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            throw $exception;
+        }
+        
+   }
      public function InviteAlumni($alumniId,$eventId,$dateTime) {
         //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
 

@@ -185,7 +185,7 @@ include '../src/Domain/header.php';
   </div>
   
   <script type="text/javascript" src="/js/utility.js"></script>
-  <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script> -->
+  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
   <!-- <script type='module' src='/src/js/addHeader.js'></script> -->

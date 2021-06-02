@@ -15,7 +15,7 @@
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
   <link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
-  
+
 
 
    <!-- CSS -->
@@ -46,31 +46,82 @@ try {
     echo $e;
   }
 ?>
-<script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
+  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 
 <!-- delete row function -->
 <?php
+/*
 function DeleteRowPhp($eventId){
   global $db;
-    $deleteEvent = new  Admin_EventModel($db->getConnection());	
+    $deleteEvent = new Admin_EventModel($db->getConnection());	
   $deleteEvent-> deleteEvent($eventId);
-
+    // $updatedJob = $myJob_model->getRow("AL-1");
+  // echo json_encode($updatedJob);
 };
-if(isset($_COOKIE["checkbox"])){
-  $eventId=$_COOKIE["deleteEvent"];
+// if(isset($_COOKIE["checkbox"])){
+//   $eventId=$_COOKIE["deleteEvent"];
+//   $eventId=explode(",",$eventId);
+//   for($i=count($eventId)-1; $i>=0;$i--){
+//     DeleteRowPhp($eventId[$i]);  
+//   }
+//   setcookie("deleteEvent", "");
+//   setcookie("checkbox", "");
+
+// }else if(isset($_COOKIE["deleteEvent"])){
+//   DeleteRowPhp($_COOKIE["deleteEvent"]);  
+//   setcookie("deleteEvent", "");
+// }
+
+// $deleteEvent = new Admin_EventModel($db->getConnection());	
+//   $updatedEventArray = $deleteEvent->getAll();
+//   print_r ($updatedEventArray);
+//   echo $hehe=json_encode($updatedEventArray);
+//   print_r ($updatedEventArray);
+//   echo $hoho=json_decode($hehe);
+//   print_r ($hoho);
+
+
+if(isset($_POST["checkbox"])){
+  // echo $_POST["deleteEvent"];
+  $eventId=$_POST["deleteEvent"];
   $eventId=explode(",",$eventId);
   for($i=count($eventId)-1; $i>=0;$i--){
-    DeleteRowPhp($eventId[$i]);  
+    // DeleteRowPhp($eventId[$i]);  
   }
-  setcookie("deleteEvent", "");
-  setcookie("checkbox", "");
+  // echo 'hahahha';
+  $deleteEvent = new Admin_EventModel($db->getConnection());	
+  $updatedEventArray = $deleteEvent->getAll();
+  // print_r($updatedEventArray);
+  // $updatedEventArray=json_encode($updatedEventArray);
+  // echo $updatedEventArray;
 
-}else if(isset($_COOKIE["deleteEvent"])){
-  DeleteRowPhp($_COOKIE["deleteEvent"]);  
-  setcookie("deleteEvent", "");
+  echo json_encode($updatedEventArray);
+  exit();
+
+  
+  // setcookie("deleteEvent", "");
+  // setcookie("checkbox", "");
+  // echo json_encode($updatedJob);
+}else if(isset($_POST["deleteEvent"])){
+  // DeleteRowPhp($_POST["deleteEvent"]);  
+  // echo json_encode($updatedEventArray.toString());
+  $updatedEventArray = $deleteEvent->getAll();
+  // print_r($updatedEventArray);
+  echo json_encode($updatedEventArray);
 }
+//depete button
+// if(isset($_POST['submit'])) {
+//   $eventId=$_POST['deleteButton'];
+//   echo $eventId;
+
+
+// }
+// else{
+//   echo "ahhhhh";
+// }
+
 // function deleteMultipleRow(){
   
 //   function DeleteRowPhp($eventId){
@@ -89,29 +140,10 @@ if(isset($_COOKIE["checkbox"])){
 // echo $_POST['deleteEvent'];
 
 
-
-// if(isset($_POST["deleteEvent"])){
-// // if(isset($_POST['deleteEvent'])) {
-// $eventToDelete = $_POST["deleteEvent"];
-// echo 'delete eventtttttttttttt';
-// echo '<br>';
-// echo $eventToDelete;
-// // DeleteRowPhp($eventToDelete);
-  
-// }else{echo 'cannot delete event'; 
-//   echo $_POST['deleteEvent'];}
-// //depete button
-// // if(isset($_POST['submit'])) {
-// //   $eventId=$_POST['deleteButton'];
-// //   echo $eventId;
-
-
-// }
-// else{
-//   echo "ahhhhh";
-// }
+*/
 ?>
 
+  
   <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100">
       <div class="custom-dark-gray px-0" id="left-nav">
@@ -247,12 +279,16 @@ if(isset($_COOKIE["checkbox"])){
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script> -->
+<!--hiiiiii-->    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
-  <script type="text/javascript" src="/js/Admin/Admin-EventPage.js"></script> -->
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+
   <!-- <script type='module' src='/js/addHeader.js'></script> -->
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
   <!-- jquery -->

@@ -4,7 +4,7 @@ let alumniArray=alumni_array
 localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
-const loadEventList = (pageIndex) => {
+const loadEventList = (pageIndex,alumniEventArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 alumniArray.forEach((alumni,index) => {
@@ -203,7 +203,24 @@ window.inviteNewAlumni = function(o){
     document.cookie = "alumniId="+alumniId;
     document.cookie = "eventId="+eventId;
     document.cookie = "dateTime="+dateTime;
-
+    $.ajax({
+      url:"./inviteFunction",    //the page containing php script
+      data: { alumniId: alumniId, 
+              eventId: eventId,
+              dateTime: dateTime,
+            },
+      type: 'POST',    //request type,
+      success: function(resp){
+        console.log('resp');
+        console.log(resp);
+        var outputList = JSON.parse(resp);
+        alumniEventArray=outputList;
+        loadEventList(pageIndex,outputList);
+      },
+      error: function(request, status, error){  
+        alert(error);
+        }
+      });
     // var newAlumniEvent={
     //   "alumniId": alumniId,
     //   "eventId": eventId,
@@ -213,17 +230,6 @@ window.inviteNewAlumni = function(o){
     // }
     // alumniEventArray.push(newAlumniEvent)
     // updateDummyData(dummyResponse)
-    // location.reload();
-    // location.reload();
-    // location.reload();
-  history.go(0);
-  history.go(0);
-  history.go(0);
-  history.go(0);
-
-    // loadEventList(0);
-    // loadEventList(0)
-
   }
 
 // invite alumni that is checked
@@ -237,15 +243,37 @@ window.inviteCheckedAlumni = function () {
       var alumniId= alumniArray[i-1].alumniId;
       var eventId=localStorage.getItem('eventId')
       var dateTime=new Date().toISOString();
-      // document.cookie="alumniId="+ alumniId;
-      // document.cookie="eventId="+ eventId;
-      // document.cookie="dateTime="+ dateTime;
+      $alumniId.push(alumniId);
+      $eventId.push(eventId);
+      $dateTime.push(dateTime);
+    }
+  }
+  $alumniId=$alumniId.toString();
+  $eventId=$eventId.toString();
+  $dateTime=$dateTime.toString();
+  $.ajax({
+    url:"./inviteFunction",    //the page containing php script
+    data: { alumniId: $alumniId, 
+            eventId: $eventId,
+            dateTime: $dateTime,
+            checkbox:'checked'
+          },
+    type: 'POST',    //request type,
+    success: function(resp){
+      console.log('resp');
+      console.log(resp);
+      var outputList = JSON.parse(resp);
+      alumniEventArray=outputList;
+      loadEventList(pageIndex,outputList);
+    },
+    error: function(request, status, error){  
+      alert(error);
+      }
+    });
 
-    $alumniId.push(alumniId);
-    $eventId.push(eventId);
-    $dateTime.push(dateTime);
-
-    // var newAlumniEvent={
+  checkboxes[0].checked = false;
+}  
+  // var newAlumniEvent={
     //         "alumniId": alumniId,
     //         "eventId": eventId,
     //         "viewedByAlumni": "false",
@@ -253,9 +281,8 @@ window.inviteCheckedAlumni = function () {
     //         "notificationClosedByAlumni": "false"
     // }
     // alumniEventArray.push(newAlumniEvent)
-    }
-  }
-  // $alumniId = json_encode($alumniId, true); 
+  /*
+    // $alumniId = json_encode($alumniId, true); 
   // setcookie('alumniId', $alumniId);
   
   // $eventId = json_encode($eventId, true); 
@@ -279,7 +306,6 @@ window.inviteCheckedAlumni = function () {
   document.cookie="dateTime="+ $dateTime;
 
   document.cookie="checkbox="+'checked';
-  checkboxes[0].checked = false;
   // updateDummyData(dummyResponse)
   // location.reload();
   // location.reload();
@@ -288,13 +314,13 @@ window.inviteCheckedAlumni = function () {
   history.go(0);
   history.go(0);
   history.go(0);
-  // loadEventList(0)
-}
+  */// loadEventList(0)
+// }
 
 window.backToPreviousPage=function(){
     window.history.back();
 }
-loadEventList(pageIndex);
+loadEventList(pageIndex,alumniEventArray);
 
 // window.inviteCheckedAlumni = function () {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');

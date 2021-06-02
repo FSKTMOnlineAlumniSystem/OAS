@@ -5,7 +5,8 @@ let eventArray=event_array
 
 let pageIndex = 0;
 
-const loadEventList = (pageIndex) => {
+const loadEventList = (pageIndex,eventArray) => {
+  console.log(eventArray);
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
 
@@ -67,9 +68,9 @@ const loadEventList = (pageIndex) => {
   )[0];
   //or use :  var table = document.all.tableid;
 
-  // for (var i = table.rows.length - 1; i > 0; i--) {
-  //   table.deleteRow(i);
-  // }
+  for (var i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
+  }
 
   for (
     let i = eventStartIndex;
@@ -77,7 +78,7 @@ const loadEventList = (pageIndex) => {
     i++
   ) 
   {
-console.log('hihihihi')
+  console.log('hihihihi')
     var newRowContent = `<tr class="rowss">
                 
                <td>
@@ -115,7 +116,7 @@ console.log('hihihihi')
                   <i class="fas fa-user-plus pr-2" aria-hidden="true"></i>
                 </a>
 
-<!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
+    <!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
                   <!--  <form class="" action="/adminEvent" method="post">-->
                       <button type="submit" onclick="deleteByJquery(this)" class="deleteRowButton d-flex justify-content-center align-items-center" 
                       name="deleteButton" id="row ${i}" value="${eventArray[i].eventId}">
@@ -128,9 +129,6 @@ console.log('hihihihi')
 
 
   //another method
-
-
-
 // 
     var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
@@ -187,13 +185,13 @@ window.check = function (source, i) {
 
 window.nextPage = function () {
   pageIndex++;
-  loadEventList(pageIndex);
+  loadEventList(pageIndex,eventArray);
 };
 window.previousPage = function () {
   pageIndex--;
-  loadEventList(pageIndex);
+  loadEventList(pageIndex,eventArray);
 };
-loadEventList(pageIndex);
+loadEventList(pageIndex,eventArray);
 
 
 
@@ -203,36 +201,66 @@ window.updateEvent = function (o) {
   location.href = "Admin-EventPageUpdate.html"
 };
 
+// window.deleteByJquery= function (o){
+//   var findId = o.id.split(" ")[1]
+//   var $eventToDelete=eventArray[findId].eventId;
+//   console.log($eventToDelete);
+//   document.cookie = "deleteEvent="+$eventToDelete;
+//   location.reload();
+//   location.reload();
+//   location.reload();
+// };
+
 window.deleteByJquery= function (o){
+  console.log('here delete ajax')
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
   console.log($eventToDelete);
-  document.cookie = "deleteEvent="+$eventToDelete;
-  location.reload();
-  location.reload();
-  location.reload();
+  $.ajax({
+    url:"./deleteEvent",    //the page containing php script
+    data: { deleteEvent: $eventToDelete},
+    type: 'POST',    //request type,
+    // dataType: 'json',
+    success: function(resp){
+      var outputList = JSON.parse(resp);
+      eventArray=outputList;
+      loadEventList(pageIndex,outputList);
+    },
+    error: function(request, status, error){  
+      alert(error);
+      }
+    });
 };
-var $eventId=[];
+
 window.DeleteCheckedRow = function () {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length - 1; i > 0; i--) {
-    if (checkboxes[i].checked) {
-      // eventArray.splice(i - 1, 1)
-      $eventId.push(eventArray[i-1].eventId);
+  var $eventId=[];
+    console.log('delete checked row');
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = checkboxes.length - 1; i > 0; i--) {
+      if (checkboxes[i].checked) {
+        $eventId.push(eventArray[i-1].eventId);
+      }
     }
-  }
-  document.cookie="deleteEvent="+ $eventId;
-  document.cookie="checkbox="+'checked';
-
-  checkboxes[0].checked = false;
-  // updateDummyData(dummyResponse)
-  // loadEventList(pageIndex)
-  location.reload();
-  location.reload();
-  location.reload();
-
-};
-
+    $eventId=$eventId.toString();
+    // console.log($eventId);
+    $.ajax({
+      url:"./deleteEvent",    //the page containing php script
+      data: { checkbox: "checked",deleteEvent: $eventId},
+      type: 'POST',    //request type,
+      // dataType: "json",
+      success: function(resp){
+        console.log('resp');
+        console.log(resp);
+        var outputList = JSON.parse(resp);
+        eventArray=outputList;
+        loadEventList(pageIndex,outputList);
+      },
+      error: function(request, status, error){  
+      alert(error);
+      }
+      });
+       checkboxes[0].checked = false;
+  };
 // filter
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
@@ -348,6 +376,30 @@ window.deleteByJquery= function (o){
 
     // $.post("/adminEvent", data);
 
+/*
+// cookies delete checked row
+/*
+var $eventId=[];
+window.DeleteCheckedRow = function () {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = checkboxes.length - 1; i > 0; i--) {
+    if (checkboxes[i].checked) {
+      // eventArray.splice(i - 1, 1)
+      $eventId.push(eventArray[i-1].eventId);
+    }
+  }
+  document.cookie="deleteEvent="+ $eventId;
+  document.cookie="checkbox="+'checked';
+
+  checkboxes[0].checked = false;
+  // updateDummyData(dummyResponse)
+  // loadEventList(pageIndex)
+  location.reload();
+  location.reload();
+  location.reload();
+
+};
+*/
 /*
   try {
   $.ajax({
