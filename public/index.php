@@ -33,6 +33,10 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
 
+} elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
+
 } elseif (preg_match('/^\/editAlumniProfile\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';

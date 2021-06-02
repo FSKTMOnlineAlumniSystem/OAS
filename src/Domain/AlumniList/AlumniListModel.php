@@ -36,6 +36,23 @@ class DeleteAlumniModel
     {
         $this->connection = $connection;
     }
+    public function getAll(): array
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            if (!$data) {
+                return array();
+            }
+            return $data;
+
+        } catch (PDOException $exception) {
+            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            throw $exception;
+        }
+    }
     public function deleteAlumni($alumniId) {
             try{
              $sql = "UPDATE alumni SET isActive = 0 WHERE alumniId=?";

@@ -74,7 +74,7 @@ let alumniArray=alumni_array
 //   loadAlumniList(pageIndex);
 // };
 // add alumni list
-const reload = (pageIndex) => {
+const reload = (alumniArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
 alumniArray.forEach((alumni, index) => {
@@ -189,7 +189,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   })
 })
 }
-reload();
+reload(alumniArray);
 window.approve = function(){
 document.cookie = "alumniId="+localStorage.getItem("alumniId");
 document.cookie = "signedInAdminId="+localStorage.getItem("SignedInAdminId");
@@ -238,20 +238,28 @@ window.toggle = function (source) {
   }
 }
 
+
 window.deleteByJquery= function (o){
   event.preventDefault();
   var findId = o.id.split(" ");
   console.log(findId);
   var $deleteAlumniId=alumniArray[findId].alumniId;
   console.log($deleteAlumniId);
-  //cookies
-  // $_COOKIE['deleteEvent'] = $eventToDelete;
-document.cookie = "deleteAlumniId="+$deleteAlumniId;
-  // alert(document.cookie);
-//  location.reload();
-//  location.reload();
-history.go(0);
-history.go(0);
+
+$.ajax({
+                    type: "POST",
+                    url: 'deleteAlumni',
+                    data: {deleteAlumniId: $deleteAlumniId},
+                    success:  function(data)
+                    { 
+                      var outputList = JSON.parse(data);
+                      alumniArray = outputList;
+                      console.log(outputList);
+                      reload(outputList);
+                    }
+        });
+// history.go(0);
+// history.go(0);
 }
 //delete row by row only
 // window.DeleteRowFunction = function (o) {
@@ -340,7 +348,6 @@ window.deleteCheckedRow = function(){
         count++;
         var alumniId= alumniArray[i-1].alumniId;
       $alumniId.push(alumniId);
-
       }
     }
     console.log($alumniId);
