@@ -28,23 +28,6 @@ try {
   echo $e->getMessage();
 }
 ?>
-    <div class="searchBarBG">
-      <form class="search-form">
-        <div class="containerSB">
-          <div class="row no-gutters" style="white-space: nowrap">
-            <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
-            <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group">
-              <input type="search" placeholder="Search..." class="form-control" id="search" name="search"/>
-              <div class="input-group-append">
-                <button type="submit" id="search-button" class="btn btn-secondary">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
     <main class="container my-5" id="main-body">
       <h1>
         Alumni -
@@ -67,7 +50,7 @@ try {
           <a href="/profile/'.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
               <div class="image m-auto col-2 p-3">
                   <div style="aspect-ratio:1/1;overflow:hidden;">
-                      <img src=${imgPath}'.$all_alumni[$i]['imageId'].' class="w-100" alt='.$all_alumni[$i]['name'].'>
+                      <img src="data::'.$all_alumni[$i]['type'].';base64,'.base64_encode($all_alumni[$i]['imageData']).'" class="w-100" alt='.$all_alumni[$i]['name'].'>
                   </div>
               </div>
               <div class="media-body mr-3 my-auto col-10">
@@ -103,6 +86,7 @@ try {
     </main>
   <?php include '../src/templates/footer.php' ?>
   <!-- custom js files -->
+  <script type="text/javascript" src="/js/addSearchBar.js"></script>
   <script type="module" src="/js/Alumni/searchAlgo.js"></script>
   <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
   <script

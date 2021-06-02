@@ -33,7 +33,10 @@ class AlumniModel
         $this->pageIndex= $pageIndex;
         $offset = ($pageIndex -1) * 10;
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni 
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni 
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId 
             WHERE isActive = 1
             LIMIT :offset, 10');
             $stmt->bindParam(':offset',$offset );
@@ -52,6 +55,11 @@ class AlumniModel
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
+    }
+
+    public function getProfilePicture()
+    {
+        return 'data::'.$this->data['type'].';base64,'.base64_encode($this->data['imageData']);
     }
 
 
@@ -76,13 +84,6 @@ class AlumniModel
             throw $exception;
         }
 
-        // $alumniStartIndex = self::$pageIndex-1 * 10;
-        // $alumniEndIndex = $alumniStartIndex + 10;
-      
-        // $remainingLength = $this->totalNumberOfAlumni - $alumniStartIndex;
-        // $this->previousPageButton(self::$pageIndex);
-        // $this->nextPageButton($alumniEndIndex,$this->totalNumberOfAlumni);
-        // $this->remainingPageButton($remainingLength,self::$pageIndex);
     }
 
     public function previousPageButton(){
