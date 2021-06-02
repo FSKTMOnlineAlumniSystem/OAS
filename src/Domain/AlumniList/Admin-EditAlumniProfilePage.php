@@ -100,7 +100,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Name:</div>
                                 <div class="col-sm-8">
-                                    <input method= "post" type="text" id="name" name="name" class="form-control" value="Teh Kok Soon">
+                                    <input method= "post" type="text" id="name" name="name" class="form-control" >
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please enter alumni's name.
@@ -111,7 +111,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Gender:</div>
                                 <div class="col-sm-8">
-                                    <select id="gender" class="rounded" type="text" value="Male" name="gender"
+                                    <select id="gender" class="rounded" type="text" name="gender"
                                         style="color:#495057; font-family: 'Poppins';">
                                         <option>male</option>
                                         <option>female</option>
@@ -122,7 +122,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Ic No:</div>
                                 <div class="col-sm-8">
-                                    <input type="tel" id="icNumber" name="icNumber" class="form-control" value="690110-10-1251">
+                                    <input type="tel" id="icNumber" name="icNumber" class="form-control">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please provide a valid Ic Number.
@@ -133,8 +133,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Graduated:</div>
                                 <div class="col-sm-8">
-                                    <input type="text" name="graduated" id="graduated" class="form-control"
-                                        value="2014">
+                                    <input type="text" name="graduated" id="graduated" class="form-control">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="contactNumberFeedback" class="invalid-feedback">
                                         Please enter valid graduated year of alumni.
@@ -145,8 +144,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">Department:</div>
                                 <div class="col-sm-8">
-                                    <select id="department" class="rounded" type="text" value="Software Engineering"
-                                        name="department"
+                                    <select id="department" class="rounded" type="text" name="department"
                                         style="color:#495057; font-family: 'Poppins'; outline: none; ">
                                         <option>Software Engineering</option>
                                         <option>Artificial Intelligence</option>
@@ -162,7 +160,7 @@ else{
                             <div class="row mb-3">
                                 <div class="col-sm-4">E-mail:</div>
                                 <div class="col-sm-8">
-                                    <input type="email" id="email" name="email" class="form-control" value="koksoon@um.edu.my">
+                                    <input type="email" id="email" name="email" class="form-control">
                                     <div class="valid-feedback">Valid.</div>
                                     <div id="emailFeedback" class="invalid-feedback">
                                         Please provide a valid email.
@@ -175,7 +173,7 @@ else{
                     <div class="row mt-5">
                         <h4>Biography</h4>
                         <div class="col-12 rounded bg-grey p-5 mb-2">
-                            <textarea id="biography" name ="biography"class="form-control" id="exampleFormControlTextarea1" rows="10">Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the University of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System and Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a Senior Lecturer. His research interests include renewable energy control system, energy management, power efficiency of PV system and inverter control of PV system.
+                            <textarea id="biography" name ="biography"class="form-control" id="exampleFormControlTextarea1" rows="10">
                     </textarea>
                             <div class="valid-feedback">Valid.</div>
                             <div id="contactNumberFeedback" class="invalid-feedback">
@@ -206,12 +204,8 @@ else{
                     Are you sure you want to leave this page?
                 </div>
                 <div class="modal-footer">
-                    <a href="/alumniList"><button type="button" class="btn btn-outline-secondary">Leave
-                            this
-                            Page</button></a>
-                    <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on
-                        this
-                        Page</button>
+                    <a href="/alumniList"><button type="button" class="btn btn-outline-secondary">Leave this Page</button></a>
+                    <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this Page</button>
                 </div>
             </div>
         </div>

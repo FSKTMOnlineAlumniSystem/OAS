@@ -179,24 +179,29 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $("#approve").click(function () {
       if (alumniArray[e.target.id].approvedBy == "") {
         alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-        // updateDummyData(dummyResponse);
-        // reload();
-        // location.reload();
-        history.go(0);
       }
     })
     $('#exampleModal').modal("show");
-  })
+  }
+  )
 })
 }
 reload(alumniArray);
 window.approve = function(){
-document.cookie = "alumniId="+localStorage.getItem("alumniId");
-document.cookie = "signedInAdminId="+localStorage.getItem("SignedInAdminId");
-// location.reload();
-// location.reload();
-history.go(0);
-history.go(0);
+  $('#exampleModal').modal("show");
+$.ajax({
+  type: "POST",
+  url: 'approveAlumni',
+  data: {alumniId: localStorage.getItem("alumniId"),signedInAdminId:localStorage.getItem("SignedInAdminId") },
+  success:  function(data)
+  { 
+    var outputList = JSON.parse(data);
+    alumniArray = outputList;
+    console.log(outputList);
+    reload(outputList);
+    $('#exampleModal').modal("hide");
+  }
+});
 }
 //search bar filter
 var searchBar = document.getElementById('searchBar');
@@ -258,15 +263,8 @@ $.ajax({
                       reload(outputList);
                     }
         });
-// history.go(0);
-// history.go(0);
 }
-//delete row by row only
-// window.DeleteRowFunction = function (o) {
-//   alumniArray.Alumni.splice(o.id, 1)
-//   // updateDummyData(dummyResponse)
-//   reload();
-// }
+
 //filter by using dropdown
 $(document).ready(function () {
   $("#status,#department").on("change", function () {
@@ -310,20 +308,6 @@ window.SearchData = function (status, department) {
   }
 }
 
-//deleteMultipleRow
-window.deleteMultipleRow = function (tableID) {
-  var table = document.getElementById("myTable").tBodies[0];
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length - 1; i >= 0; i--) {
-    if (checkboxes[i].checked) {
-      table.deleteRow(i - 1);
-      alumniArray.Alumni.splice(i - 1, 1)
-    }
-  }
-  // updateDummyData(dummyResponse)
-  reload();
-}
-
 //clearAll
 $("#clearAll").on("click", function (e) {
   $('#department option').prop('selected', function () {
@@ -350,14 +334,19 @@ window.deleteCheckedRow = function(){
       $alumniId.push(alumniId);
       }
     }
-    console.log($alumniId);
-    document.cookie="listOfDeleteAlumniId="+ $alumniId;
-    document.cookie="count="+count;
-    console.log(count);
-    checkboxes[0].checked = false;
-    history.go(0);
-    history.go(0);
-}
-  
-
-  
+    $alumniId=$alumniId.toString();
+    $.ajax({
+      type: "POST",
+      url: 'deleteMultipleAlumni',
+      data: {listOfDeleteAlumniId: $alumniId, count:count},
+      success:  function(data)
+      { 
+        var outputList = JSON.parse(data);
+        alumniArray = outputList;
+        console.log(outputList);
+        reload(outputList);
+        checkboxes[0].checked = false;
+      }
+    });
+    }
+      

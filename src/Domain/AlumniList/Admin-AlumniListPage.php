@@ -29,44 +29,6 @@ try {
 }
 ?>
 
-<?php
-if(isset($_COOKIE['alumniId'])) {
-$alumniId = $_COOKIE['alumniId'];
-$adminId = $_COOKIE['signedInAdminId'];
-$updateApprove = new  UpdateAlumniModel($db->getConnection());
-$updateApprove->updateApprovedby($adminId,$alumniId);
-setcookie("alumniId", "", time()-3600);
-setcookie("signedInAdminId", "", time()-3600);
-}
-?>
-
-<?php
-// if(isset($_COOKIE['deleteAlumniId'])) {
-// $alumniId = $_COOKIE['deleteAlumniId'];
-// $deleteAlumni = new  DeleteAlumniModel($db->getConnection());
-// $deleteAlumni->deleteAlumni($alumniId);
-// setcookie("alumniId", "", time()-3600);
-// }
-?>
-
-<?php
-if(isset($_COOKIE["listOfDeleteAlumniId"])){
-$alumniId = $_COOKIE['listOfDeleteAlumniId'];
-$alumniId=explode(",",$alumniId); //split
-$deleteMultipleAlumni = new DeleteAlumniModel($db->getConnection());
-for($i=0; $i<count($alumniId);$i++){	
-$deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
-}
-  setcookie("listOfDeleteAlumniId", "", time()-3600);
-}
-
-if (isset($_POST['deleteAlumniId'])) {
-     $deleteAlumniId = $_POST['deleteAlumniId'];
-     $deleteAlumni = new  DeleteAlumniModel($db->getConnection());
-     $deleteAlumni->deleteAlumni($deleteAlumniId);
-}
-
-?>
 
 <script type='text/javascript' src='../js/utility.js'></script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
@@ -110,7 +72,7 @@ if (isset($_POST['deleteAlumniId'])) {
               <!-- filter status dropdown -->
               <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="status" oninput="filterStatus()">
+                <select class="form-control" id="status" >
                   <option>All</option>
                   <option>Verified</option>
                   <option>Not Verified</option>
@@ -119,7 +81,7 @@ if (isset($_POST['deleteAlumniId'])) {
               <!-- filter department dropdown -->
               <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="department" oninput="filterDepartment()">
+                <select class="form-control" id="department" >
                   <option>All</option>
                   <option>Software Engineering</option>
                   <option>Artificial Intelligence</option>

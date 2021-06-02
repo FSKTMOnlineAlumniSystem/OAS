@@ -73,9 +73,25 @@ class UpdateALumniModel
     {
         $this->connection = $connection;
     }
-    // $prevTitle="";
-    // $prevTitle=$_GET['title'];
-    // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
+
+    public function getAll(): array
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            if (!$data) {
+                return array();
+            }
+            return $data;
+
+        } catch (PDOException $exception) {
+            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            throw $exception;
+        }
+    }
+    
     public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email) {
             try{
              $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=? WHERE alumniId=?";
