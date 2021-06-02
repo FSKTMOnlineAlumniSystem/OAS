@@ -9,10 +9,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new EventModel($db->getConnection());
   $all_events = $event_model->getAll();
-} catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
-}
-try {
   $event_model = new Alumni_EventModel($db->getConnection());
   $all_alumni_events = $event_model->getAll();
 } catch (Exception $e) {
