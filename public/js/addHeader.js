@@ -6,8 +6,8 @@
  * Below header set the user as AD-1 admin if the url includes 'admin'
  * else set the user as AL-1 alumni
  */
-// console.log(color);
-import { dummyResponse, updateDummyData } from "./dummydata.js"
+console.log(color);
+// import { dummyResponse, updateDummyData } from "./dummydata.js"
 
 // check if this is alumni or admin
 let curUser = {};
@@ -96,9 +96,9 @@ function toggleNotificationPanel() {
         event.viewedByAlumni = "true";
         updateDummyData(dummyResponse);
         localStorage.setItem('eventId', event.eventId);
-        window.open('EventDetailsPage.html',"_self");
+        window.open('EventDetailsPage.html', "_self");
       });
-      
+
       // console.log(event.viewedByAlumni);
       const eventTitle = dummyResponse.Event.filter(evt => evt.eventId === event.eventId)[0].title;
       let timeStr = ``;
@@ -119,7 +119,7 @@ function toggleNotificationPanel() {
           timeStr = `${hour % 24} hour(s) ${minute % 60} minute(s) ago`;
         }
       } else {
-        timeStr = `${day} day(s) ${hour % 24} hour(s) ${minute % 60} minute(s) ago`
+        timeStr = `${day} day(s) ago`
       }
       div1.innerHTML = `
       <div class="row">
@@ -176,8 +176,8 @@ function toggleProfilePanel() {
   }
   // first-time click will add childnode under panel
   if (!profilePanel.hasChildNodes()) {
-    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/${isAlumni? 'Alumni/MyProfilePage.html':'Admin/Admin-MyProfilePage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-user-circle px-2" style="font-size:17px"></i>My Profile</a></div>
-    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/${isAlumni? 'Alumni/LoginPage.html':'Admin/Admin-LoginPage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-sign-out-alt px-2" style="font-size:17px"></i>Log Out</a></div>`;
+    profilePanel.innerHTML = `<div class="p-2 font-weight-bold m-0 border-bottom profile-panel__item--dark-bg"><a href="/src/html/${isAlumni ? 'Alumni/MyProfilePage.html' : 'Admin/Admin-MyProfilePage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-user-circle px-2" style="font-size:17px"></i>My Profile</a></div>
+    <div class="p-2 font-weight-bold m-0 profile-panel__item--dark-bg"><a href="/src/html/${isAlumni ? 'Alumni/LoginPage.html' : 'Admin/Admin-LoginPage.html'}" class="nostyle d-flex align-items-center"><i class="fas fa-sign-out-alt px-2" style="font-size:17px"></i>Log Out</a></div>`;
     profilePanel.style.display = "block";
   } else {
     if (profilePanel.style.display === "none") {
