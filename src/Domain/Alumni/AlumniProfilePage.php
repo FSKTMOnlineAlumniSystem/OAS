@@ -1,7 +1,6 @@
 <?php
 // include '../config/config.php';
 include '../src/Domain/Database.php';
-include '../src/Domain/Alumni/AlumniProfileModel.php';
 include '../src/Domain/MyProfile/MyProfileModel.php';
 
 include '../src/utilities/includeWithVariable.php';
@@ -13,29 +12,23 @@ includeWithVariables('../src/templates/header.php', array(
 include '../src/templates/nav.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
 try {
-    $link = explode('/',$_SERVER["REQUEST_URI"]);
-    $id = $link[count($link)-1];
-    // if ($id==$_SESSION['SignedInAlumniId']){
-    //   header('Location:http://localhost/myprofile');
-    // }
-    $alumni = new AlumniProfileModel($db->getConnection(),$id);
-    $alumniProfile = $alumni->getAll();
-  if (!empty($alumniProfile)) {
-    // print_r($alumniProfile);
+  $link = explode('/',$_SERVER["REQUEST_URI"]);
+  $id = $link[count($link)-1];
+  $alumni = new MyProfile($db->getConnection(), $id);
+
+  if ($id==$_SESSION['SignedInAlumniId']){
+    echo "<script> location.href='/myprofile'; </script>";
+    exit;
+  }else if(!$alumni->getAlumniId()){
+    echo "<script> location.href='/error404'; </script>";
+    exit;
   }
+
 } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+  echo "Exception: " . $e->getMessage();
 }
-
-// try {
-//   $link = explode('/',$_SERVER["REQUEST_URI"]);
-//   $alumni = new MyProfile($db->getConnection(), $link);
-
-//   print_r($link);
-// } catch (Exception $e) {
-//   echo "Exception: " . $e->getMessage();
-// }
 ?>
 </head>
 <body>
@@ -66,7 +59,7 @@ try {
                     >
                         <img
                             id="profilePicture"
-                            src="<? $alunmi -> getProfilePicture()?>"
+                            src="<?=$alumni->getProfilePicture();?>"
                             alt="Profile Picture"
                             class="img-fluid"
                         />
@@ -76,25 +69,25 @@ try {
             <div class="col-sm-7 justify-content-center align-items-center pt-3">
                 <div class="row mb-3">
                     <div class="col-sm-4">Name:</div>
-                    <div id="name" class="col-sm-8"><?=$alumniProfile[0]['name']?></div>
+                    <div id="name" class="col-sm-8"><?=$alumni->getName();?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Gender:</div>
-                    <div id="gender" class="col-sm-8"><?=$alumniProfile[0]['gender']?></div>
+                    <div id="gender" class="col-sm-8"><?=$alumni->getGender();?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Graduated:</div>
-                    <div id="graduated" class="col-sm-8"><?=$alumniProfile[0]['graduated']?></div>
+                    <div id="graduated" class="col-sm-8"><?=$alumni->getGraduatedYear();?></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Department:</div>
-                    <div id="department" class="col-sm-8"><?=$alumniProfile[0]['department']?></div>
+                    <div id="department" class="col-sm-8"><?=$alumni->getDepartment();?></div>
                 </div>
                 <?php
-                  if ($alumniProfile[0]['isEmailPublic'] == 1) {
+                  if ($alumni->getIsEmailPublic() == 1) {
                     echo '<div class="row mb-3">
                     <div class="col-sm-4">E-mail:</div>
-                    <div id="email" class="col-sm-8">'.$alumniProfile[0]['email'].'</div>
+                    <div id="email" class="col-sm-8">'.$alumni->getEmail().'</div>
                     </div>';
                   }
                 ?>
@@ -105,7 +98,7 @@ try {
                 <h4>Biography</h4>
                 <div class="col-12 rounded bg-grey p-5 mb-2">
                     <div id="biography" class="profile__biography_valueContainer_value">
-                      <?=$alumniProfile[0]['biography']?>
+                      <?=$alumni->getBiography();?>
                     </div>
                 </div>
             </div>
