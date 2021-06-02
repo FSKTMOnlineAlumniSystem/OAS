@@ -3,10 +3,9 @@
 class AlumniModel
 {
   private PDO $connection;
-  private static $pageIndex = 1;
   private $totalNumberOfAlumni = 0;
-  // import loadAlumniList from "./AlumniPageModule.js";
-    // $outputList = dummyResponse.Alumni;
+  private $pageIndex=0;
+
 
     public function __construct(PDO $connection)
     {
@@ -18,8 +17,9 @@ class AlumniModel
             $data = $stmt->fetch();
 
             if (!$data) {
-                $this->totalNumberOfAlumni = $data['COUNT(*)'];
+                $this->totalNumberOfAlumni = 0;
             }
+            $this->totalNumberOfAlumni = $data['COUNT(*)'];
             return $data;
 
         } catch (PDOException $exception) {
@@ -28,9 +28,10 @@ class AlumniModel
         }
     }
 
-    public function getAll(): array
+    public function getAll($pageIndex): array
     {
-        $offset = (self::$pageIndex -1) * 10;
+        $this->pageIndex= $pageIndex;
+        $offset = ($pageIndex -1) * 10;
         try {
             $stmt = $this->connection->prepare('SELECT * FROM alumni 
             WHERE isActive = 1
@@ -40,7 +41,10 @@ class AlumniModel
             $data = $stmt->fetchAll();
 
             if (!$data) {
-                return array();
+                include_once '../src/Domain/General_Pages/page_not_found.php';
+                include_once '../src/templates/footer.php';
+                exit;
+                // return array();
             }
             return $data;
 
@@ -50,87 +54,131 @@ class AlumniModel
         }
     }
 
-    public function nextPage(){
-        self::$pageIndex++;
-        header('Location:/alumni');
-    }
-    
-    
-    public function previousPage(){
-        self::$pageIndex--;
-        header('Location:/alumni');
-    }
 
-    public function loadPageButton(){
-        $alumniStartIndex = self::$pageIndex-1 * 10;
-        $alumniEndIndex = $alumniStartIndex + 10;
+    public function moreContent(){
+        $offset = ($this->pageIndex) * 10;
+        try {
+            $stmt = $this->connection->prepare('SELECT * FROM alumni 
+            WHERE isActive = 1
+            LIMIT :offset, 10');
+            $stmt->bindParam(':offset',$offset );
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            if (!$data) {
+                return false;
+            }else{
+                return true;
+            }
+
+        } catch (PDOException $exception) {
+            error_log('ActivityModel: moreContent: ' . $exception->getMessage());
+            throw $exception;
+        }
+
+        // $alumniStartIndex = self::$pageIndex-1 * 10;
+        // $alumniEndIndex = $alumniStartIndex + 10;
       
-        $remainingLength = $this->totalNumberOfAlumni - $alumniStartIndex;
-        $this->previousPageButton(self::$pageIndex);
-        $this->nextPageButton($alumniEndIndex,$this->totalNumberOfAlumni);
-        $this->remainingPageButton($remainingLength,self::$pageIndex);
+        // $remainingLength = $this->totalNumberOfAlumni - $alumniStartIndex;
+        // $this->previousPageButton(self::$pageIndex);
+        // $this->nextPageButton($alumniEndIndex,$this->totalNumberOfAlumni);
+        // $this->remainingPageButton($remainingLength,self::$pageIndex);
     }
 
-    private function previousPageButton($pageIndex){
-        if ($pageIndex == 1) {
+    public function previousPageButton(){
+        if ($this->pageIndex == 1) {
             echo'
             <li class="page-item disabled">
-                <button id="previousPage" onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+                <button id="previousPage" onclick="location.href=\'/alumni?page='.$this->pageIndex.'\'" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
             </li>';
         // This is the first page
         } else {
             echo'
             <li class="page-item" id="previousPage">
-                <button onclick="previousPage()" class="page-link">Previous</button>
+                <button onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'" class="page-link">Previous</button>
             </li>';
         }
     }
 
     /*   This is pages button for button*/
-    private function nextPageButton($alumniEndIndex,$totalNumberOfAlumni){
-        if ($alumniEndIndex >= $totalNumberOfAlumni) {
+    public function nextPageButton(){
+        if (!$this->moreContent()) {
             echo'
             <li class="page-item disabled">
-                <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+                <button id="nextPage"  onclick="location.href=\'/alumni?page='.$this->pageIndex.'\'" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
             </li';
         //This is the last page
         } else {
             echo'
             <li class="page-item" id="nextPage">
-                <button  onclick="nextPage()" class="page-link" >Next</button>
+                <button  onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'" class="page-link" >Next</button>
             </li>';
         }
     }
 
-    private function remainingPageButton($remainingLength,$pageIndex){
+    public function remainingPageButton(){
         // these are for the 1,2,3 pages
-        if ($remainingLength <= 10) {
-        // when pages content <=10
-        echo'
+        if ($this->totalNumberOfAlumni <= 10) {
+            // when pages content <=10
+            echo'
             <li class="page-item disabled">
-                <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$pageIndex.'</button>
+                <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$this->pageIndex.'</button>
             </li>';
-        } else if ($remainingLength <= 20) {
-        // when pages content <=20
-        echo'
-            <li class="page-item disabled">
-                <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$pageIndex.'</button>
-            </li>
-            <li class="page-item" >
-                <button class="btn btn-link page-link" onclick="nextPage()">'.($pageIndex + 1).'</button>
-            </li>';
+        } else if ($this->totalNumberOfAlumni <= 20) {
+            // when pages content <=20
+            if (!$this->moreContent()) {// no more content
+                echo'
+                <li class="page-item">
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                </li>
+                <li class="page-item disabled" >
+                    <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.($this->pageIndex).'</button>
+                </li>';
+            } else {// more content
+                echo'
+                <li class="page-item disabled">
+                    <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$this->pageIndex.'</button>
+                </li>
+                <li class="page-item" >
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                </li>';
+            }
         } else {
-        // when pages content <=30
-        echo'
-            <li class="page-item disabled">
-                <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">'.$pageIndex.'</button>
-            </li>
-            <li class="page-item" >
-                <button class="btn btn-link page-link" onclick="nextPage()">'.($pageIndex + 1).'</button>
-            </li>
-            <li class="page-item" >
-                <button class="btn btn-link page-link" onclick="nextPage();nextPage()">'.($pageIndex + 2).'</button>
-            </li>';
+            // when pages content <=30
+            if ($this->pageIndex==1) {// first page
+                echo'
+                    <li class="page-item disabled">
+                        <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">'.$this->pageIndex.'</button>
+                    </li>
+                    <li class="page-item" >
+                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                    </li>
+                    <li class="page-item" >
+                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+2).'\'">'.($this->pageIndex+2).'</button>
+                    </li>';
+            } else if(!$this->moreContent()){// no more content
+                echo'
+                <li class="page-item" >
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-2).'\'">'.($this->pageIndex-2).'</button>
+                </li>
+                <li class="page-item" >
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                </li>
+                <li class="page-item disabled">
+                    <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$this->pageIndex.'</button>
+                </li>';
+            } else if ($this->moreContent()) {// more content
+                echo'
+                <li class="page-item">
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                </li>
+                <li class="page-item disabled" >
+                    <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.($this->pageIndex).'</button>
+                </li>
+                <li class="page-item" >
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                </li>';
+            }
         }
     }
 }

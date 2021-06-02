@@ -14,8 +14,13 @@ include '../src/templates/nav.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
+  if($_GET==null){
+    $pageIndex=1;
+  }else{
+    $pageIndex=$_GET['page'];
+  }
   $alumnilist = new AlumniModel($db->getConnection());
-  $all_alumni = $alumnilist->getAll();
+  $all_alumni = $alumnilist->getAll($pageIndex);
   if (!empty($all_alumni)) {
       // print_r($all_alumni);
   }
@@ -84,13 +89,13 @@ try {
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <div id="previousPage">
-            <!-- <?=$alumnilist->loadPageButton()->previousPageButton()?> -->
+            <?=$alumnilist->previousPageButton()?>
           </div>
           <div class="pages list-group list-group-horizontal">
-            <!-- <?=$alumnilist->loadPageButton()->remainingPageeButton()?> -->
+            <?=$alumnilist->remainingPageButton()?>
           </div>
           <div id="nextPage">
-            <!-- <?=$alumnilist->loadPageButton()->nextPageButton()?> -->
+            <?=$alumnilist->nextPageButton()?>
           </div>
         </ul>
       </nav>
