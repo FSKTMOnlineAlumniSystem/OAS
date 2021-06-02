@@ -18,11 +18,12 @@ try {
   $id = $link[count($link)-1];
   $alumni = new MyProfile($db->getConnection(), $id);
 
-  if ($id==$_SESSION['SignedInAlumniId']){
+  if ($id=="AL-1"){
     echo "<script> location.href='/myprofile'; </script>";
     exit;
-  }else if(!$alumni->getAlumniId()){
-    echo "<script> location.href='/error404'; </script>";
+  }else if(!$alumni->isAlumniExist()){
+    include_once '../src/Domain/General_Pages/page_not_found.php';
+    include_once '../src/templates/footer.php';
     exit;
   }
 
