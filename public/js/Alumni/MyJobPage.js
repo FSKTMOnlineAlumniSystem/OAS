@@ -27,4 +27,6 @@ window.previousPage = function () {
 };
 
 //CALL FUNCTION IN ORER TO DISPLAY MYJOBLIST
+// test();
+var check = true;
 loadMyJobList(pageIndex, outputList, count);

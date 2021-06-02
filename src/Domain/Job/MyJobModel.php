@@ -107,4 +107,21 @@ class MyJobModel
         // return $stmt->rowCount();
     }
 
+
+    public function search($searchterm,$alumniID){
+        // echo($searchterm);
+        $query = "SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%".$searchterm."%' ORDER BY postedDateTime DESC";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        // echo("php ". $searchterm . " php" . $alumniID);
+        // print_r($data);
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
+//SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%HSBC%'
+    
+
 }

@@ -16,4 +16,13 @@ if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
     echo json_encode($updatedJob);
    
    }
+   
+// else if(isset($_POST['search']){
+//     //    $searchterm = $_POST['search'];
+//     //    $searchJob = $myJob_model->search($searchterm,"AL-1");
+//     //    print_r($searchJob);
+//     //    echo json_encode($searchJob);
+//     $updatedJob = $myJob_model->getRow("AL-1");
+//     echo json_encode($updatedJob);
+//    }
 ?>

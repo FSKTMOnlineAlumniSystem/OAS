@@ -25,8 +25,9 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 if(isset($_POST['Submit'])) {
 
     date_default_timezone_set('Asia/Kuala_Lumpur');
-    $date = date('y-m-d h:i:s');
+    $date = date('y-m-d H:i:s');
     $postedDateTime = date(DATE_ATOM, strtotime($date));
+    // $postedDateTime = date(DATE_ATOM, $date);
     // echo($postedDateTime);
 
     $addJob_model = new  AddJobModel($db->getConnection());	
@@ -39,7 +40,8 @@ if(isset($_POST['Submit'])) {
     $salary = $_POST['salary'];
 	$email = $_POST['email'];
     $postedDateTime = $postedDateTime;     
-    $jobImage = $_FILES['jobImage']['name'];
+    // $jobImage = $_FILES['jobImage']['name'];
+    $jobImage = $jobId;
     $company = $_POST['company'];
     $location = $_POST['location'];
     // $jobImage = basename($_FILES['jobImage']['name']);
@@ -49,7 +51,7 @@ if(isset($_POST['Submit'])) {
     try{
         //Upload image to database as blob
         if($_FILES["jobImage"]['tmp_name']!=null){
-            uploadImage($db->getConnection(),$_FILES["jobImage"],'AL-1');
+            uploadImage($db->getConnection(),$_FILES["jobImage"],$jobImage);
         }
         
         

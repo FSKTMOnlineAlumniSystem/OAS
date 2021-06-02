@@ -21,19 +21,15 @@ try {
     $myJob_model = new  MyJobModel($db->getConnection());
     // $num_rows = $myJob_model->getNumRow($alumniID);
     $myJob = $myJob_model->getRow($alumniID);
-    // echo ($myJob_model->getProfilePicture());
-    // echo($image);
-    // echo("inside" . $num_rows);
-    // print_r($myJob);
-    //   if (!empty($all_activities)) {
-
-    // foreach ($all_activities as $activity) {
-    //   echo "$activity[jobId] ";
-    // }
-    // print_r($myJob_model);
-    // $myJob_model->getProfilePicture($alumniID);
     $image = $myJob_model->getProfilePicture($alumniID);
-    // print_r($image);
+    
+    // $myJob = array();
+    for ($i=0; $i< count($myJob); $i++){
+      $myJob[$i]['imageId'] = $image[$i];
+    }
+
+
+    // print_r($myJob);
     // print_r($myJob_model);
 
 
@@ -47,8 +43,28 @@ try {
 
 
 <link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
+<link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
+
 
 <div class ="container my-5" id='main-body'>
+
+<div class="searchBarBG">
+<!-- <form class="search-form" method="post"> -->
+ <div class="containerSB">
+   <div class="row no-gutters" style="white-space: nowrap">
+     <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+     <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
+       <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" value="" />
+       <div class="input-group-append">
+         <button type="submit" id="search-button" class="btn btn-secondary">
+           <i class="fas fa-search"></i>
+         </button>
+       </div>
+     </div>
+   </div>
+ </div>
+ <!-- </form> -->
+</div><br><br>
           <h1><b>Jobs</b></h1>
         
           <hr>
@@ -58,6 +74,7 @@ try {
         
           <!-- DISPLAY CARDS OF MY JOB ADS -->
           <div class="row justify-content-md-center" id="top"></div>
+          <div class="row justify-content-md-center" id="no_result"></div>
           <div class="card-desk">
             <div class="row row-cols-3" id="jobList"></div>
             </div>
@@ -123,8 +140,10 @@ try {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="module" src="/js/utility.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
-<script type="text/javascript" src="/js/addSearchBar.js"></script>
+
+<!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
 
 
 

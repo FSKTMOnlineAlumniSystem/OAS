@@ -8,7 +8,7 @@ let pageIndex = 0;
 // console.log(job_array);
 
 var outputList = job_array;
-
+// console.log(outputList);
 
 //click next page
 window.nextPage = function () {

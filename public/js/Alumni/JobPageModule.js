@@ -9,6 +9,16 @@ function loadJobList(pageIndex, outputList) {
   var remainingLength = dataLength - jobStartIndex;
 
   /*   create  button*/
+  if(outputList.length === 0){
+    document.getElementById(
+      "no_result"
+    ).innerHTML = `<h2>Sorry, there is no result.</h3>`;
+    document.getElementById("nextPage").innerHTML = "";
+    document.getElementsByClassName("pages")[0].innerHTML = "";
+    document.getElementById("previousPage").innerHTML = "";
+    return;
+  }
+
   if (jobEndIndex >= outputList.length) {
     document.getElementById("nextPage").innerHTML = `
       <li class="page-item disabled">
@@ -71,13 +81,14 @@ function loadJobList(pageIndex, outputList) {
   }
   // ../src/Domain/Job/JobDetailsPage.php?id=${outputList[i].jobId}
   //id=${outputList[i].jobId}
+  document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
           <a href="jobdetails?jobid=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
-                  <img class="w-100" src="../uploads/job/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+                  <img class="w-100" src="${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
               </div>
               <div class="card-body">
                 <h5 class="card-title">${outputList[i].title}</h5>
@@ -119,5 +130,39 @@ function loadJobList(pageIndex, outputList) {
   //   }
   // });
 }
+
+//Search
+$('#search-button').click(function(){
+  var search = document.getElementById("search_item").value;
+  if (search == "") {
+    alert("Name must be filled out");
+  }
+  console.log("pls"+search);
+  $.ajax({
+    url: 'searchAllJob',
+    type: 'post',
+    // contentType: "application/json",
+    // dataType : 'html',
+    data: {search: search},
+    // dataType:"json",
+    success: function(resp){
+     console.log("success");
+    //  console.log(search);
+    // console.log(resp);
+    let page = 0;
+    var jobtList =JSON.parse(resp);
+ 
+     loadJobList(page,jobtList);
+    
+     //  var jobsearch = JSON.parse(resp);
+    //   console.log(jobsearch);
+    },
+    
+    // dataType : "json"
+     
+  });
+
+});
+
 
 export default loadJobList;
