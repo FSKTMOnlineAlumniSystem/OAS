@@ -1,6 +1,23 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/templates/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <!-- icon - fontawesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- custom css files -->
+  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+  
 <!-- <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" /> -->
 <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css">
 <title>Update Event - Online Alumni System</title>
@@ -10,15 +27,15 @@ include '../src/Domain/header.php';
 // include '../../../config/config.php';
 include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
+include '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new Admin_EventModel($db->getConnection());
   $all_activities = $event_model->getAll();
+  $allImage = $event_model->getPicture();
   if (!empty($all_activities)) {
-
     foreach ($all_activities as $res) {
-
       if($res['title']==$title){
 	$eventId = $res['eventId'];
 	// $adminId = $res['adminId'];
@@ -31,9 +48,11 @@ try {
   // echo "$locate ";
   // echo "$imageId";
       }
-}
-
     }
+  }
+  for ($i=0; $i< count($all_activities); $i++){
+    $all_activities[$i]['imageId'] = $allImage[$i];
+  }
 } catch (Exception $e) {
   echo "Exception here!";
 }
@@ -52,11 +71,27 @@ try {
     $date =$_POST["date"];
     $time =$_POST["time"];
     $description = $_POST['description'];
-    $imageId = $_POST['imageId'];
+    $imageId = $eventId;
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
     $updateTheEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    
+    if($_FILES["imageId"]['tmp_name']!=null){
+      print 'hello';
+      uploadImage($db->getConnection(),$_FILES["imageId"],$imageId);
+  }else{
+    print 'you salah le';
+  
+} 
+// catch (Exception $e) {
+// echo "Exception: " . $e->getMessage();
+// }
+
+header("Location: adminEvent");
+    
     header("Location: adminEvent");
+
+
 
 }
 
@@ -91,7 +126,7 @@ try {
         <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a> -->
-        <form method="post" onsubmit="return checkvalidation()"> 
+        <form method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data"> 
           <div id="updateForm">
             <div class="form-group">
   

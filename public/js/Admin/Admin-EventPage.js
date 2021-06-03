@@ -143,7 +143,7 @@ const loadEventList = (pageIndex,eventArray) => {
     title.addEventListener('click', (e) => {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
-      // document.querySelector('#imageTitle').src = imgPath + eventArray[clickedAlumniIndex].imageId;
+      document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;

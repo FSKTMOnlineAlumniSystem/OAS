@@ -39,6 +39,24 @@ class Admin_EventModel
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([$eventId]);
     }
+
+    public function getPicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM events
+            LEFT JOIN image 
+            ON events.imageId=image.imageId');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
 }
 
 class Admin_Alumni_EventModel

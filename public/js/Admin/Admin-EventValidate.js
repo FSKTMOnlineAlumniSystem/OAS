@@ -3,6 +3,7 @@ const description1 = document.getElementById("description");
 const locate1 = document.getElementById("location");
 const date1 = document.getElementById("date");
 const time1 = document.getElementById("time");
+const img = document.querySelector('#wizard-picture');
 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
@@ -73,6 +74,26 @@ function checkvalidation() {
   return obj.value.length == 0;
 }
 
+/*Check the file extension of the image & Update preview*/
+///////////////////////need for validation
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+  let allowedExtensions =
+    /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("prevImage").src = e.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "";
+  } else {
+    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    
+  }
+}
+
+
 /*Check whether there is any changes that might be lost*/
 function cancelCreate(){
   // cancelButton.addEventListener('click', () => {
@@ -140,3 +161,21 @@ function cancelUpdate(){
   function closeModal(modalId) {
     $(modalId).modal('hide');
   }
+
+
+//   img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//   let allowedExtensions =
+//     /(\.png|\.jpg|\.jpeg)$/i;
+//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//     }
+//     reader.readAsDataURL(e.target.files[0]);
+//     choosePictureDescription.textContent = "";
+//   } else {
+//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    
+//   }
+// }

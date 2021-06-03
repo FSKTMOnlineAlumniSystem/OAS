@@ -34,12 +34,16 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
+    $allImage = $event_model->getPicture();
     if (!empty($all_activities)) {
   
       foreach ($all_activities as $activity) {
         echo "$activity[eventId] ";
         // getElementById('date')->"$activity[dateTime]";
       }
+    }
+    for ($i=0; $i< count($all_activities); $i++){
+      $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
     echo "Exception here!";
