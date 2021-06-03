@@ -9,9 +9,17 @@ if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
     // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $deleteID =  $_POST['deleteID'];
     $myJob = $myJob_model->deleteJob($deleteID);
+    $myJob_model->deleteJobImage($deleteID);
     // header('Cache-Control: no-store, no-cache, must-revalidate');
     // exit;
     $updatedJob = $myJob_model->getRow("AL-1");
+    $image = $myJob_model->getProfilePicture("AL-1");
+
+    for ($i=0; $i< count($updatedJob); $i++){
+        $updatedJob[$i]['imageId'] = $image[$i];
+    }
+
+
     // print_r($updatedJob);
     echo json_encode($updatedJob);
    

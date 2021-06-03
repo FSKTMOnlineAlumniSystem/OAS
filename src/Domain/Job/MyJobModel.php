@@ -107,6 +107,16 @@ class MyJobModel
         // return $stmt->rowCount();
     }
 
+    public function deleteJobImage($myJobId) {
+        $sql = 'DELETE FROM image WHERE imageId = :imageId';
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':imageId', $myJobId);
+
+        $stmt->execute();
+
+        // return $stmt->rowCount();
+    }
 
     public function search($searchterm,$alumniID){
         // echo($searchterm);
@@ -120,6 +130,21 @@ class MyJobModel
             return array();
         }
         return $data; 
+    }
+
+    public function getSearch($id) {
+        $stmt = $this->connection->prepare("
+            SELECT * FROM job
+            LEFT JOIN image 
+            ON job.imageId=image.imageId 
+            WHERE jobId='$id' ");
+        // $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $data = $stmt->fetch();
+
+        return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        // return $image;
+        // return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
     }
 //SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%HSBC%'
     

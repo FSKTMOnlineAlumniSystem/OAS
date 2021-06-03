@@ -20,6 +20,8 @@ $myjobid = $_GET['myjobid'];
 try {
     $myjob_model = new MyJobDetailsModel($db->getConnection());
     $myjobdetails = $myjob_model->getRow($myjobid);
+    $image = $myjob_model->getProfilePicture($myjobid);
+    $myjobdetails['imageId'] = $image[0];
     // print_r($myjobdetails);
     //   if (!empty($all_activities)) {
 

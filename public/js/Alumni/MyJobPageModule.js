@@ -168,7 +168,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </div>
               </a>
               <div class="card-footer mt-auto">
-              <small class="text-muted">Posted : ${getFormattedDate(outputList[i].postedDateTime)} </small>
+              <small class="text-muted">Last updated : ${getDifference(outputList[i].postedDateTime)} </small>
                 <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
               </div>
             </div>

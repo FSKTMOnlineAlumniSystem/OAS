@@ -12,6 +12,13 @@ $myJob_model = new  MyJobModel($db->getConnection());
     //    print_r($searchJob);
     //    echo json_encode($searchterm);
 //     $updatedJob = $myJob_model->getRow("AL-1");
+        for($i=0; $i<count($searchJob); $i++){
+            $jobID = $searchJob[$i]['jobId'];
+            $image = $myJob_model->getSearch($jobID);
+            $searchJob[$i]['imageId'] = $image;
+        }
+
+
     echo json_encode($searchJob);
 //    }
 exit;

@@ -22,6 +22,16 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     $job_model = new JobDetailsModel($db->getConnection());
     $all_activities = $job_model->getRow($id);
+    $image = $job_model->getProfilePicture($id);
+    // print_r($image);
+    // print_r($all_activities);
+
+    $all_activities['imageId'] = $image[0];
+    // print_r($all_activities);
+    // for ($i=0; $i< count($all_activities); $i++){
+    //   $all_activities[$i]['imageId'] = $image[$i];
+    // }
+    // print_r($all_activities);
     //   if (!empty($all_activities)) {
 
     // foreach ($all_activities as $activity) {

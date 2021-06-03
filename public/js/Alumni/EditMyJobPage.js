@@ -39,7 +39,7 @@ let editJobs = job_array;
     <div class="w-50 position-relative">
     <div class="picture-container">
         <div class="picture">
-            <img src="/Assets/imgs/${editJobs.imageId}" class="picture-src"
+            <img src="${editJobs.imageId}" class="picture-src"
                 id="wizardPicturePreview" title="" >
             <input type="file" id="wizard-picture" name="imageId">
         </div>
