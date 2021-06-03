@@ -12,8 +12,12 @@ if (isset($_POST['listOfDeleteAlumniId'])) {
     for($i=0; $i<$count;$i++){	
       $deleteMultipleAlumni-> deleteAlumni($alumniId[$i]);
       }
-    $all_activities = $deleteMultipleAlumni->getAll();
-    echo json_encode($all_activities);
+      $all_activities = $deleteMultipleAlumni->getAll();
+      $allImage = $deleteMultipleAlumni->getProfilePicture();
+      for ($i=0; $i< count($all_activities); $i++){
+        $all_activities[$i]['imageId'] = $allImage[$i];
+      }
+      echo json_encode($all_activities);
   }
 
   ?>

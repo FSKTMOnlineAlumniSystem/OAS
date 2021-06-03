@@ -12,6 +12,7 @@ include '../src/Domain/header.php';
 // include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/AlumniList/AlumniListModel.php';
 include '../src/Domain/Database.php';
+include '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -40,17 +41,27 @@ if(isset($_POST['update'])) {
   $department =$_POST["department"];
   $icNumber = $_POST['icNumber'];
 //   $imageId = $_POST['imageId'];
+  $imageId = $prevAlumniId;
+
   $graduated = $_POST['graduated'];
   $biography = $_POST['biography'];
   $email = $_POST['email'];
-  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email);
+  try{
+    //Upload image to database as blob
+    if($_FILES["jobImage"]['tmp_name']!=null){
+        uploadImage($db->getConnection(),$_FILES["jobImage"],$jobImage);
+    }
+    
+    
+} catch (Exception $e) {
+echo "Exception: " . $e->getMessage();
+}
+
+  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
   header("Location: alumniList");
 }
-else{     
-    echo "laji";
 
-}
-  ?>
+?>
 
 
 <head>

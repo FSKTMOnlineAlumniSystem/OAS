@@ -15,14 +15,25 @@ include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
+// try {
+//   $alumniList_model = new AlumniListModel($db->getConnection());
+//   $all_activities = $alumniList_model->getAll();
+//   if (!empty($all_activities)) {
+
+//     foreach ($all_activities as $activity) {
+//       echo "$activity[alumniId] ";
+//     }
+//   }
+// } catch (Exception $e) {
+//   echo "Exception here!";
+// }
+
 try {
   $alumniList_model = new AlumniListModel($db->getConnection());
   $all_activities = $alumniList_model->getAll();
-  if (!empty($all_activities)) {
-
-    foreach ($all_activities as $activity) {
-      echo "$activity[alumniId] ";
-    }
+  $allImage = $alumniList_model->getProfilePicture();
+  for ($i=0; $i< count($all_activities); $i++){
+    $all_activities[$i]['imageId'] = $allImage[$i];
   }
 } catch (Exception $e) {
   echo "Exception here!";

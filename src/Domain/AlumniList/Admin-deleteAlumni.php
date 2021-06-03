@@ -13,6 +13,10 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $deleteAlumni = new  DeleteAlumniModel($db->getConnection());
     $deleteTheAlumni = $deleteAlumni->deleteAlumni($deleteAlumniId);
     $all_activities = $deleteAlumni->getAll();
+    $allImage = $deleteAlumni->getProfilePicture();
+    for ($i=0; $i< count($all_activities); $i++){
+      $all_activities[$i]['imageId'] = $allImage[$i];
+    }
     echo json_encode($all_activities);
 }
 

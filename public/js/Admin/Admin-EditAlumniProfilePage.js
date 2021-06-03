@@ -2,7 +2,7 @@
 console.log('connecting');
 let alumniArray=alumni_array
 
-const imgPath = "/public/Assets/imgs/";
+// const imgPath = "/public/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
@@ -47,21 +47,21 @@ function setValid(el) {
     }
 }
 
-// img.addEventListener('change', (e) => readURL(e));
-// function readURL(e) {
-//     let allowedExtensions =
-//         /(\.png|\.jpg|\.jpeg)$/i;
-//     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-//         var reader = new FileReader();
-//         reader.onload = function (e) {
-//             wizardPicturePreview.src = e.target.result;
-//         }
-//         reader.readAsDataURL(e.target.files[0]);
-//         choosePictureDescription.textContent = "Choose picture";
-//     } else {
-//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-//     }
-// }
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+    let allowedExtensions =
+        /(\.png|\.jpg|\.jpeg)$/i;
+    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            wizardPicturePreview.src = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+        choosePictureDescription.textContent = "Choose picture";
+    } else {
+        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    }
+}
 
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
@@ -142,7 +142,7 @@ let errorExist = false; //false if no error exists in alumni details
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
     if (
-        // wizardPicturePreview.src.includes(imgPath + alumni.imageId) &&
+        wizardPicturePreview.src.includes(alumni.imageId) &&
         alumni.email == email.value &&
         // alumni.contactNumber == contactNumber.value &&
         alumni.biography == biography.value &&

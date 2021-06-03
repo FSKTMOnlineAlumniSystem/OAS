@@ -100,7 +100,7 @@ alumniArray.forEach((alumni, index) => {
   // avatar column
   td = document.createElement('td');
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${'/public/Assets/imgs/' + alumni.imageId}>
+    <img class='table__td--height' src=${alumni.imageId}>
   </div>`
   td.setAttribute('width', '140px')
   tr.appendChild(td);
@@ -157,7 +157,7 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
     localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
-    $("#image").attr('src', "/public/Assets/imgs/" + alumniArray[e.target.id].imageId)
+    $("#image").attr('src', alumniArray[e.target.id].imageId)
     $("#name").text(alumniArray[e.target.id].name);
     $("#gender").text(alumniArray[e.target.id].gender);
     $("#graduated").text(alumniArray[e.target.id].graduated);

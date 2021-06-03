@@ -26,6 +26,23 @@ class AlumniListModel
             throw $exception;
         }
     }
+
+    public function getProfilePicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId WHERE isActive=1');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
 }
 
 class DeleteAlumniModel
@@ -53,6 +70,24 @@ class DeleteAlumniModel
             throw $exception;
         }
     }
+
+    public function getProfilePicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId WHERE isActive=1');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
+
     public function deleteAlumni($alumniId) {
             try{
              $sql = "UPDATE alumni SET isActive = 0 WHERE alumniId=?";
@@ -90,6 +125,23 @@ class UpdateALumniModel
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
+    }
+
+    public function getProfilePicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId WHERE isActive=1');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
     }
     
     public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email) {
