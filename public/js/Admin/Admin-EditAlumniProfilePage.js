@@ -1,6 +1,7 @@
 
 console.log('connecting');
 let alumniArray=alumni_array
+console.log(alumniArray);
 
 // const imgPath = "/public/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
@@ -31,7 +32,7 @@ document.getElementById('graduated').value=alumniArray[i].graduated
 document.getElementById('department').value=alumniArray[i].department
 document.getElementById('email').value=alumniArray[i].email
 document.getElementById('biography').value=alumniArray[i].biography
-document.getElementById('wizard-picture').value=alumniArray[i].imageId
+wizardPicturePreview.src = alumniArray[i].imageId;
 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
@@ -48,8 +49,7 @@ function setValid(el) {
     }
 }
 
-img.addEventListener('change', (e) => readURL(e));
-function readURL(e) {
+img.addEventListener('change', (e) => {
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
@@ -63,6 +63,7 @@ function readURL(e) {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
 }
+)
 
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {

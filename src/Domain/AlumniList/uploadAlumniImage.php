@@ -1,5 +1,6 @@
 <?php
 
+
 // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 // $connection = $db->getConnection();
 

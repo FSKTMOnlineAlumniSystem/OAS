@@ -17,47 +17,43 @@ include '../src/Domain/AlumniList/uploadAlumniImage.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-  $alumniList_model = new AlumniListModel($db->getConnection());
-  $all_activities = $alumniList_model->getAll();
-  if (!empty($all_activities)) {
-
-    foreach ($all_activities as $activity) {
-      echo "$activity[alumniId] ";
+    $alumniList_model = new AlumniListModel($db->getConnection());
+    $all_activities = $alumniList_model->getAll();
+    $allImage = $alumniList_model->getProfilePicture();
+    for ($i=0; $i< count($all_activities); $i++){
+      $all_activities[$i]['imageId'] = $allImage[$i];
     }
+  } catch (Exception $e) {
+    echo "Exception here!";
   }
-} catch (Exception $e) {
-  echo "Exception here!";
-}
 
 ?>
 
 <?php
-// $prevAlumniId=$_GET['alumniId'];
-// if(isset($_POST['update'])) {
-//   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
-//   // $data = $addJob_model->getMaxId();
-//   $name = $_POST['name'];
-//   $gender =$_POST["gender"];
-//   $department =$_POST["department"];
-//   $icNumber = $_POST['icNumber'];
-// //   $imageId = $_POST['imageId'];
-//   $imageId = $prevAlumniId;
-//   $graduated = $_POST['graduated'];
-//   $biography = $_POST['biography'];
-//   $email = $_POST['email'];
-//   try{
-//     //Upload image to database as blob
-//     if($_FILES["image"]['tmp_name']!=null){
-//         uploadImage($db->getConnection(),$_FILES["image"],$imageId);
-//     }
-    
-// } catch (Exception $e) {
-// echo "Exception: " . $e->getMessage();
-// }
-
-//   $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
-//   header("Location: alumniList");
-// }
+$prevAlumniId=$_GET['alumniId'];
+if(isset($_POST['update'])) {
+  $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
+  // $data = $addJob_model->getMaxId();
+  $name = $_POST['name'];
+  $gender =$_POST["gender"];
+  $department =$_POST["department"];
+  $icNumber = $_POST['icNumber'];
+//   $imageId = $_POST['imageId'];
+  $imageId = $prevAlumniId;
+  $graduated = $_POST['graduated'];
+  $biography = $_POST['biography'];
+  $email = $_POST['email'];
+  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
+  header("Location: alumniList");
+  try{
+    //Upload image to database as blob
+    if($_FILES["image"]['tmp_name']!=null){
+        uploadImage($db->getConnection(),$_FILES["image"],$imageId);
+    }
+} catch (Exception $e) {
+echo "Exception: " . $e->getMessage();
+}
+}
 
 ?>
 
@@ -89,16 +85,16 @@ try {
                 <div class="row mx-0">
                     <h2>Edit Alumni Profile</h2>
                 </div>
-                <form id="editMyProfileForm" method="post">
+                <form id="editMyProfileForm" method="post" enctype="multipart/form-data">
                     <div class="row mt-3 mb-3 align-items-center">
                         <!-- change alumni photo -->
                         <div class="col-sm-5 d-flex align-items-center justify-content-center">
                             <div class="w-50 position-relative">
                                 <div class="picture-container">
                                     <div class="picture">
-                                        <img src="../../../Assets/imgs/Square_DrTey.jpg" class="picture-src"
+                                        <img src="../uploads/alumni/AL-1.png" class="picture-src"
                                             id="wizardPicturePreview" title="">
-                                        <input type="file" id="wizard-picture" name="image" onchange="readURL(this)">
+                                        <input type="file" id="wizard-picture" name="image">
                                     </div>
                                     <h6 id="choosePictureDescription">Choose Picture</h6>
                                 </div>

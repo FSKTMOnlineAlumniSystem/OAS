@@ -1,6 +1,7 @@
 // import { dummyResponse, updateDummyData } from "../dummydata.js";
 console.log('connect');
 let alumniArray=alumni_array
+console.log(alumniArray);
 // let pageIndex = 0;
 // const loadAlumniList = (pageIndex) => {
 //   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
