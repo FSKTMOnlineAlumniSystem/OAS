@@ -144,11 +144,11 @@ class UpdateALumniModel
         return $image;
     }
     
-    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email) {
+    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId) {
             try{
-             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=? WHERE alumniId=?";
+             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=? imageId=? WHERE alumniId=?";
              $stmt = $this->connection->prepare($sql); 
-             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$email,$biography,$prevAlumniId]);
+             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$email,$biography,$imageId,$prevAlumniId]);
             }catch (PDOException $exception) {
                 error_log('UpdateAlumniModel: construct: ' . $exception->getMessage());
                 throw $exception;

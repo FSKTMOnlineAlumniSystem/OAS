@@ -31,6 +31,7 @@ document.getElementById('graduated').value=alumniArray[i].graduated
 document.getElementById('department').value=alumniArray[i].department
 document.getElementById('email').value=alumniArray[i].email
 document.getElementById('biography').value=alumniArray[i].biography
+document.getElementById('wizard-picture').value=alumniArray[i].imageId
 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {

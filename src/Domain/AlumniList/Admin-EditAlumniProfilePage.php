@@ -12,7 +12,7 @@ include '../src/Domain/header.php';
 // include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/AlumniList/AlumniListModel.php';
 include '../src/Domain/Database.php';
-include '../src/utilities/uploadImage.php';
+include '../src/Domain/AlumniList/uploadAlumniImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -32,34 +32,32 @@ try {
 ?>
 
 <?php
-$prevAlumniId=$_GET['alumniId'];
-if(isset($_POST['update'])) {
-  $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
-  // $data = $addJob_model->getMaxId();
-  $name = $_POST['name'];
-  $gender =$_POST["gender"];
-  $department =$_POST["department"];
-  $icNumber = $_POST['icNumber'];
-//   $imageId = $_POST['imageId'];
-  $imageId = $prevAlumniId;
-
-  $graduated = $_POST['graduated'];
-  $biography = $_POST['biography'];
-  $email = $_POST['email'];
-  try{
-    //Upload image to database as blob
-    if($_FILES["jobImage"]['tmp_name']!=null){
-        uploadImage($db->getConnection(),$_FILES["jobImage"],$jobImage);
-    }
+// $prevAlumniId=$_GET['alumniId'];
+// if(isset($_POST['update'])) {
+//   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
+//   // $data = $addJob_model->getMaxId();
+//   $name = $_POST['name'];
+//   $gender =$_POST["gender"];
+//   $department =$_POST["department"];
+//   $icNumber = $_POST['icNumber'];
+// //   $imageId = $_POST['imageId'];
+//   $imageId = $prevAlumniId;
+//   $graduated = $_POST['graduated'];
+//   $biography = $_POST['biography'];
+//   $email = $_POST['email'];
+//   try{
+//     //Upload image to database as blob
+//     if($_FILES["image"]['tmp_name']!=null){
+//         uploadImage($db->getConnection(),$_FILES["image"],$imageId);
+//     }
     
-    
-} catch (Exception $e) {
-echo "Exception: " . $e->getMessage();
-}
+// } catch (Exception $e) {
+// echo "Exception: " . $e->getMessage();
+// }
 
-  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
-  header("Location: alumniList");
-}
+//   $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
+//   header("Location: alumniList");
+// }
 
 ?>
 
