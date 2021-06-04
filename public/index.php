@@ -34,7 +34,7 @@ elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/addjob\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Job/AddJobPage.php';
-
+}
 //admin-event
 elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
@@ -96,7 +96,7 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
 
 //API
 //MyProfile
-}elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/EditMyProfileController.php';
 }

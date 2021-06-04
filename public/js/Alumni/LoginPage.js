@@ -115,16 +115,16 @@ form_2.addEventListener('submit', (evt) => {
         //     setErrorFor(staticEmail);
         //     setErrorFor(inputPassword);
         // }
-    }
+    // }
 
-    if (errorExist) {
-        ev.preventDefault();
-    }
-    else {
+    // if (errorExist) {
+    //     ev.preventDefault();
+    // }
+    // else {
         // ev.preventDefault();
         // jumpHome();
-    }
-});
+//     }
+// });
 
 
 //go to homePage
