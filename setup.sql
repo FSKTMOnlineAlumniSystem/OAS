@@ -7,7 +7,7 @@ CREATE TABLE Image(
 imageId varchar(10) NOT NULL PRIMARY KEY,
 type varchar(11),
     	imageData longblob NOT NULL
-)
+);
 
 CREATE TABLE Admin(
     adminId varchar(10) NOT NULL PRIMARY KEY,
@@ -76,7 +76,7 @@ VALUES (
     'xingyee@gmail.com',
     '12345',
     'Ong Xing Yee',
-    'AD-1.jpg'
+    'AD-1'
   );
 INSERT INTO Admin(
     adminId,
@@ -90,7 +90,7 @@ VALUES (
     'zhaleha5@gmail.com',
     'G3U.XF@kPZb3-^_:',
     'Zhaleha',
-    'AD-2.jpg'
+    'AD-2'
   );
 INSERT INTO Admin(
     adminId,
@@ -104,7 +104,7 @@ VALUES (
     'lbooang@gmail.com',
     'xhspyz@mg6lp',
     'Ang Loon Boo',
-    'AD-3.jpg'
+    'AD-3'
   );
 INSERT INTO Admin(
     adminId,
@@ -118,7 +118,7 @@ VALUES (
     'd@gmail.com',
     '45o51mva9xi',
     'Sivakami a/p Devansh',
-    'AD-4.jpg'
+    'AD-4'
   );
 INSERT INTO Admin(
     adminId,
@@ -132,7 +132,7 @@ VALUES (
     '@gmail.com',
     'nkd231u22!3%b_',
     'Siti Nur Harizah binti Ahman',
-    'AD-5.jpg'
+    'AD-5'
   );
 INSERT INTO Job(
     jobId,
@@ -155,7 +155,7 @@ programming languages such as Python, Java, and C++",
     '3000',
     'teh@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'J-1.jpg',
+    'J-1',
     'HSBC',
     'Kuala Lumpur'
   );
@@ -181,7 +181,7 @@ Understand server-side CSS.",
     '2000',
     'ang@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'J-2.jpg',
+    'J-2',
     'Samsung',
     'Petaling Jaya'
   );
@@ -206,7 +206,7 @@ Familiar with the database, Server and API',
     '3000',
     'lan@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'J-3.png',
+    'J-3',
     'Apple',
     'Johor Bharu'
   );
@@ -230,7 +230,7 @@ VALUES (
     '2500',
     'behjiaong@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'J-4.jpg',
+    'J-4',
     'Google',
     'Kuala Lumpur'
   );
@@ -255,7 +255,7 @@ Good analytics skills',
     '4000',
     'keat@gmail.com',
     '2021-04-04T15:53:53+00:00',
-    'J-5.png',
+    'J-5',
     'Top Glove',
     'Shah Alam'
   );
@@ -280,7 +280,7 @@ Master Structured Query Language and Python.',
     '3000',
     'ang@gmail.com',
     '2021-04-05T15:53:53+00:00',
-    'J-6.jpg',
+    'J-6',
     'HSBC',
     'Kuala Lumpur'
   );
@@ -306,7 +306,7 @@ Excellent communication skills, oral and written',
     '2000',
     'tan@gmail.com',
     '2021-04-05T15:53:53+00:00',
-    'J-7.jpg',
+    'J-7',
     'Samsung',
     'Petaling Jaya'
   );
@@ -332,7 +332,7 @@ Have good problem-solving skills in a fast-paced environment. ',
     '3000',
     'limxt@gmail.com',
     '2021-04-05T15:53:53+00:00',
-    'J-8.png',
+    'J-8',
     'Apple',
     'Johor Bharu'
   );
@@ -360,7 +360,7 @@ At least intermediate level of written and spoken English",
     '4000',
     'alisa21@gmail.com',
     '2021-04-05T15:53:53+00:00',
-    'J-9.jpg',
+    'J-9',
     'Google',
     'Kuala Lumpur'
   );
@@ -387,7 +387,7 @@ Experience with Java will be a plus",
     '3400',
     'rohana@um.edu.my',
     '2021-04-05T15:53:53+00:00',
-    'J-10.png',
+    'J-10',
     'Top Glove',
     'Shah Alam'
   );
@@ -408,7 +408,7 @@ VALUES (
     'Constraint programming (CP) is a paradigm for solving combinatorial problems that draws on a wide range of techniques from artificial intelligence, computer science, and operations research. In constraint programming, users declaratively state the constraints on the feasible solutions for a set of decision variables.
 
 Through this workshop, you will learn basic search, variable and value choices, and how propagation and search can be combined in a seamless and efficient manner.',
-    'E-1.png',
+    'E-1',
     'FSKTM, MM2'
   );
 INSERT INTO Events(
@@ -428,7 +428,7 @@ VALUES (
     "Database administrators (DBAs) work with technology, using specialized types of software to store and organize a company's data. This could include a variety of information, from confidential financial numbers, to payroll data, to customer shipping records.
 
 Database Admin Career will tell you the job scope as a Database Administrator in details!",
-    'E-2.png',
+    'E-2',
     'FSKTM, MM3'
   );
 INSERT INTO Events(
@@ -448,7 +448,7 @@ VALUES (
     'Cognitive science is the interdisciplinary, scientific study of the mind and its processes. It examines the nature, the tasks, and the functions of cognition (in a broad sense).
 
 It will be very fun to study intelligence and behavior with a focus on how nervous systems represent, process, and transform information.',
-    'E-3.png',
+    'E-3',
     'FSKTM, MM4'
   );
 INSERT INTO Events(
@@ -466,7 +466,7 @@ VALUES (
     'Boom Boom Bootstrap',
     '2021-04-01T15:53:53+00:00',
     "Quizzes & Projects and Exclusive Content for you! Practice and discover more Bootstrap function in our workshop! Enroll Today! It's Never Too Late to Learn a New Skill! ",
-    'E-4.png',
+    'E-4',
     'FSKTM, MM5'
   );
 INSERT INTO Events(
@@ -486,7 +486,7 @@ VALUES (
     'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.
 
 Wait no more and join React to React now!!!',
-    'E-5.png',
+    'E-5',
     'FSKTM, MM6'
   );
 INSERT INTO Events(
@@ -506,7 +506,7 @@ VALUES (
     'Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.
 
 -- We are sure that you will gain a lot by joining our workshop!',
-    'E-6.png',
+    'E-6',
     'FSKTM, MM7'
   );
 INSERT INTO Alumni_Event(
@@ -617,7 +617,7 @@ VALUES (
     'Tey Kok Soon',
     'Artificial Intelligence',
     '2003',
-    'AL-1.png',
+    'AL-1',
     1,
     'Tey is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
@@ -645,7 +645,7 @@ VALUES (
     'Ang Tan Fong',
     'Artificial Intelligence',
     '2006',
-    'AL-2.png',
+    'AL-2',
     1,
     'Ang is currently working at Sony, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
@@ -673,7 +673,7 @@ VALUES (
     'Lan Li Hong',
     'Artificial Intelligence',
     '2015',
-    'AL-3.jpeg',
+    'AL-3',
     1,
     'Lan Li Hong is currently working at HCL Technologies Malaysia Sdn. Bhd. as a Data Scientist'
   );
@@ -701,7 +701,7 @@ VALUES (
     'Beh Jia Ong',
     'Artificial Intelligence',
     '2018',
-    'AL-4.jpg',
+    'AL-4',
     1,
     'Beh Jia Ong is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a Machine Learning Engineer.'
   );
@@ -729,7 +729,7 @@ VALUES (
     'Ong Huat Keat',
     'Software Engineering',
     '2003',
-    'AL-5.jpg',
+    'AL-5',
     1,
     'Ong Huat Keat is currently working atNimble AppGenie as a Applications developer.'
   );
@@ -757,7 +757,7 @@ VALUES (
     'Rachel Lee Yin',
     'Software Engineering',
     '2008',
-    'AL-6.png',
+    'AL-6',
     1,
     'Rachel Lee Yin is currently working at EDUSPEC Holdings BERHAD as a full stack lead developer.'
   );
@@ -785,7 +785,7 @@ VALUES (
     'Tan Yan Win',
     'Software Engineering',
     '2017',
-    'AL-7.jpg',
+    'AL-7',
     0,
     'Tan Yan Win is currently working at Apple Incorporated (AAPL) as a full stack lead developer.'
   );
@@ -813,7 +813,7 @@ VALUES (
     'Lim Xin Tong',
     'Software Engineering',
     '2019',
-    'AL-8.jpg',
+    'AL-8',
     0,
     'Lim Xin Tong is currently working at GoodCore Software as a Cyber security analyst.'
   );
@@ -841,7 +841,7 @@ VALUES (
     'Alisa Mok Lian',
     'Multimedia',
     '2016',
-    'AL-9.jpg',
+    'AL-9',
     0,
     'Alisa Mok Lian is currently working at Datasonic Group Berhad as a multimedia designer.'
   );
@@ -869,7 +869,7 @@ VALUES (
     'Rohana binti Jani',
     'Multimedia',
     '2019',
-    'AL-10.jpg',
+    'AL-10',
     0,
     'Rohana binti Jani is currently working at ELSOFT Research Berhad as graphic designer.'
   );
@@ -897,7 +897,7 @@ VALUES (
     'Juliana binti Othman',
     'Information System',
     '2008',
-    'AL-11.jpg',
+    'AL-11',
     0,
     'Juliana binti Othman is currently working at Samsung electronics as a Information Systems Manager.'
   );
@@ -925,7 +925,7 @@ VALUES (
     'Beh Yun Lian',
     'Information System',
     '2015',
-    'AL-12.jpg',
+    'AL-12',
     0,
     'Beh Yun Lian is currently working at Nielson as a Computer Systems Analyst'
   );
