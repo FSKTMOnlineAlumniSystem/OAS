@@ -1,60 +1,84 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+include '../src/Domain/Database.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+$conn = $db->getConnection();
 
 if(isset($_POST["submit"])){
 
     $email = $_POST["email"];
 
-    require_once '../../../libs/PHPMailer/src/PHPMailer.php';
-    require_once '../../../libs/PHPMailer/src/SMTP.php';
-    require_once '../../../libs/PHPMailer/src/Exception.php';
+    require_once '../libs/PHPMailer/src/PHPMailer.php';
+    require_once '../libs/PHPMailer/src/SMTP.php';
+    require_once '../libs/PHPMailer/src/Exception.php';
+
+    if(emailExists($conn,$email) == false){
+        header("location: /login?fgemailnotExists");
+        exit();
+    }else{
+
+        $newPassword = randomPassword();
+        echo $newPassword;
+
+        $mail = new PHPMailer();
+
+        //smtp settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'webprog707@gmail.com';
+        $mail->Password = '123wif2003';
+        $mail->Port = 465;
+        $mail->SMTPSecure = 'ssl';
 
 
-    $newPassword = randomPassword();
-    echo $newPassword;
+        //email settings
+        $mail->isHTML(true);
+        $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
+        $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
+        $mail->AddAddress($email);
+        $mail->Subject = 'Change Password';
+        $content = str_replace(
+            array('%password%', '%to%'),
+            array($newPassword,    $email),
+            file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html')
+        );
+        $mail->msgHTML(file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html'), __DIR__);
+        $mail->msgHTML($content, dirname(__FILE__));
+        $mail->AltBody = 'A test email $newPassword';
 
+        // $mail->send();
 
-$mail = new PHPMailer();
+        if ($mail->send()) {
+            $status = 'success';
+            $response = 'Email is sent!';
+            header("location: /login");
+            exit();
+        }else{
+            $status = 'failed';
+            $response = 'error==='. $mail->ErrorInfo;
+        }
 
-//smtp settings
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
-$mail->SMTPAuth = true;
-$mail->Username = 'webprog707@gmail.com';
-$mail->Password = '123wif2003';
-$mail->Port = 465;
-$mail->SMTPSecure = 'ssl';
+        exit(json_encode(array("status" => $status,"response" => $response)));
 
-
-//email settings
-$mail->isHTML(true);
-$mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
-$mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
-$mail->AddAddress($email);
-$mail->Subject = 'Change Password';
-$content = str_replace(
-    array('%password%', '%to%'),
-    array($newPassword,    $email),
-    file_get_contents('ForgotPasswordEmail.html')
-);
-$mail->msgHTML(file_get_contents('./ForgotPasswordEmail.html'), __DIR__);
-$mail->msgHTML($content, dirname(__FILE__));
-$mail->AltBody = 'A test email $newPassword';
-
-// $mail->send();
-
-if ($mail->send()) {
-    $status = 'success';
-    $response = 'Email is sent!';
-}else{
-    $status = 'failed';
-    $response = 'error==='. $mail->ErrorInfo;
+    }
 }
 
-exit(json_encode(array("status" => $status,"response" => $response)));
+function emailExists($conn,$email){
 
-
+    $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
+    $stmt->execute(array($email));
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($row['email'] === $email) {
+            //email exists
+            return $row;
+        }
+    }
+        //email not Exists
+        return false;
 }
 
 function randomPassword() {

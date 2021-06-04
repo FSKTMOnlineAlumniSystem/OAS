@@ -1,11 +1,11 @@
 <?php
 
-include '../../../config/config.php';
-include '../Database.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/LoginPage/class.verifyEmail.php';
+include '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
-
 
 
 if(isset($_POST["submit"])){
@@ -24,21 +24,37 @@ if(isset($_POST["submit"])){
     $imageId = "";
     $isEmailPublic = "";
     $biography = "";
+    $pic = "profilePicture";
 
-// require_once './LoginPageModel.php';
+   
+    
+    
+    $verify = verify($email);
+    if($verify){
+        insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
+    }else{
+        header("location: /login?emailFake");
+        exit();
+    }
+    
+    // insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
 
-insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
-
-// header("location: LoginPage.php");
-exit();
+    // header("location: LoginPage.php");
+    exit();
 
 }else{
-    header("location: ../LoginPage.php?error=submitfailed");
+    header("location: /login?error=submitfailed");
 }
 
 
 function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography){
     $stmt = $conn->prepare("INSERT INTO alumni (alumniId, approvedBy, email, password, icNumber, gender, name, department, graduated, imageId, isEmailPublic, biography) VALUES(:alumniId, :approvedBy, :email, :password, :icNumber, :gender, :name, :department, :graduated, :imageId, :isEmailPublic, :biography)");
+
+    $checkEmail = emailExists($conn,$email);
+    if ($checkEmail) {
+        header("location: /login?emailExists");
+        exit();
+    }
 
     $alumniId = "AL-" . getLength($conn)+1 ;
     $stmt->bindParam(":alumniId", $alumniId);
@@ -46,11 +62,9 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $stmt->bindParam(":approvedBy", $approvedBy);
     $stmt->bindParam(":email", $email);
 
-    $checkEmail = emailExists($conn,$email);
-    if ($checkEmail) {
-        header("location: ./LoginPage.php?emailExists");
-        exit();
-    }
+    
+
+
     // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
     // $stmt->bindParam(":password", $hashedPassword);
     
@@ -66,7 +80,20 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $stmt->bindParam(":biography", $biography);
     $stmt->execute();
 
-    header("location: ./LoginPage.php?signup=true");
+    try {
+        //Upload image to database as blob
+        if($_FILES["profilePicture"]['tmp_name']!=null){
+            // echo $_FILES[$pic]['tmp_name'];
+            uploadImage($conn,$_FILES["profilePicture"],$alumniId);
+            
+        }
+        // $alumni = new MyProfile($db->getConnection(), $alumniId);
+        // $alumni->setUpdatedData($email, $biography);
+    } catch (Exception $e) {
+        echo "Exception: " . $e->getMessage();
+    }
+
+    header("location: /login?signup=true");
     exit();
 
 }
@@ -91,5 +118,22 @@ function emailExists($conn,$email){
     }
         //email not Exists
         return false;
+}
+
+function verify($email){
+    $verifyE = new verifyEmail();
+    $verifyE->setStreamTimeoutWait(20);
+    $verifyE->Debug= TRUE;
+    $verifyE->Debugoutput= 'html';
+
+    $verifyE->setEmailFrom('webprog707@gmail.com');
+
+    if ($verifyE->check($email)) {
+        return true;
+        // echo '<h1>email &lt;' . $email . '&gt; exist!</h1>';
+    }else {
+        return false;
+        // echo '<h1>email &lt;' . $email . '&gt; not valid and not exist!</h1>';
+    }
 }
 

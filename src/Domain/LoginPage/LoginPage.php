@@ -58,7 +58,7 @@
                     <img src="../../../Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
                     </h3>
-                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='./signin_inc.php' id="signIN" method="post">
+                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
                         <div class="form-label-group w-100">
                             <!-- <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="bottom-right">
-                        <a href="../../html/Admin/Admin-LoginPage.html">I am Admin</a>
+                        <a href="/admin-loginPage">I am Admin</a>
                     </div>
                 </div>
             </div>
@@ -150,11 +150,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Forgot Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick='$("#forgot").modal("hide")'>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form_2" action="./forgotPassword.php" method="post">
+                <form id="form_2" action=".=/api/forgot" method="post">
                     <div class="modal-body">
                         <span>When you fill in your registered email address,
                             you will be sent instructions on how to reset your password.</span>
@@ -162,8 +162,21 @@
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" name="email" class="form-control" id="sendEmail">
-                                <div class="invalid-feedback">Please provide a valid email.</div>
+                                <!-- <input type="text" name="email" class="form-control" id="sendEmail">
+                                <div class="invalid-feedback">Please provide a valid email.</div> -->
+                                <?php
+                                if (isset($_GET["fgemailnotExists"])){
+                                    echo'
+                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail">
+                                    <div class="invalid-feedback">Please provide a valid email.</div>
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="text" name="email" class="form-control" id="sendEmail">
+                                    <div class="invalid-feedback">Please provide a valid email.</div>
+                                    ';
+                                }
+                            ?>
                             </div>
                         </div>
                     </div>
@@ -189,7 +202,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="signup_inc.php" id="form" method="post">
+                <form action="/api/signup" id="form" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3 row">
                             <label for="profilePic" class="col-sm-3 col-form-label ml-1">Profile picture:</label>
@@ -199,7 +212,7 @@
                                         <div class="picture">
                                             <img src="/public/Assets/imgs/add_image.jpg" class="picture-src m-auto"
                                                 id="wizardPicturePreview" title="">
-                                            <input type="file" id="wizard-picture" name="profilePic">
+                                            <input type="file" id="wizard-picture" name="profilePicture">
                                         </div>
                                         <!-- <h6 id="choosePictureDescription">Choose Picture</h6> -->
                                         <h6 id="choosePictureDescription"></h6>
@@ -286,7 +299,18 @@
                                             });
                                     </script>
                                     ';
-                                    }else{
+                                    }else if (isset($_GET["emailFake"])){
+                                    echo '
+                                    <input type="text" name="email" class="form-control is-invalid" id="Email">
+                                    <small class="invalid-feedback">Email is not exists in real life.</small>
+                                    <script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $("#signUP").modal("show");
+                                            });
+                                    </script>
+                                    ';
+                                    }
+                                    else{
                                     echo '
                                     <input type="text" name="email" class="form-control" id="Email">
                                     <small class="invalid-feedback">Please provide a valid Email.</small>
@@ -341,17 +365,7 @@
         </div>
     </div>
 
-    <?php
-        if (isset($_GET["emailExists"])){
-            echo '
-            <script type="text/javascript">
-                    $(document).ready(function(){
-                        $("#signUP").modal("show");
-                    });
-            </script>
-            ';
-        }
-    ?>
+    
 
 
 
@@ -414,6 +428,39 @@ function emailName(){
     return staticEmail;
 }
 </script>
+
+<?php
+        if (isset($_GET["emailExists"])){
+            echo '
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#signUP").modal("show");
+                    });
+            </script>
+            ';
+        }else if(isset($_GET["emailFake"])){
+            echo '
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#signUP").modal("show");
+                    });
+            </script>
+            ';
+        }
+    ?>
+
+<?php
+
+    if (isset($_GET["fgemailnotExists"])) {
+        echo'
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#forgot").modal("show");
+            });
+        </script>
+        ';
+    }
+?>
 
 <script type="module" src="/public/js/Alumni/LoginPage.js"></script>
 
