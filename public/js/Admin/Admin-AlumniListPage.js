@@ -1,7 +1,5 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
-console.log('connect');
-let alumniArray=alumni_array
-console.log(alumniArray);
+import { dummyResponse, updateDummyData } from "../dummydata.js";
+
 // let pageIndex = 0;
 // const loadAlumniList = (pageIndex) => {
 //   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
@@ -9,11 +7,11 @@ console.log(alumniArray);
 //   let alumniStartIndex = pageIndex * 10;
 //   let alumniEndIndex = alumniStartIndex + 10;
 
-//   var dataLength = alumniArray.length;
+//   var dataLength = dummyResponse.Alumni.length;
 //   var remainingLength = dataLength - alumniStartIndex;
 
 //   /*   js for button*/
-//   if (alumniEndIndex >= alumniArray.length) {
+//   if (alumniEndIndex >= dummyResponse.Alumni.length) {
 //     document.getElementById("nextPage").innerHTML = `
 //         <li class="page-item disabled">
 //         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
@@ -75,10 +73,10 @@ console.log(alumniArray);
 //   loadAlumniList(pageIndex);
 // };
 // add alumni list
-const reload = (alumniArray) => {
+const reload = (pageIndex) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
-alumniArray.forEach((alumni, index) => {
+dummyResponse.Alumni.forEach((alumni, index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -101,7 +99,7 @@ alumniArray.forEach((alumni, index) => {
   // avatar column
   td = document.createElement('td');
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${alumni.imageId}>
+    <img class='table__td--height' src=${'/Assets/imgs/' + alumni.imageId}>
   </div>`
   td.setAttribute('width', '140px')
   tr.appendChild(td);
@@ -145,11 +143,12 @@ alumniArray.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="deleteByJquery(this)">
+  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="DeleteRowFunction(this)">
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
   td.appendChild(a);
   tr.appendChild(td);
+
   tbody.appendChild(tr);
 });
 
@@ -157,53 +156,35 @@ alumniArray.forEach((alumni, index) => {
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
     localStorage.setItem('updateId', e.target.id);
-    localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
-    $("#image").attr('src', alumniArray[e.target.id].imageId)
-    $("#name").text(alumniArray[e.target.id].name);
-    $("#gender").text(alumniArray[e.target.id].gender);
-    $("#graduated").text(alumniArray[e.target.id].graduated);
-    $("#department1").text(alumniArray[e.target.id].department);
-    $("#email").text(alumniArray[e.target.id].email);
-    $("#contactNumber").text(alumniArray[e.target.id].contactNumber);
-    $("#icNumber").text(alumniArray[e.target.id].icNumber);
+    $("#image").attr('src', "/Assets/imgs/" + dummyResponse.Alumni[e.target.id].imageId)
+    $("#name").text(dummyResponse.Alumni[e.target.id].name);
+    $("#gender").text(dummyResponse.Alumni[e.target.id].gender);
+    $("#graduated").text(dummyResponse.Alumni[e.target.id].graduated);
+    $("#department1").text(dummyResponse.Alumni[e.target.id].department);
+    $("#email").text(dummyResponse.Alumni[e.target.id].email);
+    $("#contactNumber").text(dummyResponse.Alumni[e.target.id].contactNumber);
+    $("#icNumber").text(dummyResponse.Alumni[e.target.id].icNumber);
     $("#update").attr("id", "update " + e.target.id);
-    if (alumniArray[e.target.id].approvedBy === "") {
+    if (dummyResponse.Alumni[e.target.id].approvedBy === "") {
       $("#accStatus").text("Not Verified");
     } else {
       $("#accStatus").text("Verified");
     }
-    if (alumniArray[e.target.id].approvedBy !== "") {
-      document.getElementById("approve").disabled = true;
-    }else{
-      document.getElementById("approve").disabled = false;
-    }
     $("#approve").click(function () {
-      if (alumniArray[e.target.id].approvedBy == "") {
-        alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+      if (dummyResponse.Alumni[e.target.id].approvedBy !== "") {
+      }
+      else {
+        dummyResponse.Alumni[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+        updateDummyData(dummyResponse);
+        reload();
       }
     })
     $('#exampleModal').modal("show");
-  }
-  )
+  })
 })
 }
-reload(alumniArray);
-window.approve = function(){
-  $('#exampleModal').modal("show");
-$.ajax({
-  type: "POST",
-  url: 'approveAlumni',
-  data: {alumniId: localStorage.getItem("alumniId"),signedInAdminId:localStorage.getItem("SignedInAdminId") },
-  success:  function(data)
-  { 
-    var outputList = JSON.parse(data);
-    alumniArray = outputList;
-    console.log(outputList);
-    reload(outputList);
-    $('#exampleModal').modal("hide");
-  }
-});
-}
+reload();
+
 //search bar filter
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
@@ -230,42 +211,20 @@ searchBar.addEventListener('click', (e) => {
     }
   } e.preventDefault();
 });
-
-window.getAlumniId = function(){
-  return localStorage.getItem("alumniId");
-}
-
 //select all check box
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i] != source)
       checkboxes[i].checked = source.checked;
   }
 }
-
-
-window.deleteByJquery= function (o){
-  event.preventDefault();
-  var findId = o.id.split(" ");
-  console.log(findId);
-  var $deleteAlumniId=alumniArray[findId].alumniId;
-  console.log($deleteAlumniId);
-
-$.ajax({
-                    type: "POST",
-                    url: 'deleteAlumni',
-                    data: {deleteAlumniId: $deleteAlumniId},
-                    success:  function(data)
-                    { 
-                      var outputList = JSON.parse(data);
-                      alumniArray = outputList;
-                      console.log(outputList);
-                      reload(outputList);
-                    }
-        });
+//delete row by row only
+window.DeleteRowFunction = function (o) {
+  dummyResponse.Alumni.splice(o.id, 1)
+  updateDummyData(dummyResponse)
+  reload();
 }
-
 //filter by using dropdown
 $(document).ready(function () {
   $("#status,#department").on("change", function () {
@@ -309,45 +268,31 @@ window.SearchData = function (status, department) {
   }
 }
 
+//deleteMultipleRow
+window.deleteMultipleRow = function (tableID) {
+  var table = document.getElementById("myTable").tBodies[0];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = checkboxes.length - 1; i >= 0; i--) {
+    if (checkboxes[i].checked) {
+      table.deleteRow(i - 1);
+      dummyResponse.Alumni.splice(i - 1, 1)
+    }
+  }
+  loadAlumniList(pageIndex)
+  updateDummyData(dummyResponse)
+  reload();
+}
+
 //clearAll
-$("#clearAll").on("click", function (e) {
+$("#clearAll").on("click", function () {
   $('#department option').prop('selected', function () {
-    e.preventDefault();
     $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
   $('#status option').prop('selected', function () {
-    e.preventDefault();
     $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
 });
 
-window.deleteCheckedRow = function(){
-  event.preventDefault();
-  var count=0;
-  var $alumniId = [];
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for (var i = checkboxes.length-1; i > 0; i--) {
-      if(checkboxes[i].checked){
-        count++;
-        var alumniId= alumniArray[i-1].alumniId;
-      $alumniId.push(alumniId);
-      }
-    }
-    $alumniId=$alumniId.toString();
-    $.ajax({
-      type: "POST",
-      url: 'deleteMultipleAlumni',
-      data: {listOfDeleteAlumniId: $alumniId, count:count},
-      success:  function(data)
-      { 
-        var outputList = JSON.parse(data);
-        alumniArray = outputList;
-        console.log(outputList);
-        reload(outputList);
-        checkboxes[0].checked = false;
-      }
-    });
-    }
-      
+
