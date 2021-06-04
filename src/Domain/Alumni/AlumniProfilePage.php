@@ -1,15 +1,14 @@
 <?php
-// include '../config/config.php';
-include '../src/Domain/Database.php';
-include '../src/Domain/MyProfile/MyProfileModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
-include '../src/utilities/includeWithVariable.php';
-// include '../src/templates/header.php';
+include_once '../src/utilities/includeWithVariable.php';
+
 includeWithVariables('../src/templates/header.php', array(
   'my_css' => '/css/Alumni/MyProfilePage.css',
   'search_bar' => '/css/Alumni/SearchBar.css'
 ));
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -17,7 +16,7 @@ try {
   $link = explode('/',$_SERVER["REQUEST_URI"]);
   $id = $link[count($link)-1];
   $alumni = new MyProfile($db->getConnection(), $id);
-
+  // $_SESSION['SignInAlumniId']
   if ($id=="AL-1"){
     echo "<script> location.href='/myprofile'; </script>";
     exit;
@@ -106,28 +105,13 @@ try {
         </div>
     </div>
   </div>
-<!-- custom js files -->
-<!-- <script type="module" src="/public/js/Alumni/AlumniProfilePage.js"></script> -->
-<script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous">
-</script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-  crossorigin="anonymous">
-</script>
-<script
-  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-  crossorigin="anonymous">
-</script>
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-  crossorigin="anonymous">
-</script>
   
-<?php include '../src/templates/footer.php' ?>
+  <?php 
+    include_once '../src/templates/footer.php' ;
+    include_once '../src/templates/GeneralScripts.php';
+  ?>
+   <!-- custom js files -->
+  
+  </body>
+
+</html>

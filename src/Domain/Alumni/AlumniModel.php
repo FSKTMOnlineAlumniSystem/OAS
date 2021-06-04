@@ -10,9 +10,15 @@ class AlumniModel
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
+        $sql='
+        SELECT COUNT(*) FROM alumni 
+        WHERE isActive = 1';
+        $this->count($sql);
+    }
+
+    public function count($sql){
         try {
-            $stmt = $this->connection->prepare('SELECT COUNT(*) FROM alumni 
-            WHERE isActive = 1');
+            $stmt = $this->connection->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetch();
 
@@ -20,10 +26,9 @@ class AlumniModel
                 $this->totalNumberOfAlumni = 0;
             }
             $this->totalNumberOfAlumni = $data['COUNT(*)'];
-            return $data;
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            error_log('AlumniModel: count: ' . $exception->getMessage());
             throw $exception;
         }
     }
@@ -42,7 +47,7 @@ class AlumniModel
             $stmt->bindParam(':offset',$offset );
             $stmt->execute();
             $data = $stmt->fetchAll();
-
+            
             if (!$data) {
                 include_once '../src/Domain/General_Pages/page_not_found.php';
                 include_once '../src/templates/footer.php';
@@ -52,21 +57,53 @@ class AlumniModel
             return $data;
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            error_log('AlumniModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
     }
 
-    public function getProfilePicture()
-    {
-        return 'data::'.$this->data['type'].';base64,'.base64_encode($this->data['imageData']);
-    }
+    public function searchAlgo($searchQuery){
+        $query ='
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId
+            WHERE isActive = 1 AND
+            CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
+            LIKE \'%'.$searchQuery.'%\'
+            LIMIT 0, 10';
+        $count = '
+            SELECT COUNT(*) FROM alumni 
+            WHERE isActive = 1 AND
+            CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
+            LIKE \'%'.$searchQuery.'%\'';
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            $this->count($count);
 
+            if (!$data) {
+                echo '
+                <script>
+                    location.href = "/alumni";
+                    alert("Sorry, we cannot match any result for your search");
+                </script>';
+            }
+            $this->pageIndex=1;
+            return $data;
+
+        } catch (PDOException $exception) {
+            error_log('AlumniModel: searchAlgo: ' . $exception->getMessage());
+            throw $exception;
+        }
+
+    }
 
     public function moreContent(){
         $offset = ($this->pageIndex) * 10;
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni 
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni 
             WHERE isActive = 1
             LIMIT :offset, 10');
             $stmt->bindParam(':offset',$offset );
@@ -80,7 +117,7 @@ class AlumniModel
             }
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: moreContent: ' . $exception->getMessage());
+            error_log('AlumniModel: moreContent: ' . $exception->getMessage());
             throw $exception;
         }
 

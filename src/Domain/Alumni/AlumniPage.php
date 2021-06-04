@@ -1,33 +1,54 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/Alumni/AlumniModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Alumni/AlumniModel.php';
 
-include '../src/utilities/includeWithVariable.php';
-// include '../src/templates/header.php';
+include_once '../src/utilities/includeWithVariable.php';
+
 includeWithVariables('../src/templates/header.php', array(
   'my_css' => '/css/Alumni/AlumniPage.css',
   'search_bar' => '/css/Alumni/SearchBar.css'
 ));
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-  if($_GET==null){
-    $pageIndex=1;
-  }else{
-    $pageIndex=$_GET['page'];
-  }
   $alumnilist = new AlumniModel($db->getConnection());
-  $all_alumni = $alumnilist->getAll($pageIndex);
-  if (!empty($all_alumni)) {
-      // print_r($all_alumni);
+  $pageIndex=1;
+  if (isset($_GET['search'])){// if user searching will enter (it can be happened any of the page)
+    $all_alumni = $alumnilist->searchAlgo($_GET['search']);
+  } else {
+      if(isset($_GET['page'])){// if user is at any of the page
+        $pageIndex=$_GET['page']; // variable nav users' previous page or to other page
+      }
+  }
+ 
+  if (empty($all_alumni)) {
+    $all_alumni = $alumnilist->getAll($pageIndex);
   }
 } catch (Exception $e) {
   echo $e->getMessage();
 }
 ?>
+
+    <div class="searchBarBG">
+      <form class="search-form">
+        <div class="containerSB">
+          <div class="row no-gutters" style="white-space: nowrap">
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+            <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group">
+              <input type="search" placeholder="Search..." class="form-control" id="search" name="search"/>
+              <div class="input-group-append">
+                <button type="submit" id="search-button" class="btn btn-secondary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
     <main class="container my-5" id="main-body">
       <h1>
         Alumni -
@@ -84,21 +105,13 @@ try {
       </nav>
       <br />
     </main>
-  <?php include '../src/templates/footer.php' ?>
+  <?php 
+    include_once '../src/templates/footer.php' ;
+    include_once '../src/templates/GeneralScripts.php';
+  ?>
   <!-- custom js files -->
-  <script type="text/javascript" src="/js/addSearchBar.js"></script>
-  <script type="module" src="/js/Alumni/searchAlgo.js"></script>
-  <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous">
-  </script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous">
-  </script>
+  <scriptlocation.href=location.href= type="text/javascript" src="/js/addSearchBar.js"></scriplocation.href=location.href=location.href=>
+  <scrip type="module" src="/js/Alumni/searchAlgo.js"></scrip>
   
   </body>
 
