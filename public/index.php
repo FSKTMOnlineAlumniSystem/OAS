@@ -8,11 +8,11 @@ if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/HomePage/HomePage.php';
 
     // } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
-}elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])){
+}elseif (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])){
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
 }
-elseif (preg_match('/^\/admin-loginPage\/?/i', $_SERVER['REQUEST_URI'])){
+elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])){
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/LoginPage.php';
 }
@@ -56,7 +56,7 @@ elseif (preg_match('/^\/searchAllJob\/?/i', $_SERVER['REQUEST_URI'])) {
 
 
 //admin-event
-}elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-EventPage.php';
 
@@ -130,7 +130,7 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
 
 //API
 //MyProfile
-elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+}elseif (preg_match('/^\/api\/myprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/MyProfile/EditMyProfileController.php';
 }
@@ -148,7 +148,7 @@ elseif (preg_match('/^\/api\/myprofile\/delete\/?$/i', $_SERVER['REQUEST_URI']))
 }
 
 //Admin-MyProfile
-}elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/Admin-EditMyProfileController.php';
 }
@@ -170,6 +170,9 @@ elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
 }elseif (preg_match('/^\/api\/verify/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/class.verifyEmail.php';
+}elseif (preg_match('/^\/api\/updatedb/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_OAS;
+    include '../src/Domain/LoginPage/UpdateDB.php';
 }
 
 //ERROR URL NOT FOUND

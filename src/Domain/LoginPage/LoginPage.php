@@ -154,7 +154,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form_2" action=".=/api/forgot" method="post">
+                <form id="form_2" action="/api/forgot" method="post">
                     <div class="modal-body">
                         <span>When you fill in your registered email address,
                             you will be sent instructions on how to reset your password.</span>
@@ -368,9 +368,6 @@
     
 
 
-
-    
-
     
 </div>
 
@@ -385,19 +382,19 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
 
    <?php
 
-    if (isset($_GET["signup"])) {
+    if (isset($_GET["doneVerify"])) {
         echo'
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="doneVerify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
                                     style="color: rgb(13, 175, 18);"></i>Thank you!</h5>
-                            <button type="button" class="close" data-dismiss="modal" onclick="$("#notificationModal").modal("hide")">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$("#doneVerify").modal("hide")">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="form_3">
+                        <form action="/api/updatedb" method="post" id="form_3">
                             <div class="modal-body">
                                 <span>Thank you for signing up.<br>
                                     Your application is successfully submitted, please wait for the verification.<br>
@@ -405,7 +402,7 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                                 <br>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary signinbtn">Got It!</button>
+                                <button type="submit" name="submit" class="btn btn-primary signinbtn">Got It!</button>
                             </div>
                         </form>
                     </div>
@@ -414,20 +411,61 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
 
             <script type="text/javascript">
                     $(document).ready(function(){
-                        $("#notificationModal").modal("show");
+                        $("#doneVerify").modal("show");
                     });
             </script>
     ';
 }
 ?>
 
-<script type="text/javascript">
+<!-- verify email -->
+
+<?php
+
+if (isset($_GET["doneSend"])) {
+    echo'
+        <div class="modal fade" id="doneSend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>Next Step</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$("#doneSend").modal("hide")">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>Thank you for signing up.<br>
+                                You need to verify your account. <br>
+                                Sign in to your email account and click in the verification link we just email you.
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Thank you.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#doneSend").modal("show");
+                });
+        </script>
+';
+}
+?>
+
+<!-- <script type="text/javascript">
 function emailName(){
     staticEmail = document.getElementById('staticEmail');
     console.log(staticEmail);
     return staticEmail;
 }
-</script>
+</script> -->
 
 <?php
         if (isset($_GET["emailExists"])){

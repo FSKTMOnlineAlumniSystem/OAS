@@ -36,8 +36,8 @@ function loginUser($conn, $email, $password){
     $passwordNormal = $alumniData["password"];
     $checkpassword = passwordCheck($password, $passwordNormal);
 
-    // $passwordHashed = $emailExists["password"];
-    // $checkpassword = password_verify($password, $passwordHashed);
+    $passwordHashed = $emailExists["password"];
+    $checkpassword = password_verify($password, $passwordHashed);
 
     if ($checkpassword === false) {
        
