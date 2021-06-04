@@ -42,6 +42,10 @@ try {
         // getElementById('date')->"$activity[dateTime]";
       }
     }
+    $eventNumber = $event_model->getNumberOfEvent();
+    echo  "event Number = ";
+    print_r($eventNumber);
+
     for ($i=0; $i< count($all_activities); $i++){
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
