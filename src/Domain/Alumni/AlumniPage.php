@@ -110,8 +110,7 @@ try {
     include_once '../src/templates/GeneralScripts.php';
   ?>
   <!-- custom js files -->
-  <scriptlocation.href=location.href= type="text/javascript" src="/js/addSearchBar.js"></scriplocation.href=location.href=location.href=>
-  <scrip type="module" src="/js/Alumni/searchAlgo.js"></scrip>
+  <!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
   
   </body>
 
