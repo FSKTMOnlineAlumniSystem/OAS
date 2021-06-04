@@ -1,4 +1,4 @@
-const imgPath = "../../../Assets/imgs/";
+const imgPath = "/uploads/alumni/";
 
 function loadAlumniList(pageIndex, outputList) {
   const alumniList = document.getElementById("alumniList");

@@ -1,6 +1,28 @@
 import { dummyResponse, updateDummyData } from "../dummydata.js";
-const imgPath = "../../../Assets/imgs/";
+const imgPath = "/uploads/alumni/";
 let onClickAlumniID = JSON.parse(localStorage.getItem("alumniprofile"));
+document.cookie =
+  "clickedID=" +
+  onClickAlumniID +
+  "; expires=" +
+  new Date(9999, 0, 1).toUTCString();
+// <div class="row mb-3">
+//     <div class="col-sm-4">E-mail:</div>
+//     <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
+// </div>
+
+function emailNeeded(pub) {
+  var output = ``;
+  console.log("hi");
+  console.log(dummyResponse.Alumni[0].isEmailPublic);
+  if (pub == 1) {
+    output = `<div class="row mb-3">
+        <div class="col-sm-4">E-mail:</div>
+        <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
+        </div>`;
+  }
+  return output;
+}
 
 const alumniProfile = document.getElementById("main-body");
 const loadAlumniProfile = (index) => {
@@ -10,7 +32,7 @@ const loadAlumniProfile = (index) => {
     <div class="col-12 col-md-10 col-lg-8">
         <div class="row align-items-center">
         <div class="col-12">
-            <a href="../../html/Alumni/alumniPage.html" class="btn btn-link back">
+            <a href="/src/Domain/Alumni/AlumniPage.php" class="btn btn-link back">
             <i class="fas fa-chevron-left fa-2x"></i>
             </a>
             <h3 class="d-inline">Alumni Profile</h3>
@@ -43,28 +65,29 @@ const loadAlumniProfile = (index) => {
             <div class="col-sm-7 justify-content-center align-items-center pt-3">
                 <div class="row mb-3">
                     <div class="col-sm-4">Name:</div>
-                    <div id="name" class="col-sm-8">${dummyResponse.Alumni[i].name}</div>
+                    <div id="name" class="col-sm-8">${
+                      dummyResponse.Alumni[i].name
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Gender:</div>
-                    <div id="gender" class="col-sm-8">${dummyResponse.Alumni[i].gender}</div>
+                    <div id="gender" class="col-sm-8">${
+                      dummyResponse.Alumni[i].gender
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Graduated:</div>
-                    <div id="graduated" class="col-sm-8">${dummyResponse.Alumni[i].graduated}</div>
+                    <div id="graduated" class="col-sm-8">${
+                      dummyResponse.Alumni[i].graduated
+                    }</div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-4">Department:</div>
-                    <div id="department" class="col-sm-8">${dummyResponse.Alumni[i].department}</div>
+                    <div id="department" class="col-sm-8">${
+                      dummyResponse.Alumni[i].department
+                    }</div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-sm-4">E-mail:</div>
-                    <div id="email" class="col-sm-8">${dummyResponse.Alumni[i].email}</div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-4">Contact Number:</div>
-                    <div id="contactNumber" class="col-sm-8">${dummyResponse.Alumni[i].contactNumber}</div>
-                </div>
+                ${emailNeeded(dummyResponse.Alumni[i].isEmailPublic)}
             </div>
         </div>
         <div class="container">
@@ -79,5 +102,4 @@ const loadAlumniProfile = (index) => {
         </div>
     </div>`;
 };
-console.log(onClickAlumniID);
 loadAlumniProfile(onClickAlumniID);
