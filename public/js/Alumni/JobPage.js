@@ -1,6 +1,5 @@
 import loadJobList from "./JobPageModule.js";
 
-
 let pageIndex = 0;
 
 var outputList = job_array;

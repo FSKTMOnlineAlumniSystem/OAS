@@ -5,13 +5,13 @@ document.getElementById("form").innerHTML += `
   <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
-      <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" name="company">
+      <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp">
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please provide a company name.</div>
     </div>
     <div class="mb-3">
       <label for="jobTitle" class="form-label">Job Title</label>
-      <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle" name="title">
+      <input type="text" class="form-control" id="jobTitle" aria-describedby="jobTitle">
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please provide a job title.</div>
     </div>
@@ -28,13 +28,13 @@ document.getElementById("form").innerHTML += `
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
       <div class="valid-feedback">Valid</div>
       <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
     </div>
     <div class="mb-3">
       <label for="location" class="form-label">Location</label>
-      <input type="text" class="form-control" id="locations" name="location">
+      <input type="text" class="form-control" id="locations">
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please provide the location of the company.</div>
     </div>
@@ -44,19 +44,19 @@ document.getElementById("form").innerHTML += `
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
         </div>
-        <input type="text" class="form-control" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="salary">
+        <input type="text" class="form-control" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea name="description" form="job_ad_form" id="description" class="form-control"
-        placeholder="Enter description here..." ></textarea>
+        <textarea name="comment" form="job_ad_form" id="description" class="form-control"
+        placeholder="Enter description here..."></textarea>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please provide the description of the job.</div>
       </div>
-      <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button>
-      <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="myjob">Cancel</a>
+      <button type="submit" id="submit" class="btn btn-primary float-right ml-2">Submit</button>
+      <a type="button" class="btn btn-outline-secondary float-right" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
       <br>
     </div>
   </form>`;
@@ -71,7 +71,6 @@ const salary = document.getElementById("salary");
 const email = document.getElementById("email");
 const description = document.getElementById("description");
 const form = document.querySelector("form");
-
 
 //INPUT HANDLING ERROR
 function setInValid(el) {
@@ -101,7 +100,7 @@ const regex = /^[0-9]+$/;
 function checkvalidation() {
   let errorExist = false; 
 
-  if (isEmpty(companyName)) { 
+  if (isEmpty(companyName)) {
     setInValid(companyName);
     errorExist = true;
   } else {

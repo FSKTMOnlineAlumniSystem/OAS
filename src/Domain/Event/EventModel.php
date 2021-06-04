@@ -22,26 +22,25 @@ class EventModel
             return $data;
 
         } catch (PDOException $exception) {
-            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            error_log('EventModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
     }
 
-  // public function getById(int $id): array
-  // {
+  public function getEvent(string $id): array
+  {
+    try {
+      $stmt = $this->connection->prepare('SELECT * FROM events WHERE eventId = ?');
+      $stmt->execute([$id]);
+      $data = $stmt->fetch();
 
-  //   try {
-  //     $stmt = $this->connection->prepare('SELECT * FROM activity WHERE id = ?');
-  //     $stmt->execute([$id]);
-  //     $data = $stmt->fetch();
-
-  //     if (!$data) {
-  //       return array();
-  //     }
-  //     return $data;
-  //   } catch (PDOException $exception) {
-  //     error_log('ActivityModel: getById: ' . $exception->getMessage() . ' id: ' . $id);
-  //     throw $exception;
-  //   }
-  // }
+      if (!$data) {
+        return array();
+      }
+      return $data;
+    } catch (PDOException $exception) {
+      error_log('EventModel: getEvent: ' . $exception->getMessage() . ' id: ' . $id);
+      throw $exception;
+    }
+  }
 }

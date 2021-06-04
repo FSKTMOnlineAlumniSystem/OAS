@@ -1,18 +1,33 @@
+import  { dummyResponse, updateDummyData } from '../dummydata.js';
+
+//get the current signed in alumni id from localStorage
+const currentAlumniId = localStorage.getItem('SignedInAlumniId');
+//get the current alumni object
+const alumni = dummyResponse.Alumni.filter(function (alumni) {
+    return alumni.alumniId === currentAlumniId;
+})[0];
+
+const profilePicture = document.querySelector('#profilePicture');
+const name = document.querySelector('#name');
+const gender = document.querySelector('#gender');
+const graduated = document.querySelector('#graduated');
+const department = document.querySelector('#department');
+const email = document.querySelector('#email');
+const contactNumber = document.querySelector('#contactNumber');
+const biography = document.querySelector('#biography');
+
 const oldPassword = document.getElementById('oldPassword');
 const newPassword = document.getElementById('newPassword');
 const confirmNewPassword = document.getElementById('confirmNewPassword');
-const changePasswordModal = document.querySelector('#changePasswordModal');
+const changePasswordButton = document.querySelector('#changePasswordButton');
 
 const deleteAccountInput = document.querySelector('#deleteAccountInput');
-const deleteAccountForm = document.querySelector('#deleteAccountForm');
-
-const privacySwitch = document.querySelector('#privacySwitch');
+const deleteAccountButton = document.querySelector('#deleteAccountButton');
 
 //Validation for change password
 function verifyPasswordAndConfirmPassword(e) {
-    console.log('con')
     let errorExist = false;
-    if (!verifyPasswordCriteria(oldPassword)) {
+    if (oldPassword.value!==alumni.password) {
         setInValid(oldPassword);
         errorExist = true;
     } else {
@@ -35,6 +50,19 @@ function verifyPasswordAndConfirmPassword(e) {
 
     if(errorExist){
         e.preventDefault();
+    }else{
+        /*CHANGE PASSWORD*/
+        dummyResponse.Alumni.forEach((al)=>{
+            if(al.alumniId===currentAlumniId){
+                al.password = newPassword.value;
+                updateDummyData(dummyResponse);
+                changePasswordButton.textContent='Updating...';
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+                return;
+            }
+        });
     }
 }
 
@@ -50,14 +78,37 @@ function verifyPasswordCriteria(password) {
 //Delete user account from the data
 function deleteAccount(e) {
     if (deleteAccountInput.value === 'DELETE') {
-        deleteAccountButton.textContent='Deleting...';
+        /* SUCCESS DELETE ACCOUNT */
+        dummyResponse.Alumni.forEach((al,index)=>{
+            if(al.alumniId===currentAlumniId){
+                dummyResponse.Alumni.splice(index,1);
+                deleteAccountButton.textContent='Deleting...';
+                updateDummyData(dummyResponse);
+                setTimeout(function(){
+                    window.location.href = '/src/html/Alumni/LoginPage.html';
+                },1000);
+            }
+        });
     } else {
         e.preventDefault();
-        setInValid(deleteAccountInput);
+        if (!deleteAccountInput.classList.contains('is-invalid')) {
+            deleteAccountInput.classList.add('is-invalid');
+        }
     }
 }
-changePasswordModal.addEventListener('submit', (e) => verifyPasswordAndConfirmPassword(e));
-deleteAccountForm.addEventListener('submit', (e) => deleteAccount(e));
-privacySwitch.addEventListener('change',()=>{
-    $('#changePrivacyForm').submit();
-})
+
+//load all the data when landing the page
+function loadData() {
+    profilePicture.src = imgPath + alumni.imageId;
+    name.textContent = alumni.name;
+    gender.textContent = alumni.gender;
+    graduated.textContent = alumni.graduated;
+    department.textContent = alumni.department;
+    email.textContent = alumni.email;
+    contactNumber.textContent = alumni.contactNumber;
+    biography.textContent = alumni.biography;
+}
+
+loadData();
+changePasswordButton.addEventListener('click', (e) => verifyPasswordAndConfirmPassword(e));
+deleteAccountButton.addEventListener('click', (e) => deleteAccount(e));

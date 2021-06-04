@@ -1,15 +1,10 @@
-import { dummyResponse } from "../dummydata.js";
 import { loadEventSection } from "../Alumni/EventPageModule.js";
 
 const yourUpcomingEventSection = document.getElementById('your-upcoming-event-section');
 const upcomingEventSection = document.getElementById('upcoming-event-section');
-const myEvent = dummyResponse.Alumni_Event.filter((event) => {
-  return event.alumniId === localStorage.getItem("SignedInAlumniId");
-});
-const notMyEvent = dummyResponse.Alumni_Event.filter((event) => {
-  return event.alumniId !== localStorage.getItem("SignedInAlumniId");
-});
 
+const myEvent = Array.from(yourUpcomingEventSection.children);
+const notMyEvent = Array.from(yourUpcomingEventSection.children);
 // build html nodes based on myEvent
 loadEventSection(
   myEvent,

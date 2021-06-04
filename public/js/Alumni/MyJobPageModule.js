@@ -1,6 +1,5 @@
 
 function loadMyJobList(pageIndex, outputList, count) {
-
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -93,6 +92,34 @@ function loadMyJobList(pageIndex, outputList, count) {
   document.getElementById("top").innerHTML="";
   document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < outputList.length; i++) {
+    if (outputList[i].alumniId == alumniID) {
+      if (outputList[i].imageId == null) {
+        document.getElementById("jobList").innerHTML += `
+          <div class="col mb-4">
+            <div class="card h-100" data-name=${outputList[i].jobId}>
+              <a href="../../html/Alumni/MyJobDetailsPage.html" >
+                <div class="w-100">
+                  <img src="${outputList[i].imgaeUrl}" id="image" class="card-img-top">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">${outputList[i].company} - ${outputList[i].title}</h5>
+                  <p class="card-text">
+                    <div class="row cards">
+                      <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
+                      <div class="col-7">${outputList[i].location}</div>
+                    </div>
+                    <div class="row cards">
+                      <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
+                      <div class="col-7">RM ${outputList[i].salary}</div>
+                    </div>
+                  </p>
+                </div>
+              </a>
+            <div class="card-footer mt-auto">
+              <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true" ><i class="far fa-trash-alt"></i></button>  
+            </div>
+          </div>`;
+      } else {
         document.getElementById("jobList").innerHTML += `
           <div class="col mb-4">
           <a href="myjobdetails?myjobid=${outputList[i].jobId}">
@@ -122,7 +149,8 @@ function loadMyJobList(pageIndex, outputList, count) {
             </div>
           </div>`;
       }
-  
+    }
+  }
 
   const deleteButton = document.querySelector("#deleteButton");
   const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");

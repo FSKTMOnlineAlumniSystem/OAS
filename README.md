@@ -2,13 +2,8 @@
 This is the main repo for the alumni system. So treat the repo carefully :kissing:  
 Make sure you know how to revert changes made to reverse any destructive changes to the repo.   
 
-## File System
-* **config** - store general constant variable and configuration
-* **public** - store user accesible files
-* **src** - store php source codes
-* **src/templates** - store general view file like header, footer, modal(later)
-* **src/utilities** - store general php function
-* **src/Domain** - store Modal, View and Controller by feature
+## TO-DO :hugs:
+
 
 ## Links
 ### MySQL

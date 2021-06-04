@@ -83,9 +83,10 @@ function loadJobList(pageIndex, outputList) {
 
   document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
+    if (outputList[i].imageId == null) {
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
-          <a href="jobdetails?jobid=${outputList[i].jobId}">
+          <a href="../../html/Alumni/JobDetailsPage.html">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
                   <img class="w-100" src="${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
