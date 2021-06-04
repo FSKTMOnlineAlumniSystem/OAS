@@ -24,7 +24,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 /*Check the file extension of the image & Update preview*/
 
-const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
+
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 //form validation for forgot modal
@@ -217,7 +217,7 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if (isEmpty(ICValue) || !IC.value.match(icNumberFormat)) {
+    if (isEmpty(ICValue) || (ICValue.length < 11)) {
         setErrorFor(IC);
         errorExist = true;
     } else {
@@ -259,8 +259,8 @@ form.addEventListener('submit', (e) => {
         dummyResponse.Alumni.push(obj);
         updateDummyData(dummyResponse);
 
-        // e.preventDefault();
-        // getWait();
+        e.preventDefault();
+        getWait();
 
     }
 });

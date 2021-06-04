@@ -7,7 +7,7 @@ let pageIndex = 0;
 const loadEventList = (pageIndex,alumniEventArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
-alumniArray.forEach((alumni,index) => {
+dummyResponse.Alumni.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -21,7 +21,6 @@ alumniArray.forEach((alumni,index) => {
   let label = document.createElement('label');
   label.setAttribute('class', 'custom-control-label');
   label.setAttribute('for', 'id-'+alumni.alumniId);
-let defineAlumni=alumni.alumniId;
 
   div.appendChild(input);
   div.appendChild(label);
@@ -60,7 +59,7 @@ let defineAlumni=alumni.alumniId;
   div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
-  const foundAlumniEvent = alumniEventArray.filter(alumni_event => {
+  const foundAlumniEvent = dummyResponse.Alumni_Event.filter(alumni_event => {
     return alumni_event.eventId === localStorage.getItem("eventId") && alumni.alumniId === alumni_event.alumniId;
   })[0];
   if(foundAlumniEvent){
@@ -132,7 +131,7 @@ searchBar.addEventListener('click', (e) => {
 window.DeleteRowFunction = function(o) {
   var p=o.parentNode.parentNode.parentNode;
       p.parentNode.removeChild(p);
-      alumniArray.splice(o.target.id, 1)
+      dummyResponse.Alumni.splice(o.target.id, 1)
       updateDummyData(dummyResponse)
  }
 
@@ -196,7 +195,7 @@ $("#clearAll").on("click", function (e) {
   document.cookie = "dateTime="+dateTime;
 window.inviteNewAlumni = function(o){
   var i=o.id;
-    var alumniId= alumniArray[i].alumniId;
+    var alumniId= dummyResponse.Alumni[i].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
 

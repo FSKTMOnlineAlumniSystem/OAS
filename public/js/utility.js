@@ -21,8 +21,82 @@ const getReadableTime = (dateTime) => {
   hour = hour === 0 ? 12 : hour;
   hour = hour > 12 ? hour - 12 : hour;
   return `${hour}:${minute} ${period}`;
+
+  
 }
 
+
+const getFormattedDate = (dateTime) => {
+  var date = new Date(dateTime);
+
+  var month = date.getMonth();
+  var monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  var months = monthNames[month];
+  var day = date.getDate();
+  var year = date.getFullYear();
+
+  var minute = date.getMinutes().toString();
+  minute = minute.padStart(2, '0');
+  var hour = date.getHours();
+  var period = hour > 11 ? 'p.m.' : 'a.m.';
+  hour = hour === 0 ? 12 : hour;
+  hour = hour > 12 ? hour - 12 : hour;
+
+  return `${months} ${day}, ${year} ${hour}:${minute} ${period}`;
+  
+
+}
+const getDifference = (dateTime) =>{
+    // date_default_timezone_set('Asia/Kuala_Lumpur');
+    // var date = date('y-m-d H:i:s');
+    // var now = date(DATE_ATOM, strtotime($date));
+    var current = new Date();
+    var d1 = new Date(dateTime);
+    var d2 = new Date(current);
+
+    var yeardiff = d2.getFullYear() - d1.getFullYear();
+    var monthdiff = d2.getMonth() - d1.getMonth();
+    var daydiff = d2.getDate() - d1.getDate();
+    var hourdiff = d2.getHours() - d1.getHours();
+    var minsdiff = d2.getMinutes() - d1.getMinutes();
+
+    if(yeardiff<=0){
+      if(monthdiff<=0){
+        if(daydiff<=0){
+          if(hourdiff<=0){
+            if(minsdiff<=0){
+              return "just now";
+            }else{
+              return `${minsdiff} minutes ago`;
+            }
+          }else{
+            return `${hourdiff} hours ago`;
+          }
+        }else{
+          return `${daydiff} days ago`;
+        }
+      }else{
+        return `${monthdiff} months ago`;
+      }
+    }else{
+      return `${yeardiff} years ago`;
+    }
+
+
+    // var daydiff = d1.getDate() - d2.getDate(); 
+    // // var diff = d2.getTime() - d1.getTime(); 
+    // var daydiff = diff / (1000 * 60 * 60 * 24);
+
+    return yeardiff;
+}
+// var d1 = new Date("08/14/2020");   
+// var d2 = new Date("09/14/2020");   
+    
+// var diff = d2.getTime() - d1.getTime();   
+    
+// var daydiff = diff / (1000 * 60 * 60 * 24);   
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");

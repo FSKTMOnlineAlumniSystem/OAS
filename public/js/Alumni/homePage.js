@@ -55,7 +55,7 @@ for (let i = 0; i < 6; i++) {
     <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
        
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
-                <img  class="card-img-top w-100 m-auto" src="/public/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
+                <img  class="card-img-top w-100 m-auto" src="/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
             </div>
 
         <div class="card-body" >
@@ -121,7 +121,7 @@ for (let i = 0; i < 6; i++) {
                             <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
 
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
-                                    <img class="card-img-top w-100" src="/public/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
+                                    <img class="card-img-top w-100" src="/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
                                 <div class="card-body">
@@ -202,7 +202,7 @@ for (let i = 0; i < 2; i++) {
     card_job.innerHTML = `
  
         <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" class="job_image" > `
 
     const J = document.getElementById('job_row_1');
@@ -236,7 +236,7 @@ for (let i = 2; i < 4; i++) {
  
         <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
         <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+            <img src="/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
             width="100%" class="job_image" >
         </a> `
 
@@ -388,14 +388,12 @@ window.onload = function () {
 
 };
 
-
 function loop() {
 
     $('.carousel').carousel({
-        interval: 700
+        interval: 500
     });
 
 }
 
 loop();
-

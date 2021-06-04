@@ -1,13 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// include '../src/Domain/header.php';
+?>
+<!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" type="text/css" href="..\..\..\libs\bootstrap\css\bootstrap.css"> -->
+  <title><?= $GLOBALS['title']; ?></title>
+</head>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  
+<?php
+// include '../../../config/config.php';
+// include '../src/Domain/Event/EventModel.php';
+include '../src/Domain/AlumniList/AlumniListModel.php';
+include '../src/Domain/Database.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+// try {
+//   $alumniList_model = new AlumniListModel($db->getConnection());
+//   $all_activities = $alumniList_model->getAll();
+//   if (!empty($all_activities)) {
+
+//     foreach ($all_activities as $activity) {
+//       echo "$activity[alumniId] ";
+//     }
+//   }
+// } catch (Exception $e) {
+//   echo "Exception here!";
+// }
+
+try {
+  $alumniList_model = new AlumniListModel($db->getConnection());
+  $all_activities = $alumniList_model->getAll();
+  $allImage = $alumniList_model->getProfilePicture();
+  for ($i=0; $i< count($all_activities); $i++){
+    $all_activities[$i]['imageId'] = $allImage[$i];
+  }
+} catch (Exception $e) {
+  echo "Exception here!";
+}
+?>
+
+
+<script type='text/javascript' src='../js/utility.js'></script>
+  <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
+  <script type="module" src="../js/Admin/Admin-AlumniListPage.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,20 +56,19 @@
 
   <!-- <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css"> -->
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="/public/css/Admin/Admin-AlumniListPage.css">
+  <link rel="stylesheet" type="text/css" href="../css/Admin/Admin-AlumniListPage.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-  <link rel="stylesheet" type="text/css" href="/public/css/Alumni/index.css">
-  <title>Alumni List - Online Alumni System</title>
-</head>
+  <link rel="stylesheet" type="text/css" href="../css/Alumni/index.css">
 
+<title>Alumni List - Online Alumni System</title>
 <body>
 
   <main class="container-fluid height-after-minus-header" id='main-body'>
@@ -44,7 +83,7 @@
               <!-- filter status dropdown -->
               <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="status" oninput="filterStatus()">
+                <select class="form-control" id="status" >
                   <option>All</option>
                   <option>Verified</option>
                   <option>Not Verified</option>
@@ -53,7 +92,7 @@
               <!-- filter department dropdown -->
               <div class="form-group col-6">
                 <label for="exampleFormControlSelect1">Department</label>
-                <select class="form-control" id="department" oninput="filterDepartment()">
+                <select class="form-control" id="department" >
                   <option>All</option>
                   <option>Software Engineering</option>
                   <option>Artificial Intelligence</option>
@@ -65,7 +104,7 @@
               </div>
               <!-- clear all button -->
               <div class='col-12 mt-2 d-flex flex-row-reverse'>
-                <button id="clearAll" type="submit" class="btn text-white custom-dark-purple">Clear All</button>
+                <button id="clearAll" class="btn text-white custom-dark-purple" >Clear All</button>
               </div>
             </div>
           </form>
@@ -75,8 +114,9 @@
             <div class="row">
               <!-- delete multiple row button -->
               <div class="col-7">
-                <button id="delete" type="button" class="btn btn-outline-danger" onclick="deleteMultipleRow()">
-                  <a href="#" role="button">
+                <button id="delete" name="deleteMultipleRow" type="button" class="btn btn-outline-danger" onclick="deleteCheckedRow()">
+                  
+                <a href="#" role="button">
                     <i class="far fa-trash-alt text-danger" aria-hidden="true" style="font-size: 20px;"></i>
                   </a>
                 </button>
@@ -114,82 +154,10 @@
                 </tr>
               </thead>
               <tbody>
-
-
-
-                <!-- alumni details modal -->
-
-                
-          </div>
-
-          <!-- <tr>
-                  <td>
-                    <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="Boxes1">
-                      <label class="custom-control-label" for="Boxes1"></label>
-                    </div>
-                  </td>
-                  <td><img src="/Assets/imgs/v8_30.png" alt="" class='table__td--height'>
-                  </td>
-                  <td>XXX</td>
-                  <td>Software Engineering</td>
-                  <td>
-                    <div class="bg-danger text-white rounded p-1">
-                      Not Verified
-                    </div>
-                  </td>
-                  <td class='text-center'>
-                    <a href="#" role="button">
-                      <i class="fa fa-trash fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
-                      </i></a>
-                  </td>
-                </tr> -->
-          <!-- <tr>
-                  <td>
-                    <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="Boxes1">
-                      <label class="custom-control-label" for="Boxes1"></label>
-                    </div>
-                  </td>
-                  <td><img src="/Assets/imgs/AL-2.png" alt="" class='table__td--height'>
-                  </td>
-                  <td>XXX</td>
-                  <td>Software Engineering</td>
-                  <td>
-                    <div class="bg-success text-white rounded p-1">
-                      Verified
-                    </div>
-                  </td>
-                  <td class='text-center'>
-                    <a href="#" role="button">
-                      <i class="fa fa-trash fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
-                      </i></a>
-                  </td>
-                </tr> -->
-
-          </tbody>
-          </table>
-          <!-- pagination -->
-          <!-- <nav aria-label="Page navigation example">
-
-            <ul class="pagination justify-content-center">
-              <li class="page-item" id="previousPage">
-                <button onclick="previousPage()" class="page-link">Previous</button>
-              </li>
-              <div class="pages list-group list-group-horizontal">
-                <li class="page-item disabled">
-                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
-                </li>
-                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
-                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
-
               </div>
-              <li class="page-item" id="nextPage">
-                <button onclick="nextPage()" class="page-link">Next</button>
-              </li>
-            </ul>
-          </nav> -->
-        </div>
+              </tbody>
+          </table>
+          </div>
       </div>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
@@ -240,26 +208,40 @@
                             <div id="accStatus" class="col-8">Verified</div>
                           </div>
                         </div>
-
                       </div>
                       <div class="modal-footer">
 
                         <button id="update" type="button" class="btn btn-primary" data-dismiss="modal"
-                          onclick="location.href ='Admin-EditAlumniProfilePage.html';updateEvent(this)">
+                          onclick="location.href ='editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
-                        <button id="approve" type="button" class="btn btn-info">Approve</button>
+                      <button id="approve" name="approve" type="submit" class="btn btn-info" onclick="approve()">Approve</button>
                       </div>
                     </div>
                   </div>
                 </div>
+                 <!-- pagination -->
+          <!-- <nav aria-label="Page navigation example">
+
+            <ul class="pagination justify-content-center">
+              <li class="page-item" id="previousPage">
+                <button onclick="previousPage()" class="page-link">Previous</button>
+              </li>
+              <div class="pages list-group list-group-horizontal">
+                <li class="page-item disabled">
+                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
+                </li>
+                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
+                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
+
+              </div>
+              <li class="page-item" id="nextPage">
+                <button onclick="nextPage()" class="page-link">Next</button>
+              </li>
+            </ul>
+          </nav> -->
   </main>
 
-  <script type='text/javascript' src='/public/js/utility.js'></script>
-  <script type="module" src="/public/js/Admin/Admin-AlumniListPage.js"></script>
-  <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script>
-  <script type='module' src='/public/js/addHeader.js'></script>
-  <script type='text/javascript' src='/public/js/Admin/addLeftNav.js'></script>
-</body>
-
-</html>
+  <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
+  <!-- <script type='module' src='../js/addHeader.js'></script> -->
+  <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>  
