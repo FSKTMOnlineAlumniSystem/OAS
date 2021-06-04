@@ -43,7 +43,7 @@ include '../src/templates/nav.php';
           <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
             <div class="card h-100 card--bg-light-gray">
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                <img src="/Assets/imgs/${imageId}" class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                <img src=<?= 'data::'.$event['type'].';base64,'.base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><?= $event['title'] ?></h5>

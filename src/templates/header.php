@@ -39,20 +39,20 @@
 
     $my_profile_model = new MyProfile($db->getConnection(), $_SESSION['alumni']['alumniId']);
     $profile_img_src = $my_profile_model->getProfilePicture();
-    echo $profile_img_src . '<br>';
+    // echo $profile_img_src . '<br>';
   } catch (Exception $e) {
     echo 'Exception' . $e->getMessage();
   }
   ?>
   <header class="d-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white">
     <div class="dropdown custom-bg--transparent">
-      <button class="btn dropdown-toggle text-white" type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="/Assets/imgs/<?= $_SESSION['alumni']['imageId'] ?>" alt="" class="header__img m-1">
+      <button class="btn dropdown-toggle text-white pr-0" type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src=<?= $profile_img_src ?> alt="" class="header__img m-1">
         <?= $_SESSION['alumni']['name'] ?>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
-        <a class="dropdown-item" href="/myprofile">Profile</a>
-        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="/myprofile"><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
+        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</a>
       </div>
     </div>
 
