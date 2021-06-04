@@ -175,37 +175,33 @@ try {
                         <div class="col">
                           <div class="row mb-2">
                             <div class="col-4">Name:</div>
-                            <div id="name" class="col-8">Teh Kok Soon</div>
+                            <div id="name" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Gender:</div>
-                            <div id="gender" class="col-8">Male</div>
+                            <div id="gender" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Graduated:</div>
-                            <div id="graduated" class="col-8">2014</div>
+                            <div id="graduated" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Department:</div>
-                            <div id="department1" class="col-8">Software Engineering</div>
+                            <div id="department1" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">E-mail:</div>
-                            <div id="email" class="col-8">koksoon@um.edu.my</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-4">Contact Number:</div>
-                            <div id="contactNumber" class="col-8">03-79676347</div>
+                            <div id="email" class="col-8"></div>
                           </div>
 
                           <div class="row mb-2">
                             <div class="col-4">Ic No:</div>
-                            <div id="icNumber" class="col-8">881225-10-5479</div>
+                            <div id="icNumber" class="col-8"></div>
                           </div>
 
                           <div class="row mb-2">
                             <div class="col-4">Account Status:</div>
-                            <div id="accStatus" class="col-8">Verified</div>
+                            <div id="accStatus" class="col-8"></div>
                           </div>
                         </div>
                       </div>

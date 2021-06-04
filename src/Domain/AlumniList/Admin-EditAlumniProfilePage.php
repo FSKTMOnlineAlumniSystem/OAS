@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 

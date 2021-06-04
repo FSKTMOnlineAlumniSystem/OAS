@@ -43,6 +43,8 @@ class AlumniListModel
         }
         return $image;
     }
+
+    public function getAlumniCount()
 }
 
 class DeleteAlumniModel
