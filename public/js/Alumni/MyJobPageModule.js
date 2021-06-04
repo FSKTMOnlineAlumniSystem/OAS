@@ -1,8 +1,6 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-//PASS IN THE FUNCTION
 function loadMyJobList(pageIndex, outputList, count) {
-  // const alumniID = localStorage.getItem("SignedInAlumniId");
+
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -11,7 +9,7 @@ function loadMyJobList(pageIndex, outputList, count) {
   var remainingLength = dataLength - jobStartIndex;
 
   /*   create button*/
-  if (count != 0) {
+  if (count > 0) {
     if (jobEndIndex >= count) {
       document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
@@ -72,7 +70,16 @@ function loadMyJobList(pageIndex, outputList, count) {
           }</button>
         </li>`;
     }
-  } else {
+  } else if (count===-1){
+    document.getElementById(
+      "no_result"
+    ).innerHTML = `<h2>Sorry, there is no result.</h3>`;
+    document.getElementById("nextPage").innerHTML = "";
+    document.getElementsByClassName("pages")[0].innerHTML = "";
+    document.getElementById("previousPage").innerHTML = "";
+    return;
+    
+  }else {
     document.getElementById(
       "top"
     ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
@@ -83,13 +90,16 @@ function loadMyJobList(pageIndex, outputList, count) {
   }
 
   //LOAD THE JOBLIST BASED ON DUMMYDATA
+  document.getElementById("top").innerHTML="";
+  document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < outputList.length; i++) {
         document.getElementById("jobList").innerHTML += `
           <div class="col mb-4">
+          <a href="myjobdetails?myjobid=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}> 
-              <a href="myjobdetails?myjobid=${outputList[i].jobId}">
+             
                 <div class="w-100">
-                  <img class="w-100" src="../../../Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+                  <img class="w-100" src="${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">${outputList[i].company} - ${outputList[i].title}</h5>
@@ -106,6 +116,7 @@ function loadMyJobList(pageIndex, outputList, count) {
                 </div>
               </a>
               <div class="card-footer mt-auto">
+              <small class="text-muted">Last updated : ${getDifference(outputList[i].postedDateTime)} </small>
                 <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
               </div>
             </div>
@@ -126,19 +137,52 @@ function loadMyJobList(pageIndex, outputList, count) {
     });
   });
 
-  //CLICK ON THE "DELETE" BUTTON IN CONFIMARTION MODAL
-  deleteButton.addEventListener("click", function (e) {
-    for (let i = 0; i < outputList.length; i++) {
-      if (outputList[i].jobId == deleteID) {
-        outputList.splice(i, 1);
-        count--;
-        dummyResponse.Job = outputList;
-        updateDummyData(dummyResponse);
-        closeModal(`#deleteModal`);
-        loadMyJobList(pageIndex, outputList, count);
-      }
-    }
+
+
+$('#deleteButton').click(function(){
+  $.ajax({
+    url: 'deleteJobController.php',
+    type: 'post',
+    data: {ajax : 1, deleteID: deleteID},
+    success: function(resp){
+      let page = 0;
+      var outputList = JSON.parse(resp);
+     
+      loadMyJobList(page,outputList,outputList.length);
+    },
+     
   });
+
+closeModal("#deleteModal")
+});
+
+
+
+//Search
+$('#search-button').click(function(){
+  var search = document.getElementById("search_item").value;
+  if (search == "") {
+    alert("Name must be filled out");
+  }
+
+  $.ajax({
+    url: 'searchJob',
+    type: 'post',
+    data: {search: search},
+    success: function(resp){
+    let page = 0;
+    outputList =JSON.parse(resp);
+     if(outputList.length===0){
+      loadMyJobList(page,outputList,-1);
+    }else{
+     loadMyJobList(page,outputList,outputList.length);
+    }
+    },
+     
+  });
+
+});
+   
 
   //CLOSE THE MODAL
   function closeModal(modalId) {
@@ -152,18 +196,6 @@ function loadMyJobList(pageIndex, outputList, count) {
     );
   }
 
-  //CLICK ON THE CARDS WHICH WILL LINK TO MYJOBDETAILS PAGE
-  // $("#jobList").on("click", ".card ", function () {
-  //   var jobName = $(this).attr("data-name");
-  //   var myJobList = [];
-  //   for (let i = 0; i < outputList.length; i++) {
-  //     if (outputList[i].jobId == jobName) {
-  //       myJobList.push(outputList[i]);
-  //       localStorage.setItem("MyJobList", JSON.stringify(myJobList));
-  //       break;
-  //     }
-  //   }
-  // });
 }
 
 export default loadMyJobList;
