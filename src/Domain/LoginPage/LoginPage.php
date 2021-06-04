@@ -390,7 +390,7 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                         <div class="modal-header">
                             <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
                                     style="color: rgb(13, 175, 18);"></i>Thank you!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$("#doneVerify").modal("hide")">
+                            <button type="button" class="close" data-dismiss="modal" onclick="$("#doneVerify").modal("hide")">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

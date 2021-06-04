@@ -24,7 +24,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 /*Check the file extension of the image & Update preview*/
 
-
+const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 //form validation for forgot modal
@@ -51,18 +51,18 @@ form_2.addEventListener('submit', (evt) => {
 });
 
 //form validation for sign in
-form_1.addEventListener('submit', (ev) => {
+// form_1.addEventListener('submit', (ev) => {
 
-    let errorExist = false;
-    let getEmail = false;
+//     let errorExist = false;
+//     let getEmail = false;
 
-    const staticEmailValue = staticEmail.value.trim();
-    const inputPasswordValue = inputPassword.value.trim();
+//     const staticEmailValue = staticEmail.value.trim();
+//     const inputPasswordValue = inputPassword.value.trim();
 
-    if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
-        setErrorFor(staticEmail);
-        errorExist = true;
-    } else {
+//     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
+//         setErrorFor(staticEmail);
+//         errorExist = true;
+//     } else {
 
         // for (let i = 0; i < dummyResponse.Alumni.length; i++) {
 
@@ -217,7 +217,7 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if (isEmpty(ICValue) || (ICValue.length < 11)) {
+    if (isEmpty(ICValue) || !IC.value.match(icNumberFormat)) {
         setErrorFor(IC);
         errorExist = true;
     } else {
@@ -259,8 +259,8 @@ form.addEventListener('submit', (e) => {
         dummyResponse.Alumni.push(obj);
         updateDummyData(dummyResponse);
 
-        e.preventDefault();
-        getWait();
+        // e.preventDefault();
+        // getWait();
 
     }
 });
