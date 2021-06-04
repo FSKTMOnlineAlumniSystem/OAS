@@ -49,21 +49,45 @@ function setValid(el) {
     }
 }
 
-img.addEventListener('change', (e) => {
-    let allowedExtensions =
-        /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            wizardPicturePreview.src = e.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);
-        choosePictureDescription.textContent = "Choose picture";
-    } else {
-        choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    }
+// img.addEventListener('change', (e) => {
+//     let allowedExtensions =
+//         /(\.png|\.jpg|\.jpeg)$/i;
+//     if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             wizardPicturePreview.src = e.target.result;
+//         }
+//         reader.readAsDataURL(e.target.files[0]);
+//         choosePictureDescription.textContent = "Choose picture";
+//     } else {
+//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+//     }
+// }
+// )
+img.addEventListener("change", (e) => readURL(e));
+function readURL(e) {
+  console.log('f')
+  let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+    // To handle the file size
+    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+  } else if (
+    e.target.files &&
+    e.target.files[0] &&
+    allowedExtensions.test(e.target.value)
+  ) {
+    profilePicture.files = e.target.files;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      wizardPicturePreview.src = e.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "Choose picture";
+  } else {
+    choosePictureDescription.textContent =
+      "Please choose picture in .png, .jpg or .jpeg format";
+  }
 }
-)
 
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {

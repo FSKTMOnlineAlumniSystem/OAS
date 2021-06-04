@@ -44,6 +44,22 @@ class AlumniListModel
         return $image;
     }
 
+    public function getNumberOfApprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    public function getNumberOfUnapprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
 }
 
 class DeleteAlumniModel

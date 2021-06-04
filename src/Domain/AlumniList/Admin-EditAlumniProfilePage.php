@@ -94,7 +94,8 @@ echo "Exception: " . $e->getMessage();
                                     <div class="picture">
                                         <img src="../uploads/alumni/AL-1.png" class="picture-src"
                                             id="wizardPicturePreview" title="">
-                                        <input type="file" id="wizard-picture" name="image">
+                                            <input type="file" id="wizard-picture">
+                                            <input type="file" name="image" id="profilePicture" class="d-none">
                                     </div>
                                     <h6 id="choosePictureDescription">Choose Picture</h6>
                                 </div>
