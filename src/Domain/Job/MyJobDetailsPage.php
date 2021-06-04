@@ -10,9 +10,6 @@ include '../src/Domain/Job/MyJobDetailsModel.php';
 <body>
 
 <?php
-// include '../../../config/config.php';
-// include '../src/Domain/Job/MyJobDetailsModel.php';
-// include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $myjobid = $_GET['myjobid'];
@@ -20,16 +17,8 @@ $myjobid = $_GET['myjobid'];
 try {
     $myjob_model = new MyJobDetailsModel($db->getConnection());
     $myjobdetails = $myjob_model->getRow($myjobid);
-    $image = $myjob_model->getProfilePicture($myjobid);
+    $image = $myjob_model->getJobImage($myjobid);
     $myjobdetails['imageId'] = $image[0];
-    // print_r($myjobdetails);
-    //   if (!empty($all_activities)) {
-
-    // foreach ($all_activities as $activity) {
-    //   echo "$activity[jobId] ";
-    // }
-// }
-  // print_r($all_activities);
 
 } catch (Exception $e) {
     echo "Exception here!";

@@ -10,35 +10,18 @@ include '../src/Domain/Job/JobDetailsModel.php';
 <body>
 
 <?php
-// // include '../../../config/config.php';
-// include '../src/Domain/Job/JobDetailsModel.php';
-// include '../src/Domain/Database.php';
 
 $id = $_GET['jobid'];
-// echo ($id);
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $job_model = new JobDetailsModel($db->getConnection());
     $all_activities = $job_model->getRow($id);
-    $image = $job_model->getProfilePicture($id);
-    // print_r($image);
-    // print_r($all_activities);
+    $image = $job_model->getJobImage($id);
 
     $all_activities['imageId'] = $image[0];
-    // print_r($all_activities);
-    // for ($i=0; $i< count($all_activities); $i++){
-    //   $all_activities[$i]['imageId'] = $image[$i];
-    // }
-    // print_r($all_activities);
-    //   if (!empty($all_activities)) {
 
-    // foreach ($all_activities as $activity) {
-    //   echo "$activity[jobId] ";
-    // }
-// }
-  // print_r($all_activities);
 } catch (Exception $e) {
     echo "Exception here!";
 }
@@ -49,4 +32,4 @@ try {
 <script type="module" src="/js/Alumni/JobDetailsPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
 <?php include_once '../src/templates/footer.php' ?>
-<!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
+

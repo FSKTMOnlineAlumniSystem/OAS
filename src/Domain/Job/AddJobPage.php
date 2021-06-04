@@ -27,9 +27,6 @@ if(isset($_POST['Submit'])) {
     date_default_timezone_set('Asia/Kuala_Lumpur');
     $date = date('y-m-d H:i:s');
     $postedDateTime = date(DATE_ATOM, strtotime($date));
-    // $postedDateTime = date(DATE_ATOM, $date);
-    // echo($postedDateTime);
-
     $addJob_model = new  AddJobModel($db->getConnection());	
     
     $data = $addJob_model->getMaxId();
@@ -40,12 +37,10 @@ if(isset($_POST['Submit'])) {
     $salary = $_POST['salary'];
 	$email = $_POST['email'];
     $postedDateTime = $postedDateTime;     
-    // $jobImage = $_FILES['jobImage']['name'];
     $jobImage = $jobId;
     $company = $_POST['company'];
     $location = $_POST['location'];
-    // $jobImage = basename($_FILES['jobImage']['name']);
-    // echo($jobImage);
+
     $addJob_model->addJobs($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$jobImage,$company,$location);
     
     try{
@@ -67,8 +62,6 @@ if(isset($_POST['Submit'])) {
   
 }
 ?>
-
-<!-- <script type="module" src="/js/Alumni/AddJobPage.js"></script> -->
 
 
 <script type="text/javascript" src="/js/addNavFooter.js"></script>

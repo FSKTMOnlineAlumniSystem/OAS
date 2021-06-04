@@ -8,20 +8,12 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $job_model = new JobModel($db->getConnection());
   $all_activities = $job_model->getAll();
-  $allImage = $job_model->getProfilePicture();
-  // print_r($allImage);
-  // if (!empty($all_activities)) {
-
-  //   foreach ($all_activities as $activity) {
-  //     echo "$activity[jobId] ";
-  //   }
-  // // print_r($all_activities);
-  // }
+  $allImage = $job_model->getJobImage();
+  
   for ($i=0; $i< count($all_activities); $i++){
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
 
-  // print_r($all_activities);
 
 } catch (Exception $e) {
   echo "Exception here!";
@@ -37,7 +29,6 @@ try {
   <div class="container my-5" id="main-body">
 
   <div class="searchBarBG">
-<!-- <form class="search-form" method="post"> -->
  <div class="containerSB">
    <div class="row no-gutters" style="white-space: nowrap">
      <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
@@ -51,7 +42,6 @@ try {
      </div>
    </div>
  </div>
- <!-- </form> -->
 </div><br><br>
         <h1><b>Jobs</b></h1>
         

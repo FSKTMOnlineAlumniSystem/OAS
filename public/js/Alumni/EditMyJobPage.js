@@ -1,22 +1,7 @@
-// import { dummyResponse, updateDummyData } from '../dummydata.js';
-// var imageID = false;
+
 
 //GET THE JOB ID FROM THE MYJOBDETAILSPAGE
 let editJobs = job_array;
-// let index;
-
-//LOOP THROUGH TO FIND INDEX OF THE ARRAY OF THE JOBID
-// for(let i=0; i<dummyResponse.Job.length; i++){
-//     if(dummyResponse.Job[i].jobId === myJob){
-//         index=i;
-//         break;
-//     }
-// }
-
-//DISPLAYING THE DETAILS AND ALLOWIGN THE USER TO EDIT
-    // imageID=true;
-
-    // onsubmit="return checkValidation()"
 
     document.getElementsByClassName("container my-5")[0].innerHTML += 
     `<form id="editJob" method="post" enctype="multipart/form-data" onsubmit="return checkValidation()">
@@ -157,7 +142,6 @@ let editJobs = job_array;
       }
     
     //CHECKING THE VALIDITY OF INPUT WHEN THE USER PRESS POST BUTTON
-    // document.getElementById("post").addEventListener("click", function(e){
     function checkValidation(){    
         console.log("here");
         let errorExist = false; 
@@ -205,30 +189,11 @@ let editJobs = job_array;
         }
 
         if (errorExist){
-            // e.preventDefault();
             return false;
         }
         else{   
-                //IF NO ERROR, THE DATA WILL BE SAVED IN DUMMYDATA
-                // dummyResponse.Job[index].company = companyName.value;
-                // dummyResponse.Job[index].title = jobTitle.value;
-                // dummyResponse.Job[index].location = location.value;
-                // dummyResponse.Job[index].salary = salary.value;
-                // dummyResponse.Job[index].email = email.value;
-                // dummyResponse.Job[index].description = description.value;
-                // if(!imageID){
-                //     dummyResponse.Job[index].imgaeUrl = wizardPicturePreview.src;
-                // }else{
-                //     dummyResponse.Job[index].imgaeUrl = wizardPicturePreview.src;
-                //     dummyResponse.Job[index].imageId = null;
-                // }
-                // updateDummyData(dummyResponse);
-                // localStorage.removeItem("EditJob");
                 return true;
         }
     }
 
-    //CLICK CANCEL BUTTON TO BACK TO MYJOBPAGE
-    // cancel.addEventListener("click", function(){
-    //     localStorage.removeItem("EditJob");
-    // });
+ 

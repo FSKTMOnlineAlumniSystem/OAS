@@ -1,4 +1,3 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 //GET THE ARRAY FROM THE MYJOBPAGE WHEN USER CLICK ON IT
 let myJob = job_array;
@@ -87,14 +86,3 @@ let myJob = job_array;
 </div>
 `;
 
-
-// CLICK BACK BUTTON
-// $(".back").on("click", function () {
-//   localStorage.removeItem("MyJobList");
-// });
-
-//CLICK ON EDIT BUTTON 
-// $(".edit").on("click", function () {
-//   localStorage.removeItem("MyJobList");
-//   localStorage.setItem("EditJob", myJob[0].jobId);
-// });

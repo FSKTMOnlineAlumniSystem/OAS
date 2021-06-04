@@ -1,4 +1,4 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
+
 
 //CREATE A FORM TO CAPTURE USER INPUT
 document.getElementById("form").innerHTML += `
@@ -71,7 +71,7 @@ const salary = document.getElementById("salary");
 const email = document.getElementById("email");
 const description = document.getElementById("description");
 const form = document.querySelector("form");
-// const jobIndex = dummyResponse.Job[dummyResponse.Job.length - 1].jobId.split("-");
+
 
 //INPUT HANDLING ERROR
 function setInValid(el) {
@@ -98,10 +98,7 @@ const regex = /^[0-9]+$/;
 
 
 // CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
-// form.addEventListener("submit", (e) => {
 function checkvalidation() {
-  console.log("here");
-// e.preventDefault();
   let errorExist = false; 
 
   if (isEmpty(companyName)) { 
@@ -147,36 +144,11 @@ function checkvalidation() {
   }
 
   if (errorExist) {
-    // e.preventDefault();
     return false;
   } 
   else{
-    // console.log("test here");
-    // $('#job_ad_form').submit();
     return true;
   }
-  //   document.getElementById("job_ad_form").action = "/addjob.php";
-  //   // $('#job_ad_form').attr('action', 'addjob');
-  // }
-  // else {
-  //   //IF NO ERROR, ADD THE NEW JOB ADS DETAILS INTO DUMMYDATA
-  //   var newJob = {};
-  //   newJob = {
-  //     jobId: "J-" + (parseInt(jobIndex[1]) + 1),
-  //     alumniId: "AL-1",
-  //     description: description.value,
-  //     salary: salary.value,
-  //     email: email.value,
-  //     location: locations.value,
-  //     title: jobTitle.value,
-  //     company: companyName.value,
-  //     imageId: null,
-  //     imgaeUrl: imageUrl,
-  //   };
-  //   dummyResponse.Job.push(newJob);
-  //   updateDummyData(dummyResponse);
-  //   location.href = "MyJobPage.html";
-  // }
 }
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE

@@ -1,14 +1,9 @@
-
-
-
 <title>My Job - Alumni Online System</title>
 </head>
 <body>
 
 <?php
-// include '../../../config/config.php';
 include '../src/Domain/Job/MyJobModel.php';
-// include '../src/Domain/Database.php';
 include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 
@@ -19,22 +14,13 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $myJob_model = new  MyJobModel($db->getConnection());
-    // $num_rows = $myJob_model->getNumRow($alumniID);
     $myJob = $myJob_model->getRow($alumniID);
-    $image = $myJob_model->getProfilePicture($alumniID);
+    $image = $myJob_model->getJobImage($alumniID);
     
-    // $myJob = array();
     for ($i=0; $i< count($myJob); $i++){
       $myJob[$i]['imageId'] = $image[$i];
     }
 
-
-    // print_r($myJob);
-    // print_r($myJob_model);
-
-
-// }
-  // print_r($all_activities);
 } catch (Exception $e) {
     echo "Exception here!";
 }
@@ -49,7 +35,7 @@ try {
 <div class ="container my-5" id='main-body'>
 
 <div class="searchBarBG">
-<!-- <form class="search-form" method="post"> -->
+
  <div class="containerSB">
    <div class="row no-gutters" style="white-space: nowrap">
      <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
@@ -63,7 +49,7 @@ try {
      </div>
    </div>
  </div>
- <!-- </form> -->
+
 </div><br><br>
           <h1><b>Jobs</b></h1>
         
@@ -112,22 +98,6 @@ try {
           </nav>
           <br /><br />
     </div>
-
-    <?php 
-// if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
-//   // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-//   $deleteID =  $_POST['deleteID'];
-//   $myJob = $myJob_model->deleteJob($deleteID);
-//   // header('Cache-Control: no-store, no-cache, must-revalidate');
-//   // exit;
-//   $updatedJob = $myJob_model->getRow($alumniID);
-//   print_r($updatedJob);
-//   echo json_encode($updatedJob);
- 
-//  }
-
-
-?>
 
 
 <?php include_once '../src/templates/footer.php' ?>

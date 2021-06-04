@@ -1,14 +1,10 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 import loadJobList from "./JobPageModule.js";
 
 
 let pageIndex = 0;
-// var outputList = dummyResponse.Job;
-// console.log(job_array.length);
-// console.log(job_array);
 
 var outputList = job_array;
-// console.log(outputList);
+
 
 //click next page
 window.nextPage = function () {

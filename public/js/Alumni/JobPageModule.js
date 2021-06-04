@@ -80,8 +80,7 @@ function loadJobList(pageIndex, outputList) {
         }</button>
       </li>`;
   }
-  // ../src/Domain/Job/JobDetailsPage.php?id=${outputList[i].jobId}
-  //id=${outputList[i].jobId}
+
   document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
       document.getElementById("jobList").innerHTML += `
@@ -113,25 +112,6 @@ function loadJobList(pageIndex, outputList) {
        
   }
   
-  // ${getReadableTime(eventArray[i].dateTime)}
- 
-  // ../src/Job/JobDetailsPage.php?id=${outputList[i].jobId}\
-
-  //CLICK TO LINK TO JOBDETAILSPAGE
-  // $("#jobList").on("click", ".card ", function () {
-  //   var jobName = $(this).attr("data-name");
-  //   // var myJobList = [];
-  //   for (let i = 0; i < outputList.length; i++) {
-  //     if (outputList[i].jobId == jobName) {
-  //       // myJobList.push(outputList[i]);
-  //       // localStorage.setItem("JobList", JSON.stringify(myJobList));
-  //       // document.location.href = '<?php echo $../Job/JobDetailsPage.php ?>';
-  //       window.open('../Job/JobDetailsPage.php?id=$outputList[i].jobId');
-  //       // console.log('as');
-  //       break;
-  //     }
-  //   }
-  // });
 }
 
 //Search
@@ -144,24 +124,14 @@ $('#search-button').click(function(){
   $.ajax({
     url: 'searchAllJob',
     type: 'post',
-    // contentType: "application/json",
-    // dataType : 'html',
     data: {search: search},
-    // dataType:"json",
     success: function(resp){
      console.log("success");
-    //  console.log(search);
-    // console.log(resp);
     let page = 0;
     var jobtList =JSON.parse(resp);
  
      loadJobList(page,jobtList);
-    
-     //  var jobsearch = JSON.parse(resp);
-    //   console.log(jobsearch);
     },
-    
-    // dataType : "json"
      
   });
 

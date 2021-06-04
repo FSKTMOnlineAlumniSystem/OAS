@@ -1,4 +1,3 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 import loadMyJobList from "./MyJobPageModule.js";
 
 let pageIndex = 0;
@@ -27,6 +26,4 @@ window.previousPage = function () {
 };
 
 //CALL FUNCTION IN ORER TO DISPLAY MYJOBLIST
-// test();
-var check = true;
 loadMyJobList(pageIndex, outputList, count);

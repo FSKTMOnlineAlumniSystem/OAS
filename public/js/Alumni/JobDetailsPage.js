@@ -1,6 +1,4 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-// let myJob = JSON.parse(localStorage.getItem("JobList"));
 let myJob = job_array;
 
 //LOAD DETAILS AND DISPLAY
@@ -74,7 +72,4 @@ let myJob = job_array;
     </div>`;
 
 
-// CLICK BACK BUTTON
-    // $(".back").on("click", function(){
-    //     localStorage.removeItem('JobList');
-    // });
+
