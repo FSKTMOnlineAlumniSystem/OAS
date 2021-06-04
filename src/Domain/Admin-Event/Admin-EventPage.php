@@ -251,7 +251,7 @@ if(isset($_POST["checkbox"])){
                   <b class="m-0"> Title : </b>
                   <p id="title"></p>
                   <b class="m-0"> Description : </b>
-                  <p id="description"></p>
+                  <p id="description" style="white-space: pre-wrap"></p>
                   <b class="m-0"> Location : </b>
                   <p id="location"></p>
                 </div>

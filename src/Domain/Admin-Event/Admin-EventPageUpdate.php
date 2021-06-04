@@ -162,8 +162,7 @@ header("Location: adminEvent");
             <div class="form-group">
               <label for="formGroupExampleInput2">Description :</label>
               <textarea type="text" class="form-control rounded-0" id="description" name="description" placeholder="Enter new schedule"
-                value=<?php echo "$description";?> rows="5"
-                ;><?php echo "$description";?></textarea>
+                value=<?php echo "$description";?> rows="5"; ><p style="white-space: pre-wrap"><?php echo "$description";?></p></textarea>
               <div class="valid-feedback">Valid.</div>
               <div id="contactNumberFeedback" class="invalid-feedback">
                 Please provide a brief description for the event.
@@ -189,6 +188,7 @@ header("Location: adminEvent");
                   <img src="<?php echo "$img_Path$imageId";?>" id="prevImage" alt="update Image" width="150"
                     length="150">
                   <input type="file" id="wizard-picture" name="imageId">
+                  <input type="file" name="eventPicture" id="eventPicture" class="d-none">
                   
                 </div>
               </div>

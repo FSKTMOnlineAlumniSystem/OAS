@@ -4,6 +4,8 @@ const locate1 = document.getElementById("location");
 const date1 = document.getElementById("date");
 const time1 = document.getElementById("time");
 const img = document.querySelector('#wizard-picture');
+const wizardPicturePreview = document.querySelector("#prevImage");
+const eventPicture = document.querySelector('#eventPicture');
 // 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
@@ -76,20 +78,45 @@ function checkvalidation() {
 
 /*Check the file extension of the image & Update preview*/
 ///////////////////////need for validation
-img.addEventListener('change', (e) => readURL(e));
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//   let allowedExtensions =
+//     /(\.png|\.jpg|\.jpeg)$/i;
+//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//       document.getElementById("prevImage").src = e.target.result;
+//     }
+//     reader.readAsDataURL(e.target.files[0]);
+//     choosePictureDescription.textContent = "";
+//   } else {
+//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    
+//   }
+// }
+
+img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
-  let allowedExtensions =
-    /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+  console.log('f')
+  let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+    // To handle the file size
+    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+  } else if (
+    e.target.files &&
+    e.target.files[0] &&
+    allowedExtensions.test(e.target.value)
+  ) {
+    eventPicture.files = e.target.files;
     var reader = new FileReader();
     reader.onload = function (e) {
-      document.getElementById("prevImage").src = e.target.result;
-    }
+      wizardPicturePreview.src = e.target.result;
+    };
     reader.readAsDataURL(e.target.files[0]);
-    choosePictureDescription.textContent = "";
+    choosePictureDescription.textContent = "Choose picture";
   } else {
-    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    
+    choosePictureDescription.textContent =
+      "Please choose picture in .png, .jpg or .jpeg format";
   }
 }
 
