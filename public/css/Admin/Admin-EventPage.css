@@ -34,9 +34,16 @@ td a {
   color: rgb(255, 49, 49);
   border: none;
 background: none;
+position:relative; 
+ top:-7px;
 }
 .updateButton{
   color: rgb(0, 0, 0);
+  font-size: 25px;
+  border: none;
+  background: none;
+}
+.inviteButton{
   font-size: 25px;
   border: none;
   background: none;

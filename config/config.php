@@ -56,6 +56,4 @@ define('TITLE_EVENTS', 'Events - Online Alumni System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 
-
-
 ?>

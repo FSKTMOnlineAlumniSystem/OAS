@@ -1,6 +1,6 @@
 <?php
 
-class EventModel
+class Alumni_EventModel
 {
   private PDO $connection;
 
@@ -12,7 +12,7 @@ class EventModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM events');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni_event');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -22,15 +22,16 @@ class EventModel
             return $data;
 
         } catch (PDOException $exception) {
-            error_log('EventModel: getAll: ' . $exception->getMessage());
+            error_log('Alumni_EventModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
     }
 
-  public function getEvent(string $id): array
+  public function getByAlumniId(int $id): array
   {
+
     try {
-      $stmt = $this->connection->prepare('SELECT * FROM events WHERE eventId = ?');
+      $stmt = $this->connection->prepare('SELECT * FROM alumni_event WHERE alumniId = ?');
       $stmt->execute([$id]);
       $data = $stmt->fetch();
 
@@ -39,7 +40,7 @@ class EventModel
       }
       return $data;
     } catch (PDOException $exception) {
-      error_log('EventModel: getEvent: ' . $exception->getMessage() . ' id: ' . $id);
+      error_log('Alumni_EventModel: getByAlumniId: ' . $exception->getMessage() . ' AlumniId: ' . $id);
       throw $exception;
     }
   }

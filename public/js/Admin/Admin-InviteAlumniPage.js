@@ -1,7 +1,10 @@
-import{ dummyResponse,updateDummyData} from "../dummydata.js";
+// import{ dummyResponse,updateDummyData} from "../dummydata.js";
+let alumniEventArray=alumniEvent_array
+let alumniArray=alumni_array
+localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
-const loadEventList = (pageIndex) => {
+const loadEventList = (pageIndex,alumniEventArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 dummyResponse.Alumni.forEach((alumni,index) => {
@@ -81,10 +84,20 @@ dummyResponse.Alumni.forEach((alumni,index) => {
   tbody.appendChild(tr);
 });
 }
+// window.toggle = function (source) {
+//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//   for (var i = 0; i < checkboxes.length; i++) {
+//     console.log();
+//     if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
+//       checkboxes[i].checked = source.checked;
+//   }
+// }
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source)
+  // if($(checkboxes).is(':visible')){
+    for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+    // if($(checkboxes[i]).is(':visible')){
       checkboxes[i].checked = source.checked;
   }
 }
@@ -178,48 +191,154 @@ $("#clearAll").on("click", function (e) {
   });
   });
   // invite single alumni
+  var dateTime=new Date().toISOString();
+  document.cookie = "dateTime="+dateTime;
 window.inviteNewAlumni = function(o){
   var i=o.id;
     var alumniId= dummyResponse.Alumni[i].alumniId;
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
-    var newAlumniEvent={
-      "alumniId": alumniId,
-            "eventId": eventId,
-            "viewedByAlumni": "false",
-            "dateTime": dateTime,
-            "notificationClosedByAlumni": "false"
-    }
-    dummyResponse.Alumni_Event.push(newAlumniEvent)
-    updateDummyData(dummyResponse)
-  loadEventList(0)
-}
+
+    document.cookie = "alumniId="+alumniId;
+    document.cookie = "eventId="+eventId;
+    document.cookie = "dateTime="+dateTime;
+    $.ajax({
+      url:"./inviteFunction",    //the page containing php script
+      data: { alumniId: alumniId, 
+              eventId: eventId,
+              dateTime: dateTime,
+            },
+      type: 'POST',    //request type,
+      success: function(resp){
+        console.log('resp');
+        console.log(resp);
+        var outputList = JSON.parse(resp);
+        alumniEventArray=outputList;
+        loadEventList(pageIndex,outputList);
+      },
+      error: function(request, status, error){  
+        alert(error);
+        }
+      });
+    // var newAlumniEvent={
+    //   "alumniId": alumniId,
+    //   "eventId": eventId,
+    //   "viewedByAlumni": "false",
+    //   "dateTime": dateTime,
+    //   "notificationClosedByAlumni": "false"
+    // }
+    // alumniEventArray.push(newAlumniEvent)
+    // updateDummyData(dummyResponse)
+  }
+
 // invite alumni that is checked
+var $alumniId=[];
+var $eventId=[];
+var $dateTime=[];
 window.inviteCheckedAlumni = function () {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
-      var alumniId= dummyResponse.Alumni[i-1].alumniId;
-    var eventId=localStorage.getItem('eventId')
-    var dateTime=new Date().toISOString();
-    var newAlumniEvent={
-      "alumniId": alumniId,
-            "eventId": eventId,
-            "viewedByAlumni": "false",
-            "dateTime": dateTime,
-            "notificationClosedByAlumni": "false"
-    }
-    dummyResponse.Alumni_Event.push(newAlumniEvent)
+      var alumniId= alumniArray[i-1].alumniId;
+      var eventId=localStorage.getItem('eventId')
+      var dateTime=new Date().toISOString();
+      $alumniId.push(alumniId);
+      $eventId.push(eventId);
+      $dateTime.push(dateTime);
     }
   }
+  $alumniId=$alumniId.toString();
+  $eventId=$eventId.toString();
+  $dateTime=$dateTime.toString();
+  $.ajax({
+    url:"./inviteFunction",    //the page containing php script
+    data: { alumniId: $alumniId, 
+            eventId: $eventId,
+            dateTime: $dateTime,
+            checkbox:'checked'
+          },
+    type: 'POST',    //request type,
+    success: function(resp){
+      console.log('resp');
+      console.log(resp);
+      var outputList = JSON.parse(resp);
+      alumniEventArray=outputList;
+      loadEventList(pageIndex,outputList);
+    },
+    error: function(request, status, error){  
+      alert(error);
+      }
+    });
+
   checkboxes[0].checked = false;
-  updateDummyData(dummyResponse)
-  loadEventList(0)
-}
-window.clicked=function(){
-  clickedSomething=clickedSomething+1;
-}
+}  
+  // var newAlumniEvent={
+    //         "alumniId": alumniId,
+    //         "eventId": eventId,
+    //         "viewedByAlumni": "false",
+    //         "dateTime": dateTime,
+    //         "notificationClosedByAlumni": "false"
+    // }
+    // alumniEventArray.push(newAlumniEvent)
+  /*
+    // $alumniId = json_encode($alumniId, true); 
+  // setcookie('alumniId', $alumniId);
+  
+  // $eventId = json_encode($eventId, true); 
+  // setcookie('alumniId', $eventId);
+
+  // $dateTime = json_encode($dateTime, true); 
+  // setcookie('dateTime', $dateTime);
+  // console.log($alumniId);
+  // console.log('/////////////////////////');
+  // $($alumniId).serialize()
+  // $alumniId = serialize($alumniId); 
+  document.cookie="alumniId="+ $alumniId;
+  console.log($alumniId);
+
+  // $eventId = serialize($eventId); 
+  // $($eventId).serialize()
+  document.cookie="eventId="+ $eventId;
+
+  // $dateTime = serialize($dateTime); 
+  // $($dateTime).serialize()
+  document.cookie="dateTime="+ $dateTime;
+
+  document.cookie="checkbox="+'checked';
+  // updateDummyData(dummyResponse)
+  // location.reload();
+  // location.reload();
+  // location.reload();
+  history.go(0);
+  history.go(0);
+  history.go(0);
+  history.go(0);
+  */// loadEventList(0)
+// }
+
 window.backToPreviousPage=function(){
     window.history.back();
 }
-loadEventList(pageIndex);
+loadEventList(pageIndex,alumniEventArray);
+
+// window.inviteCheckedAlumni = function () {
+//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//   for (var i = checkboxes.length-1; i > 0; i--) {
+//     if(checkboxes[i].checked){
+//       var alumniId= alumniArray[i-1].alumniId;
+//     var eventId=localStorage.getItem('eventId')
+//     var dateTime=new Date().toISOString();
+//     var newAlumniEvent={
+//       "alumniId": alumniId,
+//             "eventId": eventId,
+//             "viewedByAlumni": "false",
+//             "dateTime": dateTime,
+//             "notificationClosedByAlumni": "false"
+//     }
+//     alumniEventArray.push(newAlumniEvent)
+//     }
+//   }
+//   checkboxes[0].checked = false;
+//   // updateDummyData(dummyResponse)
+//   loadEventList(0)
+// }

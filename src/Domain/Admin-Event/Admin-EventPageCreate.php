@@ -41,8 +41,6 @@ include '../src/Domain/header.php';
     print 'it suceed';
     $addEvent = new createEventModel($db->getConnection());	
     $data = $addEvent->getMaxId();
-    echo 'event id';
-    echo $data;
     $eventId = "E-" . $data+1;
     $adminId = "AD-1";         //ned change
     $title = $_POST['title'];
@@ -56,9 +54,6 @@ include '../src/Domain/header.php';
     $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
   
     header("Location: adminEvent");
-echo 'event id+ $data';
-}else{
-  echo 'die die go';
 }
 
   ?>
@@ -71,10 +66,10 @@ echo 'event id+ $data';
 
 
     <main>
-      <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
+      <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
         onclick='setEventId()'>
         <i class="fas fa-user-plus"></i>
-        Invite Alumni</a>
+        Invite Alumni</a> -->
 
         <!-- <div id="formCheck">
         hiiiiii
@@ -148,8 +143,8 @@ echo 'event id+ $data';
         </div>
         </div>
         <!-- ssave button -->
-        <input type="submit" name="" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
-        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelUpdate()">Cancel</button>
+        <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
+        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelCreate()">Cancel</button>
 
         <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->
      
@@ -190,7 +185,7 @@ echo 'event id+ $data';
   </div>
   
   <script type="text/javascript" src="/js/utility.js"></script>
-  <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script> -->
+  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
   <!-- <script type='module' src='/src/js/addHeader.js'></script> -->
