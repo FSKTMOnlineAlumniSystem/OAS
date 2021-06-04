@@ -84,6 +84,13 @@ class Admin_EventModel
         }
         return $image;
     }
+    public function getNumberOfEvent(): int{
+        $sql ="SELECT COUNT(eventId) FROM events";
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
 }
 
 class Admin_Alumni_EventModel
