@@ -13,8 +13,8 @@ ini_set('display_startup_errors', '1');
 
 // Change according to your needs, RCMS is the name of the database created in setup.sql
 define('DATABASE_NAME', 'OAS');
-define('DATABASE_USERNAME', 'root');
-define('DATABASE_PASSWORD', '');
+define('DATABASE_USERNAME', 'yw');
+define('DATABASE_PASSWORD', '1234');
 
 // connect to MySQL
 // $mysqli = new mysqli('localhost', DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME); 
@@ -53,6 +53,7 @@ define('STATUS_REJECTED', 2);
 // add our app constants below
 define('TITLE_OAS', 'Online Alumni System');
 define('TITLE_EVENTS', 'Events - Online Alumni System');
+define('TITLE_MY_PROFILE', 'My Profile - Alumni Online System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 define('PUBLIC_IMG_PATH',"../public/Assets/imgs/");

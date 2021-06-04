@@ -1,46 +1,57 @@
-
+import { dummyResponse, updateDummyData } from '../dummydata.js';
+var imageID = false;
 
 //GET THE JOB ID FROM THE MYJOBDETAILSPAGE
-let editJobs = job_array;
+let myJob = localStorage.getItem("EditJob");
+let index;
 
+//LOOP THROUGH TO FIND INDEX OF THE ARRAY OF THE JOBID
+for(let i=0; i<dummyResponse.Job.length; i++){
+    if(dummyResponse.Job[i].jobId === myJob){
+        index=i;
+        break;
+    }
+}
+
+//DISPLAYING THE DETAILS AND ALLOWIGN THE USER TO EDIT
+if(dummyResponse.Job[index].imageId == null){
     document.getElementsByClassName("container my-5")[0].innerHTML += 
-    `<form id="editJob" method="post" enctype="multipart/form-data" onsubmit="return checkValidation()">
-    <div class="row">
+    `<div class="row">
     <div class="left1">
-    <input id="companyName" size="50" type="text" placeholder="Enter company name" name="company" class="form-control h-100" value="${editJobs.company}">
+    <input id="companyName" size="50" type="text" placeholder="Enter company name" class="form-control h-100" value="${dummyResponse.Job[index].company}">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please provide a company name.</div>
     </div>
     <div class="left2">
-    <input type="text" size="50" id="jobTitle" placeholder="Enter job title" name="jobtitle" class="form-control h-100" value="${editJobs.title}">
+    <input type="text" size="50" id="jobTitle" placeholder="Enter job title" class="form-control h-100" value="${dummyResponse.Job[index].title}">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please provide a job title.</div>
     </div>
     </div>
     <hr>
-    <div class="container-fluid align-content-center my-5">
+    <div class="container-fluid align-content-center my-5 clear" >
     <div class="row align-items-center">
     <div class="col-sm-4 d-flex align-items-center justify-content-center">
     <div class="w-50 position-relative">
     <div class="picture-container">
         <div class="picture">
-            <img src="${editJobs.imageId}" class="picture-src"
-                id="wizardPicturePreview" title="" >
-            <input type="file" id="wizard-picture" name="imageId">
+            <img src=${dummyResponse.Job[index].imgaeUrl} class="picture-src"
+                id="wizardPicturePreview" title="">
+            <input type="file" id="wizard-picture">
         </div>
         <h6 id="choosePictureDescription">Choose Picture</h6>
     </div>
 </div>
     </div>
+    
     <div class="col">
     <div class="container-fluid ">
-    <br>
     <div class="row mb-3 mx-auto">
     <div class="col-1">
     <span><i class="fas fa-map-marked-alt fa-2x"></i></span>
     </div>
     <div class="col ">
-    <input type="text" id="locations" size="50" class="form-control" name="location" value="${editJobs.location}">
+    <input type="text" id="location" class="form-control" placeholder="Enter the location of the company" value="${dummyResponse.Job[index].location}">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please provide the location of the company.</div>
     </div>
@@ -54,7 +65,7 @@ let editJobs = job_array;
     <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
     </div>
-    <input type="text" class="form-control" size="50" id="salary" name="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${editJobs.salary}">
+    <input type="text" class="form-control" placeholder="Enter the salary of this job" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${dummyResponse.Job[index].salary}">
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
     </div>
@@ -65,7 +76,7 @@ let editJobs = job_array;
     <span><i class="fas fa-envelope-open-text text-primary fa-2x"></i></span>
     </div>
     <div class="col mx-auto">
-    <input type="email" class="form-control" id="email" name="email" value="${editJobs.email}">
+    <input type="email" class="form-control" placeholder="Enter your active email address" id="email" value="${dummyResponse.Job[index].email}">
     <div class="valid-feedback">Valid</div>
     <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
     </div>
@@ -79,23 +90,111 @@ let editJobs = job_array;
     <div id=bio-title>Job Description</div>
     <div id=job class="rounded-lg p-3 text-justify">
     <textarea type="text" class="form-control"
-         placeholder="Enter new schedule"  id="description" name="description" rows="3">${editJobs.description}</textarea>
+            placeholder="Enter new schedule"  id="description" rows="3" >${dummyResponse.Job[index].description}</textarea>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please provide the description of the job.</div>
     </div>
     <br>
-    <input type="submit" name="Submit" class="btn btn-primary float-right ml-2" id="post" value="Post"></button>
-    <a button type="button" class="btn btn-outline-secondary float-right ml-2" id="cancel" href="myjob">Cancel</a>
+    <a type="button" class="btn btn-primary float-right ml-2" id="post" href="../../html/Alumni/MyJobPage.html">Post</a>
+    <a type="button" class="btn btn-outline-secondary float-right ml-2" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
     <br>
     <br>
-    </div></div></form>`;
+    </div></div>`;
+}else{
+    imageID=true;
+    document.getElementsByClassName("container my-5")[0].innerHTML += 
+    `<div class="row">
+    <div class="left1">
+    <input id="companyName" size="50" type="text" placeholder="Enter company name" class="form-control h-100" value="${dummyResponse.Job[index].company}">
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please provide a company name.</div>
+    </div>
+    <div class="left2">
+    <input type="text" size="50" id="jobTitle" placeholder="Enter job title" class="form-control h-100" value="${dummyResponse.Job[index].title}">
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please provide a job title.</div>
+    </div>
+    </div>
+    <hr>
+    <div class="container-fluid align-content-center my-5">
+    <div class="row align-items-center">
+    <div class="col-sm-4 d-flex align-items-center justify-content-center">
+    <div class="w-50 position-relative">
+    <div class="picture-container">
+        <div class="picture">
+            <img src="/Assets/imgs/${dummyResponse.Job[index].imageId}" class="picture-src"
+                id="wizardPicturePreview" title="">
+            <input type="file" id="wizard-picture">
+        </div>
+        <h6 id="choosePictureDescription">Choose Picture</h6>
+    </div>
+</div>
+    </div>
+    <div class="col">
+    <div class="container-fluid ">
+    <br>
+    <div class="row mb-3 mx-auto">
+    <div class="col-1">
+    <span><i class="fas fa-map-marked-alt fa-2x"></i></span>
+    </div>
+    <div class="col ">
+    <input type="text" id="location" size="50" class="form-control" value="${dummyResponse.Job[index].location}">
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please provide the location of the company.</div>
+    </div>
+    </div>
+    <div class="row mb-3 mx-auto">
+    <div class="col-1">
+    <span><i class="fas fa-sack-dollar fa-2x"></i></span>
+    </div>
+    <div class="col">
+    <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">RM</span>
+    </div>
+    <input type="text" class="form-control" size="50" id="salary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${dummyResponse.Job[index].salary}">
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please provide the salary of the job.[E.g.: 1234]</div>
+    </div>
+    </div>
+    </div>
+    <div class="row mb-3 mx-auto mb-xl-5">
+    <div class="col-1">
+    <span><i class="fas fa-envelope-open-text text-primary fa-2x"></i></span>
+    </div>
+    <div class="col mx-auto">
+    <input type="email" class="form-control" id="email" value="${dummyResponse.Job[index].email}">
+    <div class="valid-feedback">Valid</div>
+    <div id="emailFeedback" class="invalid-feedback">Please provide a valid email.</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-12 mt-md-3">
+    <div class="font-weight-bold mb-3">
+    <div id=bio-title>Job Description</div>
+    <div id=job class="rounded-lg p-3 text-justify">
+    <textarea type="text" class="form-control"
+         placeholder="Enter new schedule"  id="description" rows="3">${dummyResponse.Job[index].description}</textarea>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please provide the description of the job.</div>
+    </div>
+    <br>
+    <a button type="button" class="btn btn-primary float-right ml-2" id="post" href="../../html/Alumni/MyJobPage.html">Post</a>
+    <a button type="button" class="btn btn-outline-secondary float-right ml-2" id="cancel" href="../../html/Alumni/MyJobPage.html">Cancel</a>
+    <br>
+    <br>
+    </div></div>`;
+}
 
     //GET THE ID 
     const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
     const img = document.querySelector('#wizard-picture');
     const companyName = document.getElementById("companyName");
     const jobTitle = document.getElementById("jobTitle");
-    const locations = document.getElementById("locations");
+    const location = document.getElementById("location");
     const salary = document.getElementById("salary");
     const email = document.getElementById("email");
     const description = document.getElementById("description");
@@ -142,8 +241,7 @@ let editJobs = job_array;
       }
     
     //CHECKING THE VALIDITY OF INPUT WHEN THE USER PRESS POST BUTTON
-    function checkValidation(){    
-        console.log("here");
+    document.getElementById("post").addEventListener("click", function(e){
         let errorExist = false; 
 
         if (isEmpty(companyName)) {
@@ -160,11 +258,11 @@ let editJobs = job_array;
         setValid(jobTitle);
         }
   
-        if (isEmpty(locations)) {
-            setInValid(locations);
+        if (isEmpty(location)) {
+            setInValid(location);
             errorExist = true;
         } else {
-            setValid(locations);
+            setValid(location);
         }
   
         if (isEmpty(salary) || !salary.value.match(regex)) {
@@ -189,11 +287,27 @@ let editJobs = job_array;
         }
 
         if (errorExist){
-            return false;
-        }
+            e.preventDefault();}
         else{   
-                return true;
+                //IF NO ERROR, THE DATA WILL BE SAVED IN DUMMYDATA
+                dummyResponse.Job[index].company = companyName.value;
+                dummyResponse.Job[index].title = jobTitle.value;
+                dummyResponse.Job[index].location = location.value;
+                dummyResponse.Job[index].salary = salary.value;
+                dummyResponse.Job[index].email = email.value;
+                dummyResponse.Job[index].description = description.value;
+                if(!imageID){
+                    dummyResponse.Job[index].imgaeUrl = wizardPicturePreview.src;
+                }else{
+                    dummyResponse.Job[index].imgaeUrl = wizardPicturePreview.src;
+                    dummyResponse.Job[index].imageId = null;
+                }
+                updateDummyData(dummyResponse);
+                localStorage.removeItem("EditJob");
         }
-    }
+    });
 
- 
+    //CLICK CANCEL BUTTON TO BACK TO MYJOBPAGE
+    cancel.addEventListener("click", function(){
+        localStorage.removeItem("EditJob");
+    });
