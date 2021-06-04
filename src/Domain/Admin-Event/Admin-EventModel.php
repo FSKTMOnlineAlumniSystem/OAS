@@ -29,15 +29,21 @@ class Admin_EventModel
         
    }
    public function deleteEvent($eventId) {
+       //deleteInviteAlumni
+    $sql ="DELETE FROM alumni_event WHERE eventId=?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$eventId]);
+
     $sql = "DELETE FROM events WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
    //  $stmt->execute();
     $stmt->execute([$eventId]);
+    
+    // IF EXISTS（SELECT * FROM image WHERE imageId=?)
+    $sql = "DELETE FROM image WHERE imageId=?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$eventId]);
 
-    //deleteInviteAlumni
-    $sql ="DELETE FROM alumni_event WHERE eventId=?";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute([$eventId]);
     }
 
     public function getPicture(): array{
@@ -50,10 +56,31 @@ class Admin_EventModel
 
         $image = array();
         foreach($data as $eachuser){
+            if($eachuser['imageId']=='Default'){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
+    public function getDefaultPicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM image WHERE imageId="Default"');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
             if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
+            // else{
+            //     array_push($image,'null');
+            // }
         }
         return $image;
     }

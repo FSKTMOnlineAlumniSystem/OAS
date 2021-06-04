@@ -4,7 +4,7 @@ const locate1 = document.getElementById("location");
 const date1 = document.getElementById("date");
 const time1 = document.getElementById("time");
 const img = document.querySelector('#wizard-picture');
-
+// 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {
       el.classList.replace("is-valid", "is-invalid");
@@ -132,10 +132,12 @@ function cancelCreate(){
   var locatevalue = eventArray[i].location;
   var datevalue = todayDate;
   var timevalue = hour +':'+ minute;
+  var imagesrc=eventArray[i].imageId;
 
 function cancelUpdate(){
   // cancelButton.addEventListener('click', () => {
     console.log("hiii");
+    var image = document.getElementById("prevImage").src;
     // var titlevalue = document.getElementById("title").value;
     // var descriptionvalue = document.getElementById("description").value;
     // var locatevalue = document.getElementById("location").value;
@@ -146,7 +148,27 @@ function cancelUpdate(){
     // if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
     //   && !datevalue && !timevalue) {
       // !img.value && 
-      if (
+    console.log('time');
+    console.log(time1.value);
+      console.log('image');
+      var t=titlevalue==title1.value;
+      var des=descriptionvalue==description1.value;
+      console.log(descriptionvalue);
+      console.log(description1.value);
+      var loc=locatevalue==locate1.value;
+      var da=datevalue==date1.value;
+      var ti=timevalue==time1.value;
+      console.log('title '+t);
+      console.log('description '+ des);
+      console.log('location '+loc);
+      console.log('date '+da);
+      console.log('time '+ti);
+      // console.log(image);
+      // console.log(imagesrc);
+      var compare=image==imagesrc;
+      console.log('compare'+compare);
+      // var compare = image.localeCompare(imagesrc)
+      if (image==imagesrc &&
         titlevalue==title1.value && 
         descriptionvalue==description1.value && 
         locatevalue==locate1.value&& 
@@ -161,7 +183,6 @@ function cancelUpdate(){
   function closeModal(modalId) {
     $(modalId).modal('hide');
   }
-
 
 //   img.addEventListener('change', (e) => readURL(e));
 // function readURL(e) {

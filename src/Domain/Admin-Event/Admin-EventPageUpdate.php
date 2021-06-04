@@ -58,8 +58,6 @@ try {
 }
 ?>
 
-    <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 <?php
     if(isset($_POST['update'])) {
       $eventId=$_GET['eventId'];
@@ -88,11 +86,6 @@ try {
 // }
 
 header("Location: adminEvent");
-    
-    header("Location: adminEvent");
-
-
-
 }
 
 
@@ -114,6 +107,9 @@ header("Location: adminEvent");
 //   }
 // }
 ?>
+
+<script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 
 <main class="container-fluid height-after-minus-header" id='main-body'>
       <div class="row h-100">
@@ -199,13 +195,12 @@ header("Location: adminEvent");
               <h6 id="choosePictureDescription"></h6>
               <div id="contactNumberFeedback" class="invalid-feedback">
                 Please provide a picture for the event.
-                
               </div>
             </div>
 
           </div>
 				  <!-- <input type="hidden" name="title" value=<?php echo $_GET['title'];?>> -->
-          <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2">Save</input>
+          <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2"></input>
           <button id="cancelButton" onclick="cancelUpdate()" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
         </form>

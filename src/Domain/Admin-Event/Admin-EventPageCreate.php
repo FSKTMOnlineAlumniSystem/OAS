@@ -67,7 +67,11 @@
     $description = $_POST['description'];
     // $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
+    if($_FILES["imageId"]['tmp_name']!=null){
     $imageId = $eventId;
+    }else{
+      $imageId="Default";
+    }
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
     $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
     // try{
@@ -76,10 +80,11 @@
 
       if($_FILES["imageId"]['tmp_name']!=null){
           print 'hello';
+          print_r($_FILES["imageId"]);
           uploadImage($db->getConnection(),$_FILES["imageId"],$imageId);
       }else{
-        print 'you salah le';
-      
+        print 'you salah le';   
+        print_r($_FILES["imageId"]);
   } 
   // catch (Exception $e) {
   // echo "Exception: " . $e->getMessage();

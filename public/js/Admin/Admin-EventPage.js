@@ -143,7 +143,15 @@ const loadEventList = (pageIndex,eventArray) => {
     title.addEventListener('click', (e) => {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
-      document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
+      console.log(eventArray[clickedAlumniIndex])
+      var check=eventArray[clickedAlumniIndex].imageId==null;
+      console.log(check);
+      
+      if(check){
+        document.querySelector('#imageTitle').src=defaultImage;
+      }else{
+        document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
+      }
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;
@@ -222,6 +230,8 @@ window.deleteByJquery= function (o){
     type: 'POST',    //request type,
     // dataType: 'json',
     success: function(resp){
+      console.log('resp');
+        console.log(resp);
       var outputList = JSON.parse(resp);
       eventArray=outputList;
       loadEventList(pageIndex,outputList);
