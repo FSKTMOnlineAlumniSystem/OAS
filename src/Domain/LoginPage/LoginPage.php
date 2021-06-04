@@ -1,3 +1,9 @@
+<?php
+include '../src/Domain/Database.php';
+include '../src/Domain/LoginPage/GeneralLoginFx.php';
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+$conn = $db->getConnection();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +56,12 @@
             <div class="row align-items-center h-100">
                 <div
                     class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
-                    <img src="/public/Assets/imgs/umfsktm.png" class="w-75 mb-4">
-                    <img src="/public/Assets/imgs/AdminLoginImageDark.png" class="w-75">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4">
+                    <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
                     class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
-                    <img src="../../../Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
@@ -210,7 +216,7 @@
                                 <div class="w-50 position-relative">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src="/public/Assets/imgs/add_image.jpg" class="picture-src m-auto"
+                                            <img src="/Assets/imgs/add_image.jpg" class="picture-src m-auto"
                                                 id="wizardPicturePreview" title="">
                                             <input type="file" id="wizard-picture" name="profilePicture">
                                         </div>
@@ -381,20 +387,25 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
    <!-- wait for verification  -->
 
    <?php
+    echo Decrypt($_GET["id"]);
+    if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
-    if (isset($_GET["doneVerify"])) {
+        $stmt = $conn->prepare("UPDATE alumni SET isVerified=1 WHERE email=:email");
+        $stmt->bindParam(':email',$email);
+        $stmt->execute();
+        
         echo'
-            <div class="modal fade" id="doneVerify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
                                     style="color: rgb(13, 175, 18);"></i>Thank you!</h5>
-                            <button type="button" class="close" data-dismiss="modal" onclick="$("#doneVerify").modal("hide")">
+                            <button type="button" class="close" data-dismiss="modal" onclick=window.closeModal()>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/api/updatedb" method="post" id="form_3">
+                        <form id="form_3">
                             <div class="modal-body">
                                 <span>Thank you for signing up.<br>
                                     Your application is successfully submitted, please wait for the verification.<br>
@@ -411,8 +422,14 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
 
             <script type="text/javascript">
                     $(document).ready(function(){
-                        $("#doneVerify").modal("show");
+                        $("#id").modal("show");
                     });
+
+                    function closeModal(){
+                        $(document).ready(function(){
+                            $("#id").modal("hide");
+                        });
+                    }
             </script>
     ';
 }
@@ -430,7 +447,7 @@ if (isset($_GET["doneSend"])) {
                     <div class="modal-header">
                         <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
                                 style="color: rgb(13, 175, 18);"></i>Next Step</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$("#doneSend").modal("hide")">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -454,6 +471,11 @@ if (isset($_GET["doneSend"])) {
                 $(document).ready(function(){
                     $("#doneSend").modal("show");
                 });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#doneSend").modal("hide");
+                });
+            }
         </script>
 ';
 }
@@ -500,7 +522,7 @@ function emailName(){
     }
 ?>
 
-<script type="module" src="/public/js/Alumni/LoginPage.js"></script>
+<script type="module" src="/js/Alumni/LoginPage.js"></script>
 
 </body>
 

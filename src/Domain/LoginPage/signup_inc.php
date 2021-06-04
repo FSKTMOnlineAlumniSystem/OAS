@@ -2,28 +2,12 @@
 use PHPMailer\PHPMailer\PHPMailer;
 include '../src/Domain/Database.php';
 include '../src/Domain/LoginPage/class.verifyEmail.php';
-// include '../src/utilities/uploadImage.php';
+include '../src/Domain/LoginPage/GeneralLoginFx.php';
+include '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 
-// if (isset($_POST["reset"])){
-//     echo 'done verify';
-//     insertAlumni($conn,$GLOBALS['alumniId'],$GLOBALS['approvedBy'], $GLOBALS['email'], $GLOBALS['Password'], $GLOBALS['IC'], $GLOBALS['gender'], $GLOBALS['name'], $GLOBALS['department'], $GLOBALS['Batch'], $GLOBALS['imageId'], $GLOBALS['isEmailPublic'], $GLOBALS['biography']);
-// }
-
-    // $alumniId = $GLOBALS['alumniId'];
-    // $approvedBy = $GLOBALS["approvedBy"];
-    // $email = $GLOBALS["email"];
-    // $Password = $GLOBALS["Password"];
-    // $IC = $GLOBALS["IC"];
-    // $gender = $GLOBALS["gender"];
-    // $name = $GLOBALS["name"];
-    // $department = $GLOBALS["department"];
-    // $Batch = $GLOBALS["Batch"];
-    // $imageId = $GLOBALS["imageId"];
-    // $isEmailPublic = $GLOBALS["isEmailPublic"];
-    // $biography = $GLOBALS["biography"];
 
 if(isset($_POST["submit"])){
     echo "it works";
@@ -39,44 +23,12 @@ if(isset($_POST["submit"])){
     $alumniId = "";
     $approvedBy = "";
     $imageId = "";
-    $isEmailPublic = "";
+    $isEmailPublic = False;
+    $isActive = True;
+    $isVerified = False;
     $biography = "";
     $pic = "profilePicture";
 
-   
-    verifyEmail($email);
-
-    insertData($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
-    
-    // $verify = verify($email);
-    // if($verify){
-    //     insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
-    // }else{
-    //     header("location: /login?emailFake");
-    //     exit();
-    // }
-    
-
-    header("location: /login?doneSend");
-    
-
-    // header("location: LoginPage.php");
-    exit();
-
-}
-
-function insertData($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography){
-   
-    session_start();
-    
-    $dataArr = array("alumniId" => $alumniId, "approvedBy" => $approvedBy, 
-                "email" => $email, "Password" => $Password, "IC" => $IC, "gender" => $gender,
-                "name" => $name, "department" => $department, "Batch" => $Batch,
-                "imageId" => $imageId, "isEmailPublic" => $isEmailPublic, 
-                "biography" => $biography);
-
-    $_SESSION['dataAlumni'] = $dataArr;
-    
     // $_SESSION["alumniId"] = $alumniId;
     // $_SESSION["approvedBy"] = $approvedBy;
     // $_SESSION["email"] = $email;
@@ -89,13 +41,92 @@ function insertData($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gende
     // $_SESSION["imageId"] = $imageId;
     // $_SESSION["isEmailPublic"] = $isEmailPublic;
     // $_SESSION["biography"] = $biography;
+    // $_SESSION["pic"] = $_FILES["profilePicture"];
+
+    $encrypted = Encrypt($email);
+    verifyEmail($email,$encrypted);
+
+    insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
+    
+
+    header("location: /login?doneSend");
+    exit();
+
+}
+
+
+function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography){
+    $stmt = $conn->prepare("INSERT INTO alumni (alumniId, approvedBy, email, password, icNumber, gender, name, department, graduated, imageId, isEmailPublic, isActive, isVerified, biography) VALUES(:alumniId, :approvedBy, :email, :password, :icNumber, :gender, :name, :department, :graduated, :imageId, :isEmailPublic, :isActive, :isVerified, :biography)");
+
+    $checkEmail = emailExists($conn,$email);
+    if ($checkEmail) {
+        header("location: /login?emailExists");
+        exit();
+    }
+
+    
+
+    // $alumniId = "AL-" . getLength($conn)+1 ;
+    $alumniId = $email;
+    $imageId = $alumniId;
+
+    $stmt->bindParam(":alumniId", $alumniId);
+
+    $stmt->bindParam(":approvedBy", $approvedBy);
+    $stmt->bindParam(":email", $email);
+
+    $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+    $stmt->bindParam(":password", $hashedPassword);
+    
+
+
+
+    // $stmt->bindParam(":password", $Password);
+
+
+
+
+
+    $stmt->bindParam(":icNumber", $IC);
+    $stmt->bindParam(":gender", $gender);
+    $stmt->bindParam(":name", $name);
+    $stmt->bindParam(":department", $department);
+    $stmt->bindParam(":graduated", $Batch);
+    $stmt->bindParam(":imageId", $imageId);
+    $stmt->bindParam(":isEmailPublic", $isEmailPublic);
+    $stmt->bindParam(":isActive", $isActive);
+    $stmt->bindParam(":isVerified", $isVerified);
+    $stmt->bindParam(":biography", $biography);
+    $stmt->execute();
+
+    try {
+        //Upload image to database as blob
+        if($_FILES["profilePicture"]['tmp_name']!=null){
+            // echo $_FILES[$pic]['tmp_name'];
+            uploadImage($conn,$_FILES["profilePicture"],$alumniId);
+            
+        }
+        // $alumni = new MyProfile($db->getConnection(), $alumniId);
+        // $alumni->setUpdatedData($email, $biography);
+    } catch (Exception $e) {
+        echo "Exception: " . $e->getMessage();
+    }
+
+}
+
+function getLength($conn){
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM alumni");
+    $stmt->execute();
+    $data = $stmt->fetch();
+    return $data["COUNT(*)"];
 }
 
 
 
-function verifyEmail($email){
 
-    $base_url = "http://localhost/login?doneVerify";
+function verifyEmail($email,$encrypted){
+
+    $base_url = "http://localhost/login?id=".$encrypted;
 
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
@@ -131,14 +162,14 @@ function verifyEmail($email){
         if ($mail->send()) {
             $status = 'success';
             $response = 'Email is sent!';
-            header("location: /login?doneSend");
-            exit();
+            // header("location: /login?doneSend");
+            // exit();
         }else{
             $status = 'failed';
             $response = 'error==='. $mail->ErrorInfo;
         }
 
-        exit(json_encode(array("status" => $status,"response" => $response)));
+        // exit(json_encode(array("status" => $status,"response" => $response)));
 }
 
 // function verify($email){

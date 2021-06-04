@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
     loginUser($conn, $email, $password);
 
 }else{
-    header("location: ../LoginPage.php?error=loginfailed");
+    header("location: /home");
 }
 
 
@@ -25,7 +25,7 @@ function loginUser($conn, $email, $password){
 
     $alumniData = emailExists($conn,$email);
     if($alumniData == false){
-        header("location: ./LoginPage.php?emailnotExists");
+        header("location: /login?emailnotExists");
         exit();
     }
     // else{
@@ -41,7 +41,7 @@ function loginUser($conn, $email, $password){
 
     if ($checkpassword === false) {
        
-        header("location: ./LoginPage.php?passwordWrong");
+        header("location: /login?passwordWrong");
         exit();
 
     } else if($checkpassword === true){
@@ -53,7 +53,8 @@ function loginUser($conn, $email, $password){
             unset($alumniData["icNumber"]);
             session_start();
             $_SESSION["alumni"] = $alumniData;
-            header("location: ../HomePage/HomePage.php");
+            // $_SESSION["emb"] = "abc";
+            header("location: /home");
             exit();
         // }else {
         //     header("location: ./LoginPage.php?account=deleted");
@@ -96,8 +97,9 @@ function passwordCheck($password, $passwordNormal){
         return true;
     }elseif ($password != $passwordNormal) {
         //wrong password
-        header("location: ./LoginPage.php?password=false");
+        header("location: /login?password=false");
         return false;
     }
 }
+
 

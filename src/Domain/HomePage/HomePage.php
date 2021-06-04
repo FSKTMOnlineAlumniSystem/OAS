@@ -19,38 +19,45 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <link href="/public/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/public/css/Alumni/index.css" />
+    <link href="/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
    
     <title><?= $GLOBALS['title']; ?></title>
     </head>
     <body>
 
     <?php
-include '../../../config/config.php';
-include './HomePageModel.php';
-include '../Database.php';
+// include '../../../config/config.php';
+// include '../src/Domain/HomePage/HomePage.php';
+include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-try {
-  $homepage_model = new HomePageModel($db->getConnection());
-  $all_activities = $homepage_model->getAll();
-  if (!empty($all_activities)) {
+// try {
+//   $homepage_model = new HomePageModel($db->getConnection());
+//   $all_activities = $homepage_model->getAll();
+//   if (!empty($all_activities)) {
 
-    foreach ($all_activities as $activity) {
-        echo "$activity[eventId] ";
-        // echo "$activity[adminId] ";
-        // echo "$activity[jobId] ";
-        // echo "$activity[alumniId] ";
-    }
-  }
-} catch (Exception $e) {
-  echo "Exception here!";
-}
+//     foreach ($all_activities as $activity) {
+//         echo "$activity[eventId] ";
+//         // echo "$activity[adminId] ";
+//         // echo "$activity[jobId] ";
+//         // echo "$activity[alumniId] ";
+//     }
+//   }
+// } catch (Exception $e) {
+//   echo "Exception here!";
+// }
 
-session_start();
-echo $_SESSION["alumni"]["email"];
+// session_start();
+// $_SESSION["em"] = "abc";
+$emb = $_SESSION["emb"];
+// $em = $_SESSION["alumni"]["email"];
+// $em = $_SESSION["alumni"];
+// echo $_SESSION;
+echo $emb;
+
+// echo "".$_SESSION["em"]."";
 
 ?>
 
@@ -59,15 +66,15 @@ echo $_SESSION["alumni"]["email"];
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="/public/Assets/imgs/hp_slide7.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/Assets/imgs/hp_slide7.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
         <div class="carousel-item">
-            <img src="/public/Assets/imgs/hp_slide8.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/Assets/imgs/hp_slide8.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
         <div class="carousel-item">
-            <img src="/public/Assets/imgs/hp_slide5.jpg" class="image--max-size-100-percent d-block w-100"
+            <img src="/Assets/imgs/hp_slide5.jpg" class="image--max-size-100-percent d-block w-100"
                 alt="...">
         </div>
     </div>
@@ -148,15 +155,15 @@ echo $_SESSION["alumni"]["email"];
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script type="module" src="/public/js/Alumni/homePage.js"></script>
+    <script type="module" src="/js/Alumni/homePage.js"></script>
 
-    <script type="text/javascript" src="/public/js/utility.js"></script>
-    <script type="module" src="/public/js/addHeader.js"></script>
-    <script type="text/javascript" src="/public/js/addNavFooter.js"></script>
+    <script type="text/javascript" src="c/js/utility.js"></script>
+    <script type="module" src="/js/addHeader.js"></script>
+    <script type="text/javascript" src="/js/addNavFooter.js"></script>
 
 
     
-    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script>
 
 
 </body>

@@ -1,4 +1,4 @@
-import { dummyResponse, updateDummyData } from "../dummydata.js";
+// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
 const form_2 = document.getElementById('forgot');
 const sendEmail = document.getElementById('sendEmail');
@@ -242,22 +242,22 @@ form.addEventListener('submit', (e) => {
     if (errorExist) {
         e.preventDefault();
     } else {
-        const obj = {
-            "alumniId": "AL-" + dummyResponse.Alumni.length,
-            "approvedBy": "",
-            "email": emailValue,
-            "password": passwordValue,
-            "icNumber": ICValue,
-            "gender": GenderValue,
-            "name": FirstNameValue + LastNameValue,
-            "department": DepartmentValue,
-            "graduated": BatchValue,
-            "imageId": im,
-            "contactNumber": "03-79676347",
-        }
+        // const obj = {
+        //     "alumniId": "AL-" + dummyResponse.Alumni.length,
+        //     "approvedBy": "",
+        //     "email": emailValue,
+        //     "password": passwordValue,
+        //     "icNumber": ICValue,
+        //     "gender": GenderValue,
+        //     "name": FirstNameValue + LastNameValue,
+        //     "department": DepartmentValue,
+        //     "graduated": BatchValue,
+        //     "imageId": im,
+        //     "contactNumber": "03-79676347",
+        // }
 
-        dummyResponse.Alumni.push(obj);
-        updateDummyData(dummyResponse);
+        // dummyResponse.Alumni.push(obj);
+        // updateDummyData(dummyResponse);
 
         // e.preventDefault();
         // getWait();

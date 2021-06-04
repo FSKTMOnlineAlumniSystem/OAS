@@ -3,7 +3,7 @@ include '../config/config.php';
 session_start();
 
 //VIEW
-if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
+if (preg_match('/^\/home\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/HomePage/HomePage.php';
 
