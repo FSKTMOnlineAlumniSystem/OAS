@@ -127,7 +127,7 @@ $('#search-button').click(function(){
     data: {search: search},
     success: function(resp){
      console.log("success");
-     console.log(resp);
+    //  console.log(resp);
     let page = 0;
     var jobtList =JSON.parse(resp);
  

@@ -4,7 +4,7 @@
 
 <?php
 include '../src/Domain/Job/MyJobModel.php';
-include_once '../src/templates/header.php';
+// include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 
 $alumniID = "AL-1";
@@ -26,10 +26,18 @@ try {
 }
 ?>
 
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/MyJobPage.css',
+    'searchBar' => '/css/Alumni/SearchBar.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
 
-
-<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobPage.css" />
-<link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
 
 
 <div class ="container my-5" id='main-body'>
@@ -66,7 +74,7 @@ try {
             </div>
 
             <!-- POP OUT THE MODAL WHEN THE USER CLICK ON THE TRASH ICON -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteModal" role="dialog">
               <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header">
@@ -100,19 +108,29 @@ try {
     </div>
 
 
-<?php include_once '../src/templates/footer.php' ?>
+
 
 <script type="text/javascript">var myJob_array = <?php echo json_encode($myJob) ?>;</script>
 <script type="module" src="/js/Alumni/MyJobPage.js"></script>
-<script type="text/javascript">var image_array = <?php echo json_encode($image) ?>;</script>
-<script type="module" src="/js/Alumni/MyJobPageModule.js"></script>
+
+
+
+<script type="module" src="/js/Alumni/MyJobPageModule.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="module" src="/js/utility.js"></script>
-<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/js/utility.js"></script>
+<?php include_once '../src/templates/footer.php' ?>
 <!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
 
 

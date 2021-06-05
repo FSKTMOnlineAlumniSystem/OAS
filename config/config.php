@@ -54,6 +54,10 @@ define('STATUS_REJECTED', 2);
 define('TITLE_OAS', 'Online Alumni System');
 define('TITLE_EVENTS', 'Events - Online Alumni System');
 define('TITLE_MY_PROFILE', 'My Profile - Alumni Online System');
+define('TITLE_JOB', 'Job - Alumni Online System');
+define('TITLE_MYJOB', 'My Job - Alumni Online System');
+define('TITLE_EDITJOB', 'Edit Job - Alumni Online System');
+define('TITLE_ADDJOB', 'Add Job - Alumni Online System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 define('PUBLIC_IMG_PATH',"../public/Assets/imgs/");

@@ -1,13 +1,25 @@
 <?php
-include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 include '../src/Domain/Job/JobDetailsModel.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/JobDetailsPage.css" />
 
-  <title>Job Details - Alumni Online System</title>
+<title>Job Details - Alumni Online System</title>
 </head>
 <body>
+
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/JobDetailsPage.css',
+    'searchBar' => '/css/Alumni/SearchBar.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
+
+
 
 <?php
 

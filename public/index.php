@@ -12,22 +12,42 @@ if (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
 elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
-} elseif (preg_match('/^\/job\/?$/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
+} 
+
+
+//Job
+elseif (preg_match('/^\/job\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_JOB;
     include '../src/Domain/Job/JobPage.php';
 } elseif (preg_match('/^\/jobdetails\/?/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
+    $GLOBALS['title'] = TITLE_JOB;
     include '../src/Domain/Job/JobDetailsPage.php';
 } elseif (preg_match('/^\/myjob\/?$/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
+    $GLOBALS['title'] = TITLE_MYJOB;
     include '../src/Domain/Job/MyJobPage.php';
 } elseif (preg_match('/^\/myjobdetails\/?/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
+    $GLOBALS['title'] = TITLE_MYJOB;
     include '../src/Domain/Job/MyJobDetailsPage.php';
 } elseif (preg_match('/^\/addjob\/?$/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
+    $GLOBALS['title'] = TITLE_ADDJOB;
     include '../src/Domain/Job/AddJobPage.php';
+} elseif (preg_match('/^\/editmyjob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EDITJOB;
+    include '../src/Domain/Job/EditMyJobPage.php';
+} 
+elseif (preg_match('/^\/deleteJob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MYJOB;
+    include '../src/Domain/Job/deleteJobController.php';
+} 
+elseif (preg_match('/^\/searchJob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MYJOB;
+    include '../src/Domain/Job/searchController.php';
+} 
+elseif (preg_match('/^\/searchAllJob\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_JOB;
+    include '../src/Domain/Job/searchJobController.php';
 
+    
 //admin-event
 }elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;

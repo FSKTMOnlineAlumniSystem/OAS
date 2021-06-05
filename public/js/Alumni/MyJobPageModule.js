@@ -129,17 +129,55 @@ function loadMyJobList(pageIndex, outputList, count) {
   const clickButton = document.querySelectorAll(".clickButton");
   var deleteID;
 
+
   //CLICKING THE TRASH ICON
+  $(document).ready(function(){
+    jQuery.noConflict();
   clickButton.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
+      console.log('click');
       deleteID = e.currentTarget.id;
-      $(`#deleteModal`).modal("show");
+
+      $.ajax({
+        url: 'deleteJobController.php',
+        type: 'post',
+        data: {modal: 1},
+        success: function(response){ 
+          // Display Modal
+          console.log("sucess");
+          console.log(response);
+          jQuery(`#deleteModal`).modal("show");
+        },
+        error: function(){
+          console.log('fail');
+          $(`#deleteModal`).modal("show");
+        }
+      });
+     
     });
+
   });
+});
+
+
+// // AJAX request
+// $.ajax({
+//   url: 'ajaxfile.php',
+//   type: 'post',
+//   data: {userid: userid},
+//   success: function(response){ 
+//     // Add response in Modal body
+//     $('.modal-body').html(response);
+
+//     // Display Modal
+//     $('#empModal').modal('show'); 
+//   }
+// });
 
 
 
 $('#deleteButton').click(function(){
+  console.log('here');
   $.ajax({
     url: 'deleteJobController.php',
     type: 'post',
@@ -171,6 +209,7 @@ $('#search-button').click(function(){
     data: {search: search},
     success: function(resp){
     let page = 0;
+    console.log(resp);
     outputList =JSON.parse(resp);
      if(outputList.length===0){
       loadMyJobList(page,outputList,-1);

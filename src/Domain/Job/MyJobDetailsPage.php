@@ -1,13 +1,26 @@
 <?php
-include_once '../src/templates/header.php';
+// include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 include '../src/Domain/Job/MyJobDetailsModel.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/MyJobDetailsPage.css" />
 
 <title>My Job Details - Alumni Onlune System</title>
 </head>
 <body>
+
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/MyJobDetailsPage.css',
+    'searchBar' => '/css/Alumni/SearchBar.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
+
+
 
 <?php
 

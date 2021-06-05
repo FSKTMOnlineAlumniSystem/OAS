@@ -1,21 +1,7 @@
 <?php
-include_once '../src/templates/header.php';
 include '../src/Domain/Database.php';
 include '../src/Domain/Job/AddJobModel.php';
 ?>
-
-<link rel="stylesheet" type="text/css" href="/css/Alumni/AddJobPage.css" />
-<title>Add Job - Alumni Online System</title>
-</head>
-<body>
-
-<div class="container my-md-5 my-3" id='main-body'>
-<h3 class="mb-4">Add New Job</h3>
-<div id="form"></div>
-</div>
-
-<script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
-<script type="text/javascript" src="/js/addNavFooter.js"></script>
 
 <?php
 include '../src/utilities/uploadImage.php';
@@ -62,6 +48,40 @@ if(isset($_POST['Submit'])) {
   
 }
 ?>
+
+
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/AddJobPage.css',
+    'searchBar' => '/css/Alumni/SearchBar.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
+
+
+
+<title>Add Job - Alumni Online System</title>
+</head>
+<body>
+
+<div class="container my-md-5 my-3" id='main-body'>
+<h3 class="mb-4">Add New Job</h3>
+<div id="form"></div>
+</div>
+
+<script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
+
+
+
+
+
+
+
 
 
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
