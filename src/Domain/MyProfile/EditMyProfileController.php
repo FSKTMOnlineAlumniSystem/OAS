@@ -37,9 +37,9 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     //Upload image to database as blob
     if($_FILES["profilePicture"]['tmp_name']!=null){
-        uploadImage($db->getConnection(),$_FILES["profilePicture"],'AL-1');
+        uploadImage($db->getConnection(),$_FILES["profilePicture"],$_SESSION["alumni"]['alumniId']);
     }
-    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+    $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
     $alumni->setUpdatedData($email, $biography);
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();

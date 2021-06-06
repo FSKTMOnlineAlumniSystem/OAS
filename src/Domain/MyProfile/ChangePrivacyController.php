@@ -5,7 +5,7 @@ include '../src/Domain/MyProfile/MyProfileModel.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+    $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
     if (isset($_POST['private'])) {
         $alumni->setIsEmailPublic(0);
         header("Location: /myprofile?private=true");
