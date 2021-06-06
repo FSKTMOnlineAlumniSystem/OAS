@@ -67,7 +67,7 @@
     $description = $_POST['description'];
     // $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
-    if($_FILES["imageId"]['tmp_name']!=null){
+    if($_FILES["eventPicture"]['tmp_name']!=null){
     $imageId = $eventId;
     }else{
       $imageId="Default";
@@ -78,13 +78,13 @@
       //Upload image to database as blob
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-      if($_FILES["imageId"]['tmp_name']!=null){
+      if($_FILES["eventPicture"]['tmp_name']!=null){
           print 'hello';
-          print_r($_FILES["imageId"]);
-          uploadImage($db->getConnection(),$_FILES["imageId"],$imageId);
+          print_r($_FILES["eventPicture"]);
+          uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);
       }else{
         print 'you salah le';   
-        print_r($_FILES["imageId"]);
+        print_r($_FILES["eventPicture"]);
   } 
   // catch (Exception $e) {
   // echo "Exception: " . $e->getMessage();

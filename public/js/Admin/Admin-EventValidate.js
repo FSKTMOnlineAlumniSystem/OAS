@@ -97,31 +97,30 @@ function checkvalidation() {
 
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
-  var i = localStorage.getItem("updateId");
-  console.log('f')
-  let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
-    // To handle the file size
-    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
-  } else if (
-    eventArray[i].imageId=='Default' &&
-    e.target.files &&
-    e.target.files[0] &&
-    allowedExtensions.test(e.target.value)
-  ) {
-    eventPicture.files = e.target.files;
-    var reader = new FileReader();
-    reader.onload = function (e) {
+  // var i = localStorage.getItem("updateId");
+  let allowedExtensions =
+  /(\.png|\.jpg|\.jpeg)$/i;
+if (e.target.files && e.target.files[0] && e.target.files[0].size>100000) {
+  // To handle the file size
+  console.log('1');
+  // console.log(eventPicture.files);
+  choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+}else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+  console.log('2');
+  // console.log(e.target.files);
+  eventPicture.files = e.target.files;
+  var reader = new FileReader();
+  reader.onload = function (e) {
       wizardPicturePreview.src = e.target.result;
-    };
-    reader.readAsDataURL(e.target.files[0]);
-    choosePictureDescription.textContent = "Choose picture";
-  } else {
-    choosePictureDescription.textContent =
-      "Please choose picture in .png, .jpg or .jpeg format";
   }
-}
+  reader.readAsDataURL(e.target.files[0]);
+  choosePictureDescription.textContent = "Choose picture";
+} else {
+  console.log('3');
 
+  choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+}
+}
 
 /*Check whether there is any changes that might be lost*/
 function cancelCreate(){

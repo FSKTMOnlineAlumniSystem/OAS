@@ -56,7 +56,7 @@ class Admin_EventModel
         $image = array();
         foreach($data as $eachuser){
             if($eachuser['imageId']=='Default'){
-                array_push($image,null);
+                array_push($image,'Default');
             }
             else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
@@ -170,6 +170,29 @@ class UpdateEventModel
                 throw $exception;
             }     
     }
+    public function getImageId($eventId) :string {
+        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+         $sql = "SELECT imageId FROM `events` WHERE eventId=?";
+         $stmt = $this->connection->prepare($sql);  
+         $stmt->execute([$eventId]);
+         $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        //  $image = array();
+        if($data['imageId']!=null){
+            echo $data['imageId'];
+            return $data['imageId'];
+        }
+        else{
+            echo 'default';
+            return "Default";
+        }
+        
+        // foreach($data as $eachuser){
+        //     array_push($image,$eachuser['imageId']);
+        // }
+        //  return $image;
+}
+
+
 }
 
             //  $stmt ->bindParam(':title',$title);

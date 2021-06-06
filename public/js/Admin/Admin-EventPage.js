@@ -144,7 +144,7 @@ const loadEventList = (pageIndex,eventArray) => {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
       console.log(eventArray[clickedAlumniIndex])
-      var check=eventArray[clickedAlumniIndex].imageId==null;
+      var check=eventArray[clickedAlumniIndex].imageId=='Default';
       console.log(check);
       
       if(check){

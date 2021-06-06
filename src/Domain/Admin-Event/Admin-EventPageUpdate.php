@@ -55,15 +55,29 @@ try {
   }
   $defaultImage = $event_model->getDefaultPicture();
 
+
+//   //try
+// $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+// $updateTheEvent = new  UpdateEventModel($db->getConnection());	
+// $eventId='E-11';
+// $imageId=$updateTheEvent-> getImageId($eventId);
+//     // echo $imageId;
+//     print_r($imageId);
+
+
 } catch (Exception $e) {
   echo "Exception here!";
 }
+
+
 ?>
 
 <?php
     if(isset($_POST['update'])) {
       $eventId=$_GET['eventId'];
-    $updateTheEvent = new  UpdateEventModel($db->getConnection());	
+      $updateTheEvent = new UpdateEventModel($db->getConnection());	
+      $imageId=$updateTheEvent-> getImageId($eventId);
+      echo $imageId;
     // $data = $addJob_model->getMaxId();
     // $eventId = "E-" ;
     $adminId = "AD-1";         //ned change
@@ -71,14 +85,22 @@ try {
     $date =$_POST["date"];
     $time =$_POST["time"];
     $description = $_POST['description'];
-    $imageId = $eventId;
+    // $imageId = $eventId;
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-    $updateTheEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    if($_FILES["eventPicture"]['tmp_name']!=null){
+      $imageId = $eventId;
+    }
     
-    if($_FILES["imageId"]['tmp_name']!=null){
+    $updateTheEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+    
+    if($_FILES["eventPicture"]['tmp_name']!=null){
+      // if($imageId==="Default"){
+      //   $imageId=$EventId;
+      // }
       print 'hello';
-      uploadImage($db->getConnection(),$_FILES["imageId"],$imageId);
+      uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);//imageId
   }else{
     print 'you salah le';
   
