@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Profile - Alumni Online System</title>
+    <!-- GOOGLE FONT POPPINS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- ICON FONT AWESOME -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/Alumni/MyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
+
+</head>
+
+<body>
+    <div id="main-body" class="row mx-0 my-5 justify-content-center">
+        <div class="col-lg-7">
+            <div class="row justify-content-between">
+                <h2><b>My Profile</b></h2>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog mr-2"></i>
+                        Settings
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="EditMyProfilePage.html" class="dropdown-item">
+                            <i class="fas fa-user-edit mr-2"></i>
+                            Edit Profile
+                        </a>
+                        <button type="button" class="dropdown-item" data-toggle="modal"
+                            data-target="#changePasswordModal">
+                            <i class="fas fa-lock-alt mr-2"></i>
+                            Change Password
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" class="dropdown-item text-danger" data-toggle="modal"
+                            data-target="#deleteAccountModal">
+                            <i class="fas fa-user-times mr-2"></i>
+                            Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3 mb-3 align-items-center">
+                <div class="col-sm-5 d-flex align-items-center justify-content-center">
+                    <div class="w-50 position-relative">
+                        <div class="rounded-circle overflow-hidden border" style="aspect-ratio: 1/1;">
+                            <img id="profilePicture" src="../../../Assets/imgs/AL-1.png" alt="Profile Picture"
+                                class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7 justify-content-center align-items-center">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Name:</div>
+                        <div id="name" class="col-sm-8">Teh Kok Soon</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Gender:</div>
+                        <div id="gender" class="col-sm-8">Male</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Graduated:</div>
+                        <div id="graduated" class="col-sm-8">2014</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Department:</div>
+                        <div id="department" class="col-sm-8">Software Engineering</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">E-mail:</div>
+                        <div id="email" class="col-sm-8">koksoon@um.edu.my</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">Contact Number:</div>
+                        <div id="contactNumber" class="col-sm-8">03-79676347</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <h4>Biography</h4>
+                <div class="col-12 rounded bg-grey p-5 mb-2">
+                    <div id="biography" class="profile__biography_valueContainer_value text-break">
+                        Tey Kok Soon received his BEng degree in Electrical Engineering and PhD degree from the
+                        University
+                        of Malaya, Malaysia, in 2011 and 2014 respectively. Since 2011, he has been a Research Assistant
+                        with the Power Electronics and Renewable Energy Research Laboratory (PEARL), Department of
+                        Electrical Engineering, University of Malaya. In 2015, he joined Department of Computer System
+                        and
+                        Information Technology, Faculty of Computer Science and Information Technology (FCSIT) as a
+                        Senior
+                        Lecturer. His research interests include renewable energy control system, energy management,
+                        power
+                        efficiency of PV system and inverter control of PV system.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Change password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="oldPassword" class="col-form-label">Old password</label>
+                                <input type="text" class="form-control" id="oldPassword" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Old password is wrong</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword" class="col-form-label">New password</label>
+                                <input type="password" class="form-control" id="newPassword" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Be at least 5 characters and at most 20 characters</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmNewPassword" class="col-form-label">Confirm new password</label>
+                                <input type="password" class="form-control" id="confirmNewPassword" required>
+                                <div class="valid-feedback">New password is correct</div>
+                                <div class="invalid-feedback">Please enter the same new password</div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="changePasswordButton" type="button" class="btn text-white"
+                            style="background: #a53ecd;">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Are you sure?
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="media alert alert-warning rounded mb-2">
+                        <i class="bi bi-exclamation-circle align-self-center mr-3"></i>
+                        <div class="media-body">
+                            If you delete your account, all of your account data will be permenantly deleted.
+                        </div>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="deleteAccountInput" class="col-form-label">If yes, please type “DELETE” to
+                                delete
+                                your account.</label>
+                            <input type="text" class="form-control" id="deleteAccountInput" required>
+                            <div class="invalid-feedback">Please enter 'DELETE'</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="deleteAccountButton" type="button" class="btn btn-danger">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='module' src='/src/js/addHeader.js'></script>
+    <script type='text/javascript' src='/src/js/addNavFooter.js'></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="/src/js/utility.js"></script>
+    <script type='module' src="../../js/Alumni/MyProfilePage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
