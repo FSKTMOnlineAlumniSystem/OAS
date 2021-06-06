@@ -125,7 +125,6 @@ include '../src/templates/nav.php';
 include '../src/templates/GeneralScripts.php'
 ?>
 <!-- custom js files -->
-<script src="/js/utility.js"></script>
 <script src="/js/Alumni/EventDetailsPage.js"></script>
 </body>
 

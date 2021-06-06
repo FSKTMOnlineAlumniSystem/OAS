@@ -51,21 +51,6 @@ class EventModel
   }
   public function getEventPicture()
     {
-      // if($id){
-      //   try {
-      //     $stmt = $this->connection->prepare('SELECT * FROM events');
-      //     $stmt->execute();
-      //     $data = $stmt->fetchAll();
-    
-      //     if (!$data) {
-      //       return array();
-      //     }
-      //     return $data;
-      //   } catch (PDOException $exception) {
-      //     error_log('EventModel: getAll: ' . $exception->getMessage());
-      //     throw $exception;
-      //   }
-      // }
         return 'data::'.$this->event['type'].';base64,'.base64_encode($this->event['imageData']);
     }
 }
