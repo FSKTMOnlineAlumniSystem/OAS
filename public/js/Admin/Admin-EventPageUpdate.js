@@ -5,7 +5,11 @@ let eventArray=event_array
 var inputValue;
 var imageName;
 var inputValue;
+//image
 const img = document.querySelector('#wizard-picture');
+const wizardPicturePreview = document.querySelector("#prevImage");
+const eventPicture = document.querySelector('#eventPicture');
+
 const title = document.getElementById("title");
 const description = document.getElementById("description");
 const locate = document.getElementById("location");
@@ -40,6 +44,35 @@ var titlevalue = eventArray[i].title;
   var locatevalue = eventArray[i].location;
   var datevalue = todayDate;
   var timevalue = hour +':'+ minute;
+/*
+  img.addEventListener("change", (e) => readURL(e));
+function readURL(e) {
+  console.log('update js here')
+  var i = localStorage.getItem("updateId");
+  console.log('f')
+  let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+    // To handle the file size
+    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+  } else if (
+    // eventArray[i].imageId!='Default' &&
+    e.target.files &&
+    e.target.files[0] &&
+    allowedExtensions.test(e.target.value)
+  ) {
+    eventPicture.files = e.target.files;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      wizardPicturePreview.src = e.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "Choose picture";
+  } else {
+    choosePictureDescription.textContent =
+      "Please choose picture in .png, .jpg or .jpeg format";
+  }
+}
+*/
 
 // function setInValid(el) {
 //   if (el.classList.contains("is-valid")) {

@@ -97,12 +97,14 @@ function checkvalidation() {
 
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
+  var i = localStorage.getItem("updateId");
   console.log('f')
   let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
   if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
     // To handle the file size
     choosePictureDescription.textContent = "Image size must be smaller than 1MB";
   } else if (
+    eventArray[i].imageId=='Default' &&
     e.target.files &&
     e.target.files[0] &&
     allowedExtensions.test(e.target.value)

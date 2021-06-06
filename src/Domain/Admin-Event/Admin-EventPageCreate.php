@@ -169,6 +169,7 @@
               src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
               id="prevImage" alt="update Image" width="100%" >
             <input type="file" id="wizard-picture" name="imageId">
+            <input type="file" name="eventPicture" id="eventPicture" class="d-none">
           </div>
         
         

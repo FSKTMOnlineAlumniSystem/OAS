@@ -35,6 +35,7 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 
 /*Check the file extension of the image & Update preview*/
 ///////////////////////need for validation
+/*
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
   let allowedExtensions =
@@ -51,7 +52,7 @@ function readURL(e) {
     
   }
 }
-
+*/
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 // function isEmpty(obj) {
 //   return obj.value.length == 0;
