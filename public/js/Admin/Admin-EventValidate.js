@@ -182,6 +182,7 @@ function cancelUpdate(){
       var des=descriptionvalue==description1.value;
       console.log(descriptionvalue);
       console.log(description1.value);
+      var compareDescription=descriptionvalue.replace(/[^a-zA-Z]/g, "") == description1.value.replace(/[^a-zA-Z]/g, "");
       var loc=locatevalue==locate1.value;
       var da=datevalue==date1.value;
       var ti=timevalue==time1.value;
@@ -197,7 +198,7 @@ function cancelUpdate(){
       // var compare = image.localeCompare(imagesrc)
       if (image==imagesrc &&
         titlevalue==title1.value && 
-        descriptionvalue==description1.value && 
+        compareDescription && 
         locatevalue==locate1.value&& 
         datevalue==date1.value && 
         timevalue==time1.value) {
