@@ -37,8 +37,13 @@ document.getElementById('date').value=todayDate
 document.getElementById('time').value=hour +':'+ minute
 document.getElementById('description').value=eventArray[i].description
 document.getElementById('location').value=eventArray[i].location
-document.getElementById('prevImage').src=eventArray[i].imageId
 
+var check=eventArray[i].imageId==null;
+if(check){
+  document.getElementById('prevImage').src=defaultImage;
+}else{
+  document.getElementById('prevImage').src=eventArray[i].imageId;
+}
 var titlevalue = eventArray[i].title;
   var descriptionvalue = eventArray[i].description;
   var locatevalue = eventArray[i].location;

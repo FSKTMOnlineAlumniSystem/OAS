@@ -43,7 +43,6 @@ class Admin_EventModel
     $sql = "DELETE FROM image WHERE imageId=?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$eventId]);
-
     }
 
     public function getPicture(): array{
@@ -78,9 +77,6 @@ class Admin_EventModel
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
-            // else{
-            //     array_push($image,'null');
-            // }
         }
         return $image;
     }

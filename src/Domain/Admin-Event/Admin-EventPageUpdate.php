@@ -53,6 +53,8 @@ try {
   for ($i=0; $i< count($all_activities); $i++){
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
+  $defaultImage = $event_model->getDefaultPicture();
+
 } catch (Exception $e) {
   echo "Exception here!";
 }
@@ -107,7 +109,7 @@ header("Location: adminEvent");
 //   }
 // }
 ?>
-
+  <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script>
 <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 
