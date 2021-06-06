@@ -73,7 +73,9 @@ function loadMyJobList(pageIndex, outputList, count) {
   } else if (count===-1){
     document.getElementById(
       "no_result"
-    ).innerHTML = `<h2>Sorry, there is no result.</h3>`;
+    ).innerHTML = 
+    `<h2>Sorry, there is no result.</h2>
+    <img class="" src="/Assets/imgs/newSearchNotFound.png" style="width:70%" >`;
     document.getElementById("nextPage").innerHTML = "";
     document.getElementsByClassName("pages")[0].innerHTML = "";
     document.getElementById("previousPage").innerHTML = "";
@@ -225,7 +227,7 @@ $('#search-button').click(function(){
 
   //CLOSE THE MODAL
   function closeModal(modalId) {
-    $(modalId).modal("hide");
+    jQuery(modalId).modal("hide");
   }
 
   //CLICK ON THE CLOSE BUTTON OF THE CONFIRMATION MODAL

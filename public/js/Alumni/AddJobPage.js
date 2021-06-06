@@ -21,8 +21,11 @@ document.getElementById("form").innerHTML += `
           <img id="imageResult" src="#" alt="" class="company-image">
         </div>
         <div class='col-md-8 col-12 p-0 px-md-2'>
-          <label for="upload" class="form-label">Company Image</label>
-          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="jobImage">
+          <label for="upload" id="fileLabel" class="form-label">Company Image</label>
+          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="jobImage" >
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback"></div>
+          <div id="fileTooLarge" style="color:red;"></div>
         </div>
       </div>
     </div>
@@ -71,6 +74,7 @@ const salary = document.getElementById("salary");
 const email = document.getElementById("email");
 const description = document.getElementById("description");
 const form = document.querySelector("form");
+var input = document.getElementById("upload");
 
 
 //INPUT HANDLING ERROR
@@ -95,6 +99,7 @@ function isEmpty(obj) {
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const regex = /^[0-9]+$/;
+const imageFormat = /(\.png|\.jpg|\.jpeg)$/i;
 
 
 // CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
@@ -143,6 +148,13 @@ function checkvalidation() {
     setValid(description);
   }
 
+  if (isEmpty(upload) || !upload.value.match(imageFormat) || readURL(input)) {
+    setInValid(upload);
+    errorExist = true;
+  } else {
+    setValid(upload);
+  }
+
   if (errorExist) {
     return false;
   } 
@@ -152,9 +164,21 @@ function checkvalidation() {
 }
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
-var input = document.getElementById("upload");
+// var input = document.getElementById("upload");
+var content = document.getElementById("fileTooLarge");
+var fileLabel = document.getElementById("fileLabel");
+
+input.addEventListener("change", (event) => readURL(input));
+
 function readURL(input) {
-  if (input.files && input.files[0]) {
+  content.textContent = "";
+  let allowedExtensions =
+  /(\.png|\.jpg|\.jpeg)$/i;
+ 
+  if (input.files && input.files[0] && input.files[0].size>1000000) {
+    content.textContent = "This image file is too large";
+    return true;
+  }else if(input.files && input.files[0] && allowedExtensions.test(input.value)){
     var reader = new FileReader();
     reader.readAsDataURL(input.files[0]);
     reader.name = input.files[0].name;
@@ -179,9 +203,38 @@ function readURL(input) {
         const srcEncoded = ctx.canvas.toDataURL(el.target, "image/jpg");
         imageUrl = srcEncoded;
         document.querySelector("#imageResult").src = srcEncoded;
+
+  
       };
     };
+  
+  }else if(isEmpty(upload)){
+      content.textContent = "Please provide picture for this job.";
+  }
+  else{
+    content.textContent = "Please choose picture in .png, .jpg or .jpeg format.";
   }
 }
-input.addEventListener("change", (event) => readURL(input));
 
+
+
+//TRY
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//     let allowedExtensions =
+//         /(\.png|\.jpg|\.jpeg)$/i;
+//     if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
+//         // To handle the file size
+//         choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+//     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//         profilePicture.files = e.target.files;
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             wizardPicturePreview.src = e.target.result;
+//         }
+//         reader.readAsDataURL(e.target.files[0]);
+//         choosePictureDescription.textContent = "Choose picture";
+//     } else {
+//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+//     }
+// }

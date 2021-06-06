@@ -13,7 +13,11 @@ function loadJobList(pageIndex, outputList) {
   if(outputList.length === 0){
     document.getElementById(
       "no_result"
-    ).innerHTML = `<h2>Sorry, there is no result.</h3>`;
+    ).innerHTML = `
+    <h2>Sorry, there is no result.</h2>
+    <img class="" src="/Assets/imgs/newSearchNotFound.png" style="width:70%" >
+   
+    `;
     document.getElementById("nextPage").innerHTML = "";
     document.getElementsByClassName("pages")[0].innerHTML = "";
     document.getElementById("previousPage").innerHTML = "";

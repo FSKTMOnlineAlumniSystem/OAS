@@ -26,7 +26,10 @@ let editJobs = job_array;
         <div class="picture">
             <img src="${editJobs.imageId}" class="picture-src"
                 id="wizardPicturePreview" title="" >
-            <input type="file" id="wizard-picture" name="imageId">
+            <input type="file" id="wizard-picture" >
+            <input type="file" name="imageId" id="jobPicture" class="d-none">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback"></div>
         </div>
         <h6 id="choosePictureDescription">Choose Picture</h6>
     </div>
@@ -93,6 +96,7 @@ let editJobs = job_array;
     //GET THE ID 
     const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
     const img = document.querySelector('#wizard-picture');
+    const jobPicture = document.querySelector('#jobPicture');
     const companyName = document.getElementById("companyName");
     const jobTitle = document.getElementById("jobTitle");
     const locations = document.getElementById("locations");
@@ -103,19 +107,49 @@ let editJobs = job_array;
     const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
     const regex=/^[0-9]+$/;
 
+    var input = document.getElementById("jobPicture");
+    const imageFormat = /(\.png|\.jpg|\.jpeg)$/i;
+    //jobPicture
     /*Check the file extension of the image & Update preview*/
+    // img.addEventListener('change', (e) => readURL(e));
+    // function readURL(e) {
+    // let allowedExtensions =
+    //     /(\.png|\.jpg|\.jpeg)$/i;
+    // if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    //     var reader = new FileReader();
+    //     reader.onload = function (e) {
+    //         document.getElementById("wizardPicturePreview").src = e.target.result;
+    //     }
+    //     reader.readAsDataURL(e.target.files[0]);
+    //     choosePictureDescription.textContent = "Choose picture";
+    // } else {
+    //     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+    // }
+    // }
+
     img.addEventListener('change', (e) => readURL(e));
     function readURL(e) {
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>1000000) {
+        // To handle the file size
+        choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+        return true;
+    }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        jobPicture.files = e.target.files;
         var reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("wizardPicturePreview").src = e.target.result;
+            wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-    } else {
+
+    
+    }else if(isEmpty(jobPicture)){
+        choosePictureDescription.textContent = "Please provide picture for this job.";
+    } 
+    
+    else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
     }
@@ -187,6 +221,13 @@ let editJobs = job_array;
         } else {
             setValid(description);
         }
+
+        if (isEmpty(jobPicture) || !jobPicture.value.match(imageFormat) || readURL(input)) {
+            setInValid(jobPicture);
+            errorExist = true;
+          } else {
+            setValid(jobPicture);
+          }
 
         if (errorExist){
             return false;
