@@ -231,8 +231,31 @@ searchBar.addEventListener('click', (e) => {
   } e.preventDefault();
 });
 
+$('#searchBar').click(function(){
+  var search = document.getElementById("input1").value;
+  if (search == "") {
+    alert("Name must be filled out");
+  }
+  console.log("pls"+search);
+  $.ajax({
+    url: 'searchAllJob',
+    type: 'post',
+    data: {search: search},
+    success: function(resp){
+     console.log("success");
+    //  console.log(resp);
+    let page = 0;
+    var jobtList =JSON.parse(resp);
+ 
+     loadJobList(page,jobtList);
+    },
+     
+  });
+
+});
+
 window.getAlumniId = function(){
-  return localStorage.getItem("alumniId");
+  return sessionStorage.getItem("alumniId");
 }
 
 //select all check box
@@ -328,6 +351,8 @@ window.deleteCheckedRow = function(){
   var count=0;
   var $alumniId = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  if(checkboxes.length==0){
+  }else{
     for (var i = checkboxes.length-1; i > 0; i--) {
       if(checkboxes[i].checked){
         count++;
@@ -350,4 +375,5 @@ window.deleteCheckedRow = function(){
       }
     });
     }
+  }
       

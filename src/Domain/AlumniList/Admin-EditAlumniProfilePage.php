@@ -59,6 +59,7 @@ echo "Exception: " . $e->getMessage();
 
 
 <head>
+    <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
     <title>Edit Alumni Profile - Alumni Online System</title>
     <!-- GOOGLE FONT POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
