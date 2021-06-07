@@ -16,9 +16,9 @@
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
   <?php
-  // foreach ($variables as $value) {
-  //   echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
-  // }
+  foreach ($variables as $value) {
+    echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
+  }
   ?>
   <title><?= $GLOBALS['title']; ?></title>
 </head>
