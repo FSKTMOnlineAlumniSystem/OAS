@@ -113,7 +113,7 @@ elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
 }
 
 
-} elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
 
