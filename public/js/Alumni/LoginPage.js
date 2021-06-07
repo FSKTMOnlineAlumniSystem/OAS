@@ -24,7 +24,7 @@ const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
 /*Check the file extension of the image & Update preview*/
 
-const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
+
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 //form validation for forgot modal
@@ -43,88 +43,87 @@ form_2.addEventListener('submit', (evt) => {
 
     if (errorExist) {
         evt.preventDefault();
-    } 
-    // else {
-    //     localStorage.setItem('ForgotPassword', sendEmailValue);
-    // }
+    } else {
+        localStorage.setItem('ForgotPassword', sendEmailValue);
+    }
 
 });
 
 //form validation for sign in
-// form_1.addEventListener('submit', (ev) => {
+form_1.addEventListener('submit', (ev) => {
 
-//     let errorExist = false;
-//     let getEmail = false;
+    let errorExist = false;
+    let getEmail = false;
 
-//     const staticEmailValue = staticEmail.value.trim();
-//     const inputPasswordValue = inputPassword.value.trim();
+    const staticEmailValue = staticEmail.value.trim();
+    const inputPasswordValue = inputPassword.value.trim();
 
-//     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
-//         setErrorFor(staticEmail);
-//         errorExist = true;
-//     } else {
+    if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
+        setErrorFor(staticEmail);
+        errorExist = true;
+    } else {
 
-        // for (let i = 0; i < dummyResponse.Alumni.length; i++) {
+        for (let i = 0; i < dummyResponse.Alumni.length; i++) {
 
-        //     if (staticEmailValue == dummyResponse.Alumni[i].email) {
-        //         getEmail = true;
+            if (staticEmailValue == dummyResponse.Alumni[i].email) {
+                getEmail = true;
 
-        //         setSuccessFor(staticEmail);
-        //         errorExist = false;
+                setSuccessFor(staticEmail);
+                errorExist = false;
 
-        //         if (isEmpty(inputPasswordValue)) {
+                if (isEmpty(inputPasswordValue)) {
 
-        //             setErrorFor(inputPassword);
-        //             errorExist = true;
-        //         } else {
+                    setErrorFor(inputPassword);
+                    errorExist = true;
+                } else {
 
-        //             if (!dummyResponse.Alumni[i].approvedBy) {
-        //                 setErrorFor(inputPassword);
-        //                 errorExist = true;
-        //             } else {
+                    if (!dummyResponse.Alumni[i].approvedBy) {
+                        setErrorFor(inputPassword);
+                        errorExist = true;
+                    } else {
 
-        //                 if (inputPasswordValue == dummyResponse.Alumni[i].password) {
+                        if (inputPasswordValue == dummyResponse.Alumni[i].password) {
 
-        //                     //To save who is logged in
+                            //To save who is logged in
 
-        //                     localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
-        //                     if (!localStorage.getItem('dummyResponse')) {
-        //                         updateDummyData(dummyResponse);
+                            localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
+                            if (!localStorage.getItem('dummyResponse')) {
+                                updateDummyData(dummyResponse);
 
-        //                     }
+                            }
 
-        //                     setSuccessFor(inputPassword);
-        //                     errorExist = false;
+                            setSuccessFor(inputPassword);
+                            errorExist = false;
 
-        //                 } else {
+                        } else {
 
-        //                     setErrorFor(inputPassword);
-        //                     errorExist = true;
-        //                 }
-        //             }
+                            setErrorFor(inputPassword);
+                            errorExist = true;
+                        }
+                    }
 
-        //         }
-        //         break;
-        //     }
+                }
+                break;
+            }
 
-        // }
+        }
 
 
-        // if (!getEmail) {
-        //     errorExist = true;
-        //     setErrorFor(staticEmail);
-        //     setErrorFor(inputPassword);
-        // }
-    // }
+        if (!getEmail) {
+            errorExist = true;
+            setErrorFor(staticEmail);
+            setErrorFor(inputPassword);
+        }
+    }
 
-    // if (errorExist) {
-    //     ev.preventDefault();
-    // }
-    // else {
-        // ev.preventDefault();
-        // jumpHome();
-//     }
-// });
+    if (errorExist) {
+        ev.preventDefault();
+    }
+    else {
+        ev.preventDefault();
+        jumpHome();
+    }
+});
 
 
 //go to homePage
@@ -217,7 +216,7 @@ form.addEventListener('submit', (e) => {
     }
 
 
-    if (isEmpty(ICValue) || !IC.value.match(icNumberFormat)) {
+    if (isEmpty(ICValue) || (ICValue.length < 11)) {
         setErrorFor(IC);
         errorExist = true;
     } else {
@@ -259,8 +258,8 @@ form.addEventListener('submit', (e) => {
         dummyResponse.Alumni.push(obj);
         updateDummyData(dummyResponse);
 
-        // e.preventDefault();
-        // getWait();
+        e.preventDefault();
+        getWait();
 
     }
 });
@@ -311,16 +310,4 @@ function isEmpty(obj) {
 
 }
 
-function generatePassword() {
-    var length = 8,
-      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-      retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
-
-
-  console.log(generatePassword());
 

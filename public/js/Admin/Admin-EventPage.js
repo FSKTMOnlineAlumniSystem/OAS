@@ -1,7 +1,6 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
-console.log('connect');
-let eventArray=event_array
+
 
 let pageIndex = 0;
 
@@ -10,10 +9,10 @@ const loadEventList = (pageIndex,eventArray) => {
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
 
-  var dataLength = eventArray.length
+  var dataLength = dummyResponse.Event.length;
   var remainingLength = dataLength - eventStartIndex;
   /*   js for button*/
-  if (eventEndIndex >= eventArray.length) {
+  if (eventEndIndex >= dummyResponse.Event.length) {
     document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
@@ -74,35 +73,34 @@ const loadEventList = (pageIndex,eventArray) => {
 
   for (
     let i = eventStartIndex;
-    i < eventEndIndex && i < eventArray.length;
+    i < eventEndIndex && i < dummyResponse.Event.length;
     i++
-  ) 
-  {
-  console.log('hihihihi')
+  ) {
+
     var newRowContent = `<tr class="rowss">
                 
                <td>
                     <div class="custom-control custom-checkbox text-center">
-                      <input type="checkbox" class="custom-control-input" id="check ${i}">
-                      <label class="custom-control-label" for="check ${i}"></label>
+                      <input type="checkbox" class="custom-control-input" id="Boxes${i}">
+                      <label class="custom-control-label" for="Boxes${i}"></label>
                     </div>
                   </td>
-                 <td style="font-weight: 400; font-size: 18px">${getReadableDate(eventArray[i].dateTime)}
-                 <div style="font-weight: 200; font-size: 14px">${getReadableTime(eventArray[i].dateTime)}</div>
+                 <td style="font-weight: 400; font-size: 18px">${getReadableDate(dummyResponse.Event[i].dateTime)}
+                 <div style="font-weight: 200; font-size: 14px">${getReadableTime(dummyResponse.Event[i].dateTime)}</div>
                
                  <td style="font-weight: 400; font-size: 18px" class="eventTitle">
                  <a class="eventTitle" id=${i} data-toggle="modal" data-target="#titleModal">
-                ${eventArray[i].title
-      } 
+                ${dummyResponse.Event[i].title
+      }
               </a>
         
               <!-- Modal -->
 
               </td>
 
-                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${eventArray[i].description
+                <td style="font-weight: 400; font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${dummyResponse.Event[i].description
       }</td>
-                <td style="font-weight: 200; font-size: 18px">${eventArray[i].location
+                <td style="font-weight: 200; font-size: 18px">${dummyResponse.Event[i].location
       }</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">

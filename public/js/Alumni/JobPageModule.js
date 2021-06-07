@@ -69,15 +69,14 @@ function loadJobList(pageIndex, outputList) {
         }</button>
       </li>`;
   }
-  // ../src/Domain/Job/JobDetailsPage.php?id=${outputList[i].jobId}
-  //id=${outputList[i].jobId}
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
+    if (outputList[i].imageId == null) {
       document.getElementById("jobList").innerHTML += `
         <div class="col mb-4">
-          <a href="jobdetails?jobid=${outputList[i].jobId}">
+          <a href="../../html/Alumni/JobDetailsPage.html">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
-                  <img class="w-100" src="../uploads/job/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+                  <img src="${outputList[i].imgaeUrl}" id="image" class="card-img-top" alt="jobPhoto">
               </div>
               <div class="card-body">
                 <h5 class="card-title">${outputList[i].title}</h5>
@@ -95,26 +94,45 @@ function loadJobList(pageIndex, outputList) {
             </div>
           </a>
         </div>`;
-       
+    } else {
+      document.getElementById("jobList").innerHTML += `
+        <div class="col mb-4">
+          <a href="../../html/Alumni/JobDetailsPage.html">
+            <div class="card h-100" data-name=${outputList[i].jobId}>
+              <div class="w-100">
+                  <img class="w-100" src="../../../Assets/imgs/${outputList[i].imageId}" class="card-img-top" alt="jobPhoto">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">${outputList[i].title}</h5>
+                <p class="card-text">
+                  <div class="row cards">
+                    <div class="col-1"><span><i class="fas fa-map-marked-alt fa-lg"></i></span></div>
+                    <div class="col-7">${outputList[i].location}</div>
+                  </div>
+                  <div class="row cards">
+                    <div class="col-1"><span><i class="fas fa-sack-dollar fa-lg"></i></span></div>
+                    <div class="col-7">RM ${outputList[i].salary}</div>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>`;
+    }
   }
- 
-  // ../src/Job/JobDetailsPage.php?id=${outputList[i].jobId}\
 
   //CLICK TO LINK TO JOBDETAILSPAGE
-  // $("#jobList").on("click", ".card ", function () {
-  //   var jobName = $(this).attr("data-name");
-  //   // var myJobList = [];
-  //   for (let i = 0; i < outputList.length; i++) {
-  //     if (outputList[i].jobId == jobName) {
-  //       // myJobList.push(outputList[i]);
-  //       // localStorage.setItem("JobList", JSON.stringify(myJobList));
-  //       // document.location.href = '<?php echo $../Job/JobDetailsPage.php ?>';
-  //       window.open('../Job/JobDetailsPage.php?id=$outputList[i].jobId');
-  //       // console.log('as');
-  //       break;
-  //     }
-  //   }
-  // });
+  $("#jobList").on("click", ".card ", function () {
+    var jobName = $(this).attr("data-name");
+    var myJobList = [];
+    for (let i = 0; i < outputList.length; i++) {
+      if (outputList[i].jobId == jobName) {
+        myJobList.push(outputList[i]);
+        localStorage.setItem("JobList", JSON.stringify(myJobList));
+        break;
+      }
+    }
+  });
 }
 
 export default loadJobList;

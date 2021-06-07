@@ -1,8 +1,8 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
+import { dummyResponse, updateDummyData } from "../dummydata.js";
 import loadMyJobList from "./MyJobPageModule.js";
 
 let pageIndex = 0;
-var outputList = myJob_array;
+var outputList = dummyResponse.Job;
 let count = 0;
 const alumniID = localStorage.getItem("SignedInAlumniId");
 
