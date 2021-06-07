@@ -2,12 +2,12 @@ import { dummyResponse, updateDummyData } from "../dummydata.js";
 sessionStorage.setItem('event', 'create')
 var imageName;
 var inputValue;
-const img = document.querySelector('#wizard-picture');
-const title = document.getElementById("title");
-const description = document.getElementById("description");
-const locate = document.getElementById("location");
-const date = document.getElementById("date");
-const time = document.getElementById("time");
+// const img = document.querySelector('#wizard-picture');
+// const title = document.getElementById("title");
+// const description = document.getElementById("description");
+// const locate = document.getElementById("location");
+// const date = document.getElementById("date");
+// const time = document.getElementById("time");
 const form = document.querySelector('form');
 const saveButton = document.querySelector('#saveButton');
 const cancelButton = document.querySelector('#cancelButton');
@@ -31,6 +31,8 @@ function setValid(el) {
 }
 
 /*Check the file extension of the image & Update preview*/
+///////////////////////need for validation
+/*
 img.addEventListener('change', (e) => readURL(e));
 function readURL(e) {
   let allowedExtensions =
@@ -47,7 +49,7 @@ function readURL(e) {
     
   }
 }
-
+*/
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 function isEmpty(obj) {
   return obj.value.length == 0;
@@ -101,15 +103,15 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-window.add_element_to_array = function () {
-  var title = document.getElementById("title").value;
-  var description = document.getElementById("description").value;
-  var location = document.getElementById("location").value;
+// window.add_element_to_array = function () {
+//   var title = document.getElementById("title").value;
+//   var description = document.getElementById("description").value;
+//   var location = document.getElementById("location").value;
 
-  if(img.value){
-    const imgLocalPathArr = img.value.split('\\');
-    imageName = imgLocalPathArr[imgLocalPathArr.length-1];
-}
+//   if(img.value){
+//     const imgLocalPathArr = img.value.split('\\');
+//     imageName = imgLocalPathArr[imgLocalPathArr.length-1];
+// }
 
   var endIndex = dummyResponse.Event.length;
   var newId = endIndex + 1
@@ -167,3 +169,4 @@ stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 function closeModal(modalId) {
   $(modalId).modal('hide');
 }
+// }

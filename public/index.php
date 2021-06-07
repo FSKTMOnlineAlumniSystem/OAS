@@ -101,6 +101,17 @@ elseif (preg_match('/^\/adminprofile/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/alumniList\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
+}
+//AlumniList
+elseif (preg_match('/^\/profile/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
+    include '../src/Domain/Alumni/AlumniProfilePage.php';
+}
+elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
+    include '../src/Domain/Alumni/AlumniPage.php';
+}
+
 
 } elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;

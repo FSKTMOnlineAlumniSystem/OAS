@@ -5,7 +5,11 @@ const imgPath = "/Assets/imgs/";
 var inputValue;
 var imageName;
 var inputValue;
+//image
 const img = document.querySelector('#wizard-picture');
+const wizardPicturePreview = document.querySelector("#prevImage");
+const eventPicture = document.querySelector('#eventPicture');
+
 const title = document.getElementById("title");
 const description = document.getElementById("description");
 const locate = document.getElementById("location");
@@ -24,22 +28,87 @@ var d = new Date(dummyResponse.Event[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
 
 // const minute = d.getMinutes();
-let hour = d.getHours();
+let hour = d.getHours().toString();
+hour = hour.padStart(2, '0');
 let minute = d.getMinutes().toString();
   minute = minute.padStart(2, '0');
 
 document.getElementById('title').value=dummyResponse.Event[i].title
 document.getElementById('date').value=todayDate
-document.getElementById('time').value=hour +':'+ minute
-document.getElementById('description').value=dummyResponse.Event[i].description
-document.getElementById('location').value=dummyResponse.Event[i].location
-document.getElementById('prevImage').src=imgPath+dummyResponse.Event[i].imageId
+var timevalue = hour +':'+ minute;
+console.log(timevalue);
+document.getElementById('time').value=timevalue
+document.getElementById('description').value=eventArray[i].description
+document.getElementById('location').value=eventArray[i].location
 
-var titlevalue = dummyResponse.Event[i].title;
-  var descriptionvalue = dummyResponse.Event[i].description;
-  var locatevalue = dummyResponse.Event[i].location;
+var check=eventArray[i].imageId=='Default';
+console.log('image: '+check);
+console.log(eventArray[i].imageId);
+if(check){
+  document.getElementById('prevImage').src=defaultImage;
+}else{
+  document.getElementById('prevImage').src=eventArray[i].imageId;
+}
+var titlevalue = eventArray[i].title;
+  var descriptionvalue = eventArray[i].description;
+  var locatevalue = eventArray[i].location;
   var datevalue = todayDate;
-  var timevalue = hour +':'+ minute;
+  
+/*
+  img.addEventListener("change", (e) => readURL(e));
+function readURL(e) {
+  console.log('update js here')
+  var i = localStorage.getItem("updateId");
+  console.log('f')
+  let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+    // To handle the file size
+    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+  } else if (
+    // eventArray[i].imageId!='Default' &&
+    e.target.files &&
+    e.target.files[0] &&
+    allowedExtensions.test(e.target.value)
+  ) {
+    eventPicture.files = e.target.files;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      wizardPicturePreview.src = e.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "Choose picture";
+  } else {
+    choosePictureDescription.textContent =
+      "Please choose picture in .png, .jpg or .jpeg format";
+  }
+}
+*/
+/*
+img.addEventListener("change", (e) => readURL(e));
+function readURL(e) {
+  // var i = localStorage.getItem("updateId");
+  let allowedExtensions =
+  /(\.png|\.jpg|\.jpeg)$/i;
+if (e.target.files && e.target.files[0] && e.target.files[0].size>100000) {
+  // To handle the file size
+  console.log('1');
+  choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+}else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+  console.log('2');
+  eventPicture.files = e.target.files;
+  var reader = new FileReader();
+  reader.onload = function (e) {
+      wizardPicturePreview.src = e.target.result;
+  }
+  reader.readAsDataURL(e.target.files[0]);
+  choosePictureDescription.textContent = "Choose picture";
+} else {
+  console.log('3');
+
+  choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+}
+}
+*/
 
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {

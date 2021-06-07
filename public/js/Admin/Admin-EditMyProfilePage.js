@@ -20,9 +20,9 @@ img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
   console.log('f')
   let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 10000000) {
     // To handle the file size
-    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+    choosePictureDescription.textContent = "Image size must be smaller than 10MB";
   } else if (
     e.target.files &&
     e.target.files[0] &&
@@ -65,8 +65,8 @@ form.addEventListener("submit", (e) => {
 
   if (!errorExist) {
     saveButton.textContent = 'Saving...';
-    setTimeout(() => {}, 1000);
-  }else{
+    setTimeout(() => { }, 1000);
+  } else {
     e.preventDefault();
   }
 });

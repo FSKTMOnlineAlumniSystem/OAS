@@ -3,9 +3,9 @@ include '../src/Domain/Database.php';
 include '../src/Domain/MyProfile/MyProfileModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
+echo $_SESSION["alumni"]['alumniId'];
 try {
-    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+    $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }
@@ -230,9 +230,8 @@ include '../src/templates/nav.php';
 
     </div>
     <script type='module' src="/js/Alumni/MyProfilePage.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script>
-    <?php include_once '../src/templates/footer.php' ?>
     <?php include_once '../src/templates/GeneralScripts.php'?>
+    <?php include_once '../src/templates/footer.php' ?>
 </body>
 
 </html>

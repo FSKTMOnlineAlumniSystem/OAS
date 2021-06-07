@@ -1,8 +1,23 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/templates/header.php';
 ?>
 <!--(Create,Update)-->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <!-- icon - fontawesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- custom css files -->
+  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
  <!-- css -->
   <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css">
 
@@ -16,17 +31,20 @@ include '../src/Domain/header.php';
   // include '../config/config.php';
   include '../src/Domain/Admin-Event/Admin-EventModel.php';
   include '../src/Domain/Database.php';
-
+  include '../src/utilities/uploadImage.php';
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
+    $allImage = $event_model->getPicture();
     if (!empty($all_activities)) {
-
       foreach ($all_activities as $activity) {
         echo "$activity[eventId] ";
       }
+    }
+    for ($i=0; $i< count($all_activities); $i++){
+      $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
@@ -37,7 +55,6 @@ include '../src/Domain/header.php';
 
   <?php
   if(isset($_POST['Submit'])) {
-
     print 'it suceed';
     $addEvent = new createEventModel($db->getConnection());	
     $data = $addEvent->getMaxId();
@@ -48,15 +65,35 @@ include '../src/Domain/header.php';
     $date =$_POST["date"];
     $time =$_POST["time"];
     $description = $_POST['description'];
-    $imageId = $_POST['imageId'];
+    // $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
+    if($_FILES["eventPicture"]['tmp_name']!=null){
+    $imageId = $eventId;
+    }else{
+      $imageId="Default";
+    }
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
     $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
-  
+    // try{
+      //Upload image to database as blob
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+      if($_FILES["eventPicture"]['tmp_name']!=null){
+          print 'hello';
+          print_r($_FILES["eventPicture"]);
+          uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);
+      }else{
+        print 'you salah le';   
+        print_r($_FILES["eventPicture"]);
+  } 
+  // catch (Exception $e) {
+  // echo "Exception: " . $e->getMessage();
+  // }
+
     header("Location: adminEvent");
 }
 
-  ?>
+?>
     <main class="container-fluid height-after-minus-header" id='main-body'>
       <div class="row h-100">
       <div class="container" id="right-content">
@@ -78,7 +115,7 @@ include '../src/Domain/header.php';
         document.getElementById("formCheck").innerHTML =`
         <form method="post" onsubmit="return checkvalidation()">`
         </script> -->
-      <form method="post" onsubmit="return checkvalidation()">
+      <form method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
       
         <div class="form-group">
           <label for="formGroupExampleInput">Event Title :</label>
@@ -128,11 +165,11 @@ include '../src/Domain/header.php';
           <label for="phfile">Event Picture:</label>
         <div class="picture-container">
           <div class="picture">
-            
             <img
               src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
               id="prevImage" alt="update Image" width="100%" >
             <input type="file" id="wizard-picture" name="imageId">
+            <input type="file" name="eventPicture" id="eventPicture" class="d-none">
           </div>
         
         

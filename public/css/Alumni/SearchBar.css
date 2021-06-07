@@ -2,7 +2,7 @@
   z-index: -1;
   width: 100%;
   height: 35vh;
-  background: url("/Assets/imgs/searchBar.png");
+  background: url("/public/Assets/imgs/searchBar.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

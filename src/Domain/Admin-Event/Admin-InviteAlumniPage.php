@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/header.php';
+include '../src/templates/header.php';
 ?>
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css">
