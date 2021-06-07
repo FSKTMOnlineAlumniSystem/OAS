@@ -175,7 +175,7 @@ function readURL(input) {
   let allowedExtensions =
   /(\.png|\.jpg|\.jpeg)$/i;
  
-  if (input.files && input.files[0] && input.files[0].size>1000000) {
+  if (input.files && input.files[0] && input.files[0].size>10000000) {
     content.textContent = "This image file is too large";
     return true;
   }else if(input.files && input.files[0] && allowedExtensions.test(input.value)){
