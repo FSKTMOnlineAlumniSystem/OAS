@@ -143,7 +143,15 @@ const loadEventList = (pageIndex,eventArray) => {
     title.addEventListener('click', (e) => {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
-      // document.querySelector('#imageTitle').src = imgPath + eventArray[clickedAlumniIndex].imageId;
+      console.log(eventArray[clickedAlumniIndex])
+      var check=eventArray[clickedAlumniIndex].imageId=='Default';
+      console.log(check);
+      
+      if(check){
+        document.querySelector('#imageTitle').src=defaultImage;
+      }else{
+        document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
+      }
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;
@@ -155,6 +163,16 @@ const loadEventList = (pageIndex,eventArray) => {
       //               </i>
       //               Edit</button>
       // `;
+      let editbutton = document.querySelector('#editButton');
+      // editbutton.onclick("location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'")
+      editbutton.onclick = function() {location.href='adminUpdateEvent?eventId='+eventArray[clickedAlumniIndex].eventId}; 
+        // if (editbutton) {
+        //   editbutton.setAttribute('onclick', "'location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'");
+        //     // btnSend.setAttribute('disabled', '');
+        // }
+      // let editbutton=document.getElementById(editButton);
+      // editbutton.setAttribute('onclick',"location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}")
+      
       localStorage.setItem('updateId', clickedAlumniIndex);
     });
   })
@@ -222,6 +240,8 @@ window.deleteByJquery= function (o){
     type: 'POST',    //request type,
     // dataType: 'json',
     success: function(resp){
+      console.log('resp');
+        console.log(resp);
       var outputList = JSON.parse(resp);
       eventArray=outputList;
       loadEventList(pageIndex,outputList);

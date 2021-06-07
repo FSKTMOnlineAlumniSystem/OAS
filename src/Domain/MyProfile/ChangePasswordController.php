@@ -6,7 +6,7 @@ if(isset($_POST['submit']) && isset($_POST['newPassword']) && isset($_POST['oldP
     $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     
     try{
-        $alumni = new MyProfile($db->getConnection(), 'AL-1');
+        $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
         if($_POST['oldPassword']==$alumni->getPassword()){
             $alumni->changePassword($_POST['newPassword']);
             return header("Location: /myprofile?updated=true");

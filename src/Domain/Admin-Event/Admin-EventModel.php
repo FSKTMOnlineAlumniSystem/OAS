@@ -29,15 +29,63 @@ class Admin_EventModel
         
    }
    public function deleteEvent($eventId) {
+       //deleteInviteAlumni
+    $sql ="DELETE FROM alumni_event WHERE eventId=?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$eventId]);
+
     $sql = "DELETE FROM events WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
    //  $stmt->execute();
     $stmt->execute([$eventId]);
+    
+    // IF EXISTS（SELECT * FROM image WHERE imageId=?)
+    $sql = "DELETE FROM image WHERE imageId=?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$eventId]);
+    }
 
-    //deleteInviteAlumni
-    $sql ="DELETE FROM alumni_event WHERE eventId=?";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute([$eventId]);
+    public function getPicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM events
+            LEFT JOIN image 
+            ON events.imageId=image.imageId');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageId']=='Default'){
+                array_push($image,'Default');
+            }
+            else if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
+    public function getDefaultPicture(): array{
+        $stmt = $this->connection->prepare('
+            SELECT * FROM image WHERE imageId="Default"');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
+    public function getNumberOfEvent(): int{
+        $sql ="SELECT COUNT(eventId) FROM events";
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
     }
 }
 
@@ -122,6 +170,29 @@ class UpdateEventModel
                 throw $exception;
             }     
     }
+    public function getImageId($eventId) :string {
+        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+         $sql = "SELECT imageId FROM `events` WHERE eventId=?";
+         $stmt = $this->connection->prepare($sql);  
+         $stmt->execute([$eventId]);
+         $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        //  $image = array();
+        if($data['imageId']!=null){
+            echo $data['imageId'];
+            return $data['imageId'];
+        }
+        else{
+            echo 'default';
+            return "Default";
+        }
+        
+        // foreach($data as $eachuser){
+        //     array_push($image,$eachuser['imageId']);
+        // }
+        //  return $image;
+}
+
+
 }
 
             //  $stmt ->bindParam(':title',$title);
