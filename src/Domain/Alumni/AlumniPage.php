@@ -18,6 +18,12 @@ try {
   $pageIndex=1;
   if (isset($_GET['search'])){// if user searching will enter (it can be happened any of the page)
     $all_alumni = $alumnilist->searchAlgo($_GET['search']);
+    //display the query in the search input
+    echo '<script type="text/javascript">
+      window.onload = function(){
+      document.querySelector("#search").value="'.$_GET['search'].'"
+    }
+    </script>';
   } else {
       if(isset($_GET['page'])){// if user is at any of the page
         $pageIndex=$_GET['page']; // variable nav users' previous page or to other page
