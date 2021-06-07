@@ -68,7 +68,7 @@ include '../src/templates/nav.php';
         
           <!-- DISPLAY CARDS OF MY JOB ADS -->
           <div class="row justify-content-md-center" id="top"></div>
-          <div class="row justify-content-md-center" id="no_result"></div>
+          <div class="row justify-content-md-center text-center" id="no_result"></div>
           <div class="card-desk">
             <div class="row row-cols-3" id="jobList"></div>
             </div>

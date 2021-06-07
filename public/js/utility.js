@@ -74,6 +74,14 @@ function setValid(el) {
   }
 }
 
+function insertSearchNoResult(el){
+  el.innerHTML = `
+  <img class="col-md-6" src="/Assets/imgs/newSearchNotFound.png">
+  <h2 class="col-12">Sorry, no results found.</h2>
+  <p class="col-12">Please try another search</p>
+  `
+}
+
 const PUBLIC_IMG_PATH = "/public/Assets/imgs/";
 const ALUMNI_IMG_PATH = "/uploads/alumni/";
 const ADMIN_IMG_PATH = "/uploads/admin/";
