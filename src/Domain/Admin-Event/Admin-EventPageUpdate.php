@@ -8,6 +8,8 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- browser icon -->
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- font -->
@@ -38,15 +40,6 @@ try {
     foreach ($all_activities as $res) {
       if($res['title']==$title){
 	$eventId = $res['eventId'];
-	// $adminId = $res['adminId'];
-	// $title = $res['title'];
-	// $dateTime = $res['dateTime'];
-	// $description = $res['description'];
-	// $locate = $res['location'];
-	// $imageId = $res['imageId'];
-  
-  // echo "$locate ";
-  // echo "$imageId";
       }
     }
   }
@@ -54,22 +47,9 @@ try {
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
   $defaultImage = $event_model->getDefaultPicture();
-
-
-//   //try
-// $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-// $updateTheEvent = new  UpdateEventModel($db->getConnection());	
-// $eventId='E-11';
-// $imageId=$updateTheEvent-> getImageId($eventId);
-//     // echo $imageId;
-//     print_r($imageId);
-
-
 } catch (Exception $e) {
   echo "Exception here!";
 }
-
-
 ?>
 
 <?php

@@ -163,6 +163,16 @@ const loadEventList = (pageIndex,eventArray) => {
       //               </i>
       //               Edit</button>
       // `;
+      let editbutton = document.querySelector('#editButton');
+      // editbutton.onclick("location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'")
+      editbutton.onclick = function() {location.href='adminUpdateEvent?eventId='+eventArray[clickedAlumniIndex].eventId}; 
+        // if (editbutton) {
+        //   editbutton.setAttribute('onclick', "'location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'");
+        //     // btnSend.setAttribute('disabled', '');
+        // }
+      // let editbutton=document.getElementById(editButton);
+      // editbutton.setAttribute('onclick',"location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}")
+      
       localStorage.setItem('updateId', clickedAlumniIndex);
     });
   })
