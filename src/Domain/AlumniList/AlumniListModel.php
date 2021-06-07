@@ -60,16 +60,16 @@ class AlumniListModel
         return $number_of_rows;
     }
 
-    public function search($searchterm){
-        $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
-        $stmt = $this->connection->prepare($query);  
-        $stmt->execute(); 
-        $data = $stmt->fetchAll();
-        if(!$data){
-            return array();
-        }
-        return $data; 
-    }
+    // public function search($searchterm){
+    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
+    //     $stmt = $this->connection->prepare($query);  
+    //     $stmt->execute(); 
+    //     $data = $stmt->fetchAll();
+    //     if(!$data){
+    //         return array();
+    //     }
+    //     return $data; 
+    // }
 
 }
 
@@ -192,6 +192,7 @@ class UpdateALumniModel
             error_log('UpdateApprovedByModel: construct: ' . $exception->getMessage());
             throw $exception;
         }       
-}    
+} 
+}   
 
 

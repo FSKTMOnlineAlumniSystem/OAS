@@ -231,31 +231,31 @@ searchBar.addEventListener('click', (e) => {
   } e.preventDefault();
 });
 
-$('#searchBar').click(function(){
-  var search = document.getElementById("input1").value;
-  if (search == "") {
-    alert("Name must be filled out");
-  }
-  console.log("pls"+search);
-  $.ajax({
-    url: 'searchAllJob',
-    type: 'post',
-    data: {search: search},
-    success: function(resp){
-     console.log("success");
-    //  console.log(resp);
-    let page = 0;
-    var jobtList =JSON.parse(resp);
+// $('#searchBar').click(function(){
+//   var search = document.getElementById("input1").value;
+//   if (search == "") {
+//     alert("Name must be filled out");
+//   }
+//   console.log("pls"+search);
+//   $.ajax({
+//     url: 'searchAllJob',
+//     type: 'post',
+//     data: {search: search},
+//     success: function(resp){
+//      console.log("success");
+//     //  console.log(resp);
+//     let page = 0;
+//     var jobtList =JSON.parse(resp);
  
-     loadJobList(page,jobtList);
-    },
+//      loadJobList(page,jobtList);
+//     },
      
-  });
+//   });
 
-});
+// });
 
 window.getAlumniId = function(){
-  return sessionStorage.getItem("alumniId");
+  return localStorage.getItem("alumniId");
 }
 
 //select all check box
