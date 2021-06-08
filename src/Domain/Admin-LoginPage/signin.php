@@ -23,8 +23,8 @@ if(isset($_POST["submit"])){
 
 function loginUser($conn, $email, $password){
 
-    $alumniData = emailExists($conn,$email);
-    if($alumniData == false){
+    $adminData = emailExists($conn,$email);
+    if($adminData == false){
         header("location: /login?emailnotExists");
         exit();
     }
@@ -33,11 +33,11 @@ function loginUser($conn, $email, $password){
     //     exit();
     // }
 
-    // $passwordNormal = $alumniData["password"];
-    // $checkpassword = passwordCheck($password, $passwordNormal);
+    $passwordNormal = $alumniData["password"];
+    $checkpassword = passwordCheck($password, $passwordNormal);
 
-    $passwordHashed = $alumniData["password"];
-    $checkpassword = password_verify($password, $passwordHashed);
+    // $passwordHashed = $adminData["password"];
+    // $checkpassword = password_verify($password, $passwordHashed);
 
     if ($checkpassword === false) {
        
@@ -49,12 +49,12 @@ function loginUser($conn, $email, $password){
         // $active = $alumniData["isActive"];
 
         // if($active == 1){
-            unset($alumniData["password"]);
-            unset($alumniData["icNumber"]);
+            unset($adminData["password"]);
+            unset($adminData["icNumber"]);
             session_start();
-            $_SESSION["alumni"] = $alumniData;
+            $_SESSION["admin"] = $adminData;
             // $_SESSION["emb"] = "abc";
-            header("location: /home");
+            header("location: /adminhomepage");
             exit();
         // }else {
         //     header("location: ./LoginPage.php?account=deleted");
@@ -72,17 +72,13 @@ function loginUser($conn, $email, $password){
 
 function emailExists($conn,$email){
 
-    $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
+    $stmt = $conn->prepare("SELECT * FROM admin WHERE email=?");
     $stmt->execute(array($email));
     
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($row['email'] === $email) {
             //email exists
-            echo '
-            <script type="text/javascript">
-            setSuccessFor(#staticEmail);
-            </script>
-            ';
+         
             return $row;
         }
     }

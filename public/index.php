@@ -7,17 +7,17 @@ session_start();
 //     $GLOBALS['title'] = TITLE_OAS;
 //     include '../src/Domain/HomePage/HomePage.php';
 //HANDLE EMPTY SESSION
-if (!isset($_SESSION['alumni']) && !isset($_SESSION['admin'])) {
-    if (strpos($_SERVER['REQUEST_URI'],'admin')!== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
-        //URL contains 'admin' and the URL is not /admin-login
-        header('Location:/admin-login');
-        exit;
-    } elseif (!preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
-        //URL is not /admin-login nor /login
-        header('Location: /login');
-        exit;
-    }
-}
+// if (!isset($_SESSION['alumni']) && !isset($_SESSION['admin'])) {
+//     if (strpos($_SERVER['REQUEST_URI'],'admin')!== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
+//         //URL contains 'admin' and the URL is not /admin-login
+//         header('Location:/admin-login');
+//         exit;
+//     } elseif (!preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
+//         //URL is not /admin-login nor /login
+//         header('Location: /login');
+//         exit;
+//     }
+// }
 
 //VIEW
 //Login
@@ -25,10 +25,11 @@ if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
 } elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
-    if (isset($_SESSION['alumni'])) {
-        header('Location: /home');
-        exit();
-    }
+    //comment below lines to test run login page
+    // if (isset($_SESSION['alumni'])) {
+    //     header('Location: /home');
+    //     exit();
+    // }
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/LoginPage.php';
 } elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
@@ -164,6 +165,15 @@ elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/api\/updatedb/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/UpdateDB.php';
+}
+
+//Admin-Login
+elseif (preg_match('/^\/api\/signinadmin/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_OAS;
+    include '../src/Domain/Admin-LoginPage/signin.php';
+} elseif (preg_match('/^\/api\/forgotadmin/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_OAS;
+    include '../src/Domain/LoginPage/AdminforgotPsw.php';
 }
 
 //Job
