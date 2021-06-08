@@ -16,7 +16,12 @@ window.previousPage = function () {
 
 window.clickProfile = function (profileClicked) {
   localStorage.setItem("alumniprofile", JSON.stringify(profileClicked));
-  location.href = "AlumniProfilePage.html";
+  document.cookie =
+    "clickedID=" +
+    profileClicked +
+    "; expires=" +
+    new Date(9999, 0, 1).toUTCString();
+  location.href = "/profile";
 };
 
 loadAlumniList(pageIndex, outputList);

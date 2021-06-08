@@ -1,12 +1,12 @@
 <?php
 
-include '../src/Domain/Database.php';
-include '../src/Domain/MyProfile/MyProfileModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+    $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }

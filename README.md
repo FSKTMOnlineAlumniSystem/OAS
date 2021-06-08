@@ -26,6 +26,10 @@ Make sure you know how to revert changes made to reverse any destructive changes
 [We should store image in directory instead of as base64](https://makitweb.com/upload-and-store-an-image-in-the-database-with-php/)
 [Ultimate Guide about .htaccess](https://www.whoishostingthis.com/resources/htaccess/)
 
+### Client-Server Model
+[Grab data from fetch api in php](https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php)
+[Return JSON to Front end from PHP](https://stackoverflow.com/questions/682260/returning-json-from-php-to-javascript)
+
 ## Requirements :snowflake:
 The system should provide the following functions: 
 

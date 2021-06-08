@@ -64,7 +64,6 @@ CREATE TABLE Events(
     imageId varchar(255) NOT NULL,
     location varchar(255) NOT NULL
 );
-
 INSERT INTO Admin(
     adminId,
     email,
