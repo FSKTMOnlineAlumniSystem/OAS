@@ -1,3 +1,14 @@
+<?php
+includeWithVariables('../src/templates/header.php', array(
+  'my_css' => '/css/Alumni/EventPage.css',
+  'search_bar' => '/css/Alumni/SearchBar.css'
+));
+?>
+
+<?php
+include '../src/templates/nav.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
