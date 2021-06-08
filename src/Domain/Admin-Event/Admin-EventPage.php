@@ -5,6 +5,8 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <!-- browser icon -->
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- font -->
@@ -258,8 +260,8 @@ if(isset($_POST["checkbox"])){
 
                 <div class="modal-footer" id="modelEdit">
                   <button type="button" id="editButton" class="btn btn-primary"
-                    onclick="location.href = 'adminUpdateEvent'">
-
+                    >
+<!-- onclick="location.href = 'adminUpdateEvent'" -->
                     <i class="fas fa-edit">
                     </i>
                     Edit</button>
