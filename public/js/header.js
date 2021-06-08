@@ -1,3 +1,4 @@
+// below event listener added only when the user is alumni
 // add event listener to all close button in the panel
 const closeBtnArr = Array.from(document.querySelectorAll('[data-close-btn-id]'));
 closeBtnArr.forEach((btn, index) => {
