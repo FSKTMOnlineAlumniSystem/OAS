@@ -1,15 +1,6 @@
-<?php
-includeWithVariables('../src/templates/header.php', array(
-  'my_css' => '/css/Alumni/EventPage.css',
-  'search_bar' => '/css/Alumni/SearchBar.css'
-));
-?>
 
-<?php
-include '../src/templates/nav.php';
-?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -35,11 +26,19 @@ include '../src/templates/nav.php';
    
     <title><?= $GLOBALS['title']; ?></title>
     </head>
-    <body>
+    <body> -->
 
     <?php
 // include '../../../config/config.php';
 // include '../src/Domain/HomePage/HomePage.php';
+include '../src/utilities/includeWithVariable.php'
+
+includeWithVariables('../src/templates/header.php', array(
+  'my_css' => '/css/Alumni/HomePage.css'
+));
+
+include '../src/templates/nav.php';
+
 include '../src/Domain/Database.php';
 include '../src/Domain/Job/JobModel.php';
 
@@ -226,25 +225,24 @@ try {
 </div>
 </div>
 
+<?php include '../src/templates/footer.php' ?>
+<?php include '../src/templates/GeneralScripts.php'?>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    
+    <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
+    <!-- <script type="module" src="/js/addHeader.js"></script>
+    <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
-    <script type="text/javascript" src="c/js/utility.js"></script>
-    <script type="module" src="/js/addHeader.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script>
-
-
-    
-    <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script> -->
 
 
 </body>
