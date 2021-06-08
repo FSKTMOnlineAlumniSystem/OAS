@@ -124,10 +124,11 @@ a.nostyle:visited {
   cursor: pointer;
 }
 
-.dropdown-item:focus,
+/* He Lin commented this */
+/* .dropdown-item:focus,
 .dropdown-item:active {
   background: #a43ecdd8 !important;
-}
+} */
 
 .btn-primary {
   background-color: #a53ecd !important;

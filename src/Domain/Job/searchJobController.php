@@ -14,6 +14,9 @@ $myJob_model = new  JobModel($db->getConnection());
         $searchJob[$i]['imageId'] = $image;
       }
 
-    echo json_encode($searchJob);
+      
+        echo json_encode($searchJob);
+      
+    
 exit;
 ?>
