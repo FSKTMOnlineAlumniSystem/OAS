@@ -66,8 +66,8 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
 
     
 
-    // $alumniId = "AL-" . getLength($conn)+1 ;
-    $alumniId = $email;
+    $alumniId = "AL-" . getLength($conn)+1 ;
+    // $alumniId = $email;
     $imageId = $alumniId;
 
     $stmt->bindParam(":alumniId", $alumniId);

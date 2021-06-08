@@ -387,7 +387,7 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
    <!-- wait for verification  -->
 
    <?php
-    echo Decrypt($_GET["id"]);
+    // echo Decrypt($_GET["id"]);
     if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
         $stmt = $conn->prepare("UPDATE alumni SET isVerified=1 WHERE email=:email");
