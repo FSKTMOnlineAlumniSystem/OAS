@@ -13,10 +13,17 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    loginUser($conn, $email, $password);
+    if(adminApproved($conn,$email)){
+        loginUser($conn, $email, $password);
+    }else{
+        header("location: /login?NotApprovedYet");
+        exit();
+    }
+
+    // header("location: /home");
 
 }else{
-    header("location: /home");
+    // header("location: /home");
 }
 
 
@@ -99,6 +106,29 @@ function passwordCheck($password, $passwordNormal){
         header("location: /login?password=false");
         return false;
     }
+}
+
+
+function adminApproved($conn,$email){
+    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!=""');
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    if(!$data){
+        return false;
+
+    }else{
+        return true;
+
+    }
+    // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    //     if ($row['approvedBy'] != "" ) {
+    //         //email exists
+    //         return $row;
+    //     }
+    // }
+    //     //email not Exists
+    //     return false;
 }
 
 

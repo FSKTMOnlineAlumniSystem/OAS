@@ -321,6 +321,8 @@ AlumniView.onclick = function () {
 
 
 
+
+
 var TxtType = function (el, toRotate, period) {
 
     this.toRotate = toRotate;

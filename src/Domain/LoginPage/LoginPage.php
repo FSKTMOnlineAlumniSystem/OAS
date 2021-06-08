@@ -412,7 +412,7 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                                 <br>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" name="submit" class="btn btn-primary signinbtn">Got It!</button>
+                                <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
                             </div>
                         </form>
                     </div>
@@ -429,6 +429,63 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                             $("#id").modal("hide");
                         });
                     }
+                    function gotit(){
+                        console.log("hi");
+                       location.href = "/login";
+                   }
+            </script>
+    ';
+}
+?>
+
+<!-- not approved yet -->
+<?php
+    if (isset($_GET["NotApprovedYet"])) {
+        
+        echo'
+            <div class="modal fade" id="NotApprovedYet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                    style="color: rgb(13, 175, 18);"></i>Please wait patiently!</h5>
+                            <button type="button" class="close" data-dismiss="modal" onclick=window.closeModal()>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="form_3">
+                            <div class="modal-body">
+                                <span>Thank you for signing up.<br>
+                                    Your application is not approved by the admin, please wait patiently.<br>
+                                </span>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#NotApprovedYet").modal("show");
+                    });
+
+                    function closeModal(){
+                        $(document).ready(function(){
+                            $("#NotApprovedYet").modal("hide");
+                        });
+                    }
+
+                    
+                    function gotit(){
+                         console.log("hi");
+                        location.href = "/login";
+                    }
+                   
+  
             </script>
     ';
 }

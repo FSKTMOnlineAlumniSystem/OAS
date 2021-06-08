@@ -60,9 +60,10 @@ try {
 }
 
 // session_start();
+// $em = $_SESSION["alumni"]["email"];
 // $_SESSION["em"] = "abc";
 // $emb = $_SESSION["emb"];
-// $em = $_SESSION["alumni"]["email"];
+//
 // $em = $_SESSION["alumni"];
 // echo $_SESSION;
 // $Password = "nkd231u22!3%b_";
