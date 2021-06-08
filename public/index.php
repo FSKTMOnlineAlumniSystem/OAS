@@ -117,9 +117,8 @@ elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQU
 }
 
 //Header
-elseif (preg_match('/^\/EventController\/?$/i', $_SERVER['REQUEST_URI'])) {
-    // $GLOBALS['title'] = TITLE_MY_PROFILE;
-    include '../src/Domain/Event/EventController.php';
+elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
+    include '../src/Domain/Event/AlumniEventController.php';
 }
 
 //ERROR URL NOT FOUND

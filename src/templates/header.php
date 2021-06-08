@@ -36,7 +36,6 @@
   $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
   $_SESSION['alumni'] = $userArr;
   try {
-
     $my_profile_model = new MyProfile($db->getConnection(), $_SESSION['alumni']['alumniId']);
     $profile_img_src = $my_profile_model->getProfilePicture();
     // echo $profile_img_src . '<br>';
@@ -58,8 +57,9 @@
   $hasNotification = false;
   foreach ($all_alumni_events as $alumni_event) {
     if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId']) {
-      if($alumni_event['notificationClosedByAlumni'] && !$alumni_event['viewedByAlumni']){
+      if (!$alumni_event['notificationClosedByAlumni'] && !$alumni_event['viewedByAlumni']) {
         $hasNotification = true;
+        break;
       }
     }
   }
@@ -78,18 +78,16 @@
 
     <div class="dropdown custom-bg--transparent">
       <button class="btn dropdown-toggle text-white pr-0" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src=
-        <?php 
-        if($hasNotification) echo "/Assets/icons/notification.svg";
-        else echo "/Assets/icons/bell.svg";
-        ?>
-        alt="" class="header__img m-1">
+        <img src=<?php
+                  if ($hasNotification) echo "/Assets/icons/notification.svg";
+                  else echo "/Assets/icons/bell.svg";
+                  ?> alt="" class="header__img m-1">
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton" id="dropdown-menu">
 
         <?php
         foreach ($all_alumni_events as $alumni_event) {
-          if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId']) {
+          if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId'] && !$alumni_event['notificationClosedByAlumni']) {
             // get the required variable
             $timeStr = $alumni_event['dateTime'];
             $eventTitle = $filter_event($alumni_event['eventId'])['title'];
@@ -119,8 +117,8 @@
               $timeStr = "$day day(s) ago";
             }
         ?>
-            <div class='dropdown-item text-wrap p-0 custom-notification-panel-width' data-notification-href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>'>
-              <div class='py-2 container-fluid border-bottom' id=<?= $alumni_event['eventId'].'-notification-container'?>>
+            <div class='dropdown-item text-wrap p-0 custom-notification-panel-width' data-notification-href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>' data-event-id=<?= $alumni_event['eventId'] ?>>
+              <div class='py-2 container-fluid border-bottom' id=<?= $alumni_event['eventId'] . '-notification-container' ?>>
                 <div class="row">
                   <div class='col-2 d-flex justify-content-center align-items-center'>
                     <i class="far fa-calendar-alt fa-2x text-primary"></i>
@@ -132,12 +130,16 @@
                   <div class="col-2 d-flex justify-content-center">
                     <div class='row flex-column'>
                       <i class="fa fa-times fa-2x p-1 panel__icon--hover-dark-bg" aria-hidden="true" data-close-btn-id=<?= $alumni_event['eventId'] ?>></i>
-                      <i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>
+                      <?php
+                      if (!$alumni_event['viewedByAlumni']) {
+                        echo '<i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>';
+                      }
+                      ?>
                     </div>
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
         <?php
           }
         }

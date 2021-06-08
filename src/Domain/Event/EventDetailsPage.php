@@ -1,7 +1,7 @@
 <?php
 // connect to database to access the needed data
 include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Event/Alumni_EventModel.php';
+include '../src/Domain/Event/AlumniEventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -14,7 +14,7 @@ try {
   echo "Exception: " . $e->getMessage();
 }
 try {
-  $event_model = new Alumni_EventModel($db->getConnection());
+  $event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $event_model->getAll();
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();

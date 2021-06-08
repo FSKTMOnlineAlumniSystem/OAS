@@ -1,7 +1,7 @@
 <?php
 // connect to database to access the needed data
 include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Event/Alumni_EventModel.php';
+include '../src/Domain/Event/AlumniEventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -9,8 +9,8 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new EventModel($db->getConnection());
   $all_events = $event_model->getAll();
-  $event_model = new Alumni_EventModel($db->getConnection());
-  $all_alumni_events = $event_model->getAll();
+  $alumni_event_model = new AlumniEventModel($db->getConnection());
+  $all_alumni_events = $alumni_event_model->getAll();
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();
 }
@@ -45,17 +45,17 @@ include '../src/templates/nav.php';
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
                 <img src=<?= 'data::'.$event['type'].';base64,'.base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
-              <div class="card-body">
+              <div class="card-body event-card-body">
                 <h5 class="card-title"><?= $event['title'] ?></h5>
                 <p class="card-text">
                 <div class="row cards">
                   <div class="col-2"><i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
                   </div>
-                  <div class="col-10"><?= $event['dateTime'] ?></div>
+                  <div class="col-10" data-datetime="date"><?= $event['dateTime'] ?></div>
                 </div>
                 <div class="row cards">
                   <div class="col-2"><i class="far fa-clock text-primary"></i></div>
-                  <div class="col-10"><?= $event['dateTime'] ?></div>
+                  <div class="col-10" data-datetime="time"><?= $event['dateTime'] ?></div>
                 </div>
                 <div class="row cards">
                   <div class="col-2"><i class="fas fa-map-marked-alt text-danger"></i></div>
@@ -83,8 +83,8 @@ include '../src/templates/GeneralScripts.php'
 ?>
 <!-- custom js files -->
 <script type="module" src="/js/Alumni/EventPage.js"></script>
-<script type="text/javascript" src="/js/addSearchBar.js"></script>
-<script type="module" src="/js/Alumni/searchAlgo.js"></script>
+<!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->
+<!-- <script type="module" src="/js/Alumni/searchAlgo.js"></script> -->
 
 </body>
 
