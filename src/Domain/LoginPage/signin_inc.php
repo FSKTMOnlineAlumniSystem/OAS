@@ -1,6 +1,7 @@
 <?php
 
 include '../src/Domain/Database.php';
+include '../src/Domain/LoginPage/GeneralLoginFx.php';
 
 
 
@@ -11,8 +12,6 @@ if(isset($_POST["submit"])){
 
     $email = $_POST["email"];
     $password = $_POST["password"];
-
-    // require_once 'LoginPageModel.php';
 
     loginUser($conn, $email, $password);
 
@@ -70,25 +69,25 @@ function loginUser($conn, $email, $password){
 }
 
 
-function emailExists($conn,$email){
+// function emailExists($conn,$email){
 
-    $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
-    $stmt->execute(array($email));
+//     $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
+//     $stmt->execute(array($email));
     
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if ($row['email'] === $email) {
-            //email exists
-            echo '
-            <script type="text/javascript">
-            setSuccessFor(#staticEmail);
-            </script>
-            ';
-            return $row;
-        }
-    }
-        //email not Exists
-        return false;
-}
+//     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//         if ($row['email'] === $email) {
+//             //email exists
+//             echo '
+//             <script type="text/javascript">
+//             setSuccessFor(#staticEmail);
+//             </script>
+//             ';
+//             return $row;
+//         }
+//     }
+//         //email not Exists
+//         return false;
+// }
 
 function passwordCheck($password, $passwordNormal){
     if ($password == $passwordNormal) {
