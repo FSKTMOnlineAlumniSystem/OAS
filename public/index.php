@@ -26,10 +26,10 @@ if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
 } elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
     //comment below lines to test run login page
-    // if (isset($_SESSION['alumni'])) {
-    //     header('Location: /home');
-    //     exit();
-    // }
+    if (isset($_SESSION['alumni'])) {
+        header('Location: /home');
+        exit();
+    }
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/LoginPage.php';
 } elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {

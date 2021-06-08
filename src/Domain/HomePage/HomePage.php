@@ -30,10 +30,20 @@
 // include '../../../config/config.php';
 // include '../src/Domain/HomePage/HomePage.php';
 include '../src/Domain/Database.php';
+include '../src/Domain/Job/JobModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-// try {
+try {
+    $job_model = new JobModel($db->getConnection());
+    $all_activities = $job_model->Nicole();
+    $allImage = $job_model->NicoleImages();
+        
+    for ($i=0; $i< count($all_activities); $i++){
+        $all_activities[$i]['imageId'] = $allImage[$i];
+    }
+    // print_r($all_activities);
+      
 //   $homepage_model = new HomePageModel($db->getConnection());
 //   $all_activities = $homepage_model->getAll();
 //   if (!empty($all_activities)) {
@@ -45,21 +55,27 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 //         // echo "$activity[alumniId] ";
 //     }
 //   }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
+} catch (Exception $e) {
+  echo "Exception here!";
+}
 
 // session_start();
 // $_SESSION["em"] = "abc";
-$emb = $_SESSION["emb"];
+// $emb = $_SESSION["emb"];
 // $em = $_SESSION["alumni"]["email"];
 // $em = $_SESSION["alumni"];
 // echo $_SESSION;
-echo $emb;
+// $Password = "nkd231u22!3%b_";
+// $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+// echo $hashedPassword;
 
 // echo "".$_SESSION["em"]."";
 
 ?>
+
+<script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
+
+<script type="module" src="/js/Alumni/homePage.js"></script>
 
 <div class="container-fluid d-flex flex-column align-items-center p-0" id="main-body">
 
@@ -208,7 +224,7 @@ echo $emb;
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script type="module" src="/js/Alumni/homePage.js"></script>
+    
 
     <script type="text/javascript" src="c/js/utility.js"></script>
     <script type="module" src="/js/addHeader.js"></script>
