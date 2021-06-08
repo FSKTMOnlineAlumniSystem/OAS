@@ -1,7 +1,7 @@
 <?php
 
-include '../src/Domain/Database.php';
-include '../src/Domain/MyProfile/MyProfileModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 

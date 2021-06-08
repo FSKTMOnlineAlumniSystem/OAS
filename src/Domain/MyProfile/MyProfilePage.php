@@ -1,6 +1,6 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/MyProfile/MyProfileModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 echo $_SESSION["alumni"]['alumniId'];
@@ -12,7 +12,7 @@ try {
 ?>
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/include_onceWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/MyProfilePage.css',
@@ -20,7 +20,7 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 <title>My Profile - Alumni Online System</title>
