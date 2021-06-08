@@ -1,3 +1,7 @@
+# User manual
+1. Change my.ini default max_allowed_packet
+```max_allowed_packet=100M```
+
 # core
 This is the main repo for the alumni system. So treat the repo carefully :kissing:  
 Make sure you know how to revert changes made to reverse any destructive changes to the repo.   

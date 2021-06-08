@@ -6,6 +6,7 @@ class MyProfile
     private PDO $connection;
     private $id;
     private $user;
+    private $exist = false;
 
     public function __construct(PDO $connection, $id)
     {
@@ -17,19 +18,23 @@ class MyProfile
             SELECT * FROM alumni 
             LEFT JOIN image 
             ON alumni.imageId=image.imageId 
-            WHERE alumniId=:id');
+            WHERE alumniId=:id AND isActive=1');
             $stmt->bindParam(':id', $this->id);
             $stmt->execute();
             $data = $stmt->fetch();
             $this->user = $data;
-            if (!$data) {
-                return array();
+            if ($data) {
+                $this->exist = true;
             }
             return $data;
         } catch (PDOException $exception) {
             error_log('MyProfileModel: construct: ' . $exception->getMessage());
             throw $exception;
         }
+    }
+
+    public function isAlumniExist(){
+        return $this->exist;
     }
 
     public function getAlumniId()
@@ -103,7 +108,7 @@ class MyProfile
         try {
             $stmt = $this->connection->prepare('UPDATE alumni SET email=:email, biography=:biography WHERE alumniId=:alumniId');
             $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':biography', $biography);
+            $stmt->bindParam(':biography', trim($biography));
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();
         } catch (PDOException $exception) {

@@ -1,69 +1,93 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+include '../src/Domain/Database.php';
+
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+$conn = $db->getConnection();
+
 if(isset($_POST["submit"])){
 
-// require_once('../../../libs/PHPMailer/PHPMailerAutoload.php');
+    $email = $_POST["email"];
+
+    require_once '../libs/PHPMailer/src/PHPMailer.php';
+    require_once '../libs/PHPMailer/src/SMTP.php';
+    require_once '../libs/PHPMailer/src/Exception.php';
+
+    if(emailExists($conn,$email) == false){
+        header("location: /login?fgemailnotExists");
+        exit();
+    }else{
+
+        $newPassword = randomPassword();
+        echo $newPassword;
+
+        $mail = new PHPMailer();
+
+        //smtp settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'webprog707@gmail.com';
+        $mail->Password = '123wif2003';
+        $mail->Port = 465;
+        $mail->SMTPSecure = 'ssl';
 
 
-// $mail = new PHPMailer;
-// $mail->isSMTP();
-// $mail->SMTPAuth = true;
-// $mail->SMTPSecure = 'tls';
-// $mail->Host = 'smtp.gmail.com';
-// $mail->Port = '587';
-// $mail->isHTML(true);
-// $mail->Username = 'niclyy2717@gmail.com';
-// $mail->Password = 'damnstupid123';
-// $mail->SetFrom('no-reply@alumniSystem.com');
-// $mail->Subject = 'Change Password';
-// $mail->Body = 'A test email';
-// $mail->AddAddress('niclyy2717@gmail.com');
+        //email settings
+        $mail->isHTML(true);
+        $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
+        $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
+        $mail->AddAddress($email);
+        $mail->Subject = 'Change Password';
+        $content = str_replace(
+            array('%password%', '%to%'),
+            array($newPassword,    $email),
+            file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html')
+        );
+        $mail->msgHTML(file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html'), __DIR__);
+        $mail->msgHTML($content, dirname(__FILE__));
+        $mail->AltBody = 'A test email $newPassword';
 
-// $mail->send();
+        // $mail->send();
 
-// if (!$mail->send()) {
-//     echo 'notsend';
-//     echo 'Error' . $mail->ErrorInfo;
-// }else{
-//     echo 'sent';
-// }
+        if ($mail->send()) {
+            $status = 'success';
+            $response = 'Email is sent!';
+            header("location: /login");
+            exit();
+        }else{
+            $status = 'failed';
+            $response = 'error==='. $mail->ErrorInfo;
+        }
 
-<?php
+        exit(json_encode(array("status" => $status,"response" => $response)));
 
-/**
- * This example shows sending a message using a local sendmail binary.
- */
-
-//Import the PHPMailer class into the global namespace
-use PHPMailer\PHPMailer\PHPMailer;
-
-require '../vendor/autoload.php';
-
-//Create a new PHPMailer instance
-$mail = new PHPMailer();
-//Set PHPMailer to use the sendmail transport
-$mail->isSendmail();
-//Set who the message is to be sent from
-$mail->setFrom('from@example.com', 'First Last');
-//Set an alternative reply-to address
-$mail->addReplyTo('replyto@example.com', 'First Last');
-//Set who the message is to be sent to
-$mail->addAddress('whoto@example.com', 'John Doe');
-//Set the subject line
-$mail->Subject = 'PHPMailer sendmail test';
-//Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
-//Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
-//Attach an image file
-$mail->addAttachment('images/phpmailer_mini.png');
-
-//send the message, check for errors
-if (!$mail->send()) {
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message sent!';
+    }
 }
 
+function emailExists($conn,$email){
+
+    $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
+    $stmt->execute(array($email));
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($row['email'] === $email) {
+            //email exists
+            return $row;
+        }
+    }
+        //email not Exists
+        return false;
+}
+
+function randomPassword() {
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
 }

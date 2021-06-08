@@ -3,9 +3,9 @@ include '../src/Domain/Database.php';
 include '../src/Domain/MyProfile/MyProfileModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
+echo $_SESSION["alumni"]['alumniId'];
 try {
-    $alumni = new MyProfile($db->getConnection(), 'AL-1');
+    $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }
@@ -146,9 +146,7 @@ include '../src/templates/nav.php';
             <div class="row mt-5">
                 <h4>Biography</h4>
                 <div class="col-12 rounded bg-grey p-5 mb-2">
-                    <div id="biography" class="profile__biography_valueContainer_value text-break">
-                        <?= $alumni->getBiography(); ?>
-                    </div>
+                    <p id="biography" class="profile__biography_valueContainer_value text-break" style="white-space: pre-wrap;"><?= $alumni->getBiography(); ?></p>
                 </div>
             </div>
         </div>
@@ -206,7 +204,7 @@ include '../src/templates/nav.php';
                     <form id='deleteAccountForm' action="/api/myprofile/delete" method="POST">
                         <div class="modal-body">
                             <div class="media alert alert-warning rounded mb-2">
-                                <i class="bi bi-exclamation-circle align-self-center mr-3"></i>
+                            <i class="fas fa-exclamation-circle align-self-center mr-3"></i>
                                 <div class="media-body">
                                     If you delete your account, all of your account data will be permenantly deleted.
                                 </div>
@@ -230,9 +228,8 @@ include '../src/templates/nav.php';
 
     </div>
     <script type='module' src="/js/Alumni/MyProfilePage.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script>
-    <?php include_once '../src/templates/footer.php' ?>
     <?php include_once '../src/templates/GeneralScripts.php'?>
+    <?php include_once '../src/templates/footer.php' ?>
 </body>
 
 </html>

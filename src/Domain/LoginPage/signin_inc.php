@@ -1,7 +1,8 @@
 <?php
 
-include '../../../config/config.php';
-include '../Database.php';
+include '../src/Domain/Database.php';
+
+
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
@@ -24,23 +25,23 @@ function loginUser($conn, $email, $password){
 
     $alumniData = emailExists($conn,$email);
     if($alumniData == false){
-        header("location: ./LoginPage.php?error=emailnotExists");
+        header("location: ./LoginPage.php?emailnotExists");
         exit();
     }
     // else{
-    //     header("location: ./LoginPage.php?error=emailExists");
+    //     header("location: ./LoginPage.php?emailExists");
     //     exit();
     // }
 
     $passwordNormal = $alumniData["password"];
     $checkpassword = passwordCheck($password, $passwordNormal);
 
-    // $passwordHashed = $emailExists["password"];
-    // $checkpassword = password_verify($password, $passwordHashed);
+    $passwordHashed = $emailExists["password"];
+    $checkpassword = password_verify($password, $passwordHashed);
 
     if ($checkpassword === false) {
        
-        header("location: ./LoginPage.php?error=passwordWrong");
+        header("location: ./LoginPage.php?passwordWrong");
         exit();
 
     } else if($checkpassword === true){
@@ -76,6 +77,11 @@ function emailExists($conn,$email){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($row['email'] === $email) {
             //email exists
+            echo '
+            <script type="text/javascript">
+            setSuccessFor(#staticEmail);
+            </script>
+            ';
             return $row;
         }
     }
@@ -94,6 +100,4 @@ function passwordCheck($password, $passwordNormal){
         return false;
     }
 }
-
-
 

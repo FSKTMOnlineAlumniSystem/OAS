@@ -1,8 +1,8 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
+
 
 //CREATE A FORM TO CAPTURE USER INPUT
 document.getElementById("form").innerHTML += `
-  <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()">
+  <form id="job_ad_form"  method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
       <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" name="company">
@@ -21,8 +21,11 @@ document.getElementById("form").innerHTML += `
           <img id="imageResult" src="#" alt="" class="company-image">
         </div>
         <div class='col-md-8 col-12 p-0 px-md-2'>
-          <label for="upload" class="form-label">Company Image</label>
-          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="imageId">
+          <label for="upload" id="fileLabel" class="form-label">Company Image</label>
+          <input type="file" class="form-control-file" id="upload" aria-describedby="image" name="jobImage" >
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback"></div>
+          <div id="fileTooLarge" style="color:red;"></div>
         </div>
       </div>
     </div>
@@ -71,7 +74,8 @@ const salary = document.getElementById("salary");
 const email = document.getElementById("email");
 const description = document.getElementById("description");
 const form = document.querySelector("form");
-// const jobIndex = dummyResponse.Job[dummyResponse.Job.length - 1].jobId.split("-");
+var input = document.getElementById("upload");
+
 
 //INPUT HANDLING ERROR
 function setInValid(el) {
@@ -95,13 +99,11 @@ function isEmpty(obj) {
 
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const regex = /^[0-9]+$/;
+const imageFormat = /(\.png|\.jpg|\.jpeg)$/i;
 
 
 // CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
-// form.addEventListener("submit", (e) => {
 function checkvalidation() {
-  console.log("here");
-// e.preventDefault();
   let errorExist = false; 
 
   if (isEmpty(companyName)) { 
@@ -146,43 +148,37 @@ function checkvalidation() {
     setValid(description);
   }
 
+  if (isEmpty(upload) || !upload.value.match(imageFormat) || readURL(input)) {
+    setInValid(upload);
+    errorExist = true;
+  } else {
+    setValid(upload);
+  }
+
   if (errorExist) {
-    // e.preventDefault();
     return false;
   } 
   else{
-    // console.log("test here");
-    // $('#job_ad_form').submit();
     return true;
   }
-  //   document.getElementById("job_ad_form").action = "/addjob.php";
-  //   // $('#job_ad_form').attr('action', 'addjob');
-  // }
-  // else {
-  //   //IF NO ERROR, ADD THE NEW JOB ADS DETAILS INTO DUMMYDATA
-  //   var newJob = {};
-  //   newJob = {
-  //     jobId: "J-" + (parseInt(jobIndex[1]) + 1),
-  //     alumniId: "AL-1",
-  //     description: description.value,
-  //     salary: salary.value,
-  //     email: email.value,
-  //     location: locations.value,
-  //     title: jobTitle.value,
-  //     company: companyName.value,
-  //     imageId: null,
-  //     imgaeUrl: imageUrl,
-  //   };
-  //   dummyResponse.Job.push(newJob);
-  //   updateDummyData(dummyResponse);
-  //   location.href = "MyJobPage.html";
-  // }
 }
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
-var input = document.getElementById("upload");
+// var input = document.getElementById("upload");
+var content = document.getElementById("fileTooLarge");
+var fileLabel = document.getElementById("fileLabel");
+
+input.addEventListener("change", (event) => readURL(input));
+
 function readURL(input) {
-  if (input.files && input.files[0]) {
+  content.textContent = "";
+  let allowedExtensions =
+  /(\.png|\.jpg|\.jpeg)$/i;
+ 
+  if (input.files && input.files[0] && input.files[0].size>10000000) {
+    content.textContent = "This image file is too large";
+    return true;
+  }else if(input.files && input.files[0] && allowedExtensions.test(input.value)){
     var reader = new FileReader();
     reader.readAsDataURL(input.files[0]);
     reader.name = input.files[0].name;
@@ -207,9 +203,38 @@ function readURL(input) {
         const srcEncoded = ctx.canvas.toDataURL(el.target, "image/jpg");
         imageUrl = srcEncoded;
         document.querySelector("#imageResult").src = srcEncoded;
+
+  
       };
     };
+  
+  }else if(isEmpty(upload)){
+      content.textContent = "Please provide picture for this job.";
+  }
+  else{
+    content.textContent = "Please choose picture in .png, .jpg or .jpeg format.";
   }
 }
-input.addEventListener("change", (event) => readURL(input));
 
+
+
+//TRY
+// img.addEventListener('change', (e) => readURL(e));
+// function readURL(e) {
+//     let allowedExtensions =
+//         /(\.png|\.jpg|\.jpeg)$/i;
+//     if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
+//         // To handle the file size
+//         choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+//     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+//         profilePicture.files = e.target.files;
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             wizardPicturePreview.src = e.target.result;
+//         }
+//         reader.readAsDataURL(e.target.files[0]);
+//         choosePictureDescription.textContent = "Choose picture";
+//     } else {
+//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+//     }
+// }

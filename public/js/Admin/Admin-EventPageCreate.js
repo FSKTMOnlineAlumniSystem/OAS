@@ -3,7 +3,7 @@
 sessionStorage.setItem('event', 'create')
 var imageName;
 var inputValue;
-const img = document.querySelector('#wizard-picture');
+// const img = document.querySelector('#wizard-picture');
 // const title = document.getElementById("title");
 // const description = document.getElementById("description");
 // const locate = document.getElementById("location");
@@ -35,23 +35,24 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 
 /*Check the file extension of the image & Update preview*/
 ///////////////////////need for validation
-// img.addEventListener('change', (e) => readURL(e));
-// function readURL(e) {
-//   let allowedExtensions =
-//     /(\.png|\.jpg|\.jpeg)$/i;
-//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-//     var reader = new FileReader();
-//     reader.onload = function (e) {
-//       document.getElementById("prevImage").src = e.target.result;
-//     }
-//     reader.readAsDataURL(e.target.files[0]);
-//     choosePictureDescription.textContent = "";
-//   } else {
-//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
+/*
+img.addEventListener('change', (e) => readURL(e));
+function readURL(e) {
+  let allowedExtensions =
+    /(\.png|\.jpg|\.jpeg)$/i;
+  if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("prevImage").src = e.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    choosePictureDescription.textContent = "";
+  } else {
+    choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     
-//   }
-// }
-
+  }
+}
+*/
 /*Form Validation for Edit My Profile (email, contactNumber, biography)*/
 // function isEmpty(obj) {
 //   return obj.value.length == 0;
@@ -110,15 +111,15 @@ const choosePictureDescription = document.querySelector('#choosePictureDescripti
 //   }
 // };
 
-window.add_element_to_array = function () {
-  var title = document.getElementById("title").value;
-  var description = document.getElementById("description").value;
-  var location = document.getElementById("location").value;
+// window.add_element_to_array = function () {
+//   var title = document.getElementById("title").value;
+//   var description = document.getElementById("description").value;
+//   var location = document.getElementById("location").value;
 
-  if(img.value){
-    const imgLocalPathArr = img.value.split('\\');
-    imageName = imgLocalPathArr[imgLocalPathArr.length-1];
-}
+//   if(img.value){
+//     const imgLocalPathArr = img.value.split('\\');
+//     imageName = imgLocalPathArr[imgLocalPathArr.length-1];
+// }
 
 //   var endIndex = eventArray.length;
 //   var newId = endIndex + 1
@@ -180,4 +181,4 @@ console.log('hellooo');
 function closeModal(modalId) {
   $(modalId).modal('hide');
 }
-}
+// }
