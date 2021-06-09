@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- font -->
@@ -27,6 +27,11 @@
 <body>
 
   <?php
+  include_once '../src/Domain/Database.php';
+  include_once '../src/Domain/Event/EventModel.php';
+  include_once '../src/Domain/Event/AlumniEventModel.php';
+  include_once '../src/Domain/MyProfile/MyProfileModel.php';
+  include_once '../src/Domain/Admin-MyProfile/AdminModel.php';
 
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   // function to check if user is alumni or admin
@@ -35,17 +40,16 @@
     return isset($_SESSION['alumni']) && !empty($_SESSION['alumni']);
   }
   // hardcode session to get name and image id for header
-  $_SESSION = array();
-  // $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
-  $userArr = array("adminId" => "AD-1", "name" => "Ong Xing Yee", "imageId" => "AD-1.png");
-  $_SESSION['admin'] = $userArr;
+  $_SESSION = array(); // clear session in apache server
+  $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
+  $_SESSION['alumni'] = $userArr;
+  // $userArr = array("adminId" => "AD-1", "name" => "Ong Xing Yee", "imageId" => "AD-1.png");
+  // $_SESSION['admin'] = $userArr;
   try {
     if (isAlumni()) {
-      include '../src/Domain/MyProfile/MyProfileModel.php';
       $my_profile_model = new MyProfile($db->getConnection(), $_SESSION['alumni']['alumniId']);
       $profile_img_src = $my_profile_model->getProfilePicture();
     } else {
-      include '../src/Domain/Admin-MyProfile/AdminModel.php';
       $admin_profile_model = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
       $profile_img_src = $admin_profile_model->getProfilePicture();
     }
@@ -53,15 +57,23 @@
     echo 'Exception' . $e->getMessage();
   }
   if (isAlumni()) {
-    // declare as global to access it
-    global $all_alumni_events;
-    global $all_events;
+    try {
+      $event_model = new EventModel($db->getConnection());
+      $all_events = $event_model->getAll();
+      // echo gettype($all_events);
+      $alumni_event_model = new AlumniEventModel($db->getConnection());
+      $all_alumni_events = $alumni_event_model->getAll();
+    } catch (Exception $e) {
+      echo "Exception: " . $e->getMessage();
+    }
     $filter_event = function ($eventId) {
       global $all_events;
+      echo gettype($all_events);
       foreach ($all_events as $event) {
-        if ($eventId === $event['eventId']) {
-          return $event;
-        }
+        echo $event['eventId'];
+        // if ($eventId === $event['eventId']) {
+        //   return $event;
+        // }
       }
     };
     // check if any event notification not checked out yet
@@ -81,7 +93,7 @@
       <button class="btn dropdown-toggle text-white pl-0" type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src=<?= $profile_img_src ?> alt="" class="header__img m-1">
 
-        <?php echo (isAlumni())? $_SESSION['alumni']['name'] : $_SESSION['admin']['name'] ?>
+        <?php echo (isAlumni()) ? $_SESSION['alumni']['name'] : $_SESSION['admin']['name'] ?>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
         <a class="dropdown-item" href="/myprofile"><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
@@ -91,7 +103,7 @@
 
     <?php
     if (isAlumni()) {
-      echo isset($_SESSION['alumni']) . " " . !empty($_SESSION['alumni']) . '<br>';
+      // echo isset($_SESSION['alumni']) . " " . !empty($_SESSION['alumni']) . '<br>';
     ?>
       <div class="dropdown custom-bg--transparent">
         <button class="btn dropdown-toggle text-white pr-0" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

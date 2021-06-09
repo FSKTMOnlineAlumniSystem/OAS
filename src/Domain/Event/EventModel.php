@@ -81,16 +81,4 @@ class EventModel
       throw $exception;
     }
   }
-  private function user_compare($eventA, $eventB)
-  {
-    $dateTimeA = new DateTime($eventA['datetime']);
-    $dateTimeB = new DateTime($eventB['datetime']);
-    $interval = date_diff($dateTimeA, $dateTimeB);
-    // if ($interval === 0)
-    // return 0;
-    // else if ($x > $y)
-    // return 1;
-    // else
-    // return -1;
-  }
 }

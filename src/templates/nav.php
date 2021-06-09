@@ -29,7 +29,7 @@
             Jobs
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/alljob">All Job Advertisement</a>
+            <a class="dropdown-item" href="/job">All Job Advertisement</a>
             <a class="dropdown-item" href="/myjob">My Job Advertisement</a>
           </div>
         </li>
