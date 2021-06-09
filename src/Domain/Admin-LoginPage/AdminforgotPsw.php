@@ -2,7 +2,6 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 include '../src/Domain/Database.php';
-include '../src/Domain/LoginPage/GeneralLoginFx.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
@@ -69,20 +68,20 @@ if(isset($_POST["submit"])){
     }
 }
 
-// function emailExists($conn,$email){
+function emailExists($conn,$email){
 
-//     $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
-//     $stmt->execute(array($email));
+    $stmt = $conn->prepare("SELECT * FROM admin WHERE email=?");
+    $stmt->execute(array($email));
     
-//     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-//         if ($row['email'] === $email) {
-//             //email exists
-//             return $row;
-//         }
-//     }
-//         //email not Exists
-//         return false;
-// }
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($row['email'] === $email) {
+            //email exists
+            return $row;
+        }
+    }
+        //email not Exists
+        return false;
+}
 
 function randomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -96,7 +95,7 @@ function randomPassword() {
 }
 
 function setNewPassword($conn,$newPassword,$email){
-    $stmt = $conn->prepare("UPDATE alumni SET password=:password WHERE email=:email");
+    $stmt = $conn->prepare("UPDATE admin SET password=:password WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->bindParam("password", $newPassword);
     $stmt->execute();

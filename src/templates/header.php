@@ -16,9 +16,10 @@
   <!-- custom css files -->
   <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
   <?php
-  // foreach ($variables as $value) {
-  //   echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
-  // }
+
+  foreach ($variables as $value) {
+    echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
+  }
   ?>
   <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -26,136 +27,134 @@
 <body>
 
   <?php
+
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  // function to check if user is alumni or admin
+  function isAlumni()
+  {
+    return isset($_SESSION['alumni']) && !empty($_SESSION['alumni']);
+  }
   // hardcode session to get name and image id for header
-  $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
-  $_SESSION['alumni'] = $userArr;
+  $_SESSION = array();
+  // $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
+  $userArr = array("adminId" => "AD-1", "name" => "Ong Xing Yee", "imageId" => "AD-1.png");
+  $_SESSION['admin'] = $userArr;
+  try {
+    if (isAlumni()) {
+      include '../src/Domain/MyProfile/MyProfileModel.php';
+      $my_profile_model = new MyProfile($db->getConnection(), $_SESSION['alumni']['alumniId']);
+      $profile_img_src = $my_profile_model->getProfilePicture();
+    } else {
+      include '../src/Domain/Admin-MyProfile/AdminModel.php';
+      $admin_profile_model = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
+      $profile_img_src = $admin_profile_model->getProfilePicture();
+    }
+  } catch (Exception $e) {
+    echo 'Exception' . $e->getMessage();
+  }
+  if (isAlumni()) {
+    // declare as global to access it
+    global $all_alumni_events;
+    global $all_events;
+    $filter_event = function ($eventId) {
+      global $all_events;
+      foreach ($all_events as $event) {
+        if ($eventId === $event['eventId']) {
+          return $event;
+        }
+      }
+    };
+    // check if any event notification not checked out yet
+    $hasNotification = false;
+    foreach ($all_alumni_events as $alumni_event) {
+      if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId']) {
+        if (!$alumni_event['notificationClosedByAlumni'] && !$alumni_event['viewedByAlumni']) {
+          $hasNotification = true;
+          break;
+        }
+      }
+    }
+  }
   ?>
   <header class="d-flex flex-row-reverse align-items-center header--gradient header--fixed-height p-2 font-weight-bold text-white">
     <div class="dropdown custom-bg--transparent">
-      <button class="btn dropdown-toggle text-white" type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img src="/Assets/imgs/<?= $_SESSION['alumni']['imageId'] ?>" alt="" class="header__img m-1">
-        <?= $_SESSION['alumni']['name'] ?>
+      <button class="btn dropdown-toggle text-white pl-0" type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src=<?= $profile_img_src ?> alt="" class="header__img m-1">
+
+        <?php echo (isAlumni())? $_SESSION['alumni']['name'] : $_SESSION['admin']['name'] ?>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
-        <a class="dropdown-item" href="/myprofile">Profile</a>
-        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="/myprofile"><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
+        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</a>
       </div>
     </div>
 
-    <!-- test
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='#'>
-          <div class='py-2 container-fluid border-bottom item--hover-light-bg'>
-            <div class="row">
-              <div class='col-2 d-flex justify-content-center align-items-center'>
-                <i class="far fa-calendar-alt fa-2x text-primary"></i>
-              </div>
-              <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
-                <strong>Event 1</strong>
-                <div class="text-primary">Time</div>
-              </div>
-              <div class="col-2 d-flex justify-content-center">
-                <div class='row flex-column'>
-                  <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-                  <i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='#'>
-          <div class='py-2 container-fluid border-bottom item--hover-light-bg'>
-            <div class="row">
-              <div class='col-2 d-flex justify-content-center align-items-center'>
-                <i class="far fa-calendar-alt fa-2x text-primary"></i>
-              </div>
-              <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
-                <strong>Event 1</strong>
-                <div class="text-primary">Time</div>
-              </div>
-              <div class="col-2 d-flex justify-content-center">
-                <div class='row flex-column'>
-                  <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-                  <i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='#'>
-          <div class='py-2 container-fluid border-bottom item--hover-light-bg'>
-            <div class="row">
-              <div class='col-2 d-flex justify-content-center align-items-center'>
-                <i class="far fa-calendar-alt fa-2x text-primary"></i>
-              </div>
-              <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
-                <strong>Event 1</strong>
-                <div class="text-primary">Time</div>
-              </div>
-              <div class="col-2 d-flex justify-content-center">
-                <div class='row flex-column'>
-                  <i class="fa fa-times fa-2x p-1" aria-hidden="true"></i>
-                  <i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div> -->
+    <?php
+    if (isAlumni()) {
+      echo isset($_SESSION['alumni']) . " " . !empty($_SESSION['alumni']) . '<br>';
+    ?>
+      <div class="dropdown custom-bg--transparent">
+        <button class="btn dropdown-toggle text-white pr-0" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src=<?php
+                    if ($hasNotification) echo "/Assets/icons/notification.svg";
+                    else echo "/Assets/icons/bell.svg";
+                    ?> alt="" class="header__img m-1">
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton" id="dropdown-menu">
 
-    <div class="dropdown custom-bg--transparent">
-      <button class="btn dropdown-toggle text-white" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img src="/Assets/icons/bell.svg" alt="" class="header__img m-1">
-      </button>
-
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton">
-        <?php
-        // need to put as global to access it
-        global $all_alumni_events;
-        global $all_events;
-        $filter_event = function ($eventId) {
-          global $all_events;
-          foreach ($all_events as $event) {
-            if ($eventId === $event['eventId']) {
-              return $event;
-            }
-          }
-        };
-        foreach ($all_alumni_events as $alumni_event) {
-          if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId']) {
-            // get the required variable
-            $timeStr = $alumni_event['dateTime'];
-            $eventTitle = $filter_event($alumni_event['eventId'])['title'];
-            $dotClass = $alumni_event['viewedByAlumni'] === 'true'? "":"fa fa-circle p-1 d-flex justify-content-center text-primary";
-        ?>
-            <a class='dropdown-item nostyle text-wrap p-0 custom-notification-panel-width' href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>'>
-              <div class='py-2 container-fluid border-bottom'>
-                <div class="row">
-                  <div class='col-2 d-flex justify-content-center align-items-center'>
-                    <i class="far fa-calendar-alt fa-2x text-primary"></i>
-                  </div>
-                  <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
-                    <strong><?= $eventTitle ?></strong>
-                    <div class="text-primary"><?= $timeStr ?></div>
-                  </div>
-                  <div class="col-2 d-flex justify-content-center">
-                    <div class='row flex-column'>
-                      <i class="fa fa-times fa-2x p-1 panel__icon--hover-dark-bg" aria-hidden="true"></i>
-                      <i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>
+          <?php
+          foreach ($all_alumni_events as $alumni_event) {
+            if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId'] && !$alumni_event['notificationClosedByAlumni']) {
+              // get the required variable
+              $timeStr = $alumni_event['dateTime'];
+              $eventTitle = $filter_event($alumni_event['eventId'])['title'];
+              $dotClass = $alumni_event['viewedByAlumni'] === 'true' ? "" : "fa fa-circle p-1 d-flex justify-content-center text-primary";
+              // format the time string into human readable form
+              $temp = new DateTime($timeStr);
+              $pastDateTimeSecond = (int)($temp->format("U"));
+              $curMilliSeconds = (microtime(true));
+              $secondSinceInvitation = (int)round(($curMilliSeconds - $pastDateTimeSecond));
+              $minute = floor($secondSinceInvitation / 60);
+              $hour = floor($minute / 60);
+              $day = floor($hour / 24);
+              if ($day === 0) {
+                if ($hour % 60 === 0) {
+                  $timeStr = "$minute minute(s) ago";
+                } else {
+                  $timeStr = "$hour hour(s) ago";
+                }
+              } else {
+                $timeStr = "$day day(s) ago";
+              }
+          ?>
+              <div class='dropdown-item text-wrap p-0 custom-notification-panel-width' data-notification-href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>' data-event-id=<?= $alumni_event['eventId'] ?>>
+                <div class='py-2 container-fluid border-bottom' id=<?= $alumni_event['eventId'] . '-notification-container' ?>>
+                  <div class="row">
+                    <div class='col-2 d-flex justify-content-center align-items-center'>
+                      <i class="far fa-calendar-alt fa-2x text-primary"></i>
+                    </div>
+                    <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
+                      <strong><?= $eventTitle ?></strong>
+                      <div class="text-primary"><?= $timeStr ?></div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                      <div class='row flex-column'>
+                        <i class="fa fa-times fa-2x p-1 panel__icon--hover-dark-bg" aria-hidden="true" data-close-btn-id=<?= $alumni_event['eventId'] ?>></i>
+                        <?php
+                        if (!$alumni_event['viewedByAlumni']) {
+                          echo '<i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>';
+                        }
+                        ?>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </a>
         <?php
+            }
           }
         }
         ?>
+        </div>
       </div>
-    </div>
   </header>

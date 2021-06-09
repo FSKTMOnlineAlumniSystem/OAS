@@ -43,6 +43,34 @@ class AlumniListModel
         }
         return $image;
     }
+
+    public function getNumberOfApprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    public function getNumberOfUnapprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    // public function search($searchterm){
+    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
+    //     $stmt = $this->connection->prepare($query);  
+    //     $stmt->execute(); 
+    //     $data = $stmt->fetchAll();
+    //     if(!$data){
+    //         return array();
+    //     }
+    //     return $data; 
+    // }
+
 }
 
 class DeleteAlumniModel
@@ -164,7 +192,5 @@ class UpdateALumniModel
             error_log('UpdateApprovedByModel: construct: ' . $exception->getMessage());
             throw $exception;
         }       
-}    
+} 
 }
-
-
