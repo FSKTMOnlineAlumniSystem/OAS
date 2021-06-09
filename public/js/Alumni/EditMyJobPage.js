@@ -127,14 +127,15 @@ let editJobs = job_array;
     // }
     // }
 
+    //10000000
     img.addEventListener('change', (e) => readURL(e));
     function readURL(e) {
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-    if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000 && allowedExtensions.test(e.target.value)) {
         // To handle the file size
         choosePictureDescription.textContent = "Image size must be smaller than 10MB";
-        return true;
+        // return true;
     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         jobPicture.files = e.target.files;
         var reader = new FileReader();
@@ -145,10 +146,7 @@ let editJobs = job_array;
         choosePictureDescription.textContent = "Choose picture";
 
     
-    }else if(isEmpty(jobPicture)){
-        choosePictureDescription.textContent = "Please provide picture for this job.";
-    } 
-    
+    }
     else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
@@ -177,7 +175,7 @@ let editJobs = job_array;
     
     //CHECKING THE VALIDITY OF INPUT WHEN THE USER PRESS POST BUTTON
     function checkValidation(){    
-        console.log("here");
+     
         let errorExist = false; 
 
         if (isEmpty(companyName)) {
@@ -222,12 +220,12 @@ let editJobs = job_array;
             setValid(description);
         }
 
-        if (isEmpty(jobPicture) || !jobPicture.value.match(imageFormat) || readURL(input)) {
-            setInValid(jobPicture);
-            errorExist = true;
-          } else {
-            setValid(jobPicture);
-          }
+        // if (isEmpty(jobPicture)) {
+        //     setInValid(jobPicture);
+        //     errorExist = true;
+        //   } else {
+        //     setValid(jobPicture);
+        //   }
 
         if (errorExist){
             return false;

@@ -1,7 +1,3 @@
-<title>My Job - Alumni Online System</title>
-</head>
-<body>
-
 <?php
 include '../src/Domain/Job/MyJobModel.php';
 // include_once '../src/templates/header.php';
