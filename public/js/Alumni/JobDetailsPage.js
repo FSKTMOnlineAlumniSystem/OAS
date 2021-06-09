@@ -1,6 +1,4 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 
-// let myJob = JSON.parse(localStorage.getItem("JobList"));
 let myJob = job_array;
 
 //LOAD DETAILS AND DISPLAY
@@ -22,7 +20,7 @@ let myJob = job_array;
             "/>
             <div class="row">
                 <div class="col-12 col-md-6 d-flex justify-content-center mb-3">
-                    <img src="/public/Assets/imgs/${myJob.imageId}" class="image--max-size-100-percent" alt="Company Logo">
+                    <img src="${myJob.imageId}" class="image--max-size-100-percent" alt="Company Logo">
                 </div>
                 <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
                     <div class='row my-3'>
@@ -74,7 +72,4 @@ let myJob = job_array;
     </div>`;
 
 
-// CLICK BACK BUTTON
-    // $(".back").on("click", function(){
-    //     localStorage.removeItem('JobList');
-    // });
+

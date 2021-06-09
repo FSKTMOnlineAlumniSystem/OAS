@@ -51,7 +51,7 @@ try {
     for ($i=0; $i< count($all_activities); $i++){
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
-    $defaultImage = $event_model->getDefaultPicture();
+    // $defaultImage = $event_model->getDefaultPicture();
 
   } catch (Exception $e) {
     echo "Exception here!";
@@ -59,7 +59,7 @@ try {
   }
 ?>
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
-  <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script>
+  <!-- <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script> -->
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 

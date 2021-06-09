@@ -13,9 +13,9 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/src/css\Alumni\index.css">
-    <link rel="stylesheet" href="/public/css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" href="/public/css/Alumni/LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="../src/css\Alumni\index.css">
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -40,9 +40,9 @@
 </style>
 
 <?php
-include '../../../config/config.php';
+// include '../../../config/config.php';
 // include './LoginPageModel.php';
-include '../Database.php';
+include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -66,32 +66,75 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
             <div class="row align-items-center h-100">
                 <div
                     class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
-                    <img src="/public/Assets/imgs/umfsktm.png" class="w-75 mb-4">
-                    <img src="/public/Assets/imgs/AdminLoginImageDark.png" class="w-75">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4">
+                    <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
                     class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
-                    <img src="../../../Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Admin!
                     </h3>
-                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" id="signIN">
+                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signinadmin' id="signIN" method="post">
                         <div class="form-label-group w-100">
-                            <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
+                            <!-- <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
-                            <!-- <label for="staticEmail"></label> -->
-                            <label for="staticEmail">Email address</label>
-                            <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Please provide a valid email</div>
+                            <label for="staticEmail">Email address</label> -->
+                            <?php
+                                if (isset($_GET["emailnotExists"])){
+                                    echo'
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    
+                                    ';
+                                }else if (isset($_GET["passwordWrong"])){
+                                    echo '
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Correct Email</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                                    autofocus>
+                                    <label for="staticEmail">Email address</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Please provide a correct email</div>
+                                    ';
+                                }
+                            ?>
+                            <!-- <div class="valid-feedback">Valid</div>
+                            <div class="invalid-feedback">Please provide a valid email</div> -->
                         </div>
                         <div class="form-label-group w-100">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password">
-                            <!-- <label for="inputPassword"></label> -->
-                            <label for="inputPassword">Password</label>
-                            <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Password is incorrect</div>
+                            <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+                            <label for="inputPassword">Password</label> -->
+                            <?php
+                                if (isset($_GET["passwordWrong"])){
+                                    echo'
+                                    <input type="password" name="password" id="inputPassword" class="form-control is-invalid" placeholder="Password">
+                                    <label for="inputPassword">Password</label>
+                                    <div class="invalid-feedback">Password is incorrect</div>
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                                    <label for="inputPassword">Password</label>
+                                    <div class="valid-feedback">Valid</div>
+                                    <div class="invalid-feedback">Password is incorrect</div>
+                                    ';
+                                }
+                            ?>
+                            <!-- <div class="valid-feedback">Valid</div>
+                            <div class="invalid-feedback">Password is incorrect</div> -->
                         </div>
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
-                            type="submit" style="background: #7b05aa;">Sign in</button>
+                            type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
                     <div class="row w-100">
                         <div class="col">
@@ -101,7 +144,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         </div>
                     </div>
                     <div class="bottom-right">
-                        <a href="../../html/Alumni/LoginPage.html">I am Alumni</a>
+                        <a href="/login">I am Alumni</a>
                     </div>
                 </div>
             </div>
@@ -119,7 +162,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form_2">
+                <form id="form_2" action="/api/forgotadmin" method="post">
                     <div class="modal-body">
                         <span>When you fill in your registered email address,
                             you will be sent instructions on how to reset your password.</span>
@@ -127,13 +170,26 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="sendEmail">
-                                <div class="invalid-feedback">Please provide a valid email.</div>
+                                <!-- <input type="text" class="form-control" id="sendEmail">
+                                <div class="invalid-feedback">Please provide a valid email.</div> -->
+                                <?php
+                                if (isset($_GET["fgemailnotExists"])){
+                                    echo'
+                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail">
+                                    <div class="invalid-feedback">Please provide a valid email.</div>
+                                    ';
+                                }else{
+                                    echo '
+                                    <input type="text" name="email" class="form-control" id="sendEmail">
+                                    <div class="invalid-feedback">Please provide a valid email.</div>
+                                    ';
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary signinbtn">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-primary signinbtn">Submit</button>
                     </div>
                 </form>
             </div>
@@ -147,7 +203,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script type="module" src="/public/js/Admin/Admin-LoginPage.js"></script>
+    <script type="module" src="/js/Admin/Admin-LoginPage.js"></script>
 </body>
 
 </html>

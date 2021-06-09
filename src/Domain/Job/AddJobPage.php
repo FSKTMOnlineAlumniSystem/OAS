@@ -1,9 +1,70 @@
 <?php
-include '../src/Domain/header.php';
+include '../src/Domain/Database.php';
+include '../src/Domain/Job/AddJobModel.php';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/Alumni/AddJobPage.css" />
 
-<title><?= $GLOBALS['title']; ?></title>
+<?php
+include '../src/utilities/uploadImage.php';
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
+
+if(isset($_POST['Submit'])) {
+
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+    $date = date('y-m-d H:i:s');
+    $postedDateTime = date(DATE_ATOM, strtotime($date));
+    $addJob_model = new  AddJobModel($db->getConnection());	
+    
+    $data = $addJob_model->getMaxId();
+    $jobId = "J-" . $data+1;
+	$alumniId = "AL-1";         //ned change
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $salary = $_POST['salary'];
+	$email = $_POST['email'];
+    $postedDateTime = $postedDateTime;     
+    $jobImage = $jobId;
+    $company = $_POST['company'];
+    $location = $_POST['location'];
+
+    $addJob_model->addJobs($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$jobImage,$company,$location);
+    
+    try{
+        //Upload image to database as blob
+        if($_FILES["jobImage"]['tmp_name']!=null){
+            uploadImage($db->getConnection(),$_FILES["jobImage"],$jobImage);
+        }
+        
+        
+    } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+    }
+
+   
+
+
+    header("Location: myjob");
+
+  
+}
+?>
+
+
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/AddJobPage.css',
+    'searchBar' => '/css/Alumni/SearchBar.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
+
+
+
+<title>Add Job - Alumni Online System</title>
 </head>
 <body>
 
@@ -15,40 +76,15 @@ include '../src/Domain/header.php';
 <script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
 <script type="text/javascript" src="/js/addNavFooter.js"></script>
 
-<?php
-// include '../../../config/config.php';
-include '../src/Domain/Job/AddJobModel.php';
-include '../src/Domain/Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-
-if(isset($_POST['Submit'])) {
-    $addJob_model = new  AddJobModel($db->getConnection());	
-    $data = $addJob_model->getMaxId();
-    $jobId = "J-" . $data+1;
-	$alumniId = "AL-1";         //ned change
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $salary = $_POST['salary'];
-	$email = $_POST['email'];
-    $postedDateTime = '2021-04-04T15:53:53+00:00';      //ned change
-    $imageId = $_POST['imageId'];
-    $company = $_POST['company'];
-    $location = $_POST['location'];
-
-    $addJob_model->addJobs($jobId,$alumniId,$title,$description,$salary,$email,$postedDateTime,$imageId,$company,$location);
-    
-    header("Location: myjob");
-
-  
-}
-?>
-
-<!-- <script type="module" src="/js/Alumni/AddJobPage.js"></script> -->
 
 
 
-<?php include '../src/Domain/footer.php' ?>
+
+
+
+
+
+<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<?php include_once '../src/templates/footer.php' ?>
 
 

@@ -25,7 +25,7 @@ CREATE TABLE Alumni_Event(
     notificationClosedByAlumni boolean NOT NULL
 );
 CREATE TABLE Alumni(
-    alumniId varchar(10) NOT NULL PRIMARY KEY,
+    alumniId varchar(2) NOT NULL PRIMARY KEY,
     approvedBy varchar(10) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
@@ -37,6 +37,7 @@ CREATE TABLE Alumni(
     imageId varchar(255) NOT NULL,
     isEmailPublic boolean NOT NULL,
     isActive boolean NOT NULL,
+    isVerified boolean NOT NULL,
     biography varchar(255) NOT NULL
 );
 
@@ -604,6 +605,7 @@ INSERT INTO Alumni(
     graduated,
     imageId,
     isEmailPublic,
+    isVerified,
     biography
   )
 VALUES (
@@ -618,6 +620,7 @@ VALUES (
     '2003',
     'AL-1',
     1,
+    1,
     'Tey is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -631,7 +634,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -646,6 +649,7 @@ VALUES (
     '2006',
     'AL-2',
     1,
+    1,
     'Ang is currently working at Sony, Hokkaido in Japan, building and expanding systems as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -659,7 +663,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -674,6 +678,7 @@ VALUES (
     '2015',
     'AL-3',
     1,
+    1,
     'Lan Li Hong is currently working at HCL Technologies Malaysia Sdn. Bhd. as a Data Scientist'
   );
 INSERT INTO Alumni(
@@ -687,7 +692,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -702,6 +707,7 @@ VALUES (
     '2018',
     'AL-4',
     1,
+    1,
     'Beh Jia Ong is currently working at HTM Niseko, Hokkaido in Japan, building and expanding systems as a Machine Learning Engineer.'
   );
 INSERT INTO Alumni(
@@ -715,7 +721,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -730,6 +736,7 @@ VALUES (
     '2003',
     'AL-5',
     1,
+    1,
     'Ong Huat Keat is currently working atNimble AppGenie as a Applications developer.'
   );
 INSERT INTO Alumni(
@@ -743,7 +750,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -758,6 +765,7 @@ VALUES (
     '2008',
     'AL-6',
     1,
+    1,
     'Rachel Lee Yin is currently working at EDUSPEC Holdings BERHAD as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -771,7 +779,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -786,6 +794,7 @@ VALUES (
     '2017',
     'AL-7',
     0,
+    1,
     'Tan Yan Win is currently working at Apple Incorporated (AAPL) as a full stack lead developer.'
   );
 INSERT INTO Alumni(
@@ -799,7 +808,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -814,6 +823,7 @@ VALUES (
     '2019',
     'AL-8',
     0,
+    0,
     'Lim Xin Tong is currently working at GoodCore Software as a Cyber security analyst.'
   );
 INSERT INTO Alumni(
@@ -827,7 +837,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -842,6 +852,7 @@ VALUES (
     '2016',
     'AL-9',
     0,
+    0,
     'Alisa Mok Lian is currently working at Datasonic Group Berhad as a multimedia designer.'
   );
 INSERT INTO Alumni(
@@ -855,7 +866,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -870,6 +881,7 @@ VALUES (
     '2019',
     'AL-10',
     0,
+    0,
     'Rohana binti Jani is currently working at ELSOFT Research Berhad as graphic designer.'
   );
 INSERT INTO Alumni(
@@ -883,7 +895,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -898,6 +910,7 @@ VALUES (
     '2008',
     'AL-11',
     0,
+    0,
     'Juliana binti Othman is currently working at Samsung electronics as a Information Systems Manager.'
   );
 INSERT INTO Alumni(
@@ -911,7 +924,7 @@ INSERT INTO Alumni(
     department,
     graduated,
     imageId,
-    isEmailPublic,
+    isEmailPublic,isVerified,
     biography
   )
 VALUES (
@@ -925,6 +938,7 @@ VALUES (
     'Information System',
     '2015',
     'AL-12',
+    0,
     0,
     'Beh Yun Lian is currently working at Nielson as a Computer Systems Analyst'
   );
