@@ -1,6 +1,25 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/templates/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- browser icon -->
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <!-- icon - fontawesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- custom css files -->
+  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+  
 <!-- <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" /> -->
 <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css">
 <title>Update Event - Online Alumni System</title>
@@ -10,41 +29,35 @@ include '../src/Domain/header.php';
 // include '../../../config/config.php';
 include '../src/Domain/Admin-Event/Admin-EventModel.php';
 include '../src/Domain/Database.php';
+include '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new Admin_EventModel($db->getConnection());
   $all_activities = $event_model->getAll();
+  $allImage = $event_model->getPicture();
   if (!empty($all_activities)) {
-
     foreach ($all_activities as $res) {
-
       if($res['title']==$title){
 	$eventId = $res['eventId'];
-	// $adminId = $res['adminId'];
-	// $title = $res['title'];
-	// $dateTime = $res['dateTime'];
-	// $description = $res['description'];
-	// $locate = $res['location'];
-	// $imageId = $res['imageId'];
-  
-  // echo "$locate ";
-  // echo "$imageId";
       }
-}
-
     }
+  }
+  for ($i=0; $i< count($all_activities); $i++){
+    $all_activities[$i]['imageId'] = $allImage[$i];
+  }
+  // $defaultImage = $event_model->getDefaultPicture();
 } catch (Exception $e) {
   echo "Exception here!";
 }
 ?>
 
-    <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 <?php
     if(isset($_POST['update'])) {
       $eventId=$_GET['eventId'];
-    $updateTheEvent = new  UpdateEventModel($db->getConnection());	
+      $updateTheEvent = new UpdateEventModel($db->getConnection());	
+      $imageId=$updateTheEvent-> getImageId($eventId);
+      echo $imageId;
     // $data = $addJob_model->getMaxId();
     // $eventId = "E-" ;
     $adminId = "AD-1";         //ned change
@@ -52,12 +65,31 @@ try {
     $date =$_POST["date"];
     $time =$_POST["time"];
     $description = $_POST['description'];
-    $imageId = $_POST['imageId'];
+    // $imageId = $eventId;
     $locate = $_POST['locate'];
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
+    if($_FILES["eventPicture"]['tmp_name']!=null){
+      $imageId = $eventId;
+    }
+    
     $updateTheEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
-    header("Location: adminEvent");
+    // $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+    
+    if($_FILES["eventPicture"]['tmp_name']!=null){
+      // if($imageId==="Default"){
+      //   $imageId=$EventId;
+      // }
+      print 'hello';
+      uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);//imageId
+  }else{
+    print 'you salah le';
+  
+} 
+// catch (Exception $e) {
+// echo "Exception: " . $e->getMessage();
+// }
 
+header("Location: adminEvent");
 }
 
 
@@ -79,6 +111,9 @@ try {
 //   }
 // }
 ?>
+  <!-- <script type="text/javascript">var defaultImage = ;</script> -->
+<script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
+    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
 
 <main class="container-fluid height-after-minus-header" id='main-body'>
       <div class="row h-100">
@@ -91,7 +126,7 @@ try {
         <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni">
           <i class="fas fa-user-plus"></i>
           Invite Alumni</a> -->
-        <form method="post" onsubmit="return checkvalidation()"> 
+        <form method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data"> 
           <div id="updateForm">
             <div class="form-group">
   
@@ -131,8 +166,7 @@ try {
             <div class="form-group">
               <label for="formGroupExampleInput2">Description :</label>
               <textarea type="text" class="form-control rounded-0" id="description" name="description" placeholder="Enter new schedule"
-                value=<?php echo "$description";?> rows="5"
-                ;><?php echo "$description";?></textarea>
+                value=<?php echo "$description";?> rows="5"; ><p style="white-space: pre-wrap"><?php echo "$description";?></p></textarea>
               <div class="valid-feedback">Valid.</div>
               <div id="contactNumberFeedback" class="invalid-feedback">
                 Please provide a brief description for the event.
@@ -158,19 +192,19 @@ try {
                   <img src="<?php echo "$img_Path$imageId";?>" id="prevImage" alt="update Image" width="150"
                     length="150">
                   <input type="file" id="wizard-picture" name="imageId">
+                  <input type="file" name="eventPicture" id="eventPicture" class="d-none">
                   
                 </div>
               </div>
               <h6 id="choosePictureDescription"></h6>
               <div id="contactNumberFeedback" class="invalid-feedback">
                 Please provide a picture for the event.
-                
               </div>
             </div>
 
           </div>
 				  <!-- <input type="hidden" name="title" value=<?php echo $_GET['title'];?>> -->
-          <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2">Save</input>
+          <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2"></input>
           <button id="cancelButton" onclick="cancelUpdate()" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 
         </form>

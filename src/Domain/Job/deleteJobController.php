@@ -5,6 +5,11 @@ include '../src/Domain/Database.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $myJob_model = new  MyJobModel($db->getConnection());
 
+if(isset($_POST['modal'])){
+    echo("success");
+}
+
+
 if( isset($_POST['ajax']) && isset($_POST['deleteID']) ){
     $deleteID =  $_POST['deleteID'];
     $myJob = $myJob_model->deleteJob($deleteID);

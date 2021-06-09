@@ -5,6 +5,8 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <!-- browser icon -->
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <!-- font -->
@@ -34,19 +36,30 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
+    $allImage = $event_model->getPicture();
+    // print_r($allImage);
     if (!empty($all_activities)) {
-  
       foreach ($all_activities as $activity) {
-        echo "$activity[eventId] ";
+        // echo "$activity[eventId] ";
         // getElementById('date')->"$activity[dateTime]";
       }
     }
+    $eventNumber = $event_model->getNumberOfEvent();
+    echo  "event Number = ";
+    print_r($eventNumber);
+
+    for ($i=0; $i< count($all_activities); $i++){
+      $all_activities[$i]['imageId'] = $allImage[$i];
+    }
+    // $defaultImage = $event_model->getDefaultPicture();
+
   } catch (Exception $e) {
     echo "Exception here!";
     echo $e;
   }
 ?>
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
+  <!-- <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script> -->
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 
@@ -240,15 +253,15 @@ if(isset($_POST["checkbox"])){
                   <b class="m-0"> Title : </b>
                   <p id="title"></p>
                   <b class="m-0"> Description : </b>
-                  <p id="description"></p>
+                  <p id="description" style="white-space: pre-wrap"></p>
                   <b class="m-0"> Location : </b>
                   <p id="location"></p>
                 </div>
 
                 <div class="modal-footer" id="modelEdit">
                   <button type="button" id="editButton" class="btn btn-primary"
-                    onclick="location.href = 'adminUpdateEvent'">
-
+                    >
+<!-- onclick="location.href = 'adminUpdateEvent'" -->
                     <i class="fas fa-edit">
                     </i>
                     Edit</button>
@@ -281,7 +294,7 @@ if(isset($_POST["checkbox"])){
     crossorigin="anonymous"></script> -->
 <!--hiiiiii-->    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->

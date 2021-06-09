@@ -32,17 +32,49 @@ class AlumniListModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
         }
         return $image;
     }
+
+    public function getNumberOfApprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    public function getNumberOfUnapprovedAlumni(): int{
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1';
+        $result = $this->connection->prepare($sql); 
+        $result->execute(); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    // public function search($searchterm){
+    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
+    //     $stmt = $this->connection->prepare($query);  
+    //     $stmt->execute(); 
+    //     $data = $stmt->fetchAll();
+    //     if(!$data){
+    //         return array();
+    //     }
+    //     return $data; 
+    // }
+
 }
 
 class DeleteAlumniModel
@@ -76,11 +108,15 @@ class DeleteAlumniModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
@@ -132,11 +168,15 @@ class UpdateALumniModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
@@ -164,7 +204,5 @@ class UpdateALumniModel
             error_log('UpdateApprovedByModel: construct: ' . $exception->getMessage());
             throw $exception;
         }       
-}    
+} 
 }
-
-

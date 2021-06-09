@@ -23,6 +23,41 @@ const getReadableTime = (dateTime) => {
   return `${hour}:${minute} ${period}`;
 }
 
+const getDifference = (dateTime) =>{
+  var current = new Date();
+  var d1 = new Date(dateTime);
+  var d2 = new Date(current);
+
+  var yeardiff = d2.getFullYear() - d1.getFullYear();
+  var monthdiff = d2.getMonth() - d1.getMonth();
+  var daydiff = d2.getDate() - d1.getDate();
+  var hourdiff = d2.getHours() - d1.getHours();
+  var minsdiff = d2.getMinutes() - d1.getMinutes();
+
+  if(yeardiff<=0){
+    if(monthdiff<=0){
+      if(daydiff<=0){
+        if(hourdiff<=0){
+          if(minsdiff<=0){
+            return "just now";
+          }else{
+            return `${minsdiff} minutes ago`;
+          }
+        }else{
+          return `${hourdiff} hours ago`;
+        }
+      }else{
+        return `${daydiff} days ago`;
+      }
+    }else{
+      return `${monthdiff} months ago`;
+    }
+  }else{
+    return `${yeardiff} years ago`;
+  }
+}
+
+
 function setInValid(el) {
   if (el.classList.contains("is-valid")) {
     el.classList.replace("is-valid", "is-invalid");
@@ -37,6 +72,14 @@ function setValid(el) {
   } else {
     el.classList.add("is-valid");
   }
+}
+
+function insertSearchNoResult(el){
+  el.innerHTML = `
+  <img class="col-md-6" src="/Assets/imgs/newSearchNotFound.png">
+  <h2 class="col-12">Sorry, no results found.</h2>
+  <p class="col-12">Please try another search</p>
+  `
 }
 
 const PUBLIC_IMG_PATH = "/public/Assets/imgs/";
