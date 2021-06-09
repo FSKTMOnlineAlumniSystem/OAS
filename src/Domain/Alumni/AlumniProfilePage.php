@@ -13,6 +13,7 @@ include_once '../src/templates/nav.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
+  $pageIndex = $_GET['page'];
   $link = explode('/',$_SERVER["REQUEST_URI"]);
   $id = $link[count($link)-1];
   $alumni = new MyProfile($db->getConnection(), $id);
@@ -36,7 +37,7 @@ try {
     <div class="col-12 col-md-10 col-lg-8">
         <div class="row align-items-center">
           <div class="col-12">
-              <a href="/alumni" class="btn btn-link back">
+              <a href="/alumni?page=<?=$pageIndex?>" class="btn btn-link back">
                 <i class="fas fa-chevron-left fa-2x"></i>
               </a>
               <h3 class="d-inline">Alumni Profile</h3>
