@@ -193,7 +193,7 @@ elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Admin-LoginPage/signin.php';
 } elseif (preg_match('/^\/api\/adminforgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Amin-LoginPage/AdminforgotPsw.php';
+    include '../src/Domain/Admin-LoginPage/AdminforgotPsw.php';
 }
 
 //Job
