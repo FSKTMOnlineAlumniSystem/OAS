@@ -62,21 +62,18 @@
   if (isAlumni()) {
     try {
       $event_model = new EventModel($db->getConnection());
-      $all_events = $event_model->getAll();
-      // echo gettype($all_events);
       $alumni_event_model = new AlumniEventModel($db->getConnection());
+      $all_events = $event_model->getAll();
       $all_alumni_events = $alumni_event_model->getAll();
     } catch (Exception $e) {
       echo "Exception: " . $e->getMessage();
     }
-    $filter_event = function ($eventId) {
-      global $all_events;
-      echo gettype($all_events);
+    function filter_event($eventId, $all_events) {
+      // global $all_events;
       foreach ($all_events as $event) {
-        echo $event['eventId'];
-        // if ($eventId === $event['eventId']) {
-        //   return $event;
-        // }
+        if ($eventId === $event['eventId']) {
+          return $event;
+        }
       }
     };
     // check if any event notification not checked out yet
@@ -122,7 +119,8 @@
             if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId'] && !$alumni_event['notificationClosedByAlumni']) {
               // get the required variable
               $timeStr = $alumni_event['dateTime'];
-              $eventTitle = $filter_event($alumni_event['eventId'])['title'];
+              // echo "This is type of all_events: ".gettype($all_events);
+              $eventTitle = filter_event($alumni_event['eventId'],$all_events)['title'];
               $dotClass = $alumni_event['viewedByAlumni'] === 'true' ? "" : "fa fa-circle p-1 d-flex justify-content-center text-primary";
               // format the time string into human readable form
               $temp = new DateTime($timeStr);
