@@ -351,15 +351,16 @@ window.deleteCheckedRow = function(){
   var count=0;
   var $alumniId = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  if(checkboxes.checked.length!=0){
+  if(document.querySelectorAll(':checked').length-2 !== 0){
     for (var i = checkboxes.length-1; i > 0; i--) {
       if(checkboxes[i].checked){
         count++;
         var alumniId= alumniArray[i-1].alumniId;
       $alumniId.push(alumniId);
       }
-    }
+  }
     $alumniId=$alumniId.toString();
+    console.log(document.querySelectorAll(':checked').length-2);
     $.ajax({
       type: "POST",
       url: 'deleteMultipleAlumni',
@@ -373,5 +374,5 @@ window.deleteCheckedRow = function(){
         checkboxes[0].checked = false;
       }
     });
-    }
+  }
   }
