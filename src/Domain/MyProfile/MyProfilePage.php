@@ -12,7 +12,7 @@ try {
 ?>
 
 <?php
-include_once '../src/utilities/include_onceWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/MyProfilePage.css',

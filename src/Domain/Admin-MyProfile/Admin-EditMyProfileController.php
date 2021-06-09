@@ -35,7 +35,7 @@ if ($errorExist == true) {
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-    $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
+    $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
     $admin->setUpdatedData($username, $email);
     //Upload image to database as blob
     if($_FILES["profilePicture"]['tmp_name']!=null){

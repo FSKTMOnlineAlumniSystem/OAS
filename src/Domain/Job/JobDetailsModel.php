@@ -50,9 +50,12 @@ class JobDetailsModel
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if(!is_null($eachuser['imageData'])){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
+            }else{
+                $temp_path = '/Assets/imgs/jobdefault.jpg';
+                array_push($image,$temp_path);
             }
         }
         return $image;

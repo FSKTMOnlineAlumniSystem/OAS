@@ -1,7 +1,3 @@
-<title>My Job - Alumni Online System</title>
-</head>
-<body>
-
 <?php
 include '../src/Domain/Job/MyJobModel.php';
 // include_once '../src/templates/header.php';
@@ -40,8 +36,6 @@ include '../src/templates/nav.php';
 
 
 
-<div class ="container my-5" id='main-body'>
-
 <div class="searchBarBG">
 
  <div class="containerSB">
@@ -58,7 +52,9 @@ include '../src/templates/nav.php';
    </div>
  </div>
 
-</div><br><br>
+</div>
+<div class ="container my-5" id='main-body'>
+
           <h1><b>Jobs</b></h1>
         
           <hr>

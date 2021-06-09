@@ -49,6 +49,10 @@ class MyProfile
 
     public function getProfilePicture()
     {
+        //handle if image is missing in database
+        if(!$this->user['type'] || !$this->user['imageData']){
+            return '/Assets/imgs/default_user.png';
+        }
         return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
     }
 
