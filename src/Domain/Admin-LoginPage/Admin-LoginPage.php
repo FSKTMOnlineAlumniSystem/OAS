@@ -74,7 +74,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Admin!
                     </h3>
-                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signinadmin' id="signIN" method="post">
+                    <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/adminsignin' id="signIN" method="post">
                         <div class="form-label-group w-100">
                             <!-- <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
@@ -162,7 +162,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="form_2" action="/api/forgotadmin" method="post">
+                <form id="form_2" action="/api/adminforgot" method="post">
                     <div class="modal-body">
                         <span>When you fill in your registered email address,
                             you will be sent instructions on how to reset your password.</span>

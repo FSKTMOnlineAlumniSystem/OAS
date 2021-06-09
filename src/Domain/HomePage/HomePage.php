@@ -24,20 +24,14 @@
     <link href="/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
    
-    <title><?= $GLOBALS['title']; ?></title>
+    <title></title>
     </head>
     <body> -->
 
     <?php
 // include '../../../config/config.php';
 // include '../src/Domain/HomePage/HomePage.php';
-include '../src/utilities/includeWithVariable.php'
 
-includeWithVariables('../src/templates/header.php', array(
-  'my_css' => '/css/Alumni/HomePage.css'
-));
-
-include '../src/templates/nav.php';
 
 include '../src/Domain/Database.php';
 include '../src/Domain/Job/JobModel.php';
@@ -87,6 +81,17 @@ try {
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
 
 <script type="module" src="/js/Alumni/homePage.js"></script>
+
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/HomePage.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
 
 <div class="container-fluid d-flex flex-column align-items-center p-0" id="main-body">
 

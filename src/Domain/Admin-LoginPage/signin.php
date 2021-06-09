@@ -16,16 +16,17 @@ if(isset($_POST["submit"])){
 
     loginUser($conn, $email, $password);
 
-}else{
-    header("location: /home");
 }
+// else{
+//     header("location: /home");
+// }
 
 
 function loginUser($conn, $email, $password){
 
     $adminData = emailExists($conn,$email);
     if($adminData == false){
-        header("location: /login?emailnotExists");
+        header("location: /admin-login?emailnotExists");
         exit();
     }
     // else{
@@ -33,15 +34,15 @@ function loginUser($conn, $email, $password){
     //     exit();
     // }
 
-    $passwordNormal = $alumniData["password"];
-    $checkpassword = passwordCheck($password, $passwordNormal);
+    // $passwordNormal = $alumniData["password"];
+    // $checkpassword = passwordCheck($password, $passwordNormal);
 
-    // $passwordHashed = $adminData["password"];
-    // $checkpassword = password_verify($password, $passwordHashed);
+    $passwordHashed = $adminData["password"];
+    $checkpassword = password_verify($password, $passwordHashed);
 
     if ($checkpassword === false) {
        
-        header("location: /login?passwordWrong");
+        header("location: /admin-login?passwordWrong");
         exit();
 
     } else if($checkpassword === true){
@@ -93,7 +94,7 @@ function passwordCheck($password, $passwordNormal){
         return true;
     }elseif ($password != $passwordNormal) {
         //wrong password
-        header("location: /login?password=false");
+        header("location: /admin-login?password=false");
         return false;
     }
 }

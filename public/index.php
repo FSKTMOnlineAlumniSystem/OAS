@@ -184,12 +184,12 @@ elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
 }
 
 //Admin-Login
-elseif (preg_match('/^\/api\/signinadmin/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Admin-LoginPage/signin.php';
-} elseif (preg_match('/^\/api\/forgotadmin/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/api\/adminforgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/AdminforgotPsw.php';
+    include '../src/Domain/Amin-LoginPage/AdminforgotPsw.php';
 }
 
 //Job

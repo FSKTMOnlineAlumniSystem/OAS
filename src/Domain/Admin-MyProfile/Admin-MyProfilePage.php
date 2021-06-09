@@ -4,7 +4,7 @@ include_once '../src/Domain/Admin-MyProfile/AdminModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-$admin = new AdminMyProfile($db->getConnection(), 'AD-1');
+$admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
 ?>
 
 <!DOCTYPE html>
