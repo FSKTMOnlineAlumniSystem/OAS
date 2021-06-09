@@ -156,7 +156,6 @@ alumniArray.forEach((alumni, index) => {
 // click alumni name will pop out alumni details
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
-    localStorage.setItem('updateId', e.target.id);
     localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
     $("#image").attr('src', alumniArray[e.target.id].imageId)
     $("#name").text(alumniArray[e.target.id].name);
@@ -193,7 +192,7 @@ window.approve = function(){
 $.ajax({
   type: "POST",
   url: 'approveAlumni',
-  data: {alumniId: localStorage.getItem("alumniId"),signedInAdminId:localStorage.getItem("SignedInAdminId") },
+  data: {alumniId: localStorage.getItem("alumniId")},
   success:  function(data)
   { 
     var outputList = JSON.parse(data);

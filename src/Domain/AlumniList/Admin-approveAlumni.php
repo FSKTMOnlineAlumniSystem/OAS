@@ -6,7 +6,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   if(isset($_POST['alumniId'])) {
     $alumniId = $_POST['alumniId'];
-    $adminId = $_POST['signedInAdminId'];
+    $adminId = $_SESSION['admin']['adminId'];
     $updateApprove = new  UpdateAlumniModel($db->getConnection());
     $updateApprove->updateApprovedby($adminId,$alumniId);
     $all_activities=$updateApprove->getAll();
