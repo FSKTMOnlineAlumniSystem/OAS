@@ -149,7 +149,7 @@ function verifyEmail($email,$encrypted){
         $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
         $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
         $mail->AddAddress($email);
-        $mail->Subject = 'Change Password';
+        $mail->Subject = 'Verify Your Email';
         $content = str_replace(
             array('%url%', '%to%'),
             array($base_url,$email),

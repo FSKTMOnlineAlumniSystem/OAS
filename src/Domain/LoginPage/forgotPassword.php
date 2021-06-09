@@ -45,7 +45,7 @@ if(isset($_POST["submit"])){
         $mail->Subject = 'Change Password';
         $content = str_replace(
             array('%password%', '%to%'),
-            array($newPassword,    $email),
+            array($newPassword, $email),
             file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html')
         );
         $mail->msgHTML(file_get_contents('../src/Domain/LoginPage/ForgotPasswordEmail.html'), __DIR__);
