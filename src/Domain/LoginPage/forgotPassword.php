@@ -57,7 +57,7 @@ if(isset($_POST["submit"])){
         if ($mail->send()) {
             $status = 'success';
             $response = 'Email is sent!';
-            header("location: /login");
+            header("location: /login?sendPsw");
             exit();
         }else{
             $status = 'failed';

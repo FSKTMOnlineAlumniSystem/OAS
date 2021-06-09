@@ -70,9 +70,9 @@ try {
 //
 // $em = $_SESSION["alumni"];
 // echo $_SESSION;
-// $Password = "nkd231u22!3%b_";
-// $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-// echo $hashedPassword;
+$Password = "12345";
+$hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+echo $hashedPassword;
 
 // echo "".$_SESSION["em"]."";
 
