@@ -54,24 +54,28 @@ document.getElementById('headerDropdownMenuButton').click();
 const logoutBtn = document.getElementById('logout-btn');
 logoutBtn.addEventListener('click', evt => {
   console.log('button clicked.');
-  fetch('/api/log-out')
-  .then(data => {
+  fetch('/api/log-out', {
+    method: 'GET'
+  }).then(res =>
+    res.json()
+  ).then(data => {
     console.log(data);
+    location.href = "/login";
   })
   // $.ajax({
   //   url: '/api/log-out',
   //   type: 'get',
-    // data: { search: search },
-    // success: function (resp) {
-    //   let page = 0;
-    //   console.log(resp);
-    //   outputList = JSON.parse(resp);
-    //   if (outputList.length === 0) {
-    //     loadMyJobList(page, outputList, -1);
-    //   } else {
-    //     loadMyJobList(page, outputList, outputList.length);
-    //   }
-    // },
+  // data: { search: search },
+  // success: function (resp) {
+  //   let page = 0;
+  //   console.log(resp);
+  //   outputList = JSON.parse(resp);
+  //   if (outputList.length === 0) {
+  //     loadMyJobList(page, outputList, -1);
+  //   } else {
+  //     loadMyJobList(page, outputList, outputList.length);
+  //   }
+  // },
   // });
 
 });

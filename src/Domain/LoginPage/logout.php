@@ -1,3 +1,7 @@
 <?php 
-header('location: http://localhost:8080/login', true, 302);die();
-// echo "<script type='text/javascript'>window.top.location='http://localhost:8080/';</script>"; exit;
+// header('location: /login', true, 302);
+// die();
+session_start();
+session_destroy();
+$arr = array("Message" => "Successfully destroy the session");
+echo json_encode($arr);

@@ -1,9 +1,7 @@
 <?php
-ob_start();
-echo "enter index.php";
 if (preg_match('/^\/api\/log-out\/?$/i', $_SERVER['REQUEST_URI'])) {include '../src/Domain/LoginPage/logout.php';
+    exit();
 }
-ob_end_flush();
 include '../config/config.php';
 session_start();
 

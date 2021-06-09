@@ -96,7 +96,7 @@
         <?php echo (isAlumni()) ? $_SESSION['alumni']['name'] : $_SESSION['admin']['name'] ?>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
-        <a class="dropdown-item" href="/myprofile"><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
+        <a class="dropdown-item" href=<?php echo (isAlumni()) ? "/myprofile":"/adminprofile" ?>><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
         <div class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</div>
       </div>
     </div>
