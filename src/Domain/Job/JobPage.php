@@ -69,7 +69,7 @@ include '../src/templates/nav.php';
         <br />
         
         <!-- Cards -->
-        <div class="row justify-content-md-center" id="no_result"></div>
+        <div class="row justify-content-md-center text-center" id="no_result"></div>
         <div class="card-desk">
           <div class="row row-cols-3" id="jobList"></div>
         </div>
