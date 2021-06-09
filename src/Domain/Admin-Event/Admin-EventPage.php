@@ -51,7 +51,7 @@ try {
     for ($i=0; $i< count($all_activities); $i++){
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
-    $defaultImage = $event_model->getDefaultPicture();
+    // $defaultImage = $event_model->getDefaultPicture();
 
   } catch (Exception $e) {
     echo "Exception here!";
@@ -59,7 +59,7 @@ try {
   }
 ?>
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
-  <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script>
+  <!-- <script type="text/javascript">var defaultImage = <?php echo json_encode($defaultImage)?>;</script> -->
   <script type="module" src="/js/Admin/Admin-EventPage.js"></script>
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 
@@ -287,6 +287,7 @@ if(isset($_POST["checkbox"])){
       </div>
   </main>
 
+  <script type="text/javascript" src="/js/utility.js"></script>
   <!-- new path -->
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

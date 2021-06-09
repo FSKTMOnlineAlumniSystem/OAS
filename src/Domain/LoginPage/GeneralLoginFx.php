@@ -59,3 +59,4 @@ function emailExists($conn,$email){
         //email not Exists
         return false;
 }
+
