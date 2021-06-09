@@ -24,9 +24,12 @@ class MyJobModel
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if(!is_null($eachuser['imageData'])){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
+            }else{
+                $temp_path = '/Assets/imgs/jobdefault.jpg';
+                array_push($image,$temp_path);
             }
         }
 
@@ -86,8 +89,11 @@ class MyJobModel
             WHERE jobId='$id' ");
         $stmt->execute();
         $data = $stmt->fetch();
-
-        return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        if(!is_null($data['imageData'])){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }else{
+            return '/Assets/imgs/jobdefault.jpg';
+        }
     }
 //SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%HSBC%'
     

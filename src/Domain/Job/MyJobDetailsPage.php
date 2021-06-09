@@ -4,9 +4,7 @@ include '../src/Domain/Database.php';
 include '../src/Domain/Job/MyJobDetailsModel.php';
 ?>
 
-<title>My Job Details - Alumni Onlune System</title>
-</head>
-<body>
+
 
 <?php
 include '../src/utilities/includeWithVariable.php' ?>

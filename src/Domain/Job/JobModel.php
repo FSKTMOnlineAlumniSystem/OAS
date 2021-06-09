@@ -47,9 +47,12 @@ class JobModel
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if(!is_null($eachuser['imageData'])){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
+            }else{
+                $temp_path = '/Assets/imgs/jobdefault.jpg';
+                array_push($image,$temp_path);
             }
         }
         return $image;
@@ -63,8 +66,12 @@ class JobModel
             WHERE jobId='$id' ");
         $stmt->execute();
         $data = $stmt->fetch();
-
-        return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        if(!is_null($data['imageData'])){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }else{
+            return '/Assets/imgs/jobdefault.jpg';
+        }
+       
     }
 
     public function Nicole(){
@@ -78,17 +85,21 @@ class JobModel
         return $data; 
     }
 
+
+    //nicole gt changes here
     public function NicoleImages(){
         $stmt = $this->connection->prepare('SELECT * FROM job LEFT JOIN image ON job.imageId=image.imageId ORDER BY postedDateTime DESC LIMIT 4');
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if(!is_null($eachuser['imageData'])){
                 $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-
                 array_push($image,$temp_string);
-        }
+            }else{
+                    $temp_path = '/Assets/imgs/jobdefault.jpg';
+                    array_push($image,$temp_path);
+            }
     }
         return $image;
     }
