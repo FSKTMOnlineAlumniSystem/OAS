@@ -7,15 +7,15 @@ session_start();
 
 //VIEW
 //HANDLE EMPTY SESSION
-// if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
-//     //URL contains 'admin' and the URL is not /admin-login
-//     header('Location:/admin-login');
-//     exit;
-// } elseif (!preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
-//     //URL is not /admin-login nor /login
-//     header('Location: /login');
-//     exit;
-// }
+if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
+    //URL contains 'admin' and the URL is not /admin-login
+    header('Location:/admin-login');
+    exit;
+} elseif (!preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
+    //URL is not /admin-login nor /login
+    header('Location: /login');
+    exit;
+}
 
 
 //Login

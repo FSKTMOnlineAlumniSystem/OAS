@@ -43,9 +43,9 @@
     return isset($_SESSION['alumni']) && !empty($_SESSION['alumni']);
   }
   // hardcode session to get name and image id for header
-  $_SESSION = array(); // clear session in apache server
-  $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
-  $_SESSION['alumni'] = $userArr;
+  // $_SESSION = array(); // clear session in apache server
+  // $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
+  // $_SESSION['alumni'] = $userArr;
   // $userArr = array("adminId" => "AD-1", "name" => "Ong Xing Yee", "imageId" => "AD-1.png");
   // $_SESSION['admin'] = $userArr;
   try {
