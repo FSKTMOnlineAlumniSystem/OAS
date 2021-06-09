@@ -33,8 +33,8 @@
 // include '../src/Domain/HomePage/HomePage.php';
 
 
-include '../src/Domain/Database.php';
-include '../src/Domain/Job/JobModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/JobModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -70,9 +70,9 @@ try {
 //
 // $em = $_SESSION["alumni"];
 // echo $_SESSION;
-$Password = "12345";
-$hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-echo $hashedPassword;
+// $Password = "12345";
+// $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+// echo $hashedPassword;
 
 // echo "".$_SESSION["em"]."";
 
@@ -83,14 +83,14 @@ echo $hashedPassword;
 <script type="module" src="/js/Alumni/homePage.js"></script>
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/HomePage.css'
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 <div class="container-fluid d-flex flex-column align-items-center p-0" id="main-body">
@@ -230,8 +230,8 @@ include '../src/templates/nav.php';
 </div>
 </div>
 
-<?php include '../src/templates/footer.php' ?>
-<?php include '../src/templates/GeneralScripts.php'?>
+<?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php'?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

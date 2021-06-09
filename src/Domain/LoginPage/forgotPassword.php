@@ -1,8 +1,8 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-include '../src/Domain/Database.php';
-include '../src/Domain/LoginPage/GeneralLoginFx.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();

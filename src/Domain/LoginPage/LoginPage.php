@@ -1,12 +1,16 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/LoginPage/GeneralLoginFx.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">
 <!-- GOOGLE FONT POPPINS -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
