@@ -38,3 +38,17 @@ notificationDivArr.forEach(div => {
     })
   });
 });
+
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn !== null) {
+  logoutBtn.addEventListener('click', evt => {
+    console.log('button clicked.');
+    fetch('/api/log-out', {
+      method: 'GET'
+    }).then(res =>
+      res.json()
+    ).then(data => {
+      location.href = "/login";
+    })
+  });
+}
