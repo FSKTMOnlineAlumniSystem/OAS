@@ -1,6 +1,6 @@
 <?php
 
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Database.php';
 
 
 
@@ -55,7 +55,7 @@ function loginUser($conn, $email, $password){
             session_start();
             $_SESSION["admin"] = $adminData;
             // $_SESSION["emb"] = "abc";
-            header("location: /adminhomepage");
+            header("location: /admin");
             exit();
         // }else {
         //     header("location: ./LoginPage.php?account=deleted");

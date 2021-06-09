@@ -1,6 +1,6 @@
 <?php
 
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Database.php';
 // include '../src/Domain/LoginPage/signup_inc.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
