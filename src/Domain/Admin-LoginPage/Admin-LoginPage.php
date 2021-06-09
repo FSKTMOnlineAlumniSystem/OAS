@@ -13,7 +13,7 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../src/css\Alumni\index.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
     <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
     <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
 
@@ -203,6 +203,55 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+
+        <?php
+
+if (isset($_GET["sendPsw"])) {
+    echo'
+        <div class="modal fade" id="sendPsw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>New Password sent to your email!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>Please sign in with the password sent to your email.<br>
+                                You are recommended to change your account password after signing in. <br>
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#sendPsw").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#sendPsw").modal("hide");
+                });
+            }
+
+            function gotit(){
+                
+               location.href = "/admin-login";
+           }
+        </script>
+';
+}
+?>
+
     <script type="module" src="/js/Admin/Admin-LoginPage.js"></script>
 </body>
 
