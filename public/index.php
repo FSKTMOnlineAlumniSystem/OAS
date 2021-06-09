@@ -90,7 +90,7 @@ elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
 }
 
 //Admin-Home
-elseif (preg_match('/^\/admin/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/admin$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-Home/Admin-HomePage.php';
 }

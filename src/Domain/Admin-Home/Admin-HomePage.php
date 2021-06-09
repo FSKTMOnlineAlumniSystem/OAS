@@ -17,9 +17,6 @@ includeWithVariables('../src/templates/header.php', array(
   'index' => '/css/Alumni/index.css'
 ));
 ?>
-<?php
-include_once '../src/templates/nav.php';
-?>
 
 <title>Home Page - Online Alumni System</title>
 </head>
@@ -78,10 +75,7 @@ include_once '../src/templates/nav.php';
         </div>
       </div>
   </main>
-
-  <script type="module" src="/src/js/addHeader.js"></script>
-  <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script>
+  <?php include_once '../src/templates/GeneralScripts.php'?>
+  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
   <script type='module' src='/src/js/Admin/Admin-HomePage.js'></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

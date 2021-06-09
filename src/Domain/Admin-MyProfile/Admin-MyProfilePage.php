@@ -7,20 +7,15 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
 ?>
 
-<!DOCTYPE html>
-<html>
+<?php
+include_once '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'index' => '/css/Alumni/index.css'
+));
+?>
 
-<head>
-    <title>My Profile - Alumni Online System</title>
-    <!-- GOOGLE FONT POPPINS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <!-- ICON FONT AWESOME -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
+<title>My Profile - Alumni Online System</title>
 
 
 </head>
@@ -149,13 +144,9 @@ $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId'])
             </div>
     </main>
 
-    <script type="text/javascript" src="/js/utility.js"></script>
-    <script type="module" src="/js/addHeader.js"></script>
+    <?php include_once '../src/templates/GeneralScripts.php'?>
     <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
-    <script></script>
     <script type='module' src="/js/Admin/Admin-MyProfilePage.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 
 </html>
