@@ -86,6 +86,12 @@ elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Event/EventDetailsPage.php';
 }
 
+//Admin-Home
+elseif (preg_match('/^\/admin/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-Home/Admin-HomePage.php';
+}
+
 //MyProfile
 elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;

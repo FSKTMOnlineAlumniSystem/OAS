@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html>
-<html lang="en">
+<?php
+include_once '../src/Domain/Database.php';
+include '../src/Domain/Admin-Event/Admin-EventModel.php';
+include '../src/Domain/AlumniList/AlumniListModel.php';
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+$event_model = new Admin_EventModel($db->getConnection());
+$alumni_list_model = new AlumniListModel($db->getConnection());
+?>
 
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <!-- font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <!-- icon - fontawesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="../../css/Admin/Admin-HomePage.css">
-  <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css">
-  <link rel="stylesheet" href="../../css/Alumni/EditMyProfilePage.css">
+<?php
+include_once '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+  'editprofile_css' => '/css/Alumni/EditMyProfilePage.css',
+  'admin_homepage_css' => '/css/Admin/Admin-HomePage.css',
+  'index' => '/css/Alumni/index.css'
+));
+?>
+<?php
+include_once '../src/templates/nav.php';
+?>
 
-  <title>Home Page - Online Alumni System</Menu>
-  </title>
+<title>Home Page - Online Alumni System</title>
 </head>
 
 <body>
   <main class="container-fluid height-after-minus-header" id='main-body'>
-    
+
     <div class="row h-100">
       <div class="custom-dark-gray px-0" id="left-nav">
       </div>
@@ -40,7 +39,7 @@
           <div class="container">
             <h2 class="alert-heading"><b>Welcome back, Admin!</b></h2>
             <hr>
-  
+
             <div class="row p-2 justify-content-between">
               <!-- <div class="col-lg-3 alert alert-warning rounded p-5 m-2">
                 <div class="row justify-content-center">
@@ -54,21 +53,21 @@
                   <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-lg-2"></i>
                   <h5 class="col-lg-10 text-center">Approved Alumni</h5>
                 </div>
-                <h1 class="text-center" id="approvedAlumni">6</h1>
+                <h1 class="text-center" id="approvedAlumni"><?= $alumni_list_model->getNumberOfApprovedAlumni(); ?></h1>
               </div>
               <div class="col-lg-3 alert alert-danger rounded p-5 m-2">
                 <div class="row justify-content-center">
                   <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-lg-2"></i>
                   <h5 class="col-lg-10 text-center">Unapproved Alumni</h5>
                 </div>
-                <h1 class="text-center" id="unapprovedAlumni">6</h1>
+                <h1 class="text-center" id="unapprovedAlumni"><?= $alumni_list_model->getNumberOfUnapprovedAlumni(); ?></h1>
               </div>
               <div class="col-lg-3 alert alert-warning rounded p-5 m-2">
                 <div class="row justify-content-center">
                   <i class="d-flex align-items-center justify-content-center far fa-calendar-alt fa-2x col-lg-2"></i>
                   <h5 class="col-lg-10 text-center">Number of Events</h5>
                 </div>
-                <h1 class="text-center" id="numberOfEvents">6</h1>
+                <h1 class="text-center" id="numberOfEvents"><?= $event_model->getNumberOfEvent(); ?></h1>
               </div>
             </div>
             <div class="row p-2 justify-content-between">
@@ -83,10 +82,6 @@
   <script type="module" src="/src/js/addHeader.js"></script>
   <script type='text/javascript' src='/src/js/Admin/addLeftNav.js'></script>
   <script type='module' src='/src/js/Admin/Admin-HomePage.js'></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
