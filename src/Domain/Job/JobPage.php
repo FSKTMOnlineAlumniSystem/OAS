@@ -44,8 +44,6 @@ include '../src/templates/nav.php';
 <body>
 
 
-  <div class="container my-5" id="main-body">
-
   <div class="searchBarBG">
  <div class="containerSB">
    <div class="row no-gutters" style="white-space: nowrap">
@@ -60,7 +58,10 @@ include '../src/templates/nav.php';
      </div>
    </div>
  </div>
-</div><br><br>
+</div>
+  <div class="container my-5" id="main-body">
+
+
         <h1><b>Jobs</b></h1>
         
         <hr>
