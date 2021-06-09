@@ -15,6 +15,9 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $all_activities = $deleteAlumni->getAll();
     $allImage = $deleteAlumni->getProfilePicture();
     for ($i=0; $i< count($all_activities); $i++){
+      if($allImage[$i] == null){
+        $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+      }else
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
     echo json_encode($all_activities);

@@ -33,6 +33,9 @@ try {
   $all_activities = $alumniList_model->getAll();
   $allImage = $alumniList_model->getProfilePicture();
   for ($i=0; $i< count($all_activities); $i++){
+    if($allImage[$i] == null){
+      $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+    }else
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
 } catch (Exception $e) {

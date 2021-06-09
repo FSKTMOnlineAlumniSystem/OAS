@@ -16,11 +16,15 @@ include '../src/Domain/AlumniList/uploadAlumniImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
+
 try {
     $alumniList_model = new AlumniListModel($db->getConnection());
     $all_activities = $alumniList_model->getAll();
     $allImage = $alumniList_model->getProfilePicture();
     for ($i=0; $i< count($all_activities); $i++){
+      if($allImage[$i] == null){
+        $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+      }else
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
