@@ -33,6 +33,9 @@ try {
   $all_activities = $alumniList_model->getAll();
   $allImage = $alumniList_model->getProfilePicture();
   for ($i=0; $i< count($all_activities); $i++){
+    if($allImage[$i] == null){
+      $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+    }else
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
 } catch (Exception $e) {
@@ -53,6 +56,7 @@ try {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
 
   <!-- <link rel="stylesheet" type="text/css" href="/src/css/Alumni/index.css"> -->
 
@@ -175,37 +179,33 @@ try {
                         <div class="col">
                           <div class="row mb-2">
                             <div class="col-4">Name:</div>
-                            <div id="name" class="col-8">Teh Kok Soon</div>
+                            <div id="name" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Gender:</div>
-                            <div id="gender" class="col-8">Male</div>
+                            <div id="gender" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Graduated:</div>
-                            <div id="graduated" class="col-8">2014</div>
+                            <div id="graduated" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">Department:</div>
-                            <div id="department1" class="col-8">Software Engineering</div>
+                            <div id="department1" class="col-8"></div>
                           </div>
                           <div class="row mb-2">
                             <div class="col-4">E-mail:</div>
-                            <div id="email" class="col-8">koksoon@um.edu.my</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-4">Contact Number:</div>
-                            <div id="contactNumber" class="col-8">03-79676347</div>
+                            <div id="email" class="col-8"></div>
                           </div>
 
                           <div class="row mb-2">
                             <div class="col-4">Ic No:</div>
-                            <div id="icNumber" class="col-8">881225-10-5479</div>
+                            <div id="icNumber" class="col-8"></div>
                           </div>
 
                           <div class="row mb-2">
                             <div class="col-4">Account Status:</div>
-                            <div id="accStatus" class="col-8">Verified</div>
+                            <div id="accStatus" class="col-8"></div>
                           </div>
                         </div>
                       </div>
@@ -244,4 +244,4 @@ try {
 
   <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
   <!-- <script type='module' src='../js/addHeader.js'></script> -->
-  <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>  
+  <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>

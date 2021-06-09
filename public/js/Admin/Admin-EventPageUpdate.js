@@ -42,10 +42,12 @@ document.getElementById('description').value=eventArray[i].description
 document.getElementById('location').value=eventArray[i].location
 
 var check=eventArray[i].imageId=='Default';
+var isNull=eventArray[i].imageId==null;
 console.log('image: '+check);
+console.log('image null: '+isNull);
 console.log(eventArray[i].imageId);
-if(check){
-  document.getElementById('prevImage').src=defaultImage;
+if(check||isNull){
+  document.getElementById('prevImage').src="/Assets/imgs/default_events.jpg";
 }else{
   document.getElementById('prevImage').src=eventArray[i].imageId;
 }

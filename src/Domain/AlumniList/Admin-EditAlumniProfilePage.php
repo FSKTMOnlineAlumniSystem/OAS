@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/header.php';
+// include '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
@@ -16,11 +16,15 @@ include '../src/Domain/AlumniList/uploadAlumniImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
+
 try {
     $alumniList_model = new AlumniListModel($db->getConnection());
     $all_activities = $alumniList_model->getAll();
     $allImage = $alumniList_model->getProfilePicture();
     for ($i=0; $i< count($all_activities); $i++){
+      if($allImage[$i] == null){
+        $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+      }else
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
@@ -59,6 +63,7 @@ echo "Exception: " . $e->getMessage();
 
 
 <head>
+    <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
     <title>Edit Alumni Profile - Alumni Online System</title>
     <!-- GOOGLE FONT POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -94,7 +99,8 @@ echo "Exception: " . $e->getMessage();
                                     <div class="picture">
                                         <img src="../uploads/alumni/AL-1.png" class="picture-src"
                                             id="wizardPicturePreview" title="">
-                                        <input type="file" id="wizard-picture" name="image">
+                                            <input type="file" id="wizard-picture">
+                                            <input type="file" name="image" id="profilePicture" class="d-none">
                                     </div>
                                     <h6 id="choosePictureDescription">Choose Picture</h6>
                                 </div>
@@ -225,5 +231,3 @@ echo "Exception: " . $e->getMessage();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-        
-        

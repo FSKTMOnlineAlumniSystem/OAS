@@ -55,8 +55,8 @@ class Admin_EventModel
 
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageId']=='Default'){
-                array_push($image,'Default');
+            if($eachuser['imageId']=='Default'||$eachuser['imageId']==null){
+                array_push($image,null);
             }
             else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
@@ -65,21 +65,21 @@ class Admin_EventModel
         }
         return $image;
     }
-    public function getDefaultPicture(): array{
-        $stmt = $this->connection->prepare('
-            SELECT * FROM image WHERE imageId="Default"');
-        $stmt->execute();
-        $data = $stmt->fetchAll();
+    // public function getDefaultPicture(): array{
+    //     $stmt = $this->connection->prepare('
+    //         SELECT * FROM image WHERE imageId="Default"');
+    //     $stmt->execute();
+    //     $data = $stmt->fetchAll();
 
-        $image = array();
-        foreach($data as $eachuser){
-            if($eachuser['imageData']){
-            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-            array_push($image,$temp_string);
-            }
-        }
-        return $image;
-    }
+    //     $image = array();
+    //     foreach($data as $eachuser){
+    //         if($eachuser['imageData']){
+    //         $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+    //         array_push($image,$temp_string);
+    //         }
+    //     }
+    //     return $image;
+    // }
     public function getNumberOfEvent(): int{
         $sql ="SELECT COUNT(eventId) FROM events";
         $result = $this->connection->prepare($sql); 

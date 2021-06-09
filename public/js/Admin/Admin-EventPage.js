@@ -144,11 +144,12 @@ const loadEventList = (pageIndex,eventArray) => {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
       console.log(eventArray[clickedAlumniIndex])
-      var check=eventArray[clickedAlumniIndex].imageId=='Default';
+      var check=eventArray[clickedAlumniIndex].imageId==null;
       console.log(check);
       
       if(check){
-        document.querySelector('#imageTitle').src=defaultImage;
+        // document.querySelector('#imageTitle').src=defaultImage;
+        document.querySelector('#imageTitle').src="/Assets/imgs/default_events.jpg";
       }else{
         document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
       }
