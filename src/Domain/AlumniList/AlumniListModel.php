@@ -32,11 +32,15 @@ class AlumniListModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
@@ -104,11 +108,15 @@ class DeleteAlumniModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
@@ -160,11 +168,15 @@ class UpdateALumniModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1');
+        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
         foreach($data as $eachuser){
-            if($eachuser['imageData']){
+            if($eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
             $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
             array_push($image,$temp_string);
             }
