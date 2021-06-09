@@ -1,4 +1,9 @@
 <?php
+ob_start();
+echo "enter index.php";
+if (preg_match('/^\/api\/log-out\/?$/i', $_SERVER['REQUEST_URI'])) {include '../src/Domain/LoginPage/logout.php';
+}
+ob_end_flush();
 include '../config/config.php';
 session_start();
 
@@ -158,15 +163,14 @@ elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])
 } elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/AdminChangePasswordController.php';
-} 
-
-elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Event/EventController.php';
     //Header
 } elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Event/AlumniEventController.php';
-    //Login
-} elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
+}
+//Login
+elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/signup_inc.php';
 } elseif (preg_match('/^\/api\/signin/i', $_SERVER['REQUEST_URI'])) {
