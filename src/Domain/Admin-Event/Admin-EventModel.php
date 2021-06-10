@@ -7,6 +7,7 @@ class Admin_EventModel
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
+        // $this->id = $id;
     }
 
     public function getAll(): array

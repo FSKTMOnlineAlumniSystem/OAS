@@ -31,9 +31,9 @@
 <body>
 <?php
   // include '../config/config.php';
-  include '../src/Domain/Admin-Event/Admin-EventModel.php';
-  include '../src/Domain/Database.php';
-  include '../src/utilities/uploadImage.php';
+  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Database.php';
+  include_once '../src/utilities/uploadImage.php';
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
@@ -92,7 +92,7 @@
   // echo "Exception: " . $e->getMessage();
   // }
 
-    header("Location: adminEvent");
+    header("Location: admin/event");
 }
 
 ?>
@@ -206,7 +206,7 @@
               Are you sure you want to leave this page?
             </div>
             <div class="modal-footer">
-              <a href="adminEvent"><button type="button" class="btn btn-secondary">Leave this
+              <a href="admin/event"><button type="button" class="btn btn-secondary">Leave this
                   Page</button></a>
               <button id="stayButton" type="button"  class="btn btn-primary" data-dismiss="modal" onclick="closeModal('#cancelChangesModal')">Stay on this
                 Page</button>

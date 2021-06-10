@@ -27,9 +27,9 @@
 <body>
  <?php
 // include '../../../config/config.php';
-include '../src/Domain/Admin-Event/Admin-EventModel.php';
-include '../src/Domain/Database.php';
-include '../src/utilities/uploadImage.php';
+include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {

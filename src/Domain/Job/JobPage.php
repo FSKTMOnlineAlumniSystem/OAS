@@ -15,7 +15,7 @@ try {
   }
   // print_r($all_activities);
 
-} catch (Exception $e) {
+} catch (Exception $e)
   echo "Exception here!";
 }
 ?>

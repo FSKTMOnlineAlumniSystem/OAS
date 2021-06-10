@@ -117,7 +117,7 @@ const loadEventList = (pageIndex,eventArray) => {
                 </a>
 
     <!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
-                  <!--  <form class="" action="/adminEvent" method="post">-->
+                  <!--  <form class="" action="/admin/event" method="post">-->
                       <button type="submit" onclick="deleteByJquery(this)" class="deleteRowButton d-flex justify-content-center align-items-center" 
                       name="deleteButton" id="row ${i}" value="${eventArray[i].eventId}">
                       <i class="far fa-trash-alt" aria-hidden="true">
