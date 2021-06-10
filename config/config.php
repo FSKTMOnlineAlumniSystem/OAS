@@ -7,10 +7,10 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 
 
 // comment out these for production
-ini_set('error_reporting', E_ALL );
+// ini_set('error_reporting', E_ALL );
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
-
+error_reporting(E_ALL);
 // Change according to your needs, RCMS is the name of the database created in setup.sql
 define('DATABASE_NAME', 'OAS');
 define('DATABASE_USERNAME', 'root');

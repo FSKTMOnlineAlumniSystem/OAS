@@ -43,9 +43,9 @@
     return isset($_SESSION['alumni']) && !empty($_SESSION['alumni']);
   }
   // hardcode session to get name and image id for header
-  $_SESSION = array(); // clear session in apache server
-  $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
-  $_SESSION['alumni'] = $userArr;
+  // $_SESSION = array(); // clear session in apache server
+  // $userArr = array("alumniId" => "AL-1", "name" => "Tey Kok Soon", "imageId" => "AD-1.png");
+  // $_SESSION['alumni'] = $userArr;
   // $userArr = array("adminId" => "AD-1", "name" => "Ong Xing Yee", "imageId" => "AD-1.png");
   // $_SESSION['admin'] = $userArr;
   try {
@@ -62,21 +62,18 @@
   if (isAlumni()) {
     try {
       $event_model = new EventModel($db->getConnection());
-      $all_events = $event_model->getAll();
-      // echo gettype($all_events);
       $alumni_event_model = new AlumniEventModel($db->getConnection());
+      $all_events = $event_model->getAll();
       $all_alumni_events = $alumni_event_model->getAll();
     } catch (Exception $e) {
       echo "Exception: " . $e->getMessage();
     }
-    $filter_event = function ($eventId) {
-      global $all_events;
-      echo gettype($all_events);
+    function filter_event($eventId, $all_events) {
+      // global $all_events;
       foreach ($all_events as $event) {
-        echo $event['eventId'];
-        // if ($eventId === $event['eventId']) {
-        //   return $event;
-        // }
+        if ($eventId === $event['eventId']) {
+          return $event;
+        }
       }
     };
     // check if any event notification not checked out yet
@@ -99,8 +96,8 @@
         <?php echo (isAlumni()) ? $_SESSION['alumni']['name'] : $_SESSION['admin']['name'] ?>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
-        <a class="dropdown-item" href="/myprofile"><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
-        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</a>
+        <a class="dropdown-item" href=<?php echo (isAlumni()) ? "/myprofile":"/adminprofile" ?>><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
+        <div class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</div>
       </div>
     </div>
 
@@ -122,7 +119,8 @@
             if ($alumni_event['alumniId'] === $_SESSION['alumni']['alumniId'] && !$alumni_event['notificationClosedByAlumni']) {
               // get the required variable
               $timeStr = $alumni_event['dateTime'];
-              $eventTitle = $filter_event($alumni_event['eventId'])['title'];
+              // echo "This is type of all_events: ".gettype($all_events);
+              $eventTitle = filter_event($alumni_event['eventId'],$all_events)['title'];
               $dotClass = $alumni_event['viewedByAlumni'] === 'true' ? "" : "fa fa-circle p-1 d-flex justify-content-center text-primary";
               // format the time string into human readable form
               $temp = new DateTime($timeStr);

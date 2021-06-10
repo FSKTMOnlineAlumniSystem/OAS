@@ -4,22 +4,15 @@ include '../src/Domain/Admin-MyProfile/AdminModel.php';
 include '../src/utilities/uploadImage.php';
 
 if (
-    !isset($_POST['submit']) || !isset($_POST['username']) || !isset($_POST['email'])
+    !isset($_POST['submit']) || !isset($_POST['username']) 
 ) {
     header("Location: /adminprofile/edit");
     return;
 }
 
 $username = $_POST['username'];
-$email = $_POST['email'];
 $errorExist = false;
 $errors = array();
-
-// Check email format
-if (!preg_match('/^[a-zA-Z0-9]+@([a-zA-Z0-9]+\.)+[a-zA-Z]+$/i', $email)) {
-    array_push($errors, 'Email Wrong Format:' . $email);
-    $errorExist = true;
-}
 
 //Check biography length
 if (strlen($username) < 5) {
@@ -36,7 +29,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
-    $admin->setUpdatedData($username, $email);
+    $admin->setUpdatedData($username);
     //Upload image to database as blob
     if($_FILES["profilePicture"]['tmp_name']!=null){
         uploadImage($db->getConnection(),$_FILES["profilePicture"],$admin->getAdminId());

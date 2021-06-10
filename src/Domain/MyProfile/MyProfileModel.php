@@ -107,11 +107,10 @@ class MyProfile
         }
     }
 
-    public function setUpdatedData($email, $biography)
+    public function setUpdatedData($biography)
     {
         try {
-            $stmt = $this->connection->prepare('UPDATE alumni SET email=:email, biography=:biography WHERE alumniId=:alumniId');
-            $stmt->bindParam(':email', $email);
+            $stmt = $this->connection->prepare('UPDATE alumni SET biography=:biography WHERE alumniId=:alumniId');
             $stmt->bindParam(':biography', trim($biography));
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();
@@ -133,9 +132,10 @@ class MyProfile
     }
 
     public function changePassword($newPassword){
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         try {
             $stmt = $this->connection->prepare('UPDATE alumni SET password=:password WHERE alumniId=:alumniId');
-            $stmt->bindParam(':password', $newPassword);
+            $stmt->bindParam(':password', $hashedPassword);
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();
         } catch (PDOException $exception) {

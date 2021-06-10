@@ -17,6 +17,10 @@ try {
 
 <head>
     <title>Edit My Profile - Alumni Online System</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">
     <!-- GOOGLE FONT POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -70,14 +74,8 @@ try {
                             <div id="department" class="col-md-7"><?= $alumni->getDepartment(); ?></div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-5 font-weight-bold">E-mail:</div>
-                            <div class="col-md-7">
-                                <input id="email" name="email" type="email" class="form-control" value=<?= $alumni->getEmail(); ?>>
-                                <div class="valid-feedback">Valid.</div>
-                                <div id="emailFeedback" class="invalid-feedback">
-                                    Please provide a valid email.
-                                </div>
-                            </div>
+                            <div class="col-md-5">E-mail:</div>
+                            <div id="email" class="col-md-7"><?= $alumni->getEmail(); ?></div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +121,6 @@ try {
     </div>
     <?php include_once '../src/templates/GeneralScripts.php' ?>
     <script type="text/javascript">
-        var alumniEmail = "<?= $alumni->getEmail(); ?>";
         var alumniBiography = `<?= $alumni->getBiography(); ?>`;
     </script>
     <script type="text/javascript" src="/js/Alumni/EditMyProfilePage.js"></script>
