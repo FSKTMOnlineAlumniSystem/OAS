@@ -36,6 +36,7 @@
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Job/JobModel.php';
 include_once '../src/Domain/Event/EventModel.php';
+include_once '../src/Domain/Alumni/AlumniModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -47,7 +48,15 @@ try {
     //     $all_activities_event[$i]['imageId'] = $allImage_event[$i];
     // }
     $alumni_model = new AlumniModel($db->getConnection());
-    $all_activities_alumni = $alumni_model->getAlumniListForHomePage();
+    $all_activities_alumni = $alumni_model->AlumniData();
+    for ($i=0; $i < 6; $i++) { 
+        $allImage_alumni[$i] = $alumni_model->AlumniImages($all_activities_alumni[$i]['imageId']);
+    }
+   
+    for ($i=0; $i< count($all_activities_alumni); $i++){
+        $all_activities_alumni[$i]['imageId'] = $allImage_alumni[$i];
+    }
+    echo count($all_activities_alumni);
 
     $job_model = new JobModel($db->getConnection());
     $all_activities_job = $job_model->Nicole();
