@@ -204,7 +204,7 @@ window.inviteNewAlumni = function(o){
     document.cookie = "eventId="+eventId;
     document.cookie = "dateTime="+dateTime;
     $.ajax({
-      url:"./inviteFunction",    //the page containing php script
+      url:"/admin/invite/function",    //the page containing php script
       data: { alumniId: alumniId, 
               eventId: eventId,
               dateTime: dateTime,
@@ -252,7 +252,7 @@ window.inviteCheckedAlumni = function () {
   $eventId=$eventId.toString();
   $dateTime=$dateTime.toString();
   $.ajax({
-    url:"./inviteFunction",    //the page containing php script
+    url:"/admin/invite/function",    //the page containing php script
     data: { alumniId: $alumniId, 
             eventId: $eventId,
             dateTime: $dateTime,

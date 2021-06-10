@@ -141,7 +141,7 @@ function cancelCreate(){
       //   locatevalue==locate1.value&& 
       //   datevalue==date1.value && 
       //   timevalue==time1.value) {
-    location.href = "adminEvent";
+    location.href = "/admin/event";
     } else {
       /*POP UP MODAL ask if cancel will lose changes */
       $('#cancelChangesModal').modal('show');
@@ -206,7 +206,7 @@ function cancelUpdate(){
         locatevalue==locate1.value&& 
         datevalue==date1.value && 
         timevalue==time1.value) {
-    location.href = "adminEvent";
+    location.href = "/admin/event";
     } else {
       /*POP UP MODAL ask if cancel will lose changes */
       $('#cancelChangesModal').modal('show');

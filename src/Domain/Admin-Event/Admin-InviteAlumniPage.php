@@ -1,42 +1,35 @@
-<?php
-// include '../src/templates/header.php';
-?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <!-- font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <!-- icon - fontawesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
   <!-- header end here -->
   <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css"> -->
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 crossorigin="anonymous"></script>
 <!-- css -->
-<link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css">
-  <title>Invite Alumni - Online Alumni System</title>
-</head>
+<!-- <link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css"> -->
+  <!-- <title>Invite Alumni - Online Alumni System</title> -->
+<!-- </head> -->
 
-<body>
+<!-- <body> -->
 <?php
  $eventId=$_GET['eventId'];
   // include '../config/config.php';
-  include '../src/Domain/Admin-Event/Admin-EventModel.php';
-  include '../src/Domain/Database.php';
-
+  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Database.php';
+  ?>
+  <?php
+  include_once '../src/utilities/includeWithVariable.php' ?>
+  <?php
+  includeWithVariables('../src/templates/header.php', array(
+    'asmin_inviteAlumniPage_css' => '/css/Admin/Admin-InviteAlumniPage.css',
+    'admin_alumniListPage_css' => '/css/Admin/Admin-AlumniListPage.css',
+    'index' => '/css/Alumni/index.css'
+  ));
+  
+  $_SESSION['admin']['adminId'];
+  
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {

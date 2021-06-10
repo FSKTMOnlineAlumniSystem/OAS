@@ -1,4 +1,3 @@
-
 <?php
 include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
@@ -8,9 +7,6 @@ includeWithVariables('../src/templates/header.php', array(
   'index' => '/css/Alumni/index.css'
 ));
 ?>
-
-
-
    <!-- CSS -->
   <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" /> -->
   <!-- <title>Event - Online Alumni System</title> -->
@@ -27,14 +23,6 @@ $_SESSION['admin']['adminId'];
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new Admin_EventModel($db->getConnection());
-// } catch (Exception $e) {
-//   echo "Exception: " . $e->getMessage();
-// }
-
-
-
-// try {
-//     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     $allImage = $event_model->getPicture();
     // print_r($allImage);
@@ -45,8 +33,8 @@ try {
       }
     }
     $eventNumber = $event_model->getNumberOfEvent();
-    echo  "event Number = ";
-    print_r($eventNumber);
+    // echo  "event Number = ";
+    // print_r($eventNumber);
 
     for ($i=0; $i< count($all_activities); $i++){
       $all_activities[$i]['imageId'] = $allImage[$i];
@@ -186,7 +174,7 @@ if(isset($_POST["checkbox"])){
             <div class="btn-group" role="group" aria-label="Third group">
               <a button type="button"
                 class="btn btn-primary d-flex justify-content-center align-items-center rounded mr-2"
-                href="adminCreateEvent"><i class="fa fa-plus fa-2x" aria-hidden="true"
+                href="/admin/create/event"><i class="fa fa-plus fa-2x" aria-hidden="true"
                   style="font-size: 20px; "></i></a>
 
               <!--trash button-->

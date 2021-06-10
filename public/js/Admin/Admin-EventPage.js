@@ -107,12 +107,12 @@ const loadEventList = (pageIndex,eventArray) => {
                 <td>
                   <div class="btn-group" role="group" aria-label="Third group">
                    
-                  <a href="adminUpdateEvent?eventId=${eventArray[i].eventId}" class="updateButton" onclick="updateEvent(this)" id="update ${i}" >
+                  <a href="/admin/update/event?eventId=${eventArray[i].eventId}" class="updateButton" onclick="updateEvent(this)" id="update ${i}" >
                   <!--?title=${eventArray[i].title} onclick="updateEvent(this)" id="update ${i}"-->
                     <i class="fas fa-edit pr-3" aria-hidden="true">
                     </i></a>
                     
-                    <a href="inviteAlumni?eventId=${eventArray[i].eventId}" class="inviteButton">
+                    <a href="/admin/invite/alumni?eventId=${eventArray[i].eventId}" class="inviteButton">
                   <i class="fas fa-user-plus pr-2" aria-hidden="true"></i>
                 </a>
 
@@ -166,7 +166,7 @@ const loadEventList = (pageIndex,eventArray) => {
       // `;
       let editbutton = document.querySelector('#editButton');
       // editbutton.onclick("location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'")
-      editbutton.onclick = function() {location.href='adminUpdateEvent?eventId='+eventArray[clickedAlumniIndex].eventId}; 
+      editbutton.onclick = function() {location.href='/admin/update/event?eventId='+eventArray[clickedAlumniIndex].eventId}; 
         // if (editbutton) {
         //   editbutton.setAttribute('onclick', "'location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'");
         //     // btnSend.setAttribute('disabled', '');
@@ -236,7 +236,7 @@ window.deleteByJquery= function (o){
   var $eventToDelete=eventArray[findId].eventId;
   console.log($eventToDelete);
   $.ajax({
-    url:"./deleteEvent",    //the page containing php script
+    url:"/admin/delete/event",    //the page containing php script
     data: { deleteEvent: $eventToDelete},
     type: 'POST',    //request type,
     // dataType: 'json',
@@ -265,7 +265,7 @@ window.DeleteCheckedRow = function () {
     $eventId=$eventId.toString();
     // console.log($eventId);
     $.ajax({
-      url:"./deleteEvent",    //the page containing php script
+      url:"/admin/delete/event",    //the page containing php script
       data: { checkbox: "checked",deleteEvent: $eventId},
       type: 'POST',    //request type,
       // dataType: "json",
