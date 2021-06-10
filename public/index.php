@@ -36,6 +36,8 @@ if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/HomePage/HomePage.php';
 
     // } elseif (preg_match('/^\/event(\/[^\s\/]+)+\/?$/i', $_SERVER['REQUEST_URI'])) {
+
+//Event
 } elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
