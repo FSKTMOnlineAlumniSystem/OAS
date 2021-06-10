@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
@@ -17,8 +18,8 @@ try {
   $link = explode('/',$_SERVER["REQUEST_URI"]);
   $id = $link[count($link)-1];
   $alumni = new MyProfile($db->getConnection(), $id);
-  // $_SESSION['SignInAlumniId']
-  if ($id=="AL-1"){
+  
+  if ($id==$_SESSION['alumni']['alumniId']"){
     echo "<script> location.href='/myprofile'; </script>";
     exit;
   }else if(!$alumni->isAlumniExist()){
