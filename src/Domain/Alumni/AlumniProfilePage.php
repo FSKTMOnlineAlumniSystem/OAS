@@ -19,7 +19,7 @@ try {
   $id = $link[count($link)-1];
   $alumni = new MyProfile($db->getConnection(), $id);
   
-  if ($id==$_SESSION['alumni']['alumniId']"){
+  if ($id==$_SESSION['alumni']['alumniId']){
     echo "<script> location.href='/myprofile'; </script>";
     exit;
   }else if(!$alumni->isAlumniExist()){
