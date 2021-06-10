@@ -23,7 +23,7 @@ try {
     $allImage = $alumniList_model->getProfilePicture();
     for ($i=0; $i< count($all_activities); $i++){
       if($allImage[$i] == null){
-        $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+        $all_activities[$i]['imageId'] = "/Assets/imgs/default_user.png";
       }else
       $all_activities[$i]['imageId'] = $allImage[$i];
     }

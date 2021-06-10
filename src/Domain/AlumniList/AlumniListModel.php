@@ -12,7 +12,9 @@ class AlumniListModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1
+            ');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -31,7 +33,7 @@ class AlumniListModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -49,7 +51,7 @@ class AlumniListModel
     }
 
     public function getNumberOfApprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1';
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1 AND isVerified =1';
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -57,7 +59,7 @@ class AlumniListModel
     }
 
     public function getNumberOfUnapprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1';
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1 AND isVerified =1';
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -88,7 +90,7 @@ class DeleteAlumniModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -107,7 +109,7 @@ class DeleteAlumniModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -148,7 +150,8 @@ class UpdateALumniModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -167,7 +170,7 @@ class UpdateALumniModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
