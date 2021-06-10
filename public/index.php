@@ -1,6 +1,7 @@
 <?php
 include '../config/config.php';
 session_start();
+
 //Login
 if (preg_match('/^\/api\/signin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
@@ -28,34 +29,39 @@ elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Admin-LoginPage/AdminforgotPsw.php';
 }
 
-
-
 //VIEW
+//Login
+elseif (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
+    if (isset($_SESSION['admin'])) {
+        header('Location: /admin');
+        exit();
+    }
+    $GLOBALS['title'] = TITLE_OAS;
+    include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
+} elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
+    // comment below lines to test run login page
+    if (isset($_SESSION['alumni'])) {
+        header('Location: /home');
+        exit();
+    }
+    $GLOBALS['title'] = TITLE_OAS;
+    include '../src/Domain/LoginPage/LoginPage.php';
+}
+
 // HANDLE EMPTY SESSION
-if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
+elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
     //URL contains 'admin' and the URL is not /admin-login
     header('Location:/admin-login');
     exit;
-} elseif (!preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
+} 
+elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
     //URL is not /admin-login nor /login
     header('Location: /login');
     exit;
 }
 
 
-//Login
-if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
-} elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
-    // comment below lines to test run login page
-    // if (isset($_SESSION['alumni'])) {
-    //     header('Location: /home');
-    //     exit();
-    // }
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/LoginPage.php';
-} elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/HomePage/HomePage.php';
 
