@@ -44,7 +44,7 @@ if(isset($_POST["submit"])){
     // $_SESSION["pic"] = $_FILES["profilePicture"];
 
     $encrypted = Encrypt($email);
-    verifyEmail($email,$encrypted);
+    
 
     insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
     
@@ -64,7 +64,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
         exit();
     }
 
-    
+    verifyEmail($email,$encrypted);
 
     $alumniId = "AL-" . getLength($conn)+1 ;
     // $alumniId = $email;

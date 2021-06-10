@@ -166,8 +166,8 @@ $conn = $db->getConnection();
                 </div>
                 <form id="form_2" action="/api/forgot" method="post">
                     <div class="modal-body">
-                        <span>When you fill in your registered email address,
-                            you will be sent instructions on how to reset your password.</span>
+                        <span>When you fill in your registered email address here,
+                            you will receive a new password. Please login to your account with that new password sent to your email.</span>
                         <br>
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
