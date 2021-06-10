@@ -2,7 +2,6 @@ const wizardPicturePreview = document.querySelector("#wizardPicturePreview");
 const img = document.querySelector("#wizard-picture");
 const profilePicture = document.querySelector('#profilePicture');
 const username = document.querySelector("#name");
-const email = document.querySelector("#email");
 const form = document.querySelector("form");
 const saveButton = document.querySelector("#saveButton");
 const cancelButton = document.querySelector("#cancelButton");
@@ -41,26 +40,18 @@ function readURL(e) {
   }
 }
 
-/*Form Validation for Admin Edit My Profile (email, contactNumber, biography)*/
+/*Form Validation for Admin Edit My Profile (name)*/
 function isEmpty(obj) {
   return obj.value.length == 0;
 }
-const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 form.addEventListener("submit", (e) => {
-  let errorExist = false; //false if no error exists in name, email
+  let errorExist = false; //false if no error exists in name
   if (username.value.length < 5) {
     setInValid(username);
     errorExist = true;
   } else {
     setValid(username);
-  }
-
-  if (isEmpty(email) || !email.value.match(emailFormat)) {
-    setInValid(email);
-    errorExist = true;
-  } else {
-    setValid(email);
   }
 
   if (!errorExist) {
@@ -75,8 +66,7 @@ form.addEventListener("submit", (e) => {
 cancelButton.addEventListener("click", () => {
   if (
     !profilePicture.value &&
-    adminName == username.value &&
-    adminEmail == email.value
+    adminName == username.value
   ) {
     location.href = "/adminprofile";
   } else {

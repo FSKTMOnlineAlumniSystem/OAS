@@ -60,7 +60,7 @@ includeWithVariables('../src/templates/header.php', array(
                     <div class="row justify-content-between">
                         <h2>My Profile</h2>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-gear-fill mr-2"></i>
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog mr-2"></i>
                                 Settings
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
