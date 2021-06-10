@@ -15,18 +15,6 @@ include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-// try {
-//   $alumniList_model = new AlumniListModel($db->getConnection());
-//   $all_activities = $alumniList_model->getAll();
-//   if (!empty($all_activities)) {
-
-//     foreach ($all_activities as $activity) {
-//       echo "$activity[alumniId] ";
-//     }
-//   }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
 
 try {
   $alumniList_model = new AlumniListModel($db->getConnection());
@@ -34,7 +22,7 @@ try {
   $allImage = $alumniList_model->getProfilePicture();
   for ($i=0; $i< count($all_activities); $i++){
     if($allImage[$i] == null){
-      $all_activities[$i]['imageId'] = "/Assets/imgs/add_image.jpg";
+      $all_activities[$i]['imageId'] = "/Assets/imgs/default_user.png";
     }else
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
@@ -42,7 +30,16 @@ try {
   echo "Exception here!";
 }
 ?>
-
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/JobDetailsPage.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
 
 <script type='text/javascript' src='../js/utility.js'></script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>

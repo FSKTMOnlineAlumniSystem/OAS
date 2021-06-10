@@ -1,7 +1,7 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
@@ -56,7 +56,7 @@ if(isset($_POST["submit"])){
         if ($mail->send()) {
             $status = 'success';
             $response = 'Email is sent!';
-            header("location: /login");
+            header("location: /admin-login?sendPsw");
             exit();
         }else{
             $status = 'failed';

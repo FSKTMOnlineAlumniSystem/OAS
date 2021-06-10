@@ -156,6 +156,7 @@ alumniArray.forEach((alumni, index) => {
 // click alumni name will pop out alumni details
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
+    localStorage.setItem('updateId', e.target.id);
     localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
     $("#image").attr('src', alumniArray[e.target.id].imageId)
     $("#name").text(alumniArray[e.target.id].name);

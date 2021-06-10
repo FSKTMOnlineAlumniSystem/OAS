@@ -29,7 +29,7 @@ document.getElementById('gender').value=alumniArray[i].gender
 document.getElementById('icNumber').value=alumniArray[i].icNumber
 document.getElementById('graduated').value=alumniArray[i].graduated
 document.getElementById('department').value=alumniArray[i].department
-document.getElementById('email').value=alumniArray[i].email
+document.getElementById('email').innerHTML=`<p>${alumniArray[i].email}</p>`;
 document.getElementById('biography').value=alumniArray[i].biography
 wizardPicturePreview.src = alumniArray[i].imageId;
 
@@ -153,14 +153,13 @@ let errorExist = false; //false if no error exists in alumni details
 cancelButton.addEventListener('click', () => {
     if (
         wizardPicturePreview.src.includes(alumni.imageId) &&
-        alumni.email == email.value &&
         alumni.biography.replace(/[^a-zA-Z]/g, "") == biography.value.replace(/[^a-zA-Z]/g, "") &&
         alumni.name == name.value &&
         alumni.graduated == graduated.value &&
         alumni.department == department.value &&
         alumni.gender == gender.value &&
         alumni.icNumber == icNumber.value) {
-        location.href = "/alumniList";
+        location.href = "/admin/alumnilist";
     } else {
         /*POP UP MODAL ask if cancel will lose changes */
         $('#cancelChangesModal').modal('show');

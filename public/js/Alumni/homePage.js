@@ -3,7 +3,6 @@ import { dummyResponse } from "../dummydata.js";
 localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
 
-
 //get latest event
 var latest_1 = [];
 var dayy_1 = [];
@@ -160,34 +159,34 @@ var latest = [];
 var dayy = [];
 var yearr = [];
 
-for (let i = 0; i < dummyResponse.Job.length; i++) {
+// for (let i = 0; i < dummyResponse.Job.length; i++) {
 
 
-    var d = new Date(dummyResponse.Job[i].postedDate);
+//     var d = new Date(dummyResponse.Job[i].postedDate);
 
-    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+//     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+//     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+//     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy[i] = mo + "," + da + "," + i;
-    yearr[i] = ye;
+//     dayy[i] = mo + "," + da + "," + i;
+//     yearr[i] = ye;
 
-}
+// }
 
-dayy.sort();
+// dayy.sort();
 
-for (var i = 0; i < dayy.length; i++) {
+// for (var i = 0; i < dayy.length; i++) {
 
 
-    //day,month,index
-    var a = dayy[i].split(",");
-    var currentYr = new Date();
-    var Yr = currentYr.getFullYear();
+//     //day,month,index
+//     var a = dayy[i].split(",");
+//     var currentYr = new Date();
+//     var Yr = currentYr.getFullYear();
 
-    if (yearr[a[2]] == Yr) {
-        latest[i] = a[2];
-    }
-}
+//     if (yearr[a[2]] == Yr) {
+//         latest[i] = a[2];
+//     }
+// }
 
 
 
@@ -201,25 +200,27 @@ for (let i = 0; i < 2; i++) {
 
     card_job.innerHTML = `
  
-        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" class="job_image" > `
+        <div id="${job_array[i].imageId}" class="h-100">
+        <a class="d-contents" href="jobdetails?jobid=${job_array[i].jobId}">
+            <img src="${job_array[i].imageId}" alt="..."
+            width="100%" class="job_image" > 
+        </a>`
 
     const J = document.getElementById('job_row_1');
-    var myJobList_1 = [];
-    myJobList_1.push(dummyResponse.Job[latest[i]]);
+    // var myJobList_1 = [];
+    // myJobList_1.push(job_array[i].imageId);
 
-    const evtHandler = evt => {
+    // const evtHandler = evt => {
 
-        var myJobList_1 = [];
-        myJobList_1.push(dummyResponse.Job[latest[i]]);
+        // var myJobList_1 = [];
+        // myJobList_1.push(job_array[i].imageId);
 
-        localStorage.setItem('JobList', JSON.stringify(myJobList_1));
-        location.href = "/src/html/Alumni/JobDetailsPage.html";
+        // localStorage.setItem('JobList', JSON.stringify(myJobList_1));
+        // location.href = "/src/html/Alumni/JobDetailsPage.html";
 
-    };
+    // };
 
-    card_job.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+    // card_job.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J.appendChild(card_job);
 }
@@ -234,28 +235,28 @@ for (let i = 2; i < 4; i++) {
 
     card_job_1.innerHTML = `
  
-        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-        <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+        <div id="${job_array[i].imageId}" class="h-100">
+        <a class="d-contents" href="jobdetails?jobid=${job_array[i].jobId}">
+            <img src="${job_array[i].imageId}" alt="..."
             width="100%" class="job_image" >
         </a> `
 
 
     const J_1 = document.getElementById('job_row_2');
 
-    var myJobList = [];
-    myJobList.push(dummyResponse.Job[latest[i]]);
+    // var myJobList = [];
+    // myJobList.push(dummyResponse.Job[latest[i]]);
 
-    const evtHandler = evt => {
+    // const evtHandler = evt => {
 
-        var myJobList = [];
-        myJobList.push(dummyResponse.Job[latest[i]]);
+    //     // var myJobList = [];
+    //     // myJobList.push(dummyResponse.Job[latest[i]]);
 
-        localStorage.setItem('JobList', JSON.stringify(myJobList));
+        // localStorage.setItem('JobList', JSON.stringify(myJobList));
 
-    };
+    // };
 
-    card_job_1.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+    // card_job_1.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J_1.appendChild(card_job_1);
 }
@@ -298,7 +299,7 @@ var EventView = document.getElementById('viewMoreEvents');
 
 EventView.onclick = function () {
 
-    location.href = "../../html/Alumni/EventPage.html";
+    location.href = "/event";
 
 }
 
@@ -306,7 +307,7 @@ var JobView = document.getElementById('viewMoreJob');
 
 JobView.onclick = function () {
 
-    location.href = "../../html/Alumni/JobPage.html";
+    location.href = "job";
 
 }
 
@@ -314,9 +315,11 @@ var AlumniView = document.getElementById('viewMoreAlumni');
 
 AlumniView.onclick = function () {
 
-    location.href = "../../html/Alumni/alumniPage.html";
+    location.href = "/alumni";
 
 }
+
+
 
 
 

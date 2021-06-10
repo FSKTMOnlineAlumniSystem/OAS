@@ -3,14 +3,6 @@ include '../src/Domain/Database.php';
 include '../src/Domain/Job/EditMyJobModel.php';
 ?>
 
-
-<title>Edit Job - Alumni Online System</title>
-</head>
-<body>
-
-
-
-
 <?php 
 
 include '../src/utilities/uploadImage.php';

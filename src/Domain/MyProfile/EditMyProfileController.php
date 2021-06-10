@@ -4,22 +4,15 @@ include '../src/Domain/MyProfile/MyProfileModel.php';
 include '../src/utilities/uploadImage.php';
 
 if (
-    !isset($_POST['submit']) || !isset($_POST['email']) || !isset($_POST['biography'])
+    !isset($_POST['submit']) || !isset($_POST['biography'])
 ) {
     header("Location: /myprofile/edit");
     return;
 }
 
-$email = $_POST['email'];
 $biography = $_POST['biography'];
 $errorExist = false;
 $errors = array();
-
-// Check email format
-if (!preg_match('/^[a-zA-Z0-9]+@([a-zA-Z0-9]+\.)+[a-zA-Z]+$/i', $email)) {
-    array_push($errors, 'Email Wrong Format:' . $email);
-    $errorExist = true;
-}
 
 //Check biography length
 if (strlen($biography) == 0) {
@@ -40,7 +33,7 @@ try {
         uploadImage($db->getConnection(),$_FILES["profilePicture"],$_SESSION["alumni"]['alumniId']);
     }
     $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
-    $alumni->setUpdatedData($email, $biography);
+    $alumni->setUpdatedData($biography);
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
 }
