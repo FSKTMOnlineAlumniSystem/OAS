@@ -100,7 +100,7 @@ function readURL(e) {
   // var i = localStorage.getItem("updateId");
   let allowedExtensions =
   /(\.png|\.jpg|\.jpeg)$/i;
-if (e.target.files && e.target.files[0] && e.target.files[0].size>100000) {
+if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
   // To handle the file size
   console.log('1');
   // console.log(eventPicture.files);
@@ -197,7 +197,10 @@ function cancelUpdate(){
       var compare=image==imagesrc;
       console.log('compare'+compare);
       // var compare = image.localeCompare(imagesrc)
-      if (image==imagesrc &&
+      console.log(image);
+      console.log(imagesrc);
+      
+      if ((image==imagesrc || image=="http://localhost/Assets/imgs/default_events.jpg") &&
         titlevalue==title1.value && 
         compareDescription && 
         locatevalue==locate1.value&& 
