@@ -144,7 +144,7 @@ $conn = $db->getConnection();
                         </div>
                     </div>
                     <div class="bottom-right">
-                        <a href="/admin-loginPage">I am Admin</a>
+                        <a href="/admin-login">I am Admin</a>
                     </div>
                 </div>
             </div>

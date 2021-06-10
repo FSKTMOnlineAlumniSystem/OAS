@@ -5,7 +5,6 @@ const name = document.querySelector('#name');
 const gender = document.querySelector('#gender');
 const graduated = document.querySelector('#graduated');
 const department = document.querySelector('#department');
-const email = document.querySelector('#email');
 const biography = document.querySelector('#biography');
 const form = document.querySelector('form');
 const saveButton = document.querySelector('#saveButton');
@@ -36,23 +35,14 @@ function readURL(e) {
     }
 }
 
-/*Form Validation for Edit My Profile (email, biography)*/
+/*Form Validation for Edit My Profile (biography)*/
 function isEmpty(obj) {
     return obj.value.length == 0;
 }
-const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 
 form.addEventListener('submit', (e) => {
     // e.preventDefault();
-    let errorExist = false; //false if no error exists in email, biography
-
-    if (isEmpty(email) || !email.value.match(emailFormat)) {
-        setInValid(email);
-        errorExist = true;
-    } else {
-        setValid(email);
-    }
-
+    let errorExist = false; //false if no error exists in biography
     if (isEmpty(biography)) {
         setInValid(biography);
         errorExist = true;
@@ -73,7 +63,6 @@ form.addEventListener('submit', (e) => {
 /*Check whether there is any changes that might be lost*/
 cancelButton.addEventListener('click', () => {
     if (!profilePicture.value &&
-        alumniEmail == email.value &&
         alumniBiography == biography.value) {
         location.href = "/myprofile";
     } else {

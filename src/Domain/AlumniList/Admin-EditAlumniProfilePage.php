@@ -32,7 +32,16 @@ try {
   }
 
 ?>
-
+<?php
+include '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/JobDetailsPage.css'
+));
+?>
+<?php
+include '../src/templates/nav.php';
+?>
 <?php
 $prevAlumniId=$_GET['alumniId'];
 if(isset($_POST['update'])) {
@@ -46,9 +55,8 @@ if(isset($_POST['update'])) {
   $imageId = $prevAlumniId;
   $graduated = $_POST['graduated'];
   $biography = $_POST['biography'];
-  $email = $_POST['email'];
-  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId);
-  header("Location: alumniList");
+  $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$imageId);
+  echo "<script>window.location = '/admin/alumnilist'</script>";
   try{
     //Upload image to database as blob
     if($_FILES["image"]['tmp_name']!=null){
@@ -171,11 +179,11 @@ echo "Exception: " . $e->getMessage();
                             <div class="row mb-3">
                                 <div class="col-sm-4">E-mail:</div>
                                 <div class="col-sm-8">
-                                    <input type="email" id="email" name="email" class="form-control">
-                                    <div class="valid-feedback">Valid.</div>
+                                    <p type="email" id="email" name="email"></p>
+                                    <!-- <div class="valid-feedback">Valid.</div>
                                     <div id="emailFeedback" class="invalid-feedback">
                                         Please provide a valid email.
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -215,7 +223,7 @@ echo "Exception: " . $e->getMessage();
                     Are you sure you want to leave this page?
                 </div>
                 <div class="modal-footer">
-                    <a href="/alumniList"><button type="button" class="btn btn-outline-secondary">Leave this Page</button></a>
+                    <a href="/admin/alumnilist"><button type="button" class="btn btn-outline-secondary">Leave this Page</button></a>
                     <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal">Stay on this Page</button>
                 </div>
             </div>
