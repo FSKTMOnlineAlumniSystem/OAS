@@ -11,12 +11,13 @@ try {
   $all_events = $event_model->getAll();
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
+  echo count($all_events);
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();
 }
 ?>
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
   'my_css' => '/css/Alumni/EventPage.css',
@@ -24,7 +25,7 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 <div class="container my-5" id="main-body">
@@ -54,7 +55,7 @@ include '../src/templates/nav.php';
           <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
             <div class="card h-100 card--bg-light-gray">
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                <img src=<?= 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                <img src=<?= is_null($event['imageData'])? './Assets/imgs/default_events.jpg': 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
               <div class="card-body event-card-body">
                 <h5 class="card-title"><?= $event['title'] ?></h5>
@@ -88,9 +89,9 @@ include '../src/templates/nav.php';
 </div>
 </div>
 
-<?php include '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>
 <?php
-include '../src/templates/GeneralScripts.php'
+include_once '../src/templates/GeneralScripts.php'
 ?>
 <!-- custom js files -->
 <script type="module" src="/js/Alumni/EventPage.js"></script>

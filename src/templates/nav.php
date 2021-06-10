@@ -13,7 +13,7 @@
         strpos($_SERVER['REQUEST_URI'], 'homepage') ? " active" : "";
         ?> 
         ">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item 
         <?php
