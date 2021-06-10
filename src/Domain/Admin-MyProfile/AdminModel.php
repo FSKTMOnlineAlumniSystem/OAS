@@ -76,9 +76,10 @@ class AdminMyProfile
     }
 
     public function changePassword($newPassword){
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         try {
             $stmt = $this->connection->prepare('UPDATE admin SET password=:password WHERE adminId=:adminId');
-            $stmt->bindParam(':password', $newPassword);
+            $stmt->bindParam(':password', $hashedPassword);
             $stmt->bindParam(':adminId', $this->id);
             $stmt->execute();
         } catch (PDOException $exception) {
