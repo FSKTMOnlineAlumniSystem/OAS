@@ -18,7 +18,6 @@ class AlumniModel
         $this->count($sql);
     }
 
-
     public function AlumniImages($alumniId){
         $stmt = $this->connection->prepare('SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId');
         $stmt->bindParam(':alumniId',$alumniId);
