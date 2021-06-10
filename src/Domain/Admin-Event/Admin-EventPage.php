@@ -1,40 +1,28 @@
 <?php
-// include '../src/Domain/header.php'; //16 lines
+include_once '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+  'searchBar_css' => '/css/Alumni/SearchBar.css',
+  'admin_eventPage_css' => '/css/Admin/Admin-EventPage.css',
+  'index' => '/css/Alumni/index.css'
+));
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"   "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <!-- browser icon -->
-  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <!-- font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <!-- icon - fontawesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
-  <link rel="stylesheet" type="text/css" href="/css/Alumni/SearchBar.css" />
-
-
-
    <!-- CSS -->
-  <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" />
-  <title>Event - Online Alumni System</title>
+  <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPage.css" /> -->
+  <!-- <title>Event - Online Alumni System</title> -->
 </head>
 
 <body>
 <?php
-include '../src/Domain/Admin-Event/Admin-EventModel.php';
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+include_once '../src/Domain/Database.php';
+
+$_SESSION['admin']['adminId'];
 
 // global $db;
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
-    $event_model = new Admin_EventModel($db->getConnection());
+  $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     $allImage = $event_model->getPicture();
     // print_r($allImage);
@@ -45,8 +33,8 @@ try {
       }
     }
     $eventNumber = $event_model->getNumberOfEvent();
-    echo  "event Number = ";
-    print_r($eventNumber);
+    // echo  "event Number = ";
+    // print_r($eventNumber);
 
     for ($i=0; $i< count($all_activities); $i++){
       $all_activities[$i]['imageId'] = $allImage[$i];
@@ -186,7 +174,7 @@ if(isset($_POST["checkbox"])){
             <div class="btn-group" role="group" aria-label="Third group">
               <a button type="button"
                 class="btn btn-primary d-flex justify-content-center align-items-center rounded mr-2"
-                href="adminCreateEvent"><i class="fa fa-plus fa-2x" aria-hidden="true"
+                href="/admin/create/event"><i class="fa fa-plus fa-2x" aria-hidden="true"
                   style="font-size: 20px; "></i></a>
 
               <!--trash button-->
