@@ -197,7 +197,10 @@ function cancelUpdate(){
       var compare=image==imagesrc;
       console.log('compare'+compare);
       // var compare = image.localeCompare(imagesrc)
-      if (image==imagesrc &&
+      console.log(image);
+      console.log(imagesrc==null);
+      
+      if ((image==imagesrc || imagesrc==null) &&
         titlevalue==title1.value && 
         compareDescription && 
         locatevalue==locate1.value&& 
