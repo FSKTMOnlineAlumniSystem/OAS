@@ -45,7 +45,6 @@ class AlumniModel
         if(!$data){
             return array();
         }
-        print_r($data);
         return $data; 
     }
 
