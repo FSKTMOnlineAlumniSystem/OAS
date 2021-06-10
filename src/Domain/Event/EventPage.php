@@ -8,10 +8,8 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
   $event_model = new EventModel($db->getConnection());
-  $all_events = $event_model->getAll();
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
-  echo count($all_events);
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();
 }
@@ -40,22 +38,35 @@ include_once '../src/templates/nav.php';
       </div>
     </div>
   </div>
-  <h1><b>Event</b></h1>
+  <h1><b>Events</b></h1>
   <hr />
   <div class="row justify-content-md-center text-center" id="no_result"></div>
   <div id="event-page-section">
-    <h2 id="your-upcoming-event-section-title">Your Upcoming Events</h2>
+    <h2 id="your-upcoming-event-section-title">
+    <?php
+      if(preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])){
+        echo 'All Events';
+      }elseif(preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])){
+        echo 'Your Events';
+      }
+      ?>
+      </h2>
     <br />
     <div class="row" id="your-upcoming-event-section">
       <?php
-      foreach ($all_events as $event) {
+      if(preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])){
+        $events = $event_model->getAll();
+      }elseif(preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])){
+        $events = $event_model->getEvents($_SESSION['alumni']['alumniId']);
+      }
 
+      foreach ($events as $event) {
       ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
           <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
             <div class="card h-100 card--bg-light-gray">
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                <img src=<?= is_null($event['imageData'])? './Assets/imgs/default_events.jpg': 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
               <div class="card-body event-card-body">
                 <h5 class="card-title"><?= $event['title'] ?></h5>
@@ -81,10 +92,6 @@ include_once '../src/templates/nav.php';
       <?php } ?>
     </div>
     <br />
-
-    <h2 id="upcoming-event-section-title">Other Upcoming Events</h2>
-    <br />
-    <div class="row" id="upcoming-event-section"></div>
   </div>
 </div>
 </div>
