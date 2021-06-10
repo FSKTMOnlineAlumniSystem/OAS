@@ -100,7 +100,7 @@ function isEmpty(obj) {
 const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 const regex = /^[0-9]+$/;
 const imageFormat = /(\.png|\.jpg|\.jpeg)$/i;
-
+var content = document.getElementById("fileTooLarge");
 
 // CHECK THE VALIDITY OF USER INPUT WHEN PRESSING THE SUBMIT BUTTON
 function checkvalidation() {
@@ -148,12 +148,22 @@ function checkvalidation() {
     setValid(description);
   }
 
-  if (isEmpty(upload) || !upload.value.match(imageFormat) || readURL(input)) {
+  if (isEmpty(upload)) {
+    content.textContent = "Please provide a picture."; 
     setInValid(upload);
     errorExist = true;
   } else {
     setValid(upload);
   }
+
+  if (!upload.value.match(imageFormat) || readURL(input)) {
+    setInValid(upload);
+    errorExist = true;
+  } else {
+    setValid(upload);
+  }
+
+
 
   if (errorExist) {
     return false;
@@ -165,7 +175,7 @@ function checkvalidation() {
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
 // var input = document.getElementById("upload");
-var content = document.getElementById("fileTooLarge");
+// var content = document.getElementById("fileTooLarge");
 var fileLabel = document.getElementById("fileLabel");
 
 input.addEventListener("change", (event) => readURL(input));
@@ -175,7 +185,7 @@ function readURL(input) {
   let allowedExtensions =
   /(\.png|\.jpg|\.jpeg)$/i;
  
-  if (input.files && input.files[0] && input.files[0].size>10000000) {
+  if (input.files && input.files[0] && input.files[0].size>10000000 && allowedExtensions.test(input.value)) {
     content.textContent = "This image file is too large";
     return true;
   }else if(input.files && input.files[0] && allowedExtensions.test(input.value)){
@@ -208,8 +218,6 @@ function readURL(input) {
       };
     };
   
-  }else if(isEmpty(upload)){
-      content.textContent = "Please provide picture for this job.";
   }
   else{
     content.textContent = "Please choose picture in .png, .jpg or .jpeg format.";

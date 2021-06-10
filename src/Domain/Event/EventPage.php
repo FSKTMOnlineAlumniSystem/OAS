@@ -1,8 +1,8 @@
 <?php
 // connect to database to access the needed data
-include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Event/AlumniEventModel.php';
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Event/EventModel.php';
+include_once '../src/Domain/Event/AlumniEventModel.php';
+include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -28,9 +28,20 @@ include '../src/templates/nav.php';
 ?>
 
 <div class="container my-5" id="main-body">
-
+  <div class="row no-gutters" style="white-space: nowrap">
+    <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
+      <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" value="" />
+      <div class="input-group-append">
+        <button type="submit" id="search-button" class="btn btn-secondary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
   <h1><b>Event</b></h1>
   <hr />
+  <div class="row justify-content-md-center text-center" id="no_result"></div>
   <div id="event-page-section">
     <h2 id="your-upcoming-event-section-title">Your Upcoming Events</h2>
     <br />
@@ -43,7 +54,7 @@ include '../src/templates/nav.php';
           <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
             <div class="card h-100 card--bg-light-gray">
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                <img src=<?= 'data::'.$event['type'].';base64,'.base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                <img src=<?= 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
               <div class="card-body event-card-body">
                 <h5 class="card-title"><?= $event['title'] ?></h5>

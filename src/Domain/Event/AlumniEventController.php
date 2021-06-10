@@ -1,6 +1,6 @@
 <?php
-include '../src/Domain/Event/AlumniEventModel.php';
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Event/AlumniEventModel.php';
+include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $alumni_event_model = new AlumniEventModel($db->getConnection());

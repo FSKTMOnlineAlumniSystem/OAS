@@ -1,4 +1,7 @@
 <?php
+if (preg_match('/^\/api\/log-out\/?$/i', $_SERVER['REQUEST_URI'])) {include '../src/Domain/LoginPage/logout.php';
+    exit();
+}
 include '../config/config.php';
 session_start();
 
@@ -20,7 +23,7 @@ if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Admin-LoginPage/Admin-LoginPage.php';
 } elseif (preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI'])) {
-    //comment below lines to test run login page
+    // comment below lines to test run login page
     // if (isset($_SESSION['alumni'])) {
     //     header('Location: /home');
     //     exit();
@@ -86,6 +89,12 @@ elseif (preg_match('/^\/adminEvent\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Event/EventDetailsPage.php';
 }
 
+//Admin-Home
+elseif (preg_match('/^\/admin$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_MY_PROFILE;
+    include '../src/Domain/Admin-Home/Admin-HomePage.php';
+}
+
 //MyProfile
 elseif (preg_match('/^\/myprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
@@ -107,19 +116,15 @@ elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
 elseif (preg_match('/^\/alumniList\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
-
 } elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
-
 } elseif (preg_match('/^\/approveAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-approveAlumni.php';
-
 } elseif (preg_match('/^\/deleteMultipleAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-deleteMultipleAlumni.php';
-
 } elseif (preg_match('/^\/editAlumniProfile\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
@@ -162,13 +167,14 @@ elseif (preg_match('/^\/api\/adminprofile\/edit\/?$/i', $_SERVER['REQUEST_URI'])
 } elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_MY_PROFILE;
     include '../src/Domain/Admin-MyProfile/AdminChangePasswordController.php';
-}
-
-//Header
-elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
+    include '../src/Domain/Event/EventController.php';
+    //Header
+} elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
     include '../src/Domain/Event/AlumniEventController.php';
-    //Login
-} elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
+}
+//Login
+elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/LoginPage/signup_inc.php';
 } elseif (preg_match('/^\/api\/signin/i', $_SERVER['REQUEST_URI'])) {
@@ -186,12 +192,12 @@ elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
 }
 
 //Admin-Login
-elseif (preg_match('/^\/api\/signinadmin/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/Admin-LoginPage/signin.php';
-} elseif (preg_match('/^\/api\/forgotadmin/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/api\/adminforgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/AdminforgotPsw.php';
+    include '../src/Domain/Admin-LoginPage/AdminforgotPsw.php';
 }
 
 //Job
@@ -209,6 +215,7 @@ elseif (preg_match('/^\/deleteJob\/?/i', $_SERVER['REQUEST_URI'])) {
 //ERROR URL NOT FOUND
 else {
     $GLOBALS['title'] = TITLE_NOT_FOUND;
+    http_response_code(404);
     include '../src/utilities/includeWithVariable.php';
     includeWithVariables('../src/templates/header.php', array(
         'index' => '/css/Alumni/index.css'

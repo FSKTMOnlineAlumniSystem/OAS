@@ -4,7 +4,7 @@ include_once '../src/Domain/Admin-MyProfile/AdminModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-$admin = new AdminMyProfile($db->getConnection(), 'AD-1');
+$admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,11 +15,9 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <!-- ICON FONT AWESOME -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/css/Alumni/MyProfilePage.css">
     <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
@@ -28,20 +26,19 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
 </head>
 
 <body>
-    <div class="row m-0 justify-content-center align-items-center" >
+    <div class="row m-0 justify-content-center align-items-center">
         <div id="editProfileBg"></div>
         <div class="col-lg-6 my-5 p-5 blurContainer">
             <div class="row">
                 <h2>Edit My Profile</h2>
             </div>
-            <form id="editMyProfileForm" method="POST"  action="/api/adminprofile/edit" enctype="multipart/form-data">
+            <form id="editMyProfileForm" method="POST" action="/api/adminprofile/edit" enctype="multipart/form-data">
                 <div class="row mt-2 mb-2 align-items-center pt-5 pb-5 rounded">
                     <div class="col-md-5 d-flex align-items-center justify-content-center">
                         <div class="w-75 position-relative">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="<?= $admin->getProfilePicture(); ?>" class="picture-src"
-                                        id="wizardPicturePreview" title="">
+                                    <img src="<?= $admin->getProfilePicture(); ?>" class="picture-src" id="wizardPicturePreview" title="">
                                     <input type="file" id="wizard-picture">
                                     <input type="file" name="profilePicture" id="profilePicture" class="d-none">
                                 </div>
@@ -53,7 +50,7 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
                         <div class="row mb-3">
                             <div class="col-md-4">Name:</div>
                             <div class="col-md-8">
-                                <input id="name" name="username" type="text" class="form-control" value="<?=$admin->getName();?>">
+                                <input id="name" name="username" type="text" class="form-control" value="<?= $admin->getName(); ?>">
                                 <div class="valid-feedback">Valid.</div>
                                 <div id="emailFeedback" class="invalid-feedback">
                                     Be at least 5 characters
@@ -63,7 +60,7 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
                         <div class="row mb-3">
                             <div class="col-md-4">E-mail:</div>
                             <div class="col-md-8">
-                                <input id="email" name="email" type="email" class="form-control" value="<?=$admin->getEmail();?>">
+                                <input id="email" name="email" type="email" class="form-control" value="<?= $admin->getEmail(); ?>">
                                 <div class="valid-feedback">Valid.</div>
                                 <div id="emailFeedback" class="invalid-feedback">
                                     Please provide a valid email
@@ -75,20 +72,17 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
                 <div class="row justify-content-end mt-3">
                     <!-- Need to pop up to ask whether users want to cancel and lose changes -->
                     <button id="cancelButton" type="button" class="btn btn-outline-secondary">Cancel</button>
-                    <button id="saveButton" type="submit" name="submit" form="editMyProfileForm"
-                        class="btn btn-primary ml-3">Save</button>
+                    <button id="saveButton" type="submit" name="submit" form="editMyProfileForm" class="btn btn-primary ml-3">Save</button>
                 </div>
             </form>
 
         </div>
-        <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
-                        <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
+                        <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -107,17 +101,10 @@ $admin = new AdminMyProfile($db->getConnection(), 'AD-1');
         </div>
     </div>
     <script type="text/javascript">
-        var adminName = "<?=$admin->getName();?>";
-        var adminEmail = "<?=$admin->getEmail();?>";
-        console.log('haha')
+        var adminName = "<?= $admin->getName(); ?>";
+        var adminEmail = "<?= $admin->getEmail(); ?>";
     </script>
-    <script type="text/javascript" src="/js/utility.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+    <?php include_once '../src/templates/GeneralScripts.php' ?>
     <script type='module' src="/js/Admin/Admin-EditMyProfilePage.js"></script>
 </body>
 

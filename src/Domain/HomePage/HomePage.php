@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -22,18 +24,30 @@
     <link href="/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
    
-    <title><?= $GLOBALS['title']; ?></title>
+    <title></title>
     </head>
-    <body>
+    <body> -->
 
     <?php
 // include '../../../config/config.php';
 // include '../src/Domain/HomePage/HomePage.php';
-include '../src/Domain/Database.php';
+
+
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/JobModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-// try {
+try {
+    $job_model = new JobModel($db->getConnection());
+    $all_activities = $job_model->Nicole();
+    $allImage = $job_model->NicoleImages();
+        
+    for ($i=0; $i< count($all_activities); $i++){
+        $all_activities[$i]['imageId'] = $allImage[$i];
+    }
+    // print_r($all_activities);
+      
 //   $homepage_model = new HomePageModel($db->getConnection());
 //   $all_activities = $homepage_model->getAll();
 //   if (!empty($all_activities)) {
@@ -45,20 +59,38 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 //         // echo "$activity[alumniId] ";
 //     }
 //   }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
+} catch (Exception $e) {
+  echo "Exception here!";
+}
 
 // session_start();
-// $_SESSION["em"] = "abc";
-$emb = $_SESSION["emb"];
 // $em = $_SESSION["alumni"]["email"];
+// $_SESSION["em"] = "abc";
+// $emb = $_SESSION["emb"];
+//
 // $em = $_SESSION["alumni"];
 // echo $_SESSION;
-echo $emb;
+// $Password = "12345";
+// $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+// echo $hashedPassword;
 
 // echo "".$_SESSION["em"]."";
 
+?>
+
+<script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
+
+<script type="module" src="/js/Alumni/homePage.js"></script>
+
+<?php
+include_once '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+    'my_css' => '/css/Alumni/HomePage.css'
+));
+?>
+<?php
+include_once '../src/templates/nav.php';
 ?>
 
 <div class="container-fluid d-flex flex-column align-items-center p-0" id="main-body">
@@ -198,25 +230,24 @@ echo $emb;
 </div>
 </div>
 
+<?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php'?>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script type="module" src="/js/Alumni/homePage.js"></script>
+    <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
+    <!-- <script type="module" src="/js/addHeader.js"></script>
+    <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
-    <script type="text/javascript" src="c/js/utility.js"></script>
-    <script type="module" src="/js/addHeader.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script>
-
-
-    
-    <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script> -->
 
 
 </body>

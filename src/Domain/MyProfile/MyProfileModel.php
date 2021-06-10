@@ -49,6 +49,10 @@ class MyProfile
 
     public function getProfilePicture()
     {
+        //handle if image is missing in database
+        if(!$this->user['type'] || !$this->user['imageData']){
+            return '/Assets/imgs/default_user.png';
+        }
         return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
     }
 
@@ -129,9 +133,10 @@ class MyProfile
     }
 
     public function changePassword($newPassword){
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         try {
             $stmt = $this->connection->prepare('UPDATE alumni SET password=:password WHERE alumniId=:alumniId');
-            $stmt->bindParam(':password', $newPassword);
+            $stmt->bindParam(':password', $hashedPassword);
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();
         } catch (PDOException $exception) {

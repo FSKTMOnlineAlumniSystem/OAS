@@ -193,7 +193,7 @@ window.approve = function(){
 $.ajax({
   type: "POST",
   url: 'approveAlumni',
-  data: {alumniId: localStorage.getItem("alumniId"),signedInAdminId:localStorage.getItem("SignedInAdminId") },
+  data: {alumniId: localStorage.getItem("alumniId")},
   success:  function(data)
   { 
     var outputList = JSON.parse(data);
