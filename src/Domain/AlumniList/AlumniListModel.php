@@ -67,7 +67,7 @@ class AlumniListModel
     }
 
     // public function search($searchterm){
-    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
+    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) AND isActive=1 AND isVerified =1 LIKE '%".$searchterm."%' ";  
     //     $stmt = $this->connection->prepare($query);  
     //     $stmt->execute(); 
     //     $data = $stmt->fetchAll();
@@ -187,11 +187,11 @@ class UpdateALumniModel
         return $image;
     }
     
-    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId) {
+    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$imageId) {
             try{
-             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=?, imageId=? WHERE alumniId=?";
+             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,biography=?, imageId=? WHERE alumniId=?";
              $stmt = $this->connection->prepare($sql); 
-             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$email,$biography,$imageId,$prevAlumniId]);
+             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$biography,$imageId,$prevAlumniId]);
             }catch (PDOException $exception) {
                 error_log('UpdateAlumniModel: construct: ' . $exception->getMessage());
                 throw $exception;

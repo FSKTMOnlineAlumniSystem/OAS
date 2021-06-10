@@ -107,11 +107,10 @@ class MyProfile
         }
     }
 
-    public function setUpdatedData($email, $biography)
+    public function setUpdatedData($biography)
     {
         try {
-            $stmt = $this->connection->prepare('UPDATE alumni SET email=:email, biography=:biography WHERE alumniId=:alumniId');
-            $stmt->bindParam(':email', $email);
+            $stmt = $this->connection->prepare('UPDATE alumni SET biography=:biography WHERE alumniId=:alumniId');
             $stmt->bindParam(':biography', trim($biography));
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();

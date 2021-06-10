@@ -61,12 +61,11 @@ class AdminMyProfile
         return $this->user['email'];
     }
 
-    public function setUpdatedData($name, $email)
+    public function setUpdatedData($name)
     {
         try {
-            $stmt = $this->connection->prepare('UPDATE admin SET name=:name, email=:email WHERE adminId=:adminId');
+            $stmt = $this->connection->prepare('UPDATE admin SET name=:name WHERE adminId=:adminId');
             $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':adminId', $this->id);
             $stmt->execute();
         } catch (PDOException $exception) {

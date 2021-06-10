@@ -15,23 +15,27 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
   $alumnilist = new AlumniModel($db->getConnection());
+
   $pageIndex=1;
+  if(isset($_GET['page'])){// if user is at any of the page
+    $pageIndex=$_GET['page']; // variable nav users' previous page or to other page);
+  }
+  $alumnilist->setPageIndex($pageIndex);
   if (isset($_GET['search'])){// if user searching will enter (it can be happened any of the page)
     $all_alumni = $alumnilist->searchAlgo($_GET['search']);
-  } else {
-      if(isset($_GET['page'])){// if user is at any of the page
-        $pageIndex=$_GET['page']; // variable nav users' previous page or to other page
-      }
-  }
- 
-  if (empty($all_alumni)) {
+    //display the query in the search input
+    echo '<script type="text/javascript">
+      window.onload = function(){
+      document.querySelector("#search").value="'.$_GET['search'].'"
+    }
+    </script>';
+  }else {
     $all_alumni = $alumnilist->getAll($pageIndex);
   }
 } catch (Exception $e) {
   echo $e->getMessage();
 }
 ?>
-
     <div class="searchBarBG">
       <form class="search-form">
         <div class="containerSB">
@@ -63,12 +67,13 @@ try {
       <br />
       <hr />
       <br />
+      <div class="row justify-content-md-center text-center" id="no_result"></div>
       <div id="alumniList">
       <?php
         for ($i=0;$i < count($all_alumni);$i++) {
           $alumniId = $all_alumni[$i]['alumniId'];
           echo' 
-          <a href="/profile/'.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
+          <a href="/profile?page='.$pageIndex.'&/'.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
               <div class="image m-auto col-2 p-3">
                   <div style="aspect-ratio:1/1;overflow:hidden;">
                       <img src="data::'.$all_alumni[$i]['type'].';base64,'.base64_encode($all_alumni[$i]['imageData']).'" class="w-100" alt='.$all_alumni[$i]['name'].'>
@@ -108,6 +113,9 @@ try {
   <?php 
     include_once '../src/templates/footer.php' ;
     include_once '../src/templates/GeneralScripts.php';
+    if (empty($all_alumni)) {
+      echo '<script> insertSearchNoResult(document.getElementById("no_result"))</script>';
+    }
   ?>
   <!-- custom js files -->
   <!-- <script type="text/javascript" src="/js/addSearchBar.js"></script> -->

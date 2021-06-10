@@ -60,11 +60,7 @@ $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId'])
                         <div class="row mb-3">
                             <div class="col-md-4">E-mail:</div>
                             <div class="col-md-8">
-                                <input id="email" name="email" type="email" class="form-control" value="<?= $admin->getEmail(); ?>">
-                                <div class="valid-feedback">Valid.</div>
-                                <div id="emailFeedback" class="invalid-feedback">
-                                    Please provide a valid email
-                                </div>
+                                <div id="email" name="email" type="email"><?= $admin->getEmail(); ?></div>
                             </div>
                         </div>
                     </div>
@@ -102,7 +98,6 @@ $admin = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId'])
     </div>
     <script type="text/javascript">
         var adminName = "<?= $admin->getName(); ?>";
-        var adminEmail = "<?= $admin->getEmail(); ?>";
     </script>
     <?php include_once '../src/templates/GeneralScripts.php' ?>
     <script type='module' src="/js/Admin/Admin-EditMyProfilePage.js"></script>
