@@ -14,8 +14,8 @@
   </main>
  */
 
-let homePage = location.href.match(/\/admin$/i)
-let alumniPage = location.href.match(/alumni/i);
+let homePage = location.href.match(/\/admin$/i);
+let alumniPage = location.href.match(/admin\/alumnilist/i);
 let eventPage = location.href.match(/event/i);
 
 const leftNav = document.getElementById('left-nav');
@@ -27,7 +27,7 @@ leftNav.innerHTML = `<ul class="d-flex flex-column list-unstyled">
   </a>
 </li>
 <li class="pl-3 py-2 container-fluid my-2 ${alumniPage?"text-warning":"text-white"}">
-  <a class="nostyle row no-gutters d-flex flex-column justify-content-center align-items-center text-center" href="/alumniList">
+  <a class="nostyle row no-gutters d-flex flex-column justify-content-center align-items-center text-center" href="/admin/alumnilist">
     <i class="d-flex align-items-center justify-content-center fas fa-users fa-2x col-6"></i>
     <span class="d-flex">Alumni</span>
   </a>
