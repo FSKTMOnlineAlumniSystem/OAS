@@ -42,11 +42,16 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $event_model = new EventModel($db->getConnection());
-    $all_activities_event = $event_model->get6LatestEvent();
+    // $all_activities_event = $event_model->get6LatestEvent();
+    $all_activities_event = $event_model->EventData();
+    for ($i=0; $i < 6; $i++) { 
+        $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
+    }
+    for ($i=0; $i< count($all_activities_event); $i++){
+        $all_activities_event[$i]['imageId'] = $allImage_event[$i];
+    }
     // $allImage_event = $event_model->getEventPicture();
-    // for ($i=0; $i< count($all_activities_event); $i++){
-    //     $all_activities_event[$i]['imageId'] = $allImage_event[$i];
-    // }
+   
     $alumni_model = new AlumniModel($db->getConnection());
     $all_activities_alumni = $alumni_model->AlumniData();
     for ($i=0; $i < 6; $i++) { 
@@ -56,7 +61,6 @@ try {
     for ($i=0; $i< count($all_activities_alumni); $i++){
         $all_activities_alumni[$i]['imageId'] = $allImage_alumni[$i];
     }
-    echo count($all_activities_alumni);
 
     $job_model = new JobModel($db->getConnection());
     $all_activities_job = $job_model->Nicole();
