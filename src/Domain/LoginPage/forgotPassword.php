@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
     require_once '../libs/PHPMailer/src/Exception.php';
-
+    if(adminApproved($conn,$email){
     if(emailExists($conn,$email) == false){
         header("location: /login?fgemailnotExists");
         exit();
@@ -67,22 +67,23 @@ if(isset($_POST["submit"])){
         exit(json_encode(array("status" => $status,"response" => $response)));
 
     }
+    }else {
+        header("location: /login?NotApprovedYet");
+        exit();
+    }
 }
 
-// function emailExists($conn,$email){
-
-//     $stmt = $conn->prepare("SELECT * FROM alumni WHERE email=?");
-//     $stmt->execute(array($email));
-    
-//     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-//         if ($row['email'] === $email) {
-//             //email exists
-//             return $row;
-//         }
-//     }
-//         //email not Exists
-//         return false;
-// }
+function adminApproved($conn,$email){
+    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!=""');
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    if(!$data){
+        return false;
+    }else{
+        return true;
+    }
+}
 
 function randomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';

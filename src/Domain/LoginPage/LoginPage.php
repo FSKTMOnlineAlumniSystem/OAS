@@ -16,6 +16,8 @@ $conn = $db->getConnection();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
     <!-- ICON FONT AWESOME -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -23,10 +25,11 @@ $conn = $db->getConnection();
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
-    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
     
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
+
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -66,7 +69,7 @@ $conn = $db->getConnection();
                 <div
                     class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
-                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
+                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
                         <div class="form-label-group w-100">
