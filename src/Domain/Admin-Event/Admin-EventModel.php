@@ -117,6 +117,7 @@ class Admin_Alumni_EventModel
             throw $exception;
         }
     }
+
 }
 class AlumniModel
 {
@@ -144,6 +145,26 @@ class AlumniModel
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
         }
+    }
+    public function getPicture(): array{
+        $stmt = $this->connection->prepare('
+        SELECT * FROM alumni
+        LEFT JOIN image 
+        ON alumni.imageId=image.imageId');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageId']=='Default'||$eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
     }
 }
 

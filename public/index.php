@@ -157,13 +157,13 @@ elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
 elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
-} elseif (preg_match('/^\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/admin\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
-} elseif (preg_match('/^\/approveAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/admin\/approveAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-approveAlumni.php';
-} elseif (preg_match('/^\/deleteMultipleAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/admin\/deleteMultipleAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-deleteMultipleAlumni.php';
 } elseif (preg_match('/^\/admin\/editalumni\/?/i', $_SERVER['REQUEST_URI'])) {
