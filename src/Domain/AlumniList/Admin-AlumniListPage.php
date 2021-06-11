@@ -237,5 +237,4 @@ includeWithVariables('../src/templates/header.php', array(
   </main>
 
   <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
-  <!-- <script type='module' src='../js/addHeader.js'></script> -->
   <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>

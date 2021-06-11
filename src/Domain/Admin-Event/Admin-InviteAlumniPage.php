@@ -4,9 +4,9 @@
   <!-- custom css files -->
   <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css"> -->
 <!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-crossorigin="anonymous"></script>
+crossorigin="anonymous"></script> -->
 <!-- css -->
 <!-- <link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css"> -->
   <!-- <title>Invite Alumni - Online Alumni System</title> -->
@@ -14,7 +14,8 @@ crossorigin="anonymous"></script>
 
 <!-- <body> -->
 <?php
- $eventId=$_GET['eventId'];
+//  $eventId=$_GET['eventId'];
+ $eventId='E-2';
   // include '../config/config.php';
   include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
@@ -38,7 +39,7 @@ crossorigin="anonymous"></script>
     if (!empty($all_activities)) {
 
       foreach ($all_activities as $activity) {
-        echo "$activity[eventId] ";
+        // echo "$activity[eventId] ";
       }
     }
   } catch (Exception $e) {
@@ -60,33 +61,39 @@ crossorigin="anonymous"></script>
 
 <?php
 
-function inviteAlumniPhp($alumniId,$eventId,$dateTime){
-  global $db;
-    $inviteAlumni = new InviteAlumniModel($db->getConnection());	
-  $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
-};
+// function inviteAlumniPhp($alumniId,$eventId,$dateTime){
+//   global $db;
+//     $inviteAlumni = new InviteAlumniModel($db->getConnection());	
+//   $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
+// };
 
-if(isset($_COOKIE["checkbox"])){
+// if(isset($_COOKIE["checkbox"])){
 
-$alumniId = $_COOKIE['alumniId']; $alumniId=explode(",",$alumniId); //split
-$eventId = $_COOKIE['eventId']; $eventId=explode(",",$eventId);
-$dateTime = $_COOKIE['dateTime']; $dateTime=explode(",",$dateTime);
+// $alumniId = $_COOKIE['alumniId']; $alumniId=explode(",",$alumniId); //split
+// $eventId = $_COOKIE['eventId']; $eventId=explode(",",$eventId);
+// $dateTime = $_COOKIE['dateTime']; $dateTime=explode(",",$dateTime);
 
-for($i=0; $i<count($alumniId);$i++){
-  inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
-}
-  setcookie("alumniId", "");
-  setcookie("eventId", "");
-  setcookie("dateTime", "");
-  setcookie("checkbox", "");
-}
-else if(isset($_COOKIE["alumniId"])){
-  inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
-//   setcookie("inviteAlumni", "", time()-3600);
-  setcookie("alumniId", "");
-  setcookie("eventId", "");
-  setcookie("dateTime", "");
-}
+// for($i=0; $i<count($alumniId);$i++){
+//   inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
+// }
+//   setcookie("alumniId", "");
+//   setcookie("eventId", "");
+//   setcookie("dateTime", "");
+//   setcookie("checkbox", "");
+// }
+// else if(isset($_COOKIE["alumniId"])){
+//   inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
+// //   setcookie("inviteAlumni", "", time()-3600);
+//   setcookie("alumniId", "");
+//   setcookie("eventId", "");
+//   setcookie("dateTime", "");
+// }
+// function inviteAlumniPhp($alumniId,$eventId,$dateTime){
+//   global $db;
+//     $inviteAlumni = new InviteAlumniModel($db->getConnection());	
+//   $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
+// };
+
 
 ?>
 <nav></nav>
@@ -194,7 +201,7 @@ else if(isset($_COOKIE["alumniId"])){
   <!-- general js files -->
   <script type="text/javascript" src="/js/utility.js"></script>
   <!-- <script type="module" src="/js/addHeader.js"></script> -->
-  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
+  <!-- <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> -->
   <!-- custom js files -->
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
@@ -210,6 +217,7 @@ else if(isset($_COOKIE["alumniId"])){
     crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
 
 
 </body>

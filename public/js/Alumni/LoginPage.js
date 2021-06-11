@@ -1,5 +1,3 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
-
 const form_2 = document.getElementById('forgot');
 const sendEmail = document.getElementById('sendEmail');
 
@@ -44,123 +42,38 @@ form_2.addEventListener('submit', (evt) => {
     if (errorExist) {
         evt.preventDefault();
     } 
-    // else {
-    //     localStorage.setItem('ForgotPassword', sendEmailValue);
-    // }
 
 });
 
-//form validation for sign in
-// form_1.addEventListener('submit', (ev) => {
-
-//     let errorExist = false;
-//     let getEmail = false;
-
-//     const staticEmailValue = staticEmail.value.trim();
-//     const inputPasswordValue = inputPassword.value.trim();
-
-//     if (isEmpty(staticEmailValue) || !staticEmail.value.match(emailFormat)) {
-//         setErrorFor(staticEmail);
-//         errorExist = true;
-//     } else {
-
-        // for (let i = 0; i < dummyResponse.Alumni.length; i++) {
-
-        //     if (staticEmailValue == dummyResponse.Alumni[i].email) {
-        //         getEmail = true;
-
-        //         setSuccessFor(staticEmail);
-        //         errorExist = false;
-
-        //         if (isEmpty(inputPasswordValue)) {
-
-        //             setErrorFor(inputPassword);
-        //             errorExist = true;
-        //         } else {
-
-        //             if (!dummyResponse.Alumni[i].approvedBy) {
-        //                 setErrorFor(inputPassword);
-        //                 errorExist = true;
-        //             } else {
-
-        //                 if (inputPasswordValue == dummyResponse.Alumni[i].password) {
-
-        //                     //To save who is logged in
-
-        //                     localStorage.setItem('SignedInAlumniId', dummyResponse.Alumni[i].alumniId);
-        //                     if (!localStorage.getItem('dummyResponse')) {
-        //                         updateDummyData(dummyResponse);
-
-        //                     }
-
-        //                     setSuccessFor(inputPassword);
-        //                     errorExist = false;
-
-        //                 } else {
-
-        //                     setErrorFor(inputPassword);
-        //                     errorExist = true;
-        //                 }
-        //             }
-
-        //         }
-        //         break;
-        //     }
-
-        // }
-
-
-        // if (!getEmail) {
-        //     errorExist = true;
-        //     setErrorFor(staticEmail);
-        //     setErrorFor(inputPassword);
-        // }
-    // }
-
-    // if (errorExist) {
-    //     ev.preventDefault();
-    // }
-    // else {
-        // ev.preventDefault();
-        // jumpHome();
-//     }
-// });
-
-
 //go to homePage
 function jumpHome() {
-
     location.replace("../../html/Alumni/homePage.html");
-
 }
 
 
 img.addEventListener('change', (e) => readURL(e));
-
 function readURL(e) {
-
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
+        // To handle the file size
+        choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+    }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        profilePicture.files = e.target.files;
         var reader = new FileReader();
-
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
-
 }
+
 
 //form validation for sign up
 form.addEventListener('submit', (e) => {
-
     let errorExist = false;
 
     const FirstNameValue = FirstNameID.value.trim();

@@ -76,7 +76,7 @@ try {
           <a href="/profile?page='.$pageIndex.'&/'.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
               <div class="image m-auto col-2 p-3">
                   <div style="aspect-ratio:1/1;overflow:hidden;">
-                      <img src="data::'.$all_alumni[$i]['type'].';base64,'.base64_encode($all_alumni[$i]['imageData']).'" class="w-100" alt='.$all_alumni[$i]['name'].'>
+                      <img src="'.$alumnilist->AlumniImages($alumniId)[0].'" class="w-100" alt='.$all_alumni[$i]['name'].'>
                   </div>
               </div>
               <div class="media-body mr-3 my-auto col-10">

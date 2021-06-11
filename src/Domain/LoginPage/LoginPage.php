@@ -16,6 +16,8 @@ $conn = $db->getConnection();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
     <!-- ICON FONT AWESOME -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -23,10 +25,11 @@ $conn = $db->getConnection();
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
-    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
     
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
+
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -56,7 +59,7 @@ $conn = $db->getConnection();
         
 
         
-        <div class="container shadow-lg" style="height:75vh;">
+        <div class="container shadow-lg" style="height:80vh;">
             <div class="row align-items-center h-100">
                 <div
                     class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
@@ -64,28 +67,30 @@ $conn = $db->getConnection();
                     <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
-                    class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
+                    class="container col-md-6 bg-light h-100 p-4 d-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
-                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
+                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
-                        <div class="form-label-group w-100">
+                        <div class="form-label-group w-100 pl-1 pr-1">
                             <!-- <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
                             <label for="staticEmail">Email address</label> -->
                             <?php
                                 if (isset($_GET["emailnotExists"])){
                                     echo'
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail">Email address</label>
+                                    <label for="staticEmail" >Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
                                     ';
                                 }else if (isset($_GET["passwordWrong"])){
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email" value="';?><?php 
+                                    echo $_SESSION["CorrectEmail"];
+                                    echo'"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Correct Email</div>
@@ -94,7 +99,7 @@ $conn = $db->getConnection();
                                     ';
                                 }else{
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
@@ -106,7 +111,7 @@ $conn = $db->getConnection();
                             <!-- <div class="valid-feedback">Valid</div>
                             <div class="invalid-feedback">Please provide a correct email</div> -->
                         </div>
-                        <div class="form-label-group w-100">
+                        <div class="form-label-group w-100 pl-1 pr-1">
                             <!-- <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
                             <label for="inputPassword">Password</label> -->
                             <?php
@@ -131,19 +136,20 @@ $conn = $db->getConnection();
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
-                    <div class="row w-100">
-                        <div class="col">
-                            <span type="signUp" class="signUPbutton d-flex justify-content-start align-items-start"
+                    <div class="row w-100 pt-1">
+                        <div class="col" style="text-align:left;">
+                            <span type="signUp" class="signUPbutton"
                                 data-toggle="modal" data-target="#signUP">Sign
                                 Up </span>
                         </div>
-                        <div class="col">
+
+                        <div class="col" style="text-align:right;">
                             <span data-toggle="modal" data-target="#forgot">
                                 <span class="forgotPsw">Forgot
                                     Password?</span></span>
                         </div>
                     </div>
-                    <div class="bottom-right">
+                    <div class="bottom-right" style="bottom:5px;">
                         <a href="/admin-login">I am Admin</a>
                     </div>
                 </div>
@@ -191,7 +197,7 @@ $conn = $db->getConnection();
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" onclick="SignIn()" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                        <button type="submit" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
                     </div>
                 </form>
             </div>
@@ -223,6 +229,7 @@ $conn = $db->getConnection();
                                             <img src="/Assets/imgs/add_image.jpg" class="picture-src m-auto"
                                                 id="wizardPicturePreview" title="">
                                             <input type="file" id="wizard-picture" name="profilePicture">
+                                            <input type="file" name="profilePicture" id="profilePicture" class="d-none">
                                         </div>
                                         <!-- <h6 id="choosePictureDescription">Choose Picture</h6> -->
                                         <h6 id="choosePictureDescription"></h6>
@@ -457,8 +464,8 @@ include '../src/templates/GeneralScripts.php'
                         </div>
                         <form id="form_3">
                             <div class="modal-body">
-                                <span>Thank you for signing up.<br>
-                                    Your application is not approved by the admin, please wait patiently.<br>
+                                <span>
+                                    Your application is not approved by the admin yet, please wait patiently.<br>
                                 </span>
                                 <br>
                             </div>

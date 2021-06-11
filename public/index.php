@@ -70,13 +70,16 @@ elseif (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
 //     exit;
 // }
 
-elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/HomePage/HomePage.php';
 } 
 
 //Event
-elseif (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Event/EventDetailsPage.php';
+} elseif (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventPage.php';
 }
@@ -122,12 +125,17 @@ elseif (preg_match('/^\/admin\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/admin\/invite\/function\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/Admin-InviteFunction.php';
-} elseif (preg_match('/^\/try\/?$/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/admin\/search\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Admin-Event/Admin-EventSearch.php';
+}elseif (preg_match('/^\/admin\/search\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Admin-Event/Admin-inviteAlumniSearch.php';
+}
+
+elseif (preg_match('/^\/try\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Admin-Event/admin-try.php';
-} elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Event/EventDetailsPage.php';
 }
 
 //Admin-Home

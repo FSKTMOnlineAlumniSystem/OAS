@@ -55,7 +55,7 @@ CREATE TABLE Job(
     location varchar(255) NOT NULL
 );
 
-CREATE TABLE Events(
+CREATE TABLE Event(
     eventId varchar(10) NOT NULL PRIMARY KEY,
     adminId varchar(10) NOT NULL,
     title varchar(255) NOT NULL,
