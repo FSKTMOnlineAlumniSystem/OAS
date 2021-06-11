@@ -29,7 +29,7 @@ class AlumniModel
                 $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
                 array_push($image,$temp_string);
             }else{
-                $temp_path = '/Assets/imgs/jobdefault.jpg';
+                $temp_path = '/Assets/imgs/default_user.png';
                 array_push($image,$temp_path);
             }
         }
