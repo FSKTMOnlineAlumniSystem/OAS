@@ -1,5 +1,4 @@
 <?php
-// session_start();
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/MyProfile/MyProfileModel.php';
 
