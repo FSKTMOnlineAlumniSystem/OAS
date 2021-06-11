@@ -18,7 +18,6 @@ class AlumniModel
         $this->count($sql);
     }
 
-
     public function AlumniImages($alumniId){
         $stmt = $this->connection->prepare('SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId');
         $stmt->bindParam(':alumniId',$alumniId);
@@ -30,10 +29,10 @@ class AlumniModel
                 $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
                 array_push($image,$temp_string);
             }else{
-                    $temp_path = '/Assets/imgs/jobdefault.jpg';
-                    array_push($image,$temp_path);
+                $temp_path = '/Assets/imgs/default_user.png';
+                array_push($image,$temp_path);
             }
-    }
+        }
         return $image;
     }
 

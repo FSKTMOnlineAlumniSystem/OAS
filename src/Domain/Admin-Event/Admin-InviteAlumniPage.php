@@ -66,27 +66,6 @@ function inviteAlumniPhp($alumniId,$eventId,$dateTime){
   $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
 };
 
-if(isset($_COOKIE["checkbox"])){
-
-$alumniId = $_COOKIE['alumniId']; $alumniId=explode(",",$alumniId); //split
-$eventId = $_COOKIE['eventId']; $eventId=explode(",",$eventId);
-$dateTime = $_COOKIE['dateTime']; $dateTime=explode(",",$dateTime);
-
-for($i=0; $i<count($alumniId);$i++){
-  inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
-}
-  setcookie("alumniId", "");
-  setcookie("eventId", "");
-  setcookie("dateTime", "");
-  setcookie("checkbox", "");
-}
-else if(isset($_COOKIE["alumniId"])){
-  inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
-//   setcookie("inviteAlumni", "", time()-3600);
-  setcookie("alumniId", "");
-  setcookie("eventId", "");
-  setcookie("dateTime", "");
-}
 
 ?>
 <nav></nav>
@@ -193,7 +172,6 @@ else if(isset($_COOKIE["alumniId"])){
 
   <!-- general js files -->
   <script type="text/javascript" src="/js/utility.js"></script>
-  <!-- <script type="module" src="/js/addHeader.js"></script> -->
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
   <!-- custom js files -->
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>

@@ -143,7 +143,7 @@ $conn = $db->getConnection();
                                     Password?</span></span>
                         </div>
                     </div>
-                    <div class="bottom-right">
+                    <div class="bottom-right" style="bottom:5px;">
                         <a href="/admin-login">I am Admin</a>
                     </div>
                 </div>

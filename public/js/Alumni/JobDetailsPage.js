@@ -61,9 +61,7 @@ let myJob = job_array;
                     <div class="row">
                         <div class="col-12">
                             <h4 class="pt-3"><b>Job Description</b></h4>
-                            <p class="lead">
-                                ${myJob.description}
-                            </p>
+                            <p class="lead" style="white-space: pre-wrap;">${myJob.description}</p>
                         </div>
                     </div>
                 </div>

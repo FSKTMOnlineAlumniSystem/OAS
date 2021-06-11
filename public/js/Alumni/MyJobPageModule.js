@@ -1,6 +1,5 @@
 
 function loadMyJobList(pageIndex, outputList, count) {
-
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -133,7 +132,7 @@ function loadMyJobList(pageIndex, outputList, count) {
     jQuery.noConflict();
   clickButton.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
-      console.log('click');
+     
       deleteID = e.currentTarget.id;
 
       $.ajax({
@@ -142,13 +141,10 @@ function loadMyJobList(pageIndex, outputList, count) {
         data: {modal: 1},
         success: function(response){ 
           // Display Modal
-          console.log("sucess");
-          console.log(response);
           jQuery(`#deleteModal`).modal("show");
         },
         error: function(){
-          console.log('fail');
-          $(`#deleteModal`).modal("show");
+          jQuery(`#deleteModal`).modal("show");
         }
       });
      
@@ -158,38 +154,24 @@ function loadMyJobList(pageIndex, outputList, count) {
 });
 
 
-// // AJAX request
-// $.ajax({
-//   url: 'ajaxfile.php',
-//   type: 'post',
-//   data: {userid: userid},
-//   success: function(response){ 
-//     // Add response in Modal body
-//     $('.modal-body').html(response);
-
-//     // Display Modal
-//     $('#empModal').modal('show'); 
-//   }
-// });
-
 
 
 $('#deleteButton').click(function(){
-  console.log('here');
+  var searchDelete = document.getElementById("search_item").value;
+  jQuery.noConflict();
   $.ajax({
     url: 'deleteJobController.php',
     type: 'post',
-    data: {ajax : 1, deleteID: deleteID},
+    data: {searchdeleted : searchDelete, deleteID: deleteID},
     success: function(resp){
       let page = 0;
-      var outputList = JSON.parse(resp);
-     
-      loadMyJobList(page,outputList,outputList.length);
+      var outputLists = JSON.parse(resp);
+      loadMyJobList(page,outputLists,outputLists.length);
     },
      
   });
 
-closeModal("#deleteModal")
+closeModal("#deleteModal");
 });
 
 
@@ -198,8 +180,8 @@ closeModal("#deleteModal")
 $('#search-button').click(function(){
   var search = document.getElementById("search_item").value;
   if (search == "") {
-    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-    // and add a return here so below code will not run
+    alert("Hi, type something to search!"); 
+    return;
   }
 
   $.ajax({
@@ -208,7 +190,7 @@ $('#search-button').click(function(){
     data: {search: search},
     success: function(resp){
     let page = 0;
-    console.log(resp);
+ 
     outputList =JSON.parse(resp);
      if(outputList.length===0){
       loadMyJobList(page,outputList,-1);
