@@ -6,7 +6,7 @@ let eventArray=event_array
 let pageIndex = 0;
 
 const loadEventList = (pageIndex,eventArray) => {
-  console.log(eventArray);
+  // console.log(eventArray);
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
 
@@ -235,7 +235,7 @@ window.deleteByJquery= function (o){
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
   var search = document.getElementById("input1").value;
-  console.log($eventToDelete);
+  // console.log($eventToDelete);
   $.ajax({
     url:"/admin/delete/event",    //the page containing php script
     data: { 
@@ -245,8 +245,8 @@ window.deleteByJquery= function (o){
     type: 'POST',    //request type,
     // dataType: 'json',
     success: function(resp){
-      console.log('resp');
-        console.log(resp);
+      // console.log('resp');
+        // console.log(resp);
       var outputList = JSON.parse(resp);
       eventArray=outputList;
       loadEventList(pageIndex,outputList);
@@ -259,7 +259,7 @@ window.deleteByJquery= function (o){
 
 window.DeleteCheckedRow = function () {
   var $eventId=[];
-    console.log('delete checked row');
+    // console.log('delete checked row');
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var search = document.getElementById("input1").value;
     for (var i = checkboxes.length - 1; i > 0; i--) {
@@ -279,8 +279,8 @@ window.DeleteCheckedRow = function () {
       type: 'POST',    //request type,
       // dataType: "json",
       success: function(resp){
-        console.log('resp');
-        console.log(resp);
+        // console.log('resp');
+        // console.log(resp);
         var outputList = JSON.parse(resp);
         eventArray=outputList;
         loadEventList(pageIndex,outputList);
@@ -305,7 +305,7 @@ var outputList;
     data: {search: search},
     success: function(resp){
     let page = 0;
-    console.log(resp);
+    // console.log(resp);
     outputList =JSON.parse(resp);
     eventArray=outputList;
     loadEventList(pageIndex,outputList);
