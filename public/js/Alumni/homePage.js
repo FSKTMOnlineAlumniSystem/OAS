@@ -1,41 +1,6 @@
-import { dummyResponse } from "../dummydata.js";
 
 localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
-
-//get latest event
-// var latest_1 = [];
-// var dayy_1 = [];
-// var yearr_1 = [];
-
-// for (let i = 0; i < dummyResponse.Event.length; i++) {
-
-//     var d = new Date(dummyResponse.Event[i].dateTime);
-//     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-//     let mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
-//     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-
-//     dayy_1[i] = mo + "," + da + "," + i;
-//     yearr_1[i] = ye;
-
-// }
-
-// dayy_1.sort();
-
-
-// for (var i = 0; i < dayy_1.length; i++) {
-
-//     //day,month,index
-//     var a_1 = dayy_1[i].split(",");
-//     var currentYr_1 = new Date();
-//     var Yr_1 = currentYr_1.getFullYear();
-
-//     if (yearr_1[a_1[2]] == Yr_1) {
-//         latest_1[i] = a_1[2];
-//     }
-
-// }
-
 
 //event card
 for (let i = 0; i < 6; i++) {
@@ -113,10 +78,8 @@ for (let i = 0; i < 6; i++) {
 document.getElementById('alumni').innerHTML = "";
 console.log(alumni_array.length);
 for (let i = 0; i < alumni_array.length; i++) {
-    // console.log(alumni_array.length);
     const card_alumni = document.createElement('div');
     card_alumni.setAttribute('class', 'swiper-slide pl-1 pr-1');
-
     card_alumni.innerHTML = `
 
                             <div class="card h-100" id="${alumni_array[i].alumniId}">
@@ -144,52 +107,8 @@ for (let i = 0; i < alumni_array.length; i++) {
 
     const A = document.getElementById('alumni');
 
-    // const evtHandler = evt => {
-
-    //     localStorage.setItem('alumniprofile', i);
-    //     location.href = "/src/html/Alumni/AlumniProfilePage.html";
-
-    // };
-
-    // card_alumni.querySelector('#' + dummyResponse.Alumni[i].alumniId).addEventListener('click', evtHandler);
-
     A.appendChild(card_alumni);
-
 }
-
-//get latest date
-var latest = [];
-var dayy = [];
-var yearr = [];
-
-// for (let i = 0; i < dummyResponse.Job.length; i++) {
-
-
-//     var d = new Date(dummyResponse.Job[i].postedDate);
-
-//     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-//     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-//     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-
-//     dayy[i] = mo + "," + da + "," + i;
-//     yearr[i] = ye;
-
-// }
-
-// dayy.sort();
-
-// for (var i = 0; i < dayy.length; i++) {
-
-
-//     //day,month,index
-//     var a = dayy[i].split(",");
-//     var currentYr = new Date();
-//     var Yr = currentYr.getFullYear();
-
-//     if (yearr[a[2]] == Yr) {
-//         latest[i] = a[2];
-//     }
-// }
 
 
 
@@ -210,20 +129,6 @@ for (let i = 0; i < 2; i++) {
         </a>`
 
     const J = document.getElementById('job_row_1');
-    // var myJobList_1 = [];
-    // myJobList_1.push(job_array[i].imageId);
-
-    // const evtHandler = evt => {
-
-        // var myJobList_1 = [];
-        // myJobList_1.push(job_array[i].imageId);
-
-        // localStorage.setItem('JobList', JSON.stringify(myJobList_1));
-        // location.href = "/src/html/Alumni/JobDetailsPage.html";
-
-    // };
-
-    // card_job.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J.appendChild(card_job);
 }
@@ -246,20 +151,6 @@ for (let i = 2; i < 4; i++) {
 
 
     const J_1 = document.getElementById('job_row_2');
-
-    // var myJobList = [];
-    // myJobList.push(dummyResponse.Job[latest[i]]);
-
-    // const evtHandler = evt => {
-
-    //     // var myJobList = [];
-    //     // myJobList.push(dummyResponse.Job[latest[i]]);
-
-        // localStorage.setItem('JobList', JSON.stringify(myJobList));
-
-    // };
-
-    // card_job_1.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J_1.appendChild(card_job_1);
 }
