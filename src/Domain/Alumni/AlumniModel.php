@@ -105,7 +105,7 @@ class AlumniModel
             LEFT JOIN image 
             ON alumni.imageId=image.imageId
             WHERE isActive = 1 
-            AND (`name` LIKE \'%'.$this->search.'%\'
+            AND (`name` LIKE \'%'.$this->search.'%\' 
             OR `email` LIKE \'%'.$this->search.'%\'
             OR `department` LIKE \'%'.$this->search.'%\'
             OR `graduated` LIKE \'%'.$this->search.'%\'
@@ -114,9 +114,11 @@ class AlumniModel
             ;
         $count = '
             SELECT COUNT(*) FROM alumni 
-            WHERE isActive = 1 AND
-            CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
-            LIKE \'%'.$this->search.'%\'';
+            WHERE isActive = 1 AND (`name` LIKE \'%'.$this->search.'%\'
+            OR `email` LIKE \'%'.$this->search.'%\'
+            OR `department` LIKE \'%'.$this->search.'%\'
+            OR `graduated` LIKE \'%'.$this->search.'%\'
+            OR `biography` LIKE \'%'.$this->search.'%\')';
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':offset',$offset );
