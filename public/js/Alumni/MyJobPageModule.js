@@ -141,12 +141,9 @@ function loadMyJobList(pageIndex, outputList, count) {
         data: {modal: 1},
         success: function(response){ 
           // Display Modal
-          console.log("sucess");
-          console.log(response);
           jQuery(`#deleteModal`).modal("show");
         },
         error: function(){
-          console.log('fail');
           jQuery(`#deleteModal`).modal("show");
         }
       });
@@ -156,20 +153,6 @@ function loadMyJobList(pageIndex, outputList, count) {
   });
 });
 
-//jQuery.parseJSON(response.data);
-// // AJAX request
-// $.ajax({
-//   url: 'ajaxfile.php',
-//   type: 'post',
-//   data: {userid: userid},
-//   success: function(response){ 
-//     // Add response in Modal body
-//     $('.modal-body').html(response);
-
-//     // Display Modal
-//     $('#empModal').modal('show'); 
-//   }
-// });
 
 
 
@@ -197,8 +180,8 @@ closeModal("#deleteModal");
 $('#search-button').click(function(){
   var search = document.getElementById("search_item").value;
   if (search == "") {
-    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-    // and add a return here so below code will not run
+    alert("Hi, type something to search!"); 
+    return;
   }
 
   $.ajax({
