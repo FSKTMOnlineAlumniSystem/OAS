@@ -23,11 +23,6 @@ try {
   $event_model = new EventModel($db->getConnection());
   $event = $event_model->getEvent($_GET['eventId']);
   $event_pic_src = $event_model->getEventPicture();
-  // echo gettype($event);
-  // echo $event['eventId'].'<br>';
-  // foreach($event as $key => $value){
-  //   echo $key.'=>'.$value.'<br>';
-  // }
 } catch (Exception $e) {
   echo "Exception: " . $e->getMessage();
 }

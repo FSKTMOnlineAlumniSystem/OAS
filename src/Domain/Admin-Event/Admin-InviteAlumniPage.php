@@ -172,7 +172,6 @@ function inviteAlumniPhp($alumniId,$eventId,$dateTime){
 
   <!-- general js files -->
   <script type="text/javascript" src="/js/utility.js"></script>
-  <!-- <script type="module" src="/js/addHeader.js"></script> -->
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
   <!-- custom js files -->
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>

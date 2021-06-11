@@ -274,8 +274,6 @@ include_once '../src/templates/nav.php';
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
-    <!-- <script type="module" src="/js/addHeader.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
     <!-- <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script> -->
 
