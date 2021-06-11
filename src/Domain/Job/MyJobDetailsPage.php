@@ -40,5 +40,5 @@ try {
 
 <script type="text/javascript">var job_array = <?php echo json_encode( $myjobdetails) ?>;</script>
 <script type="module" src="/js/Alumni/MyJobDetailsPage.js"></script>
-<script type="text/javascript" src="/js/addNavFooter.js"></script>
 <?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>

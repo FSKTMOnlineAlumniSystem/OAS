@@ -21,7 +21,7 @@ if( isset($_POST['deleteID']) ){
 
     if(isset($_POST['searchdeleted'])){
         $searchterm = $_POST['searchdeleted'];
-        $updatedJob = $myJob_model->search($searchterm,"AL-1");
+        $updatedJob = $myJob_model->search($searchterm,$_SESSION['alumni']['alumniId'] );
 
         for($i=0; $i<count($updatedJob); $i++){
             $jobID = $updatedJob[$i]['jobId'];
@@ -30,8 +30,8 @@ if( isset($_POST['deleteID']) ){
         }
     }
     else{
-        $updatedJob = $myJob_model->getRow("AL-1");
-        $image = $myJob_model->getJobImage("AL-1");
+        $updatedJob = $myJob_model->getRow($_SESSION['alumni']['alumniId'] );
+        $image = $myJob_model->getJobImage($_SESSION['alumni']['alumniId'] );
         for ($i=0; $i< count($updatedJob); $i++){
             $updatedJob[$i]['imageId'] = $image[$i];
         }

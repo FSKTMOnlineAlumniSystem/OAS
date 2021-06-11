@@ -14,7 +14,7 @@ try {
   }
 
 
-} catch (Exception $e)
+} catch (Exception $e){
   echo "Exception here!";
 }
 ?>
@@ -90,11 +90,10 @@ include_once '../src/templates/nav.php';
 <?php 
 include_once '../src/templates/footer.php' 
 ?>
-
+<?php include_once '../src/templates/GeneralScripts.php' ?>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/utility.js"></script>
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
+
 

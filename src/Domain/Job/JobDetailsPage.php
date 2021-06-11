@@ -38,6 +38,6 @@ try {
 <div class = "container my-5" id='main-body' ></div>
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
 <script type="module" src="/js/Alumni/JobDetailsPage.js"></script>
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 <?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>
 

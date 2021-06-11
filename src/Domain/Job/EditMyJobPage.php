@@ -16,7 +16,7 @@ if(isset($_POST['Submit'])) {
   $postedDateTime = date(DATE_ATOM, strtotime($date));
 
   $jobId = $myjobid;
-  $alumniId = "AL-1";         //ned change
+  $alumniId = $_SESSION['alumni']['alumniId'] ;         //ned change
   $title = $_POST['jobtitle'];
   $description = $_POST['description'];
   $salary = $_POST['salary'];
@@ -73,3 +73,4 @@ include_once '../src/templates/nav.php';
 <script type="text/javascript">var job_array = <?php echo json_encode($editjob) ?>;</script>
 <script type="text/javascript" src="/js/Alumni/EditMyJobPage.js"></script>
 <?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>

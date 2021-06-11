@@ -136,7 +136,7 @@ function loadMyJobList(pageIndex, outputList, count) {
       deleteID = e.currentTarget.id;
 
       $.ajax({
-        url: 'test.php',
+        url: 'deleteJobController.php',
         type: 'post',
         data: {modal: 1},
         success: function(response){ 
@@ -147,7 +147,7 @@ function loadMyJobList(pageIndex, outputList, count) {
         },
         error: function(){
           console.log('fail');
-          $(`#deleteModal`).modal("show");
+          jQuery(`#deleteModal`).modal("show");
         }
       });
      

@@ -17,7 +17,7 @@ if(isset($_POST['Submit'])) {
     
     $data = $addJob_model->getMaxId();
     $jobId = "J-" . $data+1;
-	$alumniId ="AL-1";         //ned change
+	$alumniId =$_SESSION['alumni']['alumniId'] ;         //ned change
     $title = $_POST['title'];
     $description = $_POST['description'];
     $salary = $_POST['salary'];
@@ -74,17 +74,7 @@ include_once '../src/templates/nav.php';
 </div>
 
 <script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
-
-
-
-
-
-
-
-
-
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 <?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>
 
 
