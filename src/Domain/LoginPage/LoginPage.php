@@ -79,16 +79,18 @@ $conn = $db->getConnection();
                             <?php
                                 if (isset($_GET["emailnotExists"])){
                                     echo'
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail">Email address</label>
+                                    <label for="staticEmail" >Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
                                     ';
                                 }else if (isset($_GET["passwordWrong"])){
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email" value="';?><?php 
+                                    echo $_SESSION["CorrectEmail"];
+                                    echo'"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Correct Email</div>
@@ -97,7 +99,7 @@ $conn = $db->getConnection();
                                     ';
                                 }else{
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
@@ -137,12 +139,12 @@ $conn = $db->getConnection();
                     <div class="row w-100">
                         <div class="col">
                             <span type="signUp" class="signUPbutton d-flex justify-content-start align-items-start"
-                                data-toggle="modal" data-target="#signUP">Sign
+                                data-toggle="modal" data-target="#signUP" style="font-size:1.5vw;">Sign
                                 Up </span>
                         </div>
                         <div class="col">
                             <span data-toggle="modal" data-target="#forgot">
-                                <span class="forgotPsw">Forgot
+                                <span class="forgotPsw" style="font-size:1.5vw;">Forgot
                                     Password?</span></span>
                         </div>
                     </div>

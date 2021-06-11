@@ -31,6 +31,7 @@ function loginUser($conn, $email, $password){
     $passwordHashed = $alumniData["password"];
     $checkpassword = password_verify($password, $passwordHashed);
     if ($checkpassword === false) {
+        $_SESSION["CorrectEmail"] = $email;
         header("location: /login?passwordWrong");
         exit();
     } else if($checkpassword === true){
