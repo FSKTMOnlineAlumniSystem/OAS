@@ -13,7 +13,7 @@ class Admin_EventModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM events');
+            $stmt = $this->connection->prepare('SELECT * FROM event');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -35,7 +35,7 @@ class Admin_EventModel
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$eventId]);
 
-    $sql = "DELETE FROM events WHERE eventId=?";
+    $sql = "DELETE FROM event WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
    //  $stmt->execute();
     $stmt->execute([$eventId]);
@@ -48,9 +48,9 @@ class Admin_EventModel
 
     public function getPicture(): array{
         $stmt = $this->connection->prepare('
-            SELECT * FROM events
+            SELECT * FROM event
             LEFT JOIN image 
-            ON events.imageId=image.imageId');
+            ON event.imageId=image.imageId');
         $stmt->execute();
         $data = $stmt->fetchAll();
 
@@ -84,9 +84,9 @@ class Admin_EventModel
     // ORDER BY postedDateTime DESC
     public function getSearch($id) {
         $stmt = $this->connection->prepare("
-            SELECT * FROM events
+            SELECT * FROM event
             LEFT JOIN image 
-            ON events.imageId=image.imageId 
+            ON event.imageId=image.imageId 
             WHERE eventId='$id' ");
         $stmt->execute();
         $data = $stmt->fetch();
@@ -98,7 +98,7 @@ class Admin_EventModel
         }
     }
     public function search($searchterm){
-        $query = "SELECT * FROM `events` WHERE CONCAT( `title`, `description`, `location`) LIKE '%".$searchterm."%' ";  
+        $query = "SELECT * FROM `event` WHERE CONCAT( `title`, `description`, `location`) LIKE '%".$searchterm."%' ";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -108,7 +108,7 @@ class Admin_EventModel
         return $data; 
     }
     public function getNumberOfEvent(): int{
-        $sql ="SELECT COUNT(eventId) FROM events";
+        $sql ="SELECT COUNT(eventId) FROM event";
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -217,8 +217,59 @@ class AlumniModel
         }
         return $data; 
     }
-}
+    public function searchDepartment($searchterm){
+        $query = "SELECT * FROM `alumni` WHERE CONCAT(`department`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
+    public function searchStatus($status, $eventId){
+        $query = "SELECT alumniId FROM `alumni_event` WHERE eventId=?";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute([$eventId]);
+        $data = $stmt->fetchAll();
 
+        $alumni = array();
+        foreach($data as $eachAlumni){
+            // print_r();
+            $query = "SELECT * FROM `alumni` WHERE alumniId=?";  
+            $stmt = $this->connection->prepare($query);  
+            $stmt->execute([$eachAlumni['alumniId']]);
+            $alumniData = $stmt->fetch(PDO::FETCH_ASSOC);
+            array_push($alumni,$alumniData);
+        }
+        // print_r($alumni);
+        // print_r($alumni[0]['alumniId']);
+        // print_r($alumni[1]['alumniId']);
+        
+        if(!$data){
+            return array();
+        }
+        if($status=='Invited'){
+            return $alumni; 
+        }else{
+            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt->execute();
+            $allAlumni = $stmt->fetchAll();
+            foreach($alumni as $eachAlumni){
+                if(in_array($eachAlumni,$allAlumni)){
+                    $key=array_search($eachAlumni,$allAlumni);
+                    unset($allAlumni[$key]);
+                }
+            }
+            $allAlumni = array_values($allAlumni);
+            return $allAlumni;
+    }
+        
+    }
+
+    
+
+}
 
 class UpdateEventModel
 {
@@ -230,11 +281,11 @@ class UpdateEventModel
     }
     // $prevTitle="";
     // $prevTitle=$_GET['title'];
-    // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
+    // UPDATE `event` SET `title` = 'Constraint programming' WHERE `event`.`eventId` = 'E-1';
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-            //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+            //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
             try{
-             $sql = "UPDATE events SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
+             $sql = "UPDATE event SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
              $stmt = $this->connection->prepare($sql);  
 
              $stmt->execute([$adminId,$title,$newDate,$description,$imageId,$locate,$eventId]);
@@ -244,8 +295,8 @@ class UpdateEventModel
             }     
     }
     public function getImageId($eventId) :string {
-        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
-         $sql = "SELECT imageId FROM `events` WHERE eventId=?";
+        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
+         $sql = "SELECT imageId FROM `event` WHERE eventId=?";
          $stmt = $this->connection->prepare($sql);  
          $stmt->execute([$eventId]);
          $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -284,7 +335,7 @@ class createEventModel
         $this->connection = $connection;
     }
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-             $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
+             $sql = "INSERT INTO event (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
              $stmt = $this->connection->prepare($sql);
             //  $stmt->execute();
              $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
@@ -293,7 +344,7 @@ class createEventModel
     
     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
     public function getMaxId(): int{
-        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM Events")->fetchColumn();
+        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM event")->fetchColumn();
         return (int)$stmt;
 
     }
@@ -327,7 +378,7 @@ class InviteAlumniModel
         
    }
      public function InviteAlumni($alumniId,$eventId,$dateTime) {
-        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
 
         $sql ="SELECT * FROM alumni_event WHERE alumniId=? AND eventId=?";
             $stmt = $this->connection->prepare($sql);
