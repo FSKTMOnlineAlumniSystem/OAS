@@ -48,11 +48,10 @@ crossorigin="anonymous"></script>
    try {
     $event_model = new AlumniModel($db->getConnection());
     $all_alumni = $event_model->getAll();
-    if (!empty($all_alumni)) {
-
-      foreach ($all_alumni as $alumni) {
-        // echo "$activity[eventId] ";
-      }
+    $allImage = $event_model->getPicture();
+   
+    for ($i=0; $i< count($all_alumni); $i++){
+      $all_alumni[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
