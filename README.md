@@ -198,10 +198,10 @@ Faculty Administrator:
 We would like to express our deepest appreciation to our surpervisor, Dr Chiam Yin Kia for providing invualable guidance to complete this project successfully. Furthermore, we are also extremely grateful to every members in this project who give full cooperation throughout this project. 
 
 ## Contributors
-[Ng Yong Ming](https://github.com/YongMing11)
-[Chooi He Lin](https://github.com/HeLinChooi)
-[Chong Wei Hao](https://github.com/CyberWorldHao)
-[Tan Yan Wen](https://github.com/yanwen-hb)
-[Nicole Lai Yiyin](https://github.com/nic-00)
-[Lim Xin Joe](https://github.com/Xinjoe)
-[Rachel Ong Xin Yee](https://github.com/rachelong1)
+- [Ng Yong Ming](https://github.com/YongMing11)
+- [Chooi He Lin](https://github.com/HeLinChooi)
+- [Chong Wei Hao](https://github.com/CyberWorldHao)
+- [Tan Yan Wen](https://github.com/yanwen-hb)
+- [Nicole Lai Yiyin](https://github.com/nic-00)
+- [Lim Xin Joe](https://github.com/Xinjoe)
+- [Rachel Ong Xin Yee](https://github.com/rachelong1)
