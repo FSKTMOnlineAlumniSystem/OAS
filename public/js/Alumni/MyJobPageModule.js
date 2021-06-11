@@ -136,7 +136,7 @@ function loadMyJobList(pageIndex, outputList, count) {
       deleteID = e.currentTarget.id;
 
       $.ajax({
-        url: 'deleteJobController.php',
+        url: 'test.php',
         type: 'post',
         data: {modal: 1},
         success: function(response){ 
