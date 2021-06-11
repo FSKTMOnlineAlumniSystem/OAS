@@ -14,9 +14,9 @@ class EventModel
   {
     try {
       $stmt = $this->connection->prepare('
-      SELECT * FROM events
+      SELECT * FROM event
       LEFT JOIN image 
-      ON events.imageId=image.imageId;');
+      ON event.imageId=image.imageId;');
       $stmt->execute();
       $data = $stmt->fetchAll();
 
@@ -37,9 +37,9 @@ class EventModel
   {
     try {
       $stmt = $this->connection->prepare('
-      SELECT * FROM events 
+      SELECT * FROM event 
       LEFT JOIN image 
-      ON events.imageId=image.imageId 
+      ON event.imageId=image.imageId 
       WHERE eventId= ?');
       $stmt->execute([$id]);
       $data = $stmt->fetch();
@@ -65,9 +65,9 @@ class EventModel
   {
     try {
       $stmt = $this->connection->prepare('
-      SELECT * FROM events 
+      SELECT * FROM event 
       LEFT JOIN image 
-      ON events.imageId=image.imageId');
+      ON event.imageId=image.imageId');
       $stmt->execute();
       $data = $stmt->fetchAll();
       $this->event = $data;
@@ -90,11 +90,11 @@ class EventModel
   {
     try {
       $stmt = $this->connection->prepare('
-      SELECT * FROM events
+      SELECT * FROM event
       LEFT JOIN image 
-      ON events.imageId=image.imageId
+      ON event.imageId=image.imageId
       LEFT JOIN alumni_event 
-      ON alumni_event.eventId=events.eventId
+      ON alumni_event.eventId=event.eventId
       WHERE alumniId=?
       ');
       $stmt->execute([$alumniId]);
@@ -119,11 +119,11 @@ class EventModel
     }
     try {
       if ($isMyEvent) {
-        $query = "SELECT * FROM events
+        $query = "SELECT * FROM event
                   LEFT JOIN image 
-                  ON events.imageId=image.imageId
+                  ON event.imageId=image.imageId
                   LEFT JOIN alumni_event 
-                  ON alumni_event.eventId=events.eventId
+                  ON alumni_event.eventId=event.eventId
                   WHERE (alumniId=?)
                   AND (title LIKE '%$search%'
                   OR description LIKE '%$search%'
@@ -132,11 +132,11 @@ class EventModel
       $stmt = $this->connection->prepare($query);
       $stmt->execute([$alumniId]);
       } else {
-        $query = "SELECT * FROM events
+        $query = "SELECT * FROM event
                   LEFT JOIN image 
-                  ON events.imageId=image.imageId
+                  ON event.imageId=image.imageId
                   LEFT JOIN alumni_event 
-                  ON alumni_event.eventId=events.eventId
+                  ON alumni_event.eventId=event.eventId
                   WHERE (title LIKE '%$search%'
                   OR description LIKE '%$search%'
                   OR location LIKE '%$search%');
@@ -158,7 +158,7 @@ class EventModel
     }
   }
   public function EventImages($eventId){
-    $stmt = $this->connection->prepare('SELECT * FROM events LEFT JOIN image ON events.imageId=image.imageId WHERE eventId=:eventId');
+    $stmt = $this->connection->prepare('SELECT * FROM event LEFT JOIN image ON event.imageId=image.imageId WHERE eventId=:eventId');
     $stmt->bindParam(':eventId',$eventId);
     $stmt->execute();
     $data = $stmt->fetchAll();
@@ -176,7 +176,7 @@ class EventModel
 }
 
 public function EventData(){
-    $query = "SELECT * FROM events";  
+    $query = "SELECT * FROM event";  
     $stmt = $this->connection->prepare($query);  
     $stmt->execute(); 
     $data = $stmt->fetchAll();

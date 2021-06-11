@@ -91,21 +91,3 @@ include_once '../src/templates/nav.php';
 include_once '../src/templates/footer.php' 
 ?>
 <?php include_once '../src/templates/GeneralScripts.php' ?>
-
-
-<<<<<<< HEAD
-<!-- <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
-<script type="module" src="/js/Alumni/JobPage.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/utility.js"></script> -->
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
-<?php
-include_once '../src/templates/GeneralScripts.php'
-?>
-=======
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
->>>>>>> main
