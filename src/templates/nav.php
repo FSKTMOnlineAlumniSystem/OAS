@@ -13,7 +13,7 @@
         strpos($_SERVER['REQUEST_URI'], 'homepage') ? " active" : "";
         ?> 
         ">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item 
         <?php
@@ -24,7 +24,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle
           <?php
-          strpos($_SERVER['REQUEST_URI'], 'jobpage') ? " active" : "";
+          strpos($_SERVER['REQUEST_URI'], 'job') ? " active" : "";
           ?>" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Jobs
           </a>
@@ -33,11 +33,17 @@
             <a class="dropdown-item" href="/myjob">My Job Advertisement</a>
           </div>
         </li>
-        <li class="nav-item 
-        <?php
-        strpos($_SERVER['REQUEST_URI'], 'eventpage') ? " active" : "";
-        ?>">
-          <a class="nav-link" href="/event">Event</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle
+          <?php
+          strpos($_SERVER['REQUEST_URI'], 'event') ? " active" : "";
+          ?>" href="#" id="eventDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Events
+          </a>
+          <div class="dropdown-menu" aria-labelledby="eventDropdown">
+            <a class="dropdown-item" href="/event">All Events</a>
+            <a class="dropdown-item" href="/my-event">My Events</a>
+          </div>
         </li>
         <li class="nav-item">
           <span class="nav-link" id="contact-us-nav-item">Contact Us</span>

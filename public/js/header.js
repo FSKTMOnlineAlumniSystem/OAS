@@ -48,7 +48,13 @@ if (logoutBtn !== null) {
     }).then(res =>
       res.json()
     ).then(data => {
-      location.href = "/login";
+      console.log(logoutBtn.dataset.userType);
+      console.log(logoutBtn.dataset);
+      if(logoutBtn.dataset.userType === 'alumni'){
+        location.href = "/login";
+      }else{
+        location.href = "/admin-login";
+      }
     })
   });
 }

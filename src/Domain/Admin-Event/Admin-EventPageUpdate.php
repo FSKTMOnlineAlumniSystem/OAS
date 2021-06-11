@@ -48,7 +48,7 @@ try {
       $eventId=$_GET['eventId'];
       $updateTheEvent = new UpdateEventModel($db->getConnection());	
       $imageId=$updateTheEvent-> getImageId($eventId);
-      echo $imageId;
+      // echo $imageId;
     // $data = $addJob_model->getMaxId();
     // $eventId = "E-" ;
     $adminId = $_SESSION['admin']['adminId'];         //ned change
@@ -70,17 +70,16 @@ try {
       // if($imageId==="Default"){
       //   $imageId=$EventId;
       // }
-      print 'hello';
+      // print 'hello';
       uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);//imageId
   }else{
-    print 'you salah le';
+    // print 'you salah le';
   
 } 
 // catch (Exception $e) {
 // echo "Exception: " . $e->getMessage();
 // }
-
-header("Location: /admin/event");
+echo '<script>location.href="/admin/event"</script>';
 }
 
 
@@ -194,7 +193,7 @@ header("Location: /admin/event");
             </div>
 
           </div>
-				  <!-- <input type="hidden" name="title" value=<?php echo $_GET['title'];?>> -->
+				  <!-- <input type="hidden" name="title" value=php echo $_GET['title'];?>> -->
           <input type="submit" name="update" id="saveButton" class="btn btn-primary float-right ml-2"></input>
           <button id="cancelButton" onclick="cancelUpdate()" type="button" class="btn btn-outline-secondary float-right">Cancel</button>
 

@@ -4,3 +4,4 @@
 <!-- general js files -->
 <script type="text/javascript" src="/js/utility.js"></script>
 <script type="text/javascript" src="/js/header.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>

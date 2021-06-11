@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
     require_once '../libs/PHPMailer/src/Exception.php';
 
     if(emailExists($conn,$email) == false){
-        header("location: /login?fgemailnotExists");
+        header("location: /admin-login?fgemailnotExists");
         exit();
     }else{
 

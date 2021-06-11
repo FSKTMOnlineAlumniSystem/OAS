@@ -97,13 +97,12 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerDropdownMenuButton">
         <a class="dropdown-item" href=<?php echo (isAlumni()) ? "/myprofile":"/adminprofile" ?>><i class="fas fa-user-circle pr-2" style="font-size:17px"></i>My Profile</a>
-        <div class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</div>
+        <div class="dropdown-item item--hover-light-bg" id="logout-btn" data-user-type=<?= (isAlumni()) ? "alumni": "admin"?>><i class="fas fa-sign-out-alt pr-2" style="font-size:17px"></i>Logout</div>
       </div>
     </div>
 
     <?php
     if (isAlumni()) {
-      // echo isset($_SESSION['alumni']) . " " . !empty($_SESSION['alumni']) . '<br>';
     ?>
       <div class="dropdown custom-bg--transparent">
         <button class="btn dropdown-toggle text-white pr-0" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
