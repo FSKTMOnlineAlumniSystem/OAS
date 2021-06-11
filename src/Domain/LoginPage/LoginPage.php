@@ -59,7 +59,7 @@ $conn = $db->getConnection();
         
 
         
-        <div class="container shadow-lg" style="height:75vh;">
+        <div class="container shadow-lg" style="height:80vh;">
             <div class="row align-items-center h-100">
                 <div
                     class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
@@ -67,7 +67,7 @@ $conn = $db->getConnection();
                     <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
-                    class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
+                    class="container col-md-6 bg-light h-100 p-4 d-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
                     </h3>
@@ -136,15 +136,15 @@ $conn = $db->getConnection();
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
-                    <div class="row w-100">
-                        <div class="col">
-                            <span type="signUp" class="signUPbutton d-flex justify-content-start align-items-start"
-                                data-toggle="modal" data-target="#signUP" style="font-size:1.5vw;">Sign
+                    <div class="row w-100 pt-2">
+                        <div class="col" style="text-align:left;">
+                            <span type="signUp" class="signUPbutton"
+                                data-toggle="modal" data-target="#signUP">Sign
                                 Up </span>
                         </div>
-                        <div class="col">
+                        <div class="col" style="text-align:right;">
                             <span data-toggle="modal" data-target="#forgot">
-                                <span class="forgotPsw" style="font-size:1.5vw;">Forgot
+                                <span class="forgotPsw">Forgot
                                     Password?</span></span>
                         </div>
                     </div>
