@@ -13,7 +13,7 @@ class Admin_EventModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM events');
+            $stmt = $this->connection->prepare('SELECT * FROM event');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -35,7 +35,7 @@ class Admin_EventModel
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$eventId]);
 
-    $sql = "DELETE FROM events WHERE eventId=?";
+    $sql = "DELETE FROM event WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
    //  $stmt->execute();
     $stmt->execute([$eventId]);
@@ -48,9 +48,9 @@ class Admin_EventModel
 
     public function getPicture(): array{
         $stmt = $this->connection->prepare('
-            SELECT * FROM events
+            SELECT * FROM event
             LEFT JOIN image 
-            ON events.imageId=image.imageId');
+            ON event.imageId=image.imageId');
         $stmt->execute();
         $data = $stmt->fetchAll();
 
@@ -82,7 +82,7 @@ class Admin_EventModel
     //     return $image;
     // }
     public function getNumberOfEvent(): int{
-        $sql ="SELECT COUNT(eventId) FROM events";
+        $sql ="SELECT COUNT(eventId) FROM event";
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -179,11 +179,11 @@ class UpdateEventModel
     }
     // $prevTitle="";
     // $prevTitle=$_GET['title'];
-    // UPDATE `events` SET `title` = 'Constraint programming' WHERE `events`.`eventId` = 'E-1';
+    // UPDATE `event` SET `title` = 'Constraint programming' WHERE `event`.`eventId` = 'E-1';
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-            //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+            //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
             try{
-             $sql = "UPDATE events SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
+             $sql = "UPDATE event SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
              $stmt = $this->connection->prepare($sql);  
 
              $stmt->execute([$adminId,$title,$newDate,$description,$imageId,$locate,$eventId]);
@@ -193,8 +193,8 @@ class UpdateEventModel
             }     
     }
     public function getImageId($eventId) :string {
-        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
-         $sql = "SELECT imageId FROM `events` WHERE eventId=?";
+        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
+         $sql = "SELECT imageId FROM `event` WHERE eventId=?";
          $stmt = $this->connection->prepare($sql);  
          $stmt->execute([$eventId]);
          $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -233,7 +233,7 @@ class createEventModel
         $this->connection = $connection;
     }
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-             $sql = "INSERT INTO events (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
+             $sql = "INSERT INTO event (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
              $stmt = $this->connection->prepare($sql);
             //  $stmt->execute();
              $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
@@ -276,7 +276,7 @@ class InviteAlumniModel
         
    }
      public function InviteAlumni($alumniId,$eventId,$dateTime) {
-        //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
+        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
 
         $sql ="SELECT * FROM alumni_event WHERE alumniId=? AND eventId=?";
             $stmt = $this->connection->prepare($sql);

@@ -12,7 +12,7 @@ class HomePageModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM events');
+            $stmt = $this->connection->prepare('SELECT * FROM event');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
