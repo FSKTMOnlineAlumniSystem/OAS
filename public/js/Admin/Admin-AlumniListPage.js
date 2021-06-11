@@ -190,6 +190,13 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
 reload(alumniArray);
 window.approve = function(){
   $('#exampleModal').modal("show");
+  var $name = document.getElementById("input1").value;
+var $status = $('#status').find("option:selected").val();
+var $department = $('#department').find("option:selected").val();
+
+if($('#department').find("option:selected").val()=="All"){
+  $department="";
+}
 $.ajax({
   type: "POST",
   url: '/admin/approveAlumni',
@@ -201,58 +208,80 @@ $.ajax({
     console.log(outputList);
     reload(outputList);
     $('#exampleModal').modal("hide");
+    $.ajax({
+      type: "POST",
+      url: '/admin/searchAlumniName',
+      data: {name: $name, department:$department, status:$status},
+      success:  function(data)
+      { 
+        var outputList = JSON.parse(data);
+        alumniArray = outputList;
+        console.log(outputList);
+        reload(outputList);
+      }
+    })
   }
 });
 }
-//search bar filter
-var searchBar = document.getElementById('searchBar');
-searchBar.addEventListener('click', (e) => {
-  e.preventDefault();
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("input1");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (var i = 1; i < tr.length; i++) {
-    var tds = tr[i].getElementsByTagName("td");
-    var flag = false;
-    for (var j = 0; j < tds.length; j++) {
-      var td = tds[j];
-      if (td.textContent.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-      }
-    }
-    if (flag) {
-      tr[i].style.display = "";
-    }
-    else {
-      tr[i].style.display = "none";
-    }
-  } e.preventDefault();
-});
 
-// $('#searchBar').click(function(){
-//   var search = document.getElementById("input1").value;
-//   if (search == "") {
-//     alert("Name must be filled out");
-//   }
-//   console.log("pls"+search);
-//   $.ajax({
-//     url: 'searchAllJob',
-//     type: 'post',
-//     data: {search: search},
-//     success: function(resp){
-//      console.log("success");
-//     //  console.log(resp);
-//     let page = 0;
-//     var jobtList =JSON.parse(resp);
- 
-//      loadJobList(page,jobtList);
-//     },
-     
-//   });
 
+
+// search bar filter
+// var searchBar = document.getElementById('searchBar');
+// searchBar.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("input1");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("myTable");
+//   tr = table.getElementsByTagName("tr");
+//   for (var i = 1; i < tr.length; i++) {
+//     var tds = tr[i].getElementsByTagName("td");
+//     var flag = false;
+//     for (var j = 0; j < tds.length; j++) {
+//       var td = tds[j];
+//       if (td.textContent.toUpperCase().indexOf(filter) > -1) {
+//         flag = true;
+//       }
+//     }
+//     if (flag) {
+//       tr[i].style.display = "";
+//     }
+//     else {
+//       tr[i].style.display = "none";
+//     }
+//   } e.preventDefault();
 // });
+
+var searchBar=document.getElementById('searchBar');
+searchBar.addEventListener('click',(e)=>{
+  e.preventDefault();
+  var $name = document.getElementById("input1").value;
+  var $status = $('#status').find("option:selected").val();
+  var $department = $('#department').find("option:selected").val();
+  console.log($name);
+  console.log($status);
+  console.log($department);
+  if($('#department').find("option:selected").val()=="All"){
+    $department="";
+  }
+  console.log($department);
+  $.ajax({
+    type: "POST",
+    url: '/admin/searchAlumniName',
+    data: {name: $name, department:$department, status:$status},
+    success:  function(data)
+    { 
+      var outputList = JSON.parse(data);
+      alumniArray = outputList;
+      console.log(outputList);
+      reload(outputList);
+    }
+});
+  e.preventDefault();
+})
+
+
 
 window.getAlumniId = function(){
   return localStorage.getItem("alumniId");
@@ -289,48 +318,89 @@ $.ajax({
         });
 }
 
-//filter by using dropdown
-$(document).ready(function () {
-  $("#status,#department").on("change", function () {
-    var status = $('#status').find("option:selected").val();
-    var department = $('#department').find("option:selected").val();
-    SearchData(status, department)
-  });
-});
-window.SearchData = function (status, department) {
-  if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
-    $('#myTable tbody tr').show();
-  } else {
-    $('#myTable tbody tr:has(td)').each(function () {
-      var rowStatus = $.trim($(this).find('td:eq(4)').text());
-      var rowDepartment = $.trim($(this).find('td:eq(3)').text());
-      if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
-        if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
-        if (status != 'All' || department == 'All') {
-          if (rowStatus.toUpperCase() == status.toUpperCase()) {
-            $(this).show();
-          } else {
-            $(this).hide();
-          }
-        }
-        if (department != 'All' || status == 'All') {
-          if (rowDepartment == department) {
-            $(this).show();
-          }
-          else {
-            $(this).hide();
-          }
-        }
-      }
-
-    });
+var searchBar=document.getElementById('searchBar');
+$("#status,#department").on("change", function () {
+  // e.preventDefault();
+  var $name = document.getElementById("input1").value;
+  var $status = $('#status').find("option:selected").val();
+  var $department = $('#department').find("option:selected").val();
+  
+  if($('#department').find("option:selected").val()=="All"){
+    $department="";
   }
-}
+  console.log($department);
+  $.ajax({
+    type: "POST",
+    url: '/admin/searchAlumniName',
+    data: {name: $name, department:$department, status:$status},
+    success:  function(data)
+    { 
+      var outputList = JSON.parse(data);
+      alumniArray = outputList;
+      console.log(outputList);
+      reload(outputList);
+    }
+});
+  // e.preventDefault();
+})
+
+// filter by using dropdown
+// $(document).ready(function () {
+//   $("#status,#department").on("change", function () {
+//     var status = $('#status').find("option:selected").val();
+//     var department = $('#department').find("option:selected").val();
+//     console.log(status);
+//     SearchData(status, department)
+//   });
+// });
+// window.SearchData = function (status, department) {
+//   var name = document.getElementById("input1").value; 
+//   $.ajax({
+//     type: "POST",
+//     url: '/admin/searchAlumniName',
+//     data: {name: name, department:department, status:status},
+//     success:  function(data)
+//     { 
+//       var outputList = JSON.parse(data);
+//       alumniArray = outputList;
+//       console.log(outputList);
+//       reload(outputList);
+//     }
+// });
+  // if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
+  //   $('#myTable tbody tr').show();
+  // } else {
+  //   $('#myTable tbody tr:has(td)').each(function () {
+  //     var rowStatus = $.trim($(this).find('td:eq(4)').text());
+  //     var rowDepartment = $.trim($(this).find('td:eq(3)').text());
+  //     if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
+  //       if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
+  //         $(this).show();
+  //       } else {
+  //         $(this).hide();
+  //       }
+  //     } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
+  //       if (status != 'All' || department == 'All') {
+  //         if (rowStatus.toUpperCase() == status.toUpperCase()) {
+  //           $(this).show();
+  //         } else {
+  //           $(this).hide();
+  //         }
+  //       }
+  //       if (department != 'All' || status == 'All') {
+  //         if (rowDepartment == department) {
+  //           $(this).show();
+  //         }
+  //         else {
+  //           $(this).hide();
+  //         }
+  //       }
+  //     }
+
+  //   }
+  //   );
+  // }
+// }
 
 //clearAll
 $("#clearAll").on("click", function (e) {
@@ -341,9 +411,33 @@ $("#clearAll").on("click", function (e) {
   });
   $('#status option').prop('selected', function () {
     e.preventDefault();
+    // document.getElementById("input1").value == null;
     $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
+  document.getElementById('input1').value = "";
+  
+  var $name = document.getElementById("input1").value;
+  var $status = $('#status').find("option:selected").val();
+  var $department = $('#department').find("option:selected").val();
+  
+  if($('#department').find("option:selected").val()=="All"){
+    $department="";
+  }
+  console.log($department);
+  $.ajax({
+    type: "POST",
+    url: '/admin/searchAlumniName',
+    data: {name: $name, department:$department, status:$status},
+    success:  function(data)
+    { 
+      var outputList = JSON.parse(data);
+      alumniArray = outputList;
+      console.log(outputList);
+      reload(outputList);
+    }
+  // e.preventDefault();
+})
 });
 
 window.deleteCheckedRow = function(){

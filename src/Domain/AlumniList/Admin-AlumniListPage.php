@@ -122,7 +122,7 @@ includeWithVariables('../src/templates/header.php', array(
               <!-- search bar -->
               <div class="col-5 input-group mb-3">
                 <input id="input1" type="text" class="form-control" style="font-weight: 200; font-style: italic"
-                  placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                  placeholder="Search Alumni's Name" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button id="searchBar" class="btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -206,7 +206,7 @@ includeWithVariables('../src/templates/header.php', array(
                       <div class="modal-footer">
 
                         <button id="update" type="button" class="btn btn-primary" data-dismiss="modal"
-                          onclick="location.href ='editAlumniProfile?alumniId='+ getAlumniId()">
+                          onclick="location.href ='/admin/editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
                       <button id="approve" name="approve" type="submit" class="btn btn-info" onclick="approve()">Approve</button>
