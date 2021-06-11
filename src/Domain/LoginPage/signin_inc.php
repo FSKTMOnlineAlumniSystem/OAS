@@ -11,12 +11,8 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    if(adminApproved($conn,$email)){
-        loginUser($conn, $email, $password);
-    }else{
-        header("location: /login?NotApprovedYet");
-        exit();
-    }
+    loginUser($conn, $email, $password);
+    
 }
 
 
@@ -24,6 +20,10 @@ function loginUser($conn, $email, $password){
     $alumniData = emailExists($conn,$email);
     if($alumniData == false){
         header("location: /login?emailnotExists");
+        exit();
+    }
+    if(adminApproved($conn,$email) == false){
+        header("location: /login?NotApprovedYet");
         exit();
     }
     // $passwordNormal = $alumniData["password"];

@@ -14,11 +14,15 @@ if(isset($_POST["submit"])){
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
     require_once '../libs/PHPMailer/src/Exception.php';
-    if(adminApproved($conn,$email){
+   
     if(emailExists($conn,$email) == false){
         header("location: /login?fgemailnotExists");
         exit();
     }else{
+        if(adminApproved($conn,$email) == false){
+            header("location: /login?NotApprovedYet");
+            exit();
+        }
 
         $newPassword = randomPassword();
         $hashednewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -66,10 +70,6 @@ if(isset($_POST["submit"])){
 
         exit(json_encode(array("status" => $status,"response" => $response)));
 
-    }
-    }else {
-        header("location: /login?NotApprovedYet");
-        exit();
     }
 }
 
