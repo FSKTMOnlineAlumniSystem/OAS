@@ -223,6 +223,7 @@ $conn = $db->getConnection();
                                             <img src="/Assets/imgs/add_image.jpg" class="picture-src m-auto"
                                                 id="wizardPicturePreview" title="">
                                             <input type="file" id="wizard-picture" name="profilePicture">
+                                            <input type="file" name="profilePicture" id="profilePicture" class="d-none">
                                         </div>
                                         <!-- <h6 id="choosePictureDescription">Choose Picture</h6> -->
                                         <h6 id="choosePictureDescription"></h6>

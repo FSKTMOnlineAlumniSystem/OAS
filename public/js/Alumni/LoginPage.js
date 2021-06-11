@@ -138,25 +138,24 @@ function jumpHome() {
 img.addEventListener('change', (e) => readURL(e));
 
 function readURL(e) {
-
     let allowedExtensions =
         /(\.png|\.jpg|\.jpeg)$/i;
-
-    if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-
+    if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
+        // To handle the file size
+        choosePictureDescription.textContent = "Image size must be smaller than 10MB";
+    }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
+        profilePicture.files = e.target.files;
         var reader = new FileReader();
-
         reader.onload = function (e) {
             wizardPicturePreview.src = e.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
         choosePictureDescription.textContent = "Choose picture";
-
     } else {
         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
     }
-
 }
+
 
 //form validation for sign up
 form.addEventListener('submit', (e) => {
