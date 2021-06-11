@@ -234,10 +234,14 @@ window.deleteByJquery= function (o){
   console.log('here delete ajax')
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
+  var search = document.getElementById("input1").value;
   console.log($eventToDelete);
   $.ajax({
     url:"/admin/delete/event",    //the page containing php script
-    data: { deleteEvent: $eventToDelete},
+    data: { 
+      deleteEvent: $eventToDelete,
+      search: search
+    },
     type: 'POST',    //request type,
     // dataType: 'json',
     success: function(resp){
@@ -257,6 +261,7 @@ window.DeleteCheckedRow = function () {
   var $eventId=[];
     console.log('delete checked row');
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var search = document.getElementById("input1").value;
     for (var i = checkboxes.length - 1; i > 0; i--) {
       if (checkboxes[i].checked) {
         $eventId.push(eventArray[i-1].eventId);
@@ -266,7 +271,11 @@ window.DeleteCheckedRow = function () {
     // console.log($eventId);
     $.ajax({
       url:"/admin/delete/event",    //the page containing php script
-      data: { checkbox: "checked",deleteEvent: $eventId},
+      data: { 
+        checkbox: "checked",
+        deleteEvent: $eventId,
+        search: search
+      },
       type: 'POST',    //request type,
       // dataType: "json",
       success: function(resp){
@@ -283,6 +292,34 @@ window.DeleteCheckedRow = function () {
        checkboxes[0].checked = false;
   };
 // filter
+$('#searchBar').click(function(){
+  var search = document.getElementById("input1").value;
+  if (search == "") {
+    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    // and add a return here so below code will not run
+  }
+var outputList;
+  $.ajax({
+    url: '/admin/search/event',
+    type: 'post',
+    data: {search: search},
+    success: function(resp){
+    let page = 0;
+    console.log(resp);
+    outputList =JSON.parse(resp);
+    eventArray=outputList;
+    loadEventList(pageIndex,outputList);
+    //  if(outputList.length===0){
+    //   loadMyJobList(page,outputList,-1);
+    // }else{
+    //  loadMyJobList(page,outputList,outputList.length);
+    // }
+    },
+     
+  });
+
+});
+/*
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
@@ -308,7 +345,7 @@ searchBar.addEventListener('click', (e) => {
     }
   }
 });
-
+*/
 $(document).ready(function () {
   $("#status,#department").on("change", function () {
     var status = $('#status').find("option:selected").val();
@@ -351,6 +388,7 @@ window.SearchData = function (status, department) {
     });
   }
 }
+
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 // stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));

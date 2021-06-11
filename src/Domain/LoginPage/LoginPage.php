@@ -16,6 +16,8 @@ $conn = $db->getConnection();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
     <!-- ICON FONT AWESOME -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -23,10 +25,11 @@ $conn = $db->getConnection();
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
-    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
-    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
     
+    <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+    <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
+
 
 <title><?= $GLOBALS['title']; ?></title>
 </head>
@@ -66,7 +69,7 @@ $conn = $db->getConnection();
                 <div
                     class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
-                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Alumni!
+                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
                         <div class="form-label-group w-100">
@@ -76,16 +79,18 @@ $conn = $db->getConnection();
                             <?php
                                 if (isset($_GET["emailnotExists"])){
                                     echo'
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail">Email address</label>
+                                    <label for="staticEmail" >Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
                                     ';
                                 }else if (isset($_GET["passwordWrong"])){
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email" value="';?><?php 
+                                    echo $_SESSION["CorrectEmail"];
+                                    echo'"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Correct Email</div>
@@ -94,7 +99,7 @@ $conn = $db->getConnection();
                                     ';
                                 }else{
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
+                                    <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
@@ -134,12 +139,12 @@ $conn = $db->getConnection();
                     <div class="row w-100">
                         <div class="col">
                             <span type="signUp" class="signUPbutton d-flex justify-content-start align-items-start"
-                                data-toggle="modal" data-target="#signUP">Sign
+                                data-toggle="modal" data-target="#signUP" style="font-size:1.5vw;">Sign
                                 Up </span>
                         </div>
                         <div class="col">
                             <span data-toggle="modal" data-target="#forgot">
-                                <span class="forgotPsw">Forgot
+                                <span class="forgotPsw" style="font-size:1.5vw;">Forgot
                                     Password?</span></span>
                         </div>
                     </div>

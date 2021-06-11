@@ -81,6 +81,32 @@ class Admin_EventModel
     //     }
     //     return $image;
     // }
+    // ORDER BY postedDateTime DESC
+    public function getSearch($id) {
+        $stmt = $this->connection->prepare("
+            SELECT * FROM event
+            LEFT JOIN image 
+            ON event.imageId=image.imageId 
+            WHERE eventId='$id' ");
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data['imageId']=='Default'||$data['imageId']==null){
+            return '/Assets/imgs/default_events.jpg';
+        }
+        else if($data['imageData']!=null){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }
+    }
+    public function search($searchterm){
+        $query = "SELECT * FROM `event` WHERE CONCAT( `title`, `description`, `location`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
     public function getNumberOfEvent(): int{
         $sql ="SELECT COUNT(eventId) FROM event";
         $result = $this->connection->prepare($sql); 
@@ -166,8 +192,84 @@ class AlumniModel
         }
         return $image;
     }
-}
+    public function getSearch($id) {
+        $stmt = $this->connection->prepare("
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId 
+            WHERE alumniId='$id' ");
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data['imageId']=='Default'||$data['imageId']==null){
+            return '/Assets/imgs/default_user.jpg';
+        }
+        else if($data['imageData']!=null){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }
+    }
+    public function search($searchterm){
+        $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
+    public function searchDepartment($searchterm){
+        $query = "SELECT * FROM `alumni` WHERE CONCAT(`department`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
+    public function searchStatus($status, $eventId){
+        $query = "SELECT alumniId FROM `alumni_event` WHERE eventId=?";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute([$eventId]);
+        $data = $stmt->fetchAll();
 
+        $alumni = array();
+        foreach($data as $eachAlumni){
+            // print_r();
+            $query = "SELECT * FROM `alumni` WHERE alumniId=?";  
+            $stmt = $this->connection->prepare($query);  
+            $stmt->execute([$eachAlumni['alumniId']]);
+            $alumniData = $stmt->fetch(PDO::FETCH_ASSOC);
+            array_push($alumni,$alumniData);
+        }
+        // print_r($alumni);
+        // print_r($alumni[0]['alumniId']);
+        // print_r($alumni[1]['alumniId']);
+        
+        if(!$data){
+            return array();
+        }
+        if($status=='Invited'){
+            return $alumni; 
+        }else{
+            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt->execute();
+            $allAlumni = $stmt->fetchAll();
+            foreach($alumni as $eachAlumni){
+                if(in_array($eachAlumni,$allAlumni)){
+                    $key=array_search($eachAlumni,$allAlumni);
+                    unset($allAlumni[$key]);
+                }
+            }
+            $allAlumni = array_values($allAlumni);
+            return $allAlumni;
+    }
+        
+    }
+
+    
+
+}
 
 class UpdateEventModel
 {
@@ -242,7 +344,7 @@ class createEventModel
     
     // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
     public function getMaxId(): int{
-        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM Events")->fetchColumn();
+        $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM event")->fetchColumn();
         return (int)$stmt;
 
     }
