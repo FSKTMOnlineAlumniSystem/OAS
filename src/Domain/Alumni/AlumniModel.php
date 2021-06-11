@@ -5,6 +5,8 @@ class AlumniModel
   private PDO $connection;
   private $totalNumberOfAlumni = 0;
   private $pageIndex=0;
+  private $search;
+  private $searchURL = "";
 
 
     public function __construct(PDO $connection)
@@ -14,6 +16,41 @@ class AlumniModel
         SELECT COUNT(*) FROM alumni 
         WHERE isActive = 1';
         $this->count($sql);
+    }
+
+
+    public function AlumniImages($alumniId){
+        $stmt = $this->connection->prepare('SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId');
+        $stmt->bindParam(':alumniId',$alumniId);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        $image = array();
+        foreach($data as $eachuser){
+            if(!is_null($eachuser['imageData'])){
+                $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+                array_push($image,$temp_string);
+            }else{
+                    $temp_path = '/Assets/imgs/jobdefault.jpg';
+                    array_push($image,$temp_path);
+            }
+    }
+        return $image;
+    }
+
+    public function AlumniData(){
+        $query = "SELECT * FROM alumni WHERE isActive = 1 AND approvedBy!='' AND  isEmailPublic = 1  order by RAND() LIMIT 0, 6";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        // print_r($data);
+        return $data; 
+    }
+
+    public function setPageIndex($pageIndex){
+        $this->pageIndex=$pageIndex;
     }
 
     public function count($sql){
@@ -63,33 +100,34 @@ class AlumniModel
     }
 
     public function searchAlgo($searchQuery){
+        $this->search = $searchQuery;
+        $offset = ($this->pageIndex -1) * 10;
         $query ='
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId
             WHERE isActive = 1 AND
             CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
-            LIKE \'%'.$searchQuery.'%\'
-            LIMIT 0, 10';
+            LIKE \'%'.$this->search.'%\'
+            LIMIT :offset, 10';
         $count = '
             SELECT COUNT(*) FROM alumni 
             WHERE isActive = 1 AND
             CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
-            LIKE \'%'.$searchQuery.'%\'';
+            LIKE \'%'.$this->search.'%\'';
         try {
             $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':offset',$offset );
             $stmt->execute();
             $data = $stmt->fetchAll();
             $this->count($count);
+            if ($this->totalNumberOfAlumni <10){
+                $this->search = null;
+            }
 
             if (!$data) {
-                echo '
-                <script>
-                    location.href = "/alumni";
-                    alert("Sorry, we cannot match any result for your search");
-                </script>';
+
             }
-            $this->pageIndex=1;
             return $data;
 
         } catch (PDOException $exception) {
@@ -101,60 +139,77 @@ class AlumniModel
 
     public function moreContent(){
         $offset = ($this->pageIndex) * 10;
-        try {
-            $stmt = $this->connection->prepare('
-            SELECT * FROM alumni 
-            WHERE isActive = 1
-            LIMIT :offset, 10');
-            $stmt->bindParam(':offset',$offset );
-            $stmt->execute();
-            $data = $stmt->fetchAll();
-
-            if (!$data) {
-                return false;
-            }else{
+        if ($this->search!=null && $this->totalNumberOfAlumni >10){
+            if ($this->totalNumberOfAlumni - $this->pageIndex*10 > 0){
                 return true;
+            } else {
+                return false;
             }
+        }else{
+            try {
+                $stmt = $this->connection->prepare('
+                SELECT * FROM alumni 
+                WHERE isActive = 1
+                LIMIT :offset, 10');
+                $stmt->bindParam(':offset',$offset );
+                $stmt->execute();
+                $data = $stmt->fetchAll();
 
-        } catch (PDOException $exception) {
-            error_log('AlumniModel: moreContent: ' . $exception->getMessage());
-            throw $exception;
+                if (!$data) {
+                    return false;
+                }else{
+                    return true;
+                }
+
+            } catch (PDOException $exception) {
+                error_log('AlumniModel: moreContent: ' . $exception->getMessage());
+                throw $exception;
+            }
         }
 
     }
 
     public function previousPageButton(){
+        if ($this->search!=null){
+            $this->searchURL='&search='.$this->search;
+        }
         if ($this->pageIndex == 1) {
             echo'
             <li class="page-item disabled">
-                <button id="previousPage" onclick="location.href=\'/alumni?page='.$this->pageIndex.'\'" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+                <button id="previousPage" onclick="location.href=\'/alumni?page='.$this->pageIndex.$this->searchURL.'\'" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
             </li>';
         // This is the first page
         } else {
             echo'
             <li class="page-item" id="previousPage">
-                <button onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'" class="page-link">Previous</button>
+                <button onclick="location.href=\'/alumni?page='.($this->pageIndex-1).$this->searchURL.'\'" class="page-link">Previous</button>
             </li>';
         }
     }
 
     /*   This is pages button for button*/
     public function nextPageButton(){
-        if (!$this->moreContent()) {
+        if ($this->search!=null){
+            $this->searchURL='&search='.$this->search;
+        }
+        if (!$this->moreContent() || $this->totalNumberOfAlumni<10) {
             echo'
             <li class="page-item disabled">
-                <button id="nextPage"  onclick="location.href=\'/alumni?page='.$this->pageIndex.'\'" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+                <button id="nextPage"  onclick="location.href=\'/alumni?page='.$this->pageIndex.$this->searchURL.'\'" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
             </li';
         //This is the last page
         } else {
             echo'
             <li class="page-item" id="nextPage">
-                <button  onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'" class="page-link" >Next</button>
+                <button  onclick="location.href=\'/alumni?page='.($this->pageIndex+1).$this->searchURL.'\'" class="page-link" >Next</button>
             </li>';
         }
     }
 
     public function remainingPageButton(){
+        if ($this->search!=null){
+            $this->searchURL='&search='.$this->search;
+        }
         // these are for the 1,2,3 pages
         if ($this->totalNumberOfAlumni <= 10) {
             // when pages content <=10
@@ -164,10 +219,10 @@ class AlumniModel
             </li>';
         } else if ($this->totalNumberOfAlumni <= 20) {
             // when pages content <=20
-            if (!$this->moreContent()) {// no more content
+            if (!$this->moreContent() && $this->pageIndex != 1) {// no more content
                 echo'
                 <li class="page-item">
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).$this->searchURL.'\'">'.($this->pageIndex-1).'</button>
                 </li>
                 <li class="page-item disabled" >
                     <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.($this->pageIndex).'</button>
@@ -178,7 +233,7 @@ class AlumniModel
                     <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$this->pageIndex.'</button>
                 </li>
                 <li class="page-item" >
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).$this->searchURL.'\'">'.($this->pageIndex+1).'</button>
                 </li>';
             }
         } else {
@@ -189,32 +244,32 @@ class AlumniModel
                         <button class="btn btn-link page-link page-link" tabindex="-1" aria-disabled="true ">'.$this->pageIndex.'</button>
                     </li>
                     <li class="page-item" >
-                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).$this->searchURL.'\'">'.($this->pageIndex+1).'</button>
                     </li>
                     <li class="page-item" >
-                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+2).'\'">'.($this->pageIndex+2).'</button>
+                        <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+2).$this->searchURL.'\'">'.($this->pageIndex+2).'</button>
                     </li>';
-            } else if(!$this->moreContent()){// no more content
+            } else if(!$this->moreContent() && $this->pageIndex!=2){// no more content
                 echo'
                 <li class="page-item" >
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-2).'\'">'.($this->pageIndex-2).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-2).$this->searchURL.'\'">'.($this->pageIndex-2).'</button>
                 </li>
                 <li class="page-item" >
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).$this->searchURL.'\'">'.($this->pageIndex-1).'</button>
                 </li>
                 <li class="page-item disabled">
                     <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.$this->pageIndex.'</button>
                 </li>';
-            } else if ($this->moreContent()) {// more content
+            } else if ($this->moreContent() && $this->pageIndex!=1) {// more content
                 echo'
                 <li class="page-item">
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).'\'">'.($this->pageIndex-1).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex-1).$this->searchURL.'\'">'.($this->pageIndex-1).'</button>
                 </li>
                 <li class="page-item disabled" >
                     <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">'.($this->pageIndex).'</button>
                 </li>
                 <li class="page-item" >
-                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).'\'">'.($this->pageIndex+1).'</button>
+                    <button class="btn btn-link page-link" onclick="location.href=\'/alumni?page='.($this->pageIndex+1).$this->searchURL.'\'">'.($this->pageIndex+1).'</button>
                 </li>';
             }
         }

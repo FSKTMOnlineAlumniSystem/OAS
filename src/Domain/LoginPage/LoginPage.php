@@ -1,12 +1,16 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/LoginPage/GeneralLoginFx.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">
 <!-- GOOGLE FONT POPPINS -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -19,7 +23,7 @@ $conn = $db->getConnection();
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../src/css\Alumni\index.css">
+    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css">
     <link rel="stylesheet" href="/css/Alumni/EditMyProfilePage.css">
     <link rel="stylesheet" href="/css/Alumni/LoginPage.css">
     
@@ -140,7 +144,7 @@ $conn = $db->getConnection();
                         </div>
                     </div>
                     <div class="bottom-right">
-                        <a href="/admin-loginPage">I am Admin</a>
+                        <a href="/admin-login">I am Admin</a>
                     </div>
                 </div>
             </div>
@@ -162,8 +166,8 @@ $conn = $db->getConnection();
                 </div>
                 <form id="form_2" action="/api/forgot" method="post">
                     <div class="modal-body">
-                        <span>When you fill in your registered email address,
-                            you will be sent instructions on how to reset your password.</span>
+                        <span>When you fill in your registered email address here,
+                            you will receive a new password. Please login to your account with that new password sent to your email.</span>
                         <br>
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
@@ -378,11 +382,9 @@ $conn = $db->getConnection();
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
-integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script type="module" src="/libs/bootstrap.bundle.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<?php
+include '../src/templates/GeneralScripts.php'
+?>
    
    <!-- wait for verification  -->
 
@@ -412,7 +414,7 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                                 <br>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" name="submit" class="btn btn-primary signinbtn">Got It!</button>
+                                <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
                             </div>
                         </form>
                     </div>
@@ -429,6 +431,63 @@ integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yA
                             $("#id").modal("hide");
                         });
                     }
+                    function gotit(){
+                        console.log("hi");
+                       location.href = "/login";
+                   }
+            </script>
+    ';
+}
+?>
+
+<!-- not approved yet -->
+<?php
+    if (isset($_GET["NotApprovedYet"])) {
+        
+        echo'
+            <div class="modal fade" id="NotApprovedYet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                    style="color: rgb(13, 175, 18);"></i>Please wait patiently!</h5>
+                            <button type="button" class="close" data-dismiss="modal" onclick=window.closeModal()>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="form_3">
+                            <div class="modal-body">
+                                <span>Thank you for signing up.<br>
+                                    Your application is not approved by the admin, please wait patiently.<br>
+                                </span>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#NotApprovedYet").modal("show");
+                    });
+
+                    function closeModal(){
+                        $(document).ready(function(){
+                            $("#NotApprovedYet").modal("hide");
+                        });
+                    }
+
+                    
+                    function gotit(){
+                         console.log("hi");
+                        location.href = "/login";
+                    }
+                   
+  
             </script>
     ';
 }
@@ -475,6 +534,56 @@ if (isset($_GET["doneSend"])) {
                     $("#doneSend").modal("hide");
                 });
             }
+        </script>
+';
+}
+?>
+
+<!-- chgpsw -->
+
+<?php
+
+if (isset($_GET["sendPsw"])) {
+    echo'
+        <div class="modal fade" id="sendPsw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>New Password sent to your email!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>Please sign in with the password sent to your email.<br>
+                                You are recommended to change your account password after signing in. <br>
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#sendPsw").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#sendPsw").modal("hide");
+                });
+            }
+
+            function gotit(){
+                
+               location.href = "/login";
+           }
         </script>
 ';
 }

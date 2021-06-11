@@ -1,9 +1,9 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-include '../src/Domain/Database.php';
-include '../src/Domain/LoginPage/class.verifyEmail.php';
-include '../src/Domain/LoginPage/GeneralLoginFx.php';
-include '../src/utilities/uploadImage.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/LoginPage/class.verifyEmail.php';
+include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
+include_once '../src/utilities/uploadImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
@@ -44,7 +44,7 @@ if(isset($_POST["submit"])){
     // $_SESSION["pic"] = $_FILES["profilePicture"];
 
     $encrypted = Encrypt($email);
-    verifyEmail($email,$encrypted);
+    
 
     insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
     
@@ -64,7 +64,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
         exit();
     }
 
-    
+    verifyEmail($email,$encrypted);
 
     $alumniId = "AL-" . getLength($conn)+1 ;
     // $alumniId = $email;
@@ -149,7 +149,7 @@ function verifyEmail($email,$encrypted){
         $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
         $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
         $mail->AddAddress($email);
-        $mail->Subject = 'Change Password';
+        $mail->Subject = 'Verify Your Email';
         $content = str_replace(
             array('%url%', '%to%'),
             array($base_url,$email),

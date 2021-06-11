@@ -25,7 +25,7 @@ CREATE TABLE Alumni_Event(
     notificationClosedByAlumni boolean NOT NULL
 );
 CREATE TABLE Alumni(
-    alumniId varchar(2) NOT NULL PRIMARY KEY,
+    alumniId varchar(10) NOT NULL PRIMARY KEY,
     approvedBy varchar(10) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,

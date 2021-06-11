@@ -1,24 +1,35 @@
-<?php
-include '../src/templates/header.php';
-?>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
+  <!-- header end here -->
   <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css"> -->
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 crossorigin="anonymous"></script>
 <!-- css -->
-<link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css">
-  <title>Invite Alumni - Online Alumni System</title>
-</head>
+<!-- <link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css"> -->
+  <!-- <title>Invite Alumni - Online Alumni System</title> -->
+<!-- </head> -->
 
-<body>
+<!-- <body> -->
 <?php
  $eventId=$_GET['eventId'];
   // include '../config/config.php';
-  include '../src/Domain/Admin-Event/Admin-EventModel.php';
-  include '../src/Domain/Database.php';
-
+  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Database.php';
+  ?>
+  <?php
+  include_once '../src/utilities/includeWithVariable.php' ?>
+  <?php
+  includeWithVariables('../src/templates/header.php', array(
+    'asmin_inviteAlumniPage_css' => '/css/Admin/Admin-InviteAlumniPage.css',
+    'admin_alumniListPage_css' => '/css/Admin/Admin-AlumniListPage.css',
+    'index' => '/css/Alumni/index.css'
+  ));
+  
+  $_SESSION['admin']['adminId'];
+  
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
@@ -37,11 +48,10 @@ crossorigin="anonymous"></script>
    try {
     $event_model = new AlumniModel($db->getConnection());
     $all_alumni = $event_model->getAll();
-    if (!empty($all_alumni)) {
-
-      foreach ($all_alumni as $alumni) {
-        // echo "$activity[eventId] ";
-      }
+    $allImage = $event_model->getPicture();
+   
+    for ($i=0; $i< count($all_alumni); $i++){
+      $all_alumni[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();

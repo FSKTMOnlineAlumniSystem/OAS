@@ -197,7 +197,8 @@ closeModal("#deleteModal");
 $('#search-button').click(function(){
   var search = document.getElementById("search_item").value;
   if (search == "") {
-    alert("Name must be filled out");
+    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    // and add a return here so below code will not run
   }
 
   $.ajax({

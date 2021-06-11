@@ -28,11 +28,18 @@ let defineAlumni=alumni.alumniId;
   td.appendChild(div);
   tr.appendChild(td);
   
+  var check=alumni.imageId==null
+  console.log("check "+check);
   // avatar column
   td = document.createElement('td');
-  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${'/Assets/imgs/'+alumni.imageId}>
+  if(check){
+    td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
+    <img class='table__td--height' src="/Assets/imgs/default_user.png">
   </div>`
+  }else{
+  td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
+    <img class='table__td--height' src=${alumni.imageId}>
+  </div>`}
   td.setAttribute('width','140px')
   const img = document.createElement('img');
   img.classList.add('table__td--height');
@@ -204,7 +211,7 @@ window.inviteNewAlumni = function(o){
     document.cookie = "eventId="+eventId;
     document.cookie = "dateTime="+dateTime;
     $.ajax({
-      url:"./inviteFunction",    //the page containing php script
+      url:"/admin/invite/function",    //the page containing php script
       data: { alumniId: alumniId, 
               eventId: eventId,
               dateTime: dateTime,
@@ -252,7 +259,7 @@ window.inviteCheckedAlumni = function () {
   $eventId=$eventId.toString();
   $dateTime=$dateTime.toString();
   $.ajax({
-    url:"./inviteFunction",    //the page containing php script
+    url:"/admin/invite/function",    //the page containing php script
     data: { alumniId: $alumniId, 
             eventId: $eventId,
             dateTime: $dateTime,

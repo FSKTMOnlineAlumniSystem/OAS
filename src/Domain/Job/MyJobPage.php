@@ -37,8 +37,6 @@ include_once '../src/templates/nav.php';
 
 
 
-<div class ="container my-5" id='main-body'>
-
 <div class="searchBarBG">
 
  <div class="containerSB">
@@ -55,7 +53,9 @@ include_once '../src/templates/nav.php';
    </div>
  </div>
 
-</div><br><br>
+</div>
+<div class ="container my-5" id='main-body'>
+
           <h1><b>Jobs</b></h1>
         
           <hr>

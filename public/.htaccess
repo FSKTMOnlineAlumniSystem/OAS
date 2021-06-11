@@ -10,6 +10,6 @@ RewriteBase /
 # if the file with the specified name in the browser doesn’t exist, or the directory in the browser doesn’t exist 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# then procede to the rewrite rule below
+# then proceed to the rewrite rule below
 
 RewriteRule ^(.*)$ index.php [NC,QSA]

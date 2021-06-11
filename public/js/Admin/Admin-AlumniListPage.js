@@ -156,6 +156,7 @@ alumniArray.forEach((alumni, index) => {
 // click alumni name will pop out alumni details
 document.querySelectorAll('.alumniName').forEach((alumni) => {
   alumni.addEventListener('click', (e) => {
+    localStorage.setItem('updateId', e.target.id);
     localStorage.setItem('alumniId', alumniArray[e.target.id].alumniId);
     $("#image").attr('src', alumniArray[e.target.id].imageId)
     $("#name").text(alumniArray[e.target.id].name);
@@ -176,11 +177,11 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     }else{
       document.getElementById("approve").disabled = false;
     }
-    $("#approve").click(function () {
-      if (alumniArray[e.target.id].approvedBy == "") {
-        alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-      }
-    })
+    // $("#approve").click(function () {
+    //   if (alumniArray[e.target.id].approvedBy == "") {
+    //     alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
+    //   }
+    // })
     $('#exampleModal').modal("show");
   }
   )
@@ -191,7 +192,7 @@ window.approve = function(){
   $('#exampleModal').modal("show");
 $.ajax({
   type: "POST",
-  url: 'approveAlumni',
+  url: '/admin/approveAlumni',
   data: {alumniId: localStorage.getItem("alumniId")},
   success:  function(data)
   { 
@@ -276,7 +277,7 @@ window.deleteByJquery= function (o){
 
 $.ajax({
                     type: "POST",
-                    url: 'deleteAlumni',
+                    url: '/admin/deleteAlumni',
                     data: {deleteAlumniId: $deleteAlumniId},
                     success:  function(data)
                     { 
@@ -362,7 +363,7 @@ window.deleteCheckedRow = function(){
     console.log(document.querySelectorAll(':checked').length-2);
     $.ajax({
       type: "POST",
-      url: 'deleteMultipleAlumni',
+      url: '/admin/deleteMultipleAlumni',
       data: {listOfDeleteAlumniId: $alumniId, count:count},
       success:  function(data)
       { 

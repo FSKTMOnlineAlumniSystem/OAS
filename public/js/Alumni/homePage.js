@@ -3,45 +3,44 @@ import { dummyResponse } from "../dummydata.js";
 localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
 
-
 //get latest event
-var latest_1 = [];
-var dayy_1 = [];
-var yearr_1 = [];
+// var latest_1 = [];
+// var dayy_1 = [];
+// var yearr_1 = [];
 
-for (let i = 0; i < dummyResponse.Event.length; i++) {
+// for (let i = 0; i < dummyResponse.Event.length; i++) {
 
-    var d = new Date(dummyResponse.Event[i].dateTime);
-    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
-    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+//     var d = new Date(dummyResponse.Event[i].dateTime);
+//     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+//     let mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
+//     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy_1[i] = mo + "," + da + "," + i;
-    yearr_1[i] = ye;
+//     dayy_1[i] = mo + "," + da + "," + i;
+//     yearr_1[i] = ye;
 
-}
+// }
 
-dayy_1.sort();
+// dayy_1.sort();
 
 
-for (var i = 0; i < dayy_1.length; i++) {
+// for (var i = 0; i < dayy_1.length; i++) {
 
-    //day,month,index
-    var a_1 = dayy_1[i].split(",");
-    var currentYr_1 = new Date();
-    var Yr_1 = currentYr_1.getFullYear();
+//     //day,month,index
+//     var a_1 = dayy_1[i].split(",");
+//     var currentYr_1 = new Date();
+//     var Yr_1 = currentYr_1.getFullYear();
 
-    if (yearr_1[a_1[2]] == Yr_1) {
-        latest_1[i] = a_1[2];
-    }
+//     if (yearr_1[a_1[2]] == Yr_1) {
+//         latest_1[i] = a_1[2];
+//     }
 
-}
+// }
 
 
 //event card
 for (let i = 0; i < 6; i++) {
 
-    var d = new Date(dummyResponse.Event[latest_1[i]].dateTime);
+    var d = new Date(event_array[i].dateTime);
 
     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
@@ -51,15 +50,15 @@ for (let i = 0; i < 6; i++) {
     card_event.setAttribute('class', 'swiper-slide pl-1 pr-1');
 
     card_event.innerHTML = `
-
-    <div class="card h-100" id="${dummyResponse.Event[latest_1[i]].eventId}">
-       
+    
+    <div class="card h-100" id="${event_array[i].eventId}">
+    <a style="text-decoration:none; color:black;" href="eventdetails?eventId=${event_array[i].eventId}">
             <div class="w-100 bg-dark d-flex" style="aspect-ratio:1/1;overflow:hidden;">
-                <img  class="card-img-top w-100 m-auto" src="/public/Assets/imgs/${dummyResponse.Event[latest_1[i]].imageId}" alt="Card image cap">
+                <img  class="card-img-top w-100 m-auto" src="${event_array[i].imageId}" alt="Card image cap">
             </div>
 
         <div class="card-body" >
-            <h5 class="card-title text-left">${dummyResponse.Event[latest_1[i]].title}</h5>
+            <h5 class="card-title text-left">${event_array[i].title}</h5>
             <div class="card-text">
                 <div class="row">
                     <div class="col-2 d-flex flex-column">
@@ -83,12 +82,14 @@ for (let i = 0; i < 6; i++) {
                             style="color: rgb(167, 0, 0);"></i>
                     </div>
                     <div class="col-10 d-flex flex-column">
-                        <span>${dummyResponse.Event[latest_1[i]].location}</span>
+                        <span>${event_array[i].location}</span>
                     </div>
                 </div>
             </div>                
          </div>
+         </a>
     </div>
+    
   `;
 
 
@@ -96,12 +97,12 @@ for (let i = 0; i < 6; i++) {
 
     const evtHandler = evt => {
 
-        localStorage.setItem('eventId', dummyResponse.Event[latest_1[i]].eventId);
-        location.href = "/src/html/Alumni/EventDetailsPage.html";
+        localStorage.setItem('eventId', event_array[i].eventId);
+        location.href = "eventdetails?eventId=".event_array[i].eventId;
 
     };
 
-    card_event.querySelector('#' + dummyResponse.Event[latest_1[i]].eventId).addEventListener('click', evtHandler);
+    card_event.querySelector('#' + event_array[i].eventId).addEventListener('click', evtHandler);
 
     E.appendChild(card_event);
 }
@@ -110,46 +111,47 @@ for (let i = 0; i < 6; i++) {
 
 //alumni card
 document.getElementById('alumni').innerHTML = "";
-
-for (let i = 0; i < 6; i++) {
-
+console.log(alumni_array.length);
+for (let i = 0; i < alumni_array.length; i++) {
+    // console.log(alumni_array.length);
     const card_alumni = document.createElement('div');
     card_alumni.setAttribute('class', 'swiper-slide pl-1 pr-1');
 
     card_alumni.innerHTML = `
-                     
-                            <div class="card h-100" id="${dummyResponse.Alumni[i].alumniId}">
 
+                            <div class="card h-100" id="${alumni_array[i].alumniId}">
+                            <a style="text-decoration:none; color:black;" href="alumnidetails?alumniId=${alumni_array[i].alumniId}">
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
-                                    <img class="card-img-top w-100" src="/public/Assets/imgs/${dummyResponse.Alumni[i].imageId}" alt="Card image cap"
+                                    <img class="card-img-top w-100" src="${alumni_array[i].imageId}" alt="Card image cap"
                                     width="100%">
                                 </div>
                                 <div class="card-body">
                                     <div class="row d-flex justify-content-center m-0">
                                         <b><h5 class="card-title-title">
-                                            ${dummyResponse.Alumni[i].name}</h5><b>
+                                            ${alumni_array[i].name}</h5><b>
                                     </div>
                                     <p class="card-text mb-1"><i class="fas fa-book-user text-secondary  mr-2"></i><span>Biography</span><br>
                                     <p class="card-text mb-0" style="display: -webkit-box;
                                         -webkit-line-clamp: 3;
                                         -webkit-box-orient: vertical;
                                         overflow: hidden;
-                                        text-overflow: ellipsis;">${dummyResponse.Alumni[i].biography}</p>
+                                        text-overflow: ellipsis;">${alumni_array[i].biography}</p>
                                     </p>
                                 </div>
+                                </a>
                             </div> `
 
 
     const A = document.getElementById('alumni');
 
-    const evtHandler = evt => {
+    // const evtHandler = evt => {
 
-        localStorage.setItem('alumniprofile', i);
-        location.href = "/src/html/Alumni/AlumniProfilePage.html";
+    //     localStorage.setItem('alumniprofile', i);
+    //     location.href = "/src/html/Alumni/AlumniProfilePage.html";
 
-    };
+    // };
 
-    card_alumni.querySelector('#' + dummyResponse.Alumni[i].alumniId).addEventListener('click', evtHandler);
+    // card_alumni.querySelector('#' + dummyResponse.Alumni[i].alumniId).addEventListener('click', evtHandler);
 
     A.appendChild(card_alumni);
 
@@ -160,34 +162,34 @@ var latest = [];
 var dayy = [];
 var yearr = [];
 
-for (let i = 0; i < dummyResponse.Job.length; i++) {
+// for (let i = 0; i < dummyResponse.Job.length; i++) {
 
 
-    var d = new Date(dummyResponse.Job[i].postedDate);
+//     var d = new Date(dummyResponse.Job[i].postedDate);
 
-    let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-    let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+//     let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+//     let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+//     let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
 
-    dayy[i] = mo + "," + da + "," + i;
-    yearr[i] = ye;
+//     dayy[i] = mo + "," + da + "," + i;
+//     yearr[i] = ye;
 
-}
+// }
 
-dayy.sort();
+// dayy.sort();
 
-for (var i = 0; i < dayy.length; i++) {
+// for (var i = 0; i < dayy.length; i++) {
 
 
-    //day,month,index
-    var a = dayy[i].split(",");
-    var currentYr = new Date();
-    var Yr = currentYr.getFullYear();
+//     //day,month,index
+//     var a = dayy[i].split(",");
+//     var currentYr = new Date();
+//     var Yr = currentYr.getFullYear();
 
-    if (yearr[a[2]] == Yr) {
-        latest[i] = a[2];
-    }
-}
+//     if (yearr[a[2]] == Yr) {
+//         latest[i] = a[2];
+//     }
+// }
 
 
 
@@ -201,25 +203,27 @@ for (let i = 0; i < 2; i++) {
 
     card_job.innerHTML = `
  
-        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
-            width="100%" class="job_image" > `
+        <div id="${job_array[i].imageId}" class="h-100">
+        <a class="d-contents" href="jobdetails?jobid=${job_array[i].jobId}">
+            <img src="${job_array[i].imageId}" alt="..."
+            width="100%" class="job_image" > 
+        </a>`
 
     const J = document.getElementById('job_row_1');
-    var myJobList_1 = [];
-    myJobList_1.push(dummyResponse.Job[latest[i]]);
+    // var myJobList_1 = [];
+    // myJobList_1.push(job_array[i].imageId);
 
-    const evtHandler = evt => {
+    // const evtHandler = evt => {
 
-        var myJobList_1 = [];
-        myJobList_1.push(dummyResponse.Job[latest[i]]);
+        // var myJobList_1 = [];
+        // myJobList_1.push(job_array[i].imageId);
 
-        localStorage.setItem('JobList', JSON.stringify(myJobList_1));
-        location.href = "/src/html/Alumni/JobDetailsPage.html";
+        // localStorage.setItem('JobList', JSON.stringify(myJobList_1));
+        // location.href = "/src/html/Alumni/JobDetailsPage.html";
 
-    };
+    // };
 
-    card_job.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+    // card_job.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J.appendChild(card_job);
 }
@@ -234,28 +238,28 @@ for (let i = 2; i < 4; i++) {
 
     card_job_1.innerHTML = `
  
-        <div id="${dummyResponse.Job[latest[i]].jobId}" class="h-100">
-        <a class="d-contents" href=" /src/html/Alumni/JobDetailsPage.html">
-            <img src="/public/Assets/imgs/${dummyResponse.Job[latest[i]].imageId}" alt="..."
+        <div id="${job_array[i].imageId}" class="h-100">
+        <a class="d-contents" href="jobdetails?jobid=${job_array[i].jobId}">
+            <img src="${job_array[i].imageId}" alt="..."
             width="100%" class="job_image" >
         </a> `
 
 
     const J_1 = document.getElementById('job_row_2');
 
-    var myJobList = [];
-    myJobList.push(dummyResponse.Job[latest[i]]);
+    // var myJobList = [];
+    // myJobList.push(dummyResponse.Job[latest[i]]);
 
-    const evtHandler = evt => {
+    // const evtHandler = evt => {
 
-        var myJobList = [];
-        myJobList.push(dummyResponse.Job[latest[i]]);
+    //     // var myJobList = [];
+    //     // myJobList.push(dummyResponse.Job[latest[i]]);
 
-        localStorage.setItem('JobList', JSON.stringify(myJobList));
+        // localStorage.setItem('JobList', JSON.stringify(myJobList));
 
-    };
+    // };
 
-    card_job_1.querySelector('#' + dummyResponse.Job[latest[i]].jobId).addEventListener('click', evtHandler);
+    // card_job_1.querySelector('#' + job_array[i].imageId).addEventListener('click', evtHandler);
 
     J_1.appendChild(card_job_1);
 }
@@ -298,7 +302,7 @@ var EventView = document.getElementById('viewMoreEvents');
 
 EventView.onclick = function () {
 
-    location.href = "../../html/Alumni/EventPage.html";
+    location.href = "/event";
 
 }
 
@@ -306,7 +310,7 @@ var JobView = document.getElementById('viewMoreJob');
 
 JobView.onclick = function () {
 
-    location.href = "../../html/Alumni/JobPage.html";
+    location.href = "job";
 
 }
 
@@ -314,9 +318,11 @@ var AlumniView = document.getElementById('viewMoreAlumni');
 
 AlumniView.onclick = function () {
 
-    location.href = "../../html/Alumni/alumniPage.html";
+    location.href = "/alumni";
 
 }
+
+
 
 
 
@@ -389,13 +395,5 @@ window.onload = function () {
 };
 
 
-function loop() {
 
-    $('.carousel').carousel({
-        interval: 700
-    });
-
-}
-
-loop();
 

@@ -12,7 +12,9 @@ class AlumniListModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1
+            ');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -31,7 +33,7 @@ class AlumniListModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -49,7 +51,7 @@ class AlumniListModel
     }
 
     public function getNumberOfApprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1';
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1 AND isVerified =1';
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -57,7 +59,7 @@ class AlumniListModel
     }
 
     public function getNumberOfUnapprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1';
+        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1 AND isVerified =1';
         $result = $this->connection->prepare($sql); 
         $result->execute(); 
         $number_of_rows = $result->fetchColumn(); 
@@ -65,7 +67,7 @@ class AlumniListModel
     }
 
     // public function search($searchterm){
-    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) LIKE '%".$searchterm."%' ";  
+    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) AND isActive=1 AND isVerified =1 LIKE '%".$searchterm."%' ";  
     //     $stmt = $this->connection->prepare($query);  
     //     $stmt->execute(); 
     //     $data = $stmt->fetchAll();
@@ -88,7 +90,7 @@ class DeleteAlumniModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -107,7 +109,7 @@ class DeleteAlumniModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -148,7 +150,8 @@ class UpdateALumniModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive = 1');
+            $stmt = $this->connection->prepare('
+            SELECT * FROM alumni WHERE isActive = 1 AND isVerified =1');
             $stmt->execute();
             $data = $stmt->fetchAll();
 
@@ -167,7 +170,7 @@ class UpdateALumniModel
         $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1');
+            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -184,11 +187,11 @@ class UpdateALumniModel
         return $image;
     }
     
-    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$email,$imageId) {
+    public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$imageId) {
             try{
-             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,email=?,biography=?, imageId=? WHERE alumniId=?";
+             $sql = "UPDATE alumni SET name=?,gender=?,icNumber=?,graduated=?,department=?,biography=?, imageId=? WHERE alumniId=?";
              $stmt = $this->connection->prepare($sql); 
-             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$email,$biography,$imageId,$prevAlumniId]);
+             $stmt->execute([$name,$gender,$icNumber,$graduated,$department,$biography,$imageId,$prevAlumniId]);
             }catch (PDOException $exception) {
                 error_log('UpdateAlumniModel: construct: ' . $exception->getMessage());
                 throw $exception;
