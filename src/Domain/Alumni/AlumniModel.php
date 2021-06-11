@@ -101,19 +101,24 @@ class AlumniModel
     public function searchAlgo($searchQuery){
         $this->search = $searchQuery;
         $offset = ($this->pageIndex -1) * 10;
-        $query ='
-            SELECT * FROM alumni
+        $query ='SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId
-            WHERE isActive = 1 AND
-            CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
-            LIKE \'%'.$this->search.'%\'
-            LIMIT :offset, 10';
+            WHERE isActive = 1 
+            AND (`name` LIKE \'%'.$this->search.'%\' 
+            OR `email` LIKE \'%'.$this->search.'%\'
+            OR `department` LIKE \'%'.$this->search.'%\'
+            OR `graduated` LIKE \'%'.$this->search.'%\'
+            OR `biography` LIKE \'%'.$this->search.'%\')
+            LIMIT :offset, 10'
+            ;
         $count = '
             SELECT COUNT(*) FROM alumni 
-            WHERE isActive = 1 AND
-            CONCAT( `name`, `email`, `department`, `graduated`, `biography`)
-            LIKE \'%'.$this->search.'%\'';
+            WHERE isActive = 1 AND (`name` LIKE \'%'.$this->search.'%\'
+            OR `email` LIKE \'%'.$this->search.'%\'
+            OR `department` LIKE \'%'.$this->search.'%\'
+            OR `graduated` LIKE \'%'.$this->search.'%\'
+            OR `biography` LIKE \'%'.$this->search.'%\')';
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':offset',$offset );
