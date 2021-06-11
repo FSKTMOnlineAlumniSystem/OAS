@@ -51,7 +51,7 @@ include_once '../src/templates/nav.php';
       if (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
         echo 'All Events';
       } elseif (preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])) {
-        echo 'Your Events';
+        echo 'My Events';
       }
       ?>
     </h2>
