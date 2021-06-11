@@ -49,14 +49,6 @@ class EditMyJobModel
         }
         return $image;
     }
-
-
-
-
-//     $sql = "UPDATE users SET name=?, surname=?, sex=? WHERE id=?";
-// $stmt= $pdo->prepare($sql);
-// $stmt->execute([$name, $surname, $sex, $id]);
-   
 }
 
 ?>
