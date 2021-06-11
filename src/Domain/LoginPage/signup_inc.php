@@ -43,8 +43,7 @@ if(isset($_POST["submit"])){
     // $_SESSION["biography"] = $biography;
     // $_SESSION["pic"] = $_FILES["profilePicture"];
 
-    $encrypted = Encrypt($email);
-    
+   
 
     insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
     
@@ -63,7 +62,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
         header("location: /login?emailExists");
         exit();
     }
-
+    $encrypted = Encrypt($email);
     verifyEmail($email,$encrypted);
 
     $alumniId = "AL-" . getLength($conn)+1 ;
