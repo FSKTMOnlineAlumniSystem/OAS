@@ -73,7 +73,7 @@ $conn = $db->getConnection();
                     <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
-                        <div class="form-label-group w-100 pl-1 pr-1">
+                        <div class="form-label-group w-100">
                             <!-- <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
                             <label for="staticEmail">Email address</label> -->
@@ -82,7 +82,7 @@ $conn = $db->getConnection();
                                     echo'
                                     <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail" >Email address</label>
+                                    <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
