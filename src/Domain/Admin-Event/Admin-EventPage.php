@@ -25,13 +25,6 @@ try {
   $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     $allImage = $event_model->getPicture();
-    // print_r($allImage);
-    if (!empty($all_activities)) {
-      foreach ($all_activities as $activity) {
-        // echo "$activity[eventId] ";
-        // getElementById('date')->"$activity[dateTime]";
-      }
-    }
     $eventNumber = $event_model->getNumberOfEvent();
     // echo  "event Number = ";
     // print_r($eventNumber);
