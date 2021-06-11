@@ -35,17 +35,44 @@
 
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Job/JobModel.php';
+include_once '../src/Domain/Event/EventModel.php';
+include_once '../src/Domain/Alumni/AlumniModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-    $job_model = new JobModel($db->getConnection());
-    $all_activities = $job_model->Nicole();
-    $allImage = $job_model->NicoleImages();
-        
-    for ($i=0; $i< count($all_activities); $i++){
-        $all_activities[$i]['imageId'] = $allImage[$i];
+    $event_model = new EventModel($db->getConnection());
+    // $all_activities_event = $event_model->get6LatestEvent();
+    $all_activities_event = $event_model->EventData();
+    for ($i=0; $i < 6; $i++) { 
+        $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
     }
+    for ($i=0; $i< count($all_activities_event); $i++){
+        $all_activities_event[$i]['imageId'] = $allImage_event[$i];
+    }
+    // $allImage_event = $event_model->getEventPicture();
+   
+    $alumni_model = new AlumniModel($db->getConnection());
+    $all_activities_alumni = $alumni_model->AlumniData();
+    // echo count($all_activities_alumni);
+    for ($i=0; $i < count($all_activities_alumni); $i++) { 
+        $allImage_alumni[$i] = $alumni_model->AlumniImages($all_activities_alumni[$i]['imageId']);
+    }
+   
+    for ($i=0; $i< count($all_activities_alumni); $i++){
+        $all_activities_alumni[$i]['imageId'] = $allImage_alumni[$i];
+    }
+
+    // print_r($all_activities_alumni);
+
+    $job_model = new JobModel($db->getConnection());
+    $all_activities_job = $job_model->Nicole();
+    $allImage_job = $job_model->NicoleImages();
+        
+    for ($i=0; $i< count($all_activities_job); $i++){
+        $all_activities_job[$i]['imageId'] = $allImage_job[$i];
+    }
+
     // print_r($all_activities);
       
 //   $homepage_model = new HomePageModel($db->getConnection());
@@ -78,7 +105,9 @@ try {
 
 ?>
 
-<script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
+<script type="text/javascript">var job_array = <?php echo json_encode($all_activities_job) ?>;</script>
+<script type="text/javascript">var event_array = <?php echo json_encode($all_activities_event) ?>;</script>
+<script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities_alumni) ?>;</script>
 
 <script type="module" src="/js/Alumni/homePage.js"></script>
 
@@ -232,6 +261,7 @@ include_once '../src/templates/nav.php';
 
 <?php include_once '../src/templates/footer.php' ?>
 <?php include_once '../src/templates/GeneralScripts.php'?>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

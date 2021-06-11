@@ -1,6 +1,6 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/Job/EditMyJobModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/EditMyJobModel.php';
 ?>
 
 <?php 
@@ -16,7 +16,7 @@ if(isset($_POST['Submit'])) {
   $postedDateTime = date(DATE_ATOM, strtotime($date));
 
   $jobId = $myjobid;
-  $alumniId = "AL-1";         //ned change
+  $alumniId = $_SESSION['alumni']['alumniId'] ;         //ned change
   $title = $_POST['jobtitle'];
   $description = $_POST['description'];
   $salary = $_POST['salary'];
@@ -57,7 +57,7 @@ try {
 
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/EditMyJobPage.css',
@@ -65,7 +65,7 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 <div class = "container my-5" id="main-body"></div>
@@ -73,3 +73,4 @@ include '../src/templates/nav.php';
 <script type="text/javascript">var job_array = <?php echo json_encode($editjob) ?>;</script>
 <script type="text/javascript" src="/js/Alumni/EditMyJobPage.js"></script>
 <?php include_once '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>

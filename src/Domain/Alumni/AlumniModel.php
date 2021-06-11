@@ -18,26 +18,35 @@ class AlumniModel
         $this->count($sql);
     }
 
-    public function getAlumniListForHomePage(){
-        try {
-            $stmt = $this->connection->prepare('
-            SELECT * FROM alumni 
-            LEFT JOIN image 
-            ON alumni.imageId=image.imageId 
-            WHERE isActive = 1 AND  isEmailPublic = 1
-            order by RAND() LIMIT 0, 6');
-            $stmt->execute();
-            $data = $stmt->fetchAll();
-            
-            if (!$data) {
-                // if not data code here
-            }
-            return $data;
 
-        } catch (PDOException $exception) {
-            error_log('AlumniModel: getAll: ' . $exception->getMessage());
-            throw $exception;
+    public function AlumniImages($alumniId){
+        $stmt = $this->connection->prepare('SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId');
+        $stmt->bindParam(':alumniId',$alumniId);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        $image = array();
+        foreach($data as $eachuser){
+            if(!is_null($eachuser['imageData'])){
+                $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+                array_push($image,$temp_string);
+            }else{
+                    $temp_path = '/Assets/imgs/jobdefault.jpg';
+                    array_push($image,$temp_path);
+            }
+    }
+        return $image;
+    }
+
+    public function AlumniData(){
+        $query = "SELECT * FROM alumni WHERE isActive = 1 AND approvedBy!='' AND  isEmailPublic = 1  order by RAND() LIMIT 0, 6";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
         }
+        // print_r($data);
+        return $data; 
     }
 
     public function setPageIndex($pageIndex){
