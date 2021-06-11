@@ -66,18 +66,65 @@ class AlumniListModel
         return $number_of_rows;
     }
 
-    // public function search($searchterm){
-    //     $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`, `approvedBy`) AND isActive=1 AND isVerified =1 LIKE '%".$searchterm."%' ";  
-    //     $stmt = $this->connection->prepare($query);  
-    //     $stmt->execute(); 
-    //     $data = $stmt->fetchAll();
-    //     if(!$data){
-    //         return array();
-    //     }
-    //     return $data; 
-    // }
+    public function search($name, $department, $status){
+        if($status=="Verified"){
+            $query = "
+            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy !='' 
+            ";  
+        }else if($status == "All"){
+            $query = "
+            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%'
+            ";   
+        }else if($status=="Not Verified"){
+            $query = "
+            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy =''
+            ";  
+        }
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data;
+    }
+
+    public function getSearch($id) {
+    $stmt = $this->connection->prepare("
+    SELECT * FROM alumni
+    LEFT JOIN image 
+    ON alumni.imageId=image.imageId 
+    WHERE WHERE isActive=1 AND isVerified =1 AND imageId='$id' ");
+    $stmt->execute();
+    $data = $stmt->fetch();
+    if(!is_null($data['imageData'])){
+        return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+    }else{
+        return '/Assets/imgs/default_user.png.jpg';
+}
+}
 
 }
+// public function getProfilePicture(): array{
+//     $stmt = $this->connection->prepare('
+//         SELECT * FROM alumni
+//         LEFT JOIN image 
+//         ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
+    
+//     $stmt->execute();
+//     $data = $stmt->fetchAll();
+//     $image = array();
+//     foreach($data as $eachuser){
+//         if($eachuser['imageId']==null){
+//             array_push($image,null);
+//         }
+//         else if($eachuser['imageData']){
+//         $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+//         array_push($image,$temp_string);
+//         }
+//     }
+//     return $image;
+// }
 
 class DeleteAlumniModel
 {
@@ -171,7 +218,6 @@ class UpdateALumniModel
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
-        
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();

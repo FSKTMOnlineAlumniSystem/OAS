@@ -55,20 +55,20 @@ elseif (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
 }
 
 // HANDLE EMPTY SESSION
-elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
-    // 1. contain "admin" in url 
-    // 2. url not in admin-loginpage
-    // 3. admin session empty
-    header('Location:/admin-login');
-    exit;
-} 
-elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
-    // 1. does not contain "admin" in url 
-    // 2. url not in loginpage
-    // 3. alumni session empty
-    header('Location: /login');
-    exit;
-}
+// elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
+//     // 1. contain "admin" in url 
+//     // 2. url not in admin-loginpage
+//     // 3. admin session empty
+//     header('Location:/admin-login');
+//     exit;
+// } 
+// elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
+//     // 1. does not contain "admin" in url 
+//     // 2. url not in loginpage
+//     // 3. alumni session empty
+//     header('Location: /login');
+//     exit;
+// }
 
 elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
@@ -177,6 +177,10 @@ elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/admin\/editalumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
+}
+elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/AlumniList/searchAlumniName.php';
 }
 
 //AlumniList
