@@ -4,7 +4,7 @@ let alumniArray=alumni_array
 localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
-const loadEventList = (pageIndex,alumniEventArray) => {
+const loadEventList = (pageIndex,alumniEventArray,alumniArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 alumniArray.forEach((alumni,index) => {
@@ -21,7 +21,7 @@ alumniArray.forEach((alumni,index) => {
   let label = document.createElement('label');
   label.setAttribute('class', 'custom-control-label');
   label.setAttribute('for', 'id-'+alumni.alumniId);
-let defineAlumni=alumni.alumniId;
+  let defineAlumni=alumni.alumniId;
 
   div.appendChild(input);
   div.appendChild(label);
@@ -29,7 +29,7 @@ let defineAlumni=alumni.alumniId;
   tr.appendChild(td);
   
   var check=alumni.imageId==null
-  console.log("check "+check);
+  // console.log("check "+check);
   // avatar column
   td = document.createElement('td');
   if(check){
@@ -108,8 +108,38 @@ window.toggle = function (source) {
     // if($(checkboxes[i]).is(':visible')){
       checkboxes[i].checked = source.checked;
   }
-}
+};
 // search bar
+/*
+$('#searchBar').click(function(){
+  var search = document.getElementById("input1").value;
+  if (search == "") {
+    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    // and add a return here so below code will not run
+  }
+var outputList;
+  $.ajax({
+    // url: '/admin/search/event',
+    url: '/admin/search/invite/alumni?eventId='+$inviteEventId,
+    type: 'post',
+    data: {search: search},
+    success: function(resp){
+    let page = 0;
+    console.log(resp);
+    outputList =JSON.parse(resp);
+    alumniArray=outputList;
+    loadEventList(pageIndex,alumniEventArray,alumniArray);
+    //  if(outputList.length===0){
+    //   loadMyJobList(page,outputList,-1);
+    // }else{
+    //  loadMyJobList(page,outputList,outputList.length);
+    // }
+    },
+     
+  });
+
+});
+*/
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click', (e) => {
   e.preventDefault();
@@ -198,6 +228,8 @@ $("#clearAll").on("click", function (e) {
       return this.defaultSelected;
   });
   });
+
+
   // invite single alumni
   var dateTime=new Date().toISOString();
   document.cookie = "dateTime="+dateTime;
@@ -207,9 +239,9 @@ window.inviteNewAlumni = function(o){
     var eventId=localStorage.getItem('eventId')
     var dateTime=new Date().toISOString();
 
-    document.cookie = "alumniId="+alumniId;
-    document.cookie = "eventId="+eventId;
-    document.cookie = "dateTime="+dateTime;
+    // document.cookie = "alumniId="+alumniId;
+    // document.cookie = "eventId="+eventId;
+    // document.cookie = "dateTime="+dateTime;
     $.ajax({
       url:"/admin/invite/function",    //the page containing php script
       data: { alumniId: alumniId, 
@@ -222,7 +254,7 @@ window.inviteNewAlumni = function(o){
         console.log(resp);
         var outputList = JSON.parse(resp);
         alumniEventArray=outputList;
-        loadEventList(pageIndex,outputList);
+        loadEventList(pageIndex,outputList,alumniArray);
       },
       error: function(request, status, error){  
         alert(error);
@@ -271,7 +303,7 @@ window.inviteCheckedAlumni = function () {
       console.log(resp);
       var outputList = JSON.parse(resp);
       alumniEventArray=outputList;
-      loadEventList(pageIndex,outputList);
+      loadEventList(pageIndex,outputList,alumniArray);
     },
     error: function(request, status, error){  
       alert(error);
@@ -327,7 +359,7 @@ window.inviteCheckedAlumni = function () {
 window.backToPreviousPage=function(){
     window.history.back();
 }
-loadEventList(pageIndex,alumniEventArray);
+loadEventList(pageIndex,alumniEventArray,alumniArray);
 
 // window.inviteCheckedAlumni = function () {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');

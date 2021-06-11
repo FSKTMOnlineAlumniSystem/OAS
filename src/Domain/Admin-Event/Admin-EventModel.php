@@ -81,6 +81,32 @@ class Admin_EventModel
     //     }
     //     return $image;
     // }
+    // ORDER BY postedDateTime DESC
+    public function getSearch($id) {
+        $stmt = $this->connection->prepare("
+            SELECT * FROM events
+            LEFT JOIN image 
+            ON events.imageId=image.imageId 
+            WHERE eventId='$id' ");
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data['imageId']=='Default'||$data['imageId']==null){
+            return '/Assets/imgs/default_events.jpg';
+        }
+        else if($data['imageData']!=null){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }
+    }
+    public function search($searchterm){
+        $query = "SELECT * FROM `events` WHERE CONCAT( `title`, `description`, `location`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
+    }
     public function getNumberOfEvent(): int{
         $sql ="SELECT COUNT(eventId) FROM events";
         $result = $this->connection->prepare($sql); 
@@ -165,6 +191,31 @@ class AlumniModel
             }
         }
         return $image;
+    }
+    public function getSearch($id) {
+        $stmt = $this->connection->prepare("
+            SELECT * FROM alumni
+            LEFT JOIN image 
+            ON alumni.imageId=image.imageId 
+            WHERE alumniId='$id' ");
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data['imageId']=='Default'||$data['imageId']==null){
+            return '/Assets/imgs/default_user.jpg';
+        }
+        else if($data['imageData']!=null){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }
+    }
+    public function search($searchterm){
+        $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`) LIKE '%".$searchterm."%' ";  
+        $stmt = $this->connection->prepare($query);  
+        $stmt->execute(); 
+        $data = $stmt->fetchAll();
+        if(!$data){
+            return array();
+        }
+        return $data; 
     }
 }
 

@@ -19,7 +19,7 @@ include_once '../src/Domain/Database.php';
 
 $_SESSION['admin']['adminId'];
 
-// global $db;
+global $db;
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
   $event_model = new Admin_EventModel($db->getConnection());
