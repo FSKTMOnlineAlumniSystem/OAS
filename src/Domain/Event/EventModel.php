@@ -57,11 +57,11 @@ class EventModel
   {
     //handle if image is missing in database
     if (!$this->event['type'] || !$this->event['imageData']) {
-      return '/Assets/imgs/default_event.png';
+      return './Assets/imgs/default_events.jpg';
     }
     return 'data::' . $this->event['type'] . ';base64,' . base64_encode($this->event['imageData']);
   }
-  public function get6LatestEvent(): array
+  public function get6LatestEvent(): array // for home page to use
   {
     try {
       $stmt = $this->connection->prepare('
@@ -114,32 +114,32 @@ class EventModel
   }
   public function searchEvents(string $alumniId, string $search, bool $isMyEvent): array
   {
-    if (!$search) {
-      return $this->getAll();
+    if (!$search) { // if not searching, just return all event
+      return !$isMyEvent ? $this->getAll() : $this->getEvents($alumniId);
     }
     try {
       if ($isMyEvent) {
         $query = "SELECT * FROM events
-      LEFT JOIN image 
-      ON events.imageId=image.imageId
-      LEFT JOIN alumni_event 
-      ON alumni_event.eventId=events.eventId
-      WHERE (alumniId=?)
-      AND (title LIKE '%$search%'
-      OR description LIKE '%$search%'
-      OR location LIKE '%$search%');
+                  LEFT JOIN image 
+                  ON events.imageId=image.imageId
+                  LEFT JOIN alumni_event 
+                  ON alumni_event.eventId=events.eventId
+                  WHERE (alumniId=?)
+                  AND (title LIKE '%$search%'
+                  OR description LIKE '%$search%'
+                  OR location LIKE '%$search%');
       ";
       $stmt = $this->connection->prepare($query);
       $stmt->execute([$alumniId]);
       } else {
         $query = "SELECT * FROM events
-      LEFT JOIN image 
-      ON events.imageId=image.imageId
-      LEFT JOIN alumni_event 
-      ON alumni_event.eventId=events.eventId
-      WHERE (title LIKE '%$search%'
-      OR description LIKE '%$search%'
-      OR location LIKE '%$search%');
+                  LEFT JOIN image 
+                  ON events.imageId=image.imageId
+                  LEFT JOIN alumni_event 
+                  ON alumni_event.eventId=events.eventId
+                  WHERE (title LIKE '%$search%'
+                  OR description LIKE '%$search%'
+                  OR location LIKE '%$search%');
       ";
       $stmt = $this->connection->prepare($query);
       $stmt->execute();

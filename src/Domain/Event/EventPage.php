@@ -27,20 +27,19 @@ include_once '../src/templates/nav.php';
 ?>
 
 <div class="searchBarBG">
- <div class="containerSB">
-   <div class="row no-gutters" style="white-space: nowrap">
-     <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
-     <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
-       <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" 
-       <?= isset($_GET['search'])? "value='{$_GET["search"]}'":'' ?>/>
-       <div class="input-group-append">
-         <button type="submit" id="search-button" class="btn btn-secondary">
-           <i class="fas fa-search"></i>
-         </button>
-       </div>
-     </div>
-   </div>
- </div>
+  <div class="containerSB">
+    <div class="row no-gutters" style="white-space: nowrap">
+      <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+      <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
+        <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" <?= isset($_GET['search']) ? "value='{$_GET["search"]}'" : '' ?> />
+        <div class="input-group-append">
+          <button type="submit" id="search-button" class="btn btn-secondary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="container my-5" id="main-body">
   <h1><b>Events</b></h1>
@@ -60,14 +59,26 @@ include_once '../src/templates/nav.php';
     <div class="row" id="your-upcoming-event-section">
       <?php
       if (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI'])) {
-        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search'])?$_GET['search']:'', false);
+        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', false);
       } elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
-        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search'])?$_GET['search']:'', true);
-      }else{
+        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', true);
+      } else {
         $events = $event_model->getAll();
         echo "searching is not working<br>"; // Logger
       }
-
+      function upcomingOrPast($timeStr)
+      {
+        $temp = new DateTime($timeStr);
+        $pastDateTimeSecond = (int)($temp->format("U"));
+        $curMilliSeconds = (microtime(true));
+        $secondSinceInvitation = (int)round(($curMilliSeconds - $pastDateTimeSecond));
+        if ($secondSinceInvitation > 0) {
+          return 'Past Event';
+          // return 'Past Event<i class="fad fa-angle-double-left p-1 text-primary" aria-hidden="true"></i>';
+        } else {
+          return '<span class="text-success">Upcoming Event</span>';
+        }
+      }
       foreach ($events as $event) {
       ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -76,23 +87,26 @@ include_once '../src/templates/nav.php';
               <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
                 <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
               </div>
-              <div class="card-body event-card-body">
-                <h5 class="card-title"><?= $event['title'] ?></h5>
-                <p class="card-text">
-                <div class="row cards">
-                  <div class="col-2"><i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
+              <div class="card-body d-flex flex-column justify-content-between event-card-body">
+                <div class="cards pb-2">
+                  <h5 class="card-title mb-0 font-weight-bold"><?= $event['title'] ?></h5>
+                  <span class="card-title "><?= upcomingOrPast($event['dateTime']); ?></span>
+                </div>
+                <div class="">
+                  <div class="row cards">
+                    <div class="col-2"><i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
+                    </div>
+                    <div class="col-10" data-datetime="date"><?= $event['dateTime'] ?></div>
                   </div>
-                  <div class="col-10" data-datetime="date"><?= $event['dateTime'] ?></div>
+                  <div class="row cards">
+                    <div class="col-2"><i class="far fa-clock text-primary"></i></div>
+                    <div class="col-10" data-datetime="time"><?= $event['dateTime'] ?></div>
+                  </div>
+                  <div class="row cards">
+                    <div class="col-2"><i class="fas fa-map-marked-alt text-danger"></i></div>
+                    <div class="col-10"><?= $event['location'] ?></div>
+                  </div>
                 </div>
-                <div class="row cards">
-                  <div class="col-2"><i class="far fa-clock text-primary"></i></div>
-                  <div class="col-10" data-datetime="time"><?= $event['dateTime'] ?></div>
-                </div>
-                <div class="row cards">
-                  <div class="col-2"><i class="fas fa-map-marked-alt text-danger"></i></div>
-                  <div class="col-10"><?= $event['location'] ?></div>
-                </div>
-                </p>
               </div>
             </div>
           </a>

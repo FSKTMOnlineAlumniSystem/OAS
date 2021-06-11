@@ -23,16 +23,11 @@ searchBtn.addEventListener('click', evt => {
   url.search = new URLSearchParams(params).toString();
   console.log(url.href);
   location.href = (url.href);
-  // fetch(url, {
-  //   method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  // }).then(res => {
-  //   console.log('get res');
-  //   return res.json();
-  // }).then(data => {
-  //   console.log(data);
-  //   if(true){
-  //     insertSearchNoResult(document.getElementById("no_result"));
-  //   }
-  // })
-
 });
+// check if any event card exists
+const cardNodeList = document.querySelectorAll('.card');
+if(Array.from(cardNodeList).length === 0){
+  insertSearchNoResult(document.getElementById("no_result"));
+}else{
+  console.log('found events');
+}
