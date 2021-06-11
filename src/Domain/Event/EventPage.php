@@ -26,38 +26,46 @@ includeWithVariables('../src/templates/header.php', array(
 include_once '../src/templates/nav.php';
 ?>
 
+<div class="searchBarBG">
+ <div class="containerSB">
+   <div class="row no-gutters" style="white-space: nowrap">
+     <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
+     <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
+       <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" 
+       <?= isset($_GET['search'])? "value='{$_GET["search"]}'":'' ?>/>
+       <div class="input-group-append">
+         <button type="submit" id="search-button" class="btn btn-secondary">
+           <i class="fas fa-search"></i>
+         </button>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 <div class="container my-5" id="main-body">
-  <div class="row no-gutters" style="white-space: nowrap">
-    <div class="col-lg-3 col-md-3 col-sm-12 p-0"></div>
-    <div class="col-lg-6 col-md-6 col-sm-12 p-0 input-group" style="margin-top: 60px;">
-      <input type="search" placeholder="Search..." class="form-control" id="search_item" name="search" value="" />
-      <div class="input-group-append">
-        <button type="submit" id="search-button" class="btn btn-secondary">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </div>
   <h1><b>Events</b></h1>
   <hr />
   <div class="row justify-content-md-center text-center" id="no_result"></div>
   <div id="event-page-section">
     <h2 id="your-upcoming-event-section-title">
-    <?php
-      if(preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])){
+      <?php
+      if (preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
         echo 'All Events';
-      }elseif(preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])){
+      } elseif (preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])) {
         echo 'Your Events';
       }
       ?>
-      </h2>
+    </h2>
     <br />
     <div class="row" id="your-upcoming-event-section">
       <?php
-      if(preg_match('/^\/event\/?$/i', $_SERVER['REQUEST_URI'])){
+      if (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI'])) {
+        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search'])?$_GET['search']:'', false);
+      } elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
+        $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search'])?$_GET['search']:'', true);
+      }else{
         $events = $event_model->getAll();
-      }elseif(preg_match('/^\/my-event\/?$/i', $_SERVER['REQUEST_URI'])){
-        $events = $event_model->getEvents($_SESSION['alumni']['alumniId']);
+        echo "searching is not working<br>"; // Logger
       }
 
       foreach ($events as $event) {

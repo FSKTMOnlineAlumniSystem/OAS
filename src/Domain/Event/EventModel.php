@@ -16,7 +16,7 @@ class EventModel
       $stmt = $this->connection->prepare('
       SELECT * FROM events
       LEFT JOIN image 
-      ON events.imageId=image.imageId');
+      ON events.imageId=image.imageId;');
       $stmt->execute();
       $data = $stmt->fetchAll();
 
@@ -108,7 +108,52 @@ class EventModel
       $data = array_reverse($data);
       return $data;
     } catch (PDOException $exception) {
-      error_log('EventModel: getAll: ' . $exception->getMessage());
+      error_log('EventModel: getEvents: ' . $exception->getMessage());
+      throw $exception;
+    }
+  }
+  public function searchEvents(string $alumniId, string $search, bool $isMyEvent): array
+  {
+    if (!$search) {
+      return $this->getAll();
+    }
+    try {
+      if ($isMyEvent) {
+        $query = "SELECT * FROM events
+      LEFT JOIN image 
+      ON events.imageId=image.imageId
+      LEFT JOIN alumni_event 
+      ON alumni_event.eventId=events.eventId
+      WHERE (alumniId=?)
+      AND (title LIKE '%$search%'
+      OR description LIKE '%$search%'
+      OR location LIKE '%$search%');
+      ";
+      $stmt = $this->connection->prepare($query);
+      $stmt->execute([$alumniId]);
+      } else {
+        $query = "SELECT * FROM events
+      LEFT JOIN image 
+      ON events.imageId=image.imageId
+      LEFT JOIN alumni_event 
+      ON alumni_event.eventId=events.eventId
+      WHERE (title LIKE '%$search%'
+      OR description LIKE '%$search%'
+      OR location LIKE '%$search%');
+      ";
+      $stmt = $this->connection->prepare($query);
+      $stmt->execute();
+      }
+      $data = $stmt->fetchAll();
+      if (!$data) {
+        return array();
+      }
+      // return the sorted event based on datetime
+      usort($data, fn ($a, $b) => strtotime($a['dateTime']) - strtotime($b['dateTime']));
+      $data = array_reverse($data);
+      return $data;
+    } catch (PDOException $exception) {
+      error_log('EventModel: searchMyEvents: ' . $exception->getMessage());
       throw $exception;
     }
   }
