@@ -90,9 +90,11 @@ include_once '../src/templates/nav.php';
               <div class="card-body d-flex flex-column justify-content-between event-card-body">
                 <div class="cards pb-2">
                   <h5 class="card-title mb-0 font-weight-bold"><?= $event['title'] ?></h5>
-                  <span class="card-title "><?= upcomingOrPast($event['dateTime']); ?></span>
                 </div>
                 <div class="">
+                  <div class="row cards">
+                    <span class="card-title col-12"><?= upcomingOrPast($event['dateTime']); ?></span>
+                  </div>
                   <div class="row cards">
                     <div class="col-2"><i class="far fa-calendar-alt" style="color: rgb(218, 58, 47);"></i>
                     </div>
