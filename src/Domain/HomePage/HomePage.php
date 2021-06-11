@@ -42,21 +42,28 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $event_model = new EventModel($db->getConnection());
-    $all_activities_event = $event_model->get6LatestEvent();
+    // $all_activities_event = $event_model->get6LatestEvent();
+    $all_activities_event = $event_model->EventData();
+    for ($i=0; $i < 6; $i++) { 
+        $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
+    }
+    for ($i=0; $i< count($all_activities_event); $i++){
+        $all_activities_event[$i]['imageId'] = $allImage_event[$i];
+    }
     // $allImage_event = $event_model->getEventPicture();
-    // for ($i=0; $i< count($all_activities_event); $i++){
-    //     $all_activities_event[$i]['imageId'] = $allImage_event[$i];
-    // }
+   
     $alumni_model = new AlumniModel($db->getConnection());
     $all_activities_alumni = $alumni_model->AlumniData();
-    for ($i=0; $i < 6; $i++) { 
+    // echo count($all_activities_alumni);
+    for ($i=0; $i < count($all_activities_alumni); $i++) { 
         $allImage_alumni[$i] = $alumni_model->AlumniImages($all_activities_alumni[$i]['imageId']);
     }
    
     for ($i=0; $i< count($all_activities_alumni); $i++){
         $all_activities_alumni[$i]['imageId'] = $allImage_alumni[$i];
     }
-    echo count($all_activities_alumni);
+
+    // print_r($all_activities_alumni);
 
     $job_model = new JobModel($db->getConnection());
     $all_activities_job = $job_model->Nicole();
@@ -255,6 +262,7 @@ include_once '../src/templates/nav.php';
 <?php include_once '../src/templates/footer.php' ?>
 <?php include_once '../src/templates/GeneralScripts.php'?>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -266,8 +274,6 @@ include_once '../src/templates/nav.php';
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
-    <!-- <script type="module" src="/js/addHeader.js"></script>
-    <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
     <!-- <script src="../libs/bootstrap/js/bootstrap.bundle.js"></script> -->
 

@@ -1,7 +1,6 @@
 <?php
-// include_once '../src/templates/header.php';
-include '../src/Domain/Database.php';
-include '../src/Domain/Job/JobModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/JobModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -13,9 +12,9 @@ try {
   for ($i=0; $i< count($all_activities); $i++){
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
-  // print_r($all_activities);
 
-} catch (Exception $e) {
+
+} catch (Exception $e){
   echo "Exception here!";
 }
 ?>
@@ -26,7 +25,7 @@ try {
 
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/JobPage.css',
@@ -34,12 +33,11 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 <title>Job - Alumni Online System</title>
-<!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/JobPage.css" />
-<link rel="stylesheet" type="text/css" href="/css/Alumni/index.css"> -->
+
 </head>
 <body>
 
@@ -92,12 +90,22 @@ include '../src/templates/nav.php';
 <?php 
 include_once '../src/templates/footer.php' 
 ?>
+<?php include_once '../src/templates/GeneralScripts.php' ?>
 
 
+<<<<<<< HEAD
 <!-- <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
 <script type="module" src="/js/Alumni/JobPage.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/utility.js"></script> -->
+<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
+<?php
+include_once '../src/templates/GeneralScripts.php'
+?>
+=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/utility.js"></script>
-<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
+
+>>>>>>> main

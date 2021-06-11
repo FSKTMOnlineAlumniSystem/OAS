@@ -230,7 +230,6 @@ echo "Exception: " . $e->getMessage();
         </div>
     </div> <br>
     </div>
-    <!-- <script type='module' src='../js/addHeader.js'></script> -->
     <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

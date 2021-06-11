@@ -8,7 +8,8 @@ eventCardArr.forEach(evtCardEle => {
 });
 // search module
 const searchBtn = document.getElementById('search-button');
-searchBtn.addEventListener('click', evt => {
+const searchInput = document.getElementById('search_item');
+const handleSearching = evt => {
   // get query string
   const searchQueryEle = document.getElementById("search_item");
   // we can know user searching by getting the searchQuery.value
@@ -18,20 +19,21 @@ searchBtn.addEventListener('click', evt => {
     alert("Hi, type something to search!");
     return;
   }
-  var url = new URL('http://localhost:8080/api/event');
+  var url = new URL(location.href);
   var params = { search: searchQuery };
   url.search = new URLSearchParams(params).toString();
-
-  fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  }).then(res => {
-    console.log('get res');
-    return res.json();
-  }).then(data => {
-    console.log(data);
-    if(true){
-      insertSearchNoResult(document.getElementById("no_result"));
-    }
-  })
-
+  location.href = (url.href);
+};
+searchBtn.addEventListener('click', handleSearching);
+searchInput.addEventListener('keypress', (evt)=>{
+  if(evt.key === 'Enter'){
+    handleSearching(evt);
+  }
 });
+// check if any event card exists
+const cardNodeList = document.querySelectorAll('.card');
+if(Array.from(cardNodeList).length === 0){
+  insertSearchNoResult(document.getElementById("no_result"));
+}else{
+  console.log('found events');
+}

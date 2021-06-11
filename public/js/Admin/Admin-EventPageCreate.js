@@ -154,7 +154,7 @@ function readURL(e) {
 //   var eventId = "E-" + newId
 //   localStorage.setItem('eventId', eventId);
 // }
-console.log('hellooo');
+// console.log('hellooo');
 /*Check whether there is any changes that might be lost*/
 // function cancelUpdate(){
 // // cancelButton.addEventListener('click', () => {

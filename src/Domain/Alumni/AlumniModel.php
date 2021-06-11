@@ -37,13 +37,14 @@ class AlumniModel
     }
 
     public function AlumniData(){
-        $query = "SELECT * FROM alumni WHERE isActive = 1 AND  isEmailPublic = 1 order by RAND() LIMIT 0, 6";  
+        $query = "SELECT * FROM alumni WHERE isActive = 1 AND approvedBy!='' AND  isEmailPublic = 1  order by RAND() LIMIT 0, 6";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
         if(!$data){
             return array();
         }
+        // print_r($data);
         return $data; 
     }
 

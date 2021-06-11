@@ -1,39 +1,27 @@
-<?php
-// include '../src/templates/header.php';
-?>
-<!--(Create,Update)-->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- browser icon -->
-  <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
-   <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <!-- font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-  <!-- icon - fontawesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- custom css files -->
-  <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
+ <!-- custom css files -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
  <!-- css -->
-  <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css">
+  <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css"> -->
 
- 
+  <?php
+include_once '../src/utilities/includeWithVariable.php' ?>
+<?php
+includeWithVariables('../src/templates/header.php', array(
+  'admin_eventPageCreate_css' => '/css/Admin/Admin-EventPageCreate.css',
+  'index' => '/css/Alumni/index.css'
+));
+?>
 
-  <title>Create Event - Online Alumni System</title>
-</head>
+  <!-- <title>Create Event - Online Alumni System</title> -->
+<!-- </head> -->
 
-<body>
+<!-- <body> -->
 <?php
   // include '../config/config.php';
-  include '../src/Domain/Admin-Event/Admin-EventModel.php';
-  include '../src/Domain/Database.php';
-  include '../src/utilities/uploadImage.php';
+  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Database.php';
+  include_once '../src/utilities/uploadImage.php';
+  $_SESSION['admin']['adminId'];
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
@@ -42,7 +30,6 @@
     $allImage = $event_model->getPicture();
     if (!empty($all_activities)) {
       foreach ($all_activities as $activity) {
-        echo "$activity[eventId] ";
       }
     }
     for ($i=0; $i< count($all_activities); $i++){
@@ -61,7 +48,7 @@
     $addEvent = new createEventModel($db->getConnection());	
     $data = $addEvent->getMaxId();
     $eventId = "E-" . $data+1;
-    $adminId = "AD-1";         //ned change
+    $adminId = $_SESSION['admin']['adminId'];        //ned change
     $title = $_POST['title'];
     //dateTime
     $date =$_POST["date"];
@@ -92,7 +79,7 @@
   // echo "Exception: " . $e->getMessage();
   // }
 
-    header("Location: adminEvent");
+    header("Location: /admin/event");
 }
 
 ?>
@@ -206,7 +193,7 @@
               Are you sure you want to leave this page?
             </div>
             <div class="modal-footer">
-              <a href="adminEvent"><button type="button" class="btn btn-secondary">Leave this
+              <a href="/admin/event"><button type="button" class="btn btn-secondary">Leave this
                   Page</button></a>
               <button id="stayButton" type="button"  class="btn btn-primary" data-dismiss="modal" onclick="closeModal('#cancelChangesModal')">Stay on this
                 Page</button>
@@ -227,7 +214,6 @@
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
-  <!-- <script type='module' src='/src/js/addHeader.js'></script> -->
   </main>
 
 </body>

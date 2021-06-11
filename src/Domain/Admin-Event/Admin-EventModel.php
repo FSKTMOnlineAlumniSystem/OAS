@@ -7,6 +7,7 @@ class Admin_EventModel
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
+        // $this->id = $id;
     }
 
     public function getAll(): array
@@ -116,6 +117,7 @@ class Admin_Alumni_EventModel
             throw $exception;
         }
     }
+
 }
 class AlumniModel
 {
@@ -144,6 +146,26 @@ class AlumniModel
             throw $exception;
         }
     }
+    public function getPicture(): array{
+        $stmt = $this->connection->prepare('
+        SELECT * FROM alumni
+        LEFT JOIN image 
+        ON alumni.imageId=image.imageId');
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $image = array();
+        foreach($data as $eachuser){
+            if($eachuser['imageId']=='Default'||$eachuser['imageId']==null){
+                array_push($image,null);
+            }
+            else if($eachuser['imageData']){
+            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+            array_push($image,$temp_string);
+            }
+        }
+        return $image;
+    }
 }
 
 
@@ -161,10 +183,10 @@ class UpdateEventModel
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
             //  $sql = "UPDATE events SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE events,title='$prevtitle'";
             try{
-             $sql = "UPDATE events SET title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
+             $sql = "UPDATE events SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
              $stmt = $this->connection->prepare($sql);  
 
-             $stmt->execute([$title,$newDate,$description,$imageId,$locate,$eventId]);
+             $stmt->execute([$adminId,$title,$newDate,$description,$imageId,$locate,$eventId]);
             }catch (PDOException $exception) {
                 error_log('UpdateEventModel: construct: ' . $exception->getMessage());
                 throw $exception;

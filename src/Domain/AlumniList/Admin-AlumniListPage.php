@@ -37,9 +37,6 @@ includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/JobDetailsPage.css'
 ));
 ?>
-<?php
-include '../src/templates/nav.php';
-?>
 
 <script type='text/javascript' src='../js/utility.js'></script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
@@ -240,5 +237,4 @@ include '../src/templates/nav.php';
   </main>
 
   <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
-  <!-- <script type='module' src='../js/addHeader.js'></script> -->
   <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script>

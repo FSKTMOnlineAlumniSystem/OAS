@@ -3,27 +3,18 @@ import loadMyJobList from "./MyJobPageModule.js";
 let pageIndex = 0;
 var outputList = myJob_array;
 
-let count = 0;
-const alumniID = localStorage.getItem("SignedInAlumniId");
-
-//ONLY DISPLAY THE USER'S JOBS ADVERTISEMENT 
-for (let i = 0; i < outputList.length; i++) {
-  if (outputList[i].alumniId == alumniID) {
-    count++;
-  }
-}
 
 //CLICK NEXT PAGE
 window.nextPage = function () {
   pageIndex++;
-  loadMyJobList(pageIndex, outputList, count);
+  loadMyJobList(pageIndex, outputList, outputList.length);
 };
 
 //CLICK PREVIOUS PAGE
 window.previousPage = function () {
   pageIndex--;
-  loadMyJobList(pageIndex, outputList, count);
+  loadMyJobList(pageIndex, outputList, outputList.length);
 };
 
 //CALL FUNCTION IN ORER TO DISPLAY MYJOBLIST
-loadMyJobList(pageIndex, outputList, count);
+loadMyJobList(pageIndex, outputList, outputList.length);

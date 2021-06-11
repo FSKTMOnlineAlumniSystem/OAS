@@ -17,5 +17,3 @@ if (isset($_GET['search'])) {
   $arr = array("Error Message" => "Bad Request");
   echo json_encode($arr);
 }
-
-// <!-- SELECT * FROM `job` WHERE CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%".$searchterm."%' ORDER BY postedDateTime DESC -->
