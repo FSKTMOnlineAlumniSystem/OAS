@@ -203,10 +203,10 @@ $.ajax({
   data: {alumniId: localStorage.getItem("alumniId")},
   success:  function(data)
   { 
-    var outputList = JSON.parse(data);
-    alumniArray = outputList;
-    console.log(outputList);
-    reload(outputList);
+    // var outputList = JSON.parse(data);
+    // alumniArray = outputList;
+    // console.log(outputList);
+    // reload(outputList);
     $('#exampleModal').modal("hide");
     $.ajax({
       type: "POST",
