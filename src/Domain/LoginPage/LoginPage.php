@@ -1,6 +1,7 @@
 <?php
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
+
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 ?>
@@ -387,15 +388,12 @@ $conn = $db->getConnection();
 
     
 </div>
-
-
-<?php
-include '../src/templates/GeneralScripts.php'
-?>
    
    <!-- wait for verification  -->
-
+   
    <?php
+   echo isset($_GET["id"]);
+   echo "";
     if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
         $stmt = $conn->prepare("UPDATE alumni SET isVerified=1 WHERE email=:email");
@@ -636,7 +634,9 @@ function emailName(){
         ';
     }
 ?>
-
+<?php
+include_once '../src/templates/GeneralScripts.php';
+?>
 <script type="module" src="/js/Alumni/LoginPage.js"></script>
 
 </body>

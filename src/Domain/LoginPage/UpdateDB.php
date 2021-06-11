@@ -27,8 +27,8 @@ if (isset($_POST["submit"])){
     // $biography = $_SESSION["biography"];
     
     // insertAlumni($conn,$GLOBALS['alumniId'],$GLOBALS['approvedBy'], $GLOBALS['email'], $GLOBALS['Password'], $GLOBALS['IC'], $GLOBALS['gender'], $GLOBALS['name'], $GLOBALS['department'], $GLOBALS['Batch'], $GLOBALS['imageId'], $GLOBALS['isEmailPublic'], $GLOBALS['biography']);
-    insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
-    
+    // insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $biography);
+    verified($conn,$email);
     header("location: /login?signup");
     exit();
 }
