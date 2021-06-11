@@ -54,13 +54,16 @@ try {
    
     $alumni_model = new AlumniModel($db->getConnection());
     $all_activities_alumni = $alumni_model->AlumniData();
-    for ($i=0; $i < 6; $i++) { 
+    // echo count($all_activities_alumni);
+    for ($i=0; $i < count($all_activities_alumni); $i++) { 
         $allImage_alumni[$i] = $alumni_model->AlumniImages($all_activities_alumni[$i]['imageId']);
     }
    
     for ($i=0; $i< count($all_activities_alumni); $i++){
         $all_activities_alumni[$i]['imageId'] = $allImage_alumni[$i];
     }
+
+    // print_r($all_activities_alumni);
 
     $job_model = new JobModel($db->getConnection());
     $all_activities_job = $job_model->Nicole();
@@ -258,6 +261,7 @@ include_once '../src/templates/nav.php';
 
 <?php include_once '../src/templates/footer.php' ?>
 <?php include_once '../src/templates/GeneralScripts.php'?>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
