@@ -1,8 +1,8 @@
 <?php
-include '../src/Domain/Job/MyJobModel.php';
-// include_once '../src/templates/header.php';
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Job/MyJobModel.php';
+include_once '../src/Domain/Database.php';
 
+// $alumniID = $_SESSION["alumni"]['alumniId'];
 $alumniID = "AL-1";
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -17,13 +17,14 @@ try {
       $myJob[$i]['imageId'] = $image[$i];
     }
 
+    // print_r($myJob);
 } catch (Exception $e) {
     echo "Exception here!";
 }
 ?>
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/MyJobPage.css',
@@ -31,7 +32,7 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 
@@ -111,7 +112,7 @@ include '../src/templates/nav.php';
 
 
 
-<script type="module" src="/js/Alumni/MyJobPageModule.js"></script> -->
+<!-- <script type="module" src="/js/Alumni/MyJobPageModule.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -121,7 +122,8 @@ include '../src/templates/nav.php';
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 

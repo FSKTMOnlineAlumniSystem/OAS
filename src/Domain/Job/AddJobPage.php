@@ -1,10 +1,10 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/Job/AddJobModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/AddJobModel.php';
 ?>
 
 <?php
-include '../src/utilities/uploadImage.php';
+include_once '../src/utilities/uploadImage.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 
@@ -17,7 +17,7 @@ if(isset($_POST['Submit'])) {
     
     $data = $addJob_model->getMaxId();
     $jobId = "J-" . $data+1;
-	$alumniId = "AL-1";         //ned change
+	$alumniId ="AL-1";         //ned change
     $title = $_POST['title'];
     $description = $_POST['description'];
     $salary = $_POST['salary'];
@@ -51,7 +51,7 @@ if(isset($_POST['Submit'])) {
 
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/AddJobPage.css',
@@ -59,7 +59,7 @@ includeWithVariables('../src/templates/header.php', array(
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 
@@ -74,7 +74,7 @@ include '../src/templates/nav.php';
 </div>
 
 <script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
-<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 
 
 
@@ -84,7 +84,7 @@ include '../src/templates/nav.php';
 
 
 
-<script type="text/javascript" src="/js/addNavFooter.js"></script>
+<!-- <script type="text/javascript" src="/js/addNavFooter.js"></script> -->
 <?php include_once '../src/templates/footer.php' ?>
 
 

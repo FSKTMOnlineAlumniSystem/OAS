@@ -1,6 +1,5 @@
 
 function loadMyJobList(pageIndex, outputList, count) {
-
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -133,7 +132,7 @@ function loadMyJobList(pageIndex, outputList, count) {
     jQuery.noConflict();
   clickButton.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
-      console.log('click');
+     
       deleteID = e.currentTarget.id;
 
       $.ajax({
@@ -157,7 +156,7 @@ function loadMyJobList(pageIndex, outputList, count) {
   });
 });
 
-
+//jQuery.parseJSON(response.data);
 // // AJAX request
 // $.ajax({
 //   url: 'ajaxfile.php',
@@ -175,21 +174,21 @@ function loadMyJobList(pageIndex, outputList, count) {
 
 
 $('#deleteButton').click(function(){
-  console.log('here');
+  var searchDelete = document.getElementById("search_item").value;
+  jQuery.noConflict();
   $.ajax({
     url: 'deleteJobController.php',
     type: 'post',
-    data: {ajax : 1, deleteID: deleteID},
+    data: {searchdeleted : searchDelete, deleteID: deleteID},
     success: function(resp){
       let page = 0;
-      var outputList = JSON.parse(resp);
-     
-      loadMyJobList(page,outputList,outputList.length);
+      var outputLists = JSON.parse(resp);
+      loadMyJobList(page,outputLists,outputLists.length);
     },
      
   });
 
-closeModal("#deleteModal")
+closeModal("#deleteModal");
 });
 
 
@@ -207,7 +206,7 @@ $('#search-button').click(function(){
     data: {search: search},
     success: function(resp){
     let page = 0;
-    console.log(resp);
+ 
     outputList =JSON.parse(resp);
      if(outputList.length===0){
       loadMyJobList(page,outputList,-1);

@@ -1,19 +1,19 @@
 <?php
-include '../src/Domain/Database.php';
-include '../src/Domain/Job/JobDetailsModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Job/JobDetailsModel.php';
 ?>
 
 
 
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/JobDetailsPage.css'
 ));
 ?>
 <?php
-include '../src/templates/nav.php';
+include_once '../src/templates/nav.php';
 ?>
 
 

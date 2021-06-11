@@ -70,7 +70,7 @@ class MyJobModel
         $stmt->execute();
     }
 
-    public function search($searchterm,$alumniID){
+    public function search($searchterm,$alumniID) :array{
         $query = "SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%".$searchterm."%' ORDER BY postedDateTime DESC";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
