@@ -309,7 +309,7 @@ $conn = $db->getConnection();
                                     if (isset($_GET["emailExists"])){
                                     echo '
                                     <input type="text" name="email" class="form-control is-invalid" id="Email">
-                                    <small class="invalid-feedback">Email is exists.</small>
+                                    <small class="invalid-feedback">Email exists.</small>
                                     <script type="text/javascript">
                                             $(document).ready(function(){
                                                 $("#signUP").modal("show");

@@ -65,7 +65,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $encrypted = Encrypt($email);
     verifyEmail($email,$encrypted);
 
-    $alumniId = "AL-" . getLength($conn)+1 ;
+    $alumniId = "AL-" . (getLength($conn)+1) ;
     // $alumniId = $email;
     $imageId = $alumniId;
 
@@ -125,7 +125,7 @@ function getLength($conn){
 
 function verifyEmail($email,$encrypted){
 
-    $base_url = "http://localhost/login?id=".$encrypted;
+    $base_url = "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/login?id=".$encrypted;
 
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
