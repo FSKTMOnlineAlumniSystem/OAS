@@ -205,16 +205,17 @@ includeWithVariables('../src/templates/header.php', array(
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
   </div>
   
-  <script type="text/javascript" src="/js/utility.js"></script>
+  <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
   </main>
+  <?php include_once '../src/templates/GeneralScripts.php'?>
 
 </body>
 <br>
