@@ -1,22 +1,22 @@
  <!-- custom css files -->
-  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
+ <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
  <!-- css -->
-  <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css"> -->
+ <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css"> -->
 
-  <?php
-include_once '../src/utilities/includeWithVariable.php' ?>
-<?php
-includeWithVariables('../src/templates/header.php', array(
-  'admin_eventPageCreate_css' => '/css/Admin/Admin-EventPageCreate.css',
-  'index' => '/css/Alumni/index.css'
-));
-?>
+ <?php
+  include_once '../src/utilities/includeWithVariable.php' ?>
+ <?php
+  includeWithVariables('../src/templates/header.php', array(
+    'admin_eventPageCreate_css' => '/css/Admin/Admin-EventPageCreate.css',
+    'index' => '/css/Alumni/index.css'
+  ));
+  ?>
 
-  <!-- <title>Create Event - Online Alumni System</title> -->
-<!-- </head> -->
+ <!-- <title>Create Event - Online Alumni System</title> -->
+ <!-- </head> -->
 
-<!-- <body> -->
-<?php
+ <!-- <body> -->
+ <?php
   // include '../config/config.php';
   include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
@@ -32,7 +32,7 @@ includeWithVariables('../src/templates/header.php', array(
       foreach ($all_activities as $activity) {
       }
     }
-    for ($i=0; $i< count($all_activities); $i++){
+    for ($i = 0; $i < count($all_activities); $i++) {
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
@@ -40,183 +40,180 @@ includeWithVariables('../src/templates/header.php', array(
   }
   ?>
 
-  <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
+ <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
 
-  <?php
-  if(isset($_POST['Submit'])) {
+ <?php
+  if (isset($_POST['Submit'])) {
     print 'it suceed';
-    $addEvent = new createEventModel($db->getConnection());	
+    $addEvent = new createEventModel($db->getConnection());
     $data = $addEvent->getMaxId();
-    $eventId = "E-" . $data+1;
+    $eventId = "E-" . $data + 1;
     $adminId = $_SESSION['admin']['adminId'];        //ned change
     $title = $_POST['title'];
     //dateTime
-    $date =$_POST["date"];
-    $time =$_POST["time"];
+    $date = $_POST["date"];
+    $time = $_POST["time"];
     $description = $_POST['description'];
     // $imageId = $_POST['imageId'];
     $locate = $_POST['locate'];
-    if($_FILES["eventPicture"]['tmp_name']!=null){
-    $imageId = $eventId;
-    }else{
-      $imageId="Default";
+    if ($_FILES["eventPicture"]['tmp_name'] != null) {
+      $imageId = $eventId;
+    } else {
+      $imageId = "Default";
     }
     $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-    $addEvent->updateEvent($eventId,$adminId,$title,$combinedDT,$description,$imageId,$locate);
+    $addEvent->updateEvent($eventId, $adminId, $title, $combinedDT, $description, $imageId, $locate);
     // try{
-      //Upload image to database as blob
-  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+    //Upload image to database as blob
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
-      if($_FILES["eventPicture"]['tmp_name']!=null){
-          print 'hello';
-          print_r($_FILES["eventPicture"]);
-          uploadImage($db->getConnection(),$_FILES["eventPicture"],$imageId);
-      }else{
-        print 'you salah le';   
-        print_r($_FILES["eventPicture"]);
-  } 
-  // catch (Exception $e) {
-  // echo "Exception: " . $e->getMessage();
-  // }
+    if ($_FILES["eventPicture"]['tmp_name'] != null) {
+      print 'hello';
+      print_r($_FILES["eventPicture"]);
+      uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
+    } else {
+      print 'you salah le';
+      print_r($_FILES["eventPicture"]);
+    }
+    // catch (Exception $e) {
+    // echo "Exception: " . $e->getMessage();
+    // }
 
     header("Location: /admin/event");
-}
+  }
 
-?>
-    <main class="container-fluid height-after-minus-header" id='main-body'>
-      <div class="row h-100">
-      <div class="container" id="right-content">
-    <h1>
-      New Event
-    </h1><br>
+  ?>
+ <main class="container-fluid height-after-minus-header" id='main-body'>
+   <div class="row h-100 justify-content-center align-items-center">
+     <div class="col-lg-8 pb-5" id="right-content">
+     <br>
+       <h1>
+         New Event
+       </h1><br>
 
 
-    <main>
-      <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
+       <main>
+         <!-- <a button type="button" class="btn btn-info float-right ml-2 btn-sm" href="inviteAlumni"
         onclick='setEventId()'>
         <i class="fas fa-user-plus"></i>
         Invite Alumni</a> -->
 
-        <!-- <div id="formCheck">
+         <!-- <div id="formCheck">
         hiiiiii
         </div>
         <script>
         document.getElementById("formCheck").innerHTML =`
         <form method="post" onsubmit="return checkvalidation()">`
         </script> -->
-      <form method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
-      
-        <div class="form-group">
-          <label for="formGroupExampleInput">Event Title :</label>
-          <input type="text" class="form-control rounded-0 w-75 p-3" id="title" name="title" value="" placeholder="Enter event title">
+         <form method="post" onsubmit="return checkvalidation()" enctype="multipart/form-data">
 
-          <div class="valid-feedback">Valid.</div>
-          <div id="contactNumberFeedback" class="invalid-feedback">
-            Please provide the title of the event.
-          </div>
-        </div>
+           <div class="form-group">
+             <label for="formGroupExampleInput">Event Title :</label>
+             <input type="text" class="form-control rounded-0 w-75 p-3" id="title" name="title" value="" placeholder="Enter event title">
 
-
-        <!-- form -->
-        <div class="form-group">
-          <label for="formGroupExampleInput2">Schedule :</label> <br>
-          <input type=date id="date" name="date" value="">
-          &nbsp;
-          <input type=time id="time" name="time" value="">
-
-          <div id="contactNumberFeedback" class="invalid-feedback">
-            Please provide both date and time of the event.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="formGroupExampleInput2">Description :</label>
-          <textarea type="text" class="form-control rounded-0" value="" id="description" name="description" placeholder="Enter event description"
-            rows="5" style="height:100%;"></textarea>
-          <div class="valid-feedback">Valid.</div>
-          <div id="contactNumberFeedback" class="invalid-feedback">
-            Please provide a brief description for the event.
-          </div>
-        </div>
-       
-
-        <div class="form-group">
-          <label for="formGroupExampleInput2 ">Location :</label>
-          <input type="text " class="form-control rounded-0 w-75 p-3" value="" id="location" name="locate" placeholder="Enter location">
-          <div class="valid-feedback">Valid.</div>
-          <div id="contactNumberFeedback" class="invalid-feedback">
-            Please provide the location of the event.
-          </div>
-        </div>
+             <div class="valid-feedback">Valid.</div>
+             <div id="contactNumberFeedback" class="invalid-feedback">
+               Please provide the title of the event.
+             </div>
+           </div>
 
 
-        <div class="w-25 position-relative">
-          <label for="phfile">Event Picture:</label>
-        <div class="picture-container">
-          <div class="picture">
-            <img
-              src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg"
-              id="prevImage" alt="update Image" width="100%" >
-            <input type="file" id="wizard-picture" name="imageId">
-            <input type="file" name="eventPicture" id="eventPicture" class="d-none">
-          </div>
-        
-        
-        </div>
-        <h6 id="choosePictureDescription"></h6>
-        <div id="contactNumberFeedback" class="invalid-feedback">
-        Please provide a picture for the event.
-        </div>
-        </div>
-        <!-- ssave button -->
-        <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
-        <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelCreate()">Cancel</button>
+           <!-- form -->
+           <div class="form-group">
+             <label for="formGroupExampleInput2">Schedule :</label> <br>
+             <input type=date id="date" name="date" value="">
+             &nbsp;
+             <input type=time id="time" name="time" value="">
 
-        <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->
-     
+             <div id="contactNumberFeedback" class="invalid-feedback">
+               Please provide both date and time of the event.
+             </div>
+           </div>
 
-      </form>
-<!-- modal -->
-      <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
-              <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal"
-                aria-label="Close" onclick="closeModal('#cancelChangesModal')">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              You have made changes. They will be lost if you continue.
-              Are you sure you want to leave this page?
-            </div>
-            <div class="modal-footer">
-              <a href="/admin/event"><button type="button" class="btn btn-secondary">Leave this
-                  Page</button></a>
-              <button id="stayButton" type="button"  class="btn btn-primary" data-dismiss="modal" onclick="closeModal('#cancelChangesModal')">Stay on this
-                Page</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+           <div class="form-group">
+             <label for="formGroupExampleInput2">Description :</label>
+             <textarea type="text" class="form-control rounded-0" value="" id="description" name="description" placeholder="Enter event description" rows="8" style="height:100%;"></textarea>
+             <div class="valid-feedback">Valid.</div>
+             <div id="contactNumberFeedback" class="invalid-feedback">
+               Please provide a brief description for the event.
+             </div>
+           </div>
+
+
+           <div class="form-group">
+             <label for="formGroupExampleInput2 ">Location :</label>
+             <input type="text " class="form-control rounded-0 w-75 p-3" value="" id="location" name="locate" placeholder="Enter location">
+             <div class="valid-feedback">Valid.</div>
+             <div id="contactNumberFeedback" class="invalid-feedback">
+               Please provide the location of the event.
+             </div>
+           </div>
+
+
+           <div class="w-25 position-relative">
+             <label for="phfile">Event Picture:</label>
+             <div class="picture-container">
+               <div class="picture">
+                 <img src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg" id="prevImage" alt="update Image" width="100%">
+                 <input type="file" id="wizard-picture" name="imageId">
+                 <input type="file" name="eventPicture" id="eventPicture" class="d-none">
+               </div>
+
+
+             </div>
+             <h6 id="choosePictureDescription"></h6>
+             <div id="contactNumberFeedback" class="invalid-feedback">
+               Please provide a picture for the event.
+             </div>
+           </div>
+           <!-- ssave button -->
+           <input type="submit" name="Submit" id="saveButton" class="btn btn-primary float-right ml-2" value="Submit"></button>
+           <button id="cancelButton" type="button" class="btn btn-outline-secondary float-right" onclick="cancelCreate()">Cancel</button>
+
+           <!-- <input type="submit" name="Submit" id="submit" class="btn btn-primary float-right ml-2" value="Submit"></button> -->
+
+
+         </form>
+         <!-- modal -->
+         <div class="modal fade" id="cancelChangesModal" tabindex="-1" aria-labelledby="cancelChangesModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="cancelChangesModalLabel">Confirm Navigation</h5>
+                 <button id="closeCancelChangesModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#cancelChangesModal')">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <div class="modal-body">
+                 You have made changes. They will be lost if you continue.
+                 Are you sure you want to leave this page?
+               </div>
+               <div class="modal-footer">
+                 <a href="/admin/event"><button type="button" class="btn btn-secondary">Leave this
+                     Page</button></a>
+                 <button id="stayButton" type="button" class="btn btn-primary" data-dismiss="modal" onclick="closeModal('#cancelChangesModal')">Stay on this
+                   Page</button>
+               </div>
+             </div>
+           </div>
+         </div>
+
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script> -->
-  </div>
-  
-  <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
-  <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
-  <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
-  <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
-  </main>
-  <?php include_once '../src/templates/GeneralScripts.php'?>
+     </div>
 
-</body>
-<br>
-</html>
+     <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
+     <script type="text/javascript">
+       var event_array = <?php echo json_encode($all_activities) ?>;
+     </script>
+     <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
+     <!-- <script src="/libs/bootstrap.bundle.js"></script> -->
+ </main>
+ <?php include_once '../src/templates/GeneralScripts.php' ?>
+
+ </body>
+ <br>
+
+ </html>
