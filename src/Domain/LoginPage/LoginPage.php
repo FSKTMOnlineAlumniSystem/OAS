@@ -256,7 +256,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="gender" class="form-select p-1" id="Gender" aria-label="Default select example">
+                                <select name="gender" class="form-control p-1" id="Gender" aria-label="Default select example">
                                     <option value="0">Gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -268,7 +268,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="Batch" class="form-select p-1" id="Batch" aria-label="Default select example">
+                                <select name="Batch" class="form-control p-1" id="Batch" aria-label="Default select example">
                                     <option value="0">Batch</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -347,7 +347,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="department" class="form-select p-1" id="Department" aria-label="Default select example">
+                                <select name="department" class="form-control p-1" id="Department" aria-label="Default select example">
                                     <option value="0">Department</option>
                                     <option value="Software Engineering">Software Engineering</option>
                                     <option value="Artificial Intellegent">Artificial Intellegent</option>
