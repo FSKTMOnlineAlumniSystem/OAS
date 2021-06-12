@@ -64,7 +64,7 @@ include_once '../src/templates/nav.php';
 </head>
 
 <body>
-    <div class="row justify-content-center align-items-center">
+    <div class="row m-0 justify-content-center align-items-center">
         <div class="col-10 col-lg-7 py-5" id='main-body'>
             <h3 class="mb-4">Add New Job</h3>
             <div id="form"></div>
