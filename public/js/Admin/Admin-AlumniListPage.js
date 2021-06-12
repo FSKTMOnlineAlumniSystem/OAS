@@ -272,10 +272,7 @@ searchBar.addEventListener('click',(e)=>{
     { 
       console.log(data.length);
       if(data.length== 2){
-        document.getElementById("searchNotFound").innerHTML=`<div class="row m-0 p-0 justify-content-center">
-        <div class="text-center">
-          <img class="card-img-150 mb-3" src="/Assets/imgs/searchNotFound.png" alt="Search Not Found" style="width:500px;height:500px;">
-        </div>`
+        insertSearchNoResult( document.getElementById("searchNotFound"));
       }else{
         document.getElementById("searchNotFound").innerHTML=``
       }

@@ -155,7 +155,7 @@ includeWithVariables('../src/templates/header.php', array(
               </div>
               </tbody>
           </table>
-          <div id="searchNotFound"></div>
+          <div class="row justify-content-md-center text-center" id="searchNotFound"></div>
           </div>
       </div>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
