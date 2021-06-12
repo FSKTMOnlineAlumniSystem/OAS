@@ -184,7 +184,7 @@ elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI']))
 }
 
 //AlumniList
-elseif (preg_match('/^\/profile/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
     include '../src/Domain/Alumni/AlumniProfilePage.php';
 } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
