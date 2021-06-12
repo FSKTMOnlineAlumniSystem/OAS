@@ -203,9 +203,10 @@ if(isset($_POST["checkbox"])){
               <tr class="rowss"></tr>
 
               </tbody>
-
             </table>
-
+          <!-- <div id="forSearch"></div> -->
+          <div class="row justify-content-md-center text-center" id="no_result" style="width:100% "></div>
+            
           </div>
           <!-- model -->
           <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -253,12 +254,12 @@ if(isset($_POST["checkbox"])){
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
-                <button onclick="previousPage()" class="page-link">Previous</button>
+                <!-- <button onclick="previousPage()" class="page-link">Previous</button> -->
               </li>
               <div class="pages list-group list-group-horizontal">
               </div>
               <li class="page-item" id="nextPage">
-                <button onclick="nextPage()" class="page-link">Next</button>
+                <!-- <button onclick="nextPage()" class="page-link">Next</button> -->
               </li>
             </ul>
           </nav>

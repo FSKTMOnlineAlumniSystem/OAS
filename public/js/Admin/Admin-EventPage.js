@@ -6,6 +6,28 @@ let eventArray=event_array
 let pageIndex = 0;
 
 const loadEventList = (pageIndex,eventArray) => {
+if(eventArray.length==0){
+  var table = document.getElementsByClassName(
+    "table table-striped table-sm something"
+  )[0];
+  for (var i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
+  }
+  document.getElementById("nextPage").innerHTML ='';
+  document.getElementById("previousPage").innerHTML = '';
+  document.getElementsByClassName("pages")[0].innerHTML = '';
+  insertSearchNoResult(document.getElementById("no_result"));
+  // document.getElementById('forSearch').innerHTML=`
+  // <div class="row m-0 p-0 justify-content-center">
+  //       <div class="text-center">
+  //       <p>Search not Found hehehe</p>
+  //         <img class="card-img-150 mb-3" src="/Assets/imgs/searchNotFound.png" alt="Search Not Found" style="width:500px;height:500px;">
+  //       </div>
+  //       `;
+}
+else{
+  document.getElementById('no_result').innerHTML='';
+
   // console.log(eventArray);
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
@@ -177,6 +199,7 @@ const loadEventList = (pageIndex,eventArray) => {
       localStorage.setItem('updateId', clickedAlumniIndex);
     });
   })
+}//else
 };
 
 // window.toggle = function (source) {
@@ -231,7 +254,6 @@ window.updateEvent = function (o) {
 // };
 
 window.deleteByJquery= function (o){
-  console.log('here delete ajax')
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
   var search = document.getElementById("input1").value;
@@ -295,8 +317,9 @@ window.DeleteCheckedRow = function () {
 $('#searchBar').click(function(){
   var search = document.getElementById("input1").value;
   if (search == "") {
-    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
     // and add a return here so below code will not run
+    return;
   }
 var outputList;
   $.ajax({
