@@ -73,7 +73,7 @@ try {
         for ($i=0;$i < count($all_alumni);$i++) {
           $alumniId = $all_alumni[$i]['alumniId'];
           echo' 
-          <a href="/profile?id='.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
+          <a href="/alumni/profile?id='.$alumniId.'" class="media justify-content-center mb-2 w-75 p-3" style="background-color:#E9E5E5;color:black; text-decoration: none;">
               <div class="image m-auto col-2 p-3">
                   <div style="aspect-ratio:1/1;overflow:hidden;">
                       <img src="'.$alumnilist->AlumniImages($alumniId)[0].'" class="w-100" alt='.$all_alumni[$i]['name'].'>
