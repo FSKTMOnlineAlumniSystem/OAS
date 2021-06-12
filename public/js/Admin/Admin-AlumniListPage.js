@@ -303,17 +303,35 @@ window.deleteByJquery= function (o){
   console.log(findId);
   var $deleteAlumniId=alumniArray[findId].alumniId;
   console.log($deleteAlumniId);
-
+  var $name = document.getElementById("input1").value;
+  var $status = $('#status').find("option:selected").val();
+  var $department = $('#department').find("option:selected").val();
+  
+  if($('#department').find("option:selected").val()=="All"){
+    $department="";
+  }
 $.ajax({
                     type: "POST",
                     url: '/admin/deleteAlumni',
                     data: {deleteAlumniId: $deleteAlumniId},
                     success:  function(data)
                     { 
-                      var outputList = JSON.parse(data);
-                      alumniArray = outputList;
-                      console.log(outputList);
-                      reload(outputList);
+                      // var outputList = JSON.parse(data);
+                      // alumniArray = outputList;
+                      // console.log(outputList);
+                      // reload(outputList);
+                      $.ajax({
+                        type: "POST",
+                        url: '/admin/searchAlumniName',
+                        data: {name: $name, department:$department, status:$status},
+                        success:  function(data)
+                        { 
+                          var outputList = JSON.parse(data);
+                          alumniArray = outputList;
+                          console.log(outputList);
+                          reload(outputList);
+                        }
+                      })
                     }
         });
 }
@@ -454,17 +472,36 @@ window.deleteCheckedRow = function(){
   }
     $alumniId=$alumniId.toString();
     console.log(document.querySelectorAll(':checked').length-2);
+    var $name = document.getElementById("input1").value;
+  var $status = $('#status').find("option:selected").val();
+  var $department = $('#department').find("option:selected").val();
+  
+  if($('#department').find("option:selected").val()=="All"){
+    $department="";
+  }
     $.ajax({
       type: "POST",
       url: '/admin/deleteMultipleAlumni',
       data: {listOfDeleteAlumniId: $alumniId, count:count},
       success:  function(data)
       { 
-        var outputList = JSON.parse(data);
-        alumniArray = outputList;
-        console.log(outputList);
-        reload(outputList);
+        // var outputList = JSON.parse(data);
+        // alumniArray = outputList;
+        // console.log(outputList);
+        // reload(outputList);
         checkboxes[0].checked = false;
+        $.ajax({
+          type: "POST",
+          url: '/admin/searchAlumniName',
+          data: {name: $name, department:$department, status:$status},
+          success:  function(data)
+          { 
+            var outputList = JSON.parse(data);
+            alumniArray = outputList;
+            console.log(outputList);
+            reload(outputList);
+          }
+        })
       }
     });
   }
