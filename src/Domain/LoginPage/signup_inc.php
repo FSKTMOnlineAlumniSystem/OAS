@@ -114,10 +114,10 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
 }
 
 function getLength($conn){
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM alumni");
+    $stmt = $conn->prepare("SELECT max( CONVERT ( substring_index(alumniId,'-',-1), UNSIGNED ) ) AS max FROM alumni");
     $stmt->execute();
     $data = $stmt->fetch();
-    return $data["COUNT(*)"];
+    return $data["max"];
 }
 
 
