@@ -148,13 +148,14 @@ includeWithVariables('../src/templates/header.php', array(
                   <th>Name</th>
                   <th>Department</th>
                   <th>Status</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center">Action</th> 
                 </tr>
               </thead>
               <tbody>
               </div>
               </tbody>
           </table>
+          <div id="searchNotFound"></div>
           </div>
       </div>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
