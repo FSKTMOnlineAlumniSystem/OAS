@@ -13,9 +13,12 @@ include_once '../src/templates/nav.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
-  $pageIndex = $_GET['page'];
-  $link = explode('/',$_SERVER["REQUEST_URI"]);
-  $id = $link[count($link)-1];
+  // $link = explode('/',$_SERVER["REQUEST_URI"]);
+  // $id = $link[count($link)-1];
+  if (isset($_GET['id'])){
+    $id = $_GET['id'];
+  } 
+
   $alumni = new MyProfile($db->getConnection(), $id);
   
   if ($id==$_SESSION['alumni']['alumniId']){
@@ -37,7 +40,7 @@ try {
     <div class="col-12 col-md-10 col-lg-7">
         <div class="row align-items-center">
           <div class="col-12">
-              <a href="/alumni?page=<?=$pageIndex?>" class="btn btn-link back">
+              <a href="javascript:history.go(-1)" class="btn btn-link back">
                 <i class="fas fa-chevron-left fa-2x"></i>
               </a>
               <h3 class="d-inline">Alumni Profile</h3>
