@@ -179,3 +179,7 @@ a.nostyle:visited {
   max-width: 400px;
   font-size: calc(0.7rem + 0.2vw)
 }
+
+.img-fluid{
+  width:100% !important;
+}

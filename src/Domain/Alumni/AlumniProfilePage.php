@@ -34,7 +34,7 @@ try {
 </head>
 <body>
   <div id="main-body" class="row mx-0 my-5 justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8">
+    <div class="col-12 col-md-10 col-lg-7">
         <div class="row align-items-center">
           <div class="col-12">
               <a href="/alumni?page=<?=$pageIndex?>" class="btn btn-link back">
