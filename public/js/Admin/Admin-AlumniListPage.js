@@ -406,16 +406,15 @@ $("#status,#department").on("change", function () {
 $("#clearAll").on("click", function (e) {
   $('#department option').prop('selected', function () {
     e.preventDefault();
-    $('#myTable tbody tr').show();
+    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
   $('#status option').prop('selected', function () {
     e.preventDefault();
-    // document.getElementById("input1").value == null;
-    $('#myTable tbody tr').show();
+    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
-  document.getElementById('input1').value = "";
+  // document.getElementById('input1').value = "";
   
   var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
