@@ -109,25 +109,7 @@ let editJobs = job_array;
 
     var input = document.getElementById("jobPicture");
     const imageFormat = /(\.png|\.jpg|\.jpeg)$/i;
-    //jobPicture
-    /*Check the file extension of the image & Update preview*/
-    // img.addEventListener('change', (e) => readURL(e));
-    // function readURL(e) {
-    // let allowedExtensions =
-    //     /(\.png|\.jpg|\.jpeg)$/i;
-    // if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-    //     var reader = new FileReader();
-    //     reader.onload = function (e) {
-    //         document.getElementById("wizardPicturePreview").src = e.target.result;
-    //     }
-    //     reader.readAsDataURL(e.target.files[0]);
-    //     choosePictureDescription.textContent = "Choose picture";
-    // } else {
-    //     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    // }
-    // }
 
-    //10000000
     img.addEventListener('change', (e) => readURL(e));
     function readURL(e) {
     let allowedExtensions =
@@ -135,7 +117,7 @@ let editJobs = job_array;
     if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000 && allowedExtensions.test(e.target.value)) {
         // To handle the file size
         choosePictureDescription.textContent = "Image size must be smaller than 10MB";
-        // return true;
+      
     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
         jobPicture.files = e.target.files;
         var reader = new FileReader();
@@ -219,13 +201,6 @@ let editJobs = job_array;
         } else {
             setValid(description);
         }
-
-        // if (isEmpty(jobPicture)) {
-        //     setInValid(jobPicture);
-        //     errorExist = true;
-        //   } else {
-        //     setValid(jobPicture);
-        //   }
 
         if (errorExist){
             return false;

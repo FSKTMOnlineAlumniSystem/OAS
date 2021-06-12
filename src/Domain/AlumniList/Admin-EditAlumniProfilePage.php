@@ -39,9 +39,7 @@ includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/JobDetailsPage.css'
 ));
 ?>
-<?php
-include '../src/templates/nav.php';
-?>
+
 <?php
 $prevAlumniId=$_GET['alumniId'];
 if(isset($_POST['update'])) {

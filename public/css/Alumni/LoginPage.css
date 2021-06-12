@@ -13,8 +13,8 @@ body{
 }
 
 .signUPbutton {
-  display: flex;
-  justify-content: flex-start;
+  /* display: flex;
+  justify-content: flex-start; */
   color: #797979;
   text-align: left;
   cursor: pointer;

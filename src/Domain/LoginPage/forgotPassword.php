@@ -16,6 +16,7 @@ if(isset($_POST["submit"])){
     require_once '../libs/PHPMailer/src/Exception.php';
    
     if(emailExists($conn,$email) == false){
+       
         header("location: /login?fgemailnotExists");
         exit();
     }else{
@@ -74,7 +75,7 @@ if(isset($_POST["submit"])){
 }
 
 function adminApproved($conn,$email){
-    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!=""');
+    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!="" AND isVerified=1 ');
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $data = $stmt->fetchAll();

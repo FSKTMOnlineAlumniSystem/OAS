@@ -70,6 +70,7 @@ function loadMyJobList(pageIndex, outputList, count) {
         </li>`;
     }
   } else if (count===-1){
+    document.getElementById("top").innerHTML="";
     insertSearchNoResult(document.getElementById("no_result"));
     document.getElementById("nextPage").innerHTML = "";
     document.getElementsByClassName("pages")[0].innerHTML = "";
@@ -77,6 +78,7 @@ function loadMyJobList(pageIndex, outputList, count) {
     return;
     
   }else {
+    document.getElementById("no_result").innerHTML="";
     document.getElementById(
       "top"
     ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
@@ -121,7 +123,6 @@ function loadMyJobList(pageIndex, outputList, count) {
       }
   
 
-  const deleteButton = document.querySelector("#deleteButton");
   const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
   const clickButton = document.querySelectorAll(".clickButton");
   var deleteID;
@@ -174,10 +175,11 @@ $('#deleteButton').click(function(){
 closeModal("#deleteModal");
 });
 
-
+const searchButton = document.getElementById('search-button');
+var searchInput = document.getElementById('search_item');
 
 //Search
-$('#search-button').click(function(){
+const handleMyJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
   if (search == "") {
     alert("Hi, type something to search!"); 
@@ -201,6 +203,14 @@ $('#search-button').click(function(){
      
   });
 
+}
+
+
+searchButton.addEventListener('click',handleMyJobSearch);
+searchInput.addEventListener('keypress', (evt)=>{
+  if(evt.key === 'Enter'){
+    handleMyJobSearch(evt);
+  }
 });
    
 

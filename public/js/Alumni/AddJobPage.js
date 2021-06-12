@@ -174,8 +174,6 @@ function checkvalidation() {
 }
 
 //DISPLAYING THE PICTURE AFTER USER UPLOADED THE FILE
-// var input = document.getElementById("upload");
-// var content = document.getElementById("fileTooLarge");
 var fileLabel = document.getElementById("fileLabel");
 
 input.addEventListener("change", (event) => readURL(input));
@@ -226,23 +224,4 @@ function readURL(input) {
 
 
 
-//TRY
-// img.addEventListener('change', (e) => readURL(e));
-// function readURL(e) {
-//     let allowedExtensions =
-//         /(\.png|\.jpg|\.jpeg)$/i;
-//     if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
-//         // To handle the file size
-//         choosePictureDescription.textContent = "Image size must be smaller than 10MB";
-//     }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-//         profilePicture.files = e.target.files;
-//         var reader = new FileReader();
-//         reader.onload = function (e) {
-//             wizardPicturePreview.src = e.target.result;
-//         }
-//         reader.readAsDataURL(e.target.files[0]);
-//         choosePictureDescription.textContent = "Choose picture";
-//     } else {
-//         choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-//     }
-// }
+

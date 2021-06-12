@@ -70,7 +70,7 @@ elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/l
     exit;
 }
 
-elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
     include '../src/Domain/HomePage/HomePage.php';
 } 
@@ -177,6 +177,10 @@ elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
 } elseif (preg_match('/^\/admin\/editalumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
+}
+elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/AlumniList/searchAlumniName.php';
 }
 
 //AlumniList
