@@ -71,7 +71,7 @@ class MyJobModel
     }
 
     public function search($searchterm,$alumniID) :array{
-        $query = "SELECT * FROM `job` WHERE alumniId='$alumniID' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%".$searchterm."%' ORDER BY postedDateTime DESC";  
+        $query = "SELECT * FROM `job` WHERE alumniId='$alumniID' AND (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR salary LIKE '%$searchterm%' OR company LIKE '%$searchterm%'  OR location LIKE '%$searchterm%')  ORDER BY postedDateTime DESC";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -95,7 +95,6 @@ class MyJobModel
             return '/Assets/imgs/jobdefault.jpg';
         }
     }
-//SELECT * FROM `job` WHERE alumniId='AL-1' AND CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%HSBC%'
     
 
 }

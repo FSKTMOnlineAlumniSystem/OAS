@@ -112,11 +112,13 @@ function loadJobList(pageIndex, outputList) {
   
 }
 
-//Search
-$('#search-button').click(function(){
+const searchButton = document.getElementById('search-button');
+var searchInput = document.getElementById('search_item');
+  
+const handleJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
   if (search == "") {
-    alert("Name must be filled out");
+    alert("Hi, type something to search!");
   }
   console.log("pls"+search);
   $.ajax({
@@ -125,7 +127,7 @@ $('#search-button').click(function(){
     data: {search: search},
     success: function(resp){
      console.log("success");
-    //  console.log(resp);
+
     let page = 0;
     var jobtList =JSON.parse(resp);
  
@@ -133,8 +135,14 @@ $('#search-button').click(function(){
     },
      
   });
+}
 
+
+searchButton.addEventListener('click',handleJobSearch);
+searchInput.addEventListener('keypress', (evt)=>{
+  if(evt.key === 'Enter'){
+    handleJobSearch(evt);
+  }
 });
-
 
 export default loadJobList;
