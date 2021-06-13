@@ -7,6 +7,51 @@ let pageIndex = 0;
 const loadEventList = (pageIndex,alumniEventArray,alumniArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
+
+//handle no result
+  if(alumniArray.length==0){
+    document.getElementById('invideAndDone').innerHTML='';
+    // document.getElementById('forSearch').innerHTML=`
+    // <div class="row m-0 p-0 justify-content-center">
+    //     <div class="text-center">
+    //     <p>Search not Found</p>
+    //       <img class="card-img-150 mb-3" src="/Assets/imgs/searchNotFound.png" alt="Search Not Found" style="width:500px;height:500px;">
+    //     </div>
+    // `;
+  insertSearchNoResult(document.getElementById("no_result"));
+    
+  }
+
+  else{
+    document.getElementById('no_result').innerHTML='';
+    
+// document.getElementById('forSearch').innerHTML=`
+// <table  id="myTable" class="table table-striped table-bordered">
+//   <thead style="font-weight: 200; color:#ffffff" class="custom-dark-purple">
+//     <tr>
+//       <th class="text-center">
+//         <div class="custom-control custom-checkbox">
+//           <input type="checkbox" class="custom-control-input" id="CheckAllBoxes" onclick="toggle(this);">
+//           <label class="custom-control-label" for="CheckAllBoxes"></label>
+//         </div>
+//       </th>
+//       <th>Avatar</th>
+//       <th>Name</th>
+//       <th>Department</th>
+//       <th>Status</th>
+//       <th class="text-center">Action</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//   </tbody>
+// </table>
+// `
+
+//   const tbody = document.getElementsByTagName('tbody')[0];
+// tbody.innerHTML="";
+
+
+
 alumniArray.forEach((alumni,index) => {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
@@ -93,6 +138,15 @@ alumniArray.forEach((alumni,index) => {
   tr.appendChild(td);
   tbody.appendChild(tr);
 });
+document.getElementById('invideAndDone').innerHTML=`
+            <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
+              <i class="fas fa-user-plus"></i> Invite
+            </button>
+            <button type="button" class="btn btn-primary ml-2" onclick='backToPreviousPage()'>
+              Done
+            </button>
+`
+}//else
 }
 // window.toggle = function (source) {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -161,7 +215,8 @@ $('#searchBar').click(function(){
   var search = document.getElementById("input1").value;
   var eventId=localStorage.getItem('eventId');
   if (search == "") {
-    alert("Name must be filled out"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+    return;
     // and add a return here so below code will not run
   }
 var outputList;

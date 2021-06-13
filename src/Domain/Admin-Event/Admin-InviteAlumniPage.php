@@ -110,7 +110,8 @@ crossorigin="anonymous"></script> -->
               <div class="form-group col-6">
                 <!-- filter status -->
                 <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" id="status" oninput="filterStatus()">
+                <select class="form-control" id="status">
+                <!-- oninput="filterStatus()" -->
                   <option>All</option>
                   <option>Invited</option>
                   <option>Not Invited</option>
@@ -159,8 +160,9 @@ crossorigin="anonymous"></script> -->
             </div>
           </form>
 
-          <div class="table-responsive col-12">
-            <table  id="myTable" class="table table-striped table-bordered">
+          <div class="table-responsive col-12" >
+          
+            <table  id="myTable" class="table table-striped table-sm table-bordered">
               <thead style="font-weight: 200; color:#ffffff" class="custom-dark-purple">
                 <tr>
                   <th class="text-center">
@@ -179,19 +181,26 @@ crossorigin="anonymous"></script> -->
               <tbody>
               </tbody>
             </table>
+            <!-- <div id="forSearch"></div> -->
+          <div class="row justify-content-md-center text-center" id="no_result"></div>
+
           </div>
 
-          <div class="col-12 d-flex justify-content-end">
-            <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
+          
+
+         
+          <div class="col-12 d-flex justify-content-end" id='invideAndDone'>
+            <!-- <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
               <i class="fas fa-user-plus"></i> Invite
             </button>
             <button type="button" class="btn btn-primary ml-2" onclick='backToPreviousPage()'>
               Done
-            </button>
+            </button> -->
           </div>
         </div>
         <br>
       </div>
+
       <div id="previousPagePage"></div>
       <div class="pages"></div>
       <div id="nextPage"></div>
@@ -199,7 +208,7 @@ crossorigin="anonymous"></script> -->
   </main>
 
   <!-- general js files -->
-  <script type="text/javascript" src="/js/utility.js"></script>
+  <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
   <!-- <script type="module" src="/js/addHeader.js"></script> -->
   <!-- <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> -->
   <!-- custom js files -->
@@ -212,12 +221,13 @@ crossorigin="anonymous"></script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
+  <?php include_once '../src/templates/GeneralScripts.php'?>
 
 
 </body>

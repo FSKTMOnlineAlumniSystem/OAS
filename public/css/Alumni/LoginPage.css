@@ -23,9 +23,6 @@ body{
 }
 
 .forgotPsw{
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
   color: #797979;
   cursor: pointer;
 }

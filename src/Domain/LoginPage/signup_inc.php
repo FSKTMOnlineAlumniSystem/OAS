@@ -65,7 +65,7 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
     $encrypted = Encrypt($email);
     verifyEmail($email,$encrypted);
 
-    $alumniId = "AL-" . getLength($conn)+1 ;
+    $alumniId = "AL-" . (getLength($conn)+1) ;
     // $alumniId = $email;
     $imageId = $alumniId;
 
@@ -114,10 +114,10 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
 }
 
 function getLength($conn){
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM alumni");
+    $stmt = $conn->prepare("SELECT max( CONVERT ( substring_index(alumniId,'-',-1), UNSIGNED ) ) AS max FROM alumni");
     $stmt->execute();
     $data = $stmt->fetch();
-    return $data["COUNT(*)"];
+    return $data["max"];
 }
 
 
@@ -125,7 +125,7 @@ function getLength($conn){
 
 function verifyEmail($email,$encrypted){
 
-    $base_url = "http://localhost/login?id=".$encrypted;
+    $base_url = "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/login?id=".$encrypted;
 
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
