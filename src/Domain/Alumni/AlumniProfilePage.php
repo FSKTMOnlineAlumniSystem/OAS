@@ -27,6 +27,7 @@ try {
   }else if(!$alumni->isAlumniExist()){
     include_once '../src/Domain/General_Pages/page_not_found.php';
     include_once '../src/templates/footer.php';
+    include_once '../src/templates/GeneralScripts.php';
     exit;
   }
 
