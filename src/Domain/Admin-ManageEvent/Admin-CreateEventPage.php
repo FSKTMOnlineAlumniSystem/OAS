@@ -1,13 +1,13 @@
  <!-- custom css files -->
  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
  <!-- css -->
- <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css"> -->
+ <!-- <link rel="stylesheet" href="/css/Admin/Admin-CreateEventPage.css"> -->
 
  <?php
   include_once '../src/utilities/includeWithVariable.php' ?>
  <?php
   includeWithVariables('../src/templates/header.php', array(
-    'admin_eventPageCreate_css' => '/css/Admin/Admin-EventPageCreate.css',
+    'admin_eventPageCreate_css' => '/css/Admin/Admin-CreateEventPage.css',
     'index' => '/css/Alumni/index.css'
   ));
   ?>
@@ -18,7 +18,7 @@
  <!-- <body> -->
  <?php
   // include '../config/config.php';
-  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
   include_once '../src/utilities/uploadImage.php';
   $_SESSION['admin']['adminId'];
@@ -40,7 +40,7 @@
   }
   ?>
 
- <!-- <script type="text/javascript" src="/js/Admin/Admin-EventPageCreate.js"></script> -->
+ <!-- <script type="text/javascript" src="/js/Admin/Admin-CreateEventPage.js"></script> -->
 
  <?php
   if (isset($_POST['Submit'])) {

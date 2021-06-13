@@ -3,7 +3,7 @@ localStorage.setItem('currentPage', "homePage");
 document.getElementById('event').innerHTML = "";
 
 //event card
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < event_array.length; i++) {
 
     var d = new Date(event_array[i].dateTime);
 
@@ -76,14 +76,13 @@ for (let i = 0; i < 6; i++) {
 
 //alumni card
 document.getElementById('alumni').innerHTML = "";
-console.log(alumni_array.length);
 for (let i = 0; i < alumni_array.length; i++) {
     const card_alumni = document.createElement('div');
     card_alumni.setAttribute('class', 'swiper-slide pl-1 pr-1');
     card_alumni.innerHTML = `
 
                             <div class="card h-100" id="${alumni_array[i].alumniId}">
-                            <a style="text-decoration:none; color:black;" href="alumnidetails?alumniId=${alumni_array[i].alumniId}">
+                            <a style="text-decoration:none; color:black;" href="profile?id=${alumni_array[i].alumniId}">
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
                                     <img class="card-img-top w-100" src="${alumni_array[i].imageId}" alt="Card image cap"
                                     width="100%">

@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 include_once '../src/Domain/Database.php';
-include_once '../src/Domain/LoginPage/class.verifyEmail.php';
+// include_once '../src/Domain/LoginPage/class.verifyEmail.php';
 include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
 include_once '../src/utilities/uploadImage.php';
 

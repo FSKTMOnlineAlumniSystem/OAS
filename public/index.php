@@ -5,33 +5,27 @@ session_start();
 //Login
 if (preg_match('/^\/api\/signin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/signin_inc.php';
+    include '../src/Domain/LoginPage/SignInController.php';
 }elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/signup_inc.php';
+    include '../src/Domain/LoginPage/SignUpController.php';
 } elseif (preg_match('/^\/api\/forgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/forgotPassword.php';
-} elseif (preg_match('/^\/api\/verify/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/class.verifyEmail.php';
-} elseif (preg_match('/^\/api\/updatedb/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/UpdateDB.php';
+    include '../src/Domain/LoginPage/forgotPasswordController.php';
 }
 
 //Admin-Login
 elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Admin-LoginPage/signin.php';
+    include '../src/Domain/Admin-LoginPage/SignInAdminController.php';
 } elseif (preg_match('/^\/api\/adminforgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Admin-LoginPage/AdminforgotPsw.php';
+    include '../src/Domain/Admin-LoginPage/ForgotPasswordAdminController.php';
 }
 
 // Logout
 elseif (preg_match('/^\/api\/log-out\/?$/i', $_SERVER['REQUEST_URI'])) {
-    include '../src/Domain/LoginPage/logout.php';
+    include '../src/Domain/LoginPage/LogOutController.php';
     exit(); // prevent further script from running
 }
 
@@ -109,33 +103,33 @@ elseif (preg_match('/^\/job\/?$/i', $_SERVER['REQUEST_URI'])) {
 //admin-event
 elseif (preg_match('/^\/admin\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPage.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-EventPage.php';
 } elseif (preg_match('/^\/admin\/update\/event\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPageUpdate.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-UpdateEventPage.php';
 } elseif (preg_match('/^\/admin\/create\/event\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPageCreate.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-CreateEventPage.php';
 } elseif (preg_match('/^\/admin\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-InviteAlumniPage.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniPage.php';
 } elseif (preg_match('/^\/admin\/delete\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-deleteEvent.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-DeleteEventController.php';
 } elseif (preg_match('/^\/admin\/invite\/function\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-InviteFunction.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniController.php';
 } elseif (preg_match('/^\/admin\/search\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventSearch.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-EventSearchController.php';
 }elseif (preg_match('/^\/admin\/search\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-inviteAlumniSearch.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-inviteAlumniSearchController.php';
 }
 
 elseif (preg_match('/^\/try\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/admin-try.php';
+    include '../src/Domain/Admin-ManageEvent/admin-try.php';
 }
 
 //Admin-Home
@@ -164,23 +158,23 @@ elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
 // Admin Manage Alumni
 elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-AlumniListPage.php';
 } elseif (preg_match('/^\/admin\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-DeleteAlumniController.php';
 } elseif (preg_match('/^\/admin\/approveAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-approveAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-ApproveAlumniController.php';
 } elseif (preg_match('/^\/admin\/deleteMultipleAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-deleteMultipleAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-deleteMultipleAlumni.php';
 } elseif (preg_match('/^\/admin\/editalumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-EditAlumniProfilePage.php';
 }
 elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/searchAlumniName.php';
+    include '../src/Domain/Admin-ManageAlumni/searchAlumniName.php';
 }
 
 //AlumniList

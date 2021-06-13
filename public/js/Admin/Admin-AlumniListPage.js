@@ -457,6 +457,7 @@ $("#clearAll").on("click", function (e) {
       var outputList = JSON.parse(data);
       alumniArray = outputList;
       pageIndex=0;
+      document.getElementById("searchNotFound").innerHTML=``
       reload(outputList,pageIndex);
     }
   // e.preventDefault();
