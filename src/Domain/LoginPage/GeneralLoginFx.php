@@ -29,6 +29,7 @@ function Encrypt($email)
     return base64_encode($encryption);
 }
 
+
 function Decrypt($encryption)
 {
     // Store the cipher method
@@ -71,4 +72,20 @@ function emailExists($conn, $email)
     }
     //email not Exists
     return false;
+}
+
+
+function adminApproved($conn,$email)
+{
+
+    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!=""');
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+
+    if(!$data){
+        return false;
+    }else{
+        return true;
+    }
 }

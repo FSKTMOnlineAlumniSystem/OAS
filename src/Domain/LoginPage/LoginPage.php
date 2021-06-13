@@ -384,12 +384,16 @@ $conn = $db->getConnection();
 
     
 </div>
+
+
+<?php
+include '../src/templates/GeneralScripts.php'
+?>
+
    
    <!-- wait for verification  -->
    
    <?php
-   echo isset($_GET["id"]);
-   echo "";
     if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
         $stmt = $conn->prepare("UPDATE alumni SET isVerified=1 WHERE email=:email");
@@ -540,6 +544,52 @@ if (isset($_GET["doneSend"])) {
 }
 ?>
 
+<!--  need to verify email before forgot password -->
+
+<?php
+
+if (isset($_GET["verify"])) {
+    echo'
+        <div class="modal fade" id="doneSend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>Next Step</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>
+                                You need to verify your account. <br>
+                                Sign in to your email account and click in the verification link we email you.
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Thank you.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#doneSend").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#doneSend").modal("hide");
+                });
+            }
+        </script>
+';
+}
+?>
+
 <!-- chgpsw -->
 
 <?php
@@ -590,13 +640,6 @@ if (isset($_GET["sendPsw"])) {
 }
 ?>
 
-<!-- <script type="text/javascript">
-function emailName(){
-    staticEmail = document.getElementById('staticEmail');
-    console.log(staticEmail);
-    return staticEmail;
-}
-</script> -->
 
 <?php
         if (isset($_GET["emailExists"])){

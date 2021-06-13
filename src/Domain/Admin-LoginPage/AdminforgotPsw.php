@@ -68,7 +68,8 @@ if(isset($_POST["submit"])){
     }
 }
 
-function emailExists($conn,$email){
+function emailExists($conn,$email)
+{
 
     $stmt = $conn->prepare("SELECT * FROM admin WHERE email=?");
     $stmt->execute(array($email));
@@ -83,7 +84,8 @@ function emailExists($conn,$email){
         return false;
 }
 
-function randomPassword() {
+function randomPassword()
+{
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $pass = array(); //remember to declare $pass as an array
     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -94,7 +96,8 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-function setNewPassword($conn,$newPassword,$email){
+function setNewPassword($conn,$newPassword,$email)
+{
     $stmt = $conn->prepare("UPDATE admin SET password=:password WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->bindParam("password", $newPassword);

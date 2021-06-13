@@ -121,7 +121,6 @@ form.addEventListener('submit', (e) => {
         setSuccessFor(LastName);
     }
 
-
     if (isEmpty(emailValue) || !Email.value.match(emailFormat)) {
         setErrorFor(Email);
         errorExist = true;
@@ -154,28 +153,7 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) {
         e.preventDefault();
-    } else {
-        // const obj = {
-        //     "alumniId": "AL-" + dummyResponse.Alumni.length,
-        //     "approvedBy": "",
-        //     "email": emailValue,
-        //     "password": passwordValue,
-        //     "icNumber": ICValue,
-        //     "gender": GenderValue,
-        //     "name": FirstNameValue + LastNameValue,
-        //     "department": DepartmentValue,
-        //     "graduated": BatchValue,
-        //     "imageId": im,
-        //     "contactNumber": "03-79676347",
-        // }
-
-        // dummyResponse.Alumni.push(obj);
-        // updateDummyData(dummyResponse);
-
-        // e.preventDefault();
-        // getWait();
-
-    }
+    } 
 });
 
 //pop up the wait for verification modal
@@ -224,23 +202,3 @@ function isEmpty(obj) {
 
 }
 
-// function generatePassword() {
-//     var length = 8,
-//       charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-//       retVal = "";
-//     for (var i = 0, n = charset.length; i < length; ++i) {
-//       retVal += charset.charAt(Math.floor(Math.random() * n));
-//     }
-//     return retVal;
-//   }
-
-
-//   console.log(generatePassword());
-
-// var GotIt = document.getElementById('gotit');
-
-// GotIt.onclick = function () {
-
-//     location.href = "/login";
-
-// }

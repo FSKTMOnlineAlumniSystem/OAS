@@ -251,3 +251,6 @@ else {
     include_once '../src/templates/footer.php';
     include_once '../src/templates/GeneralScripts.php';
 }
+
+
+
