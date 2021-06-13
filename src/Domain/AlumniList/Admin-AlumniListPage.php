@@ -238,7 +238,7 @@ includeWithVariables('../src/templates/header.php', array(
                   </div>
                 </div>
                  <!-- pagination -->
-          <!-- <nav aria-label="Page navigation example">
+          <nav aria-label="Page navigation example">
 
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
@@ -256,7 +256,7 @@ includeWithVariables('../src/templates/header.php', array(
                 <button onclick="nextPage()" class="page-link">Next</button>
               </li>
             </ul>
-          </nav> -->
+          </nav>
   </main>
 
   <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->
