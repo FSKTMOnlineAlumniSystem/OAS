@@ -14,10 +14,11 @@ crossorigin="anonymous"></script> -->
 
 <!-- <body> -->
 <?php
-//  $eventId=$_GET['eventId'];
- $eventId='E-2';
+ $eventId=$_GET['eventId'];
+
+
   // include '../config/config.php';
-  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
   ?>
   <?php
@@ -30,18 +31,22 @@ crossorigin="anonymous"></script> -->
   ));
   
   $_SESSION['admin']['adminId'];
-  
+
+
+
+
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
     $event_model = new Admin_Alumni_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
-    if (!empty($all_activities)) {
+  } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+  }
 
-      foreach ($all_activities as $activity) {
-        // echo "$activity[eventId] ";
-      }
-    }
+  try {
+    $event = new Admin_EventModel($db->getConnection());
+    $event->getEvent($eventId);
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
   }
@@ -181,15 +186,8 @@ crossorigin="anonymous"></script> -->
               <tbody>
               </tbody>
             </table>
-            <!-- <div id="forSearch"></div> -->
-          <div class="row justify-content-md-center text-center" id="no_result"></div>
 
-          </div>
-
-          
-
-         
-          <div class="col-12 d-flex justify-content-end" id='invideAndDone'>
+            <div class="col-12 d-flex justify-content-end" id='invideAndDone'>
             <!-- <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
               <i class="fas fa-user-plus"></i> Invite
             </button>
@@ -197,13 +195,29 @@ crossorigin="anonymous"></script> -->
               Done
             </button> -->
           </div>
+            <!-- <div id="forSearch"></div> -->
+          <div class="row justify-content-md-center text-center" id="no_result"></div>
+          <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+              <li class="page-item" id="previousPage"></li>
+              <div class="pages list-group list-group-horizontal"></div>
+              <li class="page-item" id="nextPage"></li>
+            </ul>
+          </nav>
+
+
+          </div>
+
+          
+
+          
+
+
         </div>
         <br>
       </div>
 
-      <div id="previousPagePage"></div>
-      <div class="pages"></div>
-      <div id="nextPage"></div>
+
       
   </main>
 

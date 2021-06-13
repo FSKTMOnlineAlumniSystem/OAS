@@ -140,7 +140,7 @@ button:hover {
 }
 
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 2px;
   height: 2px;
 }
@@ -148,7 +148,7 @@ button:hover {
 ::-webkit-scrollbar-button {
   width: 2px;
   height: 2px;
-}
+} */
 
 .smallContainerEvent {
   display: flex;

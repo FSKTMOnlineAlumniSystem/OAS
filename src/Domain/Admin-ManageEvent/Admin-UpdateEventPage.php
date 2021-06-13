@@ -2,7 +2,7 @@
   <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
 
   <!-- <link rel="stylesheet" type="text/css" href="/public/css/Alumni/EventPage.css" /> -->
-  <!-- <link rel="stylesheet" href="/css/Admin/Admin-EventPageCreate.css"> -->
+  <!-- <link rel="stylesheet" href="/css/Admin/Admin-CreateEventPage.css"> -->
   <!-- <title>Update Event - Online Alumni System</title> -->
   <!-- </head> -->
   <!-- <body> -->
@@ -10,13 +10,13 @@
   include_once '../src/utilities/includeWithVariable.php' ?>
   <?php
   includeWithVariables('../src/templates/header.php', array(
-    'admin_eventPageCreate_css' => '/css/Admin/Admin-EventPageCreate.css',
+    'admin_eventPageCreate_css' => '/css/Admin/Admin-CreateEventPage.css',
     'index' => '/css/Alumni/index.css'
   ));
   ?>
   <?php
   // include '../../../config/config.php';
-  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
   include_once '../src/utilities/uploadImage.php';
 
@@ -105,7 +105,7 @@
   <script type="text/javascript">
     var event_array = <?php echo json_encode($all_activities) ?>;
   </script>
-  <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script>
+  <script type="module" src="/js/Admin/Admin-UpdateEventPage.js"></script>
 
   <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100 justify-content-center align-items-center">
@@ -231,7 +231,7 @@
   <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
   <!-- <script type="text/javascript">var event_array = <?php echo json_encode($all_activities) ?>;</script>
     
-    <script type="module" src="/js/Admin/Admin-EventPageUpdate.js"></script> -->
+    <script type="module" src="/js/Admin/Admin-UpdateEventPage.js"></script> -->
   <script type="text/javascript" src="/js/Admin/Admin-EventValidate.js"></script>
 
   <!-- <script src="/libs/bootstrap.bundle.js"></script> -->

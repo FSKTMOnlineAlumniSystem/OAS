@@ -1,33 +1,4 @@
 
-
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-
-
-<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
-  
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-
-   <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <link href="/css/Alumni/HomePage.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
-   
-    <title></title>
-    </head>
-    <body> -->
-
 <?php
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Job/JobModel.php';
@@ -39,7 +10,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     $event_model = new EventModel($db->getConnection());
     $all_activities_event = $event_model->EventData();
-    for ($i=0; $i < 6; $i++) { 
+    for ($i=0; $i < count($all_activities_event); $i++) { 
         $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
     }
     for ($i=0; $i< count($all_activities_event); $i++){
