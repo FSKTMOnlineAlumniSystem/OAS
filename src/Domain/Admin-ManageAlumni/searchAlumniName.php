@@ -10,20 +10,11 @@ if (isset($_POST['name'])) {
     $status = $_POST['status'];
     $search = new  AlumniListModel($db->getConnection());	
     $searchSearch = $search-> search($name, $department, $status);
-    $allImage = $search->getProfilePicture();
-    for ($i=0; $i< count($searchSearch); $i++){
-      if($allImage[$i] == null){
-        $searchSearch[$i]['imageId'] = "/Assets/imgs/default_user.png";
-      }else
-      $searchSearch[$i]['imageId'] = $allImage[$i];
-    }
-    //   $allImage = $deleteMultipleAlumni->getProfilePicture();
-    //   for ($i=0; $i< count($all_activities); $i++){
-    //     if($allImage[$i] == null){
-    //       $all_activities[$i]['imageId'] = "/Assets/imgs/default_user.png";
-    //     }else
-    //     $all_activities[$i]['imageId'] = $allImage[$i];
-    //   }
+    for($i=0; $i<count($searchSearch); $i++){
+        $alumniId = $searchSearch[$i]['alumniId'];
+        $image = $search->getSearch($alumniId);
+        $searchSearch[$i]['imageId'] = $image;
+      }  
       echo json_encode($searchSearch);
   }
 
