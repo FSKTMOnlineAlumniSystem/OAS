@@ -27,7 +27,7 @@ class JobModel
     }
 
     public function search($searchterm){
-        $query = "SELECT * FROM `job` WHERE CONCAT( `title`, `description`, `salary`, `company`, `location`) LIKE '%".$searchterm."%' ORDER BY postedDateTime DESC";  
+        $query = "SELECT * FROM `job` WHERE (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR salary LIKE '%$searchterm%' OR company LIKE '%$searchterm%'  OR location LIKE '%$searchterm%') ORDER BY postedDateTime DESC";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -86,7 +86,6 @@ class JobModel
     }
 
 
-    //nicole gt changes here
     public function NicoleImages(){
         $stmt = $this->connection->prepare('SELECT * FROM job LEFT JOIN image ON job.imageId=image.imageId ORDER BY postedDateTime DESC LIMIT 4');
         $stmt->execute();

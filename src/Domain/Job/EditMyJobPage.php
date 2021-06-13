@@ -16,7 +16,7 @@ if(isset($_POST['Submit'])) {
   $postedDateTime = date(DATE_ATOM, strtotime($date));
 
   $jobId = $myjobid;
-  $alumniId = $_SESSION['alumni']['alumniId'] ;         //ned change
+  $alumniId = $_SESSION['alumni']['alumniId'] ;        
   $title = $_POST['jobtitle'];
   $description = $_POST['description'];
   $salary = $_POST['salary'];

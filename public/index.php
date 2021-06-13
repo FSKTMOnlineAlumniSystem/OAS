@@ -178,9 +178,13 @@ elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
 }
+elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
+    $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/AlumniList/searchAlumniName.php';
+}
 
 //AlumniList
-elseif (preg_match('/^\/profile/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
     include '../src/Domain/Alumni/AlumniProfilePage.php';
 } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {

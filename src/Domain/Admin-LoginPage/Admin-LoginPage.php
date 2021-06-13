@@ -66,17 +66,17 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 ?>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
-        <div class="container shadow-lg" style="height:75vh;">
+        <div class="container shadow-lg" style="height:80vh;">
             <div class="row align-items-center h-100">
                 <div
-                    class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
+                    class="d-none col-md-6 gradient-purplin h-100 p-lg-5 p-1 d-md-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4">
                     <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
-                    class="container col-md-6 bg-light h-100 p-5 d-flex flex-column justify-content-center align-items-center">
-                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
-                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center">Welcome back, Admin!
+                    class="container col-md-6 bg-light h-100 p-lg-5 p-4 d-flex flex-column justify-content-center align-items-center">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4 mb-sm-5 d-md-none">
+                    <h3 class="mb-3 mb-sm-5 d-flex flex-column justify-content-center align-items-center text-center">Welcome back, Admin!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/adminsignin' id="signIN" method="post">
                         <div class="form-label-group w-100">
@@ -140,14 +140,14 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
-                    <div class="row w-100">
-                        <div class="col">
+                    <div class="row w-100 pt-1">
+                        <div class="col-12 text-right">
                             <span data-toggle="modal" data-target="#forgot">
                                 <span class="forgotPsw">Forgot
                                     Password?</span></span>
                         </div>
                     </div>
-                    <div class="bottom-right">
+                    <div class="bottom-right" style="bottom:10px;">
                         <a href="/login">I am Alumni</a>
                     </div>
                 </div>
@@ -168,8 +168,8 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                 </div>
                 <form id="form_2" action="/api/adminforgot" method="post">
                     <div class="modal-body">
-                        <span>When you fill in your registered email address,
-                            you will be sent instructions on how to reset your password.</span>
+                        <span>When you fill in your registered email address here,
+                            you will receive a new password. Please login to your account with that new password sent to your email.</span>
                         <br>
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>

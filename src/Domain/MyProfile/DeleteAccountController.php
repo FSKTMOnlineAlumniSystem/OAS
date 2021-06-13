@@ -8,7 +8,8 @@ if(isset($_POST['submit'])){
     try{
         $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
         $alumni->deleteAccount();
-        header("Location: /");
+        session_destroy();
+        header("Location: /login");
     }catch (Exception $e) {
         echo "Exception: " . $e->getMessage();
     }
