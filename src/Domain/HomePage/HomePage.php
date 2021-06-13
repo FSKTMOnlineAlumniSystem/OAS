@@ -39,7 +39,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 try {
     $event_model = new EventModel($db->getConnection());
     $all_activities_event = $event_model->EventData();
-    for ($i=0; $i < 6; $i++) { 
+    for ($i=0; $i < count($all_activities_event); $i++) { 
         $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
     }
     for ($i=0; $i< count($all_activities_event); $i++){
