@@ -54,7 +54,7 @@ document.getElementById("form").innerHTML += `
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea name="description" form="job_ad_form" id="description" class="form-control"
-        placeholder="Enter description here..." ></textarea>
+        placeholder="Enter description here..." rows="8"></textarea>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please provide the description of the job.</div>
       </div>

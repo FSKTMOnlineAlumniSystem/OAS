@@ -55,20 +55,20 @@ elseif (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
 }
 
 // HANDLE EMPTY SESSION
-// elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
-//     // 1. contain "admin" in url 
-//     // 2. url not in admin-loginpage
-//     // 3. admin session empty
-//     header('Location:/admin-login');
-//     exit;
-// } 
-// elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
-//     // 1. does not contain "admin" in url 
-//     // 2. url not in loginpage
-//     // 3. alumni session empty
-//     header('Location: /login');
-//     exit;
-// }
+elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && !preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['admin'])) {
+    // 1. contain "admin" in url 
+    // 2. url not in admin-loginpage
+    // 3. admin session empty
+    header('Location:/admin-login');
+    exit;
+} 
+elseif (strpos($_SERVER['REQUEST_URI'], 'admin') === false && !preg_match('/^\/login\/?/i', $_SERVER['REQUEST_URI']) && !isset($_SESSION['alumni'])) {
+    // 1. does not contain "admin" in url 
+    // 2. url not in loginpage
+    // 3. alumni session empty
+    header('Location: /login');
+    exit;
+}
 
 elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
@@ -184,7 +184,7 @@ elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI']))
 }
 
 //AlumniList
-elseif (preg_match('/^\/profile/i', $_SERVER['REQUEST_URI'])) {
+elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
     include '../src/Domain/Alumni/AlumniProfilePage.php';
 } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
@@ -251,3 +251,6 @@ else {
     include_once '../src/templates/footer.php';
     include_once '../src/templates/GeneralScripts.php';
 }
+
+
+
