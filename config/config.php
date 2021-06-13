@@ -60,6 +60,7 @@ define('TITLE_EDITJOB', 'Edit Job - Alumni Online System');
 define('TITLE_ADDJOB', 'Add Job - Alumni Online System');
 define('TITLE_MY_PROFILE', 'My Profile - Online Alumni System');
 define('TITLE_ALUMNI_PROFILE', 'Alumni Profile - Online Alumni System');
+define('TITLE_ALUMNI', 'Alumni - Online Alumni System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 define('IMG_PATH','/public/Assets/imgs/');
 
