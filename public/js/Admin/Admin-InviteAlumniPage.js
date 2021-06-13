@@ -4,55 +4,84 @@ let alumniArray=alumni_array
 localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
-const loadEventList = (pageIndex,alumniEventArray,alumniArray) => {
+const loadAlumniList = (pageIndex,alumniEventArray,alumniArray) => {
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 
 //handle no result
   if(alumniArray.length==0){
-    document.getElementById('invideAndDone').innerHTML='';
-    // document.getElementById('forSearch').innerHTML=`
-    // <div class="row m-0 p-0 justify-content-center">
-    //     <div class="text-center">
-    //     <p>Search not Found</p>
-    //       <img class="card-img-150 mb-3" src="/Assets/imgs/searchNotFound.png" alt="Search Not Found" style="width:500px;height:500px;">
-    //     </div>
-    // `;
-  insertSearchNoResult(document.getElementById("no_result"));
-    
+    document.getElementById('invideAndDone').innerHTML=''; //button
+    document.getElementById("nextPage").innerHTML ='';
+    document.getElementById("previousPage").innerHTML = '';
+    document.getElementsByClassName("pages")[0].innerHTML = '';
+    insertSearchNoResult(document.getElementById("no_result"));
   }
-
   else{
     document.getElementById('no_result').innerHTML='';
-    
-// document.getElementById('forSearch').innerHTML=`
-// <table  id="myTable" class="table table-striped table-bordered">
-//   <thead style="font-weight: 200; color:#ffffff" class="custom-dark-purple">
-//     <tr>
-//       <th class="text-center">
-//         <div class="custom-control custom-checkbox">
-//           <input type="checkbox" class="custom-control-input" id="CheckAllBoxes" onclick="toggle(this);">
-//           <label class="custom-control-label" for="CheckAllBoxes"></label>
-//         </div>
-//       </th>
-//       <th>Avatar</th>
-//       <th>Name</th>
-//       <th>Department</th>
-//       <th>Status</th>
-//       <th class="text-center">Action</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//   </tbody>
-// </table>
-// `
+    let alumniStartIndex = pageIndex * 10;
+    let alumniEndIndex = alumniStartIndex + 10;
+  
+    var dataLength = alumniArray.length
+    var remainingLength = dataLength - alumniStartIndex;
+    /*   js for button*/
+    if (alumniEndIndex >= alumniArray.length) {
+      document.getElementById("nextPage").innerHTML = `
+          <li class="page-item disabled">
+          <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+        </li>`;
+    } else {
+      document.getElementById("nextPage").innerHTML = `
+          <li class="page-item" id="nextPage">
+              <button  onclick="nextPage()" class="page-link" >Next</button>
+            </li>`;
+    }
+    if (pageIndex == 0) {
+      document.getElementById("previousPage").innerHTML = `
+          <li class="page-item disabled">
+          <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+        </li>`;
+    } else {
+      document.getElementById("previousPage").innerHTML = `
+          <li class="page-item" id="previousPage">
+              <button   onclick="previousPage()" class="page-link">Previous</button>
+            </li>`;
+    }
+    // js for 1,2,3
+    if (remainingLength <= 10) {
+      document.getElementsByClassName("pages")[0].innerHTML = `
+          <li class="page-item disabled">
+          <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        }</button>
+          </li>`;
+    } else if (remainingLength <= 20) {
+      document.getElementsByClassName("pages")[0].innerHTML = `
+          <li class="page-item disabled">
+          <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        }</button>
+          </li>
+          <li class="page-item" >
+          <button class="page-link" onclick="nextPage()">${pageIndex + 2
+        }</button></li>`;
+    } else {
+      document.getElementsByClassName("pages")[0].innerHTML = `
+          <li class="page-item disabled">
+          <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+        }</button>
+          </li>
+          <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
+        }</button></li>
+          <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
+        }</button></li>`;
+    }
 
-//   const tbody = document.getElementsByTagName('tbody')[0];
-// tbody.innerHTML="";
-
-
-
-alumniArray.forEach((alumni,index) => {
+    var alumni=alumniArray;
+// alumniArray.forEach((alumni,index) => {
+    for (
+      let i = alumniStartIndex;
+      i < alumniEndIndex && i < alumniArray.length;
+      i++
+    ) 
+    {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -61,20 +90,20 @@ alumniArray.forEach((alumni,index) => {
   let input = document.createElement('input');
   input.setAttribute('type', 'checkbox');
   input.setAttribute('class', 'custom-control-input');
-  input.setAttribute('id', 'id-'+alumni.alumniId);
+  input.setAttribute('id', 'id-'+alumni[i].alumniId);
 
   let label = document.createElement('label');
   label.setAttribute('class', 'custom-control-label');
-  label.setAttribute('for', 'id-'+alumni.alumniId);
-  let defineAlumni=alumni.alumniId;
+  label.setAttribute('for', 'id-'+alumni[i].alumniId);
+  let defineAlumni=alumni[i].alumniId;
 
   div.appendChild(input);
   div.appendChild(label);
   td.appendChild(div);
   tr.appendChild(td);
   
-  var check=alumni.imageId==null||alumni.imageId== '/Assets/imgs/default_user.jpg'
-  console.log(alumni.imageId);
+  var check=alumni[i].imageId==null||alumni[i].imageId== '/Assets/imgs/default_user.jpg'
+  console.log(alumni[i].imageId);
   // console.log("check "+check);
   // avatar column
   td = document.createElement('td');
@@ -85,7 +114,7 @@ alumniArray.forEach((alumni,index) => {
  
   }else{
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${alumni.imageId}>
+    <img class='table__td--height' src=${alumni[i].imageId}>
   </div>`}
   td.setAttribute('width','140px')
   const img = document.createElement('img');
@@ -97,14 +126,14 @@ alumniArray.forEach((alumni,index) => {
   td = document.createElement('td');
   td = document.createElement('td');
   let span = document.createElement('span');
-  span.innerHTML = alumni.name;
+  span.innerHTML = alumni[i].name;
   td.appendChild(span);
   tr.appendChild(td);
 
   // department column
   td = document.createElement('td');
   span = document.createElement('span');
-  span.innerHTML = alumni.department;
+  span.innerHTML = alumni[i].department;
   td.appendChild(span);
   tr.appendChild(td);
 
@@ -115,7 +144,7 @@ alumniArray.forEach((alumni,index) => {
 
   // check if this alumni invited in this 'Event 1'
   const foundAlumniEvent = alumniEventArray.filter(alumni_event => {
-    return alumni_event.eventId === localStorage.getItem("eventId") && alumni.alumniId === alumni_event.alumniId;
+    return alumni_event.eventId === localStorage.getItem("eventId") && alumni[i].alumniId === alumni_event.alumniId;
   })[0];
   if(foundAlumniEvent){
     div.classList.add('bg-success')
@@ -131,13 +160,14 @@ alumniArray.forEach((alumni,index) => {
   td = document.createElement('td');
   td.setAttribute('class', 'text-center');
   td.innerHTML=`
-  <button class="inviteNewAlumni" id=${index} onclick='inviteNewAlumni(this)'>
+  <button class="inviteNewAlumni" id=${i} onclick='inviteNewAlumni(this)'>
   <i class="fas fa-user-plus pl-2"  aria-hidden="true" >
   </i>
   </button>`
   tr.appendChild(td);
   tbody.appendChild(tr);
-});
+// });
+    };
 document.getElementById('invideAndDone').innerHTML=`
             <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
               <i class="fas fa-user-plus"></i> Invite
@@ -201,7 +231,12 @@ window.DeleteRowFunction = function(o) {
  }
  
 // search bar
-$('#searchBar').click(function(){
+const searchButton = document.getElementById('searchBar');
+var searchInput = document.getElementById('input1');
+
+const handleMyJobSearch = evt =>{
+
+// $('#searchBar').click(function(){
   event.preventDefault();
   // SearchData("All", "All");
   // $('#department option').prop('selected', function() {
@@ -230,13 +265,21 @@ var outputList;
       eventId: eventId    
     },
     success: function(resp){
-    let page = 0;
+    let pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;
-    loadEventList(pageIndex,alumniEventArray,alumniArray);
+    loadAlumniList(pageIndex,alumniEventArray,alumniArray);
     },     
   });
+}
+// });
+
+searchButton.addEventListener('click',handleMyJobSearch);
+searchInput.addEventListener('keypress', (evt)=>{
+  if(evt.key === 'Enter'){
+    handleMyJobSearch(evt);
+  }
 });
 
 $(document).ready(function () {
@@ -263,11 +306,11 @@ window.SearchData = function(status, department) {
       search: search
     },
     success: function(resp){
-    let page = 0;
+    let pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;
-    loadEventList(pageIndex,alumniEventArray,alumniArray);
+    loadAlumniList(pageIndex,alumniEventArray,alumniArray);
     //  if(outputList.length===0){
     //   loadMyJobList(page,outputList,-1);
     // }else{
@@ -352,7 +395,7 @@ window.inviteNewAlumni = function(o){
         console.log(resp);
         var outputList = JSON.parse(resp);
         alumniEventArray=outputList;
-        loadEventList(pageIndex,outputList,alumniArray);
+        loadAlumniList(pageIndex,outputList,alumniArray);
       },
       error: function(request, status, error){  
         alert(error);
@@ -401,7 +444,7 @@ window.inviteCheckedAlumni = function () {
       console.log(resp);
       var outputList = JSON.parse(resp);
       alumniEventArray=outputList;
-      loadEventList(pageIndex,outputList,alumniArray);
+      loadAlumniList(pageIndex,outputList,alumniArray);
     },
     error: function(request, status, error){  
       alert(error);
@@ -451,13 +494,23 @@ window.inviteCheckedAlumni = function () {
   history.go(0);
   history.go(0);
   history.go(0);
-  */// loadEventList(0)
+  */// loadAlumniList(0)
 // }
 
 window.backToPreviousPage=function(){
     window.history.back();
 }
-loadEventList(pageIndex,alumniEventArray,alumniArray);
+loadAlumniList(pageIndex,alumniEventArray,alumniArray);
+
+window.nextPage = function () {
+  pageIndex++;
+  loadAlumniList(pageIndex,alumniEventArray,alumniArray);
+};
+window.previousPage = function () {
+  pageIndex--;
+  loadAlumniList(pageIndex,alumniEventArray,alumniArray);
+};
+loadAlumniList(pageIndex,alumniEventArray,alumniArray);
 
 // window.inviteCheckedAlumni = function () {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -478,5 +531,5 @@ loadEventList(pageIndex,alumniEventArray,alumniArray);
 //   }
 //   checkboxes[0].checked = false;
 //   // updateDummyData(dummyResponse)
-//   loadEventList(0)
+//   loadAlumniList(0)
 // }

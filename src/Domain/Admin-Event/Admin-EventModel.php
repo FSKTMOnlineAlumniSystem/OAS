@@ -98,7 +98,7 @@ class Admin_EventModel
         }
     }
     public function search($searchterm){
-        $query = "SELECT * FROM `event` WHERE CONCAT( `title`, `description`, `location`) LIKE '%".$searchterm."%' ";  
+        $query = "SELECT * FROM `event` WHERE (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR location LIKE '%$searchterm%') ";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -208,8 +208,8 @@ class AlumniModel
         }
     }
     public function search($searchterm){
-        $query = "SELECT * FROM `alumni` WHERE CONCAT( `name`, `department`) LIKE '%".$searchterm."%' ";  
-        $stmt = $this->connection->prepare($query);  
+        $query = "SELECT * FROM `alumni` WHERE (name LIKE '%$searchterm%' OR department LIKE '%$searchterm%') "; 
+         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
         if(!$data){
@@ -218,7 +218,7 @@ class AlumniModel
         return $data; 
     }
     public function searchDepartment($searchterm){
-        $query = "SELECT * FROM `alumni` WHERE CONCAT(`department`) LIKE '%".$searchterm."%' ";  
+        $query = "SELECT * FROM `alumni` WHERE (department LIKE '%$searchterm%') ";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();

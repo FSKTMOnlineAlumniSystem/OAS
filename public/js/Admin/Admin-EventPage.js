@@ -1,8 +1,8 @@
 // import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
 console.log('connect');
-let eventArray=event_array
-
+var eventArray;
+eventArray=event_array;
 let pageIndex = 0;
 
 const loadEventList = (pageIndex,eventArray) => {
@@ -139,15 +139,16 @@ else{
                 </a>
 
     <!--onclick="DeleteRowFunction(this)"  onclick="deleteByJquery(this)-->
-                  <!--  <form class="" action="/admin/event" method="post">-->
-                      <button type="submit" onclick="deleteByJquery(this)" class="deleteRowButton d-flex justify-content-center align-items-center" 
+
+                      <button type="submit" class="deleteRowButton d-flex justify-content-center align-items-center" 
                       name="deleteButton" id="row ${i}" value="${eventArray[i].eventId}">
                       <i class="far fa-trash-alt" aria-hidden="true">
                        </i></button>
-                  <!--  </form>  -->
+
                   </div>
                 </td>
             </tr>`;
+{
 
 
   //another method
@@ -159,6 +160,82 @@ else{
 
     newRow.innerHTML = newRowContent;
   }
+
+
+/* <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>   */}
+//trash model
+  //CLICKING THE TRASH ICON
+  const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
+  const clickButton = document.querySelectorAll(".deleteRowButton");
+  var findId;
+  var $eventToDelete;
+
+  $(document).ready(function(){
+    jQuery.noConflict();
+  clickButton.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      findId='';
+      var o = e.currentTarget.id;
+      findId=o.split(" ")[1];
+      $eventToDelete=eventArray[findId].eventId;
+      localStorage.setItem('eventToDelete',$eventToDelete)
+      $.ajax({
+        url: '/admin/delete/event',
+        type: 'post',
+        data: {modal: 1},
+        success: function(response){ 
+          // Display Modal
+          jQuery(`#deleteModal`).modal("show");
+        },
+        error: function(){
+          jQuery(`#deleteModal`).modal("show");
+        }
+      });
+     
+    });
+
+  });
+});
+  //CLICK ON THE CLOSE BUTTON OF THE CONFIRMATION MODAL
+  if (closeDeleteModalButton) {
+    closeDeleteModalButton.addEventListener("click", () =>
+      closeModal("#deleteModal")
+    );
+  }
+  var $eventId=[];
+  // var checkboxes=[];
+//delete multiple row
+window.DeleteCheckedRow = function () {
+  $eventId=[];
+  checkboxes='';
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = checkboxes.length - 1; i > 0; i--) {
+    if (checkboxes[i].checked) {
+      console.log(pageIndex*10+i + "  , ");
+      console.log('p'+pageIndex);
+      $eventId.push(eventArray[pageIndex*10+i-1].eventId);
+    }
+  }
+  $eventId=$eventId.toString();
+  localStorage.setItem('eventToDelete',$eventId);
+
+      $.ajax({
+        url: '/admin/delete/event',
+        type: 'post',
+        data: {modal: 1},
+        success: function(response){ 
+          // Display Modal
+          jQuery(`#deleteCheckedModal`).modal("show");
+        },
+        error: function(){
+          jQuery(`#deleteCheckedModal`).modal("show");
+        }
+      });
+    }     
+
+
+//trash model
+
 // modal
   var clickedAlumniIndex;
   document.querySelectorAll('.eventTitle').forEach((title) => {
@@ -170,7 +247,6 @@ else{
       console.log(check);
       
       if(check){
-        // document.querySelector('#imageTitle').src=defaultImage;
         document.querySelector('#imageTitle').src="/Assets/imgs/default_events.jpg";
       }else{
         document.querySelector('#imageTitle').src = eventArray[clickedAlumniIndex].imageId;
@@ -178,43 +254,95 @@ else{
       document.querySelector('#title').textContent = eventArray[clickedAlumniIndex].title;
       document.querySelector('#description').textContent = eventArray[clickedAlumniIndex].description;
       document.querySelector('#location').textContent = eventArray[clickedAlumniIndex].location;
-      // document.querySelector('#editButton').innerHTML=`
-      // <button type="button" id="editButton" class="btn btn-primary"
-      //               onclick="location.href = 'adminUpdateEvent?title=${eventArray[clickedAlumniIndex].title}'">
-
-      //               <i class="fas fa-edit">
-      //               </i>
-      //               Edit</button>
-      // `;
       let editbutton = document.querySelector('#editButton');
-      // editbutton.onclick("location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'")
-      editbutton.onclick = function() {location.href='/admin/update/event?eventId='+eventArray[clickedAlumniIndex].eventId}; 
-        // if (editbutton) {
-        //   editbutton.setAttribute('onclick', "'location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}'");
-        //     // btnSend.setAttribute('disabled', '');
-        // }
-      // let editbutton=document.getElementById(editButton);
-      // editbutton.setAttribute('onclick',"location.href='adminUpdateEvent?eventId=${eventArray[clickedAlumniIndex].eventId}")
-      
+      editbutton.onclick = function() {location.href='/admin/update/event?eventId='+eventArray[clickedAlumniIndex].eventId};    
       localStorage.setItem('updateId', clickedAlumniIndex);
     });
   })
 }//else
 };
 
-// window.toggle = function (source) {
-//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//   for (var i = 0; i < checkboxes.length; i++) {
-//     if (checkboxes[i] != source)
-//       checkboxes[i].checked = source.checked;
-//   }
-// };
+
+
+$('#deleteButton').click(function(){
+// var $eventToDelete=eventArray[findId].eventId;
+var search = document.getElementById("input1").value;
+// console.log($eventToDelete);
+var $eventToDelete=localStorage.getItem('eventToDelete');
+
+$.ajax({
+  url:"/admin/delete/event",    //the page containing php script
+  data: { 
+    deleteEvent: $eventToDelete,
+    search: search
+  },
+  type: 'POST',    //request type,
+  dataType: 'json',
+  success: function(resp){
+    console.log('resp');
+      console.log(resp);
+    // var outputList = JSON.parse(resp);
+    // console.log('resp after parse');
+
+    // console.log(resp);
+  // eventArray.splice(findId, 1)
+    eventArray=resp;
+    loadEventList(pageIndex,eventArray);
+  },
+  error: function(request, status, error){  
+    alert(error);
+    }
+  });
+  closeModal("#deleteModal");
+});
+
+
+$('#deleteCheckedButton').click(function(){
+  // window.DeleteCheckedRow = function () {
+    // var $eventId=[];
+      // console.log('delete checked row');
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      var search = document.getElementById("input1").value;
+      var $eventId=localStorage.getItem('eventToDelete');
+  
+      // for (var i = checkboxes.length - 1; i > 0; i--) {
+      //   if (checkboxes[i].checked) {
+      //     $eventId.push(eventArray[i-1].eventId);
+      //   }
+      // }
+      // $eventId=$eventId.toString();
+      // console.log($eventId);
+      $.ajax({
+        url:"/admin/delete/event",    //the page containing php script
+        data: { 
+          checkbox: "checked",
+          deleteEvent: $eventId,
+          search: search
+        },
+        type: 'POST',    //request type,
+        // dataType: "json",
+        success: function(resp){
+          // console.log('resp');
+          // console.log(resp);
+          var outputList = JSON.parse(resp);
+          eventArray=outputList;
+          // eventArray=resp;
+          console.log(eventArray);
+          loadEventList(pageIndex,eventArray);
+        },
+        error: function(request, status, error){  
+        alert(error);
+        }
+        });
+        console.log(checkboxes);
+         checkboxes[0].checked = false;
+         closeModal("#deleteCheckedModal");
+    });
+
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  // if($(checkboxes).is(':visible')){
     for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
-    // if($(checkboxes[i]).is(':visible')){
       checkboxes[i].checked = source.checked;
   }
 }
@@ -227,9 +355,11 @@ window.check = function (source, i) {
 
 window.nextPage = function () {
   pageIndex++;
+  console.log(eventArray);
   loadEventList(pageIndex,eventArray);
 };
 window.previousPage = function () {
+  console.log(eventArray);
   pageIndex--;
   loadEventList(pageIndex,eventArray);
 };
@@ -253,6 +383,7 @@ window.updateEvent = function (o) {
 //   location.reload();
 // };
 
+/*
 window.deleteByJquery= function (o){
   var findId = o.id.split(" ")[1]
   var $eventToDelete=eventArray[findId].eventId;
@@ -278,7 +409,8 @@ window.deleteByJquery= function (o){
       }
     });
 };
-
+*/
+/*
 window.DeleteCheckedRow = function () {
   var $eventId=[];
     // console.log('delete checked row');
@@ -313,8 +445,14 @@ window.DeleteCheckedRow = function () {
       });
        checkboxes[0].checked = false;
   };
+*/
 // filter
-$('#searchBar').click(function(){
+
+const searchButton = document.getElementById('searchBar');
+var searchInput = document.getElementById('input1');
+
+const handleMyJobSearch = evt =>{
+// $('#searchBar').click(function(){
   var search = document.getElementById("input1").value;
   if (search == "") {
     alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
@@ -327,7 +465,7 @@ var outputList;
     type: 'post',
     data: {search: search},
     success: function(resp){
-    let page = 0;
+    let pageIndex = 0;
     // console.log(resp);
     outputList =JSON.parse(resp);
     eventArray=outputList;
@@ -340,7 +478,14 @@ var outputList;
     },
      
   });
+}
+// });
 
+searchButton.addEventListener('click',handleMyJobSearch);
+searchInput.addEventListener('keypress', (evt)=>{
+  if(evt.key === 'Enter'){
+    handleMyJobSearch(evt);
+  }
 });
 /*
 var searchBar = document.getElementById('searchBar');
@@ -416,7 +561,7 @@ window.SearchData = function (status, department) {
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 // stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 window.closeModal = function (modalId) {
-  $(modalId).modal('hide');
+  // $(modalId).modal('hide');
 }
 // delete row
 /*

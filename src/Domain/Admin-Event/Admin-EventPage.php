@@ -242,7 +242,7 @@ if(isset($_POST["checkbox"])){
                 <div class="modal-footer" id="modelEdit">
                   <button type="button" id="editButton" class="btn btn-primary"
                     >
-<!-- onclick="location.href = 'adminUpdateEvent'" -->
+                    <!-- onclick="location.href = 'adminUpdateEvent'" -->
                     <i class="fas fa-edit">
                     </i>
                     Edit</button>
@@ -250,7 +250,48 @@ if(isset($_POST["checkbox"])){
               </div>
             </div>
           </div>
-          <!--  button -->
+
+         <!-- POP OUT THE MODAL WHEN THE USER CLICK ON THE TRASH ICON -->
+         <div class="modal fade" id="deleteModal" role="dialog">
+              <div class="modal-dialog">
+              <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+              <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              Are you sure you want to delete this event?
+              </div>
+              <div class="modal-footer">
+              <button id="deleteButton"  name ="delete_row" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
+              </div>
+              </div>
+              </div>
+              </div>
+
+         <!-- DELETE MULTIPLE EVENT MODEL -->
+         <div class="modal fade" id="deleteCheckedModal" role="dialog">
+              <div class="modal-dialog">
+              <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+              <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              Are you sure you want to delete events selected?
+              </div>
+              <div class="modal-footer">
+              <button id="deleteCheckedButton"  name ="delete_row" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete them.</button>
+              </div>
+              </div>
+              </div>
+              </div>
+
+          <!-- page button -->
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
@@ -268,23 +309,23 @@ if(isset($_POST["checkbox"])){
       </div>
   </main>
 
-  <script type="text/javascript" src="/js/utility.js"></script>
+  <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
   <!-- new path -->
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script> -->
 <!--hiiiiii-->    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> -->
 
-  <?php  include_once '../src/templates/GeneralScripts.php';?>
+  <!-- php  include_once '../src/templates/GeneralScripts.php';?> -->
 
-  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
+  <!-- <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>  -->
   <!-- jquery -->
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -293,7 +334,22 @@ if(isset($_POST["checkbox"])){
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script> -->
+<!-- original -->
+<!-- <script type="text/javascript" src="/js/utility.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  ?php  include_once '../src/templates/GeneralScripts.php';?>
+  <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>  -->
+<!-- follow yw -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/utility.js"></script>
+<script type="text/javascript" src="/js/header.js"></script>
+<!-- <script type="text/javascript" src="/js/nav.js"></script> -->
+<script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> 
 
 </body>
 </html>
