@@ -14,7 +14,7 @@ includeWithVariables('../src/templates/header.php', array(
 
 <body>
 <?php
-include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
 include_once '../src/Domain/Database.php';
 $_SESSION['admin']['adminId'];
 

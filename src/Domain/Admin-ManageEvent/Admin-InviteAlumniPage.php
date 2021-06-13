@@ -16,8 +16,9 @@ crossorigin="anonymous"></script> -->
 <?php
  $eventId=$_GET['eventId'];
 
+
   // include '../config/config.php';
-  include_once '../src/Domain/Admin-Event/Admin-EventModel.php';
+  include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
   ?>
   <?php
@@ -30,18 +31,22 @@ crossorigin="anonymous"></script> -->
   ));
   
   $_SESSION['admin']['adminId'];
-  
+
+
+
+
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
     $event_model = new Admin_Alumni_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
-    if (!empty($all_activities)) {
+  } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+  }
 
-      foreach ($all_activities as $activity) {
-        // echo "$activity[eventId] ";
-      }
-    }
+  try {
+    $event = new Admin_EventModel($db->getConnection());
+    $event->getEvent($eventId);
   } catch (Exception $e) {
     echo "Exception: " . $e->getMessage();
   }

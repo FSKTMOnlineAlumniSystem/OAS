@@ -109,33 +109,33 @@ elseif (preg_match('/^\/job\/?$/i', $_SERVER['REQUEST_URI'])) {
 //admin-event
 elseif (preg_match('/^\/admin\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPage.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-EventPage.php';
 } elseif (preg_match('/^\/admin\/update\/event\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPageUpdate.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-UpdateEventPage.php';
 } elseif (preg_match('/^\/admin\/create\/event\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventPageCreate.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-CreateEventPage.php';
 } elseif (preg_match('/^\/admin\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-InviteAlumniPage.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniPage.php';
 } elseif (preg_match('/^\/admin\/delete\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-deleteEvent.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-DeleteEventController.php';
 } elseif (preg_match('/^\/admin\/invite\/function\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-InviteFunction.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniController.php';
 } elseif (preg_match('/^\/admin\/search\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-EventSearch.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-EventSearchController.php';
 }elseif (preg_match('/^\/admin\/search\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/Admin-inviteAlumniSearch.php';
+    include '../src/Domain/Admin-ManageEvent/Admin-inviteAlumniSearchController.php';
 }
 
 elseif (preg_match('/^\/try\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-Event/admin-try.php';
+    include '../src/Domain/Admin-ManageEvent/admin-try.php';
 }
 
 //Admin-Home

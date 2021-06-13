@@ -370,7 +370,7 @@ loadEventList(pageIndex,eventArray);
 window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
-  location.href = "Admin-EventPageUpdate.html"
+  location.href = "Admin-UpdateEventPage.html"
 };
 
 // window.deleteByJquery= function (o){

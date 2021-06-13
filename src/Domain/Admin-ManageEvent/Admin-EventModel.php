@@ -29,6 +29,27 @@ class Admin_EventModel
         }
         
    }
+   public function getEvent($eventId)
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT * FROM event WHERE eventId=?');
+            $stmt->execute([$eventId]);
+            $data = $stmt->fetchAll();
+            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$data) {
+                include_once '../src/Domain/General_Pages/page_not_found.php';
+                // include_once '../src/templates/footer.php';
+                include_once '../src/templates/GeneralScripts.php';
+                return exit;
+            }
+            return $data;
+
+        } catch (PDOException $exception) {
+            error_log('ActivityModel: getAll: ' . $exception->getMessage());
+            throw $exception;
+        }
+        
+   }
    public function deleteEvent($eventId) {
        //deleteInviteAlumni
     $sql ="DELETE FROM alumni_event WHERE eventId=?";
@@ -53,7 +74,6 @@ class Admin_EventModel
             ON event.imageId=image.imageId');
         $stmt->execute();
         $data = $stmt->fetchAll();
-
         $image = array();
         foreach($data as $eachuser){
             if($eachuser['imageId']=='Default'||$eachuser['imageId']==null){
@@ -66,6 +86,8 @@ class Admin_EventModel
         }
         return $image;
     }
+
+
     // public function getDefaultPicture(): array{
     //     $stmt = $this->connection->prepare('
     //         SELECT * FROM image WHERE imageId="Default"');
@@ -143,6 +165,7 @@ class Admin_Alumni_EventModel
             throw $exception;
         }
     }
+
 
 }
 class AlumniModel

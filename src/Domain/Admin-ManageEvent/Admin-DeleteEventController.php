@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/Admin-Event/Admin-EventModel.php';
+include '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
