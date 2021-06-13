@@ -98,12 +98,12 @@ include '../src/templates/nav.php';
     <div class="col-0 col-md-1 col-lg-2">
     </div>
     <div class="col-12 col-md-10 col-lg-8">
+      <h4 class="pt-3">Event Description</h4>
       <div class="jumbotron">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h4 class="pt-3"><b>Event Description</b></h4>
-              <p class="lead">
+              <p class="">
                 <?= $event['description'] ?>
               </p>
             </div>
