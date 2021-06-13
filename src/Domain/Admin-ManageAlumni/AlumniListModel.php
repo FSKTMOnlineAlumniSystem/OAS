@@ -105,6 +105,38 @@ class AlumniListModel
         return '/Assets/imgs/default_user.png.jpg';
 }
 }
+    public function isAlumniExist($alumniId){
+        $stmt = $this->connection->prepare("
+        SELECT count(*) FROM alumni WHERE alumniId =?
+        ");
+        $stmt->execute([$alumniId]);
+        $data = $stmt->fetchAll();
+        return $data;
+        }
+
+        public function getAlumni($alumniId)
+        {
+            try {
+                $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE alumniId=?');
+                $stmt->execute([$alumniId]);
+                $data = $stmt->fetchAll();
+                // $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (!$data) {
+                    include_once '../src/Domain/General_Pages/page_not_found.php';
+                    include_once '../src/templates/GeneralScripts.php';
+                    exit();
+                    return;
+                }
+                return $data;
+    
+            } catch (PDOException $exception) {
+                error_log('ActivityModel: getAll: ' . $exception->getMessage());
+                throw $exception;
+            }
+            
+       }
+
+    
 
 }
 // public function getProfilePicture(): array{

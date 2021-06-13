@@ -10,12 +10,19 @@
   <?php
 // include '../../../config/config.php';
 // include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/AlumniList/AlumniListModel.php';
+include '../src/Domain/Admin-ManageAlumni/AlumniListModel.php';
 include '../src/Domain/Database.php';
-include '../src/Domain/AlumniList/uploadAlumniImage.php';
+include '../src/Domain/Admin-ManageAlumni/uploadAlumniImage.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
+try {
+    $alumni = new AlumniListModel($db->getConnection());
+    $alumniId=$_GET['alumniId'];
+    $alumni->getAlumni($alumniId);
+  } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+  }
 
 try {
     $alumniList_model = new AlumniListModel($db->getConnection());
