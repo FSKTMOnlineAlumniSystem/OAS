@@ -158,6 +158,28 @@ includeWithVariables('../src/templates/header.php', array(
           <div class="row justify-content-md-center text-center" id="searchNotFound"></div>
           </div>
       </div>
+
+      <!-- delete modal -->
+      <div class="modal fade" id="deleteModal" role="dialog">
+              <div class="modal-dialog">
+              <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+              <button id="closeDeleteModalButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              Are you sure you want to delete the alumni?
+              </div>
+              <div class="modal-footer">
+              <button id="deleteButton"  name ="delete_row" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
+              </div>
+              </div>
+              </div>
+              </div>
+
+      <!-- alumni detail pop out modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
@@ -216,25 +238,18 @@ includeWithVariables('../src/templates/header.php', array(
                   </div>
                 </div>
                  <!-- pagination -->
-          <!-- <nav aria-label="Page navigation example">
-
+                 <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
-                <button onclick="previousPage()" class="page-link">Previous</button>
+                <!-- <button onclick="previousPage()" class="page-link">Previous</button> -->
               </li>
               <div class="pages list-group list-group-horizontal">
-                <li class="page-item disabled">
-                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
-                </li>
-                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
-                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
-
               </div>
               <li class="page-item" id="nextPage">
-                <button onclick="nextPage()" class="page-link">Next</button>
+                <!-- <button onclick="nextPage()" class="page-link">Next</button> -->
               </li>
             </ul>
-          </nav> -->
+          </nav>
   </main>
 
   <!-- <script src="/..\..\libs\bootstrap\js\bootstrap.bundle.js"></script> -->

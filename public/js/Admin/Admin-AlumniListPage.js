@@ -2,83 +2,76 @@
 console.log('connect');
 let alumniArray=alumni_array
 console.log(alumniArray);
-// let pageIndex = 0;
-// const loadAlumniList = (pageIndex) => {
-//   // document.getElementById('pageIndex').innerHTML = pageIndex + 1 + "/" + Math.ceil(dummyResponse.Event.length / 10);
-//   // document.getElementById('eventList').innerHTML = "";
-//   let alumniStartIndex = pageIndex * 10;
-//   let alumniEndIndex = alumniStartIndex + 10;
+let pageIndex = 0;
+const reload = (alumniArray,pageIndex) => {
 
-//   var dataLength = alumniArray.length;
-//   var remainingLength = dataLength - alumniStartIndex;
+  let alumniStartIndex = pageIndex * 10;
+  let alumniEndIndex = alumniStartIndex + 10;
 
-//   /*   js for button*/
-//   if (alumniEndIndex >= alumniArray.length) {
-//     document.getElementById("nextPage").innerHTML = `
-//         <li class="page-item disabled">
-//         <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
-//       </li>`;
-//   } else {
-//     document.getElementById("nextPage").innerHTML = `
-//         <li class="page-item" id="nextPage">
-//             <button  onclick="nextPage()" class="page-link" >Next</button>
-//           </li>`;
-//   }
-//   if (pageIndex == 0) {
-//     document.getElementById("previousPage").innerHTML = `
-//         <li class="page-item disabled">
-//         <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
-//       </li>`;
-//   } else {
-//     document.getElementById("previousPage").innerHTML = `
-//         <li class="page-item" id="previousPage">
-//             <button   onclick="previousPage()" class="page-link">Previous</button>
-//           </li>`;
-//   }
-//   // js for 1,2,3
-//   if (remainingLength <= 10) {
-//     document.getElementsByClassName("pages")[0].innerHTML = `
-//         <li class="page-item disabled">
-//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-//       }</button>
-//         </li>`;
-//   } else if (remainingLength <= 20) {
-//     document.getElementsByClassName("pages")[0].innerHTML = `
-//         <li class="page-item disabled">
-//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-//       }</button>
-//         </li>
-//         <li class="page-item" >
-//         <button class="page-link" onclick="nextPage()">${pageIndex + 2
-//       }</button></li>`;
-//   } else {
-//     document.getElementsByClassName("pages")[0].innerHTML = `
-//         <li class="page-item disabled">
-//         <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
-//       }</button>
-//         </li>
-//         <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
-//       }</button></li>
-//         <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
-//       }</button></li>`;
-//   }
-// }
+  var dataLength = alumniArray.length;
+  var remainingLength = dataLength - alumniStartIndex;
 
-// loadAlumniList(pageIndex);
+  /*   js for button*/
+  if (alumniEndIndex >= alumniArray.length) {
+    document.getElementById("nextPage").innerHTML = `
+        <li class="page-item disabled">
+        <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
+      </li>`;
+  } else {
+    document.getElementById("nextPage").innerHTML = `
+        <li class="page-item" id="nextPage">
+            <button  onclick="nextPage()" class="page-link" >Next</button>
+          </li>`;
+  }
+  if (pageIndex == 0) {
+    document.getElementById("previousPage").innerHTML = `
+        <li class="page-item disabled">
+        <button id="previousPage"  onclick="previousPage()" class="page-link" tabindex="-1" aria-disabled="true">Previous</button>
+      </li>`;
+  } else {
+    document.getElementById("previousPage").innerHTML = `
+        <li class="page-item" id="previousPage">
+            <button   onclick="previousPage()" class="page-link">Previous</button>
+          </li>`;
+  }
+  // js for 1,2,3
+  if (remainingLength <= 10) {
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
+        </li>`;
+  } else if (remainingLength <= 20) {
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
+        </li>
+        <li class="page-item" >
+        <button class="page-link" onclick="nextPage()">${pageIndex + 2
+      }</button></li>`;
+  } else {
+    document.getElementsByClassName("pages")[0].innerHTML = `
+        <li class="page-item disabled">
+        <button class="page-link" tabindex="-1" aria-disabled="true">${pageIndex + 1
+      }</button>
+        </li>
+        <li class="page-item" ><button class="page-link" onclick="nextPage()">${pageIndex + 2
+      }</button></li>
+        <li class="page-item" ><button class="page-link" onclick="nextPage();nextPage()">${pageIndex + 3
+      }</button></li>`;
+  }
 
-// window.nextPage = function () {
-//   pageIndex++;
-//   loadAlumniList(pageIndex);
-// };
-// window.previousPage = function () {
-//   pageIndex--;
-//   loadAlumniList(pageIndex);
-// };
+
+
 // add alumni list
-const reload = (alumniArray) => {
+
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
-alumniArray.forEach((alumni, index) => {
+ var alumni=alumniArray;
+// alumniArray.forEach((alumni, index) => {
+  for (
+    let i = alumniStartIndex;i < alumniEndIndex && i < alumniArray.length;i++) {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -87,11 +80,11 @@ alumniArray.forEach((alumni, index) => {
   let input = document.createElement('input');
   input.setAttribute('type', 'checkbox');
   input.setAttribute('class', 'custom-control-input');
-  input.setAttribute('id', 'id-' + alumni.alumniId);
+  input.setAttribute('id', 'id-' + alumni[i].alumniId);
 
   let label = document.createElement('label');
   label.setAttribute('class', 'custom-control-label');
-  label.setAttribute('for', 'id-' + alumni.alumniId);
+  label.setAttribute('for', 'id-' + alumni[i].alumniId);
 
   div.appendChild(input);
   div.appendChild(label);
@@ -101,14 +94,14 @@ alumniArray.forEach((alumni, index) => {
   // avatar column
   td = document.createElement('td');
   td.innerHTML = `<div style="aspect-ratio:1/1; height:100px; margin-left:10px;margin-right:auto;overflow:hidden">
-    <img class='table__td--height' src=${alumni.imageId}>
+    <img class='table__td--height' src=${alumni[i].imageId}>
   </div>`
   td.setAttribute('width', '140px')
   tr.appendChild(td);
 
   // name column
   td = document.createElement('td');
-  td.innerHTML = `<p id=${index} class="alumniName">${alumni.name}</p>`
+  td.innerHTML = `<p id=${i} class="alumniName">${alumni[i].name}</p>`
   td.setAttribute('class', 'eventTitle');
   // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
   // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
@@ -120,7 +113,7 @@ alumniArray.forEach((alumni, index) => {
   // department column
   td = document.createElement('td');
   let span = document.createElement('span');
-  span.innerHTML = alumni.department;
+  span.innerHTML = alumni[i].department;
   td.appendChild(span);
   tr.appendChild(td);
 
@@ -129,7 +122,7 @@ alumniArray.forEach((alumni, index) => {
   div = document.createElement('div');
   div.setAttribute('class', 'text-black rounded p-1');
 
-  if (alumni.approvedBy === "") {
+  if (alumni[i].approvedBy === "") {
     div.classList.add('bg-danger')
     div.innerText = 'Not Verified';
   } else {
@@ -145,13 +138,15 @@ alumniArray.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="deleteByJquery(this)">
+  a.innerHTML = `<a href="#" role="button" id="${i}" value="Delete Row" onclick="deleteByJquery(this)" >
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
   td.appendChild(a);
   tr.appendChild(td);
   tbody.appendChild(tr);
-});
+}
+// )
+;
 
 // click alumni name will pop out alumni details
 document.querySelectorAll('.alumniName').forEach((alumni) => {
@@ -186,8 +181,10 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   }
   )
 })
+
 }
-reload(alumniArray);
+reload(alumniArray,pageIndex);
+
 window.approve = function(){
   $('#exampleModal').modal("show");
   var $name = document.getElementById("input1").value;
@@ -216,8 +213,7 @@ $.ajax({
       { 
         var outputList = JSON.parse(data);
         alumniArray = outputList;
-        console.log(outputList);
-        reload(outputList);
+        reload(outputList,pageIndex);
       }
     })
   }
@@ -263,14 +259,12 @@ searchBar.addEventListener('click',(e)=>{
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
     data: {name: $name, department:$department, status:$status},
     success:  function(data)
     { 
-      console.log(data.length);
       if(data.length== 2){
         insertSearchNoResult( document.getElementById("searchNotFound"));
       }else{
@@ -278,9 +272,8 @@ searchBar.addEventListener('click',(e)=>{
       }
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
-      reload(outputList);
-      console.log(data);
+      pageIndex=0;
+      reload(outputList,pageIndex);
       
     }
 });
@@ -306,10 +299,15 @@ window.toggle = function (source) {
 
 window.deleteByJquery= function (o){
   event.preventDefault();
+  $('#deleteModal').modal("show");
+  event.preventDefault();
   var findId = o.id.split(" ");
-  console.log(findId);
   var $deleteAlumniId=alumniArray[findId].alumniId;
-  console.log($deleteAlumniId);
+  localStorage.setItem('alumniId', $deleteAlumniId);
+}
+  var deleteButton=document.getElementById('deleteButton');
+  deleteButton.addEventListener('click',()=>{
+  event.preventDefault();
   var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
   var $department = $('#department').find("option:selected").val();
@@ -320,13 +318,9 @@ window.deleteByJquery= function (o){
 $.ajax({
                     type: "POST",
                     url: '/admin/deleteAlumni',
-                    data: {deleteAlumniId: $deleteAlumniId},
+                    data: {deleteAlumniId: localStorage.getItem('alumniId')},
                     success:  function(data)
                     { 
-                      // var outputList = JSON.parse(data);
-                      // alumniArray = outputList;
-                      // console.log(outputList);
-                      // reload(outputList);
                       $.ajax({
                         type: "POST",
                         url: '/admin/searchAlumniName',
@@ -335,13 +329,14 @@ $.ajax({
                         { 
                           var outputList = JSON.parse(data);
                           alumniArray = outputList;
-                          console.log(outputList);
-                          reload(outputList);
+                          reload(outputList,pageIndex);
                         }
                       })
                     }
         });
-}
+})
+
+
 
 var searchBar=document.getElementById('searchBar');
 $("#status,#department").on("change", function () {
@@ -353,17 +348,22 @@ $("#status,#department").on("change", function () {
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
     data: {name: $name, department:$department, status:$status},
     success:  function(data)
     { 
+      if(data.length== 2){
+        insertSearchNoResult( document.getElementById("searchNotFound"));
+      }else{
+        document.getElementById("searchNotFound").innerHTML=``
+      }
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
-      reload(outputList);
+      pageIndex=0;
+      reload(outputList,pageIndex);
+      
     }
 });
   // e.preventDefault();
@@ -448,7 +448,6 @@ $("#clearAll").on("click", function (e) {
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
@@ -457,8 +456,8 @@ $("#clearAll").on("click", function (e) {
     { 
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
-      reload(outputList);
+      pageIndex=0;
+      reload(outputList,pageIndex);
     }
   // e.preventDefault();
 })
@@ -466,19 +465,21 @@ $("#clearAll").on("click", function (e) {
 
 window.deleteCheckedRow = function(){
   event.preventDefault();
-  var count=0;
+    $('#deleteModal').modal("show");
   var $alumniId = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   if(document.querySelectorAll(':checked').length-2 !== 0){
     for (var i = checkboxes.length-1; i > 0; i--) {
       if(checkboxes[i].checked){
-        count++;
         var alumniId= alumniArray[i-1].alumniId;
       $alumniId.push(alumniId);
       }
   }
     $alumniId=$alumniId.toString();
-    console.log(document.querySelectorAll(':checked').length-2);
+    localStorage.setItem('alumniId',$alumniId)
+}
+var deleteButton=document.getElementById('deleteButton');
+    deleteButton.addEventListener('click',()=>{
     var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
   var $department = $('#department').find("option:selected").val();
@@ -489,7 +490,7 @@ window.deleteCheckedRow = function(){
     $.ajax({
       type: "POST",
       url: '/admin/deleteMultipleAlumni',
-      data: {listOfDeleteAlumniId: $alumniId, count:count},
+      data: {listOfDeleteAlumniId: localStorage.getItem("alumniId")},
       success:  function(data)
       { 
         // var outputList = JSON.parse(data);
@@ -505,11 +506,22 @@ window.deleteCheckedRow = function(){
           { 
             var outputList = JSON.parse(data);
             alumniArray = outputList;
-            console.log(outputList);
-            reload(outputList);
+            reload(outputList,pageIndex);
           }
         })
       }
     });
-  }
-  }
+  })
+}
+
+reload(alumniArray,pageIndex);
+
+window.nextPage = function () {
+  pageIndex++;
+  reload(alumniArray,pageIndex);
+};
+window.previousPage = function () {
+  pageIndex--;
+  reload(alumniArray,pageIndex);
+};
+  

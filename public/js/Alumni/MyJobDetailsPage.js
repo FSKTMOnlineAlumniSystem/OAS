@@ -2,7 +2,7 @@
 //GET THE ARRAY FROM THE MYJOBPAGE WHEN USER CLICK ON IT
 let myJob = job_array;
 
-//DISPLAY THE DETAILS OF THE JOB ADS 
+//DISPLAY THE DETAILS OF THE JOB ADS <i class="fas fa-user-edit mr-2 close">
     document.getElementById("main-body").innerHTML += 
     `<div class="row">
     <div class="col-0 col-md-1 col-lg-2">
@@ -14,7 +14,7 @@ let myJob = job_array;
     <h3 class="d-inline">${myJob.company} - ${myJob.title}</h3>
     </div>
     <div class="col-2">
-    <a href="editmyjob?myjobid=${myJob.jobId}" class="btn btn-secondary float-right edit" role="button"><i class="bi bi-pencil-square"></i>   Edit</a>
+    <a href="editmyjob?myjobid=${myJob.jobId}" class="btn btn-secondary float-right edit" role="button"><i class="fas fa-user-edit"></i>  Edit</a>
     </div>
     </div>
     <hr  style="
@@ -37,7 +37,7 @@ let myJob = job_array;
     <i class="fas fa-map-marked-alt fa-2x" style="font-size: 50px"></i>
     </div>  
     <div class='col-8 d-flex align-items-center'>
-    <span class="info pt-3 pt-sm-0">${myJob.location}</span>
+    <p class="pt-3 pt-sm-0">${myJob.location}</p>
     </div>
     </div>
 
@@ -46,7 +46,7 @@ let myJob = job_array;
     <i class="fas fa-sack-dollar fa-2x" style="font-size: 50px"></i>
     </div>  
     <div class='col-8 d-flex align-items-center'>
-    <span class="info pt-3 pt-sm-0">RM ${myJob.salary}</span>
+    <p class="pt-3 pt-sm-0">RM ${myJob.salary}</p>
     </div>
     </div>
 
@@ -55,7 +55,7 @@ let myJob = job_array;
     <i class="fas fa-envelope-open-text text-primary fa-2x" style="font-size: 50px"></i>
     </div>  
     <div class='col-8 d-flex align-items-center'>
-    <a href="mailto:${myJob.email}">${myJob.email}</a>
+    <p>${myJob.email}</p>
     </div>
     </div>
 
@@ -71,12 +71,12 @@ let myJob = job_array;
     <div class="col-0 col-md-1 col-lg-2">
     </div>
     <div class="col-12 col-md-10 col-lg-8">
+    <h4 class="pt-3">Job Description</h4>
     <div class="jumbotron">
     <div class="container">
     <div class="row">
     <div class="col-12">
-    <h4 class="pt-3"><b>Job Description</b></h4>
-        <p class="lead" style="white-space: pre-wrap;">${myJob.description}</p>
+        <p style="white-space: pre-wrap;">${myJob.description}</p>
       </div>
     </div>
   </div>

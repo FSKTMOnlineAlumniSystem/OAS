@@ -25,15 +25,44 @@ const handleSearching = evt => {
   location.href = (url.href);
 };
 searchBtn.addEventListener('click', handleSearching);
-searchInput.addEventListener('keypress', (evt)=>{
-  if(evt.key === 'Enter'){
+searchInput.addEventListener('keypress', (evt) => {
+  if (evt.key === 'Enter') {
     handleSearching(evt);
   }
 });
 // check if any event card exists
 const cardNodeList = document.querySelectorAll('.card');
-if(Array.from(cardNodeList).length === 0){
+if (Array.from(cardNodeList).length === 0) {
   insertSearchNoResult(document.getElementById("no_result"));
-}else{
+} else {
   console.log('found events');
 }
+// pagination handling
+const toEventPage = (pageIdx) => {
+  console.log('move page');
+  console.log(pageIdx);
+  var url = new URL(location.href);
+  var params = { page: pageIdx };
+  url.search = new URLSearchParams(params).toString();
+  location.href = (url.href);
+}
+const curPageIndex = document.querySelector('[data-cur-page-index]').innerText;
+// add event listeners
+const prevPageBtn = document.getElementById('previousEventPage');
+const nextPageBtns = Array.from(document.querySelectorAll('.nextEventPage'));
+const next2PageBtn = document.getElementById('next2EventPage');
+prevPageBtn.addEventListener('click', evt => {
+  toEventPage(parseInt(curPageIndex)-1);
+});
+nextPageBtns.forEach(btn => {
+  btn.addEventListener('click', evt => {
+    toEventPage(parseInt(curPageIndex)+1);
+  });
+});
+if (next2PageBtn) {
+  next2PageBtn.addEventListener('click', evt => {
+    toEventPage(parseInt(curPageIndex)+2);
+  });
+}
+onclick = "nextEventPage();nextEventPage()"
+onclick = "nextEventPage()"

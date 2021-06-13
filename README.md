@@ -66,12 +66,14 @@ max_allowed_packet=100M
 [Solve mysql blocked port in Xampp](https://kinsta.com/knowledgebase/xampp-mysql-shutdown-unexpectedly/#what-the-xampp-error-mysql-shutdown-unexpectedly-is)
 
 ### User Access
-[We should store image in directory instead of as base64](https://makitweb.com/upload-and-store-an-image-in-the-database-with-php/)
 [Ultimate Guide about .htaccess](https://www.whoishostingthis.com/resources/htaccess/)
 
 ### Client-Server Model
 [Grab data from fetch api in php](https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php)
 [Return JSON to Front end from PHP](https://stackoverflow.com/questions/682260/returning-json-from-php-to-javascript)
+
+### Git
+[Stop updating file into repo](https://stackoverflow.com/questions/4348590/how-can-i-make-git-ignore-future-revisions-to-a-file)
 
 ## Requirements :snowflake:
 The system should provide the following functions: 
