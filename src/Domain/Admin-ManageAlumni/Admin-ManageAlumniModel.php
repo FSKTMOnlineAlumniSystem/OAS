@@ -122,10 +122,9 @@ public function getSearch($alumniId) {
                 $data = $stmt->fetchAll();
                 // $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (!$data) {
-                    include_once '../src/Domain/General_Pages/page_not_found.php';
-                    include_once '../src/templates/GeneralScripts.php';
-                    exit();
-                    return;
+                        include_once '../src/Domain/General_Pages/admin_page_not_found.php';
+                        exit;
+                        
                 }
                 return $data;
     

@@ -1,5 +1,5 @@
 <?php
-// include '../src/Domain/header.php';
+// include_once '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
@@ -8,10 +8,10 @@
 
   
 <?php
-// include '../../../config/config.php';
-// include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
-include '../src/Domain/Database.php';
+// include_once '../../../config/config.php';
+// include_once '../src/Domain/Event/EventModel.php';
+include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
+include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -31,7 +31,7 @@ try {
 }
 ?>
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
     'my_css' => '/css/Alumni/JobDetailsPage.css'
