@@ -454,11 +454,11 @@ var searchInput = document.getElementById('input1');
 const handleMyJobSearch = evt =>{
 // $('#searchBar').click(function(){
   var search = document.getElementById("input1").value;
-  if (search == "") {
-    alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-    // and add a return here so below code will not run
-    return;
-  }
+  // if (search == "") {
+  //   alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+  //   // and add a return here so below code will not run
+  //   return;
+  // }
 var outputList;
   $.ajax({
     url: '/admin/search/event',
