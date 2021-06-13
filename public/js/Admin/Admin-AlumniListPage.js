@@ -71,10 +71,7 @@ tbody.innerHTML = "";
  var alumni=alumniArray;
 // alumniArray.forEach((alumni, index) => {
   for (
-    let i = alumniStartIndex;
-    i < alumniEndIndex && i < alumniArray.length;
-    i++
-  ) {
+    let i = alumniStartIndex;i < alumniEndIndex && i < alumniArray.length;i++) {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let div = document.createElement('div');
@@ -188,7 +185,6 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
 }
 reload(alumniArray,pageIndex);
 
-
 window.approve = function(){
   $('#exampleModal').modal("show");
   var $name = document.getElementById("input1").value;
@@ -276,6 +272,7 @@ searchBar.addEventListener('click',(e)=>{
       }
       var outputList = JSON.parse(data);
       alumniArray = outputList;
+      pageIndex=0;
       reload(outputList,pageIndex);
       
     }
@@ -357,9 +354,16 @@ $("#status,#department").on("change", function () {
     data: {name: $name, department:$department, status:$status},
     success:  function(data)
     { 
+      if(data.length== 2){
+        insertSearchNoResult( document.getElementById("searchNotFound"));
+      }else{
+        document.getElementById("searchNotFound").innerHTML=``
+      }
       var outputList = JSON.parse(data);
       alumniArray = outputList;
+      pageIndex=0;
       reload(outputList,pageIndex);
+      
     }
 });
   // e.preventDefault();
@@ -452,6 +456,7 @@ $("#clearAll").on("click", function (e) {
     { 
       var outputList = JSON.parse(data);
       alumniArray = outputList;
+      pageIndex=0;
       reload(outputList,pageIndex);
     }
   // e.preventDefault();

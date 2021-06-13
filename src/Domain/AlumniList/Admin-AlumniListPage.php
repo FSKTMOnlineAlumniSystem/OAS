@@ -238,22 +238,15 @@ includeWithVariables('../src/templates/header.php', array(
                   </div>
                 </div>
                  <!-- pagination -->
-          <nav aria-label="Page navigation example">
-
+                 <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" id="previousPage">
-                <button onclick="previousPage()" class="page-link">Previous</button>
+                <!-- <button onclick="previousPage()" class="page-link">Previous</button> -->
               </li>
               <div class="pages list-group list-group-horizontal">
-                <li class="page-item disabled">
-                  <button class="page-item" tabindex="-1" aria-disabled="true">${pageIndex+1}</button>
-                </li>
-                <li class="page-item"><button onclick="nextPage()">${pageIndex+2}</button></li>
-                <li class="page-item"><button onclick="nextPage();nextPage()">${pageIndex+3}</button></li>
-
               </div>
               <li class="page-item" id="nextPage">
-                <button onclick="nextPage()" class="page-link">Next</button>
+                <!-- <button onclick="nextPage()" class="page-link">Next</button> -->
               </li>
             </ul>
           </nav>
