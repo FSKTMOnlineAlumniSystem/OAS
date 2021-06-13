@@ -44,7 +44,6 @@ include_once '../src/templates/nav.php';
 <div class="container my-5" id="main-body">
   <h1><b>Events</b></h1>
   <hr />
-  <div class="row justify-content-md-center text-center" id="no_result"></div>
   <div id="event-page-section">
     <h2 id="your-upcoming-event-section-title">
       <?php
@@ -55,6 +54,7 @@ include_once '../src/templates/nav.php';
       }
       ?>
     </h2>
+      <div class="row justify-content-md-center text-center" id="no_result"></div>
     <br />
     <div class="row" id="your-upcoming-event-section">
       <?php

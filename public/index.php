@@ -73,8 +73,11 @@ elseif (preg_match('/^\/home/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/$/i
 elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
     include '../src/Domain/Event/EventDetailsPage.php';
-} elseif (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI']) || preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
+} elseif (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI'])){
     $GLOBALS['title'] = TITLE_EVENTS;
+    include '../src/Domain/Event/EventPage.php';
+} elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])){
+    $GLOBALS['title'] = TITLE_MY_EVENTS;
     include '../src/Domain/Event/EventPage.php';
 }
 
