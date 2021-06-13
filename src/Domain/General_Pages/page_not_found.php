@@ -20,6 +20,13 @@
 <div class="row m-0 p-0 justify-content-center">
   <div class="col-md-4 p-5 text-center">
     <img class="card-img-150 mb-3" src="/Assets/imgs/404.svg" alt="404 Not Found">
-    <a href="/home" class="btn btn-primary btn-animation px-3" type="button"><i class="fas fa-angle-left"></i> Back to home</a>
+    <?php
+      $navigate = "/home";
+      //url contains "admin"
+      if(strpos($_SERVER['REQUEST_URI'], 'admin') !== false){
+        $navigate="/admin";
+      }
+      echo '<a href='.$navigate.' class="btn btn-primary btn-animation px-3" type="button"><i class="fas fa-angle-left"></i> Back to home</a>'
+    ?>
   </div>
 </div>

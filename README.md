@@ -106,7 +106,7 @@ Faculty Administrator:
 ```
 **Alumni Profile Page** 
 ```
-/profile?page=$pageIndex&/$alumniId
+/alumni/profile?id=$alumniId
 ```
 **My Profile Page** 
 ```
