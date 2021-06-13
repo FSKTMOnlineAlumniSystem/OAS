@@ -181,9 +181,32 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   }
   )
 })
-
+checkbox();
+}
+const checkbox = () => {
+  $(document).ready(function () {
+  $('.custom-control-input').on("change", function () {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var count=0;
+    var i;
+    for (i = 1; i < checkboxes.length; i++) {
+      if(checkboxes[i].checked){
+        count++
+      }
+    }
+    console.log(count);
+    console.log(checkboxes.length);
+    if(count==checkboxes.length-1){
+      console.log("hihihi")
+      checkboxes[0].checked = true;
+    }else if(count !=checkboxes.length-1){
+      checkboxes[0].checked = false;
+    }
+  });
+});
 }
 reload(alumniArray,pageIndex);
+
 
 window.approve = function(){
   $('#exampleModal').modal("show");
@@ -214,6 +237,7 @@ $.ajax({
         var outputList = JSON.parse(data);
         alumniArray = outputList;
         reload(outputList,pageIndex);
+        checkbox();
       }
     })
   }
@@ -273,6 +297,7 @@ searchBar.addEventListener('click',(e)=>{
       alumniArray = outputList;
       pageIndex=0;
       reload(outputList,pageIndex);
+      checkbox();
     }
 });
 
@@ -328,6 +353,7 @@ $.ajax({
                           var outputList = JSON.parse(data);
                           alumniArray = outputList;
                           reload(outputList,pageIndex);
+                          checkbox();
                         }
                       })
                     }
@@ -361,7 +387,7 @@ $("#status,#department").on("change", function () {
       alumniArray = outputList;
       pageIndex=0;
       reload(outputList,pageIndex);
-      
+      checkbox();
     }
 });
   // e.preventDefault();
@@ -459,6 +485,7 @@ $("#clearAll").on("click", function (e) {
       pageIndex=0;
       document.getElementById("searchNotFound").innerHTML=``
       reload(outputList,pageIndex);
+      checkbox();
     }
   // e.preventDefault();
 })
@@ -508,6 +535,7 @@ var deleteButton=document.getElementById('deleteButton');
             var outputList = JSON.parse(data);
             alumniArray = outputList;
             reload(outputList,pageIndex);
+            checkbox();
           }
         })
       }
@@ -525,36 +553,26 @@ window.previousPage = function () {
   pageIndex--;
   reload(alumniArray,pageIndex);
 };
-
-$(document).ready(function () {
-  $('.custom-control-input').on("change", function () {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    var count=0;
-    var count1=0;
-    // for(var i=1;i<checkboxes.length;i++){
-    //   if(checkboxes[i].checked=true){
-    //     count++;
-    //   }
-    // }
-    var i;
-    for (i = 1; i < checkboxes.length; i++) {
-      if(checkboxes[i].checked){
-        count++
-      }
-    }
-    for (i = 1; i < checkboxes.length; i++) {
-      if($(checkboxes[i]).is(':visible')){
-        count1++
-      }
-    }
-    console.log(count);
-    $(checkboxes[i]).is(':visible')
-    if(count==count1){
-      console.log("hihihi")
-      checkboxes[0].checked = true;
-    }else{
-      checkboxes[0].checked = false;
-    }
-  });
-});
+// const checkbox = () => {
+//   $(document).ready(function () {
+//   $('.custom-control-input').on("change", function () {
+//     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//     var count=0;
+//     var i;
+//     for (i = 1; i < checkboxes.length; i++) {
+//       if(checkboxes[i].checked){
+//         count++
+//       }
+//     }
+//     console.log(count);
+//     console.log(checkboxes.length);
+//     if(count==checkboxes.length-1){
+//       console.log("hihihi")
+//       checkboxes[0].checked = true;
+//     }else if(count !=checkboxes.length-1){
+//       checkboxes[0].checked = false;
+//     }
+//   });
+// });
+// }
   
