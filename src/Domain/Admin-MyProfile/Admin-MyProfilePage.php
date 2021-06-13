@@ -39,12 +39,19 @@ includeWithVariables('../src/templates/header.php', array(
                         </div>';
                     }
                     if (isset($_GET['changepassword'])) {
-                        echo '
-                        <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
-                            <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>';
+                        // echo '
+                        // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                        //     <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        //         <span aria-hidden="true">&times;</span>
+                        //     </button>
+                        // </div>';
+                        echo "
+                        <script type='text/javascript'>
+                            window.onload = function(){
+                                $('#changePasswordModal').modal('show');
+                                document.getElementById('oldPassword').classList.add('is-invalid');                
+                            }
+                        </script>";
                     }
                     if (isset($_GET['error'])) {
                         foreach ($_GET['error'] as $error) {
@@ -144,7 +151,7 @@ includeWithVariables('../src/templates/header.php', array(
             </div>
     </main>
 
-    <?php include_once '../src/templates/GeneralScripts.php'?>
+    <?php include_once '../src/templates/GeneralScripts.php' ?>
     <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
     <script type='module' src="/js/Admin/Admin-MyProfilePage.js"></script>
 </body>

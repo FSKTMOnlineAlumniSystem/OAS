@@ -220,8 +220,6 @@ $.ajax({
 });
 }
 
-
-
 // search bar filter
 // var searchBar = document.getElementById('searchBar');
 // searchBar.addEventListener('click', (e) => {
@@ -271,10 +269,10 @@ searchBar.addEventListener('click',(e)=>{
         document.getElementById("searchNotFound").innerHTML=``
       }
       var outputList = JSON.parse(data);
+      console.log(outputList);
       alumniArray = outputList;
       pageIndex=0;
       reload(outputList,pageIndex);
-      
     }
 });
 
@@ -291,7 +289,7 @@ window.getAlumniId = function(){
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+    if (checkboxes[i] != source)
       checkboxes[i].checked = source.checked;
   }
 }
@@ -368,6 +366,8 @@ $("#status,#department").on("change", function () {
 });
   // e.preventDefault();
 })
+
+
 
 // filter by using dropdown
 // $(document).ready(function () {
@@ -525,4 +525,36 @@ window.previousPage = function () {
   pageIndex--;
   reload(alumniArray,pageIndex);
 };
+
+$(document).ready(function () {
+  $('.custom-control-input').on("change", function () {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var count=0;
+    var count1=0;
+    // for(var i=1;i<checkboxes.length;i++){
+    //   if(checkboxes[i].checked=true){
+    //     count++;
+    //   }
+    // }
+    var i;
+    for (i = 1; i < checkboxes.length; i++) {
+      if(checkboxes[i].checked){
+        count++
+      }
+    }
+    for (i = 1; i < checkboxes.length; i++) {
+      if($(checkboxes[i]).is(':visible')){
+        count1++
+      }
+    }
+    console.log(count);
+    $(checkboxes[i]).is(':visible')
+    if(count==count1){
+      console.log("hihihi")
+      checkboxes[0].checked = true;
+    }else{
+      checkboxes[0].checked = false;
+    }
+  });
+});
   

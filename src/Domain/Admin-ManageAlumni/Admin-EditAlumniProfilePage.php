@@ -10,9 +10,9 @@
   <?php
 // include '../../../config/config.php';
 // include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Admin-ManageAlumni/AlumniListModel.php';
+include '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include '../src/Domain/Database.php';
-include '../src/Domain/Admin-ManageAlumni/uploadAlumniImage.php';
+include '../src/Domain/Admin-ManageAlumni/Admin-UploadAlumniImageController.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
