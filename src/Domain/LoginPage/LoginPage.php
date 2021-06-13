@@ -1,6 +1,7 @@
 <?php
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
+
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 ?>
@@ -16,8 +17,6 @@ $conn = $db->getConnection();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
     <!-- ICON FONT AWESOME -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -62,17 +61,17 @@ $conn = $db->getConnection();
         <div class="container shadow-lg" style="height:80vh;">
             <div class="row align-items-center h-100">
                 <div
-                    class="d-none col-md-6 gradient-purplin h-100 p-5 d-md-flex flex-column justify-content-center align-items-center">
+                    class="d-none col-md-6 gradient-purplin h-100 p-lg-5 p-1 d-md-flex flex-column justify-content-center align-items-center">
                     <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4">
                     <img src="/Assets/imgs/AdminLoginImageDark.png" class="w-75">
                 </div>
                 <div
-                    class="container col-md-6 bg-light h-100 p-4 d-flex flex-column justify-content-center align-items-center">
-                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-5 d-md-none">
-                    <h3 class="mb-5 d-flex flex-column justify-content-center align-items-center" style="font-size:30px;">Welcome back, Alumni!
+                    class="container col-md-6 bg-light h-100 p-lg-5 p-4 d-flex flex-column justify-content-center align-items-center">
+                    <img src="/Assets/imgs/umfsktm.png" class="w-75 mb-4 mb-sm-5 d-md-none">
+                    <h3 class="mb-3 mb-sm-5 d-flex flex-column justify-content-center align-items-center text-center">Welcome back, Alumni!
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/signin' id="signIN" method="post">
-                        <div class="form-label-group w-100 pl-1 pr-1">
+                        <div class="form-label-group w-100">
                             <!-- <input type="text" name="email" id="staticEmail" class="form-control" placeholder="Email address"
                                 autofocus>
                             <label for="staticEmail">Email address</label> -->
@@ -81,16 +80,14 @@ $conn = $db->getConnection();
                                     echo'
                                     <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail" >Email address</label>
+                                    <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
                                     ';
                                 }else if (isset($_GET["passwordWrong"])){
                                     echo '
-                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email" value="';?><?php 
-                                    echo $_SESSION["CorrectEmail"];
-                                    echo'"
+                                    <input type="text" name="email" id="staticEmail" class="form-control is-valid" placeholder="Email" value="'.$_SESSION["CorrectEmail"].'"
                                     autofocus>
                                     <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Correct Email</div>
@@ -111,7 +108,7 @@ $conn = $db->getConnection();
                             <!-- <div class="valid-feedback">Valid</div>
                             <div class="invalid-feedback">Please provide a correct email</div> -->
                         </div>
-                        <div class="form-label-group w-100 pl-1 pr-1">
+                        <div class="form-label-group w-100">
                             <!-- <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
                             <label for="inputPassword">Password</label> -->
                             <?php
@@ -137,19 +134,19 @@ $conn = $db->getConnection();
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
                     </form>
                     <div class="row w-100 pt-1">
-                        <div class="col" style="text-align:left;">
+                        <div class="col-sm-6 text-sm-left">
                             <span type="signUp" class="signUPbutton"
                                 data-toggle="modal" data-target="#signUP">Sign
                                 Up </span>
                         </div>
 
-                        <div class="col" style="text-align:right;">
+                        <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
                             <span data-toggle="modal" data-target="#forgot">
                                 <span class="forgotPsw">Forgot
                                     Password?</span></span>
                         </div>
                     </div>
-                    <div class="bottom-right" style="bottom:5px;">
+                    <div class="bottom-right" style="bottom:10px;">
                         <a href="/admin-login">I am Admin</a>
                     </div>
                 </div>
@@ -260,7 +257,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="inputGender" class="col-sm-3 col-form-label ml-1">Gender:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="gender" class="form-select p-1" id="Gender" aria-label="Default select example">
+                                <select name="gender" class="form-control p-1" id="Gender" aria-label="Default select example">
                                     <option value="0">Gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -272,7 +269,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="inputBatch" class="col-sm-3 col-form-label ml-1">Batch:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="Batch" class="form-select p-1" id="Batch" aria-label="Default select example">
+                                <select name="Batch" class="form-control p-1" id="Batch" aria-label="Default select example">
                                     <option value="0">Batch</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -351,7 +348,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="Department" class="col-sm-3 col-form-label ml-1">Department:</label>
                             <div class="col-sm-8 mr-1">
-                                <select name="department" class="form-select p-1" id="Department" aria-label="Default select example">
+                                <select name="department" class="form-control p-1" id="Department" aria-label="Default select example">
                                     <option value="0">Department</option>
                                     <option value="Software Engineering">Software Engineering</option>
                                     <option value="Artificial Intellegent">Artificial Intellegent</option>
@@ -392,9 +389,10 @@ $conn = $db->getConnection();
 <?php
 include '../src/templates/GeneralScripts.php'
 ?>
+
    
    <!-- wait for verification  -->
-
+   
    <?php
     if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
@@ -546,6 +544,52 @@ if (isset($_GET["doneSend"])) {
 }
 ?>
 
+<!--  need to verify email before forgot password -->
+
+<?php
+
+if (isset($_GET["verify"])) {
+    echo'
+        <div class="modal fade" id="doneSend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>Next Step</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>
+                                You need to verify your account. <br>
+                                Sign in to your email account and click in the verification link we email you.
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Thank you.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#doneSend").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#doneSend").modal("hide");
+                });
+            }
+        </script>
+';
+}
+?>
+
 <!-- chgpsw -->
 
 <?php
@@ -596,13 +640,6 @@ if (isset($_GET["sendPsw"])) {
 }
 ?>
 
-<!-- <script type="text/javascript">
-function emailName(){
-    staticEmail = document.getElementById('staticEmail');
-    console.log(staticEmail);
-    return staticEmail;
-}
-</script> -->
 
 <?php
         if (isset($_GET["emailExists"])){
@@ -636,7 +673,9 @@ function emailName(){
         ';
     }
 ?>
-
+<?php
+include_once '../src/templates/GeneralScripts.php';
+?>
 <script type="module" src="/js/Alumni/LoginPage.js"></script>
 
 </body>

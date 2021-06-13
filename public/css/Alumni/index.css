@@ -183,3 +183,7 @@ a.nostyle:visited {
 .img-fluid{
   width:100% !important;
 }
+
+select.form-control{
+  background:none !important;
+}

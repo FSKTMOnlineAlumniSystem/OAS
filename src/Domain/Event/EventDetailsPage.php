@@ -103,9 +103,7 @@ include '../src/templates/nav.php';
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <p class="">
-                <?= $event['description'] ?>
-              </p>
+              <p style="white-space: pre-wrap;"><?= $event['description'] ?></p>
             </div>
           </div>
         </div>

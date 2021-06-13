@@ -16,7 +16,8 @@ if(isset($_POST["submit"])){
 }
 
 
-function loginUser($conn, $email, $password){
+function loginUser($conn, $email, $password)
+{
     $alumniData = emailExists($conn,$email);
     if($alumniData == false){
         header("location: /login?emailnotExists");
@@ -28,6 +29,7 @@ function loginUser($conn, $email, $password){
     }
     // $passwordNormal = $alumniData["password"];
     // $checkpassword = passwordCheck($password, $passwordNormal);
+
     $passwordHashed = $alumniData["password"];
     $checkpassword = password_verify($password, $passwordHashed);
     if ($checkpassword === false) {
@@ -44,7 +46,8 @@ function loginUser($conn, $email, $password){
     }
 }
 
-function passwordCheck($password, $passwordNormal){
+function passwordCheck($password, $passwordNormal)
+{
     if ($password == $passwordNormal) {
         //password true
         return true;
@@ -54,18 +57,3 @@ function passwordCheck($password, $passwordNormal){
         return false;
     }
 }
-
-
-function adminApproved($conn,$email){
-    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!=""');
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-    if(!$data){
-        return false;
-    }else{
-        return true;
-    }
-}
-
-
