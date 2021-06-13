@@ -186,6 +186,25 @@ document.getElementById('invideAndDone').innerHTML=`
             </button>
 `
 }//else
+$(document).ready(function () {
+  $('.custom-control-input').on("change", function () {
+      // alert('changed');
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      console.log(checkboxes.length);
+      var allChecked=true;
+for (var i = 1 ; i < checkboxes.length ; i++) {
+  // checkboxes[i].checked if true then checked
+  if(!checkboxes[i].checked){
+    allChecked=false;
+  }
+}
+if(allChecked==true){
+  checkboxes[0].checked = true; 
+}else{
+  checkboxes[0].checked = false;
+}
+  });
+});
 }
 // window.toggle = function (source) {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -290,7 +309,7 @@ var outputList;
     },
     success: function(resp){
     uncheckTop();
-    let pageIndex = 0;
+    pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;
@@ -332,7 +351,7 @@ window.SearchData = function(status, department) {
     },
     success: function(resp){
     uncheckTop();
-    let pageIndex = 0;
+    pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;

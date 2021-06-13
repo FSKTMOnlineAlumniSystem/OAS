@@ -246,22 +246,11 @@ window.DeleteCheckedRow = function () {
         allChecked=false;
       }
     }
-    var topcheckboxes = document.getElementById('CheckAllBoxes');
     if(allChecked==true){
-      // topcheckboxes.checked=true;
-      checkboxes[0].checked = true;
-      
+      checkboxes[0].checked = true; 
     }else{
-      // topcheckboxes.checked=false;
       checkboxes[0].checked = false;
-
     }
-
-          // var status = $('#status').find("option:selected").val();
-          // console.log(status);
-          // var department = $('#department').find("option:selected").val();
-          // console.log(department);
-          // SearchData(status, department)
       });
   });
 //trash model
