@@ -41,6 +41,7 @@ function loginUser($conn, $email, $password)
             unset($alumniData["icNumber"]);
             session_start();
             $_SESSION["alumni"] = $alumniData;
+            unset($_SESSION_["admin"]);
             header("location: /home");
             exit();
     }
