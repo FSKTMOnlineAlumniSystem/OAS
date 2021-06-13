@@ -2,9 +2,12 @@
 include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$event_model = new EventModel($db->getConnection());
-
+try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  $event_model = new EventModel($db->getConnection());
+} catch (Exception $e) {
+  echo "Exception: " . $e->getMessage();
+}
 if (isset($_GET['search'])) {
   // echo $_GET['search'];
   header('Content-type: application/json');

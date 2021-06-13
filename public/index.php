@@ -5,33 +5,27 @@ session_start();
 //Login
 if (preg_match('/^\/api\/signin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/signin_inc.php';
+    include '../src/Domain/LoginPage/SignInController.php';
 }elseif (preg_match('/^\/api\/signup/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/signup_inc.php';
+    include '../src/Domain/LoginPage/SignUpController.php';
 } elseif (preg_match('/^\/api\/forgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/forgotPassword.php';
-} elseif (preg_match('/^\/api\/verify/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/class.verifyEmail.php';
-} elseif (preg_match('/^\/api\/updatedb/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/LoginPage/UpdateDB.php';
+    include '../src/Domain/LoginPage/forgotPasswordController.php';
 }
 
 //Admin-Login
 elseif (preg_match('/^\/api\/adminsignin/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Admin-LoginPage/signin.php';
+    include '../src/Domain/Admin-LoginPage/SignInAdminController.php';
 } elseif (preg_match('/^\/api\/adminforgot/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_OAS;
-    include '../src/Domain/Admin-LoginPage/AdminforgotPsw.php';
+    include '../src/Domain/Admin-LoginPage/ForgotPasswordAdminController.php';
 }
 
 // Logout
 elseif (preg_match('/^\/api\/log-out\/?$/i', $_SERVER['REQUEST_URI'])) {
-    include '../src/Domain/LoginPage/logout.php';
+    include '../src/Domain/LoginPage/LogOutController.php';
     exit(); // prevent further script from running
 }
 

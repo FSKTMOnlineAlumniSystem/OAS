@@ -4,9 +4,9 @@ include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Event/AlumniEventModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
   $event_model = new EventModel($db->getConnection());
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
@@ -118,7 +118,10 @@ include_once '../src/templates/nav.php';
           </a>
         </div>
       <?php } ?>
-      <span id="pageIndex"></span>
+      <!-- page navigation -->
+      <?php 
+      if(($pageIndex-1)*8 < count($events) && count($events) > 8){
+      ?>
       <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
         <ul class="pagination justify-content-center">
           <div id="previousPage">
@@ -150,6 +153,9 @@ include_once '../src/templates/nav.php';
           </div>
         </ul>
       </nav>
+      <?php
+      }
+      ?>
     </div>
     <br />
   </div>
