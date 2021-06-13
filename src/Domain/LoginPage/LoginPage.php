@@ -1,6 +1,7 @@
 <?php
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
+
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 ?>
@@ -79,7 +80,7 @@ $conn = $db->getConnection();
                                     echo'
                                     <input type="text" name="email" id="staticEmail" class="form-control is-invalid" placeholder="Email"
                                     autofocus>
-                                    <label for="staticEmail" >Email address</label>
+                                    <label for="staticEmail">Email address</label>
                                     <div class="valid-feedback">Valid</div>
                                     <div class="invalid-feedback">Please provide a correct email</div>
                                     
@@ -388,9 +389,10 @@ $conn = $db->getConnection();
 <?php
 include '../src/templates/GeneralScripts.php'
 ?>
+
    
    <!-- wait for verification  -->
-
+   
    <?php
     if (isset($_GET["id"]) && emailExists($conn, $email = Decrypt($_GET["id"]))) {
 
@@ -542,6 +544,52 @@ if (isset($_GET["doneSend"])) {
 }
 ?>
 
+<!--  need to verify email before forgot password -->
+
+<?php
+
+if (isset($_GET["verify"])) {
+    echo'
+        <div class="modal fade" id="doneSend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>Next Step</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>
+                                You need to verify your account. <br>
+                                Sign in to your email account and click in the verification link we email you.
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Thank you.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#doneSend").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#doneSend").modal("hide");
+                });
+            }
+        </script>
+';
+}
+?>
+
 <!-- chgpsw -->
 
 <?php
@@ -592,13 +640,6 @@ if (isset($_GET["sendPsw"])) {
 }
 ?>
 
-<!-- <script type="text/javascript">
-function emailName(){
-    staticEmail = document.getElementById('staticEmail');
-    console.log(staticEmail);
-    return staticEmail;
-}
-</script> -->
 
 <?php
         if (isset($_GET["emailExists"])){
@@ -632,7 +673,9 @@ function emailName(){
         ';
     }
 ?>
-
+<?php
+include_once '../src/templates/GeneralScripts.php';
+?>
 <script type="module" src="/js/Alumni/LoginPage.js"></script>
 
 </body>

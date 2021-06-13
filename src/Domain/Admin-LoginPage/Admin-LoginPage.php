@@ -44,25 +44,9 @@
 </style>
 
 <?php
-// include '../../../config/config.php';
-// include './LoginPageModel.php';
 include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-// try {
-//   $event_model = new EventModel($db->getConnection());
-//   $all_activities = $event_model->getAll();
-//   if (!empty($all_activities)) {
-
-//     foreach ($all_activities as $activity) {
-//       echo "$activity[eventId] ";
-//     }
-//   }
-// } catch (Exception $e) {
-//   echo "Exception here!";
-// }
-
 ?>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
@@ -80,9 +64,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                     </h3>
                     <form class="w-100 d-flex flex-column justify-content-center align-items-center" action='/api/adminsignin' id="signIN" method="post">
                         <div class="form-label-group w-100">
-                            <!-- <input type="text" id="staticEmail" class="form-control" placeholder="Email address"
-                                autofocus>
-                            <label for="staticEmail">Email address</label> -->
                             <?php
                                 if (isset($_GET["emailnotExists"])){
                                     echo'
@@ -112,12 +93,9 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                                     ';
                                 }
                             ?>
-                            <!-- <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Please provide a valid email</div> -->
+                    
                         </div>
                         <div class="form-label-group w-100">
-                            <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password">
-                            <label for="inputPassword">Password</label> -->
                             <?php
                                 if (isset($_GET["passwordWrong"])){
                                     echo'
@@ -134,8 +112,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                                     ';
                                 }
                             ?>
-                            <!-- <div class="valid-feedback">Valid</div>
-                            <div class="invalid-feedback">Password is incorrect</div> -->
                         </div>
                         <button class="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2 text-white"
                             type="submit" name="submit" style="background: #7b05aa;">Sign in</button>
@@ -174,8 +150,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         <div class="mb-2 mt-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label ml-1">Email:</label>
                             <div class="col-sm-8 mr-1">
-                                <!-- <input type="text" class="form-control" id="sendEmail">
-                                <div class="invalid-feedback">Please provide a valid email.</div> -->
                                 <?php
                                 if (isset($_GET["fgemailnotExists"])){
                                     echo'

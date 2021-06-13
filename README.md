@@ -72,6 +72,9 @@ max_allowed_packet=100M
 [Grab data from fetch api in php](https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php)
 [Return JSON to Front end from PHP](https://stackoverflow.com/questions/682260/returning-json-from-php-to-javascript)
 
+### Git
+[Stop updating file into repo](https://stackoverflow.com/questions/4348590/how-can-i-make-git-ignore-future-revisions-to-a-file)
+
 ## Requirements :snowflake:
 The system should provide the following functions: 
 

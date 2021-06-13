@@ -16,11 +16,16 @@ if(isset($_POST["submit"])){
     require_once '../libs/PHPMailer/src/Exception.php';
    
     if(emailExists($conn,$email) == false){
-       
         header("location: /login?fgemailnotExists");
         exit();
     }else{
         if(adminApproved($conn,$email) == false){
+
+            if (checkVerification($conn,$email) == false) {
+                header("location: /login?verify");
+                exit();
+            }
+
             header("location: /login?NotApprovedYet");
             exit();
         }
@@ -74,8 +79,9 @@ if(isset($_POST["submit"])){
     }
 }
 
-function adminApproved($conn,$email){
-    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND approvedBy!="" AND isVerified=1 ');
+function checkVerification($conn,$email)
+{
+    $stmt = $conn->prepare('SELECT * FROM alumni WHERE email=:email AND isVerified=1');
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $data = $stmt->fetchAll();
@@ -86,7 +92,8 @@ function adminApproved($conn,$email){
     }
 }
 
-function randomPassword() {
+function randomPassword()
+{
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $pass = array(); //remember to declare $pass as an array
     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -97,7 +104,8 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-function setNewPassword($conn,$newPassword,$email){
+function setNewPassword($conn,$newPassword,$email)
+{
     $stmt = $conn->prepare("UPDATE alumni SET password=:password WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->bindParam("password", $newPassword);
