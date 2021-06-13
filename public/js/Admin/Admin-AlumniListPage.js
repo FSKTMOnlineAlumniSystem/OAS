@@ -145,7 +145,7 @@ alumniArray.forEach((alumni, index) => {
   // insert 'toggle invitation' function here
   a.setAttribute('href', '#');
   a.setAttribute('role', 'button');
-  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="deleteByJquery(this)">
+  a.innerHTML = `<a href="#" role="button" id="${index}" value="Delete Row" onclick="deleteByJquery(this)" >
   <i class="far fa-trash-alt fa-3x pl-2 text-danger" aria-hidden="true" style="font-size: 35px">
   </i></a>`;
   td.appendChild(a);
@@ -186,8 +186,11 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   }
   )
 })
+
 }
 reload(alumniArray);
+
+
 window.approve = function(){
   $('#exampleModal').modal("show");
   var $name = document.getElementById("input1").value;
@@ -216,7 +219,6 @@ $.ajax({
       { 
         var outputList = JSON.parse(data);
         alumniArray = outputList;
-        console.log(outputList);
         reload(outputList);
       }
     })
@@ -263,14 +265,12 @@ searchBar.addEventListener('click',(e)=>{
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
     data: {name: $name, department:$department, status:$status},
     success:  function(data)
     { 
-      console.log(data.length);
       if(data.length== 2){
         insertSearchNoResult( document.getElementById("searchNotFound"));
       }else{
@@ -278,9 +278,7 @@ searchBar.addEventListener('click',(e)=>{
       }
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
       reload(outputList);
-      console.log(data);
       
     }
 });
@@ -306,10 +304,15 @@ window.toggle = function (source) {
 
 window.deleteByJquery= function (o){
   event.preventDefault();
+  $('#deleteModal').modal("show");
+  event.preventDefault();
   var findId = o.id.split(" ");
-  console.log(findId);
   var $deleteAlumniId=alumniArray[findId].alumniId;
-  console.log($deleteAlumniId);
+  localStorage.setItem('alumniId', $deleteAlumniId);
+}
+  var deleteButton=document.getElementById('deleteButton');
+  deleteButton.addEventListener('click',()=>{
+  event.preventDefault();
   var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
   var $department = $('#department').find("option:selected").val();
@@ -320,13 +323,9 @@ window.deleteByJquery= function (o){
 $.ajax({
                     type: "POST",
                     url: '/admin/deleteAlumni',
-                    data: {deleteAlumniId: $deleteAlumniId},
+                    data: {deleteAlumniId: localStorage.getItem('alumniId')},
                     success:  function(data)
                     { 
-                      // var outputList = JSON.parse(data);
-                      // alumniArray = outputList;
-                      // console.log(outputList);
-                      // reload(outputList);
                       $.ajax({
                         type: "POST",
                         url: '/admin/searchAlumniName',
@@ -335,13 +334,14 @@ $.ajax({
                         { 
                           var outputList = JSON.parse(data);
                           alumniArray = outputList;
-                          console.log(outputList);
                           reload(outputList);
                         }
                       })
                     }
         });
-}
+})
+
+
 
 var searchBar=document.getElementById('searchBar');
 $("#status,#department").on("change", function () {
@@ -353,7 +353,6 @@ $("#status,#department").on("change", function () {
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
@@ -362,7 +361,6 @@ $("#status,#department").on("change", function () {
     { 
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
       reload(outputList);
     }
 });
@@ -448,7 +446,6 @@ $("#clearAll").on("click", function (e) {
   if($('#department').find("option:selected").val()=="All"){
     $department="";
   }
-  console.log($department);
   $.ajax({
     type: "POST",
     url: '/admin/searchAlumniName',
@@ -457,7 +454,6 @@ $("#clearAll").on("click", function (e) {
     { 
       var outputList = JSON.parse(data);
       alumniArray = outputList;
-      console.log(outputList);
       reload(outputList);
     }
   // e.preventDefault();
@@ -466,19 +462,21 @@ $("#clearAll").on("click", function (e) {
 
 window.deleteCheckedRow = function(){
   event.preventDefault();
-  var count=0;
+    $('#deleteModal').modal("show");
   var $alumniId = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   if(document.querySelectorAll(':checked').length-2 !== 0){
     for (var i = checkboxes.length-1; i > 0; i--) {
       if(checkboxes[i].checked){
-        count++;
         var alumniId= alumniArray[i-1].alumniId;
       $alumniId.push(alumniId);
       }
   }
     $alumniId=$alumniId.toString();
-    console.log(document.querySelectorAll(':checked').length-2);
+    localStorage.setItem('alumniId',$alumniId)
+}
+var deleteButton=document.getElementById('deleteButton');
+    deleteButton.addEventListener('click',()=>{
     var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
   var $department = $('#department').find("option:selected").val();
@@ -489,7 +487,7 @@ window.deleteCheckedRow = function(){
     $.ajax({
       type: "POST",
       url: '/admin/deleteMultipleAlumni',
-      data: {listOfDeleteAlumniId: $alumniId, count:count},
+      data: {listOfDeleteAlumniId: localStorage.getItem("alumniId")},
       success:  function(data)
       { 
         // var outputList = JSON.parse(data);
@@ -505,11 +503,11 @@ window.deleteCheckedRow = function(){
           { 
             var outputList = JSON.parse(data);
             alumniArray = outputList;
-            console.log(outputList);
             reload(outputList);
           }
         })
       }
     });
-  }
-  }
+  })
+}
+  
