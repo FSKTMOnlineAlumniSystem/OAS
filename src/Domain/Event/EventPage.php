@@ -118,7 +118,10 @@ include_once '../src/templates/nav.php';
           </a>
         </div>
       <?php } ?>
-      <span id="pageIndex"></span>
+      <!-- page navigation -->
+      <?php 
+      if(($pageIndex-1)*8 < count($events) && count($events) > 8){
+      ?>
       <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
         <ul class="pagination justify-content-center">
           <div id="previousPage">
@@ -150,6 +153,9 @@ include_once '../src/templates/nav.php';
           </div>
         </ul>
       </nav>
+      <?php
+      }
+      ?>
     </div>
     <br />
   </div>

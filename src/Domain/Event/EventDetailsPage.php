@@ -113,9 +113,9 @@ include '../src/templates/nav.php';
 
 </div>
 
-<?php include '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>
 <?php
-include '../src/templates/GeneralScripts.php'
+include_once '../src/templates/GeneralScripts.php'
 ?>
 <!-- custom js files -->
 <script src="/js/Alumni/EventDetailsPage.js"></script>
