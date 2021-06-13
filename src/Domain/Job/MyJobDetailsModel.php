@@ -13,8 +13,12 @@ class MyJobDetailsModel
         $stmt = $this->connection->prepare("SELECT * FROM job WHERE jobId='$id'");
         $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(!$data){
-            return array();
+        if (!$data) {
+            include_once '../src/Domain/General_Pages/page_not_found.php';
+            include_once '../src/templates/footer.php';
+            include_once '../src/templates/GeneralScripts.php';
+            exit;
+            // return array();
         }
         return $data;     
 }
