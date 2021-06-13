@@ -170,7 +170,7 @@ includeWithVariables('../src/templates/header.php', array(
               </button>
               </div>
               <div class="modal-body">
-              Are you sure you want to delete this job advertisement?
+              Are you sure you want to delete the alumni?
               </div>
               <div class="modal-footer">
               <button id="deleteButton"  name ="delete_row" type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete it.</button>
