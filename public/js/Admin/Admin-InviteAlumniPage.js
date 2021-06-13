@@ -249,11 +249,11 @@ const handleMyJobSearch = evt =>{
   var department = $('#department').find("option:selected").val();
   var search = document.getElementById("input1").value;
   var eventId=localStorage.getItem('eventId');
-  if (search == "") {
-    alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-    return;
-    // and add a return here so below code will not run
-  }
+  // if (search == "") {
+  //   alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+  //   return;
+  //   // and add a return here so below code will not run
+  // }
 var outputList;
   $.ajax({
     url: '/admin/search/invite/alumni?eventId='+$inviteEventId,

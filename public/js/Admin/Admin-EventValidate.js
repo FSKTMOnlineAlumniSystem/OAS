@@ -151,7 +151,8 @@ function cancelCreate(){
   var i = localStorage.getItem("updateId");
   var d = new Date(eventArray[i].dateTime);
   var todayDate = d.toISOString().slice(0, 10);
-  document.getElementById('dateTime').value=d;
+  // document.getElementById('dateTime').value=d;
+  
   let hour = d.getHours();
   let minute = d.getMinutes().toString();
   minute = minute.padStart(2, '0');

@@ -182,7 +182,7 @@ elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
     include '../src/Domain/Alumni/AlumniProfilePage.php';
 } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
-    $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
+    $GLOBALS['title'] = TITLE_ALUMNI;
     include '../src/Domain/Alumni/AlumniPage.php';
 }
 

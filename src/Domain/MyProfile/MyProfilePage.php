@@ -241,8 +241,8 @@ include_once '../src/templates/nav.php';
 
     </div>
     <script type='module' src="/js/Alumni/MyProfilePage.js"></script>
-    <?php include_once '../src/templates/GeneralScripts.php'?>
     <?php include_once '../src/templates/footer.php' ?>
+    <?php include_once '../src/templates/GeneralScripts.php'?>
 </body>
 
 </html>
