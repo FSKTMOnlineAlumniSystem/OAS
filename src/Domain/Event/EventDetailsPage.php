@@ -4,10 +4,10 @@ include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/Event/AlumniEventModel.php';
 include '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 // if (isset($_GET['eventId'])) echo $_GET['eventId'];
 // else echo 'No $_GET["eventId"]';
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   $event_model = new EventModel($db->getConnection());
   $all_events = $event_model->getAll();
 } catch (Exception $e) {
@@ -98,12 +98,12 @@ include '../src/templates/nav.php';
     <div class="col-0 col-md-1 col-lg-2">
     </div>
     <div class="col-12 col-md-10 col-lg-8">
+      <h4 class="pt-3">Event Description</h4>
       <div class="jumbotron">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h4 class="pt-3"><b>Event Description</b></h4>
-              <p class="lead" style="white-space: pre-wrap;"><?= $event['description'] ?></p>
+              <p style="white-space: pre-wrap;"><?= $event['description'] ?></p>
             </div>
           </div>
         </div>
@@ -113,9 +113,9 @@ include '../src/templates/nav.php';
 
 </div>
 
-<?php include '../src/templates/footer.php' ?>
+<?php include_once '../src/templates/footer.php' ?>
 <?php
-include '../src/templates/GeneralScripts.php'
+include_once '../src/templates/GeneralScripts.php'
 ?>
 <!-- custom js files -->
 <script src="/js/Alumni/EventDetailsPage.js"></script>

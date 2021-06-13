@@ -4,9 +4,9 @@ include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Event/AlumniEventModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
   $event_model = new EventModel($db->getConnection());
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
@@ -66,6 +66,9 @@ include_once '../src/templates/nav.php';
         $events = $event_model->getAll();
         echo "searching is not working<br>"; // Logger
       }
+      // initial setup of pagination
+      $pageIndex = (isset($_GET['page']))? $_GET['page'] : 1;
+      // echo $pageIndex.'<br>';
       function upcomingOrPast($timeStr)
       {
         $temp = new DateTime($timeStr);
@@ -79,7 +82,8 @@ include_once '../src/templates/nav.php';
           return '<span class="text-success">Upcoming Event</span>';
         }
       }
-      foreach ($events as $event) {
+      for ($i = ($pageIndex-1)*8; $i < count($events) && $i < ($pageIndex) * 8; $i++) {
+        $event = $events[$i];
       ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
           <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
@@ -114,6 +118,44 @@ include_once '../src/templates/nav.php';
           </a>
         </div>
       <?php } ?>
+      <!-- page navigation -->
+      <?php 
+      if(($pageIndex-1)*8 < count($events) && count($events) > 8){
+      ?>
+      <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
+        <ul class="pagination justify-content-center">
+          <div id="previousPage">
+            <li class="page-item <?= (int)$pageIndex === 1 ? 'disabled' : '' ?>">
+              <button id="previousEventPage" class="page-link">Previous</button>
+            </li>
+          </div>
+          <div class="pages list-group list-group-horizontal">
+            <li class="page-item">
+              <button class="btn btn-link page-link" data-cur-page-index=<?= $pageIndex ?>><?= $pageIndex ?></button>
+            </li>
+            <?php
+            if (($pageIndex-1)*8 + 16 <= count($events)) { // if there's more than 16 events starting from the first event on this page
+            ?>
+              <li class="page-item">
+                <button class="btn btn-link page-link nextEventPage"><?= $pageIndex + 1 ?></button>
+              </li>
+              <li class="page-item">
+                <button class="btn btn-link page-link" id="next2EventPage"><?= $pageIndex + 2 ?></button>
+              </li>
+            <?php
+            }
+            ?>
+          </div>
+          <div id="nextPage">
+            <li class="page-item <?= $pageIndex * 8 > count($event) ? 'disabled' : '' ?>">
+              <button class="page-link nextEventPage">Next</button>
+            </li>
+          </div>
+        </ul>
+      </nav>
+      <?php
+      }
+      ?>
     </div>
     <br />
   </div>

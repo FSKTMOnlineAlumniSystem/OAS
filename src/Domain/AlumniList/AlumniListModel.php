@@ -69,17 +69,19 @@ class AlumniListModel
     public function search($name, $department, $status){
         if($status=="Verified"){
             $query = "
-            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy !='' 
+            SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND approvedBy!='' AND isActive=1 AND isVerified=1
             ";  
         }else if($status == "All"){
             $query = "
-            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%'
+            SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND isActive=1 AND isVerified=1
             ";   
         }else if($status=="Not Verified"){
             $query = "
-            SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy =''
+            SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND approvedBy='' AND isActive=1 AND isVerified=1
             ";  
         }
+        // SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy !='' 
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(); 
         $data = $stmt->fetchAll();

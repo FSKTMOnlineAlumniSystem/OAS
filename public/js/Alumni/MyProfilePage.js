@@ -21,19 +21,21 @@ function verifyPasswordAndConfirmPassword(e) {
     if (!verifyPasswordCriteria(newPassword)) {
         setInValid(newPassword)
         errorExist = true;
-    } else{
-        setValid(newPassword);       
+    } else {
+        setValid(newPassword);
     }
 
-    if (!verifyPasswordCriteria(confirmNewPassword) || confirmNewPassword.value!==newPassword.value) {
+    if (!verifyPasswordCriteria(confirmNewPassword) || confirmNewPassword.value !== newPassword.value) {
         setInValid(confirmNewPassword)
         errorExist = true;
-    } else{
+    } else {
         setValid(confirmNewPassword);
     }
 
-    if(errorExist){
+    if (errorExist) {
         e.preventDefault();
+    } else {
+        
     }
 }
 
@@ -48,8 +50,8 @@ function verifyPasswordCriteria(password) {
 
 //Delete user account from the data
 function deleteAccount(e) {
-    if (deleteAccountInput.value === 'DELETE') {
-        deleteAccountButton.textContent='Deleting...';
+    if (verifyPasswordCriteria(deleteAccountInput)) {
+        deleteAccountButton.textContent = 'Deleting...';
     } else {
         e.preventDefault();
         setInValid(deleteAccountInput);
@@ -57,6 +59,6 @@ function deleteAccount(e) {
 }
 changePasswordModal.addEventListener('submit', (e) => verifyPasswordAndConfirmPassword(e));
 deleteAccountForm.addEventListener('submit', (e) => deleteAccount(e));
-privacySwitch.addEventListener('change',()=>{
+privacySwitch.addEventListener('change', () => {
     $('#changePrivacyForm').submit();
 })

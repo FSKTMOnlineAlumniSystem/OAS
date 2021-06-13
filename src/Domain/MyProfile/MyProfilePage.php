@@ -61,20 +61,36 @@ include_once '../src/templates/nav.php';
                 </div>';
             }
             if (isset($_GET['delete'])) {
-                echo '
-                <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
-                    <i class="fas fa-times-circle mr-2"></i>Failed to delete account. Please contact admin to proceed.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>';
+                // echo '
+                // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                //     <i class="fas fa-times-circle mr-2"></i>Failed to delete account. Please contact admin to proceed.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                //         <span aria-hidden="true">&times;</span>
+                //     </button>
+                // </div>';
+                echo "
+                <script type='text/javascript'>
+                window.onload = function(){
+                    $('#deleteAccountModal').modal('show');
+                    document.getElementById('deleteAccountInput').classList.add('is-invalid');                
+                }
+                </script>
+                ";
             }
             if (isset($_GET['changepassword'])) {
-                echo '
-                <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
-                    <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>';
+                // echo '
+                // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
+                //     <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                //         <span aria-hidden="true">&times;</span>
+                //     </button>
+                // </div>';
+                echo "
+                <script type='text/javascript'>
+                window.onload = function(){
+                    $('#changePasswordModal').modal('show');
+                    document.getElementById('oldPassword').classList.add('is-invalid');                
+                }
+                </script>
+                ";
             }
             ?>
             <div class="row justify-content-between">
@@ -134,7 +150,7 @@ include_once '../src/templates/nav.php';
                         <div class="col-sm-4">Private:</div>
                         <div class="col-sm-8 custom-control custom-switch">
                             <form id="changePrivacyForm" method="POST" action="/api/myprofile/changeprivacy">
-                                <input type="checkbox" class="custom-control-input" style="position:relative; width:auto;" id="privacySwitch" name="private" <?= $alumni->getIsEmailPublic() ? "" : "checked" ?>>
+                                <input type="checkbox" data-toggle="tooltip" title="private account hides your email in public" class="custom-control-input" style="position:relative; width:auto;" id="privacySwitch" name="private" <?= $alumni->getIsEmailPublic() ? "" : "checked" ?>>
                                 <label class="custom-control-label" for="privacySwitch"></label>
                             </form>
                         </div>
@@ -209,11 +225,9 @@ include_once '../src/templates/nav.php';
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="deleteAccountInput" class="col-form-label">If yes, please type “DELETE” to
-                                    delete
-                                    your account.</label>
-                                <input type="text" class="form-control" id="deleteAccountInput" required>
-                                <div class="invalid-feedback">Please enter 'DELETE'</div>
+                                <label for="deleteAccountInput" class="col-form-label">If yes, please type your password to delete your account.</label>
+                                <input type="text" name="deletePassword" class="form-control" id="deleteAccountInput" required>
+                                <div class="invalid-feedback">Password is incorrect</div>
                             </div>
                         </div>
                         <div class="modal-footer">
