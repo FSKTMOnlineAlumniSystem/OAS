@@ -2,7 +2,7 @@
 //GET THE ARRAY FROM THE MYJOBPAGE WHEN USER CLICK ON IT
 let myJob = job_array;
 
-//DISPLAY THE DETAILS OF THE JOB ADS 
+//DISPLAY THE DETAILS OF THE JOB ADS <i class="fas fa-user-edit mr-2 close">
     document.getElementById("main-body").innerHTML += 
     `<div class="row">
     <div class="col-0 col-md-1 col-lg-2">
@@ -14,7 +14,7 @@ let myJob = job_array;
     <h3 class="d-inline">${myJob.company} - ${myJob.title}</h3>
     </div>
     <div class="col-2">
-    <a href="editmyjob?myjobid=${myJob.jobId}" class="btn btn-secondary float-right edit" role="button"><i class="bi bi-pencil-square"></i>   Edit</a>
+    <a href="editmyjob?myjobid=${myJob.jobId}" class="btn btn-secondary float-right edit" role="button"><i class="fas fa-user-edit"></i>  Edit</a>
     </div>
     </div>
     <hr  style="
