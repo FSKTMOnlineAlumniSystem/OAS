@@ -4,10 +4,10 @@ include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/Event/AlumniEventModel.php';
 include '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 // if (isset($_GET['eventId'])) echo $_GET['eventId'];
 // else echo 'No $_GET["eventId"]';
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   $event_model = new EventModel($db->getConnection());
   $all_events = $event_model->getAll();
 } catch (Exception $e) {

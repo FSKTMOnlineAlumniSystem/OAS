@@ -4,9 +4,9 @@ include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Event/AlumniEventModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
   $event_model = new EventModel($db->getConnection());
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
