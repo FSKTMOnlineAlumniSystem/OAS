@@ -53,6 +53,7 @@ define('STATUS_REJECTED', 2);
 // add our app constants below
 define('TITLE_OAS', 'Online Alumni System');
 define('TITLE_EVENTS', 'Events - Online Alumni System');
+define('TITLE_MY_EVENTS', 'My Events - Online Alumni System');
 define('TITLE_JOB', 'Job - Alumni Online System');
 define('TITLE_MYJOB', 'My Job - Alumni Online System');
 define('TITLE_EDITJOB', 'Edit Job - Alumni Online System');
