@@ -1,5 +1,5 @@
 <?php
-include '../src/Domain/AlumniList/AlumniListModel.php';
+include '../src/Domain/Admin-ManageAlumni/AlumniListModel.php';
 include '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);

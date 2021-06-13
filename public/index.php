@@ -164,23 +164,23 @@ elseif (preg_match('/^\/adminprofile\/edit/i', $_SERVER['REQUEST_URI'])) {
 // Admin Manage Alumni
 elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-AlumniListPage.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-AlumniListPage.php';
 } elseif (preg_match('/^\/admin\/deleteAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-deleteAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-DeleteAlumniController.php';
 } elseif (preg_match('/^\/admin\/approveAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-approveAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-ApproveAlumniController.php';
 } elseif (preg_match('/^\/admin\/deleteMultipleAlumni\/?$/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-deleteMultipleAlumni.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-deleteMultipleAlumni.php';
 } elseif (preg_match('/^\/admin\/editalumni\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/Admin-EditAlumniProfilePage.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-EditAlumniProfilePage.php';
 }
 elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/AlumniList/searchAlumniName.php';
+    include '../src/Domain/Admin-ManageAlumni/searchAlumniName.php';
 }
 
 //AlumniList
