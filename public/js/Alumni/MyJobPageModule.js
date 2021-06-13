@@ -117,6 +117,7 @@ function loadMyJobList(pageIndex, outputList, count) {
               <div class="card-footer mt-auto">
               <small class="text-muted">Last updated : ${getDifference(outputList[i].postedDateTime)} </small>
                 <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>  
+                <a href= "editmyjob?myjobid=${outputList[i].jobId}" ><i class="fas fa-user-edit mr-2 close"></i></a>
               </div>
             </div>
           </div>`;
