@@ -31,7 +31,7 @@ class AlumniEventModel
   {
     try {
       $query =
-        'SELECT * FROM alumni_event 
+        'SELECT * FROM alumni_events 
        RIGHT JOIN event
        ON alumni_event.eventId = event.eventId 
        WHERE alumniId = ?';
