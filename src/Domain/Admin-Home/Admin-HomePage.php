@@ -1,7 +1,7 @@
 <?php
 include_once '../src/Domain/Database.php';
 include '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
-include '../src/Domain/Admin-ManageAlumni/AlumniListModel.php';
+include '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $event_model = new Admin_EventModel($db->getConnection());

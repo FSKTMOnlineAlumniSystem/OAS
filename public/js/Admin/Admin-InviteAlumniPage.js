@@ -5,6 +5,7 @@ localStorage.setItem("eventId",$inviteEventId)
 
 let pageIndex = 0;
 const loadAlumniList = (pageIndex,alumniEventArray,alumniArray) => {
+  uncheckTop();
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML="";
 
@@ -103,7 +104,7 @@ tbody.innerHTML="";
   tr.appendChild(td);
   
   var check=alumni[i].imageId==null||alumni[i].imageId== '/Assets/imgs/default_user.jpg'
-  console.log(alumni[i].imageId);
+  // console.log(alumni[i].imageId);
   // console.log("check "+check);
   // avatar column
   td = document.createElement('td');
@@ -143,9 +144,17 @@ tbody.innerHTML="";
   div.setAttribute('class', 'text-black rounded p-1');
 
   // check if this alumni invited in this 'Event 1'
-  const foundAlumniEvent = alumniEventArray.filter(alumni_event => {
-    return alumni_event.eventId === localStorage.getItem("eventId") && alumni[i].alumniId === alumni_event.alumniId;
-  })[0];
+  // const foundAlumniEvent = Object.values(alumniEventArray).filter(alumni_event => {
+  //   return alumni_event.eventId === localStorage.getItem("eventId") && alumni[i].alumniId === alumni_event.alumniId;
+  // })[0];
+  var foundAlumniEvent=false;
+  for(var j=0; j<alumniEventArray.length; j++){
+  // alumniEventArray.forEach((alumniEvent)=> {
+    if(alumniEventArray[j].eventId=== localStorage.getItem("eventId") && alumni[i].alumniId === alumniEventArray[j].alumniId){
+      foundAlumniEvent=true;
+    }
+  // });
+  }
   if(foundAlumniEvent){
     div.classList.add('bg-success')
     div.innerText = 'Invited';
@@ -177,24 +186,58 @@ document.getElementById('invideAndDone').innerHTML=`
             </button>
 `
 }//else
+$(document).ready(function () {
+  $('.custom-control-input').on("change", function () {
+      // alert('changed');
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      console.log(checkboxes.length);
+      var allChecked=true;
+for (var i = 1 ; i < checkboxes.length ; i++) {
+  // checkboxes[i].checked if true then checked
+  if(!checkboxes[i].checked){
+    allChecked=false;
+  }
+}
+if(allChecked==true){
+  checkboxes[0].checked = true; 
+}else{
+  checkboxes[0].checked = false;
+}
+  });
+});
 }
 // window.toggle = function (source) {
 //   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//   for (var i = 0; i < checkboxes.length; i++) {
-//     console.log();
-//     if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
+//   // if($(checkboxes).is(':visible')){
+//     for (var i = 0; i < checkboxes.length; i++) {
+//     if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+//     // if($(checkboxes[i]).is(':visible')){
 //       checkboxes[i].checked = source.checked;
 //   }
-// }
+// };
+//checkboxes
+$(document).ready(function () {
+  $("#status,#department").on("change", function () {
+    var status = $('#status').find("option:selected").val();
+    var department = $('#department').find("option:selected").val();
+    SearchData(status, department)
+  });
+});
+
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  // if($(checkboxes).is(':visible')){
-    for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
-    // if($(checkboxes[i]).is(':visible')){
+  console.log(checkboxes);
+  for (var i = 0; i < checkboxes.length; i++) {
+    if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
       checkboxes[i].checked = source.checked;
   }
-};
+}
+window.uncheckTop= function(){
+  console.log('delete function');
+  var topcheckboxes = document.getElementById('CheckAllBoxes');
+  topcheckboxes.checked=false;
+}
+
 
 /*
 var searchBar=document.getElementById('searchBar');
@@ -234,7 +277,7 @@ window.DeleteRowFunction = function(o) {
 const searchButton = document.getElementById('searchBar');
 var searchInput = document.getElementById('input1');
 
-const handleMyJobSearch = evt =>{
+const handleAlumniSearch = evt =>{
 
 // $('#searchBar').click(function(){
   event.preventDefault();
@@ -249,11 +292,11 @@ const handleMyJobSearch = evt =>{
   var department = $('#department').find("option:selected").val();
   var search = document.getElementById("input1").value;
   var eventId=localStorage.getItem('eventId');
-  if (search == "") {
-    alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-    return;
-    // and add a return here so below code will not run
-  }
+  // if (search == "") {
+  //   alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
+  //   return;
+  //   // and add a return here so below code will not run
+  // }
 var outputList;
   $.ajax({
     url: '/admin/search/invite/alumni?eventId='+$inviteEventId,
@@ -265,7 +308,8 @@ var outputList;
       eventId: eventId    
     },
     success: function(resp){
-    let pageIndex = 0;
+    uncheckTop();
+    pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;
@@ -275,10 +319,10 @@ var outputList;
 }
 // });
 
-searchButton.addEventListener('click',handleMyJobSearch);
+searchButton.addEventListener('click',handleAlumniSearch);
 searchInput.addEventListener('keypress', (evt)=>{
   if(evt.key === 'Enter'){
-    handleMyJobSearch(evt);
+    handleAlumniSearch(evt);
   }
 });
 
@@ -306,7 +350,8 @@ window.SearchData = function(status, department) {
       search: search
     },
     success: function(resp){
-    let pageIndex = 0;
+    uncheckTop();
+    pageIndex = 0;
     console.log(resp);
     outputList =JSON.parse(resp);
     alumniArray=outputList;
@@ -391,6 +436,7 @@ window.inviteNewAlumni = function(o){
             },
       type: 'POST',    //request type,
       success: function(resp){
+        uncheckTop();
         console.log('resp');
         console.log(resp);
         var outputList = JSON.parse(resp);
@@ -413,14 +459,15 @@ window.inviteNewAlumni = function(o){
   }
 
 // invite alumni that is checked
-var $alumniId=[];
-var $eventId=[];
-var $dateTime=[];
+
 window.inviteCheckedAlumni = function () {
+  var $alumniId=[];
+  var $eventId=[];
+  var $dateTime=[];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length-1; i > 0; i--) {
     if(checkboxes[i].checked){
-      var alumniId= alumniArray[i-1].alumniId;
+      var alumniId= alumniArray[pageIndex*10+i-1].alumniId;
       var eventId=localStorage.getItem('eventId')
       var dateTime=new Date().toISOString();
       $alumniId.push(alumniId);
@@ -440,11 +487,13 @@ window.inviteCheckedAlumni = function () {
           },
     type: 'POST',    //request type,
     success: function(resp){
-      console.log('resp');
-      console.log(resp);
+      uncheckTop();
+      // console.log('resp');
+      // console.log(resp);
       var outputList = JSON.parse(resp);
+      // console.log(outputList);
       alumniEventArray=outputList;
-      loadAlumniList(pageIndex,outputList,alumniArray);
+      loadAlumniList(pageIndex,alumniEventArray,alumniArray);
     },
     error: function(request, status, error){  
       alert(error);
@@ -452,7 +501,8 @@ window.inviteCheckedAlumni = function () {
     });
 
   checkboxes[0].checked = false;
-}  
+};  
+
   // var newAlumniEvent={
     //         "alumniId": alumniId,
     //         "eventId": eventId,

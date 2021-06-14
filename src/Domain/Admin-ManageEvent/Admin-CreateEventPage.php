@@ -44,10 +44,10 @@
 
  <?php
   if (isset($_POST['Submit'])) {
-    print 'it suceed';
+    // print 'it suceed';
     $addEvent = new createEventModel($db->getConnection());
     $data = $addEvent->getMaxId();
-    $eventId = "E-" . $data + 1;
+    $eventId = "E-" . ($data + 1);
     $adminId = $_SESSION['admin']['adminId'];        //ned change
     $title = $_POST['title'];
     //dateTime
@@ -68,18 +68,18 @@
     $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
     if ($_FILES["eventPicture"]['tmp_name'] != null) {
-      print 'hello';
-      print_r($_FILES["eventPicture"]);
+      // print 'hello';
+      // print_r($_FILES["eventPicture"]);
       uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
     } else {
-      print 'you salah le';
-      print_r($_FILES["eventPicture"]);
+      // print 'you salah le';
+      // print_r($_FILES["eventPicture"]);
     }
     // catch (Exception $e) {
     // echo "Exception: " . $e->getMessage();
     // }
 
-    header("Location: /admin/event");
+    echo '<script>location.href="/admin/event"</script>';
   }
 
   ?>

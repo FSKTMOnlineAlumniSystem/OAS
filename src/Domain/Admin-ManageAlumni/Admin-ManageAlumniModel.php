@@ -91,19 +91,19 @@ class AlumniListModel
         return $data;
     }
 
-    public function getSearch($id) {
+   
+public function getSearch($alumniId) {
     $stmt = $this->connection->prepare("
-    SELECT * FROM alumni
-    LEFT JOIN image 
-    ON alumni.imageId=image.imageId 
-    WHERE WHERE isActive=1 AND isVerified =1 AND imageId='$id' ");
+    SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId='$alumniId' AND isActive=1 AND isVerified=1
+    ");
     $stmt->execute();
     $data = $stmt->fetch();
-    if(!is_null($data['imageData'])){
+    if($data['imageId']=='Default'||$data['imageId']==null){
+        return '/Assets/imgs/default_user.png';
+    }
+    else if($data['imageData']!=null){
         return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
-    }else{
-        return '/Assets/imgs/default_user.png.jpg';
-}
+    }
 }
     public function isAlumniExist($alumniId){
         $stmt = $this->connection->prepare("

@@ -135,7 +135,7 @@
               <label for="formGroupExampleInput2">Schedule :</label> <br>
               <input type=date value="" id="date" name="date"> &nbsp;
               <input type=time value="" id="time" name="time">
-              <input type="hidden" value="" id="dateTime" name="dateTime">
+              <!-- <input type="hidden" value="" id="dateTime" name="dateTime"> -->
 
               <!-- <script>
               var d = new Date( <?php $dateTime ?>); //change this thing

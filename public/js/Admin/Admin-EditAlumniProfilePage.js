@@ -18,20 +18,19 @@ const stayButton = document.querySelector('#stayButton');
 const choosePictureDescription = document.querySelector('#choosePictureDescription');
 const icNumber = document.querySelector('#icNumber');
 
-var i = localStorage.getItem("updateId")
-const currentAlumniId = alumniArray[i].alumniId;
+
+const currentAlumniId = localStorage.getItem("alumniId");
 const alumni = alumniArray.filter(function (alumni) {
     return alumni.alumniId === currentAlumniId;
 })[0];
-
-document.getElementById('name').value=alumniArray[i].name
-document.getElementById('gender').value=alumniArray[i].gender
-document.getElementById('icNumber').value=alumniArray[i].icNumber
-document.getElementById('graduated').value=alumniArray[i].graduated
-document.getElementById('department').value=alumniArray[i].department
-document.getElementById('email').innerHTML=`<p>${alumniArray[i].email}</p>`;
-document.getElementById('biography').value=alumniArray[i].biography
-wizardPicturePreview.src = alumniArray[i].imageId;
+document.getElementById('name').value=alumni.name
+document.getElementById('gender').value=alumni.gender
+document.getElementById('icNumber').value=alumni.icNumber
+document.getElementById('graduated').value=alumni.graduated
+document.getElementById('department').value=alumni.department
+document.getElementById('email').innerHTML=`<p>${alumni.email}</p>`;
+document.getElementById('biography').value=alumni.biography
+wizardPicturePreview.src = alumni.imageId;
 
 function setInValid(el) {
     if (el.classList.contains("is-valid")) {

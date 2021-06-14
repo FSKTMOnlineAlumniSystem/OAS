@@ -177,7 +177,7 @@ elseif (preg_match('/^\/admin\/alumnilist\/?$/i', $_SERVER['REQUEST_URI'])) {
 }
 elseif (preg_match('/^\/admin\/searchAlumniName\/?/i', $_SERVER['REQUEST_URI'])) {
     $GLOBALS['title'] = TITLE_EVENTS;
-    include '../src/Domain/Admin-ManageAlumni/searchAlumniName.php';
+    include '../src/Domain/Admin-ManageAlumni/Admin-FilterController.php';
 }
 
 //AlumniList
