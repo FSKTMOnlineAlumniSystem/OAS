@@ -54,7 +54,7 @@ include_once '../src/templates/nav.php';
       }
       ?>
     </h2>
-      <div class="row justify-content-md-center text-center" id="no_result"></div>
+    <div class="row justify-content-md-center text-center" id="no_result"></div>
     <br />
     <div class="row" id="your-upcoming-event-section">
       <?php
@@ -67,7 +67,7 @@ include_once '../src/templates/nav.php';
         echo "searching is not working<br>"; // Logger
       }
       // initial setup of pagination
-      $pageIndex = (isset($_GET['page']))? $_GET['page'] : 1;
+      $pageIndex = (isset($_GET['page'])) ? $_GET['page'] : 1;
       // echo $pageIndex.'<br>';
       function upcomingOrPast($timeStr)
       {
@@ -82,7 +82,7 @@ include_once '../src/templates/nav.php';
           return '<span class="text-success">Upcoming Event</span>';
         }
       }
-      for ($i = ($pageIndex-1)*8; $i < count($events) && $i < ($pageIndex) * 8; $i++) {
+      for ($i = ($pageIndex - 1) * 8; $i < count($events) && $i < ($pageIndex) * 8; $i++) {
         $event = $events[$i];
       ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -119,40 +119,41 @@ include_once '../src/templates/nav.php';
         </div>
       <?php } ?>
       <!-- page navigation -->
-      <?php 
-      if(($pageIndex-1)*8 < count($events) && count($events) > 8){
+      <?php
+      if (($pageIndex - 1) * 8 < count($events) && count($events) > 8) {
       ?>
-      <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
-        <ul class="pagination justify-content-center">
-          <div id="previousPage">
-            <li class="page-item <?= (int)$pageIndex === 1 ? 'disabled' : '' ?>">
-              <button id="previousEventPage" class="page-link">Previous</button>
-            </li>
-          </div>
-          <div class="pages list-group list-group-horizontal">
-            <li class="page-item">
-              <button class="btn btn-link page-link" data-cur-page-index=<?= $pageIndex ?>><?= $pageIndex ?></button>
-            </li>
-            <?php
-            if (($pageIndex-1)*8 + 16 <= count($events)) { // if there's more than 16 events starting from the first event on this page
-            ?>
-              <li class="page-item">
-                <button class="btn btn-link page-link nextEventPage"><?= $pageIndex + 1 ?></button>
+        <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
+          <ul class="pagination justify-content-center">
+            <div id="previousPage">
+              <li class="page-item <?= (int)$pageIndex === 1 ? 'disabled' : '' ?>">
+                <button id="previousEventPage" class="page-link">Previous</button>
               </li>
+            </div>
+            <div class="pages list-group list-group-horizontal">
               <li class="page-item">
-                <button class="btn btn-link page-link" id="next2EventPage"><?= $pageIndex + 2 ?></button>
+                <button class="btn btn-link page-link" data-cur-page-index=<?= $pageIndex ?>><?= $pageIndex ?></button>
               </li>
-            <?php
-            }
-            ?>
-          </div>
-          <div id="nextPage">
-            <li class="page-item <?= $pageIndex * 8 > count($event) ? 'disabled' : '' ?>">
-              <button class="page-link nextEventPage">Next</button>
-            </li>
-          </div>
-        </ul>
-      </nav>
+              <?php
+              if (($pageIndex - 1) * 8 + 8 <= count($events)) { ?>
+                <!-- if there's more than 8 events starting from the first event on this page -->
+                <li class="page-item">
+                  <button class="btn btn-link page-link nextEventPage"><?= $pageIndex + 1 ?></button>
+                </li>
+                <?php
+                if (($pageIndex - 1) * 8 + 16 <= count($events)) { ?>
+                  <li class="page-item">
+                    <button class="btn btn-link page-link" id="next2EventPage"><?= $pageIndex + 2 ?></button>
+                  </li>
+                <?php } ?>
+              <?php } ?>
+            </div>
+            <div id="nextPage">
+              <li class="page-item <?= $pageIndex * 8 > count($events) ? 'disabled' : '' ?>">
+                <button class="page-link nextEventPage">Next</button>
+              </li>
+            </div>
+          </ul>
+        </nav>
       <?php
       }
       ?>
