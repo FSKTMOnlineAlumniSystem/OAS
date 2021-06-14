@@ -121,6 +121,8 @@ include_once '../src/templates/nav.php';
       <!-- page navigation -->
       <?php
       if (($pageIndex - 1) * 8 < count($events) && count($events) > 8) {
+        $nextPageExists = $pageIndex * 8 <= count($events);
+        $next2PageExists = $pageIndex * 8 + 8 <= count($events);
       ?>
         <nav aria-label="Page navigation" class="col-12 d-flex justify-content-center">
           <ul class="pagination justify-content-center">
@@ -134,13 +136,13 @@ include_once '../src/templates/nav.php';
                 <button class="btn btn-link page-link" data-cur-page-index=<?= $pageIndex ?>><?= $pageIndex ?></button>
               </li>
               <?php
-              if (($pageIndex - 1) * 8 + 8 <= count($events)) { ?>
+              if ($nextPageExists) { ?>
                 <!-- if there's more than 8 events starting from the first event on this page -->
                 <li class="page-item">
                   <button class="btn btn-link page-link nextEventPage"><?= $pageIndex + 1 ?></button>
                 </li>
                 <?php
-                if (($pageIndex - 1) * 8 + 16 <= count($events)) { ?>
+                if ($next2PageExists) { ?>
                   <li class="page-item">
                     <button class="btn btn-link page-link" id="next2EventPage"><?= $pageIndex + 2 ?></button>
                   </li>
@@ -148,7 +150,7 @@ include_once '../src/templates/nav.php';
               <?php } ?>
             </div>
             <div id="nextPage">
-              <li class="page-item <?= $pageIndex * 8 > count($events) ? 'disabled' : '' ?>">
+              <li class="page-item <?= $nextPageExists ? '' : 'disabled' ?>">
                 <button class="page-link nextEventPage">Next</button>
               </li>
             </div>
