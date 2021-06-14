@@ -65,6 +65,8 @@ class AdminMyProfile
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':adminId', $this->id);
             $stmt->execute();
+            $_SESSION['admin']['name'] = $name;
+            $_SESSION['admin']['email'] = $email;
         } catch (PDOException $exception) {
             error_log('MyProfileModel: Update Data: ' . $exception->getMessage());
             throw $exception;
