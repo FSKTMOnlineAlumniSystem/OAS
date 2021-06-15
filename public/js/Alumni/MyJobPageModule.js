@@ -1,15 +1,27 @@
 
-function loadMyJobList(pageIndex, outputList, count) {
+function loadMyJobList(pageIndex, outputList) {
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
   let jobEndIndex = jobStartIndex + 9;
-  var dataLength = count;
+  var dataLength = outputList.length;
   var remainingLength = dataLength - jobStartIndex;
+ 
 
   /*   create button*/
-  if (count > 0) {
-    if (jobEndIndex >= count) {
+ if(outputList.length === 0){
+    document.getElementById("no_result").innerHTML="";
+    document.getElementById(
+      "top"
+    ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
+    document.getElementById("nextPage").innerHTML = "";
+    document.getElementsByClassName("pages")[0].innerHTML = "";
+    document.getElementById("previousPage").innerHTML = "";
+    return;
+  }
+
+  document.getElementById("no_result").innerHTML="";
+    if (jobEndIndex >= outputList.length) {
       document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
           <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
@@ -32,14 +44,14 @@ function loadMyJobList(pageIndex, outputList, count) {
         </li>`;
     }
     // js for 1,2,3
-    if (remainingLength <= 10) {
+    if (remainingLength <= 9) {
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
             pageIndex + 1
           }</button>
         </li>`;
-    } else if (remainingLength <= 20) {
+    } else if (remainingLength <= 18) {
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -69,31 +81,14 @@ function loadMyJobList(pageIndex, outputList, count) {
           }</button>
         </li>`;
     }
-  } else if (count===-1){
-    document.getElementById("top").innerHTML="";
-    insertSearchNoResult(document.getElementById("no_result"));
-    document.getElementById("nextPage").innerHTML = "";
-    document.getElementsByClassName("pages")[0].innerHTML = "";
-    document.getElementById("previousPage").innerHTML = "";
-    return;
-    
-  }else {
-    document.getElementById("no_result").innerHTML="";
-    document.getElementById(
-      "top"
-    ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
-    document.getElementById("nextPage").innerHTML = "";
-    document.getElementsByClassName("pages")[0].innerHTML = "";
-    document.getElementById("previousPage").innerHTML = "";
-    return;
-  }
 
-  //LOAD THE JOBLIST BASED ON DUMMYDATA
+
+  //LOAD THE JOBLIST BASED ON DUMMYDATA 
   document.getElementById("top").innerHTML="";
   document.getElementById("no_result").innerHTML="";
-  for (let i = jobStartIndex; i < outputList.length; i++) {
+  for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
         document.getElementById("jobList").innerHTML += `
-          <div class="col mb-4">
+          <div class="col-12 col-sm-6 col-md-4  mb-4">
           <a href="myjobdetails?myjobid=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}> 
              
@@ -167,7 +162,7 @@ $('#deleteButton').click(function(){
     success: function(resp){
       let page = 0;
       var outputLists = JSON.parse(resp);
-      loadMyJobList(page,outputLists,outputLists.length);
+      loadMyJobList(page,outputLists);
     },
      
   });
@@ -195,9 +190,15 @@ const handleMyJobSearch = evt =>{
  
     outputList =JSON.parse(resp);
      if(outputList.length===0){
-      loadMyJobList(page,outputList,-1);
+      document.getElementById("top").innerHTML="";
+      insertSearchNoResult(document.getElementById("no_result"));
+      document.getElementById("nextPage").innerHTML = "";
+      document.getElementsByClassName("pages")[0].innerHTML = "";
+      document.getElementById("previousPage").innerHTML = "";
+      document.getElementById("jobList").innerHTML = "";
+      return;
     }else{
-     loadMyJobList(page,outputList,outputList.length);
+     loadMyJobList(page,outputList);
     }
     },
      
