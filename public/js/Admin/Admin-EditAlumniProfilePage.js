@@ -72,11 +72,11 @@ function readURL(e) {
   }
 }
 
-/Form Validation for Edit My Profile (email, contactNumber, biography)/
+//Form Validation for Edit My Profile (email, contactNumber, biography)/
 function isEmpty(obj) {
     return obj.value.length == 0;
 }
-const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
+// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
 // const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
 const graduatedFormat = /[0-9]{4}/;
 const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
@@ -84,12 +84,6 @@ const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 form.addEventListener('submit', (e) => {
 // window.checkvalidation = function(){
 let errorExist = false; //false if no error exists in alumni details
-    if (isEmpty(email) || !email.value.match(emailFormat)) {
-        setInValid(email);
-        errorExist = true;
-    } else {
-        setValid(email);
-    }
 
     if (isEmpty(icNumber) || !icNumber.value.match(icNumberFormat)) {
         setInValid(icNumber);
