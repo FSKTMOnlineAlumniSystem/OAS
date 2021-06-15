@@ -6,6 +6,7 @@ eventArray=event_array;
 let pageIndex = 0;
 
 const loadEventList = (pageIndex,eventArray) => {
+  uncheckTop();
 if(eventArray.length==0){
   var table = document.getElementsByClassName(
     "table table-striped table-sm something"
@@ -231,9 +232,27 @@ window.DeleteCheckedRow = function () {
           jQuery(`#deleteCheckedModal`).modal("show");
         }
       });
-    }     
+    }    
 
-
+    $(document).ready(function () {
+      $('.custom-control-input').on("change", function () {
+          // alert('changed');
+          var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          console.log(checkboxes.length);
+          var allChecked=true;
+    for (var i = 1 ; i < checkboxes.length ; i++) {
+      // checkboxes[i].checked if true then checked
+      if(!checkboxes[i].checked){
+        allChecked=false;
+      }
+    }
+    if(allChecked==true){
+      checkboxes[0].checked = true; 
+    }else{
+      checkboxes[0].checked = false;
+    }
+      });
+  });
 //trash model
 
 // modal
@@ -243,9 +262,13 @@ window.DeleteCheckedRow = function () {
       console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
       console.log(eventArray[clickedAlumniIndex])
+      // if(eventArray[clickedAlumniIndex] == 'undefined'){
+      //   check=true;
+      //   console.log('undefined imagessss');
+      // }else{
       var check=eventArray[clickedAlumniIndex].imageId==null;
       console.log(check);
-      
+      // }
       if(check){
         document.querySelector('#imageTitle').src="/Assets/imgs/default_events.jpg";
       }else{
@@ -279,6 +302,8 @@ $.ajax({
   type: 'POST',    //request type,
   dataType: 'json',
   success: function(resp){
+    uncheckTop();
+
     console.log('resp');
       console.log(resp);
     // var outputList = JSON.parse(resp);
@@ -339,15 +364,35 @@ $('#deleteCheckedButton').click(function(){
          closeModal("#deleteCheckedModal");
     });
 
+// window.toggle = function (source) {
+//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//     for (var i = 0; i < checkboxes.length; i++) {
+//     if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+//       checkboxes[i].checked = source.checked;
+//   }
+// }
+$(document).ready(function () {
+  $("#status,#department").on("change", function () {
+    var status = $('#status').find("option:selected").val();
+    var department = $('#department').find("option:selected").val();
+    SearchData(status, department)
+  });
+});
+
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
+  console.log(checkboxes);
+  for (var i = 0; i < checkboxes.length; i++) {
+    if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
       checkboxes[i].checked = source.checked;
   }
+};
+
+window.uncheckTop= function(){
+  console.log('delete function');
+  var topcheckboxes = document.getElementById('CheckAllBoxes');
+  topcheckboxes.checked=false;
 }
-
-
 window.check = function (source, i) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes[i].checked = source.checked;
@@ -465,6 +510,7 @@ var outputList;
     type: 'post',
     data: {search: search},
     success: function(resp){
+    uncheckTop();
     let pageIndex = 0;
     // console.log(resp);
     outputList =JSON.parse(resp);
@@ -514,13 +560,7 @@ searchBar.addEventListener('click', (e) => {
   }
 });
 */
-$(document).ready(function () {
-  $("#status,#department").on("change", function () {
-    var status = $('#status').find("option:selected").val();
-    var department = $('#department').find("option:selected").val();
-    SearchData(status, department)
-  });
-});
+
 
 window.SearchData = function (status, department) {
   if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {

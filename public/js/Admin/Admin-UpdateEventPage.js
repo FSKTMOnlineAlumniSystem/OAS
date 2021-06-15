@@ -26,7 +26,7 @@ var i = localStorage.getItem("updateId")
 localStorage.setItem('eventId',eventArray[i].eventId)
 var d = new Date(eventArray[i].dateTime);
 var todayDate = d.toISOString().slice(0, 10);
-document.getElementById('dateTime').value=d; //for php reference
+// document.getElementById('dateTime').value=d; //for php reference
 // const minute = d.getMinutes();
 let hour = d.getHours().toString();
 hour = hour.padStart(2, '0');

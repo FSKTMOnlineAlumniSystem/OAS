@@ -150,11 +150,12 @@
            </div>
 
 
+           <!-- https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg" -->
            <div class="w-25 position-relative">
              <label for="phfile">Event Picture:</label>
              <div class="picture-container">
                <div class="picture">
-                 <img src="https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg" id="prevImage" alt="update Image" width="100%">
+                 <img src="/Assets/imgs/default_events.jpg" id="prevImage" alt="update Image" width="100%">
                  <input type="file" id="wizard-picture" name="imageId">
                  <input type="file" name="eventPicture" id="eventPicture" class="d-none">
                </div>
