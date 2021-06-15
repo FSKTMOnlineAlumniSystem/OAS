@@ -7,14 +7,14 @@ var outputList = myJob_array;
 //CLICK NEXT PAGE
 window.nextPage = function () {
   pageIndex++;
-  loadMyJobList(pageIndex, outputList, outputList.length);
+  loadMyJobList(pageIndex, outputList);
 };
 
 //CLICK PREVIOUS PAGE
 window.previousPage = function () {
   pageIndex--;
-  loadMyJobList(pageIndex, outputList, outputList.length);
+  loadMyJobList(pageIndex, outputList);
 };
 
 //CALL FUNCTION IN ORER TO DISPLAY MYJOBLIST
-loadMyJobList(pageIndex, outputList, outputList.length);
+loadMyJobList(pageIndex, outputList);

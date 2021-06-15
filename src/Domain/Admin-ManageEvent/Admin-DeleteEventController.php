@@ -26,6 +26,11 @@ if(isset($_POST["checkbox"])){
   if($_POST['search']==""){
   $updatedEventArray = $deleteEvent->getAll();
   // echo json_encode($updatedEventArray);
+  for($i=0; $i<count($updatedEventArray); $i++){
+    $eventID = $updatedEventArray[$i]['eventId'];
+    $image = $deleteEvent->getSearch($eventID);
+    $updatedEventArray[$i]['imageId'] = $image;
+  }  
   $output=$updatedEventArray;
   // exit();
   }
@@ -48,6 +53,12 @@ if(isset($_POST["checkbox"])){
   if($_POST['search']==""){
   $updatedEventArray = $deleteEvent->getAll();
   // echo json_encode($updatedEventArray);
+  for($i=0; $i<count($searchEvent); $i++){
+    $eventID = $searchEvent[$i]['eventId'];
+    $image = $deleteEvent->getSearch($eventID);
+    $searchEvent[$i]['imageId'] = $image;
+  }      
+
   $output=$updatedEventArray;
   
   // exit();

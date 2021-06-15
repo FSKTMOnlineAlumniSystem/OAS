@@ -1,6 +1,6 @@
 <?php
-include '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
-include '../src/Domain/Database.php';
+include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
+include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
