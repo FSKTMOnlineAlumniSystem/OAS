@@ -11,6 +11,8 @@ const reload = (alumniArray,pageIndex) => {
   var dataLength = alumniArray.length;
   var remainingLength = dataLength - alumniStartIndex;
 
+
+
   /*   js for button*/
   if (alumniEndIndex >= alumniArray.length) {
     document.getElementById("nextPage").innerHTML = `
@@ -182,6 +184,11 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
   )
 })
 checkbox();
+if(alumniArray.length==0){
+  document.getElementById("nextPage").innerHTML ='';
+document.getElementById("previousPage").innerHTML = '';
+document.getElementsByClassName("pages")[0].innerHTML = '';
+}
 }
 const checkbox = () => {
   $(document).ready(function () {
@@ -238,6 +245,9 @@ $.ajax({
         alumniArray = outputList;
         reload(outputList,pageIndex);
         checkbox();
+        if(alumniArray.length==0){
+          document.getElementById("pagination")=``;
+        }
       }
     })
   }
