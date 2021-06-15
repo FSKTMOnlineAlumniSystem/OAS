@@ -180,12 +180,12 @@ $conn = $db->getConnection();
                                 <?php
                                 if (isset($_GET["fgemailnotExists"])){
                                     echo'
-                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail" placeholder="eg.example@address.com">>
+                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail" placeholder="eg.example@address.com">
                                     <div class="invalid-feedback">Please provide a valid email.</div>
                                     ';
                                 }else{
                                     echo '
-                                    <input type="text" name="email" class="form-control" id="sendEmail" placeholder="eg.example@address.com">>
+                                    <input type="text" name="email" class="form-control" id="sendEmail" placeholder="eg.example@address.com">
                                     <div class="invalid-feedback">Please provide a valid email.</div>
                                     ';
                                 }
