@@ -55,6 +55,7 @@
     } else {
       $admin_profile_model = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
       $profile_img_src = $admin_profile_model->getProfilePicture();
+      $server_error = false;
     }
   } catch (Exception $e) {
     $server_error = true;
