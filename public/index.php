@@ -1,10 +1,6 @@
 <?php
 include '../config/config.php';
 session_start();
-include_once '../src/Domain/Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$conn = $db->getConnection();
 
 //Login
 if (preg_match('/^\/admin-login\/?/i', $_SERVER['REQUEST_URI'])) {
