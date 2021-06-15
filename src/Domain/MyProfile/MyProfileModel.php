@@ -119,6 +119,7 @@ class MyProfile
             $stmt->bindParam(':biography', trim($biography));
             $stmt->bindParam(':alumniId', $this->id);
             $stmt->execute();
+            $_SESSION['alumni']['biography'] = $biography;
         } catch (PDOException $exception) {
             error_log('MyProfileModel: Update Data: ' . $exception->getMessage());
             throw $exception;

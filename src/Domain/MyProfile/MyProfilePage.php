@@ -178,10 +178,10 @@ include_once '../src/templates/nav.php';
                     <form id="changePasswordForm" method="POST" action="/api/myprofile/changepassword">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="oldPassword" class="col-form-label">Old password</label>
-                                <input type="text" class="form-control" id="oldPassword" name="oldPassword" required>
+                                <label for="oldPassword" class="col-form-label">Current password</label>
+                                <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
                                 <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Old password is wrong</div>
+                                <div class="invalid-feedback">Current password is wrong</div>
                             </div>
                             <div class="form-group">
                                 <label for="newPassword" class="col-form-label">New password</label>
@@ -226,7 +226,7 @@ include_once '../src/templates/nav.php';
                             </div>
                             <div class="form-group">
                                 <label for="deleteAccountInput" class="col-form-label">If yes, please type your password to delete your account.</label>
-                                <input type="text" name="deletePassword" class="form-control" id="deleteAccountInput" required>
+                                <input type="password" name="deletePassword" class="form-control" id="deleteAccountInput" required>
                                 <div class="invalid-feedback">Password is incorrect</div>
                             </div>
                         </div>

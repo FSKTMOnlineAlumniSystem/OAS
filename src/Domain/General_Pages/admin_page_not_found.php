@@ -53,14 +53,7 @@ $eventPage = preg_match('/\/event/i', $_SERVER['REQUEST_URI']);
                 <div class="row m-0 p-0 justify-content-center">
                     <div class="col-lg-5 col-md-8 p-5 text-center">
                         <img class="card-img-150 mb-3" src="/Assets/imgs/404.svg" alt="404 Not Found">
-                        <?php
-                        $navigate = "/home";
-                        //url contains "admin"
-                        if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) {
-                            $navigate = "/admin";
-                        }
-                        echo '<a href=' . $navigate . ' class="btn btn-primary btn-animation px-3" type="button"><i class="fas fa-angle-left"></i> Back to home</a>'
-                        ?>
+                        <a href="/admin" class="btn btn-primary btn-animation px-3" type="button"><i class="fas fa-angle-left"></i> Back to home</a>
                     </div>
                 </div>
             </div>
