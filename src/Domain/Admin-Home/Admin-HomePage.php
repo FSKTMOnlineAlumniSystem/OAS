@@ -77,5 +77,4 @@ includeWithVariables('../src/templates/header.php', array(
   </main>
   <?php include_once '../src/templates/GeneralScripts.php'?>
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
-  <script type='module' src='/src/js/Admin/Admin-HomePage.js'></script>
 </body>
