@@ -82,7 +82,7 @@ for (let i = 0; i < alumni_array.length; i++) {
     card_alumni.innerHTML = `
 
                             <div class="card h-100" id="${alumni_array[i].alumniId}">
-                            <a style="text-decoration:none; color:black;" href="profile?id=${alumni_array[i].alumniId}">
+                            <a style="text-decoration:none; color:black;" href="alumni/profile?id=${alumni_array[i].alumniId}">
                                 <div class="w-100 bg-dark" style="aspect-ratio:1/1;overflow:hidden;">
                                     <img class="card-img-top w-100" src="${alumni_array[i].imageId}" alt="Card image cap"
                                     width="100%">

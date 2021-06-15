@@ -16,7 +16,7 @@ if (isset($_POST['Submit'])) {
     $addJob_model = new  AddJobModel($db->getConnection());
 
     $data = $addJob_model->getMaxId();
-    $jobId = "J-" . $data + 1;
+    $jobId = "J-" . ($data + 1);
     $alumniId = $_SESSION['alumni']['alumniId'];         //ned change
     $title = $_POST['title'];
     $description = $_POST['description'];

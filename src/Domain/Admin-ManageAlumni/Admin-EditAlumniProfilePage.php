@@ -1,18 +1,17 @@
 <?php
-// include '../src/Domain/header.php';
+// include_once '../src/Domain/header.php';
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
   <title><?= $GLOBALS['title']; ?></title>
-</head>
 
   
   <?php
-// include '../../../config/config.php';
-// include '../src/Domain/Event/EventModel.php';
-include '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
-include '../src/Domain/Database.php';
-include '../src/Domain/Admin-ManageAlumni/Admin-UploadAlumniImageController.php';
+// include_once '../../../config/config.php';
+// include_once '../src/Domain/Event/EventModel.php';
+include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
+include_once '../src/Domain/Database.php';
+include_once '../src/Domain/Admin-ManageAlumni/Admin-UploadAlumniImageController.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -40,10 +39,10 @@ try {
 
 ?>
 <?php
-include '../src/utilities/includeWithVariable.php' ?>
+include_once '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
-    'my_css' => '/css/Alumni/JobDetailsPage.css'
+    'index' => '/css/Alumni/index.css'
 ));
 ?>
 
@@ -76,6 +75,7 @@ echo "Exception: " . $e->getMessage();
 
 
 <head>
+    
     <link rel="shortcut icon" href="/Assets/imgs/UM_Logo.ico" type="image/x-icon">  
     <title>Edit Alumni Profile - Alumni Online System</title>
     <!-- GOOGLE FONT POPPINS -->
@@ -84,8 +84,8 @@ echo "Exception: " . $e->getMessage();
     <!-- ICON FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
 
     <link rel="stylesheet" href="../css/Alumni/MyProfilePage.css">
     <link rel="stylesheet" href="../css/Alumni/EditMyProfilePage.css">
@@ -93,6 +93,8 @@ echo "Exception: " . $e->getMessage();
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="../css/Alumni/index.css">
+        <!-- <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script> -->
+
 </head>
 
 <body>
@@ -237,9 +239,8 @@ echo "Exception: " . $e->getMessage();
     </div>
     <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
+    <!-- <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+        <?php include_once '../src/templates/GeneralScripts.php'?>

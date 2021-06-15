@@ -39,6 +39,16 @@ button:hover {
   color: #ffffff;
   margin-top: 100%;
 }
+@media (max-width:600px){
+  .typewrite{
+    font-size: 20px !important;
+  }
+
+  .bottomleft{
+    left:0px;
+    bottom:0px;
+  }
+}
 
 @media (min-width: 992px) {
   .col-lg-2 {

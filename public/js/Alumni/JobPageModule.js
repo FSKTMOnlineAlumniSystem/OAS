@@ -1,7 +1,9 @@
+var pageIndex = 0;
+var outputList;
+outputList = job_array;
 
 
-
-function loadJobList(pageIndex, outputList) {
+const loadJobList = (pageIndex, outputList)=> {
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -41,14 +43,14 @@ function loadJobList(pageIndex, outputList) {
       </li>`;
   }
   // js for 1,2,3
-  if (remainingLength <= 10) {
+  if (remainingLength <= 9) {
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
           pageIndex + 1
         }</button>
       </li>`;
-  } else if (remainingLength <= 20) {
+  } else if (remainingLength <= 18) {
     document.getElementsByClassName("pages")[0].innerHTML = `
       <li class="page-item disabled">
         <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -82,7 +84,7 @@ function loadJobList(pageIndex, outputList) {
   document.getElementById("no_result").innerHTML="";
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
       document.getElementById("jobList").innerHTML += `
-        <div class="col mb-4">
+        <div class="col-12 col-sm-6 col-md-4  mb-4">
           <a href="jobdetails?jobid=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}>
               <div class="w-100">
@@ -117,10 +119,8 @@ var searchInput = document.getElementById('search_item');
   
 const handleJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
-  if (search == "") {
-    alert("Hi, type something to search!");
-  }
-  console.log("pls"+search);
+
+
   $.ajax({
     url: 'searchAllJob',
     type: 'post',
@@ -128,10 +128,10 @@ const handleJobSearch = evt =>{
     success: function(resp){
      console.log("success");
 
-    let page = 0;
+    pageIndex = 0;
     var jobtList =JSON.parse(resp);
- 
-     loadJobList(page,jobtList);
+    outputList = jobtList;
+     loadJobList(pageIndex,jobtList);
     },
      
   });
@@ -145,4 +145,16 @@ searchInput.addEventListener('keypress', (evt)=>{
   }
 });
 
-export default loadJobList;
+window.nextPage = function () {
+  pageIndex++;
+  loadJobList(pageIndex, outputList);
+};
+
+//click previous page
+window.previousPage = function () {
+  pageIndex--;
+  loadJobList(pageIndex, outputList);
+};
+
+
+loadJobList(pageIndex, outputList);

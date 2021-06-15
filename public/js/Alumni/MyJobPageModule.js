@@ -1,15 +1,33 @@
 
-function loadMyJobList(pageIndex, outputList, count) {
+var pageIndex = 0;
+var outputList;
+var deleteID;
+outputList = myJob_array;
+console.log("connect");
+
+const loadMyJobList = (pageIndex, outputList)=>{
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
   let jobEndIndex = jobStartIndex + 9;
-  var dataLength = count;
+  var dataLength = outputList.length;
   var remainingLength = dataLength - jobStartIndex;
-
+ 
+  console.log(outputList);
   /*   create button*/
-  if (count > 0) {
-    if (jobEndIndex >= count) {
+ if(outputList.length === 0){
+    document.getElementById("no_result").innerHTML="";
+    document.getElementById(
+      "top"
+    ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
+    document.getElementById("nextPage").innerHTML = "";
+    document.getElementsByClassName("pages")[0].innerHTML = "";
+    document.getElementById("previousPage").innerHTML = "";
+    return;
+  }else {
+
+  document.getElementById("no_result").innerHTML="";
+    if (jobEndIndex >= outputList.length) {
       document.getElementById("nextPage").innerHTML = `
         <li class="page-item disabled">
           <button id="nextPage"  onclick="nextPage()" class="page-link" tabindex="-1" aria-disabled="true">Next</button>
@@ -32,14 +50,14 @@ function loadMyJobList(pageIndex, outputList, count) {
         </li>`;
     }
     // js for 1,2,3
-    if (remainingLength <= 10) {
+    if (remainingLength <= 9) {
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
             pageIndex + 1
           }</button>
         </li>`;
-    } else if (remainingLength <= 20) {
+    } else if (remainingLength <= 18) {
       document.getElementsByClassName("pages")[0].innerHTML = `
         <li class="page-item disabled">
           <button class="btn btn-link page-link" tabindex="-1" aria-disabled="true">${
@@ -69,31 +87,15 @@ function loadMyJobList(pageIndex, outputList, count) {
           }</button>
         </li>`;
     }
-  } else if (count===-1){
-    document.getElementById("top").innerHTML="";
-    insertSearchNoResult(document.getElementById("no_result"));
-    document.getElementById("nextPage").innerHTML = "";
-    document.getElementsByClassName("pages")[0].innerHTML = "";
-    document.getElementById("previousPage").innerHTML = "";
-    return;
-    
-  }else {
-    document.getElementById("no_result").innerHTML="";
-    document.getElementById(
-      "top"
-    ).innerHTML = `<h3>Empty list! Please add new job addvertisement!!</h3>`;
-    document.getElementById("nextPage").innerHTML = "";
-    document.getElementsByClassName("pages")[0].innerHTML = "";
-    document.getElementById("previousPage").innerHTML = "";
-    return;
-  }
 
-  //LOAD THE JOBLIST BASED ON DUMMYDATA
+
+  //LOAD THE JOBLIST BASED ON DUMMYDATA 
   document.getElementById("top").innerHTML="";
   document.getElementById("no_result").innerHTML="";
-  for (let i = jobStartIndex; i < outputList.length; i++) {
+  console.log(outputList.length, "asas");
+  for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
         document.getElementById("jobList").innerHTML += `
-          <div class="col mb-4">
+          <div class="col-12 col-sm-6 col-md-4  mb-4">
           <a href="myjobdetails?myjobid=${outputList[i].jobId}">
             <div class="card h-100" data-name=${outputList[i].jobId}> 
              
@@ -121,11 +123,12 @@ function loadMyJobList(pageIndex, outputList, count) {
             </div>
           </div>`;
       }
-  
+    }
+
 
   const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
   const clickButton = document.querySelectorAll(".clickButton");
-  var deleteID;
+ 
 
 
   //CLICKING THE TRASH ICON
@@ -154,7 +157,7 @@ function loadMyJobList(pageIndex, outputList, count) {
   });
 });
 
-
+}
 
 
 $('#deleteButton').click(function(){
@@ -165,9 +168,9 @@ $('#deleteButton').click(function(){
     type: 'post',
     data: {searchdeleted : searchDelete, deleteID: deleteID},
     success: function(resp){
-      let page = 0;
-      var outputLists = JSON.parse(resp);
-      loadMyJobList(page,outputLists,outputLists.length);
+      pageIndex = 0;
+     outputList = JSON.parse(resp);
+      loadMyJobList(pageIndex,outputList);
     },
      
   });
@@ -175,29 +178,35 @@ $('#deleteButton').click(function(){
 closeModal("#deleteModal");
 });
 
+
 const searchButton = document.getElementById('search-button');
 var searchInput = document.getElementById('search_item');
 
 //Search
 const handleMyJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
-  if (search == "") {
-    alert("Hi, type something to search!"); 
-    return;
-  }
-
+  var jobList;
   $.ajax({
     url: 'searchJob',
     type: 'post',
     data: {search: search},
     success: function(resp){
-    let page = 0;
+    pageIndex = 0;
  
-    outputList =JSON.parse(resp);
+    jobList =JSON.parse(resp);
+    outputList = jobList;
      if(outputList.length===0){
-      loadMyJobList(page,outputList,-1);
+       console.log("search");
+      document.getElementById("top").innerHTML="";
+      insertSearchNoResult(document.getElementById("no_result"));
+      document.getElementById("nextPage").innerHTML = "";
+      document.getElementsByClassName("pages")[0].innerHTML = "";
+      document.getElementById("previousPage").innerHTML = "";
+      document.getElementById("jobList").innerHTML = "";
+      return;
     }else{
-     loadMyJobList(page,outputList,outputList.length);
+      console.log(jobList.length);
+     loadMyJobList(pageIndex,jobList);
     }
     },
      
@@ -226,6 +235,18 @@ searchInput.addEventListener('keypress', (evt)=>{
     );
   }
 
-}
 
-export default loadMyJobList;
+
+window.nextPage = function () {
+  pageIndex++;
+  console.log(outputList + "hihi");
+  loadMyJobList(pageIndex, outputList);
+};
+
+//CLICK PREVIOUS PAGE
+window.previousPage = function () {
+  pageIndex--;
+  loadMyJobList(pageIndex, outputList);
+};
+
+loadMyJobList(pageIndex,outputList);

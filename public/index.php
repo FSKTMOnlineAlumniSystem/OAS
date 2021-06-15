@@ -77,6 +77,15 @@ else if (isset($_SESSION['alumni'])) {
         include '../src/Domain/MyProfile/DeleteAccountController.php';
     }
 
+    // Alumni
+    elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
+        $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
+        include '../src/Domain/Alumni/AlumniProfilePage.php';
+    } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
+        $GLOBALS['title'] = TITLE_ALUMNI;
+        include '../src/Domain/Alumni/AlumniPage.php';
+    }
+
     //Event (VIEW)
     elseif (preg_match('/^\/eventdetails\?eventId=?/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_EVENTS;
@@ -109,6 +118,7 @@ else if (isset($_SESSION['alumni'])) {
         $GLOBALS['title'] = TITLE_EDITJOB;
         include '../src/Domain/Job/EditMyJobPage.php';
     }
+
     //Job (API)
     elseif (preg_match('/^\/deleteJob\/?/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_MYJOB;
@@ -131,7 +141,7 @@ else if (isset($_SESSION['alumni'])) {
         include_once '../src/templates/footer.php';
         include_once '../src/templates/GeneralScripts.php';
     }
-} 
+}
 // ADMIN IS SIGNED IN
 else if (isset($_SESSION['admin'])) {
     //Admin-Home
@@ -180,14 +190,7 @@ else if (isset($_SESSION['admin'])) {
         $GLOBALS['title'] = TITLE_EVENTS;
         include '../src/Domain/Admin-ManageAlumni/Admin-FilterController.php';
     }
-    //Admin Manage Alumni
-    elseif (preg_match('/^\/alumni\/profile/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_ALUMNI_PROFILE;
-        include '../src/Domain/Alumni/AlumniProfilePage.php';
-    } elseif (preg_match('/^\/alumni/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_ALUMNI;
-        include '../src/Domain/Alumni/AlumniPage.php';
-    }
+
     //Admin-ManageEvent
     elseif (preg_match('/^\/admin\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_EVENTS;
@@ -228,8 +231,7 @@ elseif (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) {
     //contain "admin" in url 
     header('Location:/admin-login');
     exit;
-} 
-else {
+} else {
     header('Location: /login');
     exit;
 }
