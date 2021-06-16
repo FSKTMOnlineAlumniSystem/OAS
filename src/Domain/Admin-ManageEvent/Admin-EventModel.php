@@ -93,7 +93,7 @@ class Admin_EventModel
     }
     public function search($searchterm){
         $query = "SELECT * FROM `event` WHERE (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR location LIKE '%$searchterm%') ";  
-        $stmt = $this->connection->prepare($query);  
+        $stmt = $this->connection->prepare($query); 
         $stmt->execute(); 
         $data = $stmt->fetchAll();
         if(!$data){

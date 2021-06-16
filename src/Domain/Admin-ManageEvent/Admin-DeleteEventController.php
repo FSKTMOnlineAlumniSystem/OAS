@@ -47,10 +47,10 @@ if(isset($_POST["checkbox"])){
   $deleteEvent = new Admin_EventModel($db->getConnection());	
   if($_POST['search']==""){
   $updatedEventArray = $deleteEvent->getAll();
-  for($i=0; $i<count($searchEvent); $i++){
-    $eventID = $searchEvent[$i]['eventId'];
+  for($i=0; $i<count($updatedEventArray); $i++){
+    $eventID = $updatedEventArray[$i]['eventId'];
     $image = $deleteEvent->getSearch($eventID);
-    $searchEvent[$i]['imageId'] = $image;
+    $updatedEventArray[$i]['imageId'] = $image;
   }      
   $output=$updatedEventArray;
   }else{
