@@ -21,7 +21,10 @@ try {
   $server_error = false;
 } catch (Exception $e) {
   // echo "Exception: " . $e->getMessage();
-  $server_error = true;
+  error_log("Exception: " . $e->getMessage());
+  include_once '../src/templates/header.php';
+  include_once '../src/Domain/General_Pages/server_error.php';
+  exit();
 }
 ?>
 <?php

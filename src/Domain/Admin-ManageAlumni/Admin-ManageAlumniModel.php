@@ -50,7 +50,11 @@ class AlumniListModel
             }
             return $image;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
     }
 
@@ -62,7 +66,11 @@ class AlumniListModel
             $number_of_rows = $result->fetchColumn(); 
             return $number_of_rows;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
     }
 
@@ -74,7 +82,11 @@ class AlumniListModel
             $number_of_rows = $result->fetchColumn(); 
             return $number_of_rows;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
     }
 
@@ -101,7 +113,11 @@ class AlumniListModel
             }
             return $data;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
     }
 
@@ -120,7 +136,11 @@ public function getSearch($alumniId) {
             return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
         }
     } catch (PDOException $e) {
-        echo "Exception: " . $e->getMessage();
+        // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
 }
     public function isAlumniExist($alumniId){
@@ -132,7 +152,11 @@ public function getSearch($alumniId) {
             $data = $stmt->fetchAll();
             return $data;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
         }
 
@@ -210,7 +234,11 @@ class DeleteAlumniModel
             }
             return $image;
         } catch (PDOException $e) {
-            echo "Exception: " . $e->getMessage();
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
     }
 
@@ -274,7 +302,11 @@ class UpdateALumniModel
         }
         return $image;
     } catch (PDOException $e) {
-        echo "Exception: " . $e->getMessage();
+        // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
     }
     

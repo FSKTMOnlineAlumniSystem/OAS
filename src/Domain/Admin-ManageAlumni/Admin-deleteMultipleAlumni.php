@@ -15,7 +15,11 @@ if (isset($_POST['listOfDeleteAlumniId'])) {
         $all_activities = $deleteMultipleAlumni->getAll();
         $allImage = $deleteMultipleAlumni->getProfilePicture();
     } catch (Exception $e) {
-        echo "Exception: " . $e->getMessage();
+        // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
       for ($i=0; $i< count($all_activities); $i++){
         if($allImage[$i] == null){

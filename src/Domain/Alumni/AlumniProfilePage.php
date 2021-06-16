@@ -32,7 +32,11 @@ try {
   }
 
 } catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
 }
 ?>
 </head>

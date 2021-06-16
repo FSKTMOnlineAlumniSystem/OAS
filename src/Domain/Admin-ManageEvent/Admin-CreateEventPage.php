@@ -25,7 +25,11 @@
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
   ?>
  <?php
@@ -54,7 +58,11 @@
         uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
       }
       echo '<script>location.href="/admin/event"</script>';
-      echo "Exception: " . $e->getMessage();
+      // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
   }
 

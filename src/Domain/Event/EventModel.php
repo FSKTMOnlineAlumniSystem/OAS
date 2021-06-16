@@ -93,6 +93,7 @@ class EventModel
       throw $exception;
     }
   }
+  
   public function getEvents(string $alumniId): array // for alumni to get their own events
   {
     try {

@@ -3,32 +3,32 @@
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
 // PHP code for logging error into a given file
-// path of the log file where errors need to be logged
-$log_file = "../src/Logger/errors.log";
-  
-// setting error logging to be active
-// Comment out for development to enable error display
-ini_set("log_errors", TRUE); 
-  
-// setting the logging file in php.ini
-ini_set('error_log', $log_file);
-  
 // comment out these for production
 ini_set('error_reporting', E_ALL );
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 
+// path of the log file where errors need to be logged
+$log_file = "../src/Logger/errors.log";
+  
+// setting the logging file in php.ini
+ini_set('error_log', $log_file);
+
+// setting error logging to be active
+// comment out for development to enable error display
+ini_set("log_errors", TRUE); 
+// function exception_handler($exception) {
+//     $error_message = "Uncaught exception: " . $exception->getMessage();
+//     error_log($error_message);
+//     include_once '../src/templates/header.php';
+//     include_once '../src/Domain/General_Pages/server_error.php';
+//  }
+//  set_exception_handler('exception_handler');
+
 // Change according to your needs, RCMS is the name of the database created in setup.sql
 define('DATABASE_NAME', 'OAS');
 define('DATABASE_USERNAME', 'root');
 define('DATABASE_PASSWORD', '');
-
-function exception_handler($exception) {
-    $error_message = "Uncaught exception: " . $exception->getMessage();
-    error_log($error_message);
- }
- 
- set_exception_handler('exception_handler');
 // define('CAROUSEL_IMAGES_PATH', realpath($_SERVER['DOCUMENT_ROOT'] . '/assets/img/carousel/'));
 
 ##################################################### APP CONSTANTS ####################################################

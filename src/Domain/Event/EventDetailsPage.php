@@ -11,20 +11,32 @@ try {
   $event_model = new EventModel($db->getConnection());
   $all_events = $event_model->getAll();
 } catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
 }
 try {
   $event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $event_model->getAll();
 } catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
 }
 try {
   $event_model = new EventModel($db->getConnection());
   $event = $event_model->getEvent($_GET['eventId']);
   $event_pic_src = $event_model->getEventPicture();
 } catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
 }
 ?>
 <?php

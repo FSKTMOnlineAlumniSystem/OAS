@@ -25,7 +25,11 @@ try {
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
-    echo $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
 ?>
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
