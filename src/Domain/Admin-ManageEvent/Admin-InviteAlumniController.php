@@ -29,16 +29,5 @@ include '../src/Domain/Database.php';
     $updatedAlumniArray = $invitedAlumni->getAll();
     echo json_encode($updatedAlumniArray);
 }
-
-
-    // setcookie("alumniId", "");
-    // setcookie("eventId", "");
-    // setcookie("dateTime", "");
-    // setcookie("checkbox", "");
-
-    //   setcookie("inviteAlumni", "", time()-3600);
-    // setcookie("alumniId", "");
-    // setcookie("eventId", "");
-    // setcookie("dateTime", "");
   ?>
 

@@ -7,7 +7,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 if(isset($_POST['modal'])){
   echo("success");
   exit;
-  
 }
 $output=[];
 function DeleteRowPhp($eventId){
@@ -25,14 +24,13 @@ if(isset($_POST["checkbox"])){
   $deleteEvent = new Admin_EventModel($db->getConnection());	
   if($_POST['search']==""){
   $updatedEventArray = $deleteEvent->getAll();
-  // echo json_encode($updatedEventArray);
+
   for($i=0; $i<count($updatedEventArray); $i++){
     $eventID = $updatedEventArray[$i]['eventId'];
     $image = $deleteEvent->getSearch($eventID);
     $updatedEventArray[$i]['imageId'] = $image;
   }  
   $output=$updatedEventArray;
-  // exit();
   }
   else{
     $searchterm = $_POST['search'];
@@ -42,26 +40,19 @@ if(isset($_POST["checkbox"])){
      $image = $deleteEvent->getSearch($eventID);
      $searchEvent[$i]['imageId'] = $image;
    }      
-    //  echo json_encode($searchEvent);
   $output=$searchEvent;
-
-// exit;
   }
 }else if(isset($_POST["deleteEvent"])){
   DeleteRowPhp($_POST["deleteEvent"]);  
   $deleteEvent = new Admin_EventModel($db->getConnection());	
   if($_POST['search']==""){
   $updatedEventArray = $deleteEvent->getAll();
-  // echo json_encode($updatedEventArray);
   for($i=0; $i<count($searchEvent); $i++){
     $eventID = $searchEvent[$i]['eventId'];
     $image = $deleteEvent->getSearch($eventID);
     $searchEvent[$i]['imageId'] = $image;
   }      
-
   $output=$updatedEventArray;
-  
-  // exit();
   }else{
     $searchterm = $_POST['search'];
        $searchEvent = $deleteEvent->search($searchterm);
@@ -70,12 +61,8 @@ if(isset($_POST["checkbox"])){
         $image = $deleteEvent->getSearch($eventID);
         $searchEvent[$i]['imageId'] = $image;
       }      
-        // echo json_encode($searchEvent);
   $output=$searchEvent;
-
-    // exit;
   }
 }
         echo json_encode($output);
-
 ?>

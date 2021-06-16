@@ -11,8 +11,6 @@ for($i=0; $i<count($result); $i++){
   $result[$i]['imageId'] = $image;
 }
 
-// print_r($result);
-
 if(isset($_POST['status'])){
     if($_POST['status']!="All"){
       $statusTerm = $_POST['status'];
@@ -25,20 +23,7 @@ if(isset($_POST['status'])){
       $result=$alumniStatus; 
       $result=interceptArray($result,$alumniStatus);
     }
-    // else{
-    //   $alumniStatus = $alumni_model->getAll();
-    //   $allImage = $alumni_model->getPicture();
-    //   for ($i=0; $i< count($alumniStatus); $i++){
-    //     $alumniStatus[$i]['imageId'] = $allImage[$i];
-    //   }
-    //   // for($i=0; $i<count($alumniStatus); $i++){
-    //   //   $alumniID = $alumniStatus[$i]['alumniId'];
-    //   //   $image = $alumni_model->getSearch($alumniID);
-    //   //   $alumniStatus[$i]['imageId'] = $image;
-    //   //   // echo $image;
-    //   // }
-    //   $result=interceptArray($result,$alumniStatus);
-    // }
+
     if($_POST['department']!="All"){
         $departmentTerm = $_POST['department'];
         $alumniDepartment = $alumni_model->searchDepartment($departmentTerm);
@@ -48,17 +33,7 @@ if(isset($_POST['status'])){
             $alumniDepartment[$i]['imageId'] = $image;
       }
       $result=interceptArray($result,$alumniDepartment);
-
     }
-  //   else{
-  //     $alumniDepartment = $alumni_model->getAll();
-  //     for($i=0; $i<count($alumniDepartment); $i++){
-  //       $alumniID = $alumniDepartment[$i]['alumniId'];
-  //       $image = $alumni_model->getSearch($alumniID);
-  //       $alumniDepartment[$i]['imageId'] = $image;
-  //       $result=interceptArray($result,$alumniDepartment);
-  // }
-  //   }
     
     if($_POST['search']!=""){
       $searchterm = $_POST['search'];
@@ -70,31 +45,8 @@ if(isset($_POST['status'])){
      }     
      $result=interceptArray($result,$searchAlumni);
    }
-  //  else{
-  //   $searchAlumni = $alumni_model->getAll();
-  //   for($i=0; $i<count($searchAlumni); $i++){
-  //     $alumniID = $searchAlumni[$i]['alumniId'];
-  //     $image = $alumni_model->getSearch($alumniID);
-  //     $searchAlumni[$i]['imageId'] = $image;
-  //   }  
-  //   $result=interceptArray($result,$searchAlumni);
-  //  }
   }
   echo json_encode($result);
-
-// else if(isset($_POST['search'])){
-//        $searchterm = $_POST['search'];
-//        $searchAlumni = $alumni_model->search($searchterm);
-//       for($i=0; $i<count($searchAlumni); $i++){
-//         $alumniID = $searchAlumni[$i]['alumniId'];
-//         $image = $alumni_model->getSearch($alumniID);
-//         $searchAlumni[$i]['imageId'] = $image;
-//       }
-//       $result=interceptArray($result,$searchAlumni);
-//     }
-
-      // $result=array_intersect($result,$alumniDepartment);
-
       function interceptArray($result, $new){
         $newArray=array();
         if(empty($result)||empty($new)){
@@ -110,5 +62,5 @@ if(isset($_POST['status'])){
         $result=$newArray;
         return $newArray;
       }
-    ?>
+?>
     

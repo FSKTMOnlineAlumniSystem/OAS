@@ -1,23 +1,6 @@
 
-  <!-- <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" /> -->
-  <!-- header end here -->
-  <!-- custom css files -->
-  <!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css"> -->
-<!-- jquery -->
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-crossorigin="anonymous"></script> -->
-<!-- css -->
-<!-- <link rel="stylesheet" href="/css/Admin/Admin-InviteAlumniPage.css"> -->
-  <!-- <title>Invite Alumni - Online Alumni System</title> -->
-<!-- </head> -->
-
-<!-- <body> -->
 <?php
  $eventId=$_GET['eventId'];
-
-
-  // include '../config/config.php';
   include_once '../src/Domain/Admin-ManageEvent/Admin-EventModel.php';
   include_once '../src/Domain/Database.php';
   ?>
@@ -31,7 +14,6 @@ crossorigin="anonymous"></script> -->
   ));
   
   $_SESSION['admin']['adminId'];
-
 
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
@@ -62,43 +44,6 @@ crossorigin="anonymous"></script> -->
   }
 ?>
 
-<?php
-
-// function inviteAlumniPhp($alumniId,$eventId,$dateTime){
-//   global $db;
-//     $inviteAlumni = new InviteAlumniModel($db->getConnection());	
-//   $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
-// };
-
-// if(isset($_COOKIE["checkbox"])){
-
-// $alumniId = $_COOKIE['alumniId']; $alumniId=explode(",",$alumniId); //split
-// $eventId = $_COOKIE['eventId']; $eventId=explode(",",$eventId);
-// $dateTime = $_COOKIE['dateTime']; $dateTime=explode(",",$dateTime);
-
-// for($i=0; $i<count($alumniId);$i++){
-//   inviteAlumniPhp($alumniId[$i],$eventId[$i],$dateTime[$i]);  
-// }
-//   setcookie("alumniId", "");
-//   setcookie("eventId", "");
-//   setcookie("dateTime", "");
-//   setcookie("checkbox", "");
-// }
-// else if(isset($_COOKIE["alumniId"])){
-//   inviteAlumniPhp($_COOKIE["alumniId"],$_COOKIE["eventId"],$_COOKIE["dateTime"]);  
-// //   setcookie("inviteAlumni", "", time()-3600);
-//   setcookie("alumniId", "");
-//   setcookie("eventId", "");
-//   setcookie("dateTime", "");
-// }
-// function inviteAlumniPhp($alumniId,$eventId,$dateTime){
-//   global $db;
-//     $inviteAlumni = new InviteAlumniModel($db->getConnection());	
-//   $inviteAlumni-> InviteAlumni($alumniId,$eventId,$dateTime);
-// };
-
-
-?>
 <nav></nav>
   <main class="container-fluid height-after-minus-header" id='main-body'>
     <div class="row h-100">
@@ -114,7 +59,6 @@ crossorigin="anonymous"></script> -->
                 <!-- filter status -->
                 <label for="exampleFormControlSelect1">Status</label>
                 <select class="form-control" id="status">
-                <!-- oninput="filterStatus()" -->
                   <option>All</option>
                   <option>Invited</option>
                   <option>Not Invited</option>
@@ -186,14 +130,7 @@ crossorigin="anonymous"></script> -->
             </table>
 
             <div class="col-12 d-flex justify-content-end" id='invideAndDone'>
-            <!-- <button type="button" class="btn btn-info"  onclick='inviteCheckedAlumni()'>
-              <i class="fas fa-user-plus"></i> Invite
-            </button>
-            <button type="button" class="btn btn-primary ml-2" onclick='backToPreviousPage()'>
-              Done
-            </button> -->
           </div>
-            <!-- <div id="forSearch"></div> -->
           <div class="row justify-content-md-center text-center" id="no_result"></div>
           <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
@@ -202,46 +139,23 @@ crossorigin="anonymous"></script> -->
               <li class="page-item" id="nextPage"></li>
             </ul>
           </nav>
-
-
           </div>
-
-          
-
-          
-
-
         </div>
         <br>
       </div>
-
-
-      
   </main>
 
-  <!-- general js files -->
-  <!-- <script type="text/javascript" src="/js/utility.js"></script> -->
-  <!-- <script type="module" src="/js/addHeader.js"></script> -->
-  <!-- <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script> -->
-  <!-- custom js files -->
+
   <script type="text/javascript">var alumniEvent_array = <?php echo json_encode($all_activities) ?>;</script>
   <script type="text/javascript">var alumni_array = <?php echo json_encode($all_alumni) ?>;</script>
   <script type="text/javascript">var $inviteEventId = <?php echo json_encode($eventId) ?>;</script>
   <script type="module" src="/js/Admin/Admin-InviteAlumniPage.js"></script>
-  <!-- bootstrap javascript files -->
-  <!-- <script src="/libs/bootstrap/js/bootstrap.bundle.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
   <script type='text/javascript' src='/js/Admin/addLeftNav.js'></script>
   <?php include_once '../src/templates/GeneralScripts.php'?>
-
-
 </body>
-
 </html>
