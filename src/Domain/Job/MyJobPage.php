@@ -107,7 +107,7 @@ include_once '../src/templates/nav.php';
 
 
 <script type="text/javascript">var myJob_array = <?php echo json_encode($myJob) ?>;</script>
-<script type="module" src="/js/Alumni/MyJobPage.js"></script>
+<script type="module" src="/js/Alumni/MyJobPageModule.js"></script>
 
 <?php include_once '../src/templates/footer.php' ?>
 

@@ -20,7 +20,7 @@ try {
 ?>
 
 <script type="text/javascript">var job_array = <?php echo json_encode($all_activities) ?>;</script>
-<script type="module" src="/js/Alumni/JobPage.js"></script>
+<script type="module" src="/js/Alumni/JobPageModule.js"></script>
 
 
 

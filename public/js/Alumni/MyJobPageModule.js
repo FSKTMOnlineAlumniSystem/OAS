@@ -1,5 +1,11 @@
 
-function loadMyJobList(pageIndex, outputList) {
+var pageIndex = 0;
+var outputList;
+var deleteID;
+outputList = myJob_array;
+console.log("connect");
+
+const loadMyJobList = (pageIndex, outputList)=>{
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -7,7 +13,7 @@ function loadMyJobList(pageIndex, outputList) {
   var dataLength = outputList.length;
   var remainingLength = dataLength - jobStartIndex;
  
-
+  console.log(outputList);
   /*   create button*/
  if(outputList.length === 0){
     document.getElementById("no_result").innerHTML="";
@@ -18,7 +24,7 @@ function loadMyJobList(pageIndex, outputList) {
     document.getElementsByClassName("pages")[0].innerHTML = "";
     document.getElementById("previousPage").innerHTML = "";
     return;
-  }
+  }else {
 
   document.getElementById("no_result").innerHTML="";
     if (jobEndIndex >= outputList.length) {
@@ -86,6 +92,7 @@ function loadMyJobList(pageIndex, outputList) {
   //LOAD THE JOBLIST BASED ON DUMMYDATA 
   document.getElementById("top").innerHTML="";
   document.getElementById("no_result").innerHTML="";
+  console.log(outputList.length, "asas");
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
         document.getElementById("jobList").innerHTML += `
           <div class="col-12 col-sm-6 col-md-4  mb-4">
@@ -116,11 +123,12 @@ function loadMyJobList(pageIndex, outputList) {
             </div>
           </div>`;
       }
-  
+    }
+
 
   const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
   const clickButton = document.querySelectorAll(".clickButton");
-  var deleteID;
+ 
 
 
   //CLICKING THE TRASH ICON
@@ -149,7 +157,7 @@ function loadMyJobList(pageIndex, outputList) {
   });
 });
 
-
+}
 
 
 $('#deleteButton').click(function(){
@@ -160,9 +168,9 @@ $('#deleteButton').click(function(){
     type: 'post',
     data: {searchdeleted : searchDelete, deleteID: deleteID},
     success: function(resp){
-      let page = 0;
-      var outputLists = JSON.parse(resp);
-      loadMyJobList(page,outputLists);
+      pageIndex = 0;
+     outputList = JSON.parse(resp);
+      loadMyJobList(pageIndex,outputList);
     },
      
   });
@@ -170,26 +178,25 @@ $('#deleteButton').click(function(){
 closeModal("#deleteModal");
 });
 
+
 const searchButton = document.getElementById('search-button');
 var searchInput = document.getElementById('search_item');
 
 //Search
 const handleMyJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
-  if (search == "") {
-    alert("Hi, type something to search!"); 
-    return;
-  }
-
+  var jobList;
   $.ajax({
     url: 'searchJob',
     type: 'post',
     data: {search: search},
     success: function(resp){
-    let page = 0;
+    pageIndex = 0;
  
-    outputList =JSON.parse(resp);
+    jobList =JSON.parse(resp);
+    outputList = jobList;
      if(outputList.length===0){
+       console.log("search");
       document.getElementById("top").innerHTML="";
       insertSearchNoResult(document.getElementById("no_result"));
       document.getElementById("nextPage").innerHTML = "";
@@ -198,7 +205,8 @@ const handleMyJobSearch = evt =>{
       document.getElementById("jobList").innerHTML = "";
       return;
     }else{
-     loadMyJobList(page,outputList);
+      console.log(jobList.length);
+     loadMyJobList(pageIndex,jobList);
     }
     },
      
@@ -227,6 +235,18 @@ searchInput.addEventListener('keypress', (evt)=>{
     );
   }
 
-}
 
-export default loadMyJobList;
+
+window.nextPage = function () {
+  pageIndex++;
+  console.log(outputList + "hihi");
+  loadMyJobList(pageIndex, outputList);
+};
+
+//CLICK PREVIOUS PAGE
+window.previousPage = function () {
+  pageIndex--;
+  loadMyJobList(pageIndex, outputList);
+};
+
+loadMyJobList(pageIndex,outputList);
