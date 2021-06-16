@@ -55,6 +55,7 @@
     } else {
       $admin_profile_model = new AdminMyProfile($db->getConnection(), $_SESSION['admin']['adminId']);
       $profile_img_src = $admin_profile_model->getProfilePicture();
+      $server_error = false;
     }
   } catch (Exception $e) {
     $server_error = true;
@@ -65,10 +66,13 @@
     if (isAlumni()) {
       // check if any event notification not checked out yet
       $hasNotification = false;
+      $hasZeroNotificationTab = true;
       foreach ($all_alumni_events as $alumni_event) {
+        if (!$alumni_event['notificationClosedByAlumni']) {
+          $hasZeroNotificationTab = false;
+        }
         if (!$alumni_event['notificationClosedByAlumni'] && !$alumni_event['viewedByAlumni']) {
           $hasNotification = true;
-          break;
         }
       }
     }
@@ -91,14 +95,12 @@
       ?>
         <div class="dropdown custom-bg--transparent">
           <button class="btn dropdown-toggle text-white pr-0" type="button" id="notificationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src=<?php
-                      if ($hasNotification) echo "/Assets/icons/notification.svg";
-                      else echo "/Assets/icons/bell.svg";
-                      ?> alt="" class="header__img m-1">
+            <img src=<?= $hasNotification ? "/Assets/icons/notification.svg" : "/Assets/icons/bell.svg"; ?> alt="notification icon" class="header__img m-1">
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton" id="dropdown-menu">
 
             <?php
+            if(!$hasZeroNotificationTab){
             foreach ($all_alumni_events as $alumni_event) {
               if (!$alumni_event['notificationClosedByAlumni']) {
                 $eventTitle = $alumni_event['title'];
@@ -130,7 +132,10 @@
           <?php
               }
             }
+          }else{
+            echo '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
           }
+        }
           ?>
           </div>
         </div>

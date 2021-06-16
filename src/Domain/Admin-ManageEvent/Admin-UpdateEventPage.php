@@ -25,6 +25,7 @@
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   try {
     $event_model = new Admin_EventModel($db->getConnection());
+    $event_model->getEvent($_GET['eventId']);// for 404 page
     $all_activities = $event_model->getAll();
     $allImage = $event_model->getPicture();
     if (!empty($all_activities)) {
@@ -39,7 +40,7 @@
     }
     // $defaultImage = $event_model->getDefaultPicture();
   } catch (Exception $e) {
-    echo "Exception here!";
+    echo $e->getMessage();
   }
   ?>
 

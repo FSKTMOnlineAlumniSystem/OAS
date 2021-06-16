@@ -3,7 +3,7 @@ const imgPath = "/Assets/imgs/";
 console.log('connect');
 var eventArray;
 eventArray=event_array;
-let pageIndex = 0;
+var pageIndex = 0;
 
 const loadEventList = (pageIndex,eventArray) => {
   uncheckTop();
@@ -303,7 +303,6 @@ $.ajax({
   dataType: 'json',
   success: function(resp){
     uncheckTop();
-
     console.log('resp');
       console.log(resp);
     // var outputList = JSON.parse(resp);
@@ -511,7 +510,7 @@ var outputList;
     data: {search: search},
     success: function(resp){
     uncheckTop();
-    let pageIndex = 0;
+    pageIndex = 0;
     // console.log(resp);
     outputList =JSON.parse(resp);
     eventArray=outputList;

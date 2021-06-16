@@ -31,7 +31,7 @@ try {
     $myjobdetails['imageId'] = $image[0];
 
 } catch (Exception $e) {
-    echo "Exception here!";
+    echo $e->getMessage();
 }
 ?>
 

@@ -25,7 +25,7 @@ try {
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
 } catch (Exception $e) {
-  echo "Exception here!";
+  echo $e->getMessage();
 }
 ?>
 <?php

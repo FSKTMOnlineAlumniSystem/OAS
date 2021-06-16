@@ -3,7 +3,7 @@ let alumniEventArray=alumniEvent_array
 let alumniArray=alumni_array
 localStorage.setItem("eventId",$inviteEventId)
 
-let pageIndex = 0;
+var pageIndex = 0;
 const loadAlumniList = (pageIndex,alumniEventArray,alumniArray) => {
   uncheckTop();
 const tbody = document.getElementsByTagName('tbody')[0];

@@ -1,7 +1,9 @@
+var pageIndex = 0;
+var outputList;
+outputList = job_array;
 
 
-
-function loadJobList(pageIndex, outputList) {
+const loadJobList = (pageIndex, outputList)=> {
   const jobList = document.getElementById("jobList");
   jobList.innerHTML = "";
   let jobStartIndex = pageIndex * 9;
@@ -117,21 +119,18 @@ var searchInput = document.getElementById('search_item');
   
 const handleJobSearch = evt =>{
   var search = document.getElementById("search_item").value;
-  if (search == "") {
-    alert("Hi, type something to search!");
-  }
+
 
   $.ajax({
     url: 'searchAllJob',
     type: 'post',
     data: {search: search},
     success: function(resp){
-     console.log("success");
 
-    let page = 0;
+    pageIndex = 0;
     var jobtList =JSON.parse(resp);
- 
-     loadJobList(page,jobtList);
+    outputList = jobtList;
+     loadJobList(pageIndex,jobtList);
     },
      
   });
@@ -145,4 +144,19 @@ searchInput.addEventListener('keypress', (evt)=>{
   }
 });
 
-export default loadJobList;
+//click next page
+window.nextPage = function () {
+  pageIndex++;
+  loadJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
+};
+
+//click previous page
+window.previousPage = function () {
+  pageIndex--;
+  loadJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
+};
+
+
+loadJobList(pageIndex, outputList);

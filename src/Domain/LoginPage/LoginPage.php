@@ -180,12 +180,12 @@ $conn = $db->getConnection();
                                 <?php
                                 if (isset($_GET["fgemailnotExists"])){
                                     echo'
-                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail" placeholder="eg.example@address.com">>
+                                    <input type="text" name="email" class="form-control is-invalid" id="sendEmail" placeholder="example@address.com">
                                     <div class="invalid-feedback">Please provide a valid email.</div>
                                     ';
                                 }else{
                                     echo '
-                                    <input type="text" name="email" class="form-control" id="sendEmail" placeholder="eg.example@address.com">>
+                                    <input type="text" name="email" class="form-control" id="sendEmail" placeholder="example@address.com">
                                     <div class="invalid-feedback">Please provide a valid email.</div>
                                     ';
                                 }
@@ -240,7 +240,7 @@ $conn = $db->getConnection();
 
                             <label for="FirstName" class="col-sm-3 col-form-label ml-1">First Name:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="FirstNameID" name="FirstNameID" placeholder="eg.John">
+                                <input type="text" class="form-control" id="FirstNameID" name="FirstNameID" placeholder="John">
                                 <small class="invalid-feedback">Please provide a valid First Name.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -248,7 +248,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="LastName" class="col-sm-3 col-form-label ml-1">Last Name:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="text" class="form-control" id="LastNameID" name="LastNameID" placeholder="eg.Mayer">
+                                <input type="text" class="form-control" id="LastNameID" name="LastNameID" placeholder="Mayer">
                                 <small class="invalid-feedback">Please provide a valid Last Name.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -305,7 +305,7 @@ $conn = $db->getConnection();
                                 <?php
                                     if (isset($_GET["emailExists"])){
                                     echo '
-                                    <input type="text" name="email" class="form-control is-invalid" id="Email" placeholder="eg.example@address.com">
+                                    <input type="text" name="email" class="form-control is-invalid" id="Email" placeholder="example@address.com">
                                     <small class="invalid-feedback">Email exists.</small>
                                     <script type="text/javascript">
                                             $(document).ready(function(){
@@ -315,7 +315,7 @@ $conn = $db->getConnection();
                                     ';
                                     }else if (isset($_GET["emailFake"])){
                                     echo '
-                                    <input type="text" name="email" class="form-control is-invalid" id="Email" placeholder="eg.example@address.com">
+                                    <input type="text" name="email" class="form-control is-invalid" id="Email" placeholder="example@address.com">
                                     <small class="invalid-feedback">Email is not exists in real life.</small>
                                     <script type="text/javascript">
                                             $(document).ready(function(){
@@ -326,7 +326,7 @@ $conn = $db->getConnection();
                                     }
                                     else{
                                     echo '
-                                    <input type="text" name="email" class="form-control" id="Email" placeholder="eg.example@address.com">
+                                    <input type="text" name="email" class="form-control" id="Email" placeholder="example@address.com">
                                     <small class="invalid-feedback">Please provide a valid Email.</small>
                                     <small class="valid-feedback">Okay!</small>
                                     ';
@@ -340,7 +340,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="IC" class="col-sm-3 col-form-label ml-1">Ic no.:</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="tel" name="IC" class="form-control" id="IC" placeholder="eg.503948-80-1111">
+                                <input type="tel" name="IC" class="form-control" id="IC" placeholder="503948-80-1111">
                                 <small class="invalid-feedback">Please provide a valid IC with dash.</small>
                                 <small class="valid-feedback">Okay!</small>
                             </div>
@@ -364,7 +364,7 @@ $conn = $db->getConnection();
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-3 col-form-label ml-1">Password</label>
                             <div class="col-sm-8 mr-1">
-                                <input type="password" name="Password" class="form-control" id="Password" placeholder="A strong password">
+                                <input type="password" name="Password" class="form-control" id="Password" placeholder="Must at least 5 character">
                                 <small class="invalid-feedback">Please enter only 5-20 characters available for
                                     password.</small>
                                 <small class="valid-feedback">Okay!</small>
