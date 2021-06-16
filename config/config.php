@@ -2,53 +2,36 @@
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
+// PHP code for logging error into a given file
+// path of the log file where errors need to be logged
+$log_file = "../src/Logger/errors.log";
+  
+// setting error logging to be active
 // Comment out for development to enable error display
-// ini_set('log_errors','1');
-
-
+ini_set("log_errors", TRUE); 
+  
+// setting the logging file in php.ini
+ini_set('error_log', $log_file);
+  
 // comment out these for production
-// ini_set('error_reporting', E_ALL );
+ini_set('error_reporting', E_ALL );
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+
 // Change according to your needs, RCMS is the name of the database created in setup.sql
 define('DATABASE_NAME', 'OAS');
 define('DATABASE_USERNAME', 'root');
 define('DATABASE_PASSWORD', '');
 
-// connect to MySQL
-// $mysqli = new mysqli('localhost', DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME); 
-// if ($mysqli->connect_error) {
-// 	die("Connection failed: " . $mysqli->connect_error);
-// }
-// echo "Database connected successfully <br>";
-// The connection will be closed automatically when the script ends.
-
-// Use your own email with password if this is not working. 
-define('SMTP_SERVER_HOST', 'smtp.gmail.com');
-define('SMTP_SERVER_PORT', 587);
-define('EMAIL_ADDRESS', 'xxx@gmail.com');
-define('EMAIL_PASSWORD', 'xxx');
-
-// User private uploads to be stored outside web root
-define('EVENT_UPLOAD_PATH', '../uploads/events/');
-
-if (!is_dir(EVENT_UPLOAD_PATH)) {
-    mkdir(EVENT_UPLOAD_PATH, 0754, true);
-}
-
+function exception_handler($exception) {
+    $error_message = "Uncaught exception: " . $exception->getMessage();
+    error_log($error_message);
+ }
+ 
+ set_exception_handler('exception_handler');
 // define('CAROUSEL_IMAGES_PATH', realpath($_SERVER['DOCUMENT_ROOT'] . '/assets/img/carousel/'));
 
 ##################################################### APP CONSTANTS ####################################################
-
-// some examples
-define('STATUS_PENDING', 0);
-define('STATUS_COMPLETED', 1);
-define('STATUS_IN_PROGRESS', 2);
-define('STATUS_SUBMITTED', 0);
-define('STATUS_APPROVED', 1);
-define('STATUS_REJECTED', 2);
-
 
 // add our app constants below
 define('TITLE_OAS', 'Online Alumni System');
