@@ -104,14 +104,6 @@ public function getSearch($alumniId) {
         return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
     }
 }
-    public function isAlumniExist($alumniId){
-        $stmt = $this->connection->prepare("
-        SELECT count(*) FROM alumni WHERE alumniId =?
-        ");
-        $stmt->execute([$alumniId]);
-        $data = $stmt->fetchAll();
-        return $data;
-        }
 
         public function getAlumni($alumniId)
         {

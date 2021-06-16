@@ -65,6 +65,8 @@ define('TITLE_ADMIN_EVENTS', 'Admin Event - Online Alumni System');
 define('TITLE_ADMIN_CREATE_EVENTS', 'Admin Create Event - Online Alumni System');
 define('TITLE_ADMIN_UPDATE_EVENTS', 'Admin Update Event - Online Alumni System');
 define('TITLE_ADMIN_INVITE_ALUMNI', 'Admin Invite Alumni - Online Alumni System');
+define('TITLE_ADMIN_MANAGE_ALUMNI', 'Admin Manage Alumni - Online Alumni System');
+define('TITLE_ADMIN_EDIT_ALUMNI_PROFILE', 'Admin Edit Alumni Profile - Online Alumni System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 

@@ -1,8 +1,6 @@
 
-  <title><?= $GLOBALS['title']; ?></title>
-</head>
 
-  
+
 <?php
 
 include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
