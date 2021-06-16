@@ -3,10 +3,6 @@ include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include_once '../src/Domain/Database.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-  ?>
-  
-  <?php
   
   if (isset($_POST['deleteAlumniId'])) {
     $deleteAlumniId = $_POST['deleteAlumniId'];
@@ -22,5 +18,4 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     }
     echo json_encode($all_activities);
 }
-
   ?>

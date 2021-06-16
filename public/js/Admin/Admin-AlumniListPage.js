@@ -1,7 +1,4 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
-console.log('connect');
 let alumniArray=alumni_array
-console.log(alumniArray);
 let pageIndex = 0;
 const reload = (alumniArray,pageIndex) => {
 
@@ -67,11 +64,9 @@ const reload = (alumniArray,pageIndex) => {
 
 
 // add alumni list
-
 const tbody = document.getElementsByTagName('tbody')[0];
 tbody.innerHTML = "";
  var alumni=alumniArray;
-// alumniArray.forEach((alumni, index) => {
   for (
     let i = alumniStartIndex;i < alumniEndIndex && i < alumniArray.length;i++) {
   let tr = document.createElement('tr');
@@ -105,11 +100,6 @@ tbody.innerHTML = "";
   td = document.createElement('td');
   td.innerHTML = `<p id=${i} class="alumniName">${alumni[i].name}</p>`
   td.setAttribute('class', 'eventTitle');
-  // <div class="eventTitle"><span class="alumniName" id=${index}>${alumni.name}</span></div>`
-  // <td style="font-weight: 400; font-size: 18px" class="eventTitle">
-  // let span = document.createElement('span');
-  // span.innerHTML = alumni.name;
-  // td.appendChild(span);
   tr.appendChild(td);
 
   // department column
@@ -126,10 +116,10 @@ tbody.innerHTML = "";
 
   if (alumni[i].approvedBy === "") {
     div.classList.add('bg-danger')
-    div.innerText = 'Not Verified';
+    div.innerText = 'Pending Approval';
   } else {
     div.classList.add('bg-success')
-    div.innerText = 'Verified';
+    div.innerText = 'Approved';
   }
   td.appendChild(div);
   tr.appendChild(td);
@@ -165,20 +155,15 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $("#icNumber").text(alumniArray[e.target.id].icNumber);
     $("#update").attr("id", "update " + e.target.id);
     if (alumniArray[e.target.id].approvedBy === "") {
-      $("#accStatus").text("Not Verified");
+      $("#accStatus").text("Pending Approval");
     } else {
-      $("#accStatus").text("Verified");
+      $("#accStatus").text("Approved");
     }
     if (alumniArray[e.target.id].approvedBy !== "") {
       document.getElementById("approve").disabled = true;
     }else{
       document.getElementById("approve").disabled = false;
     }
-    // $("#approve").click(function () {
-    //   if (alumniArray[e.target.id].approvedBy == "") {
-    //     alumniArray[e.target.id].approvedBy = localStorage.getItem("SignedInAdminId");
-    //   }
-    // })
     $('#exampleModal').modal("show");
   }
   )
@@ -201,10 +186,7 @@ const checkbox = () => {
         count++
       }
     }
-    console.log(count);
-    console.log(checkboxes.length);
     if(count==checkboxes.length-1){
-      console.log("hihihi")
       checkboxes[0].checked = true;
     }else if(count !=checkboxes.length-1){
       checkboxes[0].checked = false;
@@ -230,10 +212,6 @@ $.ajax({
   data: {alumniId: localStorage.getItem("alumniId")},
   success:  function(data)
   { 
-    // var outputList = JSON.parse(data);
-    // alumniArray = outputList;
-    // console.log(outputList);
-    // reload(outputList);
     $('#exampleModal').modal("hide");
     $.ajax({
       type: "POST",
@@ -253,33 +231,6 @@ $.ajax({
   }
 });
 }
-
-// search bar filter
-// var searchBar = document.getElementById('searchBar');
-// searchBar.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("input1");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   for (var i = 1; i < tr.length; i++) {
-//     var tds = tr[i].getElementsByTagName("td");
-//     var flag = false;
-//     for (var j = 0; j < tds.length; j++) {
-//       var td = tds[j];
-//       if (td.textContent.toUpperCase().indexOf(filter) > -1) {
-//         flag = true;
-//       }
-//     }
-//     if (flag) {
-//       tr[i].style.display = "";
-//     }
-//     else {
-//       tr[i].style.display = "none";
-//     }
-//   } e.preventDefault();
-// });
 
 var searchBar=document.getElementById('searchBar');
 searchBar.addEventListener('click',(e)=>{
@@ -303,7 +254,6 @@ searchBar.addEventListener('click',(e)=>{
         document.getElementById("searchNotFound").innerHTML=``
       }
       var outputList = JSON.parse(data);
-      console.log(outputList);
       alumniArray = outputList;
       pageIndex=0;
       reload(outputList,pageIndex);
@@ -374,7 +324,6 @@ $.ajax({
 
 var searchBar=document.getElementById('searchBar');
 $("#status,#department").on("change", function () {
-  // e.preventDefault();
   var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
   var $department = $('#department').find("option:selected").val();
@@ -400,82 +349,18 @@ $("#status,#department").on("change", function () {
       checkbox();
     }
 });
-  // e.preventDefault();
 })
-
-
-
-// filter by using dropdown
-// $(document).ready(function () {
-//   $("#status,#department").on("change", function () {
-//     var status = $('#status').find("option:selected").val();
-//     var department = $('#department').find("option:selected").val();
-//     console.log(status);
-//     SearchData(status, department)
-//   });
-// });
-// window.SearchData = function (status, department) {
-//   var name = document.getElementById("input1").value; 
-//   $.ajax({
-//     type: "POST",
-//     url: '/admin/searchAlumniName',
-//     data: {name: name, department:department, status:status},
-//     success:  function(data)
-//     { 
-//       var outputList = JSON.parse(data);
-//       alumniArray = outputList;
-//       console.log(outputList);
-//       reload(outputList);
-//     }
-// });
-  // if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
-  //   $('#myTable tbody tr').show();
-  // } else {
-  //   $('#myTable tbody tr:has(td)').each(function () {
-  //     var rowStatus = $.trim($(this).find('td:eq(4)').text());
-  //     var rowDepartment = $.trim($(this).find('td:eq(3)').text());
-  //     if (status.toUpperCase() != 'ALL' && department.toUpperCase() != 'ALL') {
-  //       if (rowStatus.toUpperCase() == status.toUpperCase() && rowDepartment == department) {
-  //         $(this).show();
-  //       } else {
-  //         $(this).hide();
-  //       }
-  //     } else if ($(this).find('td:eq(4)').text() != '' || $(this).find('td:eq(4)').text() != '') {
-  //       if (status != 'All' || department == 'All') {
-  //         if (rowStatus.toUpperCase() == status.toUpperCase()) {
-  //           $(this).show();
-  //         } else {
-  //           $(this).hide();
-  //         }
-  //       }
-  //       if (department != 'All' || status == 'All') {
-  //         if (rowDepartment == department) {
-  //           $(this).show();
-  //         }
-  //         else {
-  //           $(this).hide();
-  //         }
-  //       }
-  //     }
-
-  //   }
-  //   );
-  // }
-// }
 
 //clearAll
 $("#clearAll").on("click", function (e) {
   $('#department option').prop('selected', function () {
     e.preventDefault();
-    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
   $('#status option').prop('selected', function () {
     e.preventDefault();
-    // $('#myTable tbody tr').show();
     return this.defaultSelected;
   });
-  // document.getElementById('input1').value = "";
   
   var $name = document.getElementById("input1").value;
   var $status = $('#status').find("option:selected").val();
@@ -531,10 +416,6 @@ var deleteButton=document.getElementById('deleteButton');
       data: {listOfDeleteAlumniId: localStorage.getItem("alumniId")},
       success:  function(data)
       { 
-        // var outputList = JSON.parse(data);
-        // alumniArray = outputList;
-        // console.log(outputList);
-        // reload(outputList);
         checkboxes[0].checked = false;
         $.ajax({
           type: "POST",
@@ -558,31 +439,10 @@ reload(alumniArray,pageIndex);
 window.nextPage = function () {
   pageIndex++;
   reload(alumniArray,pageIndex);
+  window.scrollTo(0, 0);
 };
 window.previousPage = function () {
   pageIndex--;
   reload(alumniArray,pageIndex);
+  window.scrollTo(0, 0);
 };
-// const checkbox = () => {
-//   $(document).ready(function () {
-//   $('.custom-control-input').on("change", function () {
-//     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//     var count=0;
-//     var i;
-//     for (i = 1; i < checkboxes.length; i++) {
-//       if(checkboxes[i].checked){
-//         count++
-//       }
-//     }
-//     console.log(count);
-//     console.log(checkboxes.length);
-//     if(count==checkboxes.length-1){
-//       console.log("hihihi")
-//       checkboxes[0].checked = true;
-//     }else if(count !=checkboxes.length-1){
-//       checkboxes[0].checked = false;
-//     }
-//   });
-// });
-// }
-  

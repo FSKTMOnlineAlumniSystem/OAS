@@ -1,14 +1,8 @@
-<?php
-// include_once '../src/Domain/header.php';
-?>
-<!-- <link rel="stylesheet" type="text/css" href="/css/Admin/Admin-AlumniListPage.css" /> -->
 
   <title><?= $GLOBALS['title']; ?></title>
 
   
   <?php
-// include_once '../../../config/config.php';
-// include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Admin-ManageAlumni/Admin-UploadAlumniImageController.php';
@@ -70,7 +64,6 @@ if(isset($_POST['update'])) {
 echo "Exception: " . $e->getMessage();
 }
 }
-
 ?>
 
 
@@ -112,7 +105,7 @@ echo "Exception: " . $e->getMessage();
                             <div class="w-50 position-relative">
                                 <div class="picture-container">
                                     <div class="picture">
-                                        <img src="../uploads/alumni/AL-1.png" class="picture-src"
+                                        <img src="" class="picture-src"
                                             id="wizardPicturePreview" title="">
                                             <input type="file" id="wizard-picture">
                                             <input type="file" name="image" id="profilePicture" class="d-none">
@@ -187,10 +180,6 @@ echo "Exception: " . $e->getMessage();
                                 <div class="col-sm-4">E-mail:</div>
                                 <div class="col-sm-8">
                                     <p type="email" id="email" name="email"></p>
-                                    <!-- <div class="valid-feedback">Valid.</div>
-                                    <div id="emailFeedback" class="invalid-feedback">
-                                        Please provide a valid email.
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -239,7 +228,6 @@ echo "Exception: " . $e->getMessage();
     </div>
     <script type="text/javascript">var alumni_array = <?php echo json_encode($all_activities) ?>;</script>
     <script type="module" src="/js/Admin/Admin-EditAlumniProfilePage.js"></script>
-    <!-- <script type='text/javascript' src='../js/Admin/addLeftNav.js'></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
