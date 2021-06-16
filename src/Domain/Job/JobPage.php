@@ -15,7 +15,7 @@ try {
 
 
 } catch (Exception $e){
-  echo "Exception here!";
+  echo $e->getMessage();
 }
 ?>
 

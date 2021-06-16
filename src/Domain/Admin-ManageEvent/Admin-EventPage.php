@@ -34,8 +34,7 @@ try {
     // $defaultImage = $event_model->getDefaultPicture();
 
   } catch (Exception $e) {
-    echo "Exception here!";
-    echo $e;
+    echo $e->getMessage();
   }
 ?>
   <script type="text/javascript">var event_array = <?php echo json_encode($all_activities)?>;</script>
@@ -123,8 +122,7 @@ if(isset($_POST["checkbox"])){
 //     $deleteEventModel = new deleteEventModel($db->getConnection());
 //     $deleteEventModel-> deleteEvent($eventId);
 //   } catch (Exception $e) {
-//     echo "Exception here!";
-//     echo $e;
+//     echo $e->getMessage();
 //   }
 //   }
 // }
@@ -411,7 +409,6 @@ if(isset($_POST["checkbox"])){
             }
         }
       } catch (Exception $e) {
-        echo "Exception here!";
-        echo $e;
+        echo $e->getMessage();
       }*/
       ?>
