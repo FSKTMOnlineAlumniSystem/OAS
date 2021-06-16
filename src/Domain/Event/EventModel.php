@@ -78,21 +78,15 @@ class EventModel
   {
     try {
       $stmt = $this->connection->prepare('
-      SELECT * FROM event 
-      LEFT JOIN image 
-      ON event.imageId=image.imageId');
+      SELECT * FROM event');
       $stmt->execute();
       $data = $stmt->fetchAll();
-      $this->event = $data;
       if (!$data) {
         return array();
       }
       // sort the event based on datetime
       usort($data, fn ($a, $b) => strtotime($a['dateTime']) - strtotime($b['dateTime']));
       $data = array_reverse(array_slice($data, -6, 6));
-      // foreach($data as $row){
-      //   echo $row['dateTime'].'<br>';
-      // }
       return $data;
     } catch (PDOException $exception) {
       error_log('EventModel: get6LatestEvent: ' . $exception->getMessage());
@@ -172,34 +166,25 @@ class EventModel
   }
   public function EventImages($eventId)
   {
-    $stmt = $this->connection->prepare('SELECT * FROM event LEFT JOIN image ON event.imageId=image.imageId WHERE eventId=:eventId');
-    $stmt->bindParam(':eventId', $eventId);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-    $image = array();
-    foreach ($data as $eachuser) {
-      if (!is_null($eachuser['imageData'])) {
-        $temp_string = 'data::' . $eachuser['type'] . ';base64,' . base64_encode($eachuser['imageData']);
-        array_push($image, $temp_string);
-      } else {
-        $temp_path = './Assets/imgs/default_events.jpg';
-        array_push($image, $temp_path);
+    try {
+      $stmt = $this->connection->prepare('SELECT * FROM event LEFT JOIN image ON event.imageId=image.imageId WHERE eventId=:eventId');
+      $stmt->bindParam(':eventId', $eventId);
+      $stmt->execute();
+      $data = $stmt->fetchAll();
+      $image = array();
+      foreach ($data as $eachuser) {
+        if (!is_null($eachuser['imageData'])) {
+          $temp_string = 'data::' . $eachuser['type'] . ';base64,' . base64_encode($eachuser['imageData']);
+          array_push($image, $temp_string);
+        } else {
+          $temp_path = './Assets/imgs/default_events.jpg';
+          array_push($image, $temp_path);
+        }
       }
+      return $image;
+    } catch (PDOException $exception) {
+      error_log('EventModel: EventImages: ' . $exception->getMessage());
+      throw $exception;
     }
-    return $image;
-  }
-
-  public function EventData()
-  {
-    $query = "SELECT * FROM event";
-    $stmt = $this->connection->prepare($query);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-    if (!$data) {
-      return array();
-    }
-    usort($data, fn ($a, $b) => strtotime($a['dateTime']) - strtotime($b['dateTime']));
-    $data = array_reverse(array_slice($data, -6, 6));
-    return $data;
   }
 }

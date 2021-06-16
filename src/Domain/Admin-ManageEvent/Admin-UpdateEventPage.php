@@ -39,7 +39,7 @@
     }
     // $defaultImage = $event_model->getDefaultPicture();
   } catch (Exception $e) {
-    echo "Exception here!";
+    echo $e->getMessage();
   }
   ?>
 
