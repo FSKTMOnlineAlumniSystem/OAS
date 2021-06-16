@@ -9,9 +9,9 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
     $event_model = new EventModel($db->getConnection());
-    $all_activities_event = $event_model->EventData();
+    $all_activities_event = $event_model->get6LatestEvent();
     for ($i=0; $i < count($all_activities_event); $i++) { 
-        $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['imageId']);
+        $allImage_event[$i] = $event_model->EventImages($all_activities_event[$i]['eventId']);
     }
     for ($i=0; $i< count($all_activities_event); $i++){
         $all_activities_event[$i]['imageId'] = $allImage_event[$i];
@@ -34,7 +34,7 @@ try {
     }
 
 } catch (Exception $e) {
-  echo "Exception here!";
+  echo $e->getMessage();
 }
 
 // $Password = "12345";

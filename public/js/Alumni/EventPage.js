@@ -14,15 +14,14 @@ const handleSearching = evt => {
   const searchQueryEle = document.getElementById("search_item");
   // we can know user searching by getting the searchQuery.value
   const searchQuery = searchQueryEle.value.toLowerCase();
-  console.log(searchQuery);
-  if (searchQuery == "") {
-    alert("Hi, type something to search!");
-    return;
+  if(searchQuery.trim() === ""){
+    location.href = '/event';
+  }else{
+    var url = new URL(location.href);
+    var params = { search: searchQuery };
+    url.search = new URLSearchParams(params).toString();
+    location.href = (url.href);
   }
-  var url = new URL(location.href);
-  var params = { search: searchQuery };
-  url.search = new URLSearchParams(params).toString();
-  location.href = (url.href);
 };
 searchBtn.addEventListener('click', handleSearching);
 searchInput.addEventListener('keypress', (evt) => {
@@ -46,14 +45,16 @@ const toEventPage = (pageIdx) => {
   url.search = new URLSearchParams(params).toString();
   location.href = (url.href);
 }
-const curPageIndex = document.querySelector('[data-cur-page-index]').innerText;
+const curPageIndex = document.querySelector('[data-cur-page-index]')?document.querySelector('[data-cur-page-index]').innerText:-1;
 // add event listeners
 const prevPageBtn = document.getElementById('previousEventPage');
 const nextPageBtns = Array.from(document.querySelectorAll('.nextEventPage'));
 const next2PageBtn = document.getElementById('next2EventPage');
+if (prevPageBtn) {
 prevPageBtn.addEventListener('click', evt => {
   toEventPage(parseInt(curPageIndex)-1);
 });
+}
 nextPageBtns.forEach(btn => {
   btn.addEventListener('click', evt => {
     toEventPage(parseInt(curPageIndex)+1);
@@ -64,5 +65,3 @@ if (next2PageBtn) {
     toEventPage(parseInt(curPageIndex)+2);
   });
 }
-onclick = "nextEventPage();nextEventPage()"
-onclick = "nextEventPage()"

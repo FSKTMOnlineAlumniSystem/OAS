@@ -12,14 +12,15 @@ class AlumniModel
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
-        $sql='
-        SELECT COUNT(*) FROM alumni 
-        WHERE isActive = 1';
+        $sql="
+            SELECT COUNT(*) FROM alumni 
+            WHERE isActive = 1 AND isVerified = 1 AND approvedBy!=''
+        ";
         $this->count($sql);
     }
 
     public function AlumniImages($alumniId){
-        $stmt = $this->connection->prepare('SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId');
+        $stmt = $this->connection->prepare("SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId=:alumniId");
         $stmt->bindParam(':alumniId',$alumniId);
         $stmt->execute();
         $data = $stmt->fetchAll();
@@ -37,7 +38,7 @@ class AlumniModel
     }
 
     public function AlumniData(){
-        $query = "SELECT * FROM alumni WHERE isActive = 1 AND approvedBy!='' AND  isEmailPublic = 1  order by RAND() LIMIT 0, 6";  
+        $query = "SELECT * FROM alumni WHERE isActive = 1 AND isVerified = 1 AND approvedBy!='' AND isEmailPublic = 1 order by RAND() LIMIT 0, 6";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -74,12 +75,7 @@ class AlumniModel
         $this->pageIndex= $pageIndex;
         $offset = ($pageIndex -1) * 10;
         try {
-            $stmt = $this->connection->prepare('
-            SELECT * FROM alumni 
-            LEFT JOIN image 
-            ON alumni.imageId=image.imageId 
-            WHERE isActive = 1
-            LIMIT :offset, 10');
+            $stmt = $this->connection->prepare("SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE isActive = 1 AND isVerified = 1 AND approvedBy!='' LIMIT :offset, 10");
             $stmt->bindParam(':offset',$offset );
             $stmt->execute();
             $data = $stmt->fetchAll();
@@ -101,24 +97,27 @@ class AlumniModel
     public function searchAlgo($searchQuery){
         $this->search = $searchQuery;
         $offset = ($this->pageIndex -1) * 10;
-        $query ='SELECT * FROM alumni
+        $query ='
+            SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId
-            WHERE isActive = 1 
+            WHERE isActive = 1 AND isVerified = 1 AND approvedBy!=\'\' 
             AND (`name` LIKE \'%'.$this->search.'%\' 
             OR `email` LIKE \'%'.$this->search.'%\'
             OR `department` LIKE \'%'.$this->search.'%\'
             OR `graduated` LIKE \'%'.$this->search.'%\'
             OR `biography` LIKE \'%'.$this->search.'%\')
-            LIMIT :offset, 10'
-            ;
-        $count = '
+            LIMIT :offset, 10
+            ';
+        $count ='
             SELECT COUNT(*) FROM alumni 
-            WHERE isActive = 1 AND (`name` LIKE \'%'.$this->search.'%\'
+            WHERE isActive = 1 AND isVerified = 1 AND approvedBy!=\'\' 
+            AND (`name` LIKE \'%'.$this->search.'%\'
             OR `email` LIKE \'%'.$this->search.'%\'
             OR `department` LIKE \'%'.$this->search.'%\'
             OR `graduated` LIKE \'%'.$this->search.'%\'
-            OR `biography` LIKE \'%'.$this->search.'%\')';
+            OR `biography` LIKE \'%'.$this->search.'%\')
+            ';
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':offset',$offset );
@@ -151,10 +150,7 @@ class AlumniModel
             }
         }else{
             try {
-                $stmt = $this->connection->prepare('
-                SELECT * FROM alumni 
-                WHERE isActive = 1
-                LIMIT :offset, 10');
+                $stmt = $this->connection->prepare("SELECT * FROM alumni WHERE isActive = 1 AND isVerified = 1 AND approvedBy!='' LIMIT :offset, 10");
                 $stmt->bindParam(':offset',$offset );
                 $stmt->execute();
                 $data = $stmt->fetchAll();

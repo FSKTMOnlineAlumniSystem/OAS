@@ -31,7 +31,7 @@ try {
     $all_activities['imageId'] = $image[0];
 
 } catch (Exception $e) {
-    echo "Exception here!";
+    echo $e->getMessage();
 }
 ?>
 

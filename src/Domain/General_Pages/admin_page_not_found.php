@@ -58,5 +58,5 @@ $eventPage = preg_match('/\/event/i', $_SERVER['REQUEST_URI']);
                 </div>
             </div>
         </div>
-        <? include_once '../src/templates/GeneralScripts.php'; ?>
+        <?php include_once'../src/templates/GeneralScripts.php'; ?>
     </main>

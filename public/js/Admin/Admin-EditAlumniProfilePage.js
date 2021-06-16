@@ -1,8 +1,4 @@
-console.log('connecting');
 let alumniArray=alumni_array
-console.log(alumniArray);
-
-// const imgPath = "/public/Assets/imgs/";
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 const img = document.querySelector('#wizard-picture');
 const name = document.querySelector('#name');
@@ -49,11 +45,10 @@ function setValid(el) {
 
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
-  console.log('f')
   let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-  if (e.target.files && e.target.files[0] && e.target.files[0].size > 1000000) {
+  if (e.target.files && e.target.files[0] && e.target.files[0].size > 10000000) {
     // To handle the file size
-    choosePictureDescription.textContent = "Image size must be smaller than 1MB";
+    choosePictureDescription.textContent = "Image size must be smaller than 10MB";
   } else if (
     e.target.files &&
     e.target.files[0] &&
@@ -76,13 +71,11 @@ function readURL(e) {
 function isEmpty(obj) {
     return obj.value.length == 0;
 }
-// const emailFormat = /[a-zA-Z0-9]+@[a-z0-9]+(\.[a-z]+)+/;
-// const phoneNumberFormat = /[0-9]+-[0-9]{7,}/;
+
 const graduatedFormat = /[0-9]{4}/;
 const icNumberFormat = /^\d{6}-\d{2}-\d{4}/;
 
 form.addEventListener('submit', (e) => {
-// window.checkvalidation = function(){
 let errorExist = false; //false if no error exists in alumni details
 
     if (isEmpty(icNumber) || !icNumber.value.match(icNumberFormat)) {
@@ -117,29 +110,6 @@ let errorExist = false; //false if no error exists in alumni details
         e.preventDefault();
         return false;
     }    
-    // else {
-    //     alumniArray.forEach((al) => {
-    //         return true;
-    //         if (al.alumniId === currentAlumniId) {
-    //             if (img.value) {
-    //                 const imgLocalPathArr = img.value.split('\\');
-    //                 al.imageId = imgLocalPathArr[imgLocalPathArr.length - 1];
-    //             }
-    //             al.email = email.value;
-    //             al.contactNumber = contactNumber.value;
-    //             al.biography = biography.value;
-    //             al.graduated = graduated.value;
-    //             al.name = name.value;
-    //             al.icNumber = icNumber.value;
-    //             al.gender = gender.value;
-    //             al.department = department.value;
-    //             // updateDummyData(dummyResponse);
-    //         }
-    //     });
-        // saveButton.textContent = 'Saving...';
-        // setTimeout(() => {
-        //     location = 'alumniList';
-        // }, 1000);
     }
 )
 //Check whether there is any changes that might be lost/
