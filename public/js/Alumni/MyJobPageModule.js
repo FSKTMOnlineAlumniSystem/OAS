@@ -3,7 +3,7 @@ var pageIndex = 0;
 var outputList;
 var deleteID;
 outputList = myJob_array;
-console.log("connect");
+
 
 const loadMyJobList = (pageIndex, outputList)=>{
   const jobList = document.getElementById("jobList");
@@ -13,7 +13,7 @@ const loadMyJobList = (pageIndex, outputList)=>{
   var dataLength = outputList.length;
   var remainingLength = dataLength - jobStartIndex;
  
-  console.log(outputList);
+
   /*   create button*/
  if(outputList.length === 0){
     document.getElementById("no_result").innerHTML="";
@@ -92,7 +92,7 @@ const loadMyJobList = (pageIndex, outputList)=>{
   //LOAD THE JOBLIST BASED ON DUMMYDATA 
   document.getElementById("top").innerHTML="";
   document.getElementById("no_result").innerHTML="";
-  console.log(outputList.length, "asas");
+
   for (let i = jobStartIndex; i < jobEndIndex && i < outputList.length; i++) {
         document.getElementById("jobList").innerHTML += `
           <div class="col-12 col-sm-6 col-md-4  mb-4">
@@ -196,7 +196,6 @@ const handleMyJobSearch = evt =>{
     jobList =JSON.parse(resp);
     outputList = jobList;
      if(outputList.length===0){
-       console.log("search");
       document.getElementById("top").innerHTML="";
       insertSearchNoResult(document.getElementById("no_result"));
       document.getElementById("nextPage").innerHTML = "";
@@ -205,7 +204,6 @@ const handleMyJobSearch = evt =>{
       document.getElementById("jobList").innerHTML = "";
       return;
     }else{
-      console.log(jobList.length);
      loadMyJobList(pageIndex,jobList);
     }
     },
@@ -214,7 +212,7 @@ const handleMyJobSearch = evt =>{
 
 }
 
-
+//ALLOW ENTER FOR SEARCHING
 searchButton.addEventListener('click',handleMyJobSearch);
 searchInput.addEventListener('keypress', (evt)=>{
   if(evt.key === 'Enter'){
@@ -236,17 +234,18 @@ searchInput.addEventListener('keypress', (evt)=>{
   }
 
 
-
+//CLICK NEXT PAGE
 window.nextPage = function () {
   pageIndex++;
-  console.log(outputList + "hihi");
   loadMyJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
 };
 
 //CLICK PREVIOUS PAGE
 window.previousPage = function () {
   pageIndex--;
   loadMyJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
 };
 
 loadMyJobList(pageIndex,outputList);

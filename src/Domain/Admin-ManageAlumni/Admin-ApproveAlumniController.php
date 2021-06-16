@@ -9,14 +9,6 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $adminId = $_SESSION['admin']['adminId'];
     $updateApprove = new  UpdateAlumniModel($db->getConnection());
     $updateApprove->updateApprovedby($adminId,$alumniId);
-    // $all_activities=$updateApprove->getAll();
-    //   $allImage = $updateApprove->getProfilePicture();
-    //   for ($i=0; $i< count($all_activities); $i++){
-    //     if($allImage[$i] == null){
-    //       $all_activities[$i]['imageId'] = "/Assets/imgs/default_user.png";
-    //     }else
-    //     $all_activities[$i]['imageId'] = $allImage[$i];
-    //   }
       echo json_encode($updateApprove);
     }
   ?>

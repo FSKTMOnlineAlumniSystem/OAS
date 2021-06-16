@@ -1,6 +1,4 @@
-// import { dummyResponse, updateDummyData } from "../dummydata.js";
 const imgPath = "/Assets/imgs/";
-console.log('connect');
 var eventArray;
 eventArray=event_array;
 var pageIndex = 0;
@@ -18,18 +16,9 @@ if(eventArray.length==0){
   document.getElementById("previousPage").innerHTML = '';
   document.getElementsByClassName("pages")[0].innerHTML = '';
   insertSearchNoResult(document.getElementById("no_result"));
-  // document.getElementById('forSearch').innerHTML=`
-  // <div class="row m-0 p-0 justify-content-center">
-  //       <div class="text-center">
-  //       <p>Search not Found hehehe</p>
-  //         <img class="card-img-150 mb-3" src="/Assets/imgs/searchNotFound.png" alt="Search Not Found" style="width:500px;height:500px;">
-  //       </div>
-  //       `;
 }
 else{
   document.getElementById('no_result').innerHTML='';
-
-  // console.log(eventArray);
   let eventStartIndex = pageIndex * 10;
   let eventEndIndex = eventStartIndex + 10;
 
@@ -89,8 +78,6 @@ else{
   var table = document.getElementsByClassName(
     "table table-striped table-sm something"
   )[0];
-  //or use :  var table = document.all.tableid;
-
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
@@ -101,7 +88,6 @@ else{
     i++
   ) 
   {
-  console.log('hihihihi')
     var newRowContent = `<tr class="rowss">
                 
                <td>
@@ -150,10 +136,6 @@ else{
                 </td>
             </tr>`;
 {
-
-
-  //another method
-// 
     var tableRef = document
       .getElementsByClassName("table table-striped table-sm something")[0]
       .getElementsByTagName("tbody")[0];
@@ -161,9 +143,7 @@ else{
 
     newRow.innerHTML = newRowContent;
   }
-
-
-/* <button type="button" class="clickButton close" id=${outputList[i].jobId} role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></button>   */}
+}
 //trash model
   //CLICKING THE TRASH ICON
   const closeDeleteModalButton = document.querySelector("#closeDeleteModalButton");
@@ -204,16 +184,12 @@ else{
     );
   }
   var $eventId=[];
-  // var checkboxes=[];
-//delete multiple row
 window.DeleteCheckedRow = function () {
   $eventId=[];
   checkboxes='';
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   for (var i = checkboxes.length - 1; i > 0; i--) {
     if (checkboxes[i].checked) {
-      console.log(pageIndex*10+i + "  , ");
-      console.log('p'+pageIndex);
       $eventId.push(eventArray[pageIndex*10+i-1].eventId);
     }
   }
@@ -236,12 +212,9 @@ window.DeleteCheckedRow = function () {
 
     $(document).ready(function () {
       $('.custom-control-input').on("change", function () {
-          // alert('changed');
           var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-          console.log(checkboxes.length);
           var allChecked=true;
     for (var i = 1 ; i < checkboxes.length ; i++) {
-      // checkboxes[i].checked if true then checked
       if(!checkboxes[i].checked){
         allChecked=false;
       }
@@ -259,16 +232,8 @@ window.DeleteCheckedRow = function () {
   var clickedAlumniIndex;
   document.querySelectorAll('.eventTitle').forEach((title) => {
     title.addEventListener('click', (e) => {
-      console.log(e.target.id);
       clickedAlumniIndex = e.target.id;
-      console.log(eventArray[clickedAlumniIndex])
-      // if(eventArray[clickedAlumniIndex] == 'undefined'){
-      //   check=true;
-      //   console.log('undefined imagessss');
-      // }else{
       var check=eventArray[clickedAlumniIndex].imageId==null;
-      console.log(check);
-      // }
       if(check){
         document.querySelector('#imageTitle').src="/Assets/imgs/default_events.jpg";
       }else{
@@ -288,11 +253,8 @@ window.DeleteCheckedRow = function () {
 
 
 $('#deleteButton').click(function(){
-// var $eventToDelete=eventArray[findId].eventId;
 var search = document.getElementById("input1").value;
-// console.log($eventToDelete);
 var $eventToDelete=localStorage.getItem('eventToDelete');
-
 $.ajax({
   url:"/admin/delete/event",    //the page containing php script
   data: { 
@@ -303,13 +265,6 @@ $.ajax({
   dataType: 'json',
   success: function(resp){
     uncheckTop();
-    console.log('resp');
-      console.log(resp);
-    // var outputList = JSON.parse(resp);
-    // console.log('resp after parse');
-
-    // console.log(resp);
-  // eventArray.splice(findId, 1)
     eventArray=resp;
     loadEventList(pageIndex,eventArray);
   },
@@ -322,20 +277,9 @@ $.ajax({
 
 
 $('#deleteCheckedButton').click(function(){
-  // window.DeleteCheckedRow = function () {
-    // var $eventId=[];
-      // console.log('delete checked row');
       var checkboxes = document.querySelectorAll('input[type="checkbox"]');
       var search = document.getElementById("input1").value;
       var $eventId=localStorage.getItem('eventToDelete');
-  
-      // for (var i = checkboxes.length - 1; i > 0; i--) {
-      //   if (checkboxes[i].checked) {
-      //     $eventId.push(eventArray[i-1].eventId);
-      //   }
-      // }
-      // $eventId=$eventId.toString();
-      // console.log($eventId);
       $.ajax({
         url:"/admin/delete/event",    //the page containing php script
         data: { 
@@ -346,30 +290,17 @@ $('#deleteCheckedButton').click(function(){
         type: 'POST',    //request type,
         // dataType: "json",
         success: function(resp){
-          // console.log('resp');
-          // console.log(resp);
           var outputList = JSON.parse(resp);
           eventArray=outputList;
-          // eventArray=resp;
-          console.log(eventArray);
           loadEventList(pageIndex,eventArray);
         },
         error: function(request, status, error){  
         alert(error);
         }
         });
-        console.log(checkboxes);
          checkboxes[0].checked = false;
          closeModal("#deleteCheckedModal");
     });
-
-// window.toggle = function (source) {
-//   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//     for (var i = 0; i < checkboxes.length; i++) {
-//     if (checkboxes[i] != source && $(checkboxes[i]).is(':visible'))
-//       checkboxes[i].checked = source.checked;
-//   }
-// }
 $(document).ready(function () {
   $("#status,#department").on("change", function () {
     var status = $('#status').find("option:selected").val();
@@ -380,7 +311,6 @@ $(document).ready(function () {
 
 window.toggle = function (source) {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  console.log(checkboxes);
   for (var i = 0; i < checkboxes.length; i++) {
     if ($(checkboxes[i]).is(":visible") && (checkboxes[i] != source ));
       checkboxes[i].checked = source.checked;
@@ -388,7 +318,6 @@ window.toggle = function (source) {
 };
 
 window.uncheckTop= function(){
-  console.log('delete function');
   var topcheckboxes = document.getElementById('CheckAllBoxes');
   topcheckboxes.checked=false;
 }
@@ -399,110 +328,26 @@ window.check = function (source, i) {
 
 window.nextPage = function () {
   pageIndex++;
-  console.log(eventArray);
   loadEventList(pageIndex,eventArray);
+  window.scrollTo(0, 0);
 };
 window.previousPage = function () {
-  console.log(eventArray);
   pageIndex--;
   loadEventList(pageIndex,eventArray);
+  window.scrollTo(0, 0);
 };
 loadEventList(pageIndex,eventArray);
-
-
 
 window.updateEvent = function (o) {
   var eventId = o.id.split(" ")[1]
   localStorage.setItem("updateId", eventId)
   location.href = "Admin-UpdateEventPage.html"
 };
-
-// window.deleteByJquery= function (o){
-//   var findId = o.id.split(" ")[1]
-//   var $eventToDelete=eventArray[findId].eventId;
-//   console.log($eventToDelete);
-//   document.cookie = "deleteEvent="+$eventToDelete;
-//   location.reload();
-//   location.reload();
-//   location.reload();
-// };
-
-/*
-window.deleteByJquery= function (o){
-  var findId = o.id.split(" ")[1]
-  var $eventToDelete=eventArray[findId].eventId;
-  var search = document.getElementById("input1").value;
-  // console.log($eventToDelete);
-  $.ajax({
-    url:"/admin/delete/event",    //the page containing php script
-    data: { 
-      deleteEvent: $eventToDelete,
-      search: search
-    },
-    type: 'POST',    //request type,
-    // dataType: 'json',
-    success: function(resp){
-      // console.log('resp');
-        // console.log(resp);
-      var outputList = JSON.parse(resp);
-      eventArray=outputList;
-      loadEventList(pageIndex,outputList);
-    },
-    error: function(request, status, error){  
-      alert(error);
-      }
-    });
-};
-*/
-/*
-window.DeleteCheckedRow = function () {
-  var $eventId=[];
-    // console.log('delete checked row');
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    var search = document.getElementById("input1").value;
-    for (var i = checkboxes.length - 1; i > 0; i--) {
-      if (checkboxes[i].checked) {
-        $eventId.push(eventArray[i-1].eventId);
-      }
-    }
-    $eventId=$eventId.toString();
-    // console.log($eventId);
-    $.ajax({
-      url:"/admin/delete/event",    //the page containing php script
-      data: { 
-        checkbox: "checked",
-        deleteEvent: $eventId,
-        search: search
-      },
-      type: 'POST',    //request type,
-      // dataType: "json",
-      success: function(resp){
-        // console.log('resp');
-        // console.log(resp);
-        var outputList = JSON.parse(resp);
-        eventArray=outputList;
-        loadEventList(pageIndex,outputList);
-      },
-      error: function(request, status, error){  
-      alert(error);
-      }
-      });
-       checkboxes[0].checked = false;
-  };
-*/
 // filter
-
 const searchButton = document.getElementById('searchBar');
 var searchInput = document.getElementById('input1');
-
 const handleMyJobSearch = evt =>{
-// $('#searchBar').click(function(){
   var search = document.getElementById("input1").value;
-  // if (search == "") {
-  //   alert("Hi, type something to search!"); // He Lin: suggest change to "Hi, type something to search!" as within the EventPage.js
-  //   // and add a return here so below code will not run
-  //   return;
-  // }
 var outputList;
   $.ajax({
     url: '/admin/search/event',
@@ -511,20 +356,12 @@ var outputList;
     success: function(resp){
     uncheckTop();
     pageIndex = 0;
-    // console.log(resp);
     outputList =JSON.parse(resp);
     eventArray=outputList;
     loadEventList(pageIndex,outputList);
-    //  if(outputList.length===0){
-    //   loadMyJobList(page,outputList,-1);
-    // }else{
-    //  loadMyJobList(page,outputList,outputList.length);
-    // }
     },
-     
   });
 }
-// });
 
 searchButton.addEventListener('click',handleMyJobSearch);
 searchInput.addEventListener('keypress', (evt)=>{
@@ -532,34 +369,6 @@ searchInput.addEventListener('keypress', (evt)=>{
     handleMyJobSearch(evt);
   }
 });
-/*
-var searchBar = document.getElementById('searchBar');
-searchBar.addEventListener('click', (e) => {
-  e.preventDefault();
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("input1");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (var i = 1; i < tr.length; i++) {
-    var tds = tr[i].getElementsByTagName("td");
-    var flag = false;
-    for (var j = 0; j < tds.length; j++) {
-      var td = tds[j];
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        flag = true;
-      }
-    }
-    if (flag) {
-      tr[i].style.display = "";
-    }
-    else {
-      tr[i].style.display = "none";
-    }
-  }
-});
-*/
-
 
 window.SearchData = function (status, department) {
   if (status.toUpperCase() == 'ALL' && department.toUpperCase() == 'ALL') {
@@ -598,108 +407,6 @@ window.SearchData = function (status, department) {
 
 /*Close Modal */
 closeCancelChangesModalButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
-// stayButton.addEventListener('click', () => closeModal('#cancelChangesModal'));
 window.closeModal = function (modalId) {
   // $(modalId).modal('hide');
 }
-// delete row
-/*
-// <?php echo DeleteRowPhp(${eventArray[i].eventId});?>
-window.deleteByJquery= function (o){
-  var findId = o.id.split(" ")[1]
-  var $eventToDelete=eventArray[findId].eventId;
-  console.log($eventToDelete);
-  //cookies
-  // $_COOKIE['deleteEvent'] = $eventToDelete;
-  
-
-  document.cookie = "deleteEvent="+$eventToDelete;
-  // alert(document.cookie);
- location.reload();
- location.reload();
-
-  // $(document).ready(function () {
-  //   createCookie("delete", $(window).height(), "10");
-  // });
-  
-  // function createCookie(name, value, days) {
-  //   var expires;
-  //   if (days) {
-  //     var date = new Date();
-  //     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  //     expires = "; expires=" + date.toGMTString();
-  //   }
-  //   else {
-  //     expires = "";
-  //   }
-  //   document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-  // }
-
-    // var data = {
-    //     fn: "filename",
-    //     deleteEvent: String($eventToDelete)
-    // };
-
-    // $.post("/adminEvent", data);
-
-/*
-// cookies delete checked row
-/*
-var $eventId=[];
-window.DeleteCheckedRow = function () {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  for (var i = checkboxes.length - 1; i > 0; i--) {
-    if (checkboxes[i].checked) {
-      // eventArray.splice(i - 1, 1)
-      $eventId.push(eventArray[i-1].eventId);
-    }
-  }
-  document.cookie="deleteEvent="+ $eventId;
-  document.cookie="checkbox="+'checked';
-
-  checkboxes[0].checked = false;
-  // updateDummyData(dummyResponse)
-  // loadEventList(pageIndex)
-  location.reload();
-  location.reload();
-  location.reload();
-
-};
-*/
-/*
-  try {
-  $.ajax({
-    url:"./adminEvent",    //the page containing php script
-    data: { deleteEvent: $eventToDelete},
-    type: 'POST',    //request type,
-    dataType: 'json',
-    success: function(output) {
-      alert(output);
-  },
-error: function(request, status, error){
-alert(error);
-}
-});
-} catch (Exception ) {
-  console.log('exception');
-}
-*/
-
-
-// $(document).ready(function(){
-//   $.get("http://localhost/adminEvent", 
-//   {
-//     deleteEvent: $eventToDelete
-//   });
-
-// })
-  // $.post( "Admin-EventPage.php", { deleteEvent: eventArray[findId].eventId});
-
-// };*/
-
-// window.DeleteRowFunction = function (o) {
-//   var findId = o.id.split(" ")[1]
-//   eventArray.splice(findId, 1)
-//   updateDummyData(dummyResponse)
-//   loadEventList(pageIndex)
-// };

@@ -61,6 +61,10 @@ define('TITLE_ADDJOB', 'Add Job - Online Alumni System');
 define('TITLE_MY_PROFILE', 'My Profile - Online Alumni System');
 define('TITLE_ALUMNI_PROFILE', 'Alumni Profile - Online Alumni System');
 define('TITLE_ALUMNI', 'Alumni - Online Alumni System');
+define('TITLE_ADMIN_EVENTS', 'Admin Event - Online Alumni System');
+define('TITLE_ADMIN_CREATE_EVENTS', 'Admin Create Event - Online Alumni System');
+define('TITLE_ADMIN_UPDATE_EVENTS', 'Admin Update Event - Online Alumni System');
+define('TITLE_ADMIN_INVITE_ALUMNI', 'Admin Invite Alumni - Online Alumni System');
 define('TITLE_NOT_FOUND', 'Page Not Found');
 
 

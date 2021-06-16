@@ -7,7 +7,6 @@ class Admin_EventModel
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
-        // $this->id = $id;
     }
 
     public function getAll(): array
@@ -16,13 +15,10 @@ class Admin_EventModel
             $stmt = $this->connection->prepare('SELECT * FROM event');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
-            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 return array();
             }
             return $data;
-
         } catch (PDOException $exception) {
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
@@ -35,13 +31,11 @@ class Admin_EventModel
             $stmt = $this->connection->prepare('SELECT * FROM event WHERE eventId=?');
             $stmt->execute([$eventId]);
             $data = $stmt->fetchAll();
-            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 include_once '../src/Domain/General_Pages/admin_page_not_found.php';
                 return exit;
             }
             return $data;
-
         } catch (PDOException $exception) {
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
@@ -49,17 +43,14 @@ class Admin_EventModel
         
    }
    public function deleteEvent($eventId) {
-       //deleteInviteAlumni
     $sql ="DELETE FROM alumni_event WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$eventId]);
 
     $sql = "DELETE FROM event WHERE eventId=?";
     $stmt = $this->connection->prepare($sql);
-   //  $stmt->execute();
     $stmt->execute([$eventId]);
     
-    // IF EXISTS（SELECT * FROM image WHERE imageId=?)
     $sql = "DELETE FROM image WHERE imageId=?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$eventId]);
@@ -85,23 +76,6 @@ class Admin_EventModel
         return $image;
     }
 
-
-    // public function getDefaultPicture(): array{
-    //     $stmt = $this->connection->prepare('
-    //         SELECT * FROM image WHERE imageId="Default"');
-    //     $stmt->execute();
-    //     $data = $stmt->fetchAll();
-
-    //     $image = array();
-    //     foreach($data as $eachuser){
-    //         if($eachuser['imageData']){
-    //         $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-    //         array_push($image,$temp_string);
-    //         }
-    //     }
-    //     return $image;
-    // }
-    // ORDER BY postedDateTime DESC
     public function getSearch($id) {
         $stmt = $this->connection->prepare("
             SELECT * FROM event
@@ -119,7 +93,7 @@ class Admin_EventModel
     }
     public function search($searchterm){
         $query = "SELECT * FROM `event` WHERE (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR location LIKE '%$searchterm%') ";  
-        $stmt = $this->connection->prepare($query);  
+        $stmt = $this->connection->prepare($query); 
         $stmt->execute(); 
         $data = $stmt->fetchAll();
         if(!$data){
@@ -151,13 +125,10 @@ class Admin_Alumni_EventModel
             $stmt = $this->connection->prepare('SELECT * FROM alumni_event');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
-            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 return array();
             }
             return $data;
-
         } catch (PDOException $exception) {
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
@@ -181,13 +152,10 @@ class AlumniModel
             $stmt = $this->connection->prepare('SELECT * FROM alumni');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
-            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 return array();
             }
             return $data;
-
         } catch (PDOException $exception) {
             error_log('ActivityModel: getAll: ' . $exception->getMessage());
             throw $exception;
@@ -200,7 +168,6 @@ class AlumniModel
         ON alumni.imageId=image.imageId');
         $stmt->execute();
         $data = $stmt->fetchAll();
-
         $image = array();
         foreach($data as $eachuser){
             if($eachuser['imageId']=='Default'||$eachuser['imageId']==null){
@@ -253,20 +220,14 @@ class AlumniModel
         $stmt = $this->connection->prepare($query);  
         $stmt->execute([$eventId]);
         $data = $stmt->fetchAll();
-
         $alumni = array();
         foreach($data as $eachAlumni){
-            // print_r();
             $query = "SELECT * FROM `alumni` WHERE alumniId=?";  
             $stmt = $this->connection->prepare($query);  
             $stmt->execute([$eachAlumni['alumniId']]);
             $alumniData = $stmt->fetch(PDO::FETCH_ASSOC);
             array_push($alumni,$alumniData);
         }
-        // print_r($alumni);
-        // print_r($alumni[0]['alumniId']);
-        // print_r($alumni[1]['alumniId']);
-        
         if(!$data){
             return array();
         }
@@ -285,11 +246,7 @@ class AlumniModel
             $allAlumni = array_values($allAlumni);
             return $allAlumni;
     }
-        
     }
-
-    
-
 }
 
 class UpdateEventModel
@@ -300,15 +257,10 @@ class UpdateEventModel
     {
         $this->connection = $connection;
     }
-    // $prevTitle="";
-    // $prevTitle=$_GET['title'];
-    // UPDATE `event` SET `title` = 'Constraint programming' WHERE `event`.`eventId` = 'E-1';
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
-            //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
-            try{
+             try{
              $sql = "UPDATE event SET adminId=?, title=?,dateTime=?,description=?,imageId=?,location=? WHERE eventId=?";
              $stmt = $this->connection->prepare($sql);  
-
              $stmt->execute([$adminId,$title,$newDate,$description,$imageId,$locate,$eventId]);
             }catch (PDOException $exception) {
                 error_log('UpdateEventModel: construct: ' . $exception->getMessage());
@@ -316,12 +268,10 @@ class UpdateEventModel
             }     
     }
     public function getImageId($eventId) :string {
-        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
          $sql = "SELECT imageId FROM `event` WHERE eventId=?";
          $stmt = $this->connection->prepare($sql);  
          $stmt->execute([$eventId]);
          $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        //  $image = array();
         if($data['imageId']!=null){
             echo $data['imageId'];
             return $data['imageId'];
@@ -330,22 +280,10 @@ class UpdateEventModel
             echo 'default';
             return "Default";
         }
-        
-        // foreach($data as $eachuser){
-        //     array_push($image,$eachuser['imageId']);
-        // }
-        //  return $image;
 }
 
 
 }
-
-            //  $stmt ->bindParam(':title',$title);
-            //  $stmt ->bindParam(':dateTime',$newDate);
-            //  $stmt ->bindParam(':description',$description);
-            //  $stmt ->bindParam(':imageId',$imageId);
-            //  $stmt ->bindParam(':location',$locate);
-            //  $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$dateTime,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
 
 class createEventModel
 {
@@ -358,16 +296,11 @@ class createEventModel
     public function updateEvent($eventId,$adminId,$title,$newDate,$description,$imageId,$locate) {
              $sql = "INSERT INTO event (eventId,adminId,title,dateTime,description,imageId,location) VALUES(:eventId,:adminId,:title,:dateTime,:description,:imageId,:location)";
              $stmt = $this->connection->prepare($sql);
-            //  $stmt->execute();
              $result = $stmt->execute(array(':eventId'=>$eventId,':adminId'=>$adminId,':title'=>$title,':dateTime'=>$newDate,':description'=>$description,'imageId'=>$imageId,':location'=>$locate));
-
     }
-    
-    // SELECT max( CONVERT ( substring_index(jobId,'-',-1), UNSIGNED ) ) AS max FROM job
     public function getMaxId(): int{
         $stmt = $this->connection->query("SELECT max( CONVERT ( substring_index(eventId,'-',-1), UNSIGNED ) ) AS max FROM event")->fetchColumn();
         return (int)$stmt;
-
     }
 }
 
@@ -385,8 +318,6 @@ class InviteAlumniModel
             $stmt = $this->connection->prepare('SELECT * FROM alumni_event');
             $stmt->execute();
             $data = $stmt->fetchAll();
-
-            // $data = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$data) {
                 return array();
             }
@@ -399,31 +330,21 @@ class InviteAlumniModel
         
    }
      public function InviteAlumni($alumniId,$eventId,$dateTime) {
-        //  $sql = "UPDATE event SET title='$title',dateTime='$newDate',description='$description',imageId='$imageId',location='$locate' WHERE event,title='$prevtitle'";
-
         $sql ="SELECT * FROM alumni_event WHERE alumniId=? AND eventId=?";
             $stmt = $this->connection->prepare($sql);
-
             $stmt->execute([$alumniId,$eventId]);
-        
         if($stmt->rowCount() == 0)//no row
         {
             try{
                 $sql ="INSERT INTO alumni_event (alumniId, eventId, viewedByAlumni, dateTime, notificationClosedByAlumni)
                     VALUES (?,?,'false',?,'false')";
                 $stmt = $this->connection->prepare($sql);
-    
                 $stmt->execute([$alumniId,$eventId,$dateTime]);
-                
-                // [$alumniId,$eventId,"false",$dateTime,"false"]
                 }catch (PDOException $exception) {
                     error_log('InviteAlumniModel: construct: ' . $exception->getMessage());
                     throw $exception;
                 }     
             }
         }
-       
-       
-        
 }
 ?>

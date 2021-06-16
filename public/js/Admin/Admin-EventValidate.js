@@ -23,7 +23,6 @@ function setInValid(el) {
   }
 
 function checkvalidation() {
-    console.log("here");
     let errorExist = false; //false if no error exists in email, contactNumber, biography
   
     if (isEmpty(title1)) {
@@ -63,11 +62,6 @@ function checkvalidation() {
   
     if (!errorExist) {
       return true
-      // add_element_to_array();
-      // saveButton.textContent = 'Saving...';
-    //   // setTimeout(() => {
-    //   //   location.href = 'adminEvent';
-    //   // }, 1000);
     }else{
       return false;
     }
@@ -77,24 +71,6 @@ function checkvalidation() {
 }
 
 /*Check the file extension of the image & Update preview*/
-///////////////////////need for validation
-// img.addEventListener('change', (e) => readURL(e));
-// function readURL(e) {
-//   let allowedExtensions =
-//     /(\.png|\.jpg|\.jpeg)$/i;
-//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-//     var reader = new FileReader();
-//     reader.onload = function (e) {
-//       document.getElementById("prevImage").src = e.target.result;
-//     }
-//     reader.readAsDataURL(e.target.files[0]);
-//     choosePictureDescription.textContent = "";
-//   } else {
-//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    
-//   }
-// }
-
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
   // var i = localStorage.getItem("updateId");
@@ -102,12 +78,8 @@ function readURL(e) {
   /(\.png|\.jpg|\.jpeg)$/i;
 if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
   // To handle the file size
-  console.log('1');
-  // console.log(eventPicture.files);
   choosePictureDescription.textContent = "Image size must be smaller than 10MB";
 }else if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-  console.log('2');
-  // console.log(e.target.files);
   eventPicture.files = e.target.files;
   var reader = new FileReader();
   reader.onload = function (e) {
@@ -116,31 +88,21 @@ if (e.target.files && e.target.files[0] && e.target.files[0].size>10000000) {
   reader.readAsDataURL(e.target.files[0]);
   choosePictureDescription.textContent = "Choose picture";
 } else {
-  console.log('3');
-
   choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
 }
 }
 
 /*Check whether there is any changes that might be lost*/
 function cancelCreate(){
-  // cancelButton.addEventListener('click', () => {
-    console.log("hiii");
     var titlevalue = document.getElementById("title").value;
     var descriptionvalue = document.getElementById("description").value;
     var locatevalue = document.getElementById("location").value;
     var datevalue = document.getElementById("date").value;
     var timevalue = document.getElementById("time").value;
     var image = document.getElementById("prevImage").src;
-    var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
+    var compare = image.localeCompare("http://localhost/Assets/imgs/default_events.jpg")
     if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
       && !datevalue && !timevalue) {
-      // if (!img.value && 
-      //   titlevalue==title1.value && 
-      //   descriptionvalue==description1.value && 
-      //   locatevalue==locate1.value&& 
-      //   datevalue==date1.value && 
-      //   timevalue==time1.value) {
     location.href = "/admin/event";
     } else {
       /*POP UP MODAL ask if cancel will lose changes */
@@ -151,8 +113,6 @@ function cancelCreate(){
   var i = localStorage.getItem("updateId");
   var d = new Date(eventArray[i].dateTime);
   var todayDate = d.toISOString().slice(0, 10);
-  // document.getElementById('dateTime').value=d;
-  
   let hour = d.getHours();
   let minute = d.getMinutes().toString();
   minute = minute.padStart(2, '0');
@@ -164,42 +124,8 @@ function cancelCreate(){
   var imagesrc=eventArray[i].imageId;
 
 function cancelUpdate(){
-  // cancelButton.addEventListener('click', () => {
-    console.log("hiii");
     var image = document.getElementById("prevImage").src;
-    // var titlevalue = document.getElementById("title").value;
-    // var descriptionvalue = document.getElementById("description").value;
-    // var locatevalue = document.getElementById("location").value;
-    // var datevalue = document.getElementById("date").value;
-    // var timevalue = document.getElementById("time").value;
-    // var image = document.getElementById("prevImage").src;
-    // var compare = image.localeCompare("https://www.ris.org.in/sites/all/themes/ris/images/default-events.jpg")
-    // if (compare == 0 && !titlevalue && !descriptionvalue && !locatevalue
-    //   && !datevalue && !timevalue) {
-      // !img.value && 
-    console.log('time');
-    console.log(time1.value);
-      console.log('image');
-      var t=titlevalue==title1.value;
-      var des=descriptionvalue==description1.value;
-      console.log(descriptionvalue);
-      console.log(description1.value);
       var compareDescription=descriptionvalue.replace(/[^a-zA-Z]/g, "") == description1.value.replace(/[^a-zA-Z]/g, "");
-      var loc=locatevalue==locate1.value;
-      var da=datevalue==date1.value;
-      var ti=timevalue==time1.value;
-      console.log('title '+t);
-      console.log('description '+ des);
-      console.log('location '+loc);
-      console.log('date '+da);
-      console.log('time '+ti);
-      // console.log(image);
-      // console.log(imagesrc);
-      var compare=image==imagesrc;
-      console.log('compare'+compare);
-      // var compare = image.localeCompare(imagesrc)
-      console.log(image);
-      console.log(imagesrc);
       
       if ((image==imagesrc || image=="http://localhost/Assets/imgs/default_events.jpg") &&
         titlevalue==title1.value && 
@@ -216,20 +142,3 @@ function cancelUpdate(){
   function closeModal(modalId) {
     $(modalId).modal('hide');
   }
-
-//   img.addEventListener('change', (e) => readURL(e));
-// function readURL(e) {
-//   let allowedExtensions =
-//     /(\.png|\.jpg|\.jpeg)$/i;
-//   if (e.target.files && e.target.files[0] && allowedExtensions.test(e.target.value)) {
-//     var reader = new FileReader();
-//     reader.onload = function (e) {
-//       document.getElementById("prevImage").src = e.target.result;
-//     }
-//     reader.readAsDataURL(e.target.files[0]);
-//     choosePictureDescription.textContent = "";
-//   } else {
-//     choosePictureDescription.textContent = "Please choose picture in .png, .jpg or .jpeg format";
-    
-//   }
-// }
