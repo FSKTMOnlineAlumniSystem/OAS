@@ -193,28 +193,28 @@ else if (isset($_SESSION['admin'])) {
 
     //Admin-ManageEvent
     elseif (preg_match('/^\/admin\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_EVENTS;
         include '../src/Domain/Admin-ManageEvent/Admin-EventPage.php';
     } elseif (preg_match('/^\/admin\/update\/event\/?/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_UPDATE_EVENTS;
         include '../src/Domain/Admin-ManageEvent/Admin-UpdateEventPage.php';
     } elseif (preg_match('/^\/admin\/create\/event\/?/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_CREATE_EVENTS;
         include '../src/Domain/Admin-ManageEvent/Admin-CreateEventPage.php';
     } elseif (preg_match('/^\/admin\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_INVITE_ALUMNI;
         include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniPage.php';
     } elseif (preg_match('/^\/admin\/delete\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_EVENTS;
         include '../src/Domain/Admin-ManageEvent/Admin-DeleteEventController.php';
     } elseif (preg_match('/^\/admin\/invite\/function\/?$/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_EVENTS;
         include '../src/Domain/Admin-ManageEvent/Admin-InviteAlumniController.php';
     } elseif (preg_match('/^\/admin\/search\/event\/?$/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_INVITE_ALUMNI;
         include '../src/Domain/Admin-ManageEvent/Admin-EventSearchController.php';
     } elseif (preg_match('/^\/admin\/search\/invite\/alumni\/?/i', $_SERVER['REQUEST_URI'])) {
-        $GLOBALS['title'] = TITLE_EVENTS;
+        $GLOBALS['title'] = TITLE_ADMIN_INVITE_ALUMNI;
         include '../src/Domain/Admin-ManageEvent/Admin-inviteAlumniSearchController.php';
     } else {
         $GLOBALS['title'] = TITLE_NOT_FOUND;
