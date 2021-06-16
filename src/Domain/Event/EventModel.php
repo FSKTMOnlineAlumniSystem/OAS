@@ -121,12 +121,13 @@ class EventModel
   }
   public function searchEvents(string $alumniId, string $search, bool $isMyEvent): array
   {
-    if (!$search) { // if not searching, just return all event
+    $queryAftertrim = trim($search);
+    if (!$queryAftertrim) { // if not searching, just return all event
       return !$isMyEvent ? $this->getAll() : $this->getEvents($alumniId);
     }
     try {
       if ($isMyEvent) {
-        $query = "SELECT * FROM event
+        $query = "SELECT event.*, image.type, image.imageData, alumni_event.alumniId, alumni_event.viewedByAlumni, alumni_event.notificationClosedByAlumni FROM event
                   LEFT JOIN image 
                   ON event.imageId=image.imageId
                   LEFT JOIN alumni_event 
@@ -139,7 +140,7 @@ class EventModel
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$alumniId]);
       } else {
-        $query = "SELECT * FROM event
+        $query = "SELECT event.*, image.type, image.imageData, alumni_event.alumniId, alumni_event.viewedByAlumni, alumni_event.notificationClosedByAlumni FROM event
                   LEFT JOIN image 
                   ON event.imageId=image.imageId
                   LEFT JOIN alumni_event 

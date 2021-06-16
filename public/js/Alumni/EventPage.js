@@ -14,15 +14,14 @@ const handleSearching = evt => {
   const searchQueryEle = document.getElementById("search_item");
   // we can know user searching by getting the searchQuery.value
   const searchQuery = searchQueryEle.value.toLowerCase();
-  console.log(searchQuery);
-  if (searchQuery == "") {
-    alert("Hi, type something to search!");
-    return;
-  }
   var url = new URL(location.href);
-  var params = { search: searchQuery };
-  url.search = new URLSearchParams(params).toString();
-  location.href = (url.href);
+  if(searchQuery.trim() === ""){
+    location.href = (url.href);
+  }else{
+    var params = { search: searchQuery };
+    url.search = new URLSearchParams(params).toString();
+    location.href = (url.href);
+  }
 };
 searchBtn.addEventListener('click', handleSearching);
 searchInput.addEventListener('keypress', (evt) => {

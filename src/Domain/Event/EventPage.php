@@ -1,5 +1,6 @@
 <?php
 // connect to database to access the needed data
+include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Event/EventModel.php';
 include_once '../src/Domain/Event/AlumniEventModel.php';
 include_once '../src/Domain/Database.php';
@@ -9,6 +10,14 @@ try {
   $event_model = new EventModel($db->getConnection());
   $alumni_event_model = new AlumniEventModel($db->getConnection());
   $all_alumni_events = $alumni_event_model->getAll();
+  if (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI'])) {
+    $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', false);
+  } elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
+    $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', true);
+  } else {
+    $events = $event_model->getAll();
+    echo "searching is not working<br>"; // Logger
+  }
   $server_error = false;
 } catch (Exception $e) {
   // echo "Exception: " . $e->getMessage();
@@ -57,14 +66,8 @@ includeWithVariables('../src/templates/header.php', array(
       <br />
       <div class="row">
         <?php
-        if (preg_match('/^\/event\/?/i', $_SERVER['REQUEST_URI'])) {
-          $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', false);
-        } elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
-          $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', true);
-        } else {
-          $events = $event_model->getAll();
-          echo "searching is not working<br>"; // Logger
-        }
+        
+        
         // initial setup of pagination
         $pageIndex = (isset($_GET['page'])) ? $_GET['page'] : 1;
         // echo $pageIndex.'<br>';

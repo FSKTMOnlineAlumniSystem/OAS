@@ -13,7 +13,6 @@ for (let i = 0; i < event_array.length; i++) {
 
     const card_event = document.createElement('div');
     card_event.setAttribute('class', 'swiper-slide pl-1 pr-1 h-100');
-    console.log(event_array[i].imageId);
     card_event.innerHTML = `
                 <div class="card h-100" id="${event_array[i].eventId}">
                 <a style="text-decoration:none; color:black;" href="eventdetails?eventId=${event_array[i].eventId}">
