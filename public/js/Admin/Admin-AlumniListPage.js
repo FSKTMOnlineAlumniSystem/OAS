@@ -126,10 +126,10 @@ tbody.innerHTML = "";
 
   if (alumni[i].approvedBy === "") {
     div.classList.add('bg-danger')
-    div.innerText = 'Not Verified';
+    div.innerText = 'Pending Approval';
   } else {
     div.classList.add('bg-success')
-    div.innerText = 'Verified';
+    div.innerText = 'Approved';
   }
   td.appendChild(div);
   tr.appendChild(td);
@@ -165,9 +165,9 @@ document.querySelectorAll('.alumniName').forEach((alumni) => {
     $("#icNumber").text(alumniArray[e.target.id].icNumber);
     $("#update").attr("id", "update " + e.target.id);
     if (alumniArray[e.target.id].approvedBy === "") {
-      $("#accStatus").text("Not Verified");
+      $("#accStatus").text("Pending Approval");
     } else {
-      $("#accStatus").text("Verified");
+      $("#accStatus").text("Approved");
     }
     if (alumniArray[e.target.id].approvedBy !== "") {
       document.getElementById("approve").disabled = true;
@@ -558,10 +558,12 @@ reload(alumniArray,pageIndex);
 window.nextPage = function () {
   pageIndex++;
   reload(alumniArray,pageIndex);
+  window.scrollTo(0, 0);
 };
 window.previousPage = function () {
   pageIndex--;
   reload(alumniArray,pageIndex);
+  window.scrollTo(0, 0);
 };
 // const checkbox = () => {
 //   $(document).ready(function () {

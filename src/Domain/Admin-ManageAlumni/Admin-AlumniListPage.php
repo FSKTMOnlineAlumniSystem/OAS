@@ -81,8 +81,8 @@ includeWithVariables('../src/templates/header.php', array(
                 <label for="exampleFormControlSelect1">Status</label>
                 <select class="form-control" id="status" >
                   <option>All</option>
-                  <option>Verified</option>
-                  <option>Not Verified</option>
+                  <option>Approved</option>
+                  <option>Pending Approval</option>
                 </select>
               </div>
               <!-- filter department dropdown -->

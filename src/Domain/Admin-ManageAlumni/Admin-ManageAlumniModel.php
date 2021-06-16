@@ -67,7 +67,7 @@ class AlumniListModel
     }
 
     public function search($name, $department, $status){
-        if($status=="Verified"){
+        if($status=="Approved"){
             $query = "
             SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND approvedBy!='' AND isActive=1 AND isVerified=1
             ";  
@@ -75,12 +75,11 @@ class AlumniListModel
             $query = "
             SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND isActive=1 AND isVerified=1
             ";   
-        }else if($status=="Not Verified"){
+        }else if($status=="Pending Approval"){
             $query = "
             SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND approvedBy='' AND isActive=1 AND isVerified=1
             ";  
         }
-        // SELECT * FROM `alumni` WHERE isVerified=1 AND isActive=1 AND CONCAT( `name`) LIKE '%".$name."%' AND CONCAT(`department`) LIKE '%".$department."%' AND approvedBy !='' 
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(); 
@@ -122,9 +121,11 @@ public function getSearch($alumniId) {
                 $data = $stmt->fetchAll();
                 // $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (!$data) {
+                    include_once '../src/utilities/includeWithVariable.php' ;
+                    includeWithVariables('../src/templates/header.php');
                         include_once '../src/Domain/General_Pages/admin_page_not_found.php';
-                        exit;
-                        
+                        include_once '../src/templates/GeneralScripts.php';;     
+                        exit;                     
                 }
                 return $data;
     
