@@ -126,7 +126,6 @@ const handleJobSearch = evt =>{
     type: 'post',
     data: {search: search},
     success: function(resp){
-     console.log("success");
 
     pageIndex = 0;
     var jobtList =JSON.parse(resp);
@@ -145,15 +144,18 @@ searchInput.addEventListener('keypress', (evt)=>{
   }
 });
 
+//click next page
 window.nextPage = function () {
   pageIndex++;
   loadJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
 };
 
 //click previous page
 window.previousPage = function () {
   pageIndex--;
   loadJobList(pageIndex, outputList);
+  window.scrollTo(0, 0);
 };
 
 
