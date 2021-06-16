@@ -10,7 +10,7 @@ class Database
     private string $host;
     private string $port;
 
-    public function __construct(string $dbname, string $username, string $password, string $host = 'localhost', string $port = '3307')
+    public function __construct(string $dbname, string $username, string $password, string $host = 'localhost', string $port = '3325')
     {
         $this->dbname = $dbname;
         $this->username = $username;
