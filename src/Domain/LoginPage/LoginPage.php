@@ -351,7 +351,7 @@ $conn = $db->getConnection();
                                 <select name="department" class="form-control p-1" id="Department" aria-label="Default select example">
                                     <option value="0">Department</option>
                                     <option value="Software Engineering">Software Engineering</option>
-                                    <option value="Artificial Intellegent">Artificial Intellegent</option>
+                                    <option value="Artificial Intellegent">Artificial Intellegence</option>
                                     <option value="Computer System and Technology">Computer System and Technology
                                     </option>
                                     <option value="Information System">Information System</option>
