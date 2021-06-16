@@ -33,8 +33,6 @@ crossorigin="anonymous"></script> -->
   $_SESSION['admin']['adminId'];
 
 
-
-
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
   try {
