@@ -139,26 +139,6 @@ public function getSearch($alumniId) {
     
 
 }
-// public function getProfilePicture(): array{
-//     $stmt = $this->connection->prepare('
-//         SELECT * FROM alumni
-//         LEFT JOIN image 
-//         ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
-    
-//     $stmt->execute();
-//     $data = $stmt->fetchAll();
-//     $image = array();
-//     foreach($data as $eachuser){
-//         if($eachuser['imageId']==null){
-//             array_push($image,null);
-//         }
-//         else if($eachuser['imageData']){
-//         $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-//         array_push($image,$temp_string);
-//         }
-//     }
-//     return $image;
-// }
 
 class DeleteAlumniModel
 {
