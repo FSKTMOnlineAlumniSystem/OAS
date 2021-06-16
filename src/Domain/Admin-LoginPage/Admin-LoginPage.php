@@ -45,8 +45,11 @@
 
 <?php
 include_once '../src/Domain/Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+try {
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  } catch (Exception $e) {
+    echo "Exception: " . $e->getMessage();
+  }
 ?>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">

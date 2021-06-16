@@ -8,10 +8,9 @@
 include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   $alumniList_model = new AlumniListModel($db->getConnection());
   $all_activities = $alumniList_model->getAll();
   $allImage = $alumniList_model->getProfilePicture();

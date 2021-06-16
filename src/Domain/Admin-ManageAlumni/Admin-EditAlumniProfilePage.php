@@ -7,9 +7,9 @@ include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include_once '../src/Domain/Database.php';
 include_once '../src/Domain/Admin-ManageAlumni/Admin-UploadAlumniImageController.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 try {
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $alumni = new AlumniListModel($db->getConnection());
     $alumniId=$_GET['alumniId'];
     $alumni->getAlumni($alumniId);
@@ -43,6 +43,7 @@ includeWithVariables('../src/templates/header.php', array(
 <?php
 $prevAlumniId=$_GET['alumniId'];
 if(isset($_POST['update'])) {
+    try{
   $updateTheAlumni = new  UpdateAlumniModel($db->getConnection());	
   // $data = $addJob_model->getMaxId();
   $name = $_POST['name'];
@@ -55,7 +56,6 @@ if(isset($_POST['update'])) {
   $biography = $_POST['biography'];
   $updateTheAlumni->updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$imageId);
   echo "<script>window.location = '/admin/alumnilist'</script>";
-  try{
     //Upload image to database as blob
     if($_FILES["image"]['tmp_name']!=null){
         uploadImage($db->getConnection(),$_FILES["image"],$imageId);
