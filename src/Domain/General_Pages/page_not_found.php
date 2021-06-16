@@ -23,7 +23,7 @@
     <?php
       $navigate = "/home";
       //url contains "admin"
-      if(strpos($_SERVER['REQUEST_URI'], 'admin') !== false){
+      if(isset($_SESSION['admin'])){
         $navigate="/admin";
       }
       echo '<a href='.$navigate.' class="btn btn-primary btn-animation px-3" type="button"><i class="fas fa-angle-left"></i> Back to home</a>'
