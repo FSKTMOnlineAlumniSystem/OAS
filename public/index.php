@@ -96,8 +96,12 @@ else if (isset($_SESSION['alumni'])) {
     } elseif (preg_match('/^\/my-event\/?/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_MY_EVENTS;
         include '../src/Domain/Event/EventPage.php';
+    } elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
+        include '../src/Domain/Event/EventController.php';
+    } elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
+        include '../src/Domain/Event/AlumniEventController.php';
     }
-
+    
     //Job (VIEW)
     elseif (preg_match('/^\/job\/?$/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_JOB;
@@ -164,10 +168,6 @@ else if (isset($_SESSION['admin'])) {
     } elseif (preg_match('/^\/api\/adminprofile\/changepassword\/?$/i', $_SERVER['REQUEST_URI'])) {
         $GLOBALS['title'] = TITLE_MY_PROFILE;
         include '../src/Domain/Admin-MyProfile/AdminChangePasswordController.php';
-    } elseif (preg_match('/^\/api\/event\?/i', $_SERVER['REQUEST_URI'])) {
-        include '../src/Domain/Event/EventController.php';
-    } elseif (preg_match('/^\/api\/alumni-event\/?$/i', $_SERVER['REQUEST_URI'])) {
-        include '../src/Domain/Event/AlumniEventController.php';
     }
 
     // Admin Manage Alumni
