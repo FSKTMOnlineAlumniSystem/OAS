@@ -437,7 +437,6 @@ include '../src/templates/GeneralScripts.php'
                         });
                     }
                     function gotit(){
-                        console.log("hi");
                        location.href = "/login";
                    }
             </script>
@@ -488,7 +487,6 @@ include '../src/templates/GeneralScripts.php'
 
                     
                     function gotit(){
-                         console.log("hi");
                         location.href = "/login";
                     }
                    

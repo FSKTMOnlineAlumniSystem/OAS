@@ -69,8 +69,8 @@ includeWithVariables('../src/templates/header.php', array(
       <br />
       <div class="row">
         <?php
-        
-        
+
+
         // initial setup of pagination
         $pageIndex = (isset($_GET['page'])) ? $_GET['page'] : 1;
         // echo $pageIndex.'<br>';
@@ -169,7 +169,9 @@ includeWithVariables('../src/templates/header.php', array(
     </div>
   </div>
   </div>
-<?php } else { include_once '../src/Domain/General_Pages/server_error.php'; } ?>
+<?php } else {
+  include_once '../src/Domain/General_Pages/server_error.php';
+} ?>
 <?php include_once '../src/templates/footer.php'; ?>
 <?php include_once '../src/templates/GeneralScripts.php'; ?>
 <!-- custom js files -->

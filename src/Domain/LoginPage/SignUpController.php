@@ -1,5 +1,7 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
+
 include_once '../src/Domain/Database.php';
 // include_once '../src/Domain/LoginPage/class.verifyEmail.php';
 include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
@@ -8,11 +10,10 @@ include_once '../src/utilities/uploadImage.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
 
-if(isset($_POST["submit"])){
-    echo "it works";
+if (isset($_POST["submit"])) {
     $firstname = $_POST["FirstNameID"];
     $lastname = $_POST["LastNameID"];
-    $name = $firstname.' '.$lastname;
+    $name = $firstname . ' ' . $lastname;
     $gender = $_POST["gender"];
     $Batch = $_POST["Batch"];
     $email = $_POST["email"];
@@ -28,28 +29,27 @@ if(isset($_POST["submit"])){
     $biography = "";
     $pic = "profilePicture";
 
-    insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
-    
+    insertAlumni($conn, $alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography);
+
     header("location: /login?doneSend");
     exit();
-
 }
 
 
-function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography)
+function insertAlumni($conn, $alumniId, $approvedBy, $email, $Password, $IC, $gender, $name, $department, $Batch, $imageId, $isEmailPublic, $isActive, $isVerified, $biography)
 {
     $stmt = $conn->prepare("INSERT INTO alumni (alumniId, approvedBy, email, password, icNumber, gender, name, department, graduated, imageId, isEmailPublic, isActive, isVerified, biography) VALUES(:alumniId, :approvedBy, :email, :password, :icNumber, :gender, :name, :department, :graduated, :imageId, :isEmailPublic, :isActive, :isVerified, :biography)");
 
-    $checkEmail = emailExists($conn,$email);
+    $checkEmail = emailExists($conn, $email);
     if ($checkEmail) {
         header("location: /login?emailExists");
         exit();
     }
 
     $encrypted = Encrypt($email);
-    verifyEmail($email,$encrypted);
+    verifyEmail($email, $encrypted);
 
-    $alumniId = "AL-" . (getLength($conn)+1) ;
+    $alumniId = "AL-" . (getLength($conn) + 1);
     $imageId = $alumniId;
 
     $stmt->bindParam(":alumniId", $alumniId);
@@ -73,18 +73,16 @@ function insertAlumni($conn,$alumniId, $approvedBy, $email, $Password, $IC, $gen
 
     try {
         //Upload image to database as blob
-        if($_FILES["profilePicture"]['tmp_name']!=null){
-            uploadImage($conn,$_FILES["profilePicture"],$alumniId); 
+        if ($_FILES["profilePicture"]['tmp_name'] != null) {
+            uploadImage($conn, $_FILES["profilePicture"], $alumniId);
         }
-
     } catch (Exception $e) {
         // echo "Exception: " . $e->getMessage();
-error_log("Exception: " . $e->getMessage());
-include_once '../src/templates/header.php';
-include_once '../src/Domain/General_Pages/server_error.php';
-exit();
+        error_log("Exception: " . $e->getMessage());
+        include_once '../src/templates/header.php';
+        include_once '../src/Domain/General_Pages/server_error.php';
+        exit();
     }
-
 }
 
 
@@ -97,10 +95,10 @@ function getLength($conn)
 }
 
 
-function verifyEmail($email,$encrypted)
+function verifyEmail($email, $encrypted)
 {
 
-    $base_url = "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/login?id=".$encrypted;
+    $base_url = "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/login?id=" . $encrypted;
 
     require_once '../libs/PHPMailer/src/PHPMailer.php';
     require_once '../libs/PHPMailer/src/SMTP.php';
@@ -108,38 +106,35 @@ function verifyEmail($email,$encrypted)
 
     $mail = new PHPMailer();
 
-        //smtp settings
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'webprog707@gmail.com';
-        $mail->Password = '123wif2003';
-        $mail->Port = 465;
-        $mail->SMTPSecure = 'ssl';
+    //smtp settings
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'webprog707@gmail.com';
+    $mail->Password = '123wif2003';
+    $mail->Port = 465;
+    $mail->SMTPSecure = 'ssl';
 
-        //email settings
-        $mail->isHTML(true);
-        $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
-        $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
-        $mail->AddAddress($email);
-        $mail->Subject = 'Verify Your Email';
-        $content = str_replace(
-            array('%url%', '%to%'),
-            array($base_url,$email),
-            file_get_contents('../src/Domain/LoginPage/Verify.html')
-        );
-        $mail->msgHTML(file_get_contents('../src/Domain/LoginPage/Verify.html'), __DIR__);
-        $mail->msgHTML($content, dirname(__FILE__));
-        $mail->AltBody = 'A test email $newPassword';
+    //email settings
+    $mail->isHTML(true);
+    $mail->SetFrom('no-reply@alumniSystem.com', 'Alumni System Admin');
+    $mail->AddReplyTo('no-reply@alumniSystem.com', 'Alumni System Admin');
+    $mail->AddAddress($email);
+    $mail->Subject = 'Verify Your Email';
+    $content = str_replace(
+        array('%url%', '%to%'),
+        array($base_url, $email),
+        file_get_contents('../src/Domain/LoginPage/Verify.html')
+    );
+    $mail->msgHTML(file_get_contents('../src/Domain/LoginPage/Verify.html'), __DIR__);
+    $mail->msgHTML($content, dirname(__FILE__));
+    $mail->AltBody = 'A test email $newPassword';
 
-        if ($mail->send()) {
-            $status = 'success';
-            $response = 'Email is sent!';
-        }else{
-            $status = 'failed';
-            $response = 'error==='. $mail->ErrorInfo;
-        }
-
+    if ($mail->send()) {
+        $status = 'success';
+        $response = 'Email is sent!';
+    } else {
+        $status = 'failed';
+        $response = 'error===' . $mail->ErrorInfo;
+    }
 }
-
-

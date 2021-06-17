@@ -57,7 +57,7 @@ class MyProfile
             }
             return 'data::'.$this->user['type'].';base64,'.base64_encode($this->user['imageData']);
         }catch(Exception $exception){
-            echo $exception->getMessage();
+            error_log("Exception: " . $exception->getMessage());
         }
     }
 
