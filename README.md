@@ -1,6 +1,4 @@
 # core
-This is the main repo for the alumni system. So treat the repo carefully :kissing:  
-Make sure you know how to revert changes made to reverse any destructive changes to the repo.   
 
 ## Tech stack
 ### Client/Frontend
@@ -28,7 +26,7 @@ Make sure you know how to revert changes made to reverse any destructive changes
 ## User manual
 ### 1. Clone the repository
 ```
-git pull https://github.com/FSKTMOnlineAlumniSystem/core.git
+git clone https://github.com/FSKTMOnlineAlumniSystem/core.git
 ```
 ### 2. Set DocumentRoot and Directory to public directory in httpd.conf for XAMPP
 ```
@@ -39,7 +37,7 @@ DocumentRoot "C:/.../public"
 ```
 max_allowed_packet=100M
 ```
-### 4. Import database using oas.sql
+### 4. Import database with dummy data using setup.sql via phpMyAdmin
 ### 5. Steps To Create Testing Account (*valid email is required for forgot email feature*)
 #### ```ALUMNI:```
 ```

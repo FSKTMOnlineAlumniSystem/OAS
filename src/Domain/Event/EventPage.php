@@ -94,7 +94,7 @@ includeWithVariables('../src/templates/header.php', array(
             <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
               <div class="card h-100 card--bg-light-gray">
                 <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                  <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                  <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" style="aspect-ratio: 1/1;" alt="eventPhoto">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-between event-card-body">
                   <div class="cards pb-2">
