@@ -75,6 +75,10 @@ max_allowed_packet=100M
 ### Git
 [Stop updating file into repo](https://stackoverflow.com/questions/4348590/how-can-i-make-git-ignore-future-revisions-to-a-file)
 
+### PHP Logging
+[Guide](https://www.loggly.com/ultimate-guide/php-logging-basics/)
+[Modurn Error Logging](https://netgen.io/blog/modern-error-handling-in-php)
+
 ## Requirements :snowflake:
 The system should provide the following functions: 
 

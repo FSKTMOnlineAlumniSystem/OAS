@@ -35,7 +35,6 @@ exit();
  <?php
   if (isset($_POST['Submit'])) {
     try {
-    } catch (Exception $e) {
       $addEvent = new createEventModel($db->getConnection());
       $data = $addEvent->getMaxId();
       $eventId = "E-" . ($data + 1);
@@ -58,6 +57,7 @@ exit();
         uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
       }
       echo '<script>location.href="/admin/event"</script>';
+    } catch (Exception $e) {
       // echo "Exception: " . $e->getMessage();
 error_log("Exception: " . $e->getMessage());
 include_once '../src/templates/header.php';

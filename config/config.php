@@ -17,13 +17,13 @@ ini_set('error_log', $log_file);
 // setting error logging to be active
 // comment out for development to enable error display
 ini_set("log_errors", TRUE); 
-// function exception_handler($exception) {
-//     $error_message = "Uncaught exception: " . $exception->getMessage();
-//     error_log($error_message);
-//     include_once '../src/templates/header.php';
-//     include_once '../src/Domain/General_Pages/server_error.php';
-//  }
-//  set_exception_handler('exception_handler');
+function exception_handler($exception) {
+    $error_message = "Uncaught exception: " . $exception->getMessage();
+    error_log($error_message);
+    include_once '../src/templates/header.php';
+    include_once '../src/Domain/General_Pages/server_error.php';
+ }
+ set_exception_handler('exception_handler');
 
 // Change according to your needs, RCMS is the name of the database created in setup.sql
 define('DATABASE_NAME', 'OAS');
