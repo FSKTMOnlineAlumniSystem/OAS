@@ -32,7 +32,7 @@ searchInput.addEventListener('keypress', (evt) => {
 // check if any event card exists
 const cardNodeList = document.querySelectorAll('.card');
 if (Array.from(cardNodeList).length === 0) {
-  insertSearchNoResult(document.getElementById("no_result"));
+  insertNoRecords(document.getElementById("no_result"));
 } else {
 }
 // pagination handling

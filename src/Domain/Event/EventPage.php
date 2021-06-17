@@ -16,7 +16,7 @@ try {
     $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', true);
   } else {
     $events = $event_model->getAll();
-    echo "searching is not working<br>"; // Logger
+    // echo "searching is not working<br>"; // Logger
   }
   $server_error = false;
 } catch (Exception $e) {
