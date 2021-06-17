@@ -15,19 +15,15 @@ closeBtnArr.forEach((btn, index) => {
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(data);
-    })
+      const div = btn.closest('[data-notification-href]');
+      document.getElementById('dropdown-menu').removeChild(div);
+      if(dropDownMenu.querySelectorAll('[data-event-id]').length === 0){
+        dropDownMenu.innerHTML = '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
+        dropDownBtn.click();
+        dropDownBtn.querySelector('img').src = '/Assets/icons/bell.svg';
+      }
+    }).catch(err => alert('Error: Please try again.'));
     evt.stopPropagation();
-    const div = btn.closest('[data-notification-href]');
-    document.getElementById('dropdown-menu').removeChild(div);
-    if(dropDownMenu.querySelectorAll('[data-event-id]').length === 0){
-      console.log('zero');
-      dropDownMenu.innerHTML = '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
-      dropDownBtn.click();
-      dropDownBtn.querySelector('img').src = '/Assets/icons/bell.svg';
-    }else{
-      console.log('not zero');
-    }
   });
 });
 // add event listener to notification
@@ -43,7 +39,6 @@ notificationDivArr.forEach(div => {
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(data);
       window.location.href = div.dataset.notificationHref; // redirect
     })
   });
@@ -52,14 +47,11 @@ notificationDivArr.forEach(div => {
 const logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn !== null) {
   logoutBtn.addEventListener('click', evt => {
-    console.log('button clicked.');
     fetch('/api/log-out', {
       method: 'GET'
     }).then(res =>
       res.json()
     ).then(data => {
-      console.log(logoutBtn.dataset.userType);
-      console.log(logoutBtn.dataset);
       if(logoutBtn.dataset.userType === 'alumni'){
         location.href = "/login";
       }else{
