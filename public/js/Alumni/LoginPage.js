@@ -19,6 +19,15 @@ const Gender = document.getElementById('Gender');
 const img = document.querySelector('#wizard-picture');
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
+form.querySelector("#FirstNameID").value = "Ng";
+form.querySelector("#LastNameID").value = "Yong Ming";
+form.querySelector("#Gender").value = "male";
+form.querySelector("#Batch").value = "2018";
+form.querySelector("#Email").value = "";
+form.querySelector("#IC").value = "981124-10-1123";
+form.querySelector("#Department").value = "Software Engineering";
+form.querySelector("#Password").value = "12345";
+
 
 /*Check the file extension of the image & Update preview*/
 
