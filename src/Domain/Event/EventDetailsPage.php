@@ -4,27 +4,17 @@ include '../src/Domain/Event/EventModel.php';
 include '../src/Domain/Event/AlumniEventModel.php';
 include '../src/Domain/Database.php';
 
-// if (isset($_GET['eventId'])) echo $_GET['eventId'];
-// else echo 'No $_GET["eventId"]';
 try {
   $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-  $event_model = new EventModel($db->getConnection());
-  $all_events = $event_model->getAll();
-} catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
-}
-try {
-  $event_model = new AlumniEventModel($db->getConnection());
-  $all_alumni_events = $event_model->getAll();
-} catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
-}
-try {
   $event_model = new EventModel($db->getConnection());
   $event = $event_model->getEvent($_GET['eventId']);
   $event_pic_src = $event_model->getEventPicture();
 } catch (Exception $e) {
-  echo "Exception: " . $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+  error_log("Exception: " . $e->getMessage());
+  include_once '../src/templates/header.php';
+  include_once '../src/Domain/General_Pages/server_error.php';
+  exit();
 }
 ?>
 <?php
@@ -32,7 +22,7 @@ include '../src/utilities/includeWithVariable.php' ?>
 <?php
 includeWithVariables('../src/templates/header.php', array(
   'my_css' => '/css/Alumni/EventPage.css',
-  'search_bar' => '/css/Alumni/SearchBar.css'
+  'search_bar' => '/css/Alumni/EventDetailsPage.css'
 ));
 ?>
 <?php
@@ -46,7 +36,7 @@ include '../src/templates/nav.php';
     <div class="col-12 col-md-10 col-lg-8">
       <div class="row align-items-center">
         <div class="col-12">
-          <a href="event" class="btn btn-link back">
+          <a href="javascript:history.go(-1)" class="btn btn-link back">
             <i class="fas fa-chevron-left fa-2x"></i>
           </a>
           <h3 class="d-inline"><?= $event['title'] ?></h3>

@@ -21,14 +21,22 @@
     $event_model = new Admin_Alumni_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
   } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
 
   try {
     $event = new Admin_EventModel($db->getConnection());
     $event->getEvent($eventId);
   } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
 
    try {
@@ -40,7 +48,11 @@
       $all_alumni[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
 ?>
 

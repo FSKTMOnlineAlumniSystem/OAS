@@ -2,9 +2,16 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 include_once '../src/Domain/Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-$conn = $db->getConnection();
+try {
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+    $conn = $db->getConnection();
+  } catch (Exception $e) {
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+  }
 
 if(isset($_POST["submit"])){
 

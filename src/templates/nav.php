@@ -9,21 +9,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item 
-        <?php
-        strpos($_SERVER['REQUEST_URI'], 'homepage') ? " active" : "";
+        <?=
+        strpos($_SERVER['REQUEST_URI'], 'home') ? " active" : "";
         ?> 
         ">
           <a class="nav-link" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item 
-        <?php
-        strpos($_SERVER['REQUEST_URI'], 'alumnipage') ? " active" : "";
+        <?=
+        strpos($_SERVER['REQUEST_URI'], 'alumni') ? " active" : "";
         ?> ">
           <a class="nav-link" href="/alumni">Alumni</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle
-          <?php
+          <?=
           strpos($_SERVER['REQUEST_URI'], 'job') ? " active" : "";
           ?>" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Jobs
@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle
-          <?php
+          <?=
           strpos($_SERVER['REQUEST_URI'], 'event') ? " active" : "";
           ?>" href="#" id="eventDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Events

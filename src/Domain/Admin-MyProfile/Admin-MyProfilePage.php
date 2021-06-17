@@ -38,7 +38,7 @@ includeWithVariables('../src/templates/header.php', array(
                             </button>
                         </div>';
                     }
-                    if (isset($_GET['changepassword'])) {
+                    if (isset($_GET['changepassword']) && $_GET['changepassword'] == 'fail') {
                         // echo '
                         // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
                         //     <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -52,6 +52,13 @@ includeWithVariables('../src/templates/header.php', array(
                                 document.getElementById('oldPassword').classList.add('is-invalid');                
                             }
                         </script>";
+                    }elseif (isset($_GET['changepassword']) && $_GET['changepassword'] == 'success') {
+                        echo '
+                        <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">
+                            <i class="fas fa-check-circle mr-2"></i>Your password is updated successfully.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
                     }
                     if (isset($_GET['error'])) {
                         foreach ($_GET['error'] as $error) {

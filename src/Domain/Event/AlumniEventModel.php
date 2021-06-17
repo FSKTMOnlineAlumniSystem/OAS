@@ -31,7 +31,7 @@ class AlumniEventModel
   {
     try {
       $query =
-        'SELECT * FROM alumni_event 
+        'SELECT alumni_event.dateTime, alumni_event.viewedByAlumni, alumni_event.notificationClosedByAlumni, event.eventId, alumni_event.alumniId, event.adminId, event.title, event.description, event.imageId, event.location FROM alumni_event 
        RIGHT JOIN event
        ON alumni_event.eventId = event.eventId 
        WHERE alumniId = ?';
@@ -49,9 +49,9 @@ class AlumniEventModel
         $pastDateTimeSecond = (int)($temp->format("U"));
         $curMilliSeconds = (microtime(true));
         $secondSinceInvitation = (int)round(($curMilliSeconds - $pastDateTimeSecond));
-        $minute = floor($secondSinceInvitation / 60);
-        $hour = floor($minute / 60);
-        $day = floor($hour / 24);
+        $minute = (int)floor($secondSinceInvitation / 60);
+        $hour = (int)floor($minute / 60);
+        $day = (int)floor($hour / 24);
         if ($day === 0) {
           if ($hour % 60 === 0) {
             $timeStr = "$minute minute(s) ago";
@@ -75,7 +75,7 @@ class AlumniEventModel
       $stmt = $this->connection->prepare('
       UPDATE alumni_event 
       SET notificationClosedByAlumni = 1 
-      WHERE eventId = ?');
+      WHERE eventId = ?;');
       $stmt->execute([$eventId]);
       $data = $stmt->fetch();
 

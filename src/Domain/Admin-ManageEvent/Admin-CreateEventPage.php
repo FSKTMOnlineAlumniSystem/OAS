@@ -11,9 +11,9 @@
   include_once '../src/Domain/Database.php';
   include_once '../src/utilities/uploadImage.php';
   $_SESSION['admin']['adminId'];
-  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
+  
   try {
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     $event_model = new Admin_EventModel($db->getConnection());
     $all_activities = $event_model->getAll();
     $allImage = $event_model->getPicture();
@@ -25,33 +25,45 @@
       $all_activities[$i]['imageId'] = $allImage[$i];
     }
   } catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
   ?>
  <?php
   if (isset($_POST['Submit'])) {
-    $addEvent = new createEventModel($db->getConnection());
-    $data = $addEvent->getMaxId();
-    $eventId = "E-" . ($data + 1);
-    $adminId = $_SESSION['admin']['adminId'];        //ned change
-    $title = $_POST['title'];
-    $date = $_POST["date"];
-    $time = $_POST["time"];
-    $description = $_POST['description'];
-    $locate = $_POST['locate'];
-    if ($_FILES["eventPicture"]['tmp_name'] != null) {
-      $imageId = $eventId;
-    } else {
-      $imageId = "Default";
+    try {
+      $addEvent = new createEventModel($db->getConnection());
+      $data = $addEvent->getMaxId();
+      $eventId = "E-" . ($data + 1);
+      $adminId = $_SESSION['admin']['adminId'];        //ned change
+      $title = $_POST['title'];
+      $date = $_POST["date"];
+      $time = $_POST["time"];
+      $description = $_POST['description'];
+      $locate = $_POST['locate'];
+      if ($_FILES["eventPicture"]['tmp_name'] != null) {
+        $imageId = $eventId;
+      } else {
+        $imageId = "Default";
+      }
+      $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
+      $addEvent->updateEvent($eventId, $adminId, $title, $combinedDT, $description, $imageId, $locate);
+      $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  
+      if ($_FILES["eventPicture"]['tmp_name'] != null) {
+        uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
+      }
+      echo '<script>location.href="/admin/event"</script>';
+    } catch (Exception $e) {
+      // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
-    $combinedDT = date('Y-m-d H:i', strtotime("$date $time"));
-    $addEvent->updateEvent($eventId, $adminId, $title, $combinedDT, $description, $imageId, $locate);
-    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
-    if ($_FILES["eventPicture"]['tmp_name'] != null) {
-      uploadImage($db->getConnection(), $_FILES["eventPicture"], $imageId);
-    }
-    echo '<script>location.href="/admin/event"</script>';
   }
 
   ?>

@@ -93,7 +93,7 @@ class Admin_EventModel
     }
     public function search($searchterm){
         $query = "SELECT * FROM `event` WHERE (title LIKE '%$searchterm%' OR description LIKE '%$searchterm%' OR location LIKE '%$searchterm%') ";  
-        $stmt = $this->connection->prepare($query);  
+        $stmt = $this->connection->prepare($query); 
         $stmt->execute(); 
         $data = $stmt->fetchAll();
         if(!$data){
@@ -149,7 +149,7 @@ class AlumniModel
     public function getAll(): array
     {
         try {
-            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive=1 AND isVerified =1');
             $stmt->execute();
             $data = $stmt->fetchAll();
             if (!$data) {
@@ -165,7 +165,7 @@ class AlumniModel
         $stmt = $this->connection->prepare('
         SELECT * FROM alumni
         LEFT JOIN image 
-        ON alumni.imageId=image.imageId');
+        ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
         $stmt->execute();
         $data = $stmt->fetchAll();
         $image = array();
@@ -182,10 +182,10 @@ class AlumniModel
     }
     public function getSearch($id) {
         $stmt = $this->connection->prepare("
-            SELECT * FROM alumni
+            SELECT * FROM alumni 
             LEFT JOIN image 
             ON alumni.imageId=image.imageId 
-            WHERE alumniId='$id' ");
+            WHERE alumniId='$id' AND (isActive=1 AND isVerified =1)");
         $stmt->execute();
         $data = $stmt->fetch();
         if($data['imageId']=='Default'||$data['imageId']==null){
@@ -196,7 +196,7 @@ class AlumniModel
         }
     }
     public function search($searchterm){
-        $query = "SELECT * FROM `alumni` WHERE (name LIKE '%$searchterm%' OR department LIKE '%$searchterm%') "; 
+        $query = "SELECT * FROM `alumni` WHERE (isActive=1 AND isVerified =1) AND (name LIKE '%$searchterm%' OR department LIKE '%$searchterm%') "; 
          $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -206,7 +206,7 @@ class AlumniModel
         return $data; 
     }
     public function searchDepartment($searchterm){
-        $query = "SELECT * FROM `alumni` WHERE (department LIKE '%$searchterm%') ";  
+        $query = "SELECT * FROM `alumni` WHERE (isActive=1 AND isVerified =1) AND (department LIKE '%$searchterm%') ";  
         $stmt = $this->connection->prepare($query);  
         $stmt->execute(); 
         $data = $stmt->fetchAll();
@@ -222,7 +222,7 @@ class AlumniModel
         $data = $stmt->fetchAll();
         $alumni = array();
         foreach($data as $eachAlumni){
-            $query = "SELECT * FROM `alumni` WHERE alumniId=?";  
+            $query = "SELECT * FROM `alumni` WHERE alumniId=? AND (isActive=1 AND isVerified =1) ";  
             $stmt = $this->connection->prepare($query);  
             $stmt->execute([$eachAlumni['alumniId']]);
             $alumniData = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -234,7 +234,7 @@ class AlumniModel
         if($status=='Invited'){
             return $alumni; 
         }else{
-            $stmt = $this->connection->prepare('SELECT * FROM alumni');
+            $stmt = $this->connection->prepare('SELECT * FROM alumni WHERE isActive=1 AND isVerified =1');
             $stmt->execute();
             $allAlumni = $stmt->fetchAll();
             foreach($alumni as $eachAlumni){
@@ -273,11 +273,11 @@ class UpdateEventModel
          $stmt->execute([$eventId]);
          $data = $stmt->fetch(PDO::FETCH_ASSOC);
         if($data['imageId']!=null){
-            echo $data['imageId'];
+            // echo $data['imageId'];
             return $data['imageId'];
         }
         else{
-            echo 'default';
+            // echo 'default';
             return "Default";
         }
 }

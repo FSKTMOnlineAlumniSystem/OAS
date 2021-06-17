@@ -19,6 +19,15 @@ const Gender = document.getElementById('Gender');
 const img = document.querySelector('#wizard-picture');
 const wizardPicturePreview = document.querySelector('#wizardPicturePreview');
 
+form.querySelector("#FirstNameID").value = "Ng";
+form.querySelector("#LastNameID").value = "Yong Ming";
+form.querySelector("#Gender").value = "male";
+form.querySelector("#Batch").value = "2018";
+form.querySelector("#Email").value = "";
+form.querySelector("#IC").value = "981124-10-1123";
+form.querySelector("#Department").value = "Software Engineering";
+form.querySelector("#Password").value = "12345";
+
 
 /*Check the file extension of the image & Update preview*/
 
@@ -41,7 +50,9 @@ form_2.addEventListener('submit', (evt) => {
 
     if (errorExist) {
         evt.preventDefault();
-    } 
+    } else{
+        document.querySelector('#forgotPassword-button').innerHTML = `<span class="spinner-border spinner-border-sm mr-2"></span>Submitting`;
+    }
 
 });
 
@@ -153,7 +164,9 @@ form.addEventListener('submit', (e) => {
 
     if (errorExist) {
         e.preventDefault();
-    } 
+    } else{
+        document.querySelector('#signUp-button').innerHTML = '<span class="spinner-border spinner-border-sm mr-2"></span>Signing Up';
+    }
 });
 
 //pop up the wait for verification modal
