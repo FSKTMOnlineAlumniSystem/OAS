@@ -5,7 +5,6 @@ include_once '../src/Domain/LoginPage/GeneralLoginFx.php';
 
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 $conn = $db->getConnection();
-echo "hello";
 if(isset($_POST["submit"])){
 
     $email = $_POST["email"];

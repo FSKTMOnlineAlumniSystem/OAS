@@ -10,15 +10,15 @@ if (isset($_POST['submit'])) {
         if (password_verify($_POST['deletePassword'], $alumni->getPassword())) {
             $alumni->deleteAccount();
             session_destroy();
-            header("Location: /login");
+            header("Location: /login?delete=success");
             exit;
         }
     } catch (Exception $e) {
         // echo "Exception: " . $e->getMessage();
-error_log("Exception: " . $e->getMessage());
-include_once '../src/templates/header.php';
-include_once '../src/Domain/General_Pages/server_error.php';
-exit();
+        error_log("Exception: " . $e->getMessage());
+        include_once '../src/templates/header.php';
+        include_once '../src/Domain/General_Pages/server_error.php';
+        exit();
     }
 }
 

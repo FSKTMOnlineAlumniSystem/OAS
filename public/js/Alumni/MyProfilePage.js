@@ -51,7 +51,7 @@ function verifyPasswordCriteria(password) {
 //Delete user account from the data
 function deleteAccount(e) {
     if (verifyPasswordCriteria(deleteAccountInput)) {
-        deleteAccountButton.textContent = 'Deleting...';
+        deleteAccountButton.innerHTML = `<span class="spinner-border spinner-border-sm mr-2"></span>Deleting...`;
     } else {
         e.preventDefault();
         setInValid(deleteAccountInput);

@@ -36,7 +36,7 @@ include '../src/templates/nav.php';
     <div class="col-12 col-md-10 col-lg-8">
       <div class="row align-items-center">
         <div class="col-12">
-          <a href="event" class="btn btn-link back">
+          <a href="javascript:history.go(-1)" class="btn btn-link back">
             <i class="fas fa-chevron-left fa-2x"></i>
           </a>
           <h3 class="d-inline"><?= $event['title'] ?></h3>

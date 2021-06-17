@@ -5,7 +5,7 @@ include '../src/Domain/Database.php';
 $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
 
 if(isset($_POST['modal'])){
-  echo("success");
+  // echo("success");
   exit;
 }
 $output=[];

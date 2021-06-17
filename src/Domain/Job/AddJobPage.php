@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
 
     $data = $addJob_model->getMaxId();
     $jobId = "J-" . ($data + 1);
-    $alumniId = $_SESSION['alumni']['alumniId'];        
+    $alumniId = $_SESSION['alumni']['alumniId'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $salary = $_POST['salary'];
@@ -36,10 +36,10 @@ if (isset($_POST['Submit'])) {
         }
     } catch (Exception $e) {
         // echo "Exception: " . $e->getMessage();
-error_log("Exception: " . $e->getMessage());
-include_once '../src/templates/header.php';
-include_once '../src/Domain/General_Pages/server_error.php';
-exit();
+        error_log("Exception: " . $e->getMessage());
+        include_once '../src/templates/header.php';
+        include_once '../src/Domain/General_Pages/server_error.php';
+        exit();
     }
 
 
@@ -74,6 +74,6 @@ include_once '../src/templates/nav.php';
             <div id="form"></div>
         </div>
 
-    <script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
-    <?php include_once '../src/templates/footer.php' ?>
-    <?php include_once '../src/templates/GeneralScripts.php' ?>
+        <script type="text/javascript" src="/js/Alumni/AddJobPage.js"></script>
+        <?php include_once '../src/templates/footer.php' ?>
+        <?php include_once '../src/templates/GeneralScripts.php' ?>
