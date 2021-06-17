@@ -75,7 +75,7 @@ class AlumniEventModel
       $stmt = $this->connection->prepare('
       UPDATE alumni_event 
       SET notificationClosedByAlumni = 1 
-      WHERE eventId = ?');
+      WHERE eventId = ?;');
       $stmt->execute([$eventId]);
       $data = $stmt->fetch();
 

@@ -103,7 +103,7 @@ class EventModel
       ON event.imageId=image.imageId
       LEFT JOIN alumni_event 
       ON alumni_event.eventId=event.eventId
-      WHERE alumniId=?
+      WHERE alumniId=?;
       ');
       $stmt->execute([$alumniId]);
       $data = $stmt->fetchAll();

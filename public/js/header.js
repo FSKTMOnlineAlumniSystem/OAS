@@ -1,5 +1,7 @@
 // below event listener added only when the user is alumni
 // add event listener to all close button in the panel
+const dropDownMenu = document.getElementById('dropdown-menu');
+const dropDownBtn = document.getElementById('notificationDropdownMenuButton');
 const closeBtnArr = Array.from(document.querySelectorAll('[data-close-btn-id]'));
 closeBtnArr.forEach((btn, index) => {
   btn.addEventListener('click', (evt) => {
@@ -18,6 +20,14 @@ closeBtnArr.forEach((btn, index) => {
     evt.stopPropagation();
     const div = btn.closest('[data-notification-href]');
     document.getElementById('dropdown-menu').removeChild(div);
+    if(dropDownMenu.querySelectorAll('[data-event-id]').length === 0){
+      console.log('zero');
+      dropDownMenu.innerHTML = '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
+      dropDownBtn.click();
+      dropDownBtn.querySelector('img').src = '/Assets/icons/bell.svg';
+    }else{
+      console.log('not zero');
+    }
   });
 });
 // add event listener to notification
