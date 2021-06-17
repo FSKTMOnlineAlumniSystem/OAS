@@ -215,7 +215,7 @@ includeWithVariables('../src/templates/header.php', array(
                           onclick="location.href ='/admin/editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
-                      <button id="approve" name="approve" type="submit" class="btn btn-info" onclick="approve()">Approve</button>
+                      <button id="approve" name="approve" type="submit" class="btn btn-info d-flex justify-content-center align-items-center" onclick="approve()">Approve</button>
                       </div>
                     </div>
                   </div>
