@@ -38,7 +38,7 @@ DocumentRoot "C:/.../public"
 max_allowed_packet=100M
 ```
 ### 4. Import database with dummy data using setup.sql via phpMyAdmin
-### 5. Steps To Create Testing Account (*valid email is required for forgot email feature*)
+### 5. Steps To Create Testing Account (*valid email is required for forgot password feature*)
 #### ```ALUMNI:```
 ```
 1. Sign up a new alumni account at '/login'
