@@ -414,7 +414,7 @@ include '../src/templates/GeneralScripts.php'
                         <form id="form_3">
                             <div class="modal-body">
                                 <span>Thank you for signing up.<br>
-                                    Your application is successfully submitted, please wait for the verification.<br>
+                                    Your application is successfully submitted, please wait for the admin approval.<br>
                                 </span>
                                 <br>
                             </div>
