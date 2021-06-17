@@ -9,7 +9,7 @@ if(isset($_POST['submit']) && isset($_POST['newPassword']) && isset($_POST['oldP
         $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
         if(password_verify($_POST['oldPassword'],$alumni->getPassword())){
             $alumni->changePassword($_POST['newPassword']);
-            return header("Location: /myprofile?updated=true");
+            return header("Location: /myprofile?changepassword=success");
         }
     }catch (Exception $e) {
         // echo "Exception: " . $e->getMessage();

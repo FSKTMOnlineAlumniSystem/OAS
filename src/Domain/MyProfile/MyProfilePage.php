@@ -7,10 +7,10 @@ try {
     $alumni = new MyProfile($db->getConnection(), $_SESSION["alumni"]['alumniId']);
 } catch (Exception $e) {
     // echo "Exception: " . $e->getMessage();
-error_log("Exception: " . $e->getMessage());
-include_once '../src/templates/header.php';
-include_once '../src/Domain/General_Pages/server_error.php';
-exit();
+    error_log("Exception: " . $e->getMessage());
+    include_once '../src/templates/header.php';
+    include_once '../src/Domain/General_Pages/server_error.php';
+    exit();
 }
 ?>
 
@@ -44,8 +44,7 @@ include_once '../src/templates/nav.php';
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>';
-            }
-            if (isset($_GET['error'])) {
+            } elseif (isset($_GET['error'])) {
                 foreach ($_GET['error'] as $error) {
                     echo '
                     <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
@@ -54,8 +53,7 @@ include_once '../src/templates/nav.php';
                         </button>
                     </div>';
                 }
-            }
-            if (isset($_GET['private'])) {
+            } elseif (isset($_GET['private'])) {
                 echo '
                 <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">
                     <i class="fas fa-check-circle mr-2"></i>Your account is set ' . ($_GET['private'] == 'true' ? "private. Your email will be hidden." : "public") . '
@@ -63,14 +61,7 @@ include_once '../src/templates/nav.php';
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>';
-            }
-            if (isset($_GET['delete'])) {
-                // echo '
-                // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
-                //     <i class="fas fa-times-circle mr-2"></i>Failed to delete account. Please contact admin to proceed.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                //         <span aria-hidden="true">&times;</span>
-                //     </button>
-                // </div>';
+            } elseif (isset($_GET['delete'])) {
                 echo "
                 <script type='text/javascript'>
                 window.onload = function(){
@@ -79,14 +70,7 @@ include_once '../src/templates/nav.php';
                 }
                 </script>
                 ";
-            }
-            if (isset($_GET['changepassword'])) {
-                // echo '
-                // <div class="row alert alert-danger alert-dismissible fade show align-items-center" role="alert">
-                //     <i class="fas fa-times-circle mr-2"></i>Failed to change password. Please enter the correct old password.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                //         <span aria-hidden="true">&times;</span>
-                //     </button>
-                // </div>';
+            } elseif (isset($_GET['changepassword']) && $_GET['changepassword'] == 'fail') {
                 echo "
                 <script type='text/javascript'>
                 window.onload = function(){
@@ -95,6 +79,13 @@ include_once '../src/templates/nav.php';
                 }
                 </script>
                 ";
+            } elseif (isset($_GET['changepassword']) && $_GET['changepassword'] == 'success') {
+                echo '
+                <div class="row alert alert-success alert-dismissible fade show align-items-center" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i>Your password is updated successfully.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
             }
             ?>
             <div class="row justify-content-between">
@@ -151,10 +142,10 @@ include_once '../src/templates/nav.php';
                         <div id="email" class="col-sm-8"><?= $alumni->getEmail(); ?></div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-4">Private:</div>
+                        <div class="col-sm-4 d-flex">Private <button type="button" class="btn btn-light rounded-circle p-0 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="When private mode is on, your email will be hidden from public." style="width:25px; height:25px;"><i class="fas fa-question" style="font-size:15px;"></i></button> :</div>
                         <div class="col-sm-8 custom-control custom-switch">
                             <form id="changePrivacyForm" method="POST" action="/api/myprofile/changeprivacy">
-                                <input type="checkbox" data-toggle="tooltip" title="private account hides your email in public" class="custom-control-input" style="position:relative; width:auto;" id="privacySwitch" name="private" <?= $alumni->getIsEmailPublic() ? "" : "checked" ?>>
+                                <input type="checkbox" class="custom-control-input" style="position:relative; width:auto;" id="privacySwitch" name="private" <?= $alumni->getIsEmailPublic() ? "" : "checked" ?>>
                                 <label class="custom-control-label" for="privacySwitch"></label>
                             </form>
                         </div>
@@ -223,7 +214,7 @@ include_once '../src/templates/nav.php';
                     <form id='deleteAccountForm' action="/api/myprofile/delete" method="POST">
                         <div class="modal-body">
                             <div class="media alert alert-warning rounded mb-2">
-                            <i class="fas fa-exclamation-circle align-self-center mr-3"></i>
+                                <i class="fas fa-exclamation-circle align-self-center mr-3"></i>
                                 <div class="media-body">
                                     If you delete your account, all of your account data will be permenantly deleted.
                                 </div>
@@ -236,7 +227,7 @@ include_once '../src/templates/nav.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                            <button id="deleteAccountButton" name="submit" type="submit" class="btn btn-danger">Delete Account</button>
+                            <button id="deleteAccountButton" name="submit" type="submit" class="btn btn-danger d-flex justify-content-center align-items-center">Delete Account</button>
                         </div>
                     </form>
                 </div>
@@ -246,7 +237,10 @@ include_once '../src/templates/nav.php';
     </div>
     <script type='module' src="/js/Alumni/MyProfilePage.js"></script>
     <?php include_once '../src/templates/footer.php' ?>
-    <?php include_once '../src/templates/GeneralScripts.php'?>
+    <?php include_once '../src/templates/GeneralScripts.php' ?>
+    <script type="text/javascript">
+        $('[data-toggle="tooltip"]').tooltip()
+    </script>
 </body>
 
 </html>

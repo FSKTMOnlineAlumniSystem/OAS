@@ -174,7 +174,7 @@ exit();
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class="btn btn-primary signinbtn">Submit</button>
+                        <button id="forgotPassword-button" type="submit" name="submit" class="btn btn-primary signinbtn d-flex justify-content-center align-items-center">Submit</button>
                     </div>
                 </form>
             </div>
@@ -185,7 +185,18 @@ exit();
     <?php
 include '../src/templates/GeneralScripts.php'
 ?>
+<?php
 
+if (isset($_GET["fgemailnotExists"])) {
+    echo'
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#forgot").modal("show");
+        });
+    </script>
+    ';
+}
+?>
         <?php
 
 if (isset($_GET["sendPsw"])) {

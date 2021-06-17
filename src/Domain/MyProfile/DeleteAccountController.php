@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
         if (password_verify($_POST['deletePassword'], $alumni->getPassword())) {
             $alumni->deleteAccount();
             session_destroy();
-            header("Location: /login");
+            header("Location: /login?delete=success");
             exit;
         }
     } catch (Exception $e) {

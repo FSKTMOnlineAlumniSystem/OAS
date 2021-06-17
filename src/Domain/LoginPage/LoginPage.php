@@ -194,7 +194,7 @@ $conn = $db->getConnection();
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class="btn  btn-primary  signinbtn">Submit</button>
+                        <button id="forgotPassword-button" type="submit" name="submit" class="btn btn-primary  signinbtn d-flex justify-content-center align-items-center">Submit</button>
                     </div>
                 </form>
             </div>
@@ -372,7 +372,7 @@ $conn = $db->getConnection();
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class="btn btn-primary signinbtn">Sign Up</button>
+                        <button id="signUp-button" type="submit" name="submit" class="btn btn-primary signinbtn d-flex justify-content-center align-items-center">Sign Up</button>
                     </div>
                 </form>
             </div>
@@ -640,6 +640,53 @@ if (isset($_GET["sendPsw"])) {
 }
 ?>
 
+<!-- Account deleted successfully -->
+<?php
+
+if (isset($_GET["delete"])) {
+    echo'
+        <div class="modal fade" id="sendPsw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-check-circle pr-1 mr-1"
+                                style="color: rgb(13, 175, 18);"></i>Your account is deleted</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=window.closeModal()>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form_3">
+                        <div class="modal-body">
+                            <span>Your account has been deleted. If you have any questions or concerns, you can contact admin <a href="mailto:webprog707@gmail.com">here</a>.<br>
+                            </span>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" onclick=window.gotit() class="btn btn-primary signinbtn">Got It!</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#sendPsw").modal("show");
+                });
+        function closeModal(){
+                $(document).ready(function(){
+                    $("#sendPsw").modal("hide");
+                });
+            }
+
+            function gotit(){
+                
+               location.href = "/login";
+           }
+        </script>
+';
+}
+?>
 
 <?php
         if (isset($_GET["emailExists"])){
@@ -673,9 +720,7 @@ if (isset($_GET["sendPsw"])) {
         ';
     }
 ?>
-<?php
-include_once '../src/templates/GeneralScripts.php';
-?>
+
 <script type="module" src="/js/Alumni/LoginPage.js"></script>
 
 </body>
