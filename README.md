@@ -15,11 +15,12 @@ max_allowed_packet=100M
 ```
 ### 4. Modify the Database Connection Details and System Email Address in config.php
 ```
-define('DATABASE_NAME', '[DATABASE_NAME]');
-define('DATABASE_USERNAME', '[DATABASE_USERNAME]');
-define('DATABASE_PASSWORD', '[DATABASE_PASSWORD]');
-define('SYSTEM_EMAIL_USERNAME', '[SYSTEM_EMAIL_USERNAME (GMAIL)]');
-define('SYSTEM_EMAIL_PASSWORD', '[SYSTEM_EMAIL_PASSWORD]');
+define('DATABASE_NAME', 'ENTER YOUR DATABASE NAME');
+define('DATABASE_USERNAME', 'ENTER YOUR DATABASE USERNAME');
+define('DATABASE_PASSWORD', 'ENTER YOUR DATABASE PASSWORD');
+define('DATABASE_PORT', 'ENTER YOUR DATABASE PORT NUMBER');
+define('SYSTEM_EMAIL_USERNAME', 'ENTER YOUR SYSTEM EMAIL ADDRESS');
+define('SYSTEM_EMAIL_PASSWORD', 'ENTER YOUR SYSTEM EMAIL PASSWORD');
 ```
 ### 5. Import database with dummy data using setup.sql via phpMyAdmin
 ### 6. Steps To Create Testing Account (*valid email is required for forgot password feature*)
