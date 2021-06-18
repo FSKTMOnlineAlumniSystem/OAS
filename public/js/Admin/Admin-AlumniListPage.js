@@ -430,6 +430,8 @@ window.deleteCheckedRow = function () {
 document.querySelector('#closeDeleteModalButton').addEventListener('click',()=>{
   localStorage.removeItem('alumniToDelete');
 });
+// Handle if admin reload the page while the delete modal is opened
+localStorage.removeItem('alumniToDelete');
 
 reload(alumniArray, pageIndex);
 
