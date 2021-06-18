@@ -1,4 +1,42 @@
-# core
+# FSKTM Online Alumni System
+## User manual
+### 1. Clone the repository
+```
+git clone https://github.com/FSKTMOnlineAlumniSystem/core.git
+```
+### 2. Set DocumentRoot and Directory to public directory in httpd.conf for XAMPP
+```
+DocumentRoot "C:/.../public"
+<Directory "C:/.../public">
+```
+### 3. Change default max_allowed_packet in my.ini for mysql
+```
+max_allowed_packet=100M
+```
+### 4. Modify the Database Connection Details and System Email Address in config.php
+```
+define('DATABASE_NAME', '[DATABASE_NAME]');
+define('DATABASE_USERNAME', '[DATABASE_USERNAME]');
+define('DATABASE_PASSWORD', '[DATABASE_PASSWORD]');
+define('SYSTEM_EMAIL_USERNAME', '[SYSTEM_EMAIL_USERNAME (GMAIL)]');
+define('SYSTEM_EMAIL_PASSWORD', '[SYSTEM_EMAIL_PASSWORD]');
+```
+### 5. Import database with dummy data using setup.sql via phpMyAdmin
+### 6. Steps To Create Testing Account (*valid email is required for forgot password feature*)
+#### ```ALUMNI:```
+```
+1. Sign up a new alumni account at '/login'
+2. Check your email to verify your email (can change isVerified column to 1 in alumni table)
+3. At alumni table column approvedBy, simply add any adminId from admin table
+4. login at '/login'
+```
+#### ```ADMIN:```
+```
+1. add a record of admin in your admin table (password can type anything because will be replaced later)
+2. go to '/admin-login' then click forgot password and type your valid email
+3. check your email to get the new password
+4. login at '/admin-login'
+```
 
 ## Tech stack
 ### Client/Frontend
@@ -22,37 +60,6 @@
 * **src/templates** - store general view file like header, footer, modal(later)
 * **src/utilities** - store general php function
 * **src/Domain** - store Modal, View and Controller by feature
-
-## User manual
-### 1. Clone the repository
-```
-git clone https://github.com/FSKTMOnlineAlumniSystem/core.git
-```
-### 2. Set DocumentRoot and Directory to public directory in httpd.conf for XAMPP
-```
-DocumentRoot "C:/.../public"
-<Directory "C:/.../public">
-```
-### 3. Change default max_allowed_packet in my.ini for mysql
-```
-max_allowed_packet=100M
-```
-### 4. Import database with dummy data using setup.sql via phpMyAdmin
-### 5. Steps To Create Testing Account (*valid email is required for forgot password feature*)
-#### ```ALUMNI:```
-```
-1. Sign up a new alumni account at '/login'
-2. Check your email to verify your email (can change isVerified column to 1 in alumni table)
-3. At alumni table column approvedBy, simply add any adminId from admin table
-4. login at '/login'
-```
-#### ```ADMIN:```
-```
-1. add a record of admin in your admin table (password can type anything because will be replaced later)
-2. go to '/admin-login' then click forgot password and type your valid email
-3. check your email to get the new password
-4. login at '/admin-login'
-```
 
 ## Links
 ### MySQL
@@ -199,7 +206,7 @@ Faculty Administrator:
 ```
 
 ## Acknowledgement
-We would like to express our deepest appreciation to our surpervisor, Dr Chiam Yin Kia for providing invualable guidance to complete this project successfully. Furthermore, we are also extremely grateful to every members in this project who give full cooperation throughout this project. 
+We would like to express our deepest appreciation to our surpervisor, Dr Chiam Yin Kia for providing invaluable guidance to complete this project successfully. Furthermore, we are also extremely grateful to have every members in this project who give full cooperation throughout this project. 
 
 ## Contributors
 - [Ng Yong Ming](https://github.com/YongMing11)
