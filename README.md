@@ -2,7 +2,7 @@
 ## User manual
 ### 1. Clone the repository
 ```
-git clone https://github.com/FSKTMOnlineAlumniSystem/core.git
+git clone https://github.com/FSKTMOnlineAlumniSystem/OAS.git
 ```
 ### 2. Set DocumentRoot and Directory to public directory in httpd.conf for XAMPP
 ```
