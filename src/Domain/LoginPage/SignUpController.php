@@ -110,8 +110,8 @@ function verifyEmail($email, $encrypted)
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'webprog707@gmail.com';
-    $mail->Password = '123wif2003';
+    $mail->Username = SYSTEM_EMAIL_USERNAME;
+    $mail->Password = SYSTEM_EMAIL_PASSWORD;
     $mail->Port = 465;
     $mail->SMTPSecure = 'ssl';
 

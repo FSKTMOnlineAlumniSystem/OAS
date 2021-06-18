@@ -29,7 +29,9 @@ function exception_handler($exception) {
 define('DATABASE_NAME', 'OAS');
 define('DATABASE_USERNAME', 'root');
 define('DATABASE_PASSWORD', '');
-// define('CAROUSEL_IMAGES_PATH', realpath($_SERVER['DOCUMENT_ROOT'] . '/assets/img/carousel/'));
+//SYSTEM_EMAIL_USERNAME & SYSTEM_EMAIL_PASSWORD will be used to send email to user
+define('SYSTEM_EMAIL_USERNAME', 'webprog707@gmail.com');
+define('SYSTEM_EMAIL_PASSWORD', '123wif2003');
 
 ##################################################### APP CONSTANTS ####################################################
 
