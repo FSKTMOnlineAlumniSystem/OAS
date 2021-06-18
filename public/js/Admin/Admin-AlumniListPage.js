@@ -427,6 +427,10 @@ window.deleteCheckedRow = function () {
   })
 }
 
+document.querySelector('#closeDeleteModalButton').addEventListener('click',()=>{
+  localStorage.removeItem('alumniToDelete');
+});
+
 reload(alumniArray, pageIndex);
 
 window.nextPage = function () {
