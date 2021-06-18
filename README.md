@@ -57,7 +57,7 @@ define('SYSTEM_EMAIL_PASSWORD', '[SYSTEM_EMAIL_PASSWORD]');
 * **config** - store general constant variable and configuration
 * **public** - store user accesible files
 * **src** - store php source codes
-* **src/templates** - store general view file like header, footer, modal(later)
+* **src/templates** - store general view file like header, nav bar, footer, generalScript
 * **src/utilities** - store general php function
 * **src/Domain** - store Modal, View and Controller by feature
 
