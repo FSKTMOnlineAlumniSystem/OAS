@@ -16,12 +16,15 @@ try {
     $events = $event_model->searchEvents($_SESSION['alumni']['alumniId'], isset($_GET['search']) ? $_GET['search'] : '', true);
   } else {
     $events = $event_model->getAll();
-    echo "searching is not working<br>"; // Logger
+    // echo "searching is not working<br>"; // Logger
   }
   $server_error = false;
 } catch (Exception $e) {
   // echo "Exception: " . $e->getMessage();
-  $server_error = true;
+  error_log("Exception: " . $e->getMessage());
+  include_once '../src/templates/header.php';
+  include_once '../src/Domain/General_Pages/server_error.php';
+  exit();
 }
 ?>
 <?php
@@ -66,8 +69,8 @@ includeWithVariables('../src/templates/header.php', array(
       <br />
       <div class="row">
         <?php
-        
-        
+
+
         // initial setup of pagination
         $pageIndex = (isset($_GET['page'])) ? $_GET['page'] : 1;
         // echo $pageIndex.'<br>';
@@ -91,7 +94,7 @@ includeWithVariables('../src/templates/header.php', array(
             <a href="/eventdetails?eventId=<?= $event['eventId'] ?>" target="_self" id="<?= $event['eventId'] ?>-card" class="nostyle">
               <div class="card h-100 card--bg-light-gray">
                 <div style="aspect-ratio:1/1;" class="d-flex align-items-center custom-dark-gray">
-                  <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" alt="eventPhoto">
+                  <img src=<?= is_null($event['imageData']) ? './Assets/imgs/default_events.jpg' : 'data::' . $event['type'] . ';base64,' . base64_encode($event['imageData']) ?> class="card-img-top image__fixed-height m-auto w-100" style="aspect-ratio: 1/1;" alt="eventPhoto">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-between event-card-body">
                   <div class="cards pb-2">
@@ -166,7 +169,9 @@ includeWithVariables('../src/templates/header.php', array(
     </div>
   </div>
   </div>
-<?php } else { include_once '../src/Domain/General_Pages/server_error.php'; } ?>
+<?php } else {
+  include_once '../src/Domain/General_Pages/server_error.php';
+} ?>
 <?php include_once '../src/templates/footer.php'; ?>
 <?php include_once '../src/templates/GeneralScripts.php'; ?>
 <!-- custom js files -->

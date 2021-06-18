@@ -17,7 +17,6 @@ const choosePictureDescription = document.querySelector(
 /*Check the file extension of the image & Update preview*/
 img.addEventListener("change", (e) => readURL(e));
 function readURL(e) {
-  console.log('f')
   let allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
   if (e.target.files && e.target.files[0] && e.target.files[0].size > 10000000) {
     // To handle the file size

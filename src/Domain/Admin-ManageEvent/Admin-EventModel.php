@@ -273,11 +273,11 @@ class UpdateEventModel
          $stmt->execute([$eventId]);
          $data = $stmt->fetch(PDO::FETCH_ASSOC);
         if($data['imageId']!=null){
-            echo $data['imageId'];
+            // echo $data['imageId'];
             return $data['imageId'];
         }
         else{
-            echo 'default';
+            // echo 'default';
             return "Default";
         }
 }

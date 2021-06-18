@@ -93,6 +93,7 @@ class EventModel
       throw $exception;
     }
   }
+  
   public function getEvents(string $alumniId): array // for alumni to get their own events
   {
     try {
@@ -102,7 +103,7 @@ class EventModel
       ON event.imageId=image.imageId
       LEFT JOIN alumni_event 
       ON alumni_event.eventId=event.eventId
-      WHERE alumniId=?
+      WHERE alumniId=?;
       ');
       $stmt->execute([$alumniId]);
       $data = $stmt->fetchAll();
@@ -140,11 +141,9 @@ class EventModel
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$alumniId]);
       } else {
-        $query = "SELECT event.*, image.type, image.imageData, alumni_event.alumniId, alumni_event.viewedByAlumni, alumni_event.notificationClosedByAlumni FROM event
+        $query = "SELECT event.*, image.type, image.imageData FROM event
                   LEFT JOIN image 
                   ON event.imageId=image.imageId
-                  LEFT JOIN alumni_event 
-                  ON alumni_event.eventId=event.eventId
                   WHERE (title LIKE '%$search%'
                   OR description LIKE '%$search%'
                   OR location LIKE '%$search%');

@@ -81,6 +81,12 @@ function insertSearchNoResult(el){
   <p class="col-12">Please try another search</p>
   `
 }
+function insertNoRecords(el){
+  el.innerHTML = `
+  <img class="col-md-6" src="/Assets/imgs/newSearchNotFound.png">
+  <h2 class="col-12">Sorry, no records found.</h2>
+  `
+}
 
 const PUBLIC_IMG_PATH = "/public/Assets/imgs/";
 const ALUMNI_IMG_PATH = "/uploads/alumni/";

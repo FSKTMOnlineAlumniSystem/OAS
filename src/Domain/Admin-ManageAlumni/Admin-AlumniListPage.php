@@ -1,17 +1,14 @@
 
-  <title><?= $GLOBALS['title']; ?></title>
-</head>
 
-  
+
 <?php
 
 include_once '../src/Domain/Admin-ManageAlumni/Admin-ManageAlumniModel.php';
 include_once '../src/Domain/Database.php';
 
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-
 
 try {
+  $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
   $alumniList_model = new AlumniListModel($db->getConnection());
   $all_activities = $alumniList_model->getAll();
   $allImage = $alumniList_model->getProfilePicture();
@@ -22,7 +19,11 @@ try {
     $all_activities[$i]['imageId'] = $allImage[$i];
   }
 } catch (Exception $e) {
-  echo $e->getMessage();
+  // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
 }
 ?>
 <?php
@@ -214,7 +215,7 @@ includeWithVariables('../src/templates/header.php', array(
                           onclick="location.href ='/admin/editAlumniProfile?alumniId='+ getAlumniId()">
                           <i class="fas fa-edit">
                           </i>Edit</button>
-                      <button id="approve" name="approve" type="submit" class="btn btn-info" onclick="approve()">Approve</button>
+                      <button id="approve" name="approve" type="submit" class="btn btn-info d-flex justify-content-center align-items-center" onclick="approve()">Approve</button>
                       </div>
                     </div>
                   </div>

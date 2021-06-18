@@ -26,6 +26,8 @@ form_2.addEventListener('submit', (evt) => {
 
     if (errorExist) {
         evt.preventDefault();
+    }else{
+        document.querySelector('#forgotPassword-button').innerHTML = `<span class="spinner-border spinner-border-sm mr-2"></span>Submitting`;
     }
 
 });

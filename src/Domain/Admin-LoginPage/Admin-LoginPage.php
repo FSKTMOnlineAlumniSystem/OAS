@@ -45,8 +45,15 @@
 
 <?php
 include_once '../src/Domain/Database.php';
-
-$db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+try {
+    $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+  } catch (Exception $e) {
+    // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+  }
 ?>
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 gradient-amethyst">
@@ -167,7 +174,7 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class="btn btn-primary signinbtn">Submit</button>
+                        <button id="forgotPassword-button" type="submit" name="submit" class="btn btn-primary signinbtn d-flex justify-content-center align-items-center">Submit</button>
                     </div>
                 </form>
             </div>
@@ -178,7 +185,18 @@ $db = new Database(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
     <?php
 include '../src/templates/GeneralScripts.php'
 ?>
+<?php
 
+if (isset($_GET["fgemailnotExists"])) {
+    echo'
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#forgot").modal("show");
+        });
+    </script>
+    ';
+}
+?>
         <?php
 
 if (isset($_GET["sendPsw"])) {

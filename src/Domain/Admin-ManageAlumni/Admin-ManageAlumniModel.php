@@ -30,40 +30,64 @@ class AlumniListModel
     }
 
     public function getProfilePicture(): array{
-        $stmt = $this->connection->prepare('
-            SELECT * FROM alumni
-            LEFT JOIN image 
-            ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
-        
-        $stmt->execute();
-        $data = $stmt->fetchAll();
-        $image = array();
-        foreach($data as $eachuser){
-            if($eachuser['imageId']==null){
-                array_push($image,null);
+        try {
+            $stmt = $this->connection->prepare('
+                SELECT * FROM alumni
+                LEFT JOIN image 
+                ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
+            
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            $image = array();
+            foreach($data as $eachuser){
+                if($eachuser['imageId']==null){
+                    array_push($image,null);
+                }
+                else if($eachuser['imageData']){
+                $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+                array_push($image,$temp_string);
+                }
             }
-            else if($eachuser['imageData']){
-            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-            array_push($image,$temp_string);
-            }
+            return $image;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
-        return $image;
     }
 
     public function getNumberOfApprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1 AND isVerified =1';
-        $result = $this->connection->prepare($sql); 
-        $result->execute(); 
-        $number_of_rows = $result->fetchColumn(); 
-        return $number_of_rows;
+        try {
+            $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy!="" AND isActive=1 AND isVerified =1';
+            $result = $this->connection->prepare($sql); 
+            $result->execute(); 
+            $number_of_rows = $result->fetchColumn(); 
+            return $number_of_rows;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+        }
     }
 
     public function getNumberOfUnapprovedAlumni(): int{
-        $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1 AND isVerified =1';
-        $result = $this->connection->prepare($sql); 
-        $result->execute(); 
-        $number_of_rows = $result->fetchColumn(); 
-        return $number_of_rows;
+        try {
+            $sql ='SELECT COUNT(alumniId) FROM alumni WHERE approvedBy="" AND isActive=1 AND isVerified =1';
+            $result = $this->connection->prepare($sql); 
+            $result->execute(); 
+            $number_of_rows = $result->fetchColumn(); 
+            return $number_of_rows;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+        }
     }
 
     public function search($name, $department, $status){
@@ -80,37 +104,60 @@ class AlumniListModel
             SELECT * FROM `alumni` WHERE (name LIKE '%$name%' AND department LIKE '%$department%') AND approvedBy='' AND isActive=1 AND isVerified=1
             ";  
         }
-
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute(); 
-        $data = $stmt->fetchAll();
-        if(!$data){
-            return array();
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute(); 
+            $data = $stmt->fetchAll();
+            if(!$data){
+                return array();
+            }
+            return $data;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
-        return $data;
     }
 
    
 public function getSearch($alumniId) {
-    $stmt = $this->connection->prepare("
-    SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId='$alumniId' AND isActive=1 AND isVerified=1
-    ");
-    $stmt->execute();
-    $data = $stmt->fetch();
-    if($data['imageId']=='Default'||$data['imageId']==null){
-        return '/Assets/imgs/default_user.png';
-    }
-    else if($data['imageData']!=null){
-        return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+    try {
+        $stmt = $this->connection->prepare("
+        SELECT * FROM alumni LEFT JOIN image ON alumni.imageId=image.imageId WHERE alumniId='$alumniId' AND isActive=1 AND isVerified=1
+        ");
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data['imageId']=='Default'||$data['imageId']==null){
+            return '/Assets/imgs/default_user.png';
+        }
+        else if($data['imageData']!=null){
+            return 'data::'. $data['type'].';base64,'.base64_encode($data['imageData']);
+        }
+    } catch (PDOException $e) {
+        // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
     }
 }
     public function isAlumniExist($alumniId){
-        $stmt = $this->connection->prepare("
-        SELECT count(*) FROM alumni WHERE alumniId =?
-        ");
-        $stmt->execute([$alumniId]);
-        $data = $stmt->fetchAll();
-        return $data;
+        try {
+            $stmt = $this->connection->prepare("
+            SELECT count(*) FROM alumni WHERE alumniId =?
+            ");
+            $stmt->execute([$alumniId]);
+            $data = $stmt->fetchAll();
+            return $data;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+        }
         }
 
         public function getAlumni($alumniId)
@@ -167,24 +214,32 @@ class DeleteAlumniModel
     }
 
     public function getProfilePicture(): array{
-        $stmt = $this->connection->prepare('
+        try {
+            $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
-        
-        $stmt->execute();
-        $data = $stmt->fetchAll();
-        $image = array();
-        foreach($data as $eachuser){
-            if($eachuser['imageId']==null){
-                array_push($image,null);
+            
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            $image = array();
+            foreach($data as $eachuser){
+                if($eachuser['imageId']==null){
+                    array_push($image,null);
+                }
+                else if($eachuser['imageData']){
+                    $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+                    array_push($image,$temp_string);
+                }
             }
-            else if($eachuser['imageData']){
-            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-            array_push($image,$temp_string);
-            }
+            return $image;
+        } catch (PDOException $e) {
+            // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
         }
-        return $image;
     }
 
     public function deleteAlumni($alumniId) {
@@ -228,23 +283,31 @@ class UpdateALumniModel
     }
 
     public function getProfilePicture(): array{
-        $stmt = $this->connection->prepare('
+        try {
+            $stmt = $this->connection->prepare('
             SELECT * FROM alumni
             LEFT JOIN image 
             ON alumni.imageId=image.imageId WHERE isActive=1 AND isVerified =1');
-        $stmt->execute();
-        $data = $stmt->fetchAll();
-        $image = array();
-        foreach($data as $eachuser){
-            if($eachuser['imageId']==null){
-                array_push($image,null);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            $image = array();
+            foreach($data as $eachuser){
+                if($eachuser['imageId']==null){
+                    array_push($image,null);
             }
             else if($eachuser['imageData']){
-            $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
-            array_push($image,$temp_string);
+                $temp_string = 'data::' . $eachuser['type']. ';base64,'.base64_encode($eachuser['imageData']);
+                array_push($image,$temp_string);
             }
         }
         return $image;
+    } catch (PDOException $e) {
+        // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
+    }
     }
     
     public function updateAlumni($prevAlumniId,$name,$gender,$department,$icNumber,$graduated,$biography,$imageId) {

@@ -20,8 +20,10 @@
   <link rel="stylesheet" type="text/css" href="/css/Alumni/index.css" />
   <?php
 
-  foreach ($variables as $value) {
-    echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
+  if (isset($variables)) {
+    foreach ($variables as $value) {
+      echo "<link rel='stylesheet' type='text/css' href='{$value}' />";
+    }
   }
   ?>
   <title><?= $GLOBALS['title']; ?></title>
@@ -59,7 +61,11 @@
     }
   } catch (Exception $e) {
     $server_error = true;
-    // echo $e->getMessage();
+    // // echo "Exception: " . $e->getMessage();
+error_log("Exception: " . $e->getMessage());
+include_once '../src/templates/header.php';
+include_once '../src/Domain/General_Pages/server_error.php';
+exit();
   }
   ?>
   <?php if (!$server_error) {
@@ -100,42 +106,42 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdownMenuButton" id="dropdown-menu">
 
             <?php
-            if(!$hasZeroNotificationTab){
-            foreach ($all_alumni_events as $alumni_event) {
-              if (!$alumni_event['notificationClosedByAlumni']) {
-                $eventTitle = $alumni_event['title'];
-                $dotClass = $alumni_event['viewedByAlumni'] === 'true' ? "" : "fa fa-circle p-1 d-flex justify-content-center text-primary";
+            if (!$hasZeroNotificationTab) {
+              foreach ($all_alumni_events as $alumni_event) {
+                if (!$alumni_event['notificationClosedByAlumni']) {
+                  $eventTitle = $alumni_event['title'];
+                  $dotClass = $alumni_event['viewedByAlumni'] === 'true' ? "" : "fa fa-circle p-1 d-flex justify-content-center text-primary";
             ?>
-                <div class='dropdown-item text-wrap p-0 custom-notification-panel-width item--hover-light-bg' data-notification-href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>' data-event-id=<?= $alumni_event['eventId'] ?>>
-                  <div class='py-2 container-fluid border-bottom' id=<?= $alumni_event['eventId'] . '-notification-container' ?>>
-                    <div class="row">
-                      <div class='col-2 d-flex justify-content-center align-items-center'>
-                        <i class="far fa-calendar-alt fa-2x text-primary"></i>
-                      </div>
-                      <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
-                        <strong><?= $eventTitle ?></strong>
-                        <div class="text-primary"><?= $alumni_event['timeStr'] ?></div>
-                      </div>
-                      <div class="col-2 d-flex justify-content-center">
-                        <div class='row flex-column'>
-                          <i class="fa fa-times fa-2x p-1 panel__icon--hover-dark-bg" aria-hidden="true" data-close-btn-id=<?= $alumni_event['eventId'] ?>></i>
-                          <?php
-                          if (!$alumni_event['viewedByAlumni']) {
-                            echo '<i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>';
-                          }
-                          ?>
+                  <div class='dropdown-item text-wrap p-0 custom-notification-panel-width item--hover-light-bg' data-notification-href='/eventdetails?eventId=<?= $alumni_event['eventId'] ?>' data-event-id=<?= $alumni_event['eventId'] ?>>
+                    <div class='py-2 container-fluid border-bottom' id=<?= $alumni_event['eventId'] . '-notification-container' ?>>
+                      <div class="row">
+                        <div class='col-2 d-flex justify-content-center align-items-center'>
+                          <i class="far fa-calendar-alt fa-2x text-primary"></i>
+                        </div>
+                        <div class='col-8 flex-grow-1 px-0'>You have been invited to join our event!!<br />
+                          <strong><?= $eventTitle ?></strong>
+                          <div class="text-primary"><?= $alumni_event['timeStr'] ?></div>
+                        </div>
+                        <div class="col-2 d-flex justify-content-center">
+                          <div class='row flex-column'>
+                            <i class="fa fa-times fa-2x p-1 panel__icon--hover-dark-bg" aria-hidden="true" data-close-btn-id=<?= $alumni_event['eventId'] ?>></i>
+                            <?php
+                            if (!$alumni_event['viewedByAlumni']) {
+                              echo '<i class="fa fa-circle p-1 d-flex justify-content-center text-primary" aria-hidden="true"></i>';
+                            }
+                            ?>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
           <?php
+                }
               }
+            } else {
+              echo '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
             }
-          }else{
-            echo '<div class="dropdown-item py-2 container-fluid d-flex align-items-center">You have no notification.</div>';
           }
-        }
           ?>
           </div>
         </div>
