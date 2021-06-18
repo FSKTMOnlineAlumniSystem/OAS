@@ -23,10 +23,10 @@
       </div>
       <div id="quickLinks">
         <div class="d-flex flex-column px-3">
-          <a class="nostyle" href="#">Home</a>
-          <a class="nostyle" href="#">Alumni</a>
-          <a class="nostyle" href="#">Jobs</a>
-          <a class="nostyle" href="#">Events</a>
+          <a class="nostyle" href="/home">Home</a>
+          <a class="nostyle" href="/alumni">Alumni</a>
+          <a class="nostyle" href="/job">Jobs</a>
+          <a class="nostyle" href="/event">Events</a>
         </div>
       </div>
     </div>
@@ -36,9 +36,9 @@
       </div>
       <div id="resources">
         <div class="d-flex flex-column px-3">
-          <a class="nostyle" href="#">UM Library</a>
-          <a class="nostyle" href="#">UM Expert</a>
-          <a class="nostyle" href="#">UM Research</a>
+          <a class="nostyle" target="_blank" href="https://umlib.um.edu.my/">UM Library</a>
+          <a class="nostyle" target="_blank" href="https://umexpert.um.edu.my/">UM Expert</a>
+          <a class="nostyle" target="_blank" href="https://umresearch.um.edu.my/">UM Research</a>
         </div>
       </div>
     </div>
@@ -48,10 +48,10 @@
       </div>
       <div id="followUs">
         <div class="d-flex flex-column px-3">
-          <a class="nostyle" href="#">Instagram</a>
-          <a class="nostyle" href="#">Facebook</a>
-          <a class="nostyle" href="#">Youtube</a>
-          <a class="nostyle" href="#">Twitter</a>
+          <a class="nostyle" target="_blank" href="https://www.instagram.com/fsktm_um/?hl=en">Instagram</a>
+          <a class="nostyle" target="_blank" href="https://www.facebook.com/fsktm.um.edu.my/">Facebook</a>
+          <a class="nostyle" target="_blank" href="https://www.youtube.com/channel/UChykDzXlo6wYxXvydPBntlg">Youtube</a>
+          <a class="nostyle" target="_blank" href="https://twitter.com/unimalaya?lang=en">Twitter</a>
         </div>
       </div>
     </div>
