@@ -285,7 +285,7 @@ window.deleteByJquery = function (o) {
   event.preventDefault();
   var findId = o.id.split(" ");
   var $deleteAlumniId = alumniArray[findId].alumniId;
-  localStorage.setItem('alumniId', $deleteAlumniId);
+  localStorage.setItem('alumniToDelete', $deleteAlumniId);
 }
 var deleteButton = document.getElementById('deleteButton');
 deleteButton.addEventListener('click', () => {
@@ -300,7 +300,7 @@ deleteButton.addEventListener('click', () => {
   $.ajax({
     type: "POST",
     url: '/admin/deleteAlumni',
-    data: { deleteAlumniId: localStorage.getItem('alumniId') },
+    data: { deleteAlumniId: localStorage.getItem('alumniToDelete') },
     success: function (data) {
       $.ajax({
         type: "POST",
@@ -394,7 +394,7 @@ window.deleteCheckedRow = function () {
       }
     }
     $alumniId = $alumniId.toString();
-    localStorage.setItem('alumniId', $alumniId)
+    localStorage.setItem('alumniToDelete', $alumniId)
   }
   var deleteButton = document.getElementById('deleteButton');
   deleteButton.addEventListener('click', () => {
@@ -408,7 +408,7 @@ window.deleteCheckedRow = function () {
     $.ajax({
       type: "POST",
       url: '/admin/deleteMultipleAlumni',
-      data: { listOfDeleteAlumniId: localStorage.getItem("alumniId") },
+      data: { listOfDeleteAlumniId: localStorage.getItem("alumniToDelete") },
       success: function (data) {
         checkboxes[0].checked = false;
         $.ajax({
