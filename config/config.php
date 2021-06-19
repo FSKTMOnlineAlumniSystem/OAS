@@ -25,11 +25,11 @@ function exception_handler($exception) {
  }
  set_exception_handler('exception_handler');
 
-// Change according to your needs, RCMS is the name of the database created in setup.sql
-define('DATABASE_NAME', 'ENTER YOUR DATABASE NAME');
+// Change according to your needs, oas is the name of the database created in setup.sql
+define('DATABASE_NAME', 'oas');
 define('DATABASE_USERNAME', 'ENTER YOUR DATABASE USERNAME');
 define('DATABASE_PASSWORD', 'ENTER YOUR DATABASE PASSWORD');
-define('DATABASE_PORT', '[ENTER YOUR DATABASE PORT NUMBER]');
+define('DATABASE_PORT', 'ENTER YOUR DATABASE PORT NUMBER');
 //SYSTEM_EMAIL_USERNAME & SYSTEM_EMAIL_PASSWORD will be used to send email to user
 define('SYSTEM_EMAIL_USERNAME', 'ENTER YOUR SYSTEM EMAIL');
 define('SYSTEM_EMAIL_PASSWORD', 'ENTER YOUR SYSTEM EMAIL PASSWORD');

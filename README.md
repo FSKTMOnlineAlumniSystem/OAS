@@ -15,7 +15,6 @@ max_allowed_packet=100M
 ```
 ### 4. Modify the Database Connection Details and System Email Address in config.php
 ```
-define('DATABASE_NAME', 'ENTER YOUR DATABASE NAME');
 define('DATABASE_USERNAME', 'ENTER YOUR DATABASE USERNAME');
 define('DATABASE_PASSWORD', 'ENTER YOUR DATABASE PASSWORD');
 define('DATABASE_PORT', 'ENTER YOUR DATABASE PORT NUMBER');
